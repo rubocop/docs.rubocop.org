@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Contributing :: RuboCop</title>
+    <link rel="canonical" href="https://docs.rubocop.org/rubocop/contributing.html">
+    <meta name="generator" content="Antora 2.0.0">
+    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="stylesheet" href="../_/css/site-extra.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140153536-1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-140153536-1')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <a href="https://rubocop.org">RuboCop</a>
+        <span class="separator">//</span>
+        <a href="https://docs.rubocop.org">Docs</a>
+      </div>
+      <!-- <div class="navbar-item"> -->
+      <!--   <input id="search-input" type="text" placeholder="Search docs"> -->
+      <!-- </div> -->
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <a class="navbar-item" href="https://www.rubydoc.info/gems/rubocop">API Docs</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Projects</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop">RuboCop</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-rails">RuboCop Rails</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-rspec">RuboCop RSpec</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-performance">RuboCop Performance</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Community</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://opencollective.com/rubocop">Open Collective</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rubocop" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">RuboCop</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Usage</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/basic_usage.html">Basic Usage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/auto_correct.html">Auto-correct</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/caching.html">Caching</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="contributing.html">Contributing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cops.html">Cops</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="formatters.html">Formatters</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cop Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_bundler.html">Bundler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_gemspec.html">Gemspec</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_layout.html">Layout</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_lint.html">Lint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_metrics.html">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_migration.html">Migration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_naming.html">Naming</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_security.html">Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_style.html">Style</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="extensions.html">Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="integration_with_other_tools.html">Integration with Other Tools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="support.html">Support</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="versioning.html">Versioning</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RuboCop</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">RuboCop</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">RuboCop</a></li>
+    <li><a href="contributing.html">Contributing</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/edit/antora/doc/modules/ROOT/pages/contributing.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Contributing</h1>
+<div class="sect1">
+<h2 id="_issues"><a class="anchor" href="#_issues"></a>Issues</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Report issues and suggest features and improvements on the
+<a href="https://github.com/rubocop-hq/rubocop/issues">GitHub issue tracker</a>. Don&#8217;t ask
+questions on the issue tracker - use the <a href="support.html" class="page">support channels</a> instead.</p>
+</div>
+<div class="paragraph">
+<p>If you want to file a bug, please provide all the necessary info listed in
+our issue reporting template (it&#8217;s loaded automatically when you create a
+new GitHub issue).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_patches"><a class="anchor" href="#_patches"></a>Patches</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Patches in any form are always welcome! GitHub pull requests are even better! :-)</p>
+</div>
+<div class="paragraph">
+<p>Before submitting a patch or a pull request make sure all tests are
+passing and that your patch is in line with the <a href="https://github.com/rubocop-hq/rubocop/blob/master/CONTRIBUTING.md">contribution
+guidelines</a>.</p>
+</div>
+<div class="paragraph">
+<p>A handy way to test only the files that you have modified in the last commit
+(with <code>rspec</code> and <code>rubocop</code>) is to use <code>rake check_commit</code>.</p>
+</div>
+<div class="paragraph">
+<p>Also see the <a href="development.html" class="page">Development section</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_documentation"><a class="anchor" href="#_documentation"></a>Documentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Good documentation is just as important as good code. Check out the
+<a href="development.md#documentation">Documentation section</a> of this guide and consider
+adding or improving Cop descriptions.</p>
+</div>
+<div class="sect2">
+<h3 id="_working_on_the_manual"><a class="anchor" href="#_working_on_the_manual"></a>Working on the Manual</h3>
+<div class="paragraph">
+<p>The manual is generated from the markdown files in the
+<a href="https://github.com/rubocop-hq/rubocop/tree/master/manual">doc</a> folder of RuboCop&#8217;s
+GitHub repo and is published to <a href="readthedocs.org">Read the Docs</a>. The
+<a href="https://www.mkdocs.org/">MkDocs</a> tool is used to convert the markdown sources to
+HTML.</p>
+</div>
+<div class="paragraph">
+<p>To make changes to the manual you simply have to change the files under
+<code>manual</code>. The manual will be regenerated automatically when changes to those files
+are merged in <code>master</code> (or the latest stable branch).</p>
+</div>
+<div class="paragraph">
+<p>You can install <code>MkDocs</code> locally and use the command <code>mkdocs serve</code> to see the
+result of changes you make to the manual locally:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ cd path/to/rubocop/repo
+$ mkdocs serve</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to make changes to the manual&#8217;s page structure you&#8217;ll have to edit
+<a href="https://github.com/rubocop-hq/rubocop/blob/master/mkdocs.yml">mkdocs.yml</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_funding"><a class="anchor" href="#_funding"></a>Funding</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>While RuboCop is free software and will always be, the project would benefit immensely from some funding.
+Raising a monthly budget of a couple of thousand dollars would make it possible to pay people to work on
+certain complex features, fund other development related stuff (e.g. hardware, conference trips) and so on.
+Raising a monthly budget of over $5000 would open the possibility of someone working full-time on the project
+which would speed up the pace of development significantly.</p>
+</div>
+<div class="paragraph">
+<p>We welcome both individual and corporate sponsors! We also offer a wide array of funding channels to account
+for your preferences (although currently <a href="https://opencollective.com/rubocop">Open Collective</a> is our preferred funding platform).</p>
+</div>
+<div class="paragraph">
+<p>If you&#8217;re working in a company that&#8217;s making significant use of RuboCop we&#8217;d appreciate it if you suggest to your company
+to become a RuboCop sponsor.</p>
+</div>
+<div class="paragraph">
+<p>You can support the development of RuboCop via
+<a href="https://github.com/sponsors/bbatsov">GitHub Sponsors</a>,
+<a href="https://www.patreon.com/bbatsov">Patreon</a>,
+<a href="https://paypal.me/bbatsov">PayPal</a>,
+and <a href="https://opencollective.com/rubocop">Open Collective</a>.</p>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>Copyright (C) 2020 <a href="https://metaredux.com">Bozhidar Batsov</a> and RuboCop contributors.</p>
+</footer>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript">
+docsearch({
+  apiKey: 'd63510fa1207404e3966aedd33d34bce',
+  indexName: 'rubocop',
+  inputSelector: '#search-input',
+  algoliaOptions: { 'facetFilters': ["version:0.7.0"] },
+  debug: false // Set debug to true if you want to inspect the dropdown
+});
+</script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
