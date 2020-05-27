@@ -39,14 +39,18 @@
           <a class="navbar-link" href="#">Projects</a>
           <div class="navbar-dropdown">
             <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop">RuboCop</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-ast">RuboCop AST</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-minitest">RuboCop Minitest</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-performance">RuboCop Performance</a>
             <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-rails">RuboCop Rails</a>
             <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-rspec">RuboCop RSpec</a>
-            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-performance">RuboCop Performance</a>
           </div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link" href="#">Community</a>
           <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop-hq">GitHub Org</a>
+            <a class="navbar-item" href="https://gitter.im/rubocop-hq/rubocop">Chat (Gitter)</a>
             <a class="navbar-item" href="https://opencollective.com/rubocop">Open Collective</a>
           </div>
         </div>
@@ -87,9 +91,6 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="configuration.html">Configuration</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="contributing.html">Contributing</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="cops.html">Cops</a>
@@ -140,6 +141,9 @@
     <a class="nav-link" href="development.html">Development</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="contributing.html">Contributing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="support.html">Support</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -179,7 +183,7 @@
     <li><a href="index.html">Home</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/edit/antora/doc/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/edit/master/doc/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -196,6 +200,9 @@
 &#8212; Officer Alex J. Murphy / RoboCop
 </div>
 </div>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><strong>RuboCop</strong> is a Ruby static code analyzer (a.k.a. linter) and code
 formatter. Out of the box it will enforce many of the guidelines
@@ -267,29 +274,7 @@ linter:</p>
 <div class="paragraph">
 <p>A long-term goal of RuboCop (and its core extensions) is to cover with cops all the guidelines from the community style guides.</p>
 </div>
-<div class="paragraph">
-<p>So, what to do next? While you can peruse the documentation in whatever way you&#8217;d like, here are
-a few recommendations:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>See <a href="usage/basic_usage.html" class="page">"Basic Usage"</a> to get yourself familiar with RuboCop&#8217;s
-capabilities.</p>
-</li>
-<li>
-<p>Adjust RuboCop to your style/preferences. RuboCop is an extremely flexible tool and most aspects of its behavior
-can be tweaked via various <a href="https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml">configuration
-options</a>.</p>
-</li>
-<li>
-<p>See <a href="versioning.html" class="page">"Versioning"</a> for information about RuboCop versioning,
-updates, and introduction of new cops.</p>
-</li>
-<li>
-<p>Explore the <a href="extensions.html" class="page">existing extensions</a>.</p>
-</li>
-</ul>
 </div>
 <div class="sect1">
 <h2 id="_philosophy"><a class="anchor" href="#_philosophy"></a>Philosophy</h2>
@@ -306,6 +291,35 @@ part was the lack of common standards for almost 20 years. It&#8217;s hard to un
 of programming in Ruby. While we still believe that there&#8217;s a lot of merit to just sticking to the community
 style guides, we acknowledge that Ruby is all about diversity and doing things the way that makes you happy. Whatever
 style preferences you have RuboCop is there for you. That&#8217;s our promises and our guarantee. Within the subjective limits of sanity that is.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_next_steps"><a class="anchor" href="#_next_steps"></a>Next Steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>So, what to do next? While you can peruse the documentation in whatever way you&#8217;d like, here are
+a few recommendations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>See <a href="usage/basic_usage.html" class="page">"Basic Usage"</a> to get yourself familiar with RuboCop&#8217;s
+capabilities.</p>
+</li>
+<li>
+<p>Adjust RuboCop to your style/preferences. RuboCop is an extremely flexible tool and most aspects of its behavior
+can be tweaked via various <a href="https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml">configuration
+options</a>. See <a href="configuration.html" class="page">"Configuration"</a> for more details.</p>
+</li>
+<li>
+<p>See <a href="versioning.html" class="page">"Versioning"</a> for information about RuboCop versioning,
+updates, and the process of introducing new cops.</p>
+</li>
+<li>
+<p>Explore the <a href="extensions.html" class="page">existing extensions</a>.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
