@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: RuboCop</title>
+    <link rel="canonical" href="https://docs.rubocop.org/rubocop-rspec/cops.html">
+    <link rel="prev" href="usage.html">
+    <link rel="next" href="cops_capybara.html">
+    <meta name="generator" content="Antora 2.0.0">
+    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="stylesheet" href="../_/css/site-extra.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140153536-1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-140153536-1')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <a href="https://rubocop.org">RuboCop</a>
+        <span class="separator">//</span>
+        <a href="https://docs.rubocop.org">Docs</a>
+      </div>
+      <div class="navbar-item">
+        <input id="search-input" type="text" placeholder="Search docs">
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Style Guides</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://rubystyle.guide">Ruby</a>
+            <a class="navbar-item" href="https://rails.rubystyle.guide">Rails</a>
+            <a class="navbar-item" href="https://rspec.rubystyle.guide">RSpec</a>
+            <a class="navbar-item" href="https://minitest.rubystyle.guide">Minitest</a>
+          </div>
+        </div>
+        <a class="navbar-item" href="https://www.rubydoc.info/gems/rubocop">API Docs</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Projects</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop">RuboCop</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-ast">RuboCop AST</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-minitest">RuboCop Minitest</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-performance">RuboCop Performance</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-rails">RuboCop Rails</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-rake">RuboCop Rake</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-rspec">RuboCop RSpec</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Community</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop-hq">GitHub Org</a>
+            <a class="navbar-item" href="https://gitter.im/bbatsov/rubocop">Chat (Gitter)</a>
+            <a class="navbar-item" href="https://opencollective.com/rubocop">Open Collective</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rubocop-rspec" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">RuboCop RSpec</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="usage.html">Usage</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="cops.html">Cops</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cops Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_capybara.html">Capybara</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_factorybot.html">FactoryBot</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_rails.html">Rails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_rspec.html">RSpec</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RuboCop RSpec</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">RuboCop</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../rubocop/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop AST</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../rubocop-ast/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop Minitest</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../rubocop-minitest/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">RuboCop RSpec</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../rubocop/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">RuboCop RSpec</a></li>
+    <li><a href="cops.html">Cops</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop-rspec/edit/master/docs/modules/ROOT/pages/cops.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<div class="sect3">
+<h4 id="department-capybara"><a class="anchor" href="#department-capybara"></a>Department <a href="cops_capybara.html" class="page">Capybara</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="cops_capybara.md#capybaracurrentpathexpectation">Capybara/CurrentPathExpectation</a></p>
+</li>
+<li>
+<p><a href="cops_capybara.md#capybarafeaturemethods">Capybara/FeatureMethods</a></p>
+</li>
+<li>
+<p><a href="cops_capybara.md#capybaravisibilitymatcher">Capybara/VisibilityMatcher</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="department-factorybot"><a class="anchor" href="#department-factorybot"></a>Department <a href="cops_factorybot.html" class="page">FactoryBot</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="cops_factorybot.md#factorybotattributedefinedstatically">FactoryBot/AttributeDefinedStatically</a></p>
+</li>
+<li>
+<p><a href="cops_factorybot.md#factorybotcreatelist">FactoryBot/CreateList</a></p>
+</li>
+<li>
+<p><a href="cops_factorybot.md#factorybotfactoryclassname">FactoryBot/FactoryClassName</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="department-rspec"><a class="anchor" href="#department-rspec"></a>Department <a href="cops_rspec.html" class="page">RSpec</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="cops_rspec.adoc#rspecalignleftletbrace">RSpec/AlignLeftLetBrace</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecalignrightletbrace">RSpec/AlignRightLetBrace</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecanyinstance">RSpec/AnyInstance</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecaroundblock">RSpec/AroundBlock</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecbe">RSpec/Be</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecbeeql">RSpec/BeEql</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecbeforeafterall">RSpec/BeforeAfterAll</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspeccontextmethod">RSpec/ContextMethod</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspeccontextwording">RSpec/ContextWording</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecdescribeclass">RSpec/DescribeClass</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecdescribemethod">RSpec/DescribeMethod</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecdescribesymbol">RSpec/DescribeSymbol</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecdescribedclass">RSpec/DescribedClass</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecdescribedclassmodulewrapping">RSpec/DescribedClassModuleWrapping</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecdialect">RSpec/Dialect</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecemptyexamplegroup">RSpec/EmptyExampleGroup</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecemptyhook">RSpec/EmptyHook</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecemptylineafterexample">RSpec/EmptyLineAfterExample</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecemptylineafterexamplegroup">RSpec/EmptyLineAfterExampleGroup</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecemptylineafterfinallet">RSpec/EmptyLineAfterFinalLet</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecemptylineafterhook">RSpec/EmptyLineAfterHook</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecemptylineaftersubject">RSpec/EmptyLineAfterSubject</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecexamplelength">RSpec/ExampleLength</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecexamplewithoutdescription">RSpec/ExampleWithoutDescription</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecexamplewording">RSpec/ExampleWording</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecexpectactual">RSpec/ExpectActual</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecexpectchange">RSpec/ExpectChange</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecexpectinhook">RSpec/ExpectInHook</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecexpectoutput">RSpec/ExpectOutput</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecfilepath">RSpec/FilePath</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecfocus">RSpec/Focus</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspechookargument">RSpec/HookArgument</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspechooksbeforeexamples">RSpec/HooksBeforeExamples</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecimplicitblockexpectation">RSpec/ImplicitBlockExpectation</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecimplicitexpect">RSpec/ImplicitExpect</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecimplicitsubject">RSpec/ImplicitSubject</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecinstancespy">RSpec/InstanceSpy</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecinstancevariable">RSpec/InstanceVariable</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecinvalidpredicatematcher">RSpec/InvalidPredicateMatcher</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecitbehaveslike">RSpec/ItBehavesLike</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspeciteratedexpectation">RSpec/IteratedExpectation</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecleadingsubject">RSpec/LeadingSubject</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecleakyconstantdeclaration">RSpec/LeakyConstantDeclaration</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecletbeforeexamples">RSpec/LetBeforeExamples</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecletsetup">RSpec/LetSetup</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecmessagechain">RSpec/MessageChain</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecmessageexpectation">RSpec/MessageExpectation</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecmessagespies">RSpec/MessageSpies</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecmissingexamplegroupargument">RSpec/MissingExampleGroupArgument</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecmultipledescribes">RSpec/MultipleDescribes</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecmultipleexpectations">RSpec/MultipleExpectations</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecmultiplesubjects">RSpec/MultipleSubjects</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecnamedsubject">RSpec/NamedSubject</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecnestedgroups">RSpec/NestedGroups</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecnottonot">RSpec/NotToNot</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecoverwritingsetup">RSpec/OverwritingSetup</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecpending">RSpec/Pending</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecpredicatematcher">RSpec/PredicateMatcher</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecreceivecounts">RSpec/ReceiveCounts</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecreceivenever">RSpec/ReceiveNever</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecrepeateddescription">RSpec/RepeatedDescription</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecrepeatedexample">RSpec/RepeatedExample</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecrepeatedexamplegroupbody">RSpec/RepeatedExampleGroupBody</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecrepeatedexamplegroupdescription">RSpec/RepeatedExampleGroupDescription</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecreturnfromstub">RSpec/ReturnFromStub</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecscatteredlet">RSpec/ScatteredLet</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecscatteredsetup">RSpec/ScatteredSetup</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecsharedcontext">RSpec/SharedContext</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecsharedexamples">RSpec/SharedExamples</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecsingleargumentmessagechain">RSpec/SingleArgumentMessageChain</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecsubjectstub">RSpec/SubjectStub</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecunspecifiedexception">RSpec/UnspecifiedException</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecvariabledefinition">RSpec/VariableDefinition</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecvariablename">RSpec/VariableName</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecverifieddoubles">RSpec/VerifiedDoubles</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecvoidexpect">RSpec/VoidExpect</a></p>
+</li>
+<li>
+<p><a href="cops_rspec.adoc#rspecyield">RSpec/Yield</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="department-rails"><a class="anchor" href="#department-rails"></a>Department <a href="cops_rails.html" class="page">Rails</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="cops_rails.adoc#railshttpstatus">Rails/HttpStatus</a></p>
+</li>
+</ul>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="usage.html">Usage</a></span>
+  <span class="next"><a href="cops_capybara.html">Capybara</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>Copyright (C) 2020 <a href="https://metaredux.com">Bozhidar Batsov</a> and RuboCop contributors.</p>
+</footer>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript">
+docsearch({
+  apiKey: '6d6bf5210b1f26f7f7939e192f8f8c77',
+  indexName: 'rubocop',
+  inputSelector: '#search-input',
+  debug: false // Set debug to true if you want to inspect the dropdown
+});
+</script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
