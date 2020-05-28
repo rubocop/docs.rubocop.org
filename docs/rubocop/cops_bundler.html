@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Bundler :: RuboCop</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_bundler.html">
+    <link rel="prev" href="formatters.html">
+    <link rel="next" href="cops_gemspec.html">
     <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
@@ -199,7 +201,7 @@
 <article class="doc">
 <h1 class="page">Bundler</h1>
 <div class="sect1">
-<h2 id="_bundlerduplicatedgem"><a class="anchor" href="#_bundlerduplicatedgem"></a>Bundler/DuplicatedGem</h2>
+<h2 id="bundlerduplicatedgem"><a class="anchor" href="#bundlerduplicatedgem"></a>Bundler/DuplicatedGem</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -232,7 +234,7 @@
 <p>A Gem&#8217;s requirements should be listed only once in a Gemfile.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h3>
+<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -259,7 +261,7 @@ gem 'rubocop', groups: [:development, :test]</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes"><a class="anchor" href="#_configurable_attributes"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -285,7 +287,7 @@ gem 'rubocop', groups: [:development, :test]</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_bundlergemcomment"><a class="anchor" href="#_bundlergemcomment"></a>Bundler/GemComment</h2>
+<h2 id="bundlergemcomment"><a class="anchor" href="#bundlergemcomment"></a>Bundler/GemComment</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -318,7 +320,7 @@ gem 'rubocop', groups: [:development, :test]</code></pre>
 <p>Add a comment describing each gem in your Gemfile.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_2"><a class="anchor" href="#_examples_2"></a>Examples</h3>
+<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -333,7 +335,7 @@ gem 'foo'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes_2"><a class="anchor" href="#_configurable_attributes_2"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -364,7 +366,7 @@ gem 'foo'</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_bundlerinsecureprotocolsource"><a class="anchor" href="#_bundlerinsecureprotocolsource"></a>Bundler/InsecureProtocolSource</h2>
+<h2 id="bundlerinsecureprotocolsource"><a class="anchor" href="#bundlerinsecureprotocolsource"></a>Bundler/InsecureProtocolSource</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -410,7 +412,7 @@ intranet, a use case where HTTPS cannot be specified was considered.
 Consider using HTTP only if you cannot use HTTPS.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_3"><a class="anchor" href="#_examples_3"></a>Examples</h3>
+<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -425,7 +427,7 @@ source 'http://rubygems.org'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes_3"><a class="anchor" href="#_configurable_attributes_3"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -451,7 +453,7 @@ source 'http://rubygems.org'</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_bundlerorderedgems"><a class="anchor" href="#_bundlerorderedgems"></a>Bundler/OrderedGems</h2>
+<h2 id="bundlerorderedgems"><a class="anchor" href="#bundlerorderedgems"></a>Bundler/OrderedGems</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -484,7 +486,7 @@ source 'http://rubygems.org'</code></pre>
 <p>Gems should be alphabetically sorted within groups.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_4"><a class="anchor" href="#_examples_4"></a>Examples</h3>
+<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -509,7 +511,7 @@ gem 'rspec'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes_4"><a class="anchor" href="#_configurable_attributes_4"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -539,6 +541,10 @@ gem 'rspec'</code></pre>
 </div>
 </div>
 </div>
+<nav class="pagination">
+  <span class="prev"><a href="formatters.html">Formatters</a></span>
+  <span class="next"><a href="cops_gemspec.html">Gemspec</a></span>
+</nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>

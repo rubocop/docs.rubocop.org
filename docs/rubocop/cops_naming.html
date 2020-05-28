@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Naming :: RuboCop</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_naming.html">
+    <link rel="prev" href="cops_migration.html">
+    <link rel="next" href="cops_security.html">
     <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
@@ -199,7 +201,7 @@
 <article class="doc">
 <h1 class="page">Naming</h1>
 <div class="sect1">
-<h2 id="_namingaccessormethodname"><a class="anchor" href="#_namingaccessormethodname"></a>Naming/AccessorMethodName</h2>
+<h2 id="namingaccessormethodname"><a class="anchor" href="#namingaccessormethodname"></a>Naming/AccessorMethodName</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -232,7 +234,7 @@
 <p>This cop makes sure that accessor methods are named properly.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h3>
+<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -254,7 +256,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_references"><a class="anchor" href="#_references"></a>References</h3>
+<h3 id="references"><a class="anchor" href="#references"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -266,7 +268,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_namingasciiidentifiers"><a class="anchor" href="#_namingasciiidentifiers"></a>Naming/AsciiIdentifiers</h2>
+<h2 id="namingasciiidentifiers"><a class="anchor" href="#namingasciiidentifiers"></a>Naming/AsciiIdentifiers</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -299,7 +301,7 @@ end</code></pre>
 <p>This cop checks for non-ascii characters in identifier names.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_2"><a class="anchor" href="#_examples_2"></a>Examples</h3>
+<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -333,7 +335,7 @@ params[:width_gteq]</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_references_2"><a class="anchor" href="#_references_2"></a>References</h3>
+<h3 id="references-2"><a class="anchor" href="#references-2"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -345,7 +347,7 @@ params[:width_gteq]</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_namingbinaryoperatorparametername"><a class="anchor" href="#_namingbinaryoperatorparametername"></a>Naming/BinaryOperatorParameterName</h2>
+<h2 id="namingbinaryoperatorparametername"><a class="anchor" href="#namingbinaryoperatorparametername"></a>Naming/BinaryOperatorParameterName</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -379,7 +381,7 @@ params[:width_gteq]</code></pre>
 sole  parameter named <code>other</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_3"><a class="anchor" href="#_examples_3"></a>Examples</h3>
+<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -391,7 +393,7 @@ def +(other); end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_references_3"><a class="anchor" href="#_references_3"></a>References</h3>
+<h3 id="references-3"><a class="anchor" href="#references-3"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -403,7 +405,7 @@ def +(other); end</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_namingblockparametername"><a class="anchor" href="#_namingblockparametername"></a>Naming/BlockParameterName</h2>
+<h2 id="namingblockparametername"><a class="anchor" href="#namingblockparametername"></a>Naming/BlockParameterName</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -447,7 +449,7 @@ offense. The <code>ForbiddenNames</code> config option takes an array of
 restricted names that will always register an offense.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_4"><a class="anchor" href="#_examples_4"></a>Examples</h3>
+<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -473,7 +475,7 @@ baz { |age, height, gender| do_stuff(age, height, gender) }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes"><a class="anchor" href="#_configurable_attributes"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -514,7 +516,7 @@ baz { |age, height, gender| do_stuff(age, height, gender) }</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_namingclassandmodulecamelcase"><a class="anchor" href="#_namingclassandmodulecamelcase"></a>Naming/ClassAndModuleCamelCase</h2>
+<h2 id="namingclassandmodulecamelcase"><a class="anchor" href="#namingclassandmodulecamelcase"></a>Naming/ClassAndModuleCamelCase</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -548,7 +550,7 @@ baz { |age, height, gender| do_stuff(age, height, gender) }</code></pre>
 an underscore in them.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_5"><a class="anchor" href="#_examples_5"></a>Examples</h3>
+<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -566,7 +568,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_references_4"><a class="anchor" href="#_references_4"></a>References</h3>
+<h3 id="references-4"><a class="anchor" href="#references-4"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -578,7 +580,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_namingconstantname"><a class="anchor" href="#_namingconstantname"></a>Naming/ConstantName</h2>
+<h2 id="namingconstantname"><a class="anchor" href="#namingconstantname"></a>Naming/ConstantName</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -616,7 +618,7 @@ SCREAMING_SNAKE_CASE.</p>
 for certain the type of value that would be assigned to a constant.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_6"><a class="anchor" href="#_examples_6"></a>Examples</h3>
+<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -630,7 +632,7 @@ INCH_IN_CM = 2.54</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_references_5"><a class="anchor" href="#_references_5"></a>References</h3>
+<h3 id="references-5"><a class="anchor" href="#references-5"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -642,7 +644,7 @@ INCH_IN_CM = 2.54</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_namingfilename"><a class="anchor" href="#_namingfilename"></a>Naming/FileName</h2>
+<h2 id="namingfilename"><a class="anchor" href="#namingfilename"></a>Naming/FileName</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -683,7 +685,7 @@ recommends using dashes to separate namespaces in nested gems
 gemspec is supposed to be named <code>bundler-console.gemspec</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_7"><a class="anchor" href="#_examples_7"></a>Examples</h3>
+<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -699,7 +701,7 @@ anything/using_snake_case.rake</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes_2"><a class="anchor" href="#_configurable_attributes_2"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -743,7 +745,7 @@ anything/using_snake_case.rake</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_references_6"><a class="anchor" href="#_references_6"></a>References</h3>
+<h3 id="references-6"><a class="anchor" href="#references-6"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -755,7 +757,7 @@ anything/using_snake_case.rake</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_namingheredocdelimitercase"><a class="anchor" href="#_namingheredocdelimitercase"></a>Naming/HeredocDelimiterCase</h2>
+<h2 id="namingheredocdelimitercase"><a class="anchor" href="#namingheredocdelimitercase"></a>Naming/HeredocDelimiterCase</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -789,9 +791,9 @@ anything/using_snake_case.rake</code></pre>
 By default it is configured to enforce uppercase heredocs.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_8"><a class="anchor" href="#_examples_8"></a>Examples</h3>
+<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
 <div class="sect3">
-<h4 id="_enforcedstyle_uppercase_default"><a class="anchor" href="#_enforcedstyle_uppercase_default"></a>EnforcedStyle: uppercase (default)</h4>
+<h4 id="enforcedstyle-uppercase-default"><a class="anchor" href="#enforcedstyle-uppercase-default"></a>EnforcedStyle: uppercase (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -807,7 +809,7 @@ SQL</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_enforcedstyle_lowercase"><a class="anchor" href="#_enforcedstyle_lowercase"></a>EnforcedStyle: lowercase</h4>
+<h4 id="enforcedstyle-lowercase"><a class="anchor" href="#enforcedstyle-lowercase"></a>EnforcedStyle: lowercase</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -824,7 +826,7 @@ sql</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes_3"><a class="anchor" href="#_configurable_attributes_3"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -848,7 +850,7 @@ sql</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_references_7"><a class="anchor" href="#_references_7"></a>References</h3>
+<h3 id="references-7"><a class="anchor" href="#references-7"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -860,7 +862,7 @@ sql</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_namingheredocdelimiternaming"><a class="anchor" href="#_namingheredocdelimiternaming"></a>Naming/HeredocDelimiterNaming</h2>
+<h2 id="namingheredocdelimiternaming"><a class="anchor" href="#namingheredocdelimiternaming"></a>Naming/HeredocDelimiterNaming</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -895,7 +897,7 @@ By default it disallows <code>END</code> and <code>EO*</code>, and can be config
 forbidden listing additional delimiters.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_9"><a class="anchor" href="#_examples_9"></a>Examples</h3>
+<h3 id="examples-9"><a class="anchor" href="#examples-9"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -916,7 +918,7 @@ EOS</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes_4"><a class="anchor" href="#_configurable_attributes_4"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -945,7 +947,7 @@ EOS</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_references_8"><a class="anchor" href="#_references_8"></a>References</h3>
+<h3 id="references-8"><a class="anchor" href="#references-8"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -957,7 +959,7 @@ EOS</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_namingmemoizedinstancevariablename"><a class="anchor" href="#_namingmemoizedinstancevariablename"></a>Naming/MemoizedInstanceVariableName</h2>
+<h2 id="namingmemoizedinstancevariablename"><a class="anchor" href="#namingmemoizedinstancevariablename"></a>Naming/MemoizedInstanceVariableName</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -998,9 +1000,9 @@ convention that is used to implicitly indicate that an ivar should not
 be set or referenced outside of the memoization method.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_10"><a class="anchor" href="#_examples_10"></a>Examples</h3>
+<h3 id="examples-10"><a class="anchor" href="#examples-10"></a>Examples</h3>
 <div class="sect3">
-<h4 id="_enforcedstyleforleadingunderscores_disallowed_default"><a class="anchor" href="#_enforcedstyleforleadingunderscores_disallowed_default"></a>EnforcedStyleForLeadingUnderscores: disallowed (default)</h4>
+<h4 id="enforcedstyleforleadingunderscores-disallowed-default"><a class="anchor" href="#enforcedstyleforleadingunderscores-disallowed-default"></a>EnforcedStyleForLeadingUnderscores: disallowed (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1036,7 +1038,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_enforcedstyleforleadingunderscores_required"><a class="anchor" href="#_enforcedstyleforleadingunderscores_required"></a>EnforcedStyleForLeadingUnderscores: required</h4>
+<h4 id="enforcedstyleforleadingunderscores-required"><a class="anchor" href="#enforcedstyleforleadingunderscores-required"></a>EnforcedStyleForLeadingUnderscores: required</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1062,7 +1064,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_enforcedstyleforleadingunderscores_optional"><a class="anchor" href="#_enforcedstyleforleadingunderscores_optional"></a>EnforcedStyleForLeadingUnderscores :optional</h4>
+<h4 id="enforcedstyleforleadingunderscores-optional"><a class="anchor" href="#enforcedstyleforleadingunderscores-optional"></a>EnforcedStyleForLeadingUnderscores :optional</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1089,7 +1091,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes_5"><a class="anchor" href="#_configurable_attributes_5"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1115,7 +1117,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_namingmethodname"><a class="anchor" href="#_namingmethodname"></a>Naming/MethodName</h2>
+<h2 id="namingmethodname"><a class="anchor" href="#namingmethodname"></a>Naming/MethodName</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1163,9 +1165,9 @@ snake_case or camelCase, for their names.</p>
 <p>Method names matching patterns are always allowed.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_11"><a class="anchor" href="#_examples_11"></a>Examples</h3>
+<h3 id="examples-11"><a class="anchor" href="#examples-11"></a>Examples</h3>
 <div class="sect3">
-<h4 id="_enforcedstyle_snake_case_default"><a class="anchor" href="#_enforcedstyle_snake_case_default"></a>EnforcedStyle: snake_case (default)</h4>
+<h4 id="enforcedstyle-snake_case-default"><a class="anchor" href="#enforcedstyle-snake_case-default"></a>EnforcedStyle: snake_case (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1177,7 +1179,7 @@ def foo_bar; end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_enforcedstyle_camelcase"><a class="anchor" href="#_enforcedstyle_camelcase"></a>EnforcedStyle: camelCase</h4>
+<h4 id="enforcedstyle-camelcase"><a class="anchor" href="#enforcedstyle-camelcase"></a>EnforcedStyle: camelCase</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1190,7 +1192,7 @@ def fooBar; end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes_6"><a class="anchor" href="#_configurable_attributes_6"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1219,7 +1221,7 @@ def fooBar; end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_references_9"><a class="anchor" href="#_references_9"></a>References</h3>
+<h3 id="references-9"><a class="anchor" href="#references-9"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1231,7 +1233,7 @@ def fooBar; end</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_namingmethodparametername"><a class="anchor" href="#_namingmethodparametername"></a>Naming/MethodParameterName</h2>
+<h2 id="namingmethodparametername"><a class="anchor" href="#namingmethodparametername"></a>Naming/MethodParameterName</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1275,7 +1277,7 @@ offense. The <code>ForbiddenNames</code> config option takes an array of
 restricted names that will always register an offense.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_12"><a class="anchor" href="#_examples_12"></a>Examples</h3>
+<h3 id="examples-12"><a class="anchor" href="#examples-12"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1309,7 +1311,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes_7"><a class="anchor" href="#_configurable_attributes_7"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1350,7 +1352,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_namingpredicatename"><a class="anchor" href="#_namingpredicatename"></a>Naming/PredicateName</h2>
+<h2 id="namingpredicatename"><a class="anchor" href="#namingpredicatename"></a>Naming/PredicateName</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1383,7 +1385,7 @@ end</code></pre>
 <p>This cop makes sure that predicates are named properly.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_13"><a class="anchor" href="#_examples_13"></a>Examples</h3>
+<h3 id="examples-13"><a class="anchor" href="#examples-13"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1411,7 +1413,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes_8"><a class="anchor" href="#_configurable_attributes_8"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-8"><a class="anchor" href="#configurable-attributes-8"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1455,7 +1457,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_references_10"><a class="anchor" href="#_references_10"></a>References</h3>
+<h3 id="references-10"><a class="anchor" href="#references-10"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1467,7 +1469,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_namingrescuedexceptionsvariablename"><a class="anchor" href="#_namingrescuedexceptionsvariablename"></a>Naming/RescuedExceptionsVariableName</h2>
+<h2 id="namingrescuedexceptionsvariablename"><a class="anchor" href="#namingrescuedexceptionsvariablename"></a>Naming/RescuedExceptionsVariableName</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1505,9 +1507,9 @@ expected.</p>
 the required name of the variable. Its default is <code>e</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_14"><a class="anchor" href="#_examples_14"></a>Examples</h3>
+<h3 id="examples-14"><a class="anchor" href="#examples-14"></a>Examples</h3>
 <div class="sect3">
-<h4 id="_preferredname_e_default"><a class="anchor" href="#_preferredname_e_default"></a>PreferredName: e (default)</h4>
+<h4 id="preferredname-e-default"><a class="anchor" href="#preferredname-e-default"></a>PreferredName: e (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1534,7 +1536,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_preferredname_exception"><a class="anchor" href="#_preferredname_exception"></a>PreferredName: exception</h4>
+<h4 id="preferredname-exception"><a class="anchor" href="#preferredname-exception"></a>PreferredName: exception</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1562,7 +1564,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes_9"><a class="anchor" href="#_configurable_attributes_9"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-9"><a class="anchor" href="#configurable-attributes-9"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1588,7 +1590,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_namingvariablename"><a class="anchor" href="#_namingvariablename"></a>Naming/VariableName</h2>
+<h2 id="namingvariablename"><a class="anchor" href="#namingvariablename"></a>Naming/VariableName</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1622,9 +1624,9 @@ end</code></pre>
 snake_case or camelCase, for their names.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_15"><a class="anchor" href="#_examples_15"></a>Examples</h3>
+<h3 id="examples-15"><a class="anchor" href="#examples-15"></a>Examples</h3>
 <div class="sect3">
-<h4 id="_enforcedstyle_snake_case_default_2"><a class="anchor" href="#_enforcedstyle_snake_case_default_2"></a>EnforcedStyle: snake_case (default)</h4>
+<h4 id="enforcedstyle-snake_case-default-2"><a class="anchor" href="#enforcedstyle-snake_case-default-2"></a>EnforcedStyle: snake_case (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1636,7 +1638,7 @@ foo_bar = 1</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_enforcedstyle_camelcase_2"><a class="anchor" href="#_enforcedstyle_camelcase_2"></a>EnforcedStyle: camelCase</h4>
+<h4 id="enforcedstyle-camelcase-2"><a class="anchor" href="#enforcedstyle-camelcase-2"></a>EnforcedStyle: camelCase</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1649,7 +1651,7 @@ fooBar = 1</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes_10"><a class="anchor" href="#_configurable_attributes_10"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-10"><a class="anchor" href="#configurable-attributes-10"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1673,7 +1675,7 @@ fooBar = 1</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_references_11"><a class="anchor" href="#_references_11"></a>References</h3>
+<h3 id="references-11"><a class="anchor" href="#references-11"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1685,7 +1687,7 @@ fooBar = 1</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_namingvariablenumber"><a class="anchor" href="#_namingvariablenumber"></a>Naming/VariableNumber</h2>
+<h2 id="namingvariablenumber"><a class="anchor" href="#namingvariablenumber"></a>Naming/VariableNumber</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1720,9 +1722,9 @@ configured style, snake_case, normalcase, or non_integer,
 for their numbering.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_16"><a class="anchor" href="#_examples_16"></a>Examples</h3>
+<h3 id="examples-16"><a class="anchor" href="#examples-16"></a>Examples</h3>
 <div class="sect3">
-<h4 id="_enforcedstyle_snake_case"><a class="anchor" href="#_enforcedstyle_snake_case"></a>EnforcedStyle: snake_case</h4>
+<h4 id="enforcedstyle-snake_case"><a class="anchor" href="#enforcedstyle-snake_case"></a>EnforcedStyle: snake_case</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1736,7 +1738,7 @@ variable_1 = 1</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_enforcedstyle_normalcase_default"><a class="anchor" href="#_enforcedstyle_normalcase_default"></a>EnforcedStyle: normalcase (default)</h4>
+<h4 id="enforcedstyle-normalcase-default"><a class="anchor" href="#enforcedstyle-normalcase-default"></a>EnforcedStyle: normalcase (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1750,7 +1752,7 @@ variable1 = 1</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_enforcedstyle_non_integer"><a class="anchor" href="#_enforcedstyle_non_integer"></a>EnforcedStyle: non_integer</h4>
+<h4 id="enforcedstyle-non_integer"><a class="anchor" href="#enforcedstyle-non_integer"></a>EnforcedStyle: non_integer</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1769,7 +1771,7 @@ variable_one = 1</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes_11"><a class="anchor" href="#_configurable_attributes_11"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-11"><a class="anchor" href="#configurable-attributes-11"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1794,6 +1796,10 @@ variable_one = 1</code></pre>
 </div>
 </div>
 </div>
+<nav class="pagination">
+  <span class="prev"><a href="cops_migration.html">Migration</a></span>
+  <span class="next"><a href="cops_security.html">Security</a></span>
+</nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>

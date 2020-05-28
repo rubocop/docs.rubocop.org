@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Development :: RuboCop</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/development.html">
+    <link rel="prev" href="integration_with_other_tools.html">
+    <link rel="next" href="contributing.html">
     <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
@@ -208,7 +210,7 @@ and testing.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create_a_new_cop"><a class="anchor" href="#_create_a_new_cop"></a>Create a new cop</h2>
+<h2 id="create-a-new-cop"><a class="anchor" href="#create-a-new-cop"></a>Create a new cop</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Use the bundled rake task <code>new_cop</code> to generate a cop template:</p>
@@ -233,7 +235,7 @@ Do 3 steps:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_basics"><a class="anchor" href="#_basics"></a>Basics</h2>
+<h2 id="basics"><a class="anchor" href="#basics"></a>Basics</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>RuboCop uses the <a href="https://github.com/whitequark/parser">parser</a> library to create the
@@ -274,7 +276,7 @@ string value "John":</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_inspecting_the_ast_representation"><a class="anchor" href="#_inspecting_the_ast_representation"></a>Inspecting the AST representation</h3>
+<h3 id="inspecting-the-ast-representation"><a class="anchor" href="#inspecting-the-ast-representation"></a>Inspecting the AST representation</h3>
 <div class="paragraph">
 <p>Let&#8217;s imagine we want to simplify statements from <code>!array.empty?</code> to
 <code>array.any?</code>:</p>
@@ -326,10 +328,10 @@ node.source # =&gt; "!something.empty?"</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_implementation"><a class="anchor" href="#_implementation"></a>Implementation</h2>
+<h2 id="implementation"><a class="anchor" href="#implementation"></a>Implementation</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_writing_node_pattern_rules"><a class="anchor" href="#_writing_node_pattern_rules"></a>Writing Node Pattern Rules</h3>
+<h3 id="writing-node-pattern-rules"><a class="anchor" href="#writing-node-pattern-rules"></a>Writing Node Pattern Rules</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -512,7 +514,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_auto_correct"><a class="anchor" href="#_auto_correct"></a>Auto-correct</h3>
+<h3 id="auto-correct"><a class="anchor" href="#auto-correct"></a>Auto-correct</h3>
 <div class="paragraph">
 <p>The auto-correct can help humans automatically fix offenses that have been detected.
 It&#8217;s necessary to define an <code>autocorrect</code> method that returns a lambda
@@ -553,7 +555,7 @@ ranges for expression or other internal information that the node holds.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h3>
+<h3 id="configuration"><a class="anchor" href="#configuration"></a>Configuration</h3>
 <div class="paragraph">
 <p>Each cop can hold a configuration and you can refer to <code>cop_config</code> in the
 instance and it will bring a hash with options declared in the <code>.rubocop.yml</code>
@@ -589,7 +591,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_documentation"><a class="anchor" href="#_documentation"></a>Documentation</h2>
+<h2 id="documentation"><a class="anchor" href="#documentation"></a>Documentation</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Every new cop requires explanation and examples to make it easy for the community
@@ -666,7 +668,7 @@ CI will fail if the manual and <code>yard</code> comments do not match exactly. 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_testing_your_cop_in_a_real_codebase"><a class="anchor" href="#_testing_your_cop_in_a_real_codebase"></a>Testing your cop in a real codebase</h2>
+<h2 id="testing-your-cop-in-a-real-codebase"><a class="anchor" href="#testing-your-cop-in-a-real-codebase"></a>Testing your cop in a real codebase</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Generally, is a good practice to check if your cop is working properly over a
@@ -704,6 +706,10 @@ the docs.</p>
 </div>
 </div>
 </div>
+<nav class="pagination">
+  <span class="prev"><a href="integration_with_other_tools.html">Integration with Other Tools</a></span>
+  <span class="next"><a href="contributing.html">Contributing</a></span>
+</nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>

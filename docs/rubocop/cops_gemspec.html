@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Gemspec :: RuboCop</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_gemspec.html">
+    <link rel="prev" href="cops_bundler.html">
+    <link rel="next" href="cops_layout.html">
     <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
@@ -199,7 +201,7 @@
 <article class="doc">
 <h1 class="page">Gemspec</h1>
 <div class="sect1">
-<h2 id="_gemspecduplicatedassignment"><a class="anchor" href="#_gemspecduplicatedassignment"></a>Gemspec/DuplicatedAssignment</h2>
+<h2 id="gemspecduplicatedassignment"><a class="anchor" href="#gemspecduplicatedassignment"></a>Gemspec/DuplicatedAssignment</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -239,7 +241,7 @@ as <code>spec.requirements</code>, <code>spec.add_runtime_dependency</code>, and
 permitted because it is the intended use of appending values.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h3>
+<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -268,7 +270,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes"><a class="anchor" href="#_configurable_attributes"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -294,7 +296,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_gemspecordereddependencies"><a class="anchor" href="#_gemspecordereddependencies"></a>Gemspec/OrderedDependencies</h2>
+<h2 id="gemspecordereddependencies"><a class="anchor" href="#gemspecordereddependencies"></a>Gemspec/OrderedDependencies</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -327,7 +329,7 @@ end</code></pre>
 <p>Dependencies in the gemspec should be alphabetically sorted.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_2"><a class="anchor" href="#_examples_2"></a>Examples</h3>
+<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -378,7 +380,7 @@ spec.add_dependency 'rspec'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes_2"><a class="anchor" href="#_configurable_attributes_2"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -409,7 +411,7 @@ spec.add_dependency 'rspec'</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_gemspecrequiredrubyversion"><a class="anchor" href="#_gemspecrequiredrubyversion"></a>Gemspec/RequiredRubyVersion</h2>
+<h2 id="gemspecrequiredrubyversion"><a class="anchor" href="#gemspecrequiredrubyversion"></a>Gemspec/RequiredRubyVersion</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -445,7 +447,7 @@ Thereby, RuboCop to perform static analysis working on the version
 required by gemspec.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_3"><a class="anchor" href="#_examples_3"></a>Examples</h3>
+<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># When `TargetRubyVersion` of .rubocop.yml is `2.5`.
@@ -478,7 +480,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes_3"><a class="anchor" href="#_configurable_attributes_3"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -504,7 +506,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_gemspecrubyversionglobalsusage"><a class="anchor" href="#_gemspecrubyversionglobalsusage"></a>Gemspec/RubyVersionGlobalsUsage</h2>
+<h2 id="gemspecrubyversionglobalsusage"><a class="anchor" href="#gemspecrubyversionglobalsusage"></a>Gemspec/RubyVersionGlobalsUsage</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -541,7 +543,7 @@ It&#8217;s possible to have dependency based on ruby version used
 to execute <code>rake release</code> and not user&#8217;s ruby version.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_4"><a class="anchor" href="#_examples_4"></a>Examples</h3>
+<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -561,7 +563,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes_4"><a class="anchor" href="#_configurable_attributes_4"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -585,7 +587,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_references"><a class="anchor" href="#_references"></a>References</h3>
+<h3 id="references"><a class="anchor" href="#references"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -596,6 +598,10 @@ end</code></pre>
 </div>
 </div>
 </div>
+<nav class="pagination">
+  <span class="prev"><a href="cops_bundler.html">Bundler</a></span>
+  <span class="next"><a href="cops_layout.html">Layout</a></span>
+</nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>

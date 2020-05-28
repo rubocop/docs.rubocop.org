@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Formatters :: RuboCop</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/formatters.html">
+    <link rel="prev" href="cops.html">
+    <link rel="next" href="cops_bundler.html">
     <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
@@ -249,7 +251,7 @@ $ rubocop --out result.txt --format simple
 </div>
 </div>
 <div class="sect1">
-<h2 id="_progress_formatter_default"><a class="anchor" href="#_progress_formatter_default"></a>Progress Formatter (default)</h2>
+<h2 id="progress-formatter-default"><a class="anchor" href="#progress-formatter-default"></a>Progress Formatter (default)</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The default <code>progress</code> formatter outputs a character for each inspected file,
@@ -277,7 +279,7 @@ lib/foo.rb:6:5: C: Style/Documentation: Missing top-level class documentation co
 </div>
 </div>
 <div class="sect1">
-<h2 id="_auto_gen_formatter"><a class="anchor" href="#_auto_gen_formatter"></a>Auto Gen Formatter</h2>
+<h2 id="auto-gen-formatter"><a class="anchor" href="#auto-gen-formatter"></a>Auto Gen Formatter</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Behaves like Progress Formatter except that it will not show any offenses.</p>
@@ -294,7 +296,7 @@ Inspecting 26 files
 </div>
 </div>
 <div class="sect1">
-<h2 id="_clang_style_formatter"><a class="anchor" href="#_clang_style_formatter"></a>Clang Style Formatter</h2>
+<h2 id="clang-style-formatter"><a class="anchor" href="#clang-style-formatter"></a>Clang Style Formatter</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The <code>clang</code> formatter displays the offenses in a manner similar to <code>clang</code>:</p>
@@ -326,7 +328,7 @@ test.rb:4:5: W: Layout/DefEndAlignment: end at 4, 4 is not aligned with if at 2,
 </div>
 </div>
 <div class="sect1">
-<h2 id="_fuubar_style_formatter"><a class="anchor" href="#_fuubar_style_formatter"></a>Fuubar Style Formatter</h2>
+<h2 id="fuubar-style-formatter"><a class="anchor" href="#fuubar-style-formatter"></a>Fuubar Style Formatter</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The <code>fuubar</code> style formatter displays a progress bar
@@ -348,7 +350,7 @@ lib/bar.rb:13:14: W: Lint/DeprecatedClassMethods: File.exists? is deprecated in 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_pacman_style_formatter"><a class="anchor" href="#_pacman_style_formatter"></a>Pacman Style Formatter</h2>
+<h2 id="pacman-style-formatter"><a class="anchor" href="#pacman-style-formatter"></a>Pacman Style Formatter</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The <code>pacman</code> style formatter prints a PACDOT per every file to be analyzed. Pacman will "eat" one PACDOT per file when no offense is detected. Otherwise it will print a Ghost.
@@ -369,7 +371,7 @@ src/bar.rb:14:15: C: Style/MutableConstant: Freeze mutable objects assigned to c
 </div>
 </div>
 <div class="sect1">
-<h2 id="_emacs_style_formatter"><a class="anchor" href="#_emacs_style_formatter"></a>Emacs Style Formatter</h2>
+<h2 id="emacs-style-formatter"><a class="anchor" href="#emacs-style-formatter"></a>Emacs Style Formatter</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Machine-parsable</strong></p>
@@ -388,7 +390,7 @@ src/bar.rb:14:15: C: Style/MutableConstant: Freeze mutable objects assigned to c
 </div>
 </div>
 <div class="sect1">
-<h2 id="_simple_formatter"><a class="anchor" href="#_simple_formatter"></a>Simple Formatter</h2>
+<h2 id="simple-formatter"><a class="anchor" href="#simple-formatter"></a>Simple Formatter</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The name of the formatter says it all :-)</p>
@@ -408,7 +410,7 @@ W:  4:  5: Layout/DefEndAlignment: end at 4, 4 is not aligned with if at 2, 2
 </div>
 </div>
 <div class="sect1">
-<h2 id="_quiet_formatter"><a class="anchor" href="#_quiet_formatter"></a>Quiet Formatter</h2>
+<h2 id="quiet-formatter"><a class="anchor" href="#quiet-formatter"></a>Quiet Formatter</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Behaves like Simple Formatter if there are offenses. Completely quiet otherwise:</p>
@@ -421,7 +423,7 @@ W:  4:  5: Layout/DefEndAlignment: end at 4, 4 is not aligned with if at 2, 2
 </div>
 </div>
 <div class="sect1">
-<h2 id="_file_list_formatter"><a class="anchor" href="#_file_list_formatter"></a>File List Formatter</h2>
+<h2 id="file-list-formatter"><a class="anchor" href="#file-list-formatter"></a>File List Formatter</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Machine-parsable</strong></p>
@@ -439,7 +441,7 @@ with offenses in them and makes it possible to do something like:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_json_formatter"><a class="anchor" href="#_json_formatter"></a>JSON Formatter</h2>
+<h2 id="json-formatter"><a class="anchor" href="#json-formatter"></a>JSON Formatter</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Machine-parsable</strong></p>
@@ -498,7 +500,7 @@ The JSON structure is like the following example:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_junit_style_formatter"><a class="anchor" href="#_junit_style_formatter"></a>JUnit Style Formatter</h2>
+<h2 id="junit-style-formatter"><a class="anchor" href="#junit-style-formatter"></a>JUnit Style Formatter</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Machine-parsable</strong></p>
@@ -535,7 +537,7 @@ This formatter is based on <a href="https://github.com/mikian/rubocop-junit-form
 </div>
 </div>
 <div class="sect1">
-<h2 id="_offense_count_formatter"><a class="anchor" href="#_offense_count_formatter"></a>Offense Count Formatter</h2>
+<h2 id="offense-count-formatter"><a class="anchor" href="#offense-count-formatter"></a>Offense Count Formatter</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Sometimes when first applying RuboCop to a codebase, it&#8217;s nice to be able to
@@ -567,7 +569,7 @@ cops and the number of offenses found for each by running:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_worst_offenders_formatter"><a class="anchor" href="#_worst_offenders_formatter"></a>Worst Offenders Formatter</h2>
+<h2 id="worst-offenders-formatter"><a class="anchor" href="#worst-offenders-formatter"></a>Worst Offenders Formatter</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Similar to the Offense Count formatter, but lists the files which need the most attention:</p>
@@ -585,7 +587,7 @@ cops and the number of offenses found for each by running:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_html_formatter"><a class="anchor" href="#_html_formatter"></a>HTML Formatter</h2>
+<h2 id="html-formatter"><a class="anchor" href="#html-formatter"></a>HTML Formatter</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Useful for CI environments. It will create an HTML report like <a href="http://f.cl.ly/items/0M3029412x3O091a1X1R/expected.html">this</a>.</p>
@@ -598,7 +600,7 @@ cops and the number of offenses found for each by running:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_tap_formatter"><a class="anchor" href="#_tap_formatter"></a>TAP Formatter</h2>
+<h2 id="tap-formatter"><a class="anchor" href="#tap-formatter"></a>TAP Formatter</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Machine-parsable</strong></p>
@@ -628,6 +630,10 @@ not ok 3 - exe/rubocop
 </div>
 </div>
 </div>
+<nav class="pagination">
+  <span class="prev"><a href="cops.html">Cops</a></span>
+  <span class="next"><a href="cops_bundler.html">Bundler</a></span>
+</nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>

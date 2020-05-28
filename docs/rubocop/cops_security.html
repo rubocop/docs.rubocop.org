@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Security :: RuboCop</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_security.html">
+    <link rel="prev" href="cops_naming.html">
+    <link rel="next" href="cops_style.html">
     <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
@@ -199,7 +201,7 @@
 <article class="doc">
 <h1 class="page">Security</h1>
 <div class="sect1">
-<h2 id="_securityeval"><a class="anchor" href="#_securityeval"></a>Security/Eval</h2>
+<h2 id="securityeval"><a class="anchor" href="#securityeval"></a>Security/Eval</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -232,7 +234,7 @@
 <p>This cop checks for the use of <code>Kernel#eval</code> and <code>Binding#eval</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h3>
+<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -245,7 +247,7 @@ binding.eval(something)</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_securityjsonload"><a class="anchor" href="#_securityjsonload"></a>Security/JSONLoad</h2>
+<h2 id="securityjsonload"><a class="anchor" href="#securityjsonload"></a>Security/JSONLoad</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -288,7 +290,7 @@ option, like <code>JSON.parse('false', quirks_mode: true)</code>.
 Other similar issues may apply.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_2"><a class="anchor" href="#_examples_2"></a>Examples</h3>
+<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -301,7 +303,7 @@ JSON.parse("{}")</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configurable_attributes"><a class="anchor" href="#_configurable_attributes"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -325,7 +327,7 @@ JSON.parse("{}")</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_references"><a class="anchor" href="#_references"></a>References</h3>
+<h3 id="references"><a class="anchor" href="#references"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -337,7 +339,7 @@ JSON.parse("{}")</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_securitymarshalload"><a class="anchor" href="#_securitymarshalload"></a>Security/MarshalLoad</h2>
+<h2 id="securitymarshalload"><a class="anchor" href="#securitymarshalload"></a>Security/MarshalLoad</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -372,7 +374,7 @@ potential security issues leading to remote code execution when
 loading from an untrusted source.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_3"><a class="anchor" href="#_examples_3"></a>Examples</h3>
+<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -388,7 +390,7 @@ Marshal.load(Marshal.dump({}))</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_references_2"><a class="anchor" href="#_references_2"></a>References</h3>
+<h3 id="references-2"><a class="anchor" href="#references-2"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -400,7 +402,7 @@ Marshal.load(Marshal.dump({}))</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_securityopen"><a class="anchor" href="#_securityopen"></a>Security/Open</h2>
+<h2 id="securityopen"><a class="anchor" href="#securityopen"></a>Security/Open</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -440,7 +442,7 @@ a serious security risk by using variable input to the argument of
 <code>URI#open</code> explicitly.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_4"><a class="anchor" href="#_examples_4"></a>Examples</h3>
+<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -456,7 +458,7 @@ URI.parse(something).open</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_securityyamlload"><a class="anchor" href="#_securityyamlload"></a>Security/YAMLLoad</h2>
+<h2 id="securityyamlload"><a class="anchor" href="#securityyamlload"></a>Security/YAMLLoad</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -491,7 +493,7 @@ potential security issues leading to remote code execution when
 loading from an untrusted source.</p>
 </div>
 <div class="sect2">
-<h3 id="_examples_5"><a class="anchor" href="#_examples_5"></a>Examples</h3>
+<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -504,7 +506,7 @@ YAML.dump("foo")</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_references_3"><a class="anchor" href="#_references_3"></a>References</h3>
+<h3 id="references-3"><a class="anchor" href="#references-3"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -515,6 +517,10 @@ YAML.dump("foo")</code></pre>
 </div>
 </div>
 </div>
+<nav class="pagination">
+  <span class="prev"><a href="cops_naming.html">Naming</a></span>
+  <span class="next"><a href="cops_style.html">Style</a></span>
+</nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
