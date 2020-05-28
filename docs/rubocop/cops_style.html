@@ -22,9 +22,9 @@
         <span class="separator">//</span>
         <a href="https://docs.rubocop.org">Docs</a>
       </div>
-      <!-- <div class="navbar-item"> -->
-      <!--   <input id="search-input" type="text" placeholder="Search docs"> -->
-      <!-- </div> -->
+      <div class="navbar-item">
+        <input id="search-input" type="text" placeholder="Search docs">
+      </div>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -1830,10 +1830,12 @@ can yield some false positives.</p>
 <div class="paragraph">
 <p>e.g. to use <code>detect</code> over <code>find</code>:</p>
 </div>
-<div class="paragraph">
-<p>Style/CollectionMethods:
-    PreferredMethods:
-      find: detect</p>
+<div class="literalblock">
+<div class="content">
+<pre>Style/CollectionMethods:
+  PreferredMethods:
+    find: detect</pre>
+</div>
 </div>
 <div class="paragraph">
 <p>The default mapping for <code>PreferredMethods</code> behaves as follows.</p>
@@ -1878,7 +1880,7 @@ items.include?</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PreferredMethods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"collect"=&gt;"map", "collect!"=&gt;"map!", "inject"=&gt;"reduce", "detect"=&gt;"find", "find_all"=&gt;"select", "member?"=&gt;"include?"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"collect"&#8658;"map", "collect!"&#8658;"map!", "inject"&#8658;"reduce", "detect"&#8658;"find", "find_all"&#8658;"select", "member?"&#8658;"include?"}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -3092,7 +3094,7 @@ end
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Exclude</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec/**/*</code>, <code>test/**/*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec/<strong>/<strong></code>, <code>test/</strong>/</strong></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -3251,7 +3253,7 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Exclude</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec/**/*</code>, <code>test/**/*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec/<strong>/<strong></code>, <code>test/</strong>/</strong></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 <tr>
@@ -4427,24 +4429,14 @@ Pathname.new(__dir__).expand_path</code></pre>
 </table>
 <div class="paragraph">
 <p>This cop enforces consistency when using exponential notation
-for numbers in the code (eg 1.2e4). Different styles are supported:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>scientific</code> which enforces a mantissa between 1 (inclusive)
-and 10 (exclusive).</p>
-</li>
-<li>
-<p><code>engineering</code> which enforces the exponent to be a multiple of 3
-and the mantissa to be between 0.1 (inclusive)
-and 10 (exclusive).</p>
-</li>
-<li>
-<p><code>integral</code> which enforces the mantissa to always be a whole number
-without trailing zeroes.</p>
-</li>
-</ul>
+for numbers in the code (eg 1.2e4). Different styles are supported:
+* <code>scientific</code> which enforces a mantissa between 1 (inclusive)
+               and 10 (exclusive).
+* <code>engineering</code> which enforces the exponent to be a multiple of 3
+                and the mantissa to be between 0.1 (inclusive)
+                and 10 (exclusive).
+* <code>integral</code> which enforces the mantissa to always be a whole number
+             without trailing zeroes.</p>
 </div>
 <div class="sect2">
 <h3 id="_examples_47"><a class="anchor" href="#_examples_47"></a>Examples</h3>
@@ -5664,15 +5656,15 @@ Required Ruby version: 2.5
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop looks for uses of <code>_.each_with_object({}) {...}</code>,
-<code>_.map {...}.to_h</code>, and <code>Hash[_.map {...}]</code> that are actually just
+<p>This cop looks for uses of <code><em>.each_with_object({}) {&#8230;&#8203;}</code>,
+<code></em>.map {&#8230;&#8203;}.to_h</code>, and <code>Hash[_.map {&#8230;&#8203;}]</code> that are actually just
 transforming the keys of a hash, and tries to use a simpler &amp; faster
 call to <code>transform_keys</code> instead.</p>
 </div>
 <div class="paragraph">
 <p>This can produce false positives if we are transforming an enumerable
 of key-value-like pairs that isn&#8217;t actually a hash, e.g.:
-<code>[[k1, v1], [k2, v2], ...]</code></p>
+<code>[[k1, v1], [k2, v2], &#8230;&#8203;]</code></p>
 </div>
 <div class="paragraph">
 <p>This cop should only be enabled on Ruby version 2.5 or newer
@@ -5725,15 +5717,15 @@ of key-value-like pairs that isn&#8217;t actually a hash, e.g.:
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop looks for uses of <code>_.each_with_object({}) {...}</code>,
-<code>_.map {...}.to_h</code>, and <code>Hash[_.map {...}]</code> that are actually just
+<p>This cop looks for uses of <code><em>.each_with_object({}) {&#8230;&#8203;}</code>,
+<code></em>.map {&#8230;&#8203;}.to_h</code>, and <code>Hash[_.map {&#8230;&#8203;}]</code> that are actually just
 transforming the values of a hash, and tries to use a simpler &amp; faster
 call to <code>transform_values</code> instead.</p>
 </div>
 <div class="paragraph">
 <p>This can produce false positives if we are transforming an enumerable
 of key-value-like pairs that isn&#8217;t actually a hash, e.g.:
-<code>[[k1, v1], [k2, v2], ...]</code></p>
+<code>[[k1, v1], [k2, v2], &#8230;&#8203;]</code></p>
 </div>
 <div class="paragraph">
 <p>This cop should only be enabled on Ruby version 2.4 or newer
@@ -6419,12 +6411,12 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">InverseMethods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{:any?=&gt;:none?, :even?=&gt;:odd?, :===&gt;:!=, :=~=&gt;:!~, :&lt;=&gt;:&gt;=, :&gt;=&gt;:&lt;=}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{:any?&#8658;:none?, :even?&#8658;:odd?, :==&#8658;:!=, :=<sub>&#8658;:!</sub>, :&lt;&#8658;:&gt;=, :&gt;&#8658;:&#8656;}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">InverseBlocks</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{:select=&gt;:reject, :select!=&gt;:reject!}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{:select&#8658;:reject, :select!&#8658;:reject!}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -10048,7 +10040,7 @@ bar.baz &gt; 0</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Exclude</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec/**/*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec/<strong>*/</strong></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -10636,7 +10628,7 @@ default.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PreferredDelimiters</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"default"=&gt;"()", "%i"=&gt;"[]", "%I"=&gt;"[]", "%r"=&gt;"{}", "%w"=&gt;"[]", "%W"=&gt;"[]"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"default"&#8658;"()", "%i"&#8658;"[]", "%I"&#8658;"[]", "%r"&#8658;"{}", "%w"&#8658;"[]", "%W"&#8658;"[]"}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -12027,7 +12019,7 @@ arr.max_by(&amp;:foo)</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where <code>sort_by { ... }</code> can be replaced by
+<p>This cop identifies places where <code>sort_by { &#8230;&#8203; }</code> can be replaced by
 <code>sort</code>.</p>
 </div>
 <div class="sect2">
@@ -13245,7 +13237,7 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Methods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"reduce"=&gt;["acc", "elem"]}</code>, <code>{"inject"=&gt;["acc", "elem"]}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"reduce"&#8658;["acc", "elem"]}</code>, <code>{"inject"&#8658;["acc", "elem"]}</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -14024,7 +14016,7 @@ from the String class.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PreferredMethods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"intern"=&gt;"to_sym"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"intern"&#8658;"to_sym"}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -15062,28 +15054,6 @@ required. Blocks with only one argument and a trailing comma require
 that comma to be present. Blocks with more than one argument never
 require a trailing comma.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">add do |foo, bar,|
-   foo + bar
-  end
-
-# good
- add do |foo, bar|
-   foo + bar
- end
-
-# good
-  add do |foo,|
-   foo
- end
-
-# good
- add do
-    foo + bar
- end</code></pre>
-</div>
-</div>
 <div class="sect2">
 <h3 id="_examples_162"><a class="anchor" href="#_examples_162"></a>Examples</h3>
 <div class="listingblock">
@@ -15091,7 +15061,7 @@ require a trailing comma.</p>
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 add { |foo, bar,| foo + bar }
 
- # good
+# good
 add { |foo, bar| foo + bar }
 
 # good
@@ -15100,7 +15070,25 @@ add { |foo,| foo }
 # good
 add { foo }
 
-# bad</code></pre>
+# bad
+add do |foo, bar,|
+  foo + bar
+end
+
+# good
+add do |foo, bar|
+  foo + bar
+end
+
+# good
+add do |foo,|
+  foo
+end
+
+# good
+add do
+  foo + bar
+end</code></pre>
 </div>
 </div>
 </div>
@@ -15582,7 +15570,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop looks for <em>unless</em> expressions with <em>else</em> clauses.</p>
+<p>This cop looks for <code>unless</code> expressions with <code>else</code> clauses.</p>
 </div>
 <div class="sect2">
 <h3 id="_examples_167"><a class="anchor" href="#_examples_167"></a>Examples</h3>
@@ -15759,7 +15747,7 @@ which can be replaced with the shorter method <code>unpack1</code>.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for <em>when;</em> uses in <em>case</em> expressions.</p>
+<p>This cop checks for <code>when;</code> uses in <code>case</code> expressions.</p>
 </div>
 <div class="sect2">
 <h3 id="_examples_170"><a class="anchor" href="#_examples_170"></a>Examples</h3>
@@ -16036,7 +16024,12 @@ array of 2 or fewer elements.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">WordRegex</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(?-mix:\A(?:\p{Word}|\p{Word}-\p{Word}|\n|\t)+\z)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">`(?-mix:\A(?:\p{Word}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\p{Word}-\p{Word}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\n</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\t)+\z)`</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -16266,10 +16259,9 @@ array.empty?
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 <script type="text/javascript">
 docsearch({
-  apiKey: 'd63510fa1207404e3966aedd33d34bce',
+  apiKey: '6d6bf5210b1f26f7f7939e192f8f8c77',
   indexName: 'rubocop',
   inputSelector: '#search-input',
-  algoliaOptions: { 'facetFilters': ["version:0.7.0"] },
   debug: false // Set debug to true if you want to inspect the dropdown
 });
 </script>

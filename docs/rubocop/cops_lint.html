@@ -22,9 +22,9 @@
         <span class="separator">//</span>
         <a href="https://docs.rubocop.org">Docs</a>
       </div>
-      <!-- <div class="navbar-item"> -->
-      <!--   <input id="search-input" type="text" placeholder="Search docs"> -->
-      <!-- </div> -->
+      <div class="navbar-item">
+        <input id="search-input" type="text" placeholder="Search docs">
+      </div>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -1637,7 +1637,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for <em>return</em> from an <em>ensure</em> block.
+<p>This cop checks for <code>return</code> from an <code>ensure</code> block.
 Explicit return from an ensure block alters the control flow
 as the return will take precedence over any exception being raised,
 and the exception will be silently thrown away as if it were rescued.</p>
@@ -2472,7 +2472,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for uses of <em>begin&#8230;&#8203;end while/until something</em>.</p>
+<p>This cop checks for uses of <code>begin&#8230;&#8203;end while/until something</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="_examples_33"><a class="anchor" href="#_examples_33"></a>Examples</h3>
@@ -2562,8 +2562,8 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks that there is an <code># rubocop:enable ...</code> statement
-after a <code># rubocop:disable ...</code> statement. This will prevent leaving
+<p>This cop checks that there is an <code># rubocop:enable &#8230;&#8203;</code> statement
+after a <code># rubocop:disable &#8230;&#8203;</code> statement. This will prevent leaving
 cop disables on wide ranges of code, that latter contributors to
 a file wouldn&#8217;t be aware of.</p>
 </div>
@@ -2931,7 +2931,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p><code>Dir[...]</code> and <code>Dir.glob(...)</code> do not make any guarantees about
+<p><code>Dir[&#8230;&#8203;]</code> and <code>Dir.glob(&#8230;&#8203;)</code> do not make any guarantees about
 the order in which files are returned. The final order is
 determined by the operating system and file system.
 This means that using them in cases where the order matters,
@@ -4109,7 +4109,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for <em>rescue</em> blocks targeting the Exception class.</p>
+<p>This cop checks for <code>rescue</code> blocks targeting the Exception class.</p>
 </div>
 <div class="sect2">
 <h3 id="_examples_57"><a class="anchor" href="#_examples_57"></a>Examples</h3>
@@ -5003,7 +5003,7 @@ g.count #=&gt; 2</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for <em>rescue</em> blocks with no body.</p>
+<p>This cop checks for <code>rescue</code> blocks with no body.</p>
 </div>
 <div class="sect2">
 <h3 id="_examples_69"><a class="anchor" href="#_examples_69"></a>Examples</h3>
@@ -5394,7 +5394,7 @@ end</code></pre>
 <div class="paragraph">
 <p>This cop checks for unreachable code.
 The check are based on the presence of flow of control
-statement in non-final position in <em>begin</em>(implicit) blocks.</p>
+statement in non-final position in <code>begin</code> (implicit) blocks.</p>
 </div>
 <div class="sect2">
 <h3 id="_examples_73"><a class="anchor" href="#_examples_73"></a>Examples</h3>
@@ -6093,8 +6093,10 @@ end</code></pre>
 scope.
 The basic idea for this cop was from the warning of <code>ruby -cw</code>:</p>
 </div>
-<div class="paragraph">
-<p>assigned but unused variable - foo</p>
+<div class="literalblock">
+<div class="content">
+<pre>assigned but unused variable - foo</pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Currently this cop has advanced logic that detects unreferenced
@@ -6451,10 +6453,9 @@ end</code></pre>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 <script type="text/javascript">
 docsearch({
-  apiKey: 'd63510fa1207404e3966aedd33d34bce',
+  apiKey: '6d6bf5210b1f26f7f7939e192f8f8c77',
   indexName: 'rubocop',
   inputSelector: '#search-input',
-  algoliaOptions: { 'facetFilters': ["version:0.7.0"] },
   debug: false // Set debug to true if you want to inspect the dropdown
 });
 </script>

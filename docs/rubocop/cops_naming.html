@@ -22,9 +22,9 @@
         <span class="separator">//</span>
         <a href="https://docs.rubocop.org">Docs</a>
       </div>
-      <!-- <div class="navbar-item"> -->
-      <!--   <input id="search-input" type="text" placeholder="Search docs"> -->
-      <!-- </div> -->
+      <div class="navbar-item">
+        <input id="search-input" type="text" placeholder="Search docs">
+      </div>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -933,7 +933,12 @@ EOS</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ForbiddenDelimiters</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(?-mix:(^|\s)(EO[A-Z]{1}|END)(\s|$))</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">`(?-mix:(^</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\s)(EO[A-Z]{1}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">END)(\s</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$))`</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -1146,11 +1151,13 @@ snake_case or camelCase, for their names.</p>
 <div class="paragraph">
 <p>This cop has <code>IgnoredPatterns</code> configuration option.</p>
 </div>
-<div class="paragraph">
-<p>Naming/MethodName:
-    IgnoredPatterns:
-      - '\A\s<em>onSelectionBulkChange\s</em>'
-      - '\A\s<em>onSelectionCleared\s</em>'</p>
+<div class="literalblock">
+<div class="content">
+<pre>Naming/MethodName:
+  IgnoredPatterns:
+    - '\A\s*onSelectionBulkChange\s*'
+    - '\A\s*onSelectionCleared\s*'</pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Method names matching patterns are always allowed.</p>
@@ -1441,7 +1448,7 @@ end</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Exclude</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec/**/*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec/<strong>*/</strong></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -1800,10 +1807,9 @@ variable_one = 1</code></pre>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 <script type="text/javascript">
 docsearch({
-  apiKey: 'd63510fa1207404e3966aedd33d34bce',
+  apiKey: '6d6bf5210b1f26f7f7939e192f8f8c77',
   indexName: 'rubocop',
   inputSelector: '#search-input',
-  algoliaOptions: { 'facetFilters': ["version:0.7.0"] },
   debug: false // Set debug to true if you want to inspect the dropdown
 });
 </script>
