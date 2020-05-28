@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Usage :: RuboCop</title>
-    <link rel="canonical" href="https://docs.rubocop.org/rubocop-minitest/usage.html">
-    <link rel="prev" href="installation.html">
-    <link rel="next" href="cops.html">
+    <title>RuboCop AST :: RuboCop</title>
+    <link rel="canonical" href="https://docs.rubocop.org/rubocop-ast/index.html">
+    <link rel="next" href="installation.html">
     <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
@@ -70,35 +69,23 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rubocop-minitest" data-version="master">
+<div class="nav-container" data-component="rubocop-ast" data-version="master">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">RuboCop Minitest</a></h3>
+    <h3 class="title"><a href="index.html">RuboCop AST</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="index.html">Home</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="installation.html">Installation</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="usage.html">Usage</a>
-  </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="cops.html">Cops</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Cops Documentation</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cops_minitest.html">Minitest</a>
-  </li>
-</ul>
+    <a class="nav-link" href="node_pattern.html">Node Pattern</a>
   </li>
 </ul>
   </li>
@@ -107,7 +94,7 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">RuboCop Minitest</span>
+    <span class="title">RuboCop AST</span>
     <span class="version">master</span>
   </div>
   <ul class="components">
@@ -119,19 +106,19 @@
         </li>
       </ul>
     </li>
-    <li class="component">
-      <span class="title">RuboCop AST</span>
-      <ul class="versions">
-        <li class="version is-latest">
-          <a href="../rubocop-ast/index.html">master</a>
-        </li>
-      </ul>
-    </li>
     <li class="component is-current">
-      <span class="title">RuboCop Minitest</span>
+      <span class="title">RuboCop AST</span>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop Minitest</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../rubocop-minitest/index.html">master</a>
         </li>
       </ul>
     </li>
@@ -146,65 +133,34 @@
   <a href="../rubocop/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">RuboCop Minitest</a></li>
-    <li><a href="usage.html">Usage</a></li>
+    <li><a href="index.html">RuboCop AST</a></li>
+    <li><a href="index.html">Home</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop-minitest/edit/master/docs/modules/ROOT/pages/usage.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop-ast/edit/master/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Usage</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">RuboCop AST</h1>
 <div class="paragraph">
-<p>You need to tell RuboCop to load the Minitest extension. There are three
-ways to do this:</p>
+<p>This gem introduces two core classes of RuboCop:</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="rubocop-configuration-file"><a class="anchor" href="#rubocop-configuration-file"></a>RuboCop configuration file</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Put this into your <code>.rubocop.yml</code>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">require: rubocop-minitest</code></pre>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>RuboCop::Node</code>, and</p>
+</li>
+<li>
+<p><code>RuboCop::AST::NodePattern</code>.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Now you can run <code>rubocop</code> and it will automatically load the RuboCop Minitest
-cops together with the standard cops.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="command-line"><a class="anchor" href="#command-line"></a>Command line</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">rubocop --require rubocop-minitest</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="rake-task"><a class="anchor" href="#rake-task"></a>Rake task</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">RuboCop::RakeTask.new do |task|
-  task.requires &lt;&lt; 'rubocop-minitest'
-end</code></pre>
-</div>
-</div>
-</div>
+<p>See <a href="node_pattern.html" class="page">"Node Pattern"</a> to get yourself familiar with <code>NodePattern</code>'s
+capabilities.</p>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="installation.html">Installation</a></span>
-  <span class="next"><a href="cops.html">Cops</a></span>
+  <span class="next"><a href="installation.html">Installation</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
