@@ -211,10 +211,34 @@
 </div>
 </div>
 <div class="paragraph">
-<p>For some offenses, it is not possible to implement automatic correction.</p>
+<p>There are a couple of things to keep in mind about auto-correct:</p>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
+<p>For some offenses, it is not possible to implement automatic correction.</p>
+</li>
+<li>
 <p>Some automatic corrections that <em>are</em> possible have not been implemented yet.</p>
+</li>
+<li>
+<p>Some automatic corrections might change (slightly) the semantics of the code,
+meaning they&#8217;d produce code that&#8217;s mostly equivalent to the original code, but
+not 100% equivalent. We call such auto-correct behaviour "unsafe".</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You should always run your test suite after using the auto-correct functionality.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -256,8 +280,9 @@ becomes unsafe as well.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Currently there might still be cops that are marked as unsafe or with unsafe auto-correct.
-Eventually, the safety of each cop will be specified in the default configuration.
+Currently there might still be cops that aren&#8217;t marked as unsafe or
+with unsafe auto-correct.  Eventually, the safety of each cop will be specified
+in the default configuration.
 </td>
 </tr>
 </table>
