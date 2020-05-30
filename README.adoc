@@ -1,10 +1,21 @@
 = docs.rubocop.org
 
-The site is generated from the AsciiDoc files in the link:https://github.com/rubocop-hq/rubocop/tree/master/docs[docs] folder of RuboCop's GitHub repo and is published to https://docs.rubocop.org.
-link:https://antora.org[Antora] is used to convert the manual into HTML.
-The filesystem layout is described at https://docs.antora.org/antora/2.0/component-structure/
+This repository contains RuboCop's documentation site. It's home to both
+the documentation of RuboCop itself, plus that of its core extensions (the ones
+maintained by RuboCop's Core Team).
 
-To make changes to the manual you simply have to change the files under `doc`.
+The site is generated from the AsciiDoc files in the
+link:https://github.com/rubocop-hq/rubocop/tree/master/docs[docs] folder of
+RuboCop's GitHub repo (and the core RuboCop extensions like `rubocop-rspec`) and
+is published to https://docs.rubocop.org.  link:https://antora.org[Antora] is
+used to convert the manual into HTML.  The filesystem layout is described at
+https://docs.antora.org/antora/2.0/component-structure/
+
+You can find a list of all the documentation modules that are weaved together in the
+final site in `antora-playbook.yml`.
+
+To make changes to the manual you simply have to change the files under `docs` in the relevant
+repository.
 The docs will be regenerated manually periodically.
 
 == Installing Antora
@@ -42,3 +53,9 @@ To check the generated site you can simply open `docs/index.html` in your favour
 
 If you want to make changes to the manual's page structure you'll have to edit
 link:https://github.com/rubocop-hq/rubocop/blob/master/doc/modules/ROOT/nav.adoc[nav.adoc].
+
+== Troubleshooting
+
+The most common mistake that people make is to forget to update the version of an Antora docs module
+after cutting a release. This will result in an error saying you've got the same version in two branches (e.g. `master`
+and `v1.0`). Fixing this is pretty simple - just update the version to `master` in `antora.yml`.
