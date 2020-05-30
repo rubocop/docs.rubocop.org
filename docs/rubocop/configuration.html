@@ -197,6 +197,22 @@
       </ul>
     </li>
     <li class="component">
+      <span class="title">RuboCop Performance</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../rubocop-performance/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop Rails</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../rubocop-rails/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
       <span class="title">RuboCop RSpec</span>
       <ul class="versions">
         <li class="version is-latest">
@@ -916,9 +932,9 @@ disabled. For example:</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Some checks are dependent on the version of the Ruby interpreter which the
-inspected code must run on. For example, enforcing using Ruby 2.3+ safe
-navigation operator rather than <code>try</code> can help make your code shorter and
-more consistent&#8230;&#8203; <em>unless</em> it must run on Ruby 2.2.</p>
+inspected code must run on. For example, enforcing using Ruby 2.6+ endless
+ranges <code>foo[n..]</code> rather than <code>foo[n..-1]</code> can help make your code shorter and
+more consistent&#8230;&#8203; <em>unless</em> it must run on e.g. Ruby 2.5.</p>
 </div>
 <div class="paragraph">
 <p>Users may let RuboCop know the oldest version of Ruby which your project
@@ -927,7 +943,7 @@ supports with:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">AllCops:
-  TargetRubyVersion: 2.2</code></pre>
+  TargetRubyVersion: 2.5</code></pre>
 </div>
 </div>
 <div class="paragraph">
