@@ -117,6 +117,9 @@
         <li class="version is-latest">
           <a href="../rubocop/index.html">master</a>
         </li>
+        <li class="version">
+          <a href="../rubocop/0.85/index.html">0.85</a>
+        </li>
       </ul>
     </li>
     <li class="component">
@@ -167,7 +170,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/index.html" class="home-link"></a>
+  <a href="../rubocop/0.85/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop Performance</a></li>
@@ -183,13 +186,17 @@
 <div class="sect1">
 <h2 id="performancebindcall"><a class="anchor" href="#performancebindcall"></a>Performance/BindCall</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>!!! Note</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Required Ruby version: 2.7</pre>
-</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Required Ruby version: 2.7
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -222,12 +229,12 @@
 <p>In Ruby 2.7, <code>UnboundMethod#bind_call</code> has been added.</p>
 </div>
 <div class="paragraph">
-<p>This cop identifies places where <code>bind(obj).call(args, ...)</code>
-can be replaced by <code>bind_call(obj, args, ...)</code>.</p>
+<p>This cop identifies places where <code>bind(obj).call(args, &#8230;&#8203;)</code>
+can be replaced by <code>bind_call(obj, args, &#8230;&#8203;)</code>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>bind_call(obj, args, ...)</code> method is faster than
-<code>bind(obj).call(args, ...)</code>.</p>
+<p>The <code>bind_call(obj, args, &#8230;&#8203;)</code> method is faster than
+<code>bind(obj).call(args, &#8230;&#8203;)</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
@@ -437,7 +444,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -471,7 +478,7 @@ str.casecmp('ABC').zero?
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/JuanitoFatas/fast-ruby#stringcasecmp-vs-stringdowncase---code">https://github.com/JuanitoFatas/fast-ruby#stringcasecmp-vs-stringdowncase&#8212;&#8203;code</a></p>
+<p><a href="https://github.com/JuanitoFatas/fast-ruby#stringcasecmp-vs-stringdowncase---code" class="bare">https://github.com/JuanitoFatas/fast-ruby#stringcasecmp-vs-stringdowncase---code</a></p>
 </li>
 </ul>
 </div>
@@ -577,7 +584,7 @@ array</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where <code>sort { |a, b| a.foo &lt;=&gt; b.foo }</code>
+<p>This cop identifies places where <code>sort { |a, b| a.foo &lt;&#8658; b.foo }</code>
 can be replaced by <code>sort_by(&amp;:foo)</code>.
 This cop also checks <code>max</code> and <code>min</code> methods.</p>
 </div>
@@ -645,17 +652,21 @@ passed to the <code>count</code> call.</p>
 <code>ActiveRecord</code> will ignore the block that is passed to <code>count</code>.
 Other methods, such as <code>select</code>, will convert the association to an
 array and then run the block on the array. A simple work around to
-make <code>count</code> work with a block is to call <code>to_a.count {...}</code>.</p>
+make <code>count</code> work with a block is to call <code>to_a.count {&#8230;&#8203;}</code>.</p>
 </div>
 <div class="paragraph">
 <p>Example:
   <code>Model.where(id: [1, 2, 3]).select { |m| m.method == true }.size</code></p>
 </div>
-<div class="paragraph">
-<p>becomes:</p>
+<div class="literalblock">
+<div class="content">
+<pre>becomes:</pre>
 </div>
-<div class="paragraph">
-<p><code>Model.where(id: [1, 2, 3]).to_a.count { |m| m.method == true }</code></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>`Model.where(id: [1, 2, 3]).to_a.count { |m| m.method == true }`</pre>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
@@ -685,13 +696,17 @@ Model.select(:value).count</code></pre>
 <div class="sect1">
 <h2 id="performancedeleteprefix"><a class="anchor" href="#performancedeleteprefix"></a>Performance/DeletePrefix</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>!!! Note</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Required Ruby version: 2.5</pre>
-</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Required Ruby version: 2.5
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -757,13 +772,17 @@ str.delete_prefix!('prefix')</code></pre>
 <div class="sect1">
 <h2 id="performancedeletesuffix"><a class="anchor" href="#performancedeletesuffix"></a>Performance/DeleteSuffix</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>!!! Note</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Required Ruby version: 2.5</pre>
-</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Required Ruby version: 2.5
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1254,7 +1273,7 @@ waldo.size</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.56</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -1399,7 +1418,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>

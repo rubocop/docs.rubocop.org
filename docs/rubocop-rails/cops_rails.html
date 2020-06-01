@@ -117,6 +117,9 @@
         <li class="version is-latest">
           <a href="../rubocop/index.html">master</a>
         </li>
+        <li class="version">
+          <a href="../rubocop/0.85/index.html">0.85</a>
+        </li>
       </ul>
     </li>
     <li class="component">
@@ -167,7 +170,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/index.html" class="home-link"></a>
+  <a href="../rubocop/0.85/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop Rails</a></li>
@@ -275,7 +278,7 @@ skip_after_filter :do_stuff</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/controllers/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/controllers/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -406,7 +409,7 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -1134,12 +1137,18 @@ end</code></pre>
 <p>This cop checks that <code>tag</code> is used instead of <code>content_tag</code>
 because <code>content_tag</code> is legacy syntax.</p>
 </div>
-<div class="paragraph">
-<p>!!! Note</p>
-</div>
-<div class="paragraph">
-<p>Allow <code>content_tag</code> when the first argument is a variable because
-   <code>content_tag(name)</code> is simpler rather than <code>tag.public_send(name)</code>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Allow <code>content_tag</code> when the first argument is a variable because
+     <code>content_tag(name)</code> is simpler rather than <code>tag.public_send(name)</code>.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="examples-13"><a class="anchor" href="#examples-13"></a>Examples</h3>
@@ -1748,7 +1757,7 @@ enum status: { active: 0, archived: 1 }</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -1835,7 +1844,7 @@ enum status: [:active, :archived]</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -1977,12 +1986,12 @@ raise 'a bad error has happened'</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/**/*.rb</code>, <code>config/**/*.rb</code>, <code>lib/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/<strong>/<strong>.rb</code>, <code>config/</strong>/</strong>.rb</code>, <code>lib/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Exclude</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lib/**/*.rake</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lib/<strong>*/</strong>.rake</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -2147,7 +2156,7 @@ User.find_by(name: 'Bruce')</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -2229,7 +2238,7 @@ User.all.find_each</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -2310,7 +2319,7 @@ User.all.find_each</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -2400,7 +2409,7 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -2495,7 +2504,7 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/helpers/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/helpers/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -2571,7 +2580,7 @@ get :new, params: { user_id: 1 }</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec/**/*</code>, <code>test/**/*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec/<strong>/<strong></code>, <code>test/</strong>/</strong></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -2767,7 +2776,7 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/controllers/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/controllers/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -2816,8 +2825,8 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop looks for uses of <code>each_with_object({}) { ... }</code>,
-<code>map { ... }.to_h</code>, and <code>Hash[map { ... }]</code> that are transforming
+<p>This cop looks for uses of <code>each_with_object({}) { &#8230;&#8203; }</code>,
+<code>map { &#8230;&#8203; }.to_h</code>, and <code>Hash[map { &#8230;&#8203; }]</code> that are transforming
 an enumerable into a hash where the values are the original elements.
 Rails provides the <code>index_by</code> method for this purpose.</p>
 </div>
@@ -2868,8 +2877,8 @@ Hash[[1, 2, 3].collect { |el| [foo(el), el] }]
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop looks for uses of <code>each_with_object({}) { ... }</code>,
-<code>map { ... }.to_h</code>, and <code>Hash[map { ... }]</code> that are transforming
+<p>This cop looks for uses of <code>each_with_object({}) { &#8230;&#8203; }</code>,
+<code>map { &#8230;&#8203; }.to_h</code>, and <code>Hash[map { &#8230;&#8203; }]</code> that are transforming
 an enumerable into a hash where the keys are the original elements.
 Rails provides the <code>index_with</code> method for this purpose.</p>
 </div>
@@ -3073,7 +3082,7 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -3221,7 +3230,7 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/controllers/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/controllers/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -3453,7 +3462,7 @@ Rails.logger.debug 'A debug message'</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/**/*.rb</code>, <code>config/**/*.rb</code>, <code>db/**/*.rb</code>, <code>lib/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/<strong>/<strong>.rb</code>, <code>config/</strong>/</strong>.rb</code>, <code>db/<strong>/<strong>.rb</code>, <code>lib/</strong>/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -3583,14 +3592,14 @@ safe_join([user_content, " ", content_tag(:span, user_content)])
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.6</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop enforces the use <code>pick</code> over <code>pluck(...).first</code>.</p>
+<p>This cop enforces the use <code>pick</code> over <code>pluck(&#8230;&#8203;).first</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-40"><a class="anchor" href="#examples-40"></a>Examples</h3>
@@ -3884,7 +3893,7 @@ something if foo.present?</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.6</p></td>
 </tr>
@@ -3949,7 +3958,7 @@ end</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Exclude</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lib/capistrano/tasks/**/*.rake</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lib/capistrano/tasks/<strong>*/</strong>.rake</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -4033,7 +4042,7 @@ self[:attr] = val</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -4128,7 +4137,7 @@ validates :x, length: { is: 5 }, allow_nil: true, allow_blank: false</code></pre
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -5181,7 +5190,7 @@ scope :something, -&gt; { where(something: true) }</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -5328,7 +5337,7 @@ user.touch</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.30</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.68</p></td>
 </tr>
@@ -5625,7 +5634,7 @@ validates :account, length: { minimum: MIN_LENGTH }</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -5790,7 +5799,7 @@ validates :foo, uniqueness: true</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>

@@ -178,6 +178,9 @@
         <li class="version is-current is-latest">
           <a href="index.html">master</a>
         </li>
+        <li class="version">
+          <a href="0.85/index.html">0.85</a>
+        </li>
       </ul>
     </li>
     <li class="component">
@@ -228,13 +231,20 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link"></a>
+  <a href="0.85/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
     <li><a href="formatters.html">Formatters</a></li>
   </ul>
 </nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">master</button>
+  <div class="version-menu">
+    <a class="version is-current" href="formatters.html">master</a>
+    <a class="version" href="0.85/formatters.html">0.85</a>
+  </div>
+</div>
   <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/edit/master/docs/modules/ROOT/pages/formatters.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
@@ -548,7 +558,7 @@ The JSON structure is like the following example:</p>
 </div>
 <div class="paragraph">
 <p>The <code>junit</code> style formatter provides the JUnit formatting.
-This formatter is based on <a href="https://github.com/mikian/rubocop-junit-formatter">rubocop-junit-formatter gem</a>.</p>
+This formatter is based on the <a href="https://github.com/mikian/rubocop-junit-formatter">rubocop-junit-formatter gem</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -574,6 +584,21 @@ This formatter is based on <a href="https://github.com/mikian/rubocop-junit-form
   &lt;/testsuite&gt;
 &lt;/testsuites&gt;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The <code>junit</code> style formatter is very useful for continuous integration systems
+such as Jenkins, most of which support junit formatting when parsing test
+results. A typical invocation in this type of scenario might look like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop --format junit --out test-reports/junit.xml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since there is one XML node for each cop for each file, the size of the resulting
+XML can get quite large. If it is too large for you, you can restrict the output
+to just failures by adding the <code>--display-only-failed</code> option.</p>
 </div>
 </div>
 </div>

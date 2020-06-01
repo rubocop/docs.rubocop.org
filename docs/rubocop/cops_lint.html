@@ -178,6 +178,9 @@
         <li class="version is-current is-latest">
           <a href="index.html">master</a>
         </li>
+        <li class="version">
+          <a href="0.85/index.html">0.85</a>
+        </li>
       </ul>
     </li>
     <li class="component">
@@ -228,7 +231,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link"></a>
+  <a href="0.85/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -236,6 +239,13 @@
     <li><a href="cops_lint.html">Lint</a></li>
   </ul>
 </nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">master</button>
+  <div class="version-menu">
+    <a class="version is-current" href="cops_lint.html">master</a>
+    <a class="version" href="0.85/cops_lint.html">0.85</a>
+  </div>
+</div>
   <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/edit/master/docs/modules/ROOT/pages/cops_lint.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
@@ -2673,6 +2683,68 @@ x += 1
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="lintmixedregexpcapturetypes"><a class="anchor" href="#lintmixedregexpcapturetypes"></a>Lint/MixedRegexpCaptureTypes</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.85</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Do not mix named captures and numbered captures in a Regexp literal
+because numbered capture is ignored if they&#8217;re mixed.
+Replace numbered captures with non-capturing groupings or
+named captures.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># bad
+/(?&lt;foo&gt;FOO)(BAR)/</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># good
+/(?&lt;foo&gt;FOO)(?&lt;bar&gt;BAR)/</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># good
+/(?&lt;foo&gt;FOO)(?:BAR)/</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># good
+/(FOO)(BAR)/</pre>
+</div>
 </div>
 </div>
 </div>

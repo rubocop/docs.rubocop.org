@@ -178,6 +178,9 @@
         <li class="version is-current is-latest">
           <a href="index.html">master</a>
         </li>
+        <li class="version">
+          <a href="0.85/index.html">0.85</a>
+        </li>
       </ul>
     </li>
     <li class="component">
@@ -228,7 +231,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link"></a>
+  <a href="0.85/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -236,6 +239,13 @@
     <li><a href="cops_bundler.html">Bundler</a></li>
   </ul>
 </nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">master</button>
+  <div class="version-menu">
+    <a class="version is-current" href="cops_bundler.html">master</a>
+    <a class="version" href="0.85/cops_bundler.html">0.85</a>
+  </div>
+</div>
   <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/edit/master/docs/modules/ROOT/pages/cops_bundler.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
@@ -353,15 +363,51 @@ gem 'rubocop', groups: [:development, :test]</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.59</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.77</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.85</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p>Add a comment describing each gem in your Gemfile.</p>
 </div>
+<div class="paragraph">
+<p>Optionally, the "OnlyFor" configuration
+can be used to only register offenses when the gems
+use certain options or have version specifiers.
+Add "version_specifiers" and/or the gem option names
+you want to check.</p>
+</div>
+<div class="paragraph">
+<p>A useful use-case is to enforce a comment when using
+options that change the source of a gem:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>bitbucket</code></p>
+</li>
+<li>
+<p><code>gist</code></p>
+</li>
+<li>
+<p><code>git</code></p>
+</li>
+<li>
+<p><code>github</code></p>
+</li>
+<li>
+<p><code>source</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For a full list of options supported by bundler,
+you can check the <a href="https://bundler.io/man/gemfile.5.html">official documentation</a>.</p>
+</div>
 <div class="sect2">
 <h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
+<div class="sect3">
+<h4 id="onlyfor-default"><a class="anchor" href="#onlyfor-default"></a>OnlyFor: [] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -372,6 +418,42 @@ gem 'foo'
 
 # Helpers for the foo things.
 gem 'foo'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="onlyfor-version_specifiers"><a class="anchor" href="#onlyfor-version_specifiers"></a>OnlyFor: ['version_specifiers']</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+
+gem 'foo', '&lt; 2.1'
+
+# good
+
+# Version 2.1 introduces breaking change baz
+gem 'foo', '&lt; 2.1'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="onlyfor-version_specifiers-github"><a class="anchor" href="#onlyfor-version_specifiers-github"></a>OnlyFor: ['version_specifiers', 'github']</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+
+gem 'foo', github: 'some_account/some_fork_of_foo'
+
+gem 'bar', '&lt; 2.1'
+
+# good
+
+# Using this fork because baz
+gem 'foo', github: 'some_account/some_fork_of_foo'
+
+# Version 2.1 introduces breaking change baz
+gem 'bar', '&lt; 2.1'</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -398,6 +480,11 @@ gem 'foo'</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredGems</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OnlyFor</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
