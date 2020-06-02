@@ -222,7 +222,7 @@ cops together with the standard cops.</p>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">rubocop --require rubocop-rspec</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ rubocop --require rubocop-rspec</code></pre>
 </div>
 </div>
 </div>
@@ -244,6 +244,32 @@ end</code></pre>
 <div class="sectionbody">
 <div class="paragraph">
 <p><code>rubocop-rspec</code> is available on Code Climate as part of the rubocop engine. <a href="https://codeclimate.com/changelog/55a433bbe30ba00852000fac">Learn More</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="inspecting-files-that-dont-end-with-_spec-rb"><a class="anchor" href="#inspecting-files-that-dont-end-with-_spec-rb"></a>Inspecting files that don&#8217;t end with <code>_spec.rb</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default, <code>rubocop-rspec</code> only inspects code within paths ending in <code>_spec.rb</code> or including <code>spec/</code>. You can override this setting in your config file by specifying one or more patterns:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># Inspect all files
+AllCops:
+  RSpec:
+    Patterns:
+    - '.+'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># Inspect only files ending with `_test.rb`
+AllCops:
+  RSpec:
+    Patterns:
+    - '_test.rb$'</code></pre>
+</div>
 </div>
 </div>
 </div>
