@@ -184,6 +184,64 @@
 <article class="doc">
 <h1 class="page">Performance</h1>
 <div class="sect1">
+<h2 id="performanceancestorsinclude"><a class="anchor" href="#performanceancestorsinclude"></a>Performance/AncestorsInclude</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop is used to identify usages of <code>ancestors.include?</code> and
+change them to use <code>&#8656;</code> instead.</p>
+</div>
+<div class="sect2">
+<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+A.ancestors.include?(B)
+
+# good
+A &lt;= B</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references"><a class="anchor" href="#references"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/JuanitoFatas/fast-ruby#ancestorsinclude-vs&#8212;&#8203;code" class="bare">https://github.com/JuanitoFatas/fast-ruby#ancestorsinclude-vs&#8212;&#8203;code</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="performancebindcall"><a class="anchor" href="#performancebindcall"></a>Performance/BindCall</h2>
 <div class="sectionbody">
 <div class="admonitionblock note">
@@ -237,7 +295,7 @@ can be replaced by <code>bind_call(obj, args, &#8230;&#8203;)</code>.</p>
 <code>bind(obj).call(args, &#8230;&#8203;)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
+<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -286,7 +344,7 @@ umethod.bind_call(obj, foo, bar)</code></pre>
 can be replaced by <code>caller(n..n).first</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
+<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -359,7 +417,7 @@ moving the splat condition to the end will use more memory,
 and run slightly slower.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -457,7 +515,7 @@ This cop is unsafe because <code>String#casecmp</code> and <code>String#casecmp?
 differently when using Non-ASCII characters.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -474,7 +532,7 @@ str.casecmp('ABC').zero?
 </div>
 </div>
 <div class="sect2">
-<h3 id="references"><a class="anchor" href="#references"></a>References</h3>
+<h3 id="references-2"><a class="anchor" href="#references-2"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -522,7 +580,7 @@ new intermediate array that is promptly thrown away. Instead it is
 faster to mutate when we know it&#8217;s safe.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
+<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -542,7 +600,7 @@ array</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-2"><a class="anchor" href="#references-2"></a>References</h3>
+<h3 id="references-3"><a class="anchor" href="#references-3"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -589,7 +647,7 @@ can be replaced by <code>sort_by(&amp;:foo)</code>.
 This cop also checks <code>max</code> and <code>min</code> methods.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -669,7 +727,7 @@ make <code>count</code> work with a block is to call <code>to_a.count {&#8230;&#
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
+<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -743,29 +801,77 @@ Required Ruby version: 2.5
 can be replaced by <code>delete_prefix('prefix')</code>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>delete_prefix('prefix')</code> method is faster than
-<code>gsub(/\Aprefix/, '')</code>.</p>
+<p>This cop has <code>SafeMultiline</code> configuration option that <code>true</code> by default because
+<code>^prefix</code> is unsafe as it will behave incompatible with <code>delete_prefix</code>
+for receiver is multiline string.</p>
+</div>
+<div class="paragraph">
+<p>The <code>delete_prefix('prefix')</code> method is faster than <code>gsub(/\Aprefix/, '')</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
+<h3 id="examples-9"><a class="anchor" href="#examples-9"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 str.gsub(/\Aprefix/, '')
 str.gsub!(/\Aprefix/, '')
-str.gsub(/^prefix/, '')
-str.gsub!(/^prefix/, '')
 
 str.sub(/\Aprefix/, '')
 str.sub!(/\Aprefix/, '')
-str.sub(/^prefix/, '')
-str.sub!(/^prefix/, '')
 
 # good
 str.delete_prefix('prefix')
 str.delete_prefix!('prefix')</code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="safemultiline-true-default"><a class="anchor" href="#safemultiline-true-default"></a>SafeMultiline: true (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+str.gsub(/^prefix/, '')
+str.gsub!(/^prefix/, '')
+str.sub(/^prefix/, '')
+str.sub!(/^prefix/, '')</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="safemultiline-false"><a class="anchor" href="#safemultiline-false"></a>SafeMultiline: false</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+str.gsub(/^prefix/, '')
+str.gsub!(/^prefix/, '')
+str.sub(/^prefix/, '')
+str.sub!(/^prefix/, '')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SafeMultiline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -819,29 +925,77 @@ Required Ruby version: 2.5
 can be replaced by <code>delete_suffix('suffix')</code>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>delete_suffix('suffix')</code> method is faster than
-<code>gsub(/suffix\z/, '')</code>.</p>
+<p>This cop has <code>SafeMultiline</code> configuration option that <code>true</code> by default because
+<code>suffix$</code> is unsafe as it will behave incompatible with <code>delete_suffix?</code>
+for receiver is multiline string.</p>
+</div>
+<div class="paragraph">
+<p>The <code>delete_suffix('suffix')</code> method is faster than <code>gsub(/suffix\z/, '')</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-9"><a class="anchor" href="#examples-9"></a>Examples</h3>
+<h3 id="examples-10"><a class="anchor" href="#examples-10"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 str.gsub(/suffix\z/, '')
 str.gsub!(/suffix\z/, '')
-str.gsub(/suffix$/, '')
-str.gsub!(/suffix$/, '')
 
 str.sub(/suffix\z/, '')
 str.sub!(/suffix\z/, '')
-str.sub(/suffix$/, '')
-str.sub!(/suffix$/, '')
 
 # good
 str.delete_suffix('suffix')
 str.delete_suffix!('suffix')</code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="safemultiline-true-default-2"><a class="anchor" href="#safemultiline-true-default-2"></a>SafeMultiline: true (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+str.gsub(/suffix$/, '')
+str.gsub!(/suffix$/, '')
+str.sub(/suffix$/, '')
+str.sub!(/suffix$/, '')</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="safemultiline-false-2"><a class="anchor" href="#safemultiline-false-2"></a>SafeMultiline: false</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+str.gsub(/suffix$/, '')
+str.gsub!(/suffix$/, '')
+str.sub(/suffix$/, '')
+str.sub!(/suffix$/, '')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SafeMultiline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -887,7 +1041,7 @@ own meaning. Correcting ActiveRecord methods with this cop should be
 considered unsafe.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-10"><a class="anchor" href="#examples-10"></a>Examples</h3>
+<h3 id="examples-11"><a class="anchor" href="#examples-11"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -903,7 +1057,7 @@ considered unsafe.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-3"><a class="anchor" href="#references-3"></a>References</h3>
+<h3 id="references-4"><a class="anchor" href="#references-4"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -950,7 +1104,7 @@ separated by <code>||</code>. In some cases such calls can be replaced
 with an single <code>#start_with?</code>/<code>#end_with?</code> call.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-11"><a class="anchor" href="#examples-11"></a>Examples</h3>
+<h3 id="examples-12"><a class="anchor" href="#examples-12"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -966,7 +1120,7 @@ str.end_with?(var1, var2)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1017,16 +1171,20 @@ str.end_with?(var1, var2)</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.44</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.6</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies unnecessary use of a regex where <code>String#end_with?</code>
-would suffice.</p>
+<p>This cop identifies unnecessary use of a regex where <code>String#end_with?</code> would suffice.</p>
+</div>
+<div class="paragraph">
+<p>This cop has <code>SafeMultiline</code> configuration option that <code>true</code> by default because
+<code>end$</code> is unsafe as it will behave incompatible with <code>end_with?</code>
+for receiver is multiline string.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-12"><a class="anchor" href="#examples-12"></a>Examples</h3>
+<h3 id="examples-13"><a class="anchor" href="#examples-13"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1037,20 +1195,41 @@ would suffice.</p>
 'abc'.match(/bc\Z/)
 /bc\Z/.match('abc')
 
+# good
+'abc'.end_with?('bc')</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="safemultiline-true-default-3"><a class="anchor" href="#safemultiline-true-default-3"></a>SafeMultiline: true (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
 'abc'.match?(/bc$/)
 /bc$/.match?('abc')
 'abc' =~ /bc$/
 /bc$/ =~ 'abc'
 'abc'.match(/bc$/)
-/bc$/.match('abc')
-
-# good
-'abc'.end_with?('bc')</code></pre>
+/bc$/.match('abc')</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="safemultiline-false-3"><a class="anchor" href="#safemultiline-false-3"></a>SafeMultiline: false</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+'abc'.match?(/bc$/)
+/bc$/.match?('abc')
+'abc' =~ /bc$/
+/bc$/ =~ 'abc'
+'abc'.match(/bc$/)
+/bc$/.match('abc')</code></pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1070,11 +1249,16 @@ would suffice.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SafeMultiline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-4"><a class="anchor" href="#references-4"></a>References</h3>
+<h3 id="references-5"><a class="anchor" href="#references-5"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1119,7 +1303,7 @@ would suffice.</p>
 <p>Do not compute the size of statically sized objects.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-13"><a class="anchor" href="#examples-13"></a>Examples</h3>
+<h3 id="examples-14"><a class="anchor" href="#examples-14"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># String methods
@@ -1199,7 +1383,7 @@ waldo.size</code></pre>
 <p>This cop is used to identify usages of</p>
 </div>
 <div class="sect2">
-<h3 id="examples-14"><a class="anchor" href="#examples-14"></a>Examples</h3>
+<h3 id="examples-15"><a class="anchor" href="#examples-15"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1214,7 +1398,7 @@ waldo.size</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1238,7 +1422,7 @@ waldo.size</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-5"><a class="anchor" href="#references-5"></a>References</h3>
+<h3 id="references-6"><a class="anchor" href="#references-6"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1295,7 +1479,7 @@ both perform an O(n) search through all of the values, calling <code>values</cod
 allocates a new array while using <code>value?</code> does not.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-15"><a class="anchor" href="#examples-15"></a>Examples</h3>
+<h3 id="examples-16"><a class="anchor" href="#examples-16"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1321,7 +1505,7 @@ h = { a: 1, b: 2 }; h.value?(nil)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-6"><a class="anchor" href="#references-6"></a>References</h3>
+<h3 id="references-7"><a class="anchor" href="#references-7"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1372,7 +1556,7 @@ especially in case of single-threaded
 applications with multiple <code>OpenStruct</code> instantiations.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-16"><a class="anchor" href="#examples-16"></a>Examples</h3>
+<h3 id="examples-17"><a class="anchor" href="#examples-17"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1420,27 +1604,28 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies uses of <code>Range#include?</code>, which iterates over each
+<p>This cop identifies uses of <code>Range#include?</code> and <code>Range#member?</code>, which iterates over each
 item in a <code>Range</code> to see if a specified item is there. In contrast,
 <code>Range#cover?</code> simply compares the target item with the beginning and
 end points of the <code>Range</code>. In a great majority of cases, this is what
 is wanted.</p>
 </div>
 <div class="paragraph">
-<p>This cop is <code>Safe: false</code> by default because <code>Range#include?</code> and
+<p>This cop is <code>Safe: false</code> by default because <code>Range#include?</code> (or <code>Range#member?</code>) and
 <code>Range#cover?</code> are not equivalent behaviour.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-17"><a class="anchor" href="#examples-17"></a>Examples</h3>
+<h3 id="examples-18"><a class="anchor" href="#examples-18"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 ('a'..'z').include?('b') # =&gt; true
+('a'..'z').member?('b')  # =&gt; true
 
 # good
 ('a'..'z').cover?('b') # =&gt; true
@@ -1453,7 +1638,7 @@ is wanted.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-7"><a class="anchor" href="#references-7"></a>References</h3>
+<h3 id="references-8"><a class="anchor" href="#references-8"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1499,7 +1684,7 @@ is wanted.</p>
 where <code>yield</code> would do just as well.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-18"><a class="anchor" href="#examples-18"></a>Examples</h3>
+<h3 id="examples-19"><a class="anchor" href="#examples-19"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1521,7 +1706,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-8"><a class="anchor" href="#references-8"></a>References</h3>
+<h3 id="references-9"><a class="anchor" href="#references-9"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1568,7 +1753,7 @@ returns <code>#&lt;MatchData&gt;</code>/<code>nil</code>. The return value of <c
 index/<code>nil</code> and is more performant.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-19"><a class="anchor" href="#examples-19"></a>Examples</h3>
+<h3 id="examples-20"><a class="anchor" href="#examples-20"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1622,7 +1807,7 @@ You can set the maximum number of key-value pairs to consider
 an offense with <code>MaxKeyValuePairs</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-20"><a class="anchor" href="#examples-20"></a>Examples</h3>
+<h3 id="examples-21"><a class="anchor" href="#examples-21"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1649,7 +1834,7 @@ hash[:b] = 2</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1673,7 +1858,7 @@ hash[:b] = 2</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-9"><a class="anchor" href="#references-9"></a>References</h3>
+<h3 id="references-10"><a class="anchor" href="#references-10"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1722,7 +1907,7 @@ backref.
 So, when <code>MatchData</code> is not used, use <code>match?</code> instead of <code>match</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-21"><a class="anchor" href="#examples-21"></a>Examples</h3>
+<h3 id="examples-22"><a class="anchor" href="#examples-22"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1791,7 +1976,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-10"><a class="anchor" href="#references-10"></a>References</h3>
+<h3 id="references-11"><a class="anchor" href="#references-11"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1837,7 +2022,7 @@ end</code></pre>
 change them to use <code>reverse_each</code> instead.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-22"><a class="anchor" href="#examples-22"></a>Examples</h3>
+<h3 id="examples-23"><a class="anchor" href="#examples-23"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1849,7 +2034,7 @@ change them to use <code>reverse_each</code> instead.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-11"><a class="anchor" href="#references-11"></a>References</h3>
+<h3 id="references-12"><a class="anchor" href="#references-12"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1899,7 +2084,7 @@ change them to use <code>reverse_each</code> instead.</p>
 have been assigned to an array or a hash.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-23"><a class="anchor" href="#examples-23"></a>Examples</h3>
+<h3 id="examples-24"><a class="anchor" href="#examples-24"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1920,7 +2105,7 @@ have been assigned to an array or a hash.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-12"><a class="anchor" href="#references-12"></a>References</h3>
+<h3 id="references-13"><a class="anchor" href="#references-13"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1957,16 +2142,20 @@ have been assigned to an array or a hash.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.44</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.6</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies unnecessary use of a regex where
-<code>String#start_with?</code> would suffice.</p>
+<p>This cop identifies unnecessary use of a regex where <code>String#start_with?</code> would suffice.</p>
+</div>
+<div class="paragraph">
+<p>This cop has <code>SafeMultiline</code> configuration option that <code>true</code> by default because
+<code>^start</code> is unsafe as it will behave incompatible with <code>start_with?</code>
+for receiver is multiline string.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-24"><a class="anchor" href="#examples-24"></a>Examples</h3>
+<h3 id="examples-25"><a class="anchor" href="#examples-25"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1977,20 +2166,41 @@ have been assigned to an array or a hash.</p>
 'abc'.match(/\Aab/)
 /\Aab/.match('abc')
 
+# good
+'abc'.start_with?('ab')</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="safemultiline-true-default-4"><a class="anchor" href="#safemultiline-true-default-4"></a>SafeMultiline: true (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
 'abc'.match?(/^ab/)
 /^ab/.match?('abc')
 'abc' =~ /^ab/
 /^ab/ =~ 'abc'
 'abc'.match(/^ab/)
-/^ab/.match('abc')
-
-# good
-'abc'.start_with?('ab')</code></pre>
+/^ab/.match('abc')</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="safemultiline-false-4"><a class="anchor" href="#safemultiline-false-4"></a>SafeMultiline: false</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+'abc'.match?(/^ab/)
+/^ab/.match?('abc')
+'abc' =~ /^ab/
+/^ab/ =~ 'abc'
+'abc'.match(/^ab/)
+/^ab/.match('abc')</code></pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-8"><a class="anchor" href="#configurable-attributes-8"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2010,17 +2220,75 @@ have been assigned to an array or a hash.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SafeMultiline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-13"><a class="anchor" href="#references-13"></a>References</h3>
+<h3 id="references-14"><a class="anchor" href="#references-14"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
 <p><a href="https://github.com/JuanitoFatas/fast-ruby#stringmatch-vs-stringstart_withstringend_with-code-start-code-end" class="bare">https://github.com/JuanitoFatas/fast-ruby#stringmatch-vs-stringstart_withstringend_with-code-start-code-end</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="performancestringinclude"><a class="anchor" href="#performancestringinclude"></a>Performance/StringInclude</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop identifies unnecessary use of a regex where
+<code>String#include?</code> would suffice.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-26"><a class="anchor" href="#examples-26"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+'abc'.match?(/ab/)
+/ab/.match?('abc')
+'abc' =~ /ab/
+/ab/ =~ 'abc'
+'abc'.match(/ab/)
+/ab/.match('abc')
+
+# good
+'abc'.include?('ab')</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -2060,7 +2328,7 @@ have been assigned to an array or a hash.</p>
 <code>tr</code> or <code>delete</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-25"><a class="anchor" href="#examples-25"></a>Examples</h3>
+<h3 id="examples-27"><a class="anchor" href="#examples-27"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2078,7 +2346,7 @@ have been assigned to an array or a hash.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-14"><a class="anchor" href="#references-14"></a>References</h3>
+<h3 id="references-15"><a class="anchor" href="#references-15"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2125,7 +2393,7 @@ In most cases such calls can be replaced
 with an explicit array creation.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-26"><a class="anchor" href="#examples-26"></a>Examples</h3>
+<h3 id="examples-28"><a class="anchor" href="#examples-28"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2141,7 +2409,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-9"><a class="anchor" href="#configurable-attributes-9"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2217,7 +2485,7 @@ So, if you expect <code>ASCII-8BIT</code> encoding, disable this cop.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-27"><a class="anchor" href="#examples-27"></a>Examples</h3>
+<h3 id="examples-29"><a class="anchor" href="#examples-29"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2270,7 +2538,7 @@ String.new('something')
 can be replaced by <code>URI::DEFAULT_PARSER</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-28"><a class="anchor" href="#examples-28"></a>Examples</h3>
+<h3 id="examples-30"><a class="anchor" href="#examples-30"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
