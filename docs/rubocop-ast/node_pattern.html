@@ -702,6 +702,46 @@ PATTERN</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="for-arguments"><a class="anchor" href="#for-arguments"></a><code>%</code> for arguments</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Arguments can be passed to matchers, either as external method arguments,
+or to be used to compare elements. An example of method argument:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def multiple_of?(n, factor)
+  n % factor == 0
+end
+
+def_node_matcher :int_node_multiple?, '(int #multiple_of?(%1))'
+
+# ...
+
+int_node_multiple?(node, 10) # =&gt; true if node is an 'int' node with a multiple of 10</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Arguments can be used to match nodes directly:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def_node_matcher :has_sensitive_data?, '(hash &lt;(pair (_ %1) $_) ...&gt;)'
+
+# ...
+
+has_user_data?(node, :password) # =&gt; true if node is a hash with a key +:password+
+
+# matching uses ===, so to match strings or symbols, 'pass' or 'password' one can:
+has_user_data?(node, /^pass(word)?$/i)
+
+# one can also pass lambdas...
+has_user_data?(node, -&gt;(key) { # return true or false depending on key })</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="nil-or-nil"><a class="anchor" href="#nil-or-nil"></a><code>nil</code> or <code>nil?</code></h2>
 <div class="sectionbody">
 <div class="paragraph">

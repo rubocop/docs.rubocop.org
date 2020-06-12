@@ -4146,6 +4146,66 @@ validates :x, length: { is: 5 }, allow_nil: true, allow_blank: false</code></pre
 </div>
 </div>
 <div class="sect1">
+<h2 id="railsredundantforeignkey"><a class="anchor" href="#railsredundantforeignkey"></a>Rails/RedundantForeignKey</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop detects cases where the <code>:foreign_key</code> option on associations
+is redundant.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+class Post
+  has_many :comments, foreign_key: 'post_id'
+end
+
+class Comment
+  belongs_to :post, foreign_key: 'post_id'
+end
+
+# good
+class Post
+  has_many :comments
+end
+
+class Comment
+  belongs_to :author, foreign_key: 'user_id'
+end</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="railsredundantreceiverinwithoptions"><a class="anchor" href="#railsredundantreceiverinwithoptions"></a>Rails/RedundantReceiverInWithOptions</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -4180,7 +4240,7 @@ validates :x, length: { is: 5 }, allow_nil: true, allow_blank: false</code></pre
 Receiver is implicit from Rails 4.2 or higher.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
+<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4272,7 +4332,7 @@ end</code></pre>
 the definition of a reflection is a string.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
+<h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4320,7 +4380,7 @@ has_many :accounts, class_name: 'Account'</code></pre>
 <p>Use <code>assert_not</code> methods instead of <code>refute</code> methods.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
+<h3 id="examples-50"><a class="anchor" href="#examples-50"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-assert_not-default"><a class="anchor" href="#enforcedstyle-assert_not-default"></a>EnforcedStyle: assert_not (default)</h4>
 <div class="listingblock">
@@ -4420,7 +4480,7 @@ refute_equal true, false</code></pre>
 Because the relative date will be evaluated only once.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-50"><a class="anchor" href="#examples-50"></a>Examples</h3>
+<h3 id="examples-51"><a class="anchor" href="#examples-51"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4507,7 +4567,7 @@ end</code></pre>
 <code>request.referrer</code>, depending on the cop&#8217;s configuration.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-51"><a class="anchor" href="#examples-51"></a>Examples</h3>
+<h3 id="examples-52"><a class="anchor" href="#examples-52"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-referer-default"><a class="anchor" href="#enforcedstyle-referer-default"></a>EnforcedStyle: referer (default)</h4>
 <div class="listingblock">
@@ -4594,7 +4654,7 @@ request.referrer</code></pre>
 reversible.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-52"><a class="anchor" href="#examples-52"></a>Examples</h3>
+<h3 id="examples-53"><a class="anchor" href="#examples-53"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4805,7 +4865,7 @@ end</code></pre>
 to convert <code>try</code>. It will convert code to use safe navigation.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-53"><a class="anchor" href="#examples-53"></a>Examples</h3>
+<h3 id="examples-54"><a class="anchor" href="#examples-54"></a>Examples</h3>
 <div class="sect3">
 <h4 id="converttry-false-default"><a class="anchor" href="#converttry-false-default"></a>ConvertTry: false (default)</h4>
 <div class="listingblock">
@@ -4914,7 +4974,7 @@ checking <code>foo&amp;.blank?</code> in a conditional, <code>foo</code> being <
 do the opposite of what the author intends.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-54"><a class="anchor" href="#examples-54"></a>Examples</h3>
+<h3 id="examples-55"><a class="anchor" href="#examples-55"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4997,7 +5057,7 @@ that behavior can be turned off with <code>AllowImplicitReturn: false</code>.</p
 <code>AllowedReceivers: []</code></p>
 </div>
 <div class="sect2">
-<h3 id="examples-55"><a class="anchor" href="#examples-55"></a>Examples</h3>
+<h3 id="examples-56"><a class="anchor" href="#examples-56"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5161,7 +5221,7 @@ Service::Mailer::update</code></pre>
 a method (usually a scope) instead of a lambda/proc.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-56"><a class="anchor" href="#examples-56"></a>Examples</h3>
+<h3 id="examples-57"><a class="anchor" href="#examples-57"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5237,7 +5297,7 @@ validations which are listed in
 <p>Methods may be ignored from this rule by configuring a <code>Whitelist</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-57"><a class="anchor" href="#examples-57"></a>Examples</h3>
+<h3 id="examples-58"><a class="anchor" href="#examples-58"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5359,7 +5419,7 @@ then only use of Time.zone is allowed.</p>
 to use Time.in_time_zone.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-58"><a class="anchor" href="#examples-58"></a>Examples</h3>
+<h3 id="examples-59"><a class="anchor" href="#examples-59"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-strict-2"><a class="anchor" href="#enforcedstyle-strict-2"></a>EnforcedStyle: strict</h4>
 <div class="listingblock">
@@ -5466,43 +5526,44 @@ Time.at(timestamp).in_time_zone</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.40</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.47</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.6</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Prefer the use of uniq (or distinct), before pluck instead of after.</p>
+<p>Prefer the use of distinct, before pluck instead of after.</p>
 </div>
 <div class="paragraph">
-<p>The use of uniq before pluck is preferred because it executes within
+<p>The use of distinct before pluck is preferred because it executes within
 the database.</p>
 </div>
 <div class="paragraph">
 <p>This cop has two different enforcement modes. When the EnforcedStyle
 is conservative (the default) then only calls to pluck on a constant
-(i.e. a model class) before uniq are added as offenses.</p>
+(i.e. a model class) before distinct are added as offenses.</p>
 </div>
 <div class="paragraph">
 <p>When the EnforcedStyle is aggressive then all calls to pluck before
-uniq are added as offenses. This may lead to false positives as the cop
-cannot distinguish between calls to pluck on an ActiveRecord::Relation
-vs a call to pluck on an ActiveRecord::Associations::CollectionProxy.</p>
+distinct are added as offenses. This may lead to false positives
+as the cop cannot distinguish between calls to pluck on an
+ActiveRecord::Relation vs a call to pluck on an
+ActiveRecord::Associations::CollectionProxy.</p>
 </div>
 <div class="paragraph">
 <p>Autocorrect is disabled by default for this cop since it may generate
 false positives.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-59"><a class="anchor" href="#examples-59"></a>Examples</h3>
+<h3 id="examples-60"><a class="anchor" href="#examples-60"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-conservative-default"><a class="anchor" href="#enforcedstyle-conservative-default"></a>EnforcedStyle: conservative (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-Model.pluck(:id).uniq
+Model.pluck(:id).distinct
 
 # good
-Model.uniq.pluck(:id)</code></pre>
+Model.distinct.pluck(:id)</code></pre>
 </div>
 </div>
 </div>
@@ -5512,17 +5573,17 @@ Model.uniq.pluck(:id)</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 # this will return a Relation that pluck is called on
-Model.where(cond: true).pluck(:id).uniq
+Model.where(cond: true).pluck(:id).distinct
 
 # bad
 # an association on an instance will return a CollectionProxy
-instance.assoc.pluck(:id).uniq
+instance.assoc.pluck(:id).distinct
 
 # bad
-Model.pluck(:id).uniq
+Model.pluck(:id).distinct
 
 # good
-Model.uniq.pluck(:id)</code></pre>
+Model.distinct.pluck(:id)</code></pre>
 </div>
 </div>
 </div>
@@ -5602,7 +5663,7 @@ the query will be heavy.</p>
 <p>Note that the cop does nothing if db/schema.rb does not exist.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-60"><a class="anchor" href="#examples-60"></a>Examples</h3>
+<h3 id="examples-61"><a class="anchor" href="#examples-61"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - if the schema does not have a unique index
@@ -5677,7 +5738,7 @@ validates :account, length: { minimum: MIN_LENGTH }</code></pre>
 exist.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-61"><a class="anchor" href="#examples-61"></a>Examples</h3>
+<h3 id="examples-62"><a class="anchor" href="#examples-62"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5750,7 +5811,7 @@ Rails.env == 'production'</code></pre>
 <p>This cop checks for the use of old-style attribute validation macros.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-62"><a class="anchor" href="#examples-62"></a>Examples</h3>
+<h3 id="examples-63"><a class="anchor" href="#examples-63"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
