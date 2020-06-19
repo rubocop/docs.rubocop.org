@@ -5560,7 +5560,7 @@ false positives.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-Model.pluck(:id).distinct
+Model.pluck(:id).uniq
 
 # good
 Model.distinct.pluck(:id)</code></pre>
@@ -5573,14 +5573,14 @@ Model.distinct.pluck(:id)</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 # this will return a Relation that pluck is called on
-Model.where(cond: true).pluck(:id).distinct
+Model.where(cond: true).pluck(:id).uniq
 
 # bad
 # an association on an instance will return a CollectionProxy
-instance.assoc.pluck(:id).distinct
+instance.assoc.pluck(:id).uniq
 
 # bad
-Model.pluck(:id).distinct
+Model.pluck(:id).uniq
 
 # good
 Model.distinct.pluck(:id)</code></pre>

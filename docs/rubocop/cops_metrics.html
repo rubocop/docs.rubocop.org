@@ -604,7 +604,35 @@ decision points and adds one.</p>
 else branch does not, since it doesn&#8217;t add a decision point. The &amp;&amp;
 operator (or keyword and) can be converted to a nested if statement,
 and ||/or is shorthand for a sequence of ifs, so they also add one.
-Loops can be said to have an exit condition, so they add one.</p>
+Loops can be said to have an exit condition, so they add one.
+Blocks that are calls to builtin iteration methods
+(e.g. `ary.map{&#8230;&#8203;}) also add one, others are ignored.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>def each_child_node(*types)               # count begins: 1
+  unless block_given?                     # unless: +1
+    return to_enum(__method__, *types)</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>children.each do |child|                # each{}: +1
+  next unless child.is_a?(Node)         # unless: +1</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  yield child if types.empty? ||        # if: +1, ||: +1
+                 types.include?(child.type)
+end</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  self
+end                                       # total: 6</pre>
+</div>
 </div>
 <div class="sect2">
 <h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
@@ -629,7 +657,7 @@ Loops can be said to have an exit condition, so they add one.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Max</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>6</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>7</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
 </tr>
 </tbody>
