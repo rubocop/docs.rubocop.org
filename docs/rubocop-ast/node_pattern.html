@@ -742,6 +742,70 @@ has_user_data?(node, /^pass(word)?$/i)
 has_user_data?(node, -&gt;(key) { # return true or false depending on key })</code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>Array#===</code> will never match a single node element (so don&#8217;t pass arrays),
+but <code>Set#===</code> is an alias to <code>Set#include?</code> (Ruby 2.5+ only), and so can be
+very useful to match within many possible literals / Nodes.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="param_name-for-named-parameters"><a class="anchor" href="#param_name-for-named-parameters"></a><code>%param_name</code> for named parameters</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Arguments can be passed as named parameters. They will be matched using <code>===</code>
+(see <code>%</code> above).</p>
+</div>
+<div class="paragraph">
+<p>Contrary to positional arguments, defaults values can be passed to
+<code>def_node_matcher</code> and <code>def_node_search</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def_node_matcher :interesting_call?, '(send _ %method ...)',
+                 method: Set[:transform_values, :transform_keys,
+                             :transform_values!, :transform_keys!,
+                             :to_h].freeze
+
+# Usage:
+
+interesting_call?(node) # use the default methods
+interesting_call?(node, method: /^transform/) # match anything starting with 'transform'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Named parameters as arguments to custom methods are also supported.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="const-for-constants"><a class="anchor" href="#const-for-constants"></a><code>%CONST</code> for constants</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Constants can be included in patterns. They will be matched using <code>===</code>, so
+Regexp / Set / Proc can be used in addition to literals and Nodes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">SOME_CALLS = Set[:transform_values, :transform_keys,
+                 :transform_values!, :transform_keys!,
+                 :to_h].freeze
+
+def_node_matcher :interesting_call?, '(send _ %SOME_CALLS ...)'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Constants as arguments to custom methods are also supported.</p>
+</div>
 </div>
 </div>
 <div class="sect1">

@@ -144,6 +144,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="cops_style.html">Style</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="v1_upgrade_notes.html">Upgrade Notes</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -491,9 +494,13 @@ the expression achieved previously:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def_node_matcher :not_empty_call?, &lt;&lt;~PATTERN
-  (send (send (...) :empty?) :!)
+  (send (send $(...) :empty?) :!)
 PATTERN</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Note that we added a <code>$</code> sign to capture the "expression" in <code>!&lt;expression&gt;.empty?</code>,
+it will become useful later.</p>
 </div>
 <div class="paragraph">
 <p>Get yourself familiar with the AST node hooks that
@@ -530,11 +537,11 @@ end</code></pre>
       #
       #   # good
       #   array.any?
-      class SimplifyNotEmptyWithAny &lt; Cop
+      class SimplifyNotEmptyWithAny &lt; Base
         MSG = 'Use `.any?` and remove the negation part.'.freeze
 
         def_node_matcher :not_empty_call?, &lt;&lt;~PATTERN
-          (send (send (...) :empty?) :!)
+          (send (send $(...) :empty?) :!)
         PATTERN
 
         def on_send(node)
@@ -553,10 +560,7 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">describe RuboCop::Cop::Style::SimplifyNotEmptyWithAny do
-  let(:config) { RuboCop::Config.new }
-  subject(:cop) { described_class.new(config) }
-
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">describe RuboCop::Cop::Style::SimplifyNotEmptyWithAny, :config do
   it 'registers an offense when using `!a.empty?`' do
     expect_offense(&lt;&lt;~RUBY)
       !array.empty?
@@ -578,9 +582,10 @@ end</code></pre>
 <h3 id="auto-correct"><a class="anchor" href="#auto-correct"></a>Auto-correct</h3>
 <div class="paragraph">
 <p>The auto-correct can help humans automatically fix offenses that have been detected.
-It&#8217;s necessary to define an <code>autocorrect</code> method that returns a lambda
-<a href="https://github.com/whitequark/parser/blob/master/lib/parser/rewriter.rb">rewriter</a>
-with the corrector where you can give instructions about what to do with the
+It&#8217;s necessary to <code>extend AutoCorrector</code>.
+The method <code>add_offense</code> yields a corrector object that is a thin wrapper on
+<a href="https://www.rubydoc.info/gems/parser/Parser/Source/TreeRewriter">parser&#8217;s TreeRewriter</a>
+to which you can give instructions about what to do with the
 offensive node.</p>
 </div>
 <div class="paragraph">
@@ -588,26 +593,37 @@ offensive node.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">it 'autocorrect `!a.empty?` to `a.any?` ' do
-  expect(autocorrect_source('!a.empty?')).to eq('a.any?')
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">it 'corrects `!a.empty?`' do
+  expect_offense(&lt;&lt;~RUBY)
+    !array.empty?
+    ^^^^^^^^^^^^^ Use `.any?` and remove the negation part.
+  RUBY
+
+  expect_correction(&lt;&lt;~RUBY)
+    array.any?
+  RUBY
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>And then define the <code>autocorrect</code> method on the cop side:</p>
+<p>And then add the autocorrecting block on the cop side:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def autocorrect(node)
-  lambda do |corrector|
-    internal_expression = node.children[0].children[0].source
-    corrector.replace(node, "#{internal_expression}.any?")
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">extend AutoCorrector
+
+def on_send(node)
+  expression = not_empty_call?(node)
+  return unless expression
+
+  add_offense(node) do |corrector|
+    corrector.replace(node, "#{expression.source}.any?")
   end
 end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The corrector allows you to <code>insert_after</code> and <code>insert_before</code> or
+<p>The corrector allows you to <code>insert_after</code>, <code>insert_before</code>, <code>wrap</code> or
 <code>replace</code> a specific node or in any specific range of the code.</p>
 </div>
 <div class="paragraph">
@@ -638,12 +654,13 @@ works with other method than <code>.any?</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def autocorrect(node)
-  lambda do |corrector|
-    internal_expression = node.children[0].children[0].source
-    replacement = cop_config['ReplaceAnyWith'] || "any?"
-    new_expression = "#{internal_expression}.#{replacement}"
-    corrector.replace(node, new_expression)
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def on_send(node)
+  expression = not_empty_call?(node)
+  return unless expression
+
+  add_offense(node) do |corrector|
+    replacement = cop_config['ReplaceAnyWith'] || 'any?'
+    corrector.replace(node, "#{expression.source}.#{replacement}")
   end
 end</code></pre>
 </div>

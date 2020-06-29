@@ -179,16 +179,93 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>RuboCop::Node</code>, and</p>
+<p><code>RuboCop::Node</code> - this is an extension of the <a href="https://github.com/whitequark/parser/"><code>parser</code></a> gem&#8217;s <code>Node</code> class, which adds a simpler and more powerful object-oriented API to make it easier to work with nodes.</p>
 </li>
 <li>
-<p><code>RuboCop::AST::NodePattern</code>.</p>
+<p><code>RuboCop::AST::NodePattern</code> - a regular expression-style method to traverse and match nodes in an Abstract Syntax Tree. See <a href="node_pattern.html" class="page">"Node Pattern"</a> to get yourself familiar with <code>NodePattern</code>'s capabilities.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>See <a href="node_pattern.html" class="page">"Node Pattern"</a> to get yourself familiar with <code>NodePattern</code>'s
-capabilities.</p>
+<p><code>Rubocop::AST</code> provides a wrapper around <code>parser&#8217;s `Node</code> class (in other words, <code>RuboCop::AST::Node &lt; Parser::AST::Node</code>). In addition to a number of methods to make it easier to work with, the wrapper class also provides ways to inspect the <strong>parents</strong> of nodes, which the <code>parser</code> nodes do not support.</p>
+</div>
+<div class="paragraph">
+<p>Examples using <code>parser</code> and <code>rubocop-ast</code>:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>parser</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>rubocop-ast</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># type = :if
+is_if = node.loc.keyword == 'if'
+if_branch = node.children[1]
+else_branch = node.children[2]
+has_elsif_branch = node.children[2].type == :if &amp;&amp; node.children[2].keyword == 'elsif'</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># type = :if
+is_if = node.if?
+if_branch = node.if_branch
+else_branch = node.else_branch
+has_elsif_branch = node.elsif_conditional?</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># type = :hash
+pairs = node.children
+pairs.each do |pair_node|
+  key = pair_node.children[0]
+  value = pair_node.children[1]
+  do_something(key, value)
+end</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># type = :hash
+node.each_pair do |pair_node|
+  do_something(pair_node.key, pair_node.value)
+end</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Sample usage:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class MyRule &lt; Parser::AST::Processor
+  include RuboCop::AST::Traversal
+
+  def on_sym(node)
+    puts "I found a symbol! #{node.value}"
+  end
+end
+
+source = RuboCop::ProcessedSource.new(code, 2.7)
+rule = MyRule.new
+source.ast.each_node { |n| rule.process(n) }</code></pre>
+</div>
 </div>
 <nav class="pagination">
   <span class="next"><a href="installation.html">Installation</a></span>

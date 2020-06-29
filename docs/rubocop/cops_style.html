@@ -6,7 +6,7 @@
     <title>Style :: RuboCop Docs</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_style.html">
     <link rel="prev" href="cops_security.html">
-    <link rel="next" href="extensions.html">
+    <link rel="next" href="v1_upgrade_notes.html">
     <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
@@ -143,6 +143,9 @@
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="cops_style.html">Style</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="v1_upgrade_notes.html">Upgrade Notes</a>
   </li>
 </ul>
   </li>
@@ -6135,9 +6138,9 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.39</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.87</p></td>
 </tr>
 </tbody>
 </table>
@@ -8186,9 +8189,18 @@ multiple lines.</p>
 <h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">Thread.list.find_all do |t|
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+Thread.list.select do |t|
   t.alive?
 end.map do |t|
+  t.object_id
+end
+
+# good
+alive_threads = Thread.list.select do |t|
+  t.alive?
+end
+alive_threads.map do |t|
   t.object_id
 end</code></pre>
 </div>
@@ -16544,7 +16556,7 @@ array.empty?
 </div>
 <nav class="pagination">
   <span class="prev"><a href="cops_security.html">Security</a></span>
-  <span class="next"><a href="extensions.html">Extensions</a></span>
+  <span class="next"><a href="v1_upgrade_notes.html">Upgrade Notes</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
