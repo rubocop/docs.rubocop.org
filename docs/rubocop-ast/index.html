@@ -176,6 +176,8 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">RuboCop AST</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>This gem introduces two core classes of RuboCop:</p>
 </div>
@@ -189,11 +191,52 @@
 </li>
 </ul>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This gem may be used independently from the main RuboCop gem. It was extracted from RuboCop in version 0.84 and its only
+dependency is the <a href="https://github.com/whitequark/parser">parser</a> gem, which <code>rubocop-ast</code> extends.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rationale"><a class="anchor" href="#rationale"></a>Rationale</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>While working with <code>parser&#8217;s AST representation is fairly easy (especially when compared to the AST of Ruby&#8217;s built-in `ripper</code> library), there&#8217;s still areas we felt could be improved:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the canonical way to work with an AST node is to deconstruct the node in array-like fashion, which results in code that&#8217;s hard to read</p>
+</li>
+<li>
+<p>looking for complex AST node patterns requires a lot of boilerplate code</p>
+</li>
+<li>
+<p>there&#8217;s no easy way to tell apart AST nodes of certain types - e.g. prefix vs postfix conditionals</p>
+</li>
+<li>
+<p>there&#8217;s no easy way to grab the parent node of some node</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Enter <code>rubocop-ast</code>, which aims to solve those problems. This library evolved for years as part of RuboCop and was eventually spun off in the hope that it might be useful
+for other projects built on top of <code>parser</code>.</p>
+</div>
 <div class="paragraph">
 <p><code>RuboCop::AST::Node</code> provides a wrapper around <code>parser</code>'s <code>Node</code> class (in other words, <code>RuboCop::AST::Node &lt; Parser::AST::Node</code>). In addition to a number of methods to make it easier to work with, the wrapper class also provides ways to inspect the <strong>parents</strong> of nodes, which the <code>parser</code> nodes do not support.</p>
 </div>
 <div class="paragraph">
-<p>Examples using <code>parser</code> and <code>rubocop-ast</code>:</p>
+<p>Here are a few examples using <code>parser</code> and <code>rubocop-ast</code>:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -268,6 +311,8 @@ end
 source = RuboCop::ProcessedSource.new(code, 2.7)
 rule = MyRule.new
 source.ast.each_node { |n| rule.process(n) }</code></pre>
+</div>
+</div>
 </div>
 </div>
 <nav class="pagination">
