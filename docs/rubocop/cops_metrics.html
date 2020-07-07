@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_metrics.html">
     <link rel="prev" href="cops_lint.html">
     <link rel="next" href="cops_migration.html">
-    <meta name="generator" content="Antora 2.0.0">
+    <meta name="generator" content="Antora 2.0.1">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
@@ -188,6 +188,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="0.87/index.html">0.87</a>
+        </li>
+        <li class="version">
           <a href="0.86/index.html">0.86</a>
         </li>
         <li class="version">
@@ -243,7 +246,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="0.86/index.html" class="home-link"></a>
+  <a href="0.87/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -255,6 +258,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_metrics.html">master</a>
+    <a class="version" href="0.87/cops_metrics.html">0.87</a>
     <a class="version" href="0.86/cops_metrics.html">0.86</a>
     <a class="version" href="0.85/cops_metrics.html">0.85</a>
   </div>
@@ -370,7 +374,7 @@ and <a href="https://en.wikipedia.org/wiki/ABC_Software_Metric" class="bare">htt
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.44</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.66</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.87</p></td>
 </tr>
 </tbody>
 </table>
@@ -379,6 +383,36 @@ and <a href="https://en.wikipedia.org/wiki/ABC_Software_Metric" class="bare">htt
 Comment lines can optionally be ignored.
 The maximum allowed length is configurable.
 The cop can be configured to ignore blocks passed to certain methods.</p>
+</div>
+<div class="paragraph">
+<p>You can set literals you want to fold with <code>CountAsOne</code>.
+Available are: 'array', 'hash', and 'heredoc'. Each literal
+will be counted as one line regardless of its actual size.</p>
+</div>
+<div class="sect2">
+<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
+<div class="sect3">
+<h4 id="countasone-array-heredoc"><a class="anchor" href="#countasone-array-heredoc"></a>CountAsOne: ['array', 'heredoc']</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">something do
+  array = [         # +1
+    1,
+    2
+  ]
+
+  hash = {          # +3
+    key: 'value'
+  }
+
+  msg = &lt;&lt;~HEREDOC  # +1
+    Heredoc
+    content.
+  HEREDOC
+end                 # 5 points</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
@@ -405,6 +439,11 @@ The cop can be configured to ignore blocks passed to certain methods.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Max</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>25</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CountAsOne</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ExcludedMethods</p></td>
@@ -530,7 +569,7 @@ towards the nesting level. Set to <code>true</code> to count blocks as well.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.25</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.87</p></td>
 </tr>
 </tbody>
 </table>
@@ -538,6 +577,36 @@ towards the nesting level. Set to <code>true</code> to count blocks as well.</p>
 <p>This cop checks if the length a class exceeds some maximum value.
 Comment lines can optionally be ignored.
 The maximum allowed length is configurable.</p>
+</div>
+<div class="paragraph">
+<p>You can set literals you want to fold with <code>CountAsOne</code>.
+Available are: 'array', 'hash', and 'heredoc'. Each literal
+will be counted as one line regardless of its actual size.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
+<div class="sect3">
+<h4 id="countasone-array-heredoc-2"><a class="anchor" href="#countasone-array-heredoc-2"></a>CountAsOne: ['array', 'heredoc']</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class Foo
+  ARRAY = [         # +1
+    1,
+    2
+  ]
+
+  HASH = {          # +3
+    key: 'value'
+  }
+
+  MSG = &lt;&lt;~HEREDOC  # +1
+    Heredoc
+    content.
+  HEREDOC
+end                 # 5 points</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
@@ -564,6 +633,11 @@ The maximum allowed length is configurable.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Max</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>100</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CountAsOne</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
 </table>
@@ -698,7 +772,7 @@ end                                       # total: 6</pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.25</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.59.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.87</p></td>
 </tr>
 </tbody>
 </table>
@@ -706,6 +780,36 @@ end                                       # total: 6</pre>
 <p>This cop checks if the length of a method exceeds some maximum value.
 Comment lines can optionally be ignored.
 The maximum allowed length is configurable.</p>
+</div>
+<div class="paragraph">
+<p>You can set literals you want to fold with <code>CountAsOne</code>.
+Available are: 'array', 'hash', and 'heredoc'. Each literal
+will be counted as one line regardless of its actual size.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<div class="sect3">
+<h4 id="countasone-array-heredoc-3"><a class="anchor" href="#countasone-array-heredoc-3"></a>CountAsOne: ['array', 'heredoc']</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def m
+  array = [       # +1
+    1,
+    2
+  ]
+
+  hash = {        # +3
+    key: 'value'
+  }
+
+  &lt;&lt;~HEREDOC      # +1
+    Heredoc
+    content.
+  HEREDOC
+end               # 5 points</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
@@ -732,6 +836,11 @@ The maximum allowed length is configurable.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Max</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>10</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CountAsOne</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ExcludedMethods</p></td>
@@ -779,7 +888,7 @@ The maximum allowed length is configurable.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.31</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.87</p></td>
 </tr>
 </tbody>
 </table>
@@ -787,6 +896,36 @@ The maximum allowed length is configurable.</p>
 <p>This cop checks if the length a module exceeds some maximum value.
 Comment lines can optionally be ignored.
 The maximum allowed length is configurable.</p>
+</div>
+<div class="paragraph">
+<p>You can set literals you want to fold with <code>CountAsOne</code>.
+Available are: 'array', 'hash', and 'heredoc'. Each literal
+will be counted as one line regardless of its actual size.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<div class="sect3">
+<h4 id="countasone-array-heredoc-4"><a class="anchor" href="#countasone-array-heredoc-4"></a>CountAsOne: ['array', 'heredoc']</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">module M
+  ARRAY = [         # +1
+    1,
+    2
+  ]
+
+  HASH = {          # +3
+    key: 'value'
+  }
+
+  MSG = &lt;&lt;~HEREDOC  # +1
+    Heredoc
+    content.
+  HEREDOC
+end                 # 5 points</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
@@ -813,6 +952,11 @@ The maximum allowed length is configurable.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Max</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>100</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CountAsOne</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
 </table>
@@ -936,7 +1080,7 @@ nodes count. In contrast to the CyclomaticComplexity cop, this cop
 considers <code>else</code> nodes as adding complexity.</p>
 </div>
 <div class="sect2">
-<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
+<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def my_method                   # 1

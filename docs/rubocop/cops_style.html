@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_style.html">
     <link rel="prev" href="cops_security.html">
     <link rel="next" href="v1_upgrade_notes.html">
-    <meta name="generator" content="Antora 2.0.0">
+    <meta name="generator" content="Antora 2.0.1">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
@@ -188,6 +188,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="0.87/index.html">0.87</a>
+        </li>
+        <li class="version">
           <a href="0.86/index.html">0.86</a>
         </li>
         <li class="version">
@@ -243,7 +246,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="0.86/index.html" class="home-link"></a>
+  <a href="0.87/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -255,6 +258,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_style.html">master</a>
+    <a class="version" href="0.87/cops_style.html">0.87</a>
     <a class="version" href="0.86/cops_style.html">0.86</a>
     <a class="version" href="0.85/cops_style.html">0.85</a>
   </div>
@@ -410,6 +414,104 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="styleaccessorgrouping"><a class="anchor" href="#styleaccessorgrouping"></a>Style/AccessorGrouping</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.87</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop checks for grouping of accessors in <code>class</code> and <code>module</code> bodies.
+By default it enforces accessors to be placed in grouped declarations,
+but it can be configured to enforce separating them in multiple declarations.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
+<div class="sect3">
+<h4 id="enforcedstyle-grouped-default"><a class="anchor" href="#enforcedstyle-grouped-default"></a>EnforcedStyle: grouped (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+class Foo
+  attr_reader :bar
+  attr_reader :baz
+end
+
+# good
+class Foo
+  attr_reader :bar, :baz
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-separated"><a class="anchor" href="#enforcedstyle-separated"></a>EnforcedStyle: separated</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+class Foo
+  attr_reader :bar, :baz
+end
+
+# good
+class Foo
+  attr_reader :bar
+  attr_reader :baz
+end</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>grouped</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>separated</code>, <code>grouped</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="stylealias"><a class="anchor" href="#stylealias"></a>Style/Alias</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -445,7 +547,7 @@ depending on configuration.
 It also flags uses of <code>alias :symbol</code> rather than <code>alias bareword</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
+<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-prefer_alias-default"><a class="anchor" href="#enforcedstyle-prefer_alias-default"></a>EnforcedStyle: prefer_alias (default)</h4>
 <div class="listingblock">
@@ -474,7 +576,7 @@ alias_method :bar, :foo</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -545,7 +647,7 @@ alias_method :bar, :foo</code></pre>
 all contexts.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-always"><a class="anchor" href="#enforcedstyle-always"></a>EnforcedStyle: always</h4>
 <div class="listingblock">
@@ -588,7 +690,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -662,7 +764,7 @@ types, so we consider only cases when the first argument is an
 array literal or the second is a string literal.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -721,7 +823,7 @@ in comments. You could set an array of allowed non-ascii chars in
 AllowedChars attribute (empty by default).</p>
 </div>
 <div class="sect2">
-<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
+<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -733,7 +835,7 @@ AllowedChars attribute (empty by default).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -802,7 +904,7 @@ AllowedChars attribute (empty by default).</p>
 <p>This cop checks for uses of Module#attr.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - creates a single attribute accessor (deprecated in Ruby 1.9)
@@ -863,7 +965,7 @@ accepting version of a method that does automatic
 resource cleanup.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
+<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -912,7 +1014,7 @@ end</code></pre>
 <p>This cop checks if usage of %() or %Q() matches configuration.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
+<h3 id="examples-9"><a class="anchor" href="#examples-9"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-bare_percent-default"><a class="anchor" href="#enforcedstyle-bare_percent-default"></a>EnforcedStyle: bare_percent (default)</h4>
 <div class="listingblock">
@@ -943,7 +1045,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1012,7 +1114,7 @@ end</code></pre>
 <p>This cop checks for BEGIN blocks.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-9"><a class="anchor" href="#examples-9"></a>Examples</h3>
+<h3 id="examples-10"><a class="anchor" href="#examples-10"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1028,6 +1130,59 @@ BEGIN { test }</code></pre>
 <p><a href="https://rubystyle.guide#no-BEGIN-blocks" class="bare">https://rubystyle.guide#no-BEGIN-blocks</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stylebisectedattraccessor"><a class="anchor" href="#stylebisectedattraccessor"></a>Style/BisectedAttrAccessor</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.87</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop checks for places where <code>attr_reader</code> and <code>attr_writer</code>
+for the same method can be combined into single <code>attr_accessor</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-11"><a class="anchor" href="#examples-11"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+class Foo
+  attr_reader :bar
+  attr_writer :bar
+end
+
+# good
+class Foo
+  attr_accessor :bar
+end</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -1066,7 +1221,7 @@ BEGIN { test }</code></pre>
 <p>This cop looks for uses of block comments (=begin&#8230;&#8203;=end).</p>
 </div>
 <div class="sect2">
-<h3 id="examples-10"><a class="anchor" href="#examples-10"></a>Examples</h3>
+<h3 id="examples-12"><a class="anchor" href="#examples-12"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1128,7 +1283,7 @@ of comments...
 multi-line blocks.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-11"><a class="anchor" href="#examples-11"></a>Examples</h3>
+<h3 id="examples-13"><a class="anchor" href="#examples-13"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-line_count_based-default"><a class="anchor" href="#enforcedstyle-line_count_based-default"></a>EnforcedStyle: line_count_based (default)</h4>
 <div class="listingblock">
@@ -1281,7 +1436,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1375,7 +1530,7 @@ end</code></pre>
 <p>This cop checks for uses of the case equality operator(===).</p>
 </div>
 <div class="sect2">
-<h3 id="examples-12"><a class="anchor" href="#examples-12"></a>Examples</h3>
+<h3 id="examples-14"><a class="anchor" href="#examples-14"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1409,7 +1564,7 @@ some_string =~ /something/</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-8"><a class="anchor" href="#configurable-attributes-8"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1478,7 +1633,7 @@ some_string =~ /something/</code></pre>
 <p>Checks for uses of the character literal ?x.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-13"><a class="anchor" href="#examples-13"></a>Examples</h3>
+<h3 id="examples-15"><a class="anchor" href="#examples-15"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1542,7 +1697,7 @@ modules. Basically there are two different styles:</p>
 <p>The compact style is only forced for classes/modules with one child.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-14"><a class="anchor" href="#examples-14"></a>Examples</h3>
+<h3 id="examples-16"><a class="anchor" href="#examples-16"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-nested-default"><a class="anchor" href="#enforcedstyle-nested-default"></a>EnforcedStyle: nested (default)</h4>
 <div class="listingblock">
@@ -1569,7 +1724,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-8"><a class="anchor" href="#configurable-attributes-8"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-9"><a class="anchor" href="#configurable-attributes-9"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1643,7 +1798,7 @@ end</code></pre>
 <p>This cop enforces consistent use of <code>Object#is_a?</code> or <code>Object#kind_of?</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-15"><a class="anchor" href="#examples-15"></a>Examples</h3>
+<h3 id="examples-17"><a class="anchor" href="#examples-17"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-is_a-default"><a class="anchor" href="#enforcedstyle-is_a-default"></a>EnforcedStyle: is_a? (default)</h4>
 <div class="listingblock">
@@ -1674,7 +1829,7 @@ var.kind_of?(String)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-9"><a class="anchor" href="#configurable-attributes-9"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-10"><a class="anchor" href="#configurable-attributes-10"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1744,7 +1899,7 @@ var.kind_of?(String)</code></pre>
 self, when defining class/module methods.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-16"><a class="anchor" href="#examples-16"></a>Examples</h3>
+<h3 id="examples-18"><a class="anchor" href="#examples-18"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1818,13 +1973,22 @@ classes. This means that it&#8217;s almost always better to
 use a class instance variable instead.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-17"><a class="anchor" href="#examples-17"></a>Examples</h3>
+<h3 id="examples-19"><a class="anchor" href="#examples-19"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 class A
   @@test = 10
 end
+
+class A
+  def self.test(name, value)
+    class_variable_set("@@#{name}", value)
+  end
+end
+
+class A; end
+A.class_variable_set(:@@test, 10)
 
 # good
 class A
@@ -1834,6 +1998,12 @@ end
 class A
   def test
     @@test # you can access class variable without offense
+  end
+end
+
+class A
+  def self.test(name)
+    class_variable_get("@@#{name}") # you can access without offense
   end
 end</code></pre>
 </div>
@@ -1907,7 +2077,7 @@ can yield some false positives.</p>
 <p>The default mapping for <code>PreferredMethods</code> behaves as follows.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-18"><a class="anchor" href="#examples-18"></a>Examples</h3>
+<h3 id="examples-20"><a class="anchor" href="#examples-20"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1929,7 +2099,7 @@ items.include?</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-10"><a class="anchor" href="#configurable-attributes-10"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-11"><a class="anchor" href="#configurable-attributes-11"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2004,7 +2174,7 @@ of the . operator (like FileUtils::rmdir instead of FileUtils.rmdir).</p>
 </dl>
 </div>
 <div class="sect2">
-<h3 id="examples-19"><a class="anchor" href="#examples-19"></a>Examples</h3>
+<h3 id="examples-21"><a class="anchor" href="#examples-21"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2066,7 +2236,7 @@ Marshal.dump(obj)</code></pre>
 operator instead of the <code>.</code> operator.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-20"><a class="anchor" href="#examples-20"></a>Examples</h3>
+<h3 id="examples-22"><a class="anchor" href="#examples-22"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2129,7 +2299,7 @@ end</code></pre>
 <p>This cop enforces using `` or %x around command literals.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-21"><a class="anchor" href="#examples-21"></a>Examples</h3>
+<h3 id="examples-23"><a class="anchor" href="#examples-23"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-backticks-default"><a class="anchor" href="#enforcedstyle-backticks-default"></a>EnforcedStyle: backticks (default)</h4>
 <div class="listingblock">
@@ -2228,7 +2398,7 @@ folders = %x(find . -type d).split
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-11"><a class="anchor" href="#configurable-attributes-11"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-12"><a class="anchor" href="#configurable-attributes-12"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2303,7 +2473,7 @@ folders = %x(find . -type d).split
 to guidelines.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-22"><a class="anchor" href="#examples-22"></a>Examples</h3>
+<h3 id="examples-24"><a class="anchor" href="#examples-24"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2333,7 +2503,7 @@ to guidelines.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-12"><a class="anchor" href="#configurable-attributes-12"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-13"><a class="anchor" href="#configurable-attributes-13"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2408,7 +2578,7 @@ These keywords are: <code>begin</code>, <code>class</code>, <code>def</code>, <c
 are allowed.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-23"><a class="anchor" href="#examples-23"></a>Examples</h3>
+<h3 id="examples-25"><a class="anchor" href="#examples-25"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2474,7 +2644,7 @@ assignment to the same variable when using the return of the
 condition can be used instead.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-24"><a class="anchor" href="#examples-24"></a>Examples</h3>
+<h3 id="examples-26"><a class="anchor" href="#examples-26"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-assign_to_condition-default"><a class="anchor" href="#enforcedstyle-assign_to_condition-default"></a>EnforcedStyle: assign_to_condition (default)</h4>
 <div class="listingblock">
@@ -2577,7 +2747,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-13"><a class="anchor" href="#configurable-attributes-13"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-14"><a class="anchor" href="#configurable-attributes-14"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2650,7 +2820,7 @@ class or module. Explicitly declaring a visibility makes intent more
 clear, and prevents outside actors from touching private state.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-25"><a class="anchor" href="#examples-25"></a>Examples</h3>
+<h3 id="examples-27"><a class="anchor" href="#examples-27"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2721,7 +2891,7 @@ that RuboCop scans, a comment that matches this regex must be found or
 an offense is reported.</p>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-14"><a class="anchor" href="#configurable-attributes-14"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-15"><a class="anchor" href="#configurable-attributes-15"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2789,7 +2959,7 @@ replaceable in certain situations when dealing with multiple timezones
 and/or DST.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-26"><a class="anchor" href="#examples-26"></a>Examples</h3>
+<h3 id="examples-28"><a class="anchor" href="#examples-28"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - uses `DateTime` for current time
@@ -2834,7 +3004,7 @@ something.to_time</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-15"><a class="anchor" href="#configurable-attributes-15"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-16"><a class="anchor" href="#configurable-attributes-16"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2905,7 +3075,7 @@ that does not take any arguments. Both instance and
 class/singleton methods are checked.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-27"><a class="anchor" href="#examples-27"></a>Examples</h3>
+<h3 id="examples-29"><a class="anchor" href="#examples-29"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2984,7 +3154,7 @@ complex constructs to retrieve a canonicalized absolute path to the
 current file.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-28"><a class="anchor" href="#examples-28"></a>Examples</h3>
+<h3 id="examples-30"><a class="anchor" href="#examples-30"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3036,7 +3206,7 @@ This is useful if want to make sure that every RuboCop error gets fixed
 and not quickly disabled with a comment.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-29"><a class="anchor" href="#examples-29"></a>Examples</h3>
+<h3 id="examples-31"><a class="anchor" href="#examples-31"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3096,7 +3266,7 @@ a "<mark>:nodoc:" comment next to it. Likewise, "</mark>:nodoc: all" does the
 same for all its children.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-30"><a class="anchor" href="#examples-30"></a>Examples</h3>
+<h3 id="examples-32"><a class="anchor" href="#examples-32"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3143,7 +3313,7 @@ end
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-16"><a class="anchor" href="#configurable-attributes-16"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-17"><a class="anchor" href="#configurable-attributes-17"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3204,7 +3374,7 @@ It can optionally be configured to also require documentation for
 non-public methods.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-31"><a class="anchor" href="#examples-31"></a>Examples</h3>
+<h3 id="examples-33"><a class="anchor" href="#examples-33"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3302,7 +3472,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-17"><a class="anchor" href="#configurable-attributes-17"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-18"><a class="anchor" href="#configurable-attributes-18"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3367,7 +3537,7 @@ end</code></pre>
 automatically generated comments that need to be regenerated.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-32"><a class="anchor" href="#examples-32"></a>Examples</h3>
+<h3 id="examples-34"><a class="anchor" href="#examples-34"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3433,7 +3603,7 @@ As you&#8217;re unlikely to write code that can accept values of any type
 this is rarely a problem in practice.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-33"><a class="anchor" href="#examples-33"></a>Examples</h3>
+<h3 id="examples-35"><a class="anchor" href="#examples-35"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3467,7 +3637,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-18"><a class="anchor" href="#configurable-attributes-18"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-19"><a class="anchor" href="#configurable-attributes-19"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3541,7 +3711,7 @@ using a Range literal and <code>#each</code>. This can be done more readably usi
 <p>This check only applies if the block takes no parameters.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-34"><a class="anchor" href="#examples-34"></a>Examples</h3>
+<h3 id="examples-36"><a class="anchor" href="#examples-36"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3603,7 +3773,7 @@ the need to return the object at the end.</p>
 parameter is assigned to within the block.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-35"><a class="anchor" href="#examples-35"></a>Examples</h3>
+<h3 id="examples-37"><a class="anchor" href="#examples-37"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3651,7 +3821,7 @@ parameter is assigned to within the block.</p>
 block parameters do not cause syntax errors, but they are redundant.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-36"><a class="anchor" href="#examples-36"></a>Examples</h3>
+<h3 id="examples-38"><a class="anchor" href="#examples-38"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3707,7 +3877,7 @@ a { do_something }</code></pre>
 <p>This cop checks for case statements with an empty condition.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-37"><a class="anchor" href="#examples-37"></a>Examples</h3>
+<h3 id="examples-39"><a class="anchor" href="#examples-39"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad:
@@ -3778,7 +3948,7 @@ end</code></pre>
 explicit <code>nil</code> depending on the EnforcedStyle.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-38"><a class="anchor" href="#examples-38"></a>Examples</h3>
+<h3 id="examples-40"><a class="anchor" href="#examples-40"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-empty"><a class="anchor" href="#enforcedstyle-empty"></a>EnforcedStyle: empty</h4>
 <div class="listingblock">
@@ -3880,7 +4050,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-19"><a class="anchor" href="#configurable-attributes-19"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-20"><a class="anchor" href="#configurable-attributes-20"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3941,7 +4111,7 @@ for empty lambda parameters do not cause syntax errors, but they are
 redundant.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-39"><a class="anchor" href="#examples-39"></a>Examples</h3>
+<h3 id="examples-41"><a class="anchor" href="#examples-41"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3992,7 +4162,7 @@ redundant.</p>
 would be a literal, like an empty array, hash, or string.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-40"><a class="anchor" href="#examples-40"></a>Examples</h3>
+<h3 id="examples-42"><a class="anchor" href="#examples-42"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4069,7 +4239,7 @@ A method definition is not considered empty if it contains
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-41"><a class="anchor" href="#examples-41"></a>Examples</h3>
+<h3 id="examples-43"><a class="anchor" href="#examples-43"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-compact-default"><a class="anchor" href="#enforcedstyle-compact-default"></a>EnforcedStyle: compact (default)</h4>
 <div class="listingblock">
@@ -4112,7 +4282,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-20"><a class="anchor" href="#configurable-attributes-20"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-21"><a class="anchor" href="#configurable-attributes-21"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4181,7 +4351,7 @@ end</code></pre>
 <p>This cop checks ensures source files have no utf-8 encoding comments.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-42"><a class="anchor" href="#examples-42"></a>Examples</h3>
+<h3 id="examples-44"><a class="anchor" href="#examples-44"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4237,7 +4407,7 @@ end</code></pre>
 <p>This cop checks for END blocks.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-43"><a class="anchor" href="#examples-43"></a>Examples</h3>
+<h3 id="examples-45"><a class="anchor" href="#examples-45"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4296,7 +4466,7 @@ metadata, that are filename and line number. The metadata is used by
 backtraces. This cop recommends to pass the metadata to <code>eval</code> method.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-44"><a class="anchor" href="#examples-44"></a>Examples</h3>
+<h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4362,7 +4532,7 @@ RUBY</code></pre>
 can be used.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-45"><a class="anchor" href="#examples-45"></a>Examples</h3>
+<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4426,7 +4596,7 @@ Likewise, it also checks for the <code>Pathname.new</code> argument.</p>
 the following examples.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>
+<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4505,7 +4675,7 @@ for numbers in the code (eg 1.2e4). Different styles are supported:
              without trailing zeroes.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
+<h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-scientific-default"><a class="anchor" href="#enforcedstyle-scientific-default"></a>EnforcedStyle: scientific (default)</h4>
 <div class="listingblock">
@@ -4568,7 +4738,7 @@ for numbers in the code (eg 1.2e4). Different styles are supported:
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-21"><a class="anchor" href="#configurable-attributes-21"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-22"><a class="anchor" href="#configurable-attributes-22"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4639,7 +4809,7 @@ It is recommended to either always use <code>fdiv</code> or coerce one side only
 This cop also provides other options for code consistency.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
+<h3 id="examples-50"><a class="anchor" href="#examples-50"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-single_coerce-default"><a class="anchor" href="#enforcedstyle-single_coerce-default"></a>EnforcedStyle: single_coerce (default)</h4>
 <div class="listingblock">
@@ -4695,7 +4865,7 @@ a.fdiv(b)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-22"><a class="anchor" href="#configurable-attributes-22"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-23"><a class="anchor" href="#configurable-attributes-23"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4770,7 +4940,7 @@ parameter. An <code>each</code> call with a block on a single line is always
 allowed.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
+<h3 id="examples-51"><a class="anchor" href="#examples-51"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-each-default"><a class="anchor" href="#enforcedstyle-each-default"></a>EnforcedStyle: each (default)</h4>
 <div class="listingblock">
@@ -4813,7 +4983,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-23"><a class="anchor" href="#configurable-attributes-23"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-24"><a class="anchor" href="#configurable-attributes-24"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4889,7 +5059,7 @@ if the first argument is a string literal and if the second
 argument is an array literal.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-50"><a class="anchor" href="#examples-50"></a>Examples</h3>
+<h3 id="examples-52"><a class="anchor" href="#examples-52"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-format-default"><a class="anchor" href="#enforcedstyle-format-default"></a>EnforcedStyle: format (default)</h4>
 <div class="listingblock">
@@ -4931,7 +5101,7 @@ puts '%10s' % 'hoge'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-24"><a class="anchor" href="#configurable-attributes-24"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-25"><a class="anchor" href="#configurable-attributes-25"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5016,7 +5186,7 @@ to encoded URLs or Date/Time formatting strings.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-51"><a class="anchor" href="#examples-51"></a>Examples</h3>
+<h3 id="examples-53"><a class="anchor" href="#examples-53"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-annotated-default"><a class="anchor" href="#enforcedstyle-annotated-default"></a>EnforcedStyle: annotated (default)</h4>
 <div class="listingblock">
@@ -5058,7 +5228,7 @@ format('%s', 'Hello')</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-25"><a class="anchor" href="#configurable-attributes-25"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-26"><a class="anchor" href="#configurable-attributes-26"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5126,7 +5296,7 @@ encoding comment.</p>
 to <code>false</code> instead of <code>true</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-52"><a class="anchor" href="#examples-52"></a>Examples</h3>
+<h3 id="examples-54"><a class="anchor" href="#examples-54"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-always-default"><a class="anchor" href="#enforcedstyle-always-default"></a>EnforcedStyle: always (default)</h4>
 <div class="listingblock">
@@ -5205,7 +5375,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-26"><a class="anchor" href="#configurable-attributes-26"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-27"><a class="anchor" href="#configurable-attributes-27"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5270,7 +5440,7 @@ users can allow additional variables via the AllowedVariables option.</p>
 <p>Note that backreferences like $1, $2, etc are not global variables.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-53"><a class="anchor" href="#examples-53"></a>Examples</h3>
+<h3 id="examples-55"><a class="anchor" href="#examples-55"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5285,7 +5455,7 @@ $stdin.read</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-27"><a class="anchor" href="#configurable-attributes-27"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-28"><a class="anchor" href="#configurable-attributes-28"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5358,7 +5528,7 @@ $stdin.read</code></pre>
 expression</p>
 </div>
 <div class="sect2">
-<h3 id="examples-54"><a class="anchor" href="#examples-54"></a>Examples</h3>
+<h3 id="examples-56"><a class="anchor" href="#examples-56"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5404,7 +5574,7 @@ ok</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-28"><a class="anchor" href="#configurable-attributes-28"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-29"><a class="anchor" href="#configurable-attributes-29"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5487,7 +5657,7 @@ If you have an array of two-element arrays, you can put
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-55"><a class="anchor" href="#examples-55"></a>Examples</h3>
+<h3 id="examples-57"><a class="anchor" href="#examples-57"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5574,7 +5744,7 @@ syntax hashes</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="examples-56"><a class="anchor" href="#examples-56"></a>Examples</h3>
+<h3 id="examples-58"><a class="anchor" href="#examples-58"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-ruby19-default"><a class="anchor" href="#enforcedstyle-ruby19-default"></a>EnforcedStyle: ruby19 (default)</h4>
 <div class="listingblock">
@@ -5633,7 +5803,7 @@ syntax hashes</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-29"><a class="anchor" href="#configurable-attributes-29"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-30"><a class="anchor" href="#configurable-attributes-30"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5736,7 +5906,7 @@ of key-value-like pairs that isn&#8217;t actually a hash, e.g.:
 (<code>transform_keys</code> was added in Ruby 2.5.)</p>
 </div>
 <div class="sect2">
-<h3 id="examples-57"><a class="anchor" href="#examples-57"></a>Examples</h3>
+<h3 id="examples-59"><a class="anchor" href="#examples-59"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5797,7 +5967,7 @@ of key-value-like pairs that isn&#8217;t actually a hash, e.g.:
 (<code>transform_values</code> was added in Ruby 2.4.)</p>
 </div>
 <div class="sect2">
-<h3 id="examples-58"><a class="anchor" href="#examples-58"></a>Examples</h3>
+<h3 id="examples-60"><a class="anchor" href="#examples-60"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5847,7 +6017,7 @@ of key-value-like pairs that isn&#8217;t actually a hash, e.g.:
 each branch of a conditional statement.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-59"><a class="anchor" href="#examples-59"></a>Examples</h3>
+<h3 id="examples-61"><a class="anchor" href="#examples-61"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5946,7 +6116,7 @@ it can be combined with the <code>else</code> to become an <code>elsif</code>.
 This helps to keep the nesting level from getting too deep.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-60"><a class="anchor" href="#examples-60"></a>Examples</h3>
+<h3 id="examples-62"><a class="anchor" href="#examples-62"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6012,7 +6182,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-30"><a class="anchor" href="#configurable-attributes-30"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-31"><a class="anchor" href="#configurable-attributes-31"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6078,7 +6248,7 @@ cop. The tab size is configured in the <code>IndentationWidth</code> of the
 <code>Layout/IndentationStyle</code> cop.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-61"><a class="anchor" href="#examples-61"></a>Examples</h3>
+<h3 id="examples-63"><a class="anchor" href="#examples-63"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6149,7 +6319,7 @@ end</code></pre>
 unless statements.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-62"><a class="anchor" href="#examples-62"></a>Examples</h3>
+<h3 id="examples-64"><a class="anchor" href="#examples-64"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6205,7 +6375,7 @@ end</code></pre>
 <p>Checks for uses of semicolon in if statements.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-63"><a class="anchor" href="#examples-63"></a>Examples</h3>
+<h3 id="examples-65"><a class="anchor" href="#examples-65"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6265,7 +6435,7 @@ might prefer to use exception classes which more precisely identify the
 nature of the error.)</p>
 </div>
 <div class="sect2">
-<h3 id="examples-64"><a class="anchor" href="#examples-64"></a>Examples</h3>
+<h3 id="examples-66"><a class="anchor" href="#examples-66"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6312,7 +6482,7 @@ raise ArgumentError, 'Error message here'</code></pre>
 <p>Use <code>Kernel#loop</code> for infinite loops.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-65"><a class="anchor" href="#examples-65"></a>Examples</h3>
+<h3 id="examples-67"><a class="anchor" href="#examples-67"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6373,7 +6543,7 @@ end</code></pre>
 <p>This cop checks for trailing inline comments.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-66"><a class="anchor" href="#examples-66"></a>Examples</h3>
+<h3 id="examples-68"><a class="anchor" href="#examples-68"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -6431,7 +6601,7 @@ of the block that is passed to the method should be defined in
 <code>InverseBlocks</code></p>
 </div>
 <div class="sect2">
-<h3 id="examples-67"><a class="anchor" href="#examples-67"></a>Examples</h3>
+<h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6459,7 +6629,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-31"><a class="anchor" href="#configurable-attributes-31"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-32"><a class="anchor" href="#configurable-attributes-32"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6527,7 +6697,7 @@ a deployment if forgotten. Prefer setting IP addresses in ENV or
 other configuration.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-68"><a class="anchor" href="#examples-68"></a>Examples</h3>
+<h3 id="examples-70"><a class="anchor" href="#examples-70"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6539,7 +6709,7 @@ ip_address = ENV['DEPLOYMENT_IP_ADDRESS']</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-32"><a class="anchor" href="#configurable-attributes-32"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-33"><a class="anchor" href="#configurable-attributes-33"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6601,7 +6771,7 @@ It is configurable to enforce one of the styles for both single line
 and multiline lambdas as well.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
+<h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-line_count_dependent-default"><a class="anchor" href="#enforcedstyle-line_count_dependent-default"></a>EnforcedStyle: line_count_dependent (default)</h4>
 <div class="listingblock">
@@ -6658,7 +6828,7 @@ f = -&gt;(x) do
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-33"><a class="anchor" href="#configurable-attributes-33"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-34"><a class="anchor" href="#configurable-attributes-34"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6727,7 +6897,7 @@ f = -&gt;(x) do
 <p>This cop checks for use of the lambda.(args) syntax.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-70"><a class="anchor" href="#examples-70"></a>Examples</h3>
+<h3 id="examples-72"><a class="anchor" href="#examples-72"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-call-default"><a class="anchor" href="#enforcedstyle-call-default"></a>EnforcedStyle: call (default)</h4>
 <div class="listingblock">
@@ -6754,7 +6924,7 @@ lambda.(x, y)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-34"><a class="anchor" href="#configurable-attributes-34"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-35"><a class="anchor" href="#configurable-attributes-35"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6824,7 +6994,7 @@ lambda.(x, y)</code></pre>
 the end of a line.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
+<h3 id="examples-73"><a class="anchor" href="#examples-73"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6931,7 +7101,7 @@ even with arguments.</p>
 </ol>
 </div>
 <div class="sect2">
-<h3 id="examples-72"><a class="anchor" href="#examples-72"></a>Examples</h3>
+<h3 id="examples-74"><a class="anchor" href="#examples-74"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-require_parentheses-default"><a class="anchor" href="#enforcedstyle-require_parentheses-default"></a>EnforcedStyle: require_parentheses (default)</h4>
 <div class="listingblock">
@@ -7078,7 +7248,7 @@ Array 1</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-35"><a class="anchor" href="#configurable-attributes-35"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-36"><a class="anchor" href="#configurable-attributes-36"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7182,7 +7352,7 @@ Array 1</code></pre>
 <p>This cop checks for unwanted parentheses in parameterless method calls.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-73"><a class="anchor" href="#examples-73"></a>Examples</h3>
+<h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7194,7 +7364,7 @@ object.some_method</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-36"><a class="anchor" href="#configurable-attributes-36"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-37"><a class="anchor" href="#configurable-attributes-37"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7265,7 +7435,7 @@ this check is that it&#8217;s easy to miss the call tacked on to the block
 when reading code.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-74"><a class="anchor" href="#examples-74"></a>Examples</h3>
+<h3 id="examples-76"><a class="anchor" href="#examples-76"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">a do
@@ -7321,7 +7491,7 @@ end.c</code></pre>
 definitions. Both instance and class/singleton methods are checked.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
+<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-require_parentheses-default-2"><a class="anchor" href="#enforcedstyle-require_parentheses-default-2"></a>EnforcedStyle: require_parentheses (default)</h4>
 <div class="listingblock">
@@ -7418,7 +7588,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-37"><a class="anchor" href="#configurable-attributes-37"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-38"><a class="anchor" href="#configurable-attributes-38"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7488,7 +7658,7 @@ end</code></pre>
 falling back on <code>super</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-76"><a class="anchor" href="#examples-76"></a>Examples</h3>
+<h3 id="examples-78"><a class="anchor" href="#examples-78"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">#bad
@@ -7551,7 +7721,7 @@ end</code></pre>
 <p>This cop checks for potential uses of <code>Enumerable#minmax</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
+<h3 id="examples-79"><a class="anchor" href="#examples-79"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7603,7 +7773,7 @@ return foo.minmax</code></pre>
 <p>Supported styles are: if, case, both.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-78"><a class="anchor" href="#examples-78"></a>Examples</h3>
+<h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-if"><a class="anchor" href="#enforcedstyle-if"></a>EnforcedStyle: if</h4>
 <div class="listingblock">
@@ -7708,7 +7878,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-38"><a class="anchor" href="#configurable-attributes-38"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-39"><a class="anchor" href="#configurable-attributes-39"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7768,7 +7938,7 @@ end</code></pre>
 defining <code>respond_to_missing?</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-79"><a class="anchor" href="#examples-79"></a>Examples</h3>
+<h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">#bad
@@ -7835,7 +8005,7 @@ By default it enforces mixins to be placed in separate declarations,
 but it can be configured to enforce grouping them in one declaration.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
+<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-separated-default"><a class="anchor" href="#enforcedstyle-separated-default"></a>EnforcedStyle: separated (default)</h4>
 <div class="listingblock">
@@ -7872,7 +8042,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-39"><a class="anchor" href="#configurable-attributes-39"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-40"><a class="anchor" href="#configurable-attributes-40"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7943,7 +8113,7 @@ inside classes and modules, not at the top level, so as to not affect
 the behavior of <code>Object</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
+<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8032,7 +8202,7 @@ Otherwise, it forces to change the flow of the default code.</p>
 implications to each approach.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
+<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-module_function-default"><a class="anchor" href="#enforcedstyle-module_function-default"></a>EnforcedStyle: module_function (default)</h4>
 <div class="listingblock">
@@ -8111,7 +8281,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-40"><a class="anchor" href="#configurable-attributes-40"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-41"><a class="anchor" href="#configurable-attributes-41"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8186,7 +8356,7 @@ end</code></pre>
 multiple lines.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
+<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8252,7 +8422,7 @@ end</code></pre>
 <p>Checks for uses of if/unless modifiers with multiple-lines bodies.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
+<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8311,7 +8481,7 @@ end</code></pre>
 <p>Checks for uses of the <code>then</code> keyword in multi-line if statements.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
+<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8373,7 +8543,7 @@ end</code></pre>
 <p>This cop checks expressions wrapping styles for multiline memoization.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
+<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-keyword-default"><a class="anchor" href="#enforcedstyle-keyword-default"></a>EnforcedStyle: keyword (default)</h4>
 <div class="listingblock">
@@ -8412,7 +8582,7 @@ foo ||= (
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-41"><a class="anchor" href="#configurable-attributes-41"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-42"><a class="anchor" href="#configurable-attributes-42"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8471,7 +8641,7 @@ foo ||= (
 <p>This cop checks for method signatures that span multiple lines.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
+<h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -8523,7 +8693,7 @@ end</code></pre>
 <p>This cop checks for multi-line ternary op expressions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
+<h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8592,7 +8762,7 @@ end</code></pre>
 in multi-line when statements.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
+<h3 id="examples-91"><a class="anchor" href="#examples-91"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8665,7 +8835,7 @@ end</code></pre>
 <code>Array#include?</code> could be used instead to avoid code repetition.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
+<h3 id="examples-92"><a class="anchor" href="#examples-92"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8724,7 +8894,7 @@ positives. Luckily, there is no harm in freezing an already
 frozen object.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-91"><a class="anchor" href="#examples-91"></a>Examples</h3>
+<h3 id="examples-93"><a class="anchor" href="#examples-93"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-literals-default"><a class="anchor" href="#enforcedstyle-literals-default"></a>EnforcedStyle: literals (default)</h4>
 <div class="listingblock">
@@ -8773,7 +8943,7 @@ end.freeze</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-42"><a class="anchor" href="#configurable-attributes-42"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-43"><a class="anchor" href="#configurable-attributes-43"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8846,7 +9016,7 @@ without else are considered. There are three different styles:</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="examples-92"><a class="anchor" href="#examples-92"></a>Examples</h3>
+<h3 id="examples-94"><a class="anchor" href="#examples-94"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-both-default-3"><a class="anchor" href="#enforcedstyle-both-default-3"></a>EnforcedStyle: both (default)</h4>
 <div class="listingblock">
@@ -8923,7 +9093,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-43"><a class="anchor" href="#configurable-attributes-43"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-44"><a class="anchor" href="#configurable-attributes-44"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9006,7 +9176,7 @@ without else are considered. There are three different styles:</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="examples-93"><a class="anchor" href="#examples-93"></a>Examples</h3>
+<h3 id="examples-95"><a class="anchor" href="#examples-95"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-both-default-4"><a class="anchor" href="#enforcedstyle-both-default-4"></a>EnforcedStyle: both (default)</h4>
 <div class="listingblock">
@@ -9073,7 +9243,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-44"><a class="anchor" href="#configurable-attributes-44"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-45"><a class="anchor" href="#configurable-attributes-45"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9142,7 +9312,7 @@ end</code></pre>
 <p>Checks for uses of while with a negated condition.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-94"><a class="anchor" href="#examples-94"></a>Examples</h3>
+<h3 id="examples-96"><a class="anchor" href="#examples-96"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9211,7 +9381,7 @@ bar while !foo &amp;&amp; baz</code></pre>
 modifier form.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-95"><a class="anchor" href="#examples-95"></a>Examples</h3>
+<h3 id="examples-97"><a class="anchor" href="#examples-97"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9269,7 +9439,7 @@ something if b &amp;&amp; a</code></pre>
 of a parenthesized method call.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-96"><a class="anchor" href="#examples-96"></a>Examples</h3>
+<h3 id="examples-98"><a class="anchor" href="#examples-98"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -9281,7 +9451,7 @@ method1(method2 arg)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-45"><a class="anchor" href="#configurable-attributes-45"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-46"><a class="anchor" href="#configurable-attributes-46"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9340,7 +9510,7 @@ method1(method2 arg)</code></pre>
 <p>This cop checks for nested ternary op expressions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-97"><a class="anchor" href="#examples-97"></a>Examples</h3>
+<h3 id="examples-99"><a class="anchor" href="#examples-99"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9401,7 +9571,7 @@ end</code></pre>
 <p>Use <code>next</code> to skip iteration instead of a condition at the end.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-98"><a class="anchor" href="#examples-98"></a>Examples</h3>
+<h3 id="examples-100"><a class="anchor" href="#examples-100"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-skip_modifier_ifs-default"><a class="anchor" href="#enforcedstyle-skip_modifier_ifs-default"></a>EnforcedStyle: skip_modifier_ifs (default)</h4>
 <div class="listingblock">
@@ -9456,7 +9626,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-46"><a class="anchor" href="#configurable-attributes-46"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-47"><a class="anchor" href="#configurable-attributes-47"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9534,7 +9704,7 @@ end</code></pre>
 <p>Supported styles are: predicate, comparison.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-99"><a class="anchor" href="#examples-99"></a>Examples</h3>
+<h3 id="examples-101"><a class="anchor" href="#examples-101"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-predicate-default"><a class="anchor" href="#enforcedstyle-predicate-default"></a>EnforcedStyle: predicate (default)</h4>
 <div class="listingblock">
@@ -9565,7 +9735,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-47"><a class="anchor" href="#configurable-attributes-47"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-48"><a class="anchor" href="#configurable-attributes-48"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9644,7 +9814,7 @@ for <code>!x.nil?</code> and autocorrects that and <code>x != nil</code> to sole
 is <strong>usually</strong> OK, but might change behavior.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-100"><a class="anchor" href="#examples-100"></a>Examples</h3>
+<h3 id="examples-102"><a class="anchor" href="#examples-102"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9684,7 +9854,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-48"><a class="anchor" href="#configurable-attributes-48"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-49"><a class="anchor" href="#configurable-attributes-49"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9753,7 +9923,7 @@ end</code></pre>
 <p>This cop checks for uses of the keyword <code>not</code> instead of <code>!</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-101"><a class="anchor" href="#examples-101"></a>Examples</h3>
+<h3 id="examples-103"><a class="anchor" href="#examples-103"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - parentheses are required because of op precedence
@@ -9812,7 +9982,7 @@ uppercase prefixes and corrects them to lowercase prefix
 or no prefix (in case of decimals).</p>
 </div>
 <div class="sect2">
-<h3 id="examples-102"><a class="anchor" href="#examples-102"></a>Examples</h3>
+<h3 id="examples-104"><a class="anchor" href="#examples-104"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedoctalstyle-zero_with_o-default"><a class="anchor" href="#enforcedoctalstyle-zero_with_o-default"></a>EnforcedOctalStyle: zero_with_o (default)</h4>
 <div class="listingblock">
@@ -9852,7 +10022,7 @@ num = 01234</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-49"><a class="anchor" href="#configurable-attributes-49"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-50"><a class="anchor" href="#configurable-attributes-50"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9922,7 +10092,7 @@ num = 01234</code></pre>
 of digits in them.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-103"><a class="anchor" href="#examples-103"></a>Examples</h3>
+<h3 id="examples-105"><a class="anchor" href="#examples-105"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9955,7 +10125,7 @@ of digits in them.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-50"><a class="anchor" href="#configurable-attributes-50"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-51"><a class="anchor" href="#configurable-attributes-51"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10042,7 +10212,7 @@ populated with objects which can be compared with integers, but are
 not themselves <code>Integer</code> polymorphic.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-104"><a class="anchor" href="#examples-104"></a>Examples</h3>
+<h3 id="examples-106"><a class="anchor" href="#examples-106"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-predicate-default-2"><a class="anchor" href="#enforcedstyle-predicate-default-2"></a>EnforcedStyle: predicate (default)</h4>
 <div class="listingblock">
@@ -10081,7 +10251,7 @@ bar.baz &gt; 0</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-51"><a class="anchor" href="#configurable-attributes-51"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-52"><a class="anchor" href="#configurable-attributes-52"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10166,7 +10336,7 @@ bar.baz &gt; 0</code></pre>
 Checks for uses of if/then/else/end on a single line.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-105"><a class="anchor" href="#examples-105"></a>Examples</h3>
+<h3 id="examples-107"><a class="anchor" href="#examples-107"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10234,7 +10404,7 @@ end</code></pre>
 current Ruby version supports keyword arguments.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-106"><a class="anchor" href="#examples-106"></a>Examples</h3>
+<h3 id="examples-108"><a class="anchor" href="#examples-108"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10251,7 +10421,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-52"><a class="anchor" href="#configurable-attributes-52"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-53"><a class="anchor" href="#configurable-attributes-53"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10311,7 +10481,7 @@ end</code></pre>
 that do not come at the end of the argument list.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-107"><a class="anchor" href="#examples-107"></a>Examples</h3>
+<h3 id="examples-109"><a class="anchor" href="#examples-109"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10373,7 +10543,7 @@ end</code></pre>
 <p>This cop checks for potential usage of the <code>||=</code> operator.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-108"><a class="anchor" href="#examples-108"></a>Examples</h3>
+<h3 id="examples-110"><a class="anchor" href="#examples-110"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10447,7 +10617,7 @@ This will only complain when the number of variables
 being assigned matched the number of assigning variables.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-109"><a class="anchor" href="#examples-109"></a>Examples</h3>
+<h3 id="examples-111"><a class="anchor" href="#examples-111"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10518,7 +10688,7 @@ an assignment to indicate "I know I&#8217;m using an assignment
 as a condition. It&#8217;s not a mistake."</p>
 </div>
 <div class="sect2">
-<h3 id="examples-110"><a class="anchor" href="#examples-110"></a>Examples</h3>
+<h3 id="examples-112"><a class="anchor" href="#examples-112"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10585,7 +10755,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-53"><a class="anchor" href="#configurable-attributes-53"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-54"><a class="anchor" href="#configurable-attributes-54"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10664,7 +10834,7 @@ can continue to specify individual preferred delimiters to override the
 default.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-111"><a class="anchor" href="#examples-111"></a>Examples</h3>
+<h3 id="examples-113"><a class="anchor" href="#examples-113"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Style/PercentLiteralDelimiters:
@@ -10684,7 +10854,7 @@ default.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-54"><a class="anchor" href="#configurable-attributes-54"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-55"><a class="anchor" href="#configurable-attributes-55"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10753,7 +10923,7 @@ default.</p>
 <p>This cop checks for usage of the %Q() syntax when %q() would do.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-112"><a class="anchor" href="#examples-112"></a>Examples</h3>
+<h3 id="examples-114"><a class="anchor" href="#examples-114"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-lower_case_q-default"><a class="anchor" href="#enforcedstyle-lower_case_q-default"></a>EnforcedStyle: lower_case_q (default)</h4>
 <div class="listingblock">
@@ -10787,7 +10957,7 @@ default.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-55"><a class="anchor" href="#configurable-attributes-55"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-56"><a class="anchor" href="#configurable-attributes-56"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10847,7 +11017,7 @@ default.</p>
 backreferences like $1, $2, etc.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-113"><a class="anchor" href="#examples-113"></a>Examples</h3>
+<h3 id="examples-115"><a class="anchor" href="#examples-115"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10907,7 +11077,7 @@ It is configurable to enforce the inverse, using <code>verbose</code> method
 names also.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-114"><a class="anchor" href="#examples-114"></a>Examples</h3>
+<h3 id="examples-116"><a class="anchor" href="#examples-116"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-short-default"><a class="anchor" href="#enforcedstyle-short-default"></a>EnforcedStyle: short (default)</h4>
 <div class="listingblock">
@@ -10938,7 +11108,7 @@ Hash#has_value?</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-56"><a class="anchor" href="#configurable-attributes-56"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-57"><a class="anchor" href="#configurable-attributes-57"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11008,7 +11178,7 @@ Hash#has_value?</code></pre>
 would be more appropriate.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-115"><a class="anchor" href="#examples-115"></a>Examples</h3>
+<h3 id="examples-117"><a class="anchor" href="#examples-117"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11074,7 +11244,7 @@ will also suggest constructing error objects when the exception is
 passed multiple arguments.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-116"><a class="anchor" href="#examples-116"></a>Examples</h3>
+<h3 id="examples-118"><a class="anchor" href="#examples-118"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-exploded-default"><a class="anchor" href="#enforcedstyle-exploded-default"></a>EnforcedStyle: exploded (default)</h4>
 <div class="listingblock">
@@ -11107,7 +11277,7 @@ fail "message"</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-57"><a class="anchor" href="#configurable-attributes-57"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-58"><a class="anchor" href="#configurable-attributes-58"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11179,7 +11349,7 @@ Integer#succ and Integer#pred methods. Prefer using ranges instead,
 as it clearly states the intentions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-117"><a class="anchor" href="#examples-117"></a>Examples</h3>
+<h3 id="examples-119"><a class="anchor" href="#examples-119"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11207,6 +11377,78 @@ rand(1...7)</code></pre>
 <p><a href="https://rubystyle.guide#random-numbers" class="bare">https://rubystyle.guide#random-numbers</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="styleredundantassignment"><a class="anchor" href="#styleredundantassignment"></a>Style/RedundantAssignment</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.87</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop checks for redundant assignment before returning.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-120"><a class="anchor" href="#examples-120"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+def test
+  x = foo
+  x
+end
+
+# bad
+def test
+  if x
+    z = foo
+    z
+  elsif y
+    z = bar
+    z
+  end
+end
+
+# good
+def test
+  foo
+end
+
+# good
+def test
+  if x
+    foo
+  elsif y
+    bar
+  end
+end</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -11248,7 +11490,7 @@ rand(1...7)</code></pre>
 <p>Currently it checks for code like this:</p>
 </div>
 <div class="sect2">
-<h3 id="examples-118"><a class="anchor" href="#examples-118"></a>Examples</h3>
+<h3 id="examples-121"><a class="anchor" href="#examples-121"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11345,7 +11587,7 @@ end</code></pre>
 <p>This cop checks for usage of the %W() syntax when %w() would do.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-119"><a class="anchor" href="#examples-119"></a>Examples</h3>
+<h3 id="examples-122"><a class="anchor" href="#examples-122"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11395,7 +11637,7 @@ end</code></pre>
 <p>This cop checks for unnecessary conditional expressions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-120"><a class="anchor" href="#examples-120"></a>Examples</h3>
+<h3 id="examples-123"><a class="anchor" href="#examples-123"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11462,7 +11704,7 @@ end</code></pre>
 <p>This cop checks for redundant returning of true/false in conditionals.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-121"><a class="anchor" href="#examples-121"></a>Examples</h3>
+<h3 id="examples-124"><a class="anchor" href="#examples-124"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11525,7 +11767,7 @@ x != y</code></pre>
 <p>It checks for code like this:</p>
 </div>
 <div class="sect2">
-<h3 id="examples-122"><a class="anchor" href="#examples-122"></a>Examples</h3>
+<h3 id="examples-125"><a class="anchor" href="#examples-125"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Bad
@@ -11590,7 +11832,7 @@ can be replaced by <code>fetch(key, value)</code>.</p>
 than <code>fetch(key) { value }</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-123"><a class="anchor" href="#examples-123"></a>Examples</h3>
+<h3 id="examples-126"><a class="anchor" href="#examples-126"></a>Examples</h3>
 <div class="sect3">
 <h4 id="safeforconstants-false-default"><a class="anchor" href="#safeforconstants-false-default"></a>SafeForConstants: false (default)</h4>
 <div class="listingblock">
@@ -11625,7 +11867,7 @@ ENV.fetch(:key, VALUE)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-58"><a class="anchor" href="#configurable-attributes-58"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-59"><a class="anchor" href="#configurable-attributes-59"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11694,7 +11936,7 @@ ENV.fetch(:key, VALUE)</code></pre>
 <p>This cop check for uses of Object#freeze on immutable objects.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-124"><a class="anchor" href="#examples-124"></a>Examples</h3>
+<h3 id="examples-127"><a class="anchor" href="#examples-127"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11741,7 +11983,7 @@ CONST = 1</code></pre>
 <p>This cop checks for strings that are just an interpolated expression.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-125"><a class="anchor" href="#examples-125"></a>Examples</h3>
+<h3 id="examples-128"><a class="anchor" href="#examples-128"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11791,7 +12033,7 @@ CONST = 1</code></pre>
 <p>This cop checks for redundant parentheses.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-126"><a class="anchor" href="#examples-126"></a>Examples</h3>
+<h3 id="examples-129"><a class="anchor" href="#examples-129"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11838,7 +12080,7 @@ x if y.z.nil?</code></pre>
 <p>This cop checks for usage of the %q/%Q syntax when '' or "" would do.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-127"><a class="anchor" href="#examples-127"></a>Examples</h3>
+<h3 id="examples-130"><a class="anchor" href="#examples-130"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11899,7 +12141,7 @@ question = '"What did you say?"'</code></pre>
 <p>This cop checks for unnecessary single-element Regexp character classes.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-128"><a class="anchor" href="#examples-128"></a>Examples</h3>
+<h3 id="examples-131"><a class="anchor" href="#examples-131"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11955,7 +12197,7 @@ r = /[ab]/</code></pre>
 <p>This cop checks for redundant escapes inside Regexp literals.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-129"><a class="anchor" href="#examples-129"></a>Examples</h3>
+<h3 id="examples-132"><a class="anchor" href="#examples-132"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12023,7 +12265,7 @@ r = /[ab]/</code></pre>
 <p>This cop checks for redundant <code>return</code> expressions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-130"><a class="anchor" href="#examples-130"></a>Examples</h3>
+<h3 id="examples-133"><a class="anchor" href="#examples-133"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># These bad cases should be extended to handle methods whose body is
@@ -12080,7 +12322,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-59"><a class="anchor" href="#configurable-attributes-59"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-60"><a class="anchor" href="#configurable-attributes-60"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -12172,7 +12414,7 @@ protected scope, you cannot send private messages this way.</p>
 otherwise.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-131"><a class="anchor" href="#examples-131"></a>Examples</h3>
+<h3 id="examples-134"><a class="anchor" href="#examples-134"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12251,7 +12493,7 @@ last element. Similarly, <code>Enumerable#min_by</code> and
 after which only the first or last element is used.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-132"><a class="anchor" href="#examples-132"></a>Examples</h3>
+<h3 id="examples-135"><a class="anchor" href="#examples-135"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12329,7 +12571,7 @@ arr.max_by(&amp;:foo)</code></pre>
 <code>sort</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-133"><a class="anchor" href="#examples-133"></a>Examples</h3>
+<h3 id="examples-136"><a class="anchor" href="#examples-136"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12379,7 +12621,7 @@ array.sort</code></pre>
 <p>This cop enforces using // or %r around regular expressions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-134"><a class="anchor" href="#examples-134"></a>Examples</h3>
+<h3 id="examples-137"><a class="anchor" href="#examples-137"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-slashes-default"><a class="anchor" href="#enforcedstyle-slashes-default"></a>EnforcedStyle: slashes (default)</h4>
 <div class="listingblock">
@@ -12484,7 +12726,7 @@ x =~ /home\//</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-60"><a class="anchor" href="#configurable-attributes-60"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-61"><a class="anchor" href="#configurable-attributes-61"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -12579,7 +12821,7 @@ handle the exception.</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="examples-135"><a class="anchor" href="#examples-135"></a>Examples</h3>
+<h3 id="examples-138"><a class="anchor" href="#examples-138"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12652,7 +12894,7 @@ styles <code>implicit</code> and <code>explicit</code>. This cop will not regist
 if any error other than <code>StandardError</code> is specified.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-136"><a class="anchor" href="#examples-136"></a>Examples</h3>
+<h3 id="examples-139"><a class="anchor" href="#examples-139"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-implicit"><a class="anchor" href="#enforcedstyle-implicit"></a>EnforcedStyle: implicit</h4>
 <div class="listingblock">
@@ -12729,7 +12971,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-61"><a class="anchor" href="#configurable-attributes-61"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-62"><a class="anchor" href="#configurable-attributes-62"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -12791,7 +13033,7 @@ end</code></pre>
 <p>Supported styles are: return, return_nil.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-137"><a class="anchor" href="#examples-137"></a>Examples</h3>
+<h3 id="examples-140"><a class="anchor" href="#examples-140"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-return-default"><a class="anchor" href="#enforcedstyle-return-default"></a>EnforcedStyle: return (default)</h4>
 <div class="listingblock">
@@ -12826,7 +13068,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-62"><a class="anchor" href="#configurable-attributes-62"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-63"><a class="anchor" href="#configurable-attributes-63"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -12899,7 +13141,7 @@ of the method is. If this is converted to safe navigation,
 returns.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-138"><a class="anchor" href="#examples-138"></a>Examples</h3>
+<h3 id="examples-141"><a class="anchor" href="#examples-141"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12945,7 +13187,7 @@ foo.bar &gt; 2 if foo</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-63"><a class="anchor" href="#configurable-attributes-63"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-64"><a class="anchor" href="#configurable-attributes-64"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -13011,7 +13253,7 @@ foo.bar &gt; 2 if foo</code></pre>
 <code>sample</code> instead.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-139"><a class="anchor" href="#examples-139"></a>Examples</h3>
+<h3 id="examples-142"><a class="anchor" href="#examples-142"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -13082,7 +13324,7 @@ foo.bar &gt; 2 if foo</code></pre>
 <p>This cop enforces the use the shorthand for self-assignment.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-140"><a class="anchor" href="#examples-140"></a>Examples</h3>
+<h3 id="examples-143"><a class="anchor" href="#examples-143"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -13144,7 +13386,7 @@ It also checks for lines terminated with a semicolon.</p>
 It allows <code>;</code> to separate several expressions on the same line.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-141"><a class="anchor" href="#examples-141"></a>Examples</h3>
+<h3 id="examples-144"><a class="anchor" href="#examples-144"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -13177,7 +13419,7 @@ foo = 1; bar = 2</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-64"><a class="anchor" href="#configurable-attributes-64"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-65"><a class="anchor" href="#configurable-attributes-65"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -13246,7 +13488,7 @@ foo = 1; bar = 2</code></pre>
 <p>This cop checks for the use of the send method.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-142"><a class="anchor" href="#examples-142"></a>Examples</h3>
+<h3 id="examples-145"><a class="anchor" href="#examples-145"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -13305,7 +13547,7 @@ quuz.public_send(:fred)</code></pre>
 <p>This cop checks for uses of <code>fail</code> and <code>raise</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-143"><a class="anchor" href="#examples-143"></a>Examples</h3>
+<h3 id="examples-146"><a class="anchor" href="#examples-146"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-only_raise-default"><a class="anchor" href="#enforcedstyle-only_raise-default"></a>EnforcedStyle: only_raise (default)</h4>
 <div class="listingblock">
@@ -13423,7 +13665,7 @@ explicit_receiver.raise</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-65"><a class="anchor" href="#configurable-attributes-65"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-66"><a class="anchor" href="#configurable-attributes-66"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -13502,7 +13744,7 @@ Should be set to use this cop. Array of hashes, where each key is the
 method name and value - array of argument names.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-144"><a class="anchor" href="#examples-144"></a>Examples</h3>
+<h3 id="examples-147"><a class="anchor" href="#examples-147"></a>Examples</h3>
 <div class="sect3">
 <h4 id="methods-reduce-wa-b"><a class="anchor" href="#methods-reduce-wa-b"></a>Methods: [{reduce: %w[a b]}]</h4>
 <div class="listingblock">
@@ -13526,7 +13768,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-66"><a class="anchor" href="#configurable-attributes-66"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-67"><a class="anchor" href="#configurable-attributes-67"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -13586,7 +13828,7 @@ end</code></pre>
 It will accept single-line methods with no body.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-145"><a class="anchor" href="#examples-145"></a>Examples</h3>
+<h3 id="examples-148"><a class="anchor" href="#examples-148"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -13619,7 +13861,7 @@ def no_op; end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-67"><a class="anchor" href="#configurable-attributes-67"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-68"><a class="anchor" href="#configurable-attributes-68"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -13701,7 +13943,7 @@ Required Ruby version: 2.6
 <code>ary[start..-1]</code> on Ruby 2.6+.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-146"><a class="anchor" href="#examples-146"></a>Examples</h3>
+<h3 id="examples-149"><a class="anchor" href="#examples-149"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -13748,7 +13990,7 @@ items[1..]</code></pre>
 <p>This cop looks for uses of Perl-style global variables.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-147"><a class="anchor" href="#examples-147"></a>Examples</h3>
+<h3 id="examples-150"><a class="anchor" href="#examples-150"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-use_english_names-default"><a class="anchor" href="#enforcedstyle-use_english_names-default"></a>EnforcedStyle: use_english_names (default)</h4>
 <div class="listingblock">
@@ -13811,7 +14053,7 @@ puts $+</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-68"><a class="anchor" href="#configurable-attributes-68"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-69"><a class="anchor" href="#configurable-attributes-69"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -13881,7 +14123,7 @@ puts $+</code></pre>
 There are two different styles. Defaults to <code>require_parentheses</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-148"><a class="anchor" href="#examples-148"></a>Examples</h3>
+<h3 id="examples-151"><a class="anchor" href="#examples-151"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-require_parentheses-default-3"><a class="anchor" href="#enforcedstyle-require_parentheses-default-3"></a>EnforcedStyle: require_parentheses (default)</h4>
 <div class="listingblock">
@@ -13908,7 +14150,7 @@ There are two different styles. Defaults to <code>require_parentheses</code>.</p
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-69"><a class="anchor" href="#configurable-attributes-69"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-70"><a class="anchor" href="#configurable-attributes-70"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -13979,7 +14221,7 @@ There are two different styles. Defaults to <code>require_parentheses</code>.</p
 the <code>-W0</code> interpreter flag or setting <code>$VERBOSE</code> to <code>nil</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-149"><a class="anchor" href="#examples-149"></a>Examples</h3>
+<h3 id="examples-152"><a class="anchor" href="#examples-152"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -14037,7 +14279,7 @@ warn('hello')</code></pre>
 symbols is preferred instead.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-150"><a class="anchor" href="#examples-150"></a>Examples</h3>
+<h3 id="examples-153"><a class="anchor" href="#examples-153"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -14094,7 +14336,7 @@ symbols is preferred instead.</p>
 <p>Checks if uses of quotes match the configured preference.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-151"><a class="anchor" href="#examples-151"></a>Examples</h3>
+<h3 id="examples-154"><a class="anchor" href="#examples-154"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-single_quotes-default"><a class="anchor" href="#enforcedstyle-single_quotes-default"></a>EnforcedStyle: single_quotes (default)</h4>
 <div class="listingblock">
@@ -14129,7 +14371,7 @@ symbols is preferred instead.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-70"><a class="anchor" href="#configurable-attributes-70"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-71"><a class="anchor" href="#configurable-attributes-71"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -14204,7 +14446,7 @@ symbols is preferred instead.</p>
 match the configured preference.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-152"><a class="anchor" href="#examples-152"></a>Examples</h3>
+<h3 id="examples-155"><a class="anchor" href="#examples-155"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-single_quotes-default-2"><a class="anchor" href="#enforcedstyle-single_quotes-default-2"></a>EnforcedStyle: single_quotes (default)</h4>
 <div class="listingblock">
@@ -14231,7 +14473,7 @@ result = "Tests #{success ? "PASS" : "FAIL"}"</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-71"><a class="anchor" href="#configurable-attributes-71"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-72"><a class="anchor" href="#configurable-attributes-72"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -14291,7 +14533,7 @@ result = "Tests #{success ? "PASS" : "FAIL"}"</code></pre>
 from the String class.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-153"><a class="anchor" href="#examples-153"></a>Examples</h3>
+<h3 id="examples-156"><a class="anchor" href="#examples-156"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -14305,7 +14547,7 @@ from the String class.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-72"><a class="anchor" href="#configurable-attributes-72"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-73"><a class="anchor" href="#configurable-attributes-73"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -14365,7 +14607,7 @@ from the String class.</p>
 <code>strip</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-154"><a class="anchor" href="#examples-154"></a>Examples</h3>
+<h3 id="examples-157"><a class="anchor" href="#examples-157"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -14413,7 +14655,7 @@ from the String class.</p>
 <p>This cop checks for inheritance from Struct.new.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-155"><a class="anchor" href="#examples-155"></a>Examples</h3>
+<h3 id="examples-158"><a class="anchor" href="#examples-158"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -14489,7 +14731,7 @@ cop. For example, a <code>MinSize</code> of <code>3</code> will not enforce a st
 array of 2 or fewer elements.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-156"><a class="anchor" href="#examples-156"></a>Examples</h3>
+<h3 id="examples-159"><a class="anchor" href="#examples-159"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-percent-default"><a class="anchor" href="#enforcedstyle-percent-default"></a>EnforcedStyle: percent (default)</h4>
 <div class="listingblock">
@@ -14516,7 +14758,7 @@ array of 2 or fewer elements.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-73"><a class="anchor" href="#configurable-attributes-73"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-74"><a class="anchor" href="#configurable-attributes-74"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -14590,7 +14832,7 @@ array of 2 or fewer elements.</p>
 <p>This cop checks symbol literal syntax.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-157"><a class="anchor" href="#examples-157"></a>Examples</h3>
+<h3 id="examples-160"><a class="anchor" href="#examples-160"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -14626,7 +14868,7 @@ array of 2 or fewer elements.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.26</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.64</p></td>
@@ -14637,7 +14879,7 @@ array of 2 or fewer elements.</p>
 <p>Use symbols as procs when possible.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-158"><a class="anchor" href="#examples-158"></a>Examples</h3>
+<h3 id="examples-161"><a class="anchor" href="#examples-161"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -14649,7 +14891,7 @@ something.map(&amp;:upcase)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-74"><a class="anchor" href="#configurable-attributes-74"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-75"><a class="anchor" href="#configurable-attributes-75"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -14717,7 +14959,7 @@ an assignment to indicate "I know I&#8217;m using an assignment
 as a condition. It&#8217;s not a mistake."</p>
 </div>
 <div class="sect2">
-<h3 id="examples-159"><a class="anchor" href="#examples-159"></a>Examples</h3>
+<h3 id="examples-162"><a class="anchor" href="#examples-162"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-require_no_parentheses-default"><a class="anchor" href="#enforcedstyle-require_no_parentheses-default"></a>EnforcedStyle: require_no_parentheses (default)</h4>
 <div class="listingblock">
@@ -14786,7 +15028,7 @@ foo = (bar = baz) ? a : b</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-75"><a class="anchor" href="#configurable-attributes-75"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-76"><a class="anchor" href="#configurable-attributes-76"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -14850,7 +15092,7 @@ foo = (bar = baz) ? a : b</code></pre>
 <p>This cop checks for trailing code after the class definition.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-160"><a class="anchor" href="#examples-160"></a>Examples</h3>
+<h3 id="examples-163"><a class="anchor" href="#examples-163"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -14900,7 +15142,7 @@ end</code></pre>
 <p>This cop checks for trailing code after the method definition.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-161"><a class="anchor" href="#examples-161"></a>Examples</h3>
+<h3 id="examples-164"><a class="anchor" href="#examples-164"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -14959,7 +15201,7 @@ end</code></pre>
 <p>This cop checks for trailing code after the module definition.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-162"><a class="anchor" href="#examples-162"></a>Examples</h3>
+<h3 id="examples-165"><a class="anchor" href="#examples-165"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -15026,7 +15268,7 @@ argument.</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="examples-163"><a class="anchor" href="#examples-163"></a>Examples</h3>
+<h3 id="examples-166"><a class="anchor" href="#examples-166"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyleformultiline-consistent_comma"><a class="anchor" href="#enforcedstyleformultiline-consistent_comma"></a>EnforcedStyleForMultiline: consistent_comma</h4>
 <div class="listingblock">
@@ -15116,7 +15358,7 @@ method(
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-76"><a class="anchor" href="#configurable-attributes-76"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-77"><a class="anchor" href="#configurable-attributes-77"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -15202,7 +15444,7 @@ last item in an array</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="examples-164"><a class="anchor" href="#examples-164"></a>Examples</h3>
+<h3 id="examples-167"><a class="anchor" href="#examples-167"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyleformultiline-consistent_comma-2"><a class="anchor" href="#enforcedstyleformultiline-consistent_comma-2"></a>EnforcedStyleForMultiline: consistent_comma</h4>
 <div class="listingblock">
@@ -15289,7 +15531,7 @@ a = [
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-77"><a class="anchor" href="#configurable-attributes-77"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-78"><a class="anchor" href="#configurable-attributes-78"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -15361,7 +15603,7 @@ that comma to be present. Blocks with more than one argument never
 require a trailing comma.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-165"><a class="anchor" href="#examples-165"></a>Examples</h3>
+<h3 id="examples-168"><a class="anchor" href="#examples-168"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -15451,7 +15693,7 @@ last item in a hash</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="examples-166"><a class="anchor" href="#examples-166"></a>Examples</h3>
+<h3 id="examples-169"><a class="anchor" href="#examples-169"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyleformultiline-consistent_comma-3"><a class="anchor" href="#enforcedstyleformultiline-consistent_comma-3"></a>EnforcedStyleForMultiline: consistent_comma</h4>
 <div class="listingblock">
@@ -15538,7 +15780,7 @@ a = {
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-78"><a class="anchor" href="#configurable-attributes-78"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-79"><a class="anchor" href="#configurable-attributes-79"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -15597,7 +15839,7 @@ a = {
 <p>This cop checks for trailing code after the method definition.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-167"><a class="anchor" href="#examples-167"></a>Examples</h3>
+<h3 id="examples-170"><a class="anchor" href="#examples-170"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -15665,7 +15907,7 @@ end</code></pre>
 <p>This cop checks for extra underscores in variable assignment.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-168"><a class="anchor" href="#examples-168"></a>Examples</h3>
+<h3 id="examples-171"><a class="anchor" href="#examples-171"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -15703,7 +15945,7 @@ a, b, _something = foo()</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-79"><a class="anchor" href="#configurable-attributes-79"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-80"><a class="anchor" href="#configurable-attributes-80"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -15763,7 +16005,7 @@ a, b, _something = foo()</code></pre>
 have been created with the attr_* family of functions automatically.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-169"><a class="anchor" href="#examples-169"></a>Examples</h3>
+<h3 id="examples-172"><a class="anchor" href="#examples-172"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -15790,7 +16032,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-80"><a class="anchor" href="#configurable-attributes-80"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-81"><a class="anchor" href="#configurable-attributes-81"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -15879,7 +16121,7 @@ end</code></pre>
 <p>This cop looks for <code>unless</code> expressions with <code>else</code> clauses.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-170"><a class="anchor" href="#examples-170"></a>Examples</h3>
+<h3 id="examples-173"><a class="anchor" href="#examples-173"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -15945,7 +16187,7 @@ end</code></pre>
 which can be replaced with the shorter method <code>unpack1</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-171"><a class="anchor" href="#examples-171"></a>Examples</h3>
+<h3 id="examples-174"><a class="anchor" href="#examples-174"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -15995,7 +16237,7 @@ which can be replaced with the shorter method <code>unpack1</code>.</p>
 <p>This cop checks for variable interpolation (like "#@ivar").</p>
 </div>
 <div class="sect2">
-<h3 id="examples-172"><a class="anchor" href="#examples-172"></a>Examples</h3>
+<h3 id="examples-175"><a class="anchor" href="#examples-175"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -16056,7 +16298,7 @@ which can be replaced with the shorter method <code>unpack1</code>.</p>
 <p>This cop checks for <code>when;</code> uses in <code>case</code> expressions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-173"><a class="anchor" href="#examples-173"></a>Examples</h3>
+<h3 id="examples-176"><a class="anchor" href="#examples-176"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -16119,7 +16361,7 @@ end</code></pre>
 <p>Checks for uses of <code>do</code> in multi-line <code>while/until</code> statements.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-174"><a class="anchor" href="#examples-174"></a>Examples</h3>
+<h3 id="examples-177"><a class="anchor" href="#examples-177"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -16195,7 +16437,7 @@ if written as a modifier while/until. The maximum line length is
 configured in the <code>Layout/LineLength</code> cop.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-175"><a class="anchor" href="#examples-175"></a>Examples</h3>
+<h3 id="examples-178"><a class="anchor" href="#examples-178"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -16276,7 +16518,7 @@ cop. For example, a <code>MinSize</code> of <code>3</code> will not enforce a st
 array of 2 or fewer elements.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-176"><a class="anchor" href="#examples-176"></a>Examples</h3>
+<h3 id="examples-179"><a class="anchor" href="#examples-179"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-percent-default-2"><a class="anchor" href="#enforcedstyle-percent-default-2"></a>EnforcedStyle: percent (default)</h4>
 <div class="listingblock">
@@ -16303,7 +16545,7 @@ array of 2 or fewer elements.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-81"><a class="anchor" href="#configurable-attributes-81"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-82"><a class="anchor" href="#configurable-attributes-82"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -16389,7 +16631,7 @@ i.e. comparison operations where the order of expression is reversed.
 eg. <code>5 == x</code></p>
 </div>
 <div class="sect2">
-<h3 id="examples-177"><a class="anchor" href="#examples-177"></a>Examples</h3>
+<h3 id="examples-180"><a class="anchor" href="#examples-180"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-forbid_for_all_comparison_operators-default"><a class="anchor" href="#enforcedstyle-forbid_for_all_comparison_operators-default"></a>EnforcedStyle: forbid_for_all_comparison_operators (default)</h4>
 <div class="listingblock">
@@ -16458,7 +16700,7 @@ bar &gt; 10
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-82"><a class="anchor" href="#configurable-attributes-82"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-83"><a class="anchor" href="#configurable-attributes-83"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -16531,7 +16773,7 @@ receiver.length &lt; 1 and receiver.size == 0 that can be
 replaced by receiver.empty? and !receiver.empty?.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-178"><a class="anchor" href="#examples-178"></a>Examples</h3>
+<h3 id="examples-181"><a class="anchor" href="#examples-181"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad

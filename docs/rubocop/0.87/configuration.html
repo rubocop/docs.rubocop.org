@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Configuration :: RuboCop Docs</title>
+    <link rel="canonical" href="https://docs.rubocop.org/rubocop/configuration.html">
+    <link rel="prev" href="usage/caching.html">
+    <link rel="next" href="cops.html">
+    <meta name="generator" content="Antora 2.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140153536-1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-140153536-1')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <a href="https://rubocop.org">RuboCop</a>
+        <span class="separator">//</span>
+        <a href="https://docs.rubocop.org">Docs</a>
+      </div>
+      <div class="navbar-item">
+        <input id="search-input" type="text" placeholder="Search docs">
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href=index.html>Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Style Guides</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://rubystyle.guide">Ruby</a>
+            <a class="navbar-item" href="https://rails.rubystyle.guide">Rails</a>
+            <a class="navbar-item" href="https://rspec.rubystyle.guide">RSpec</a>
+            <a class="navbar-item" href="https://minitest.rubystyle.guide">Minitest</a>
+          </div>
+        </div>
+        <a class="navbar-item" href="https://www.rubydoc.info/gems/rubocop">API Docs</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Projects</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop">RuboCop</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-ast">RuboCop AST</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-minitest">RuboCop Minitest</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-performance">RuboCop Performance</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-rails">RuboCop Rails</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-rake">RuboCop Rake</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-rspec">RuboCop RSpec</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Community</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop-hq">GitHub Org</a>
+            <a class="navbar-item" href="https://gitter.im/bbatsov/rubocop">Chat (Gitter)</a>
+            <a class="navbar-item" href="https://opencollective.com/rubocop">Open Collective</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rubocop" data-version="0.87">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">RuboCop</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="compatibility.html">Compatibility</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Usage</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/basic_usage.html">Basic Usage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/auto_correct.html">Auto-correct</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/caching.html">Caching</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cops.html">Cops</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="formatters.html">Formatters</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cop Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_bundler.html">Bundler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_gemspec.html">Gemspec</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_layout.html">Layout</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_lint.html">Lint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_metrics.html">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_migration.html">Migration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_naming.html">Naming</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_security.html">Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_style.html">Style</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="v1_upgrade_notes.html">Upgrade Notes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="extensions.html">Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="integration_with_other_tools.html">Integration with Other Tools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="automated_code_review.html">Automated Code Review</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="contributing.html">Contributing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="support.html">Support</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="versioning.html">Versioning</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RuboCop</span>
+    <span class="version">0.87</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">RuboCop</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../index.html">master</a>
+        </li>
+        <li class="version is-current">
+          <a href="index.html">0.87</a>
+        </li>
+        <li class="version">
+          <a href="../0.86/index.html">0.86</a>
+        </li>
+        <li class="version">
+          <a href="../0.85/index.html">0.85</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop AST</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-ast/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop Minitest</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-minitest/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop Performance</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-performance/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop Rails</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-rails/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop RSpec</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-rspec/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">RuboCop</a></li>
+    <li><a href="configuration.html">Configuration</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">0.87</button>
+  <div class="version-menu">
+    <a class="version" href="../configuration.html">master</a>
+    <a class="version is-current" href="configuration.html">0.87</a>
+    <a class="version" href="../0.86/configuration.html">0.86</a>
+    <a class="version" href="../0.85/configuration.html">0.85</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/blob/v0.87.0/docs/modules/ROOT/pages/configuration.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Configuration</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The behavior of RuboCop can be controlled via the
+<a href="https://github.com/rubocop-hq/rubocop/blob/master/.rubocop.yml">.rubocop.yml</a>
+configuration file. It makes it possible to enable/disable certain cops
+(checks) and to alter their behavior if they accept any parameters. The file
+can be placed in your home directory, XDG config directory, or in some project
+directory.</p>
+</div>
+<div class="paragraph">
+<p>The file has the following format:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">inherit_from: ../.rubocop.yml
+
+Style/Encoding:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 99</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Qualifying cop name with its type, e.g., <code>Style</code>, is recommended,
+but not necessary as long as the cop name is unique across all types.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="config-file-locations"><a class="anchor" href="#config-file-locations"></a>Config file locations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RuboCop will start looking for the configuration file in the directory
+where the inspected file is and continue its way up to the root directory.</p>
+</div>
+<div class="paragraph">
+<p>If it cannot be found until reaching the project&#8217;s root directory, then it will
+be searched for in the user&#8217;s global config locations, which consists of a
+dotfile or a config file inside the <a href="https://specifications.freedesktop.org/basedir-spec/latest/index.html">XDG Base Directory
+specification</a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>~/.rubocop.yml</code></p>
+</li>
+<li>
+<p><code>$XDG_CONFIG_HOME/rubocop/config.yml</code> (expands to <code>~/.config/rubocop/config.yml</code>
+if <code>$XDG_CONFIG_HOME</code> is not set)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If both files exist, the dotfile will be selected.</p>
+</div>
+<div class="paragraph">
+<p>As an example, if RuboCop is invoked from inside <code>/path/to/project/lib/utils</code>,
+then RuboCop will use the config as specified inside the first of the following
+files:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>/path/to/project/lib/utils/.rubocop.yml</code></p>
+</li>
+<li>
+<p><code>/path/to/project/lib/.rubocop.yml</code></p>
+</li>
+<li>
+<p><code>/path/to/project/.rubocop.yml</code></p>
+</li>
+<li>
+<p><code>/.rubocop.yml</code></p>
+</li>
+<li>
+<p><code>~/.rubocop.yml</code></p>
+</li>
+<li>
+<p><code>~/.config/rubocop/config.yml</code></p>
+</li>
+<li>
+<p><a href="https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml">RuboCop&#8217;s default configuration</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="inheritance"><a class="anchor" href="#inheritance"></a>Inheritance</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All configuration inherits from <a href="https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml">RuboCop&#8217;s default configuration</a> (See
+"Defaults").</p>
+</div>
+<div class="paragraph">
+<p>RuboCop also supports inheritance in user&#8217;s configuration files. The most common
+example would be the <code>.rubocop_todo.yml</code> file (See "Automatically Generated
+Configuration" below).</p>
+</div>
+<div class="paragraph">
+<p>Settings in the child file (that which inherits) override those in the parent
+(that which is inherited), with the following caveats.</p>
+</div>
+<div class="sect2">
+<h3 id="inheritance-of-hashes-vs-other-types"><a class="anchor" href="#inheritance-of-hashes-vs-other-types"></a>Inheritance of hashes vs. other types</h3>
+<div class="paragraph">
+<p>Configuration parameters that are hashes, for example <code>PreferredMethods</code> in
+<code>Style/CollectionMethods</code>, are merged with the same parameter in the parent
+configuration. This means that any key-value pairs given in child configuration
+override the same keys in parent configuration. Giving <code>~</code>, YAML&#8217;s
+representation of <code>nil</code>, as a value cancels the setting of the corresponding
+key in the parent configuration. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Style/CollectionMethods:
+  Enabled: true
+  PreferredMethods:
+    # No preference for collect, keep all others from default config.
+    collect: ~</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Other types, such as <code>AllCops</code> / <code>Include</code> (an array), are overridden by the
+child setting.</p>
+</div>
+<div class="paragraph">
+<p>Arrays override because if they were merged, there would be no way to
+remove elements in child files.</p>
+</div>
+<div class="paragraph">
+<p>However, advanced users can still merge arrays using the <code>inherit_mode</code> setting.
+See "Merging arrays using inherit_mode" below.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inheriting-from-another-configuration-file-in-the-project"><a class="anchor" href="#inheriting-from-another-configuration-file-in-the-project"></a>Inheriting from another configuration file in the project</h3>
+<div class="paragraph">
+<p>The optional <code>inherit_from</code> directive is used to include configuration
+from one or more files. This makes it possible to have the common
+project settings in the <code>.rubocop.yml</code> file at the project root, and
+then only the deviations from those rules in the subdirectories. The
+files can be given with absolute paths or paths relative to the file
+where they are referenced. The settings after an <code>inherit_from</code>
+directive override any settings in the file(s) inherited from. When
+multiple files are included, the first file in the list has the lowest
+precedence and the last one has the highest. The format for multiple
+inheritance is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">inherit_from:
+  - ../.rubocop.yml
+  - ../conf/.rubocop.yml</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="inheriting-configuration-from-a-remote-url"><a class="anchor" href="#inheriting-configuration-from-a-remote-url"></a>Inheriting configuration from a remote URL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The optional <code>inherit_from</code> directive can contain a full url to a remote
+file. This makes it possible to have common project settings stored on a http
+server and shared between many projects.</p>
+</div>
+<div class="paragraph">
+<p>The remote config file is cached locally and is only updated if:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The file does not exist.</p>
+</li>
+<li>
+<p>The file has not been updated in the last 24 hours.</p>
+</li>
+<li>
+<p>The remote copy has a newer modification time than the local copy.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can inherit from both remote and local files in the same config and the
+same inheritance rules apply to remote URLs and inheriting from local
+files where the first file in the list has the lowest precedence and the
+last one has the highest. The format for multiple inheritance using URLs is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">inherit_from:
+  - http://www.example.com/rubocop.yml
+  - ../.rubocop.yml</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inheriting-configuration-from-a-dependency-gem"><a class="anchor" href="#inheriting-configuration-from-a-dependency-gem"></a>Inheriting configuration from a dependency gem</h3>
+<div class="paragraph">
+<p>The optional <code>inherit_gem</code> directive is used to include configuration from
+one or more gems external to the current project. This makes it possible to
+inherit a shared dependency&#8217;s RuboCop configuration that can be used from
+multiple disparate projects.</p>
+</div>
+<div class="paragraph">
+<p>Configurations inherited in this way will be essentially <em>prepended</em> to the
+<code>inherit_from</code> directive, such that the <code>inherit_gem</code> configurations will be
+loaded first, then the <code>inherit_from</code> relative file paths will be loaded
+(overriding the configurations from the gems), and finally the remaining
+directives in the configuration file will supersede any of the inherited
+configurations. This means the configurations inherited from one or more gems
+have the lowest precedence of inheritance.</p>
+</div>
+<div class="paragraph">
+<p>The directive should be formatted as a YAML Hash using the gem name as the
+key and the relative path within the gem as the value:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">inherit_gem:
+  my-shared-gem: .rubocop.yml
+  cucumber: conf/rubocop.yml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An array can also be used as the value to include multiple configuration files
+from a single gem:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">inherit_gem:
+  my-shared-gem:
+    - default.yml
+    - strict.yml</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the shared dependency is declared using a <a href="https://bundler.io/">Bundler</a>
+Gemfile and the gem was installed using <code>bundle install</code>, it would be
+necessary to also invoke RuboCop using Bundler in order to find the
+dependency&#8217;s installation path at runtime:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ bundle exec rubocop &lt;options...&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="merging-arrays-using-inherit_mode"><a class="anchor" href="#merging-arrays-using-inherit_mode"></a>Merging arrays using inherit_mode</h3>
+<div class="paragraph">
+<p>The optional directive <code>inherit_mode</code> specifies which configuration keys that
+have array values should be merged together instead of overriding the inherited
+value.</p>
+</div>
+<div class="paragraph">
+<p>This applies to explicit inheritance using <code>inherit_from</code> as well as implicit
+inheritance from <a href="https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml">the default configuration</a>.</p>
+</div>
+<div class="paragraph">
+<p>Given the following config:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># .rubocop.yml
+inherit_from:
+  - shared.yml
+
+inherit_mode:
+  merge:
+    - Exclude
+
+AllCops:
+  Exclude:
+    - 'generated/**/*.rb'
+
+Style/For:
+  Exclude:
+    - bar.rb</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># .shared.yml
+Style/For:
+  Exclude:
+    - foo.rb</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The list of <code>Exclude</code>s for the <code>Style/For</code> cop in this example will be
+<code>['foo.rb', 'bar.rb']</code>. Similarly, the <code>AllCops:Exclude</code> list will contain all
+the default patterns plus the <code>generated/**/*.rb</code> entry that was added locally.</p>
+</div>
+<div class="paragraph">
+<p>The directive can also be used on individual cop configurations to override
+the global setting.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">inherit_from:
+  - shared.yml
+
+inherit_mode:
+  merge:
+    - Exclude
+
+Style/For:
+  inherit_mode:
+    override:
+      - Exclude
+  Exclude:
+    - bar.rb</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example the <code>Exclude</code> would only include <code>bar.rb</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pre-processing"><a class="anchor" href="#pre-processing"></a>Pre-processing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Configuration files are pre-processed using the ERB templating mechanism. This
+makes it possible to add dynamic content that will be evaluated when the
+configuation file is read. For example, you could let RuboCop ignore all files
+ignored by Git.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">AllCops:
+  Exclude:
+  &lt;% `git status --ignored --porcelain`.lines.grep(/^!! /).each do |path| %&gt;
+    - &lt;%= path.sub(/^!! /, '') %&gt;
+  &lt;% end %&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="defaults"><a class="anchor" href="#defaults"></a>Defaults</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The file <a href="https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml">config/default.yml</a> under the RuboCop home directory contains the
+default settings that all configurations inherit from. Project and personal
+<code>.rubocop.yml</code> files need only make settings that are different from the
+default ones. If there is no <code>.rubocop.yml</code> file in the project, home or XDG
+directories, <code>config/default.yml</code> will be used.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="includingexcluding-files"><a class="anchor" href="#includingexcluding-files"></a>Including/Excluding files</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RuboCop does a recursive file search starting from the directory it is
+run in, or directories given as command line arguments. Files that
+match any pattern listed under <code>AllCops</code>/<code>Include</code> and extensionless
+files with a hash-bang (<code>#!</code>) declaration containing one of the known
+ruby interpreters listed under <code>AllCops</code>/<code>RubyInterpreters</code> are
+inspected, unless the file also matches a pattern in
+<code>AllCops</code>/<code>Exclude</code>. Hidden directories (i.e., directories whose names
+start with a dot) are not searched by default.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example that might be used for a Rails project:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/{rails,rake}'
+    - !ruby/regexp /old_and_unused\.rb$/
+
+# other configuration
+# ...</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When inspecting a certain directory(or file)
+given as RuboCop&#8217;s command line arguments,
+patterns listed under <code>AllCops</code> / <code>Exclude</code> are also inspected.
+If you want to apply <code>AllCops</code> / <code>Exclude</code> rules in this circumstance,
+add <code>--force-exclusion</code> to the command line argument.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Here is an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># .rubocop.yml
+AllCops:
+  Exclude:
+    - foo.rb</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If <code>foo.rb</code> specified as a RuboCop&#8217;s command line argument, the result is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># RuboCop inspects foo.rb.
+$ bundle exec rubocop foo.rb
+
+# RuboCop does not inspect foo.rb.
+$ bundle exec rubocop --force-exclusion foo.rb</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="path-relativity"><a class="anchor" href="#path-relativity"></a>Path relativity</h3>
+<div class="paragraph">
+<p>In <code>.rubocop.yml</code> and any other configuration file beginning with <code>.rubocop</code>,
+files, and directories are specified relative to the directory where the
+configuration file is. In configuration files that don&#8217;t begin with <code>.rubocop</code>,
+e.g. <code>our_company_defaults.yml</code>, paths are relative to the directory where
+<code>rubocop</code> is run.</p>
+</div>
+<div class="paragraph">
+<p>This affects cops that have customisable paths: if the default is <code>db/migrate/<strong>.rb</code>,
+and the cop is enabled in <code>db/migrate/.rubocop.yml</code>, the path will need to be
+explicitly set as <code></strong>.rb</code>, as the default will look for <code>db/migrate/db/migrate/*.rb</code>.
+This is unlikely to be what you wanted.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unusual-files-that-would-not-be-included-by-default"><a class="anchor" href="#unusual-files-that-would-not-be-included-by-default"></a>Unusual files, that would not be included by default</h3>
+<div class="paragraph">
+<p>RuboCop comes with a comprehensive list of common ruby file names and
+extensions. But, if you&#8217;d like RuboCop to check files that are not included by
+default, you&#8217;ll need to pass them in on the command line, or to add entries for
+them under <code>AllCops</code>/<code>Include</code>. Remember that your configuration files override
+<a href="https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml">RuboCops&#8217;s defaults</a>. In the following example, we want to include
+<code>foo.unusual_extension</code>, but we also must copy any other patterns we need from
+the overridden <code>default.yml</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">AllCops:
+  Include:
+    - foo.unusual_extension
+    - '**/*.rb'
+    - '**/*.gemfile'
+    - '**/*.gemspec'
+    - '**/*.rake'
+    - '**/*.ru'
+    - '**/Gemfile'
+    - '**/Rakefile'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This behavior of <code>Include</code> (overriding <code>default.yml</code>) was introduced in
+<a href="https://github.com/rubocop-hq/rubocop/blob/master/CHANGELOG.md#0560-2018-05-14">0.56.0</a>
+via <a href="https://github.com/rubocop-hq/rubocop/pull/5882">#5882</a>. This change allows
+people to include/exclude precisely what they need to, without the defaults
+getting in the way.</p>
+</div>
+<div class="sect3">
+<h4 id="another-example-using-inherit_mode"><a class="anchor" href="#another-example-using-inherit_mode"></a>Another example, using <code>inherit_mode</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">inherit_mode:
+  merge:
+    - Include
+
+AllCops:
+  Include:
+    - foo.unusual_extension</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See "Merging arrays using inherit_mode" above.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deprecated-patterns"><a class="anchor" href="#deprecated-patterns"></a>Deprecated patterns</h3>
+<div class="paragraph">
+<p>Patterns that are just a file name, e.g. <code>Rakefile</code>, will match
+that file name in any directory, but this pattern style is deprecated. The
+correct way to match the file in any directory, including the current, is
+<code>**/Rakefile</code>.</p>
+</div>
+<div class="paragraph">
+<p>The pattern <code>config/**</code> will match any file recursively under
+<code>config</code>, but this pattern style is deprecated and should be replaced by
+<code>config/**/*</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="include-and-exclude-are-relative-to-their-directory"><a class="anchor" href="#include-and-exclude-are-relative-to-their-directory"></a><code>Include</code> and <code>Exclude</code> are relative to their directory</h4>
+<div class="paragraph">
+<p>The <code>Include</code> and <code>Exclude</code> parameters are special. They are
+valid for the directory tree starting where they are defined. They are not
+shadowed by the setting of <code>Include</code> and <code>Exclude</code> in other <code>.rubocop.yml</code>
+files in subdirectories. This is different from all other parameters, who
+follow RuboCop&#8217;s general principle that configuration for an inspected file
+is taken from the nearest <code>.rubocop.yml</code>, searching upwards. <em>This behavior
+will be overridden if you specify the <code>--ignore-parent-exclusion</code> command line
+argument</em>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cop-specific-include-and-exclude"><a class="anchor" href="#cop-specific-include-and-exclude"></a>Cop-specific <code>Include</code> and <code>Exclude</code></h3>
+<div class="paragraph">
+<p>Cops can be run only on specific sets of files when that&#8217;s needed (for
+instance you might want to run some Rails model checks only on files whose
+paths match <code>app/models/*.rb</code>). All cops support the
+<code>Include</code> param.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Rails/HasAndBelongsToMany:
+  Include:
+    - app/models/*.rb</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Cops can also exclude only specific sets of files when that&#8217;s needed (for
+instance you might want to run some cop only on a specific file). All cops support the
+<code>Exclude</code> param.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Rails/HasAndBelongsToMany:
+  Exclude:
+    - app/models/problematic.rb</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="generic-configuration-parameters"><a class="anchor" href="#generic-configuration-parameters"></a>Generic configuration parameters</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In addition to <code>Include</code> and <code>Exclude</code>, the following parameters are available
+for every cop.</p>
+</div>
+<div class="sect2">
+<h3 id="enabled"><a class="anchor" href="#enabled"></a>Enabled</h3>
+<div class="paragraph">
+<p>Specific cops can be disabled by setting <code>Enabled</code> to <code>false</code> for that specific cop.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Layout/LineLength:
+  Enabled: false</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Most cops are enabled by default. Cops, introduced or significantly updated
+between major versions, are in a special pending status (read more in
+<a href="versioning.html" class="page">"Versioning"</a>). Some cops, configured the above <code>Enabled: false</code>
+in <a href="https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml">config/default.yml</a>,
+are disabled by default. The cop enabling process can be altered by
+setting <code>DisabledByDefault</code> or <code>EnabledByDefault</code> (but not both) to <code>true</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">AllCops:
+  DisabledByDefault: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>All cops are then disabled by default. Only cops appearing in user
+configuration files are enabled. <code>Enabled: true</code> does not have to be
+set for cops in user configuration. They will be enabled anyway. It is also
+possible to enable entire departments by adding for example</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Style:
+  Enabled: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>All cops are then enabled by default. Only cops explicitly disabled
+using <code>Enabled: false</code> in user configuration files are disabled.</p>
+</div>
+<div class="paragraph">
+<p>If a department is disabled, cops in that department can still be individually
+enabled, and that setting overrides the setting for its department in the same
+configuration file and in any inherited file.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">inherit_from: config_that_disables_the_metrics_department.yml
+
+Metrics/MethodLength:
+  Enabled: true
+
+Style:
+  Enabled: false
+
+Style/Alias:
+  Enabled: true</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="severity"><a class="anchor" href="#severity"></a>Severity</h3>
+<div class="paragraph">
+<p>Each cop has a default severity level based on which department it belongs
+to. The level is normally <code>warning</code> for <code>Lint</code> and <code>convention</code> for all the
+others, but this can be changed in user configuration. Cops can customize their
+severity level. Allowed values are <code>refactor</code>, <code>convention</code>, <code>warning</code>, <code>error</code>
+and <code>fatal</code>.</p>
+</div>
+<div class="paragraph">
+<p>There is one exception from the general rule above and that is <code>Lint/Syntax</code>, a
+special cop that checks for syntax errors before the other cops are invoked. It
+cannot be disabled and its severity (<code>fatal</code>) cannot be changed in
+configuration.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Lint:
+  Severity: error
+
+Metrics/CyclomaticComplexity:
+  Severity: warning</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="details"><a class="anchor" href="#details"></a>Details</h3>
+<div class="paragraph">
+<p>Individual cops can be embellished with extra details in offense messages:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Layout/LineLength:
+  Details: &gt;-
+    If lines are too short, text becomes hard to read because you must
+    constantly jump from one line to the next while reading. If lines are too
+    long, the line jumping becomes too hard because you "lose the line" while
+    going back to the start of the next line. 80 characters is a good
+    compromise.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These details will only be seen when RuboCop is run with the <code>--extra-details</code> flag or if <code>ExtraDetails</code> is set to true in your global RuboCop configuration.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="autocorrect"><a class="anchor" href="#autocorrect"></a>AutoCorrect</h3>
+<div class="paragraph">
+<p>Cops that support the <code>--auto-correct</code> option can have that support
+disabled. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Style/PerlBackrefs:
+  AutoCorrect: false</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-the-target-ruby-version"><a class="anchor" href="#setting-the-target-ruby-version"></a>Setting the target Ruby version</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Some checks are dependent on the version of the Ruby interpreter which the
+inspected code must run on. For example, enforcing using Ruby 2.6+ endless
+ranges <code>foo[n..]</code> rather than <code>foo[n..-1]</code> can help make your code shorter and
+more consistent&#8230;&#8203; <em>unless</em> it must run on e.g. Ruby 2.5.</p>
+</div>
+<div class="paragraph">
+<p>Users may let RuboCop know the oldest version of Ruby which your project
+supports with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">AllCops:
+  TargetRubyVersion: 2.5</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Otherwise, RuboCop will then check your project for <code>.ruby-version</code> and
+use the version specified by it.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="automatically-generated-configuration"><a class="anchor" href="#automatically-generated-configuration"></a>Automatically Generated Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you have a code base with an overwhelming amount of offenses, it can
+be a good idea to use <code>rubocop --auto-gen-config</code>, which creates
+<code>.rubocop_todo.yml</code> and adds <code>inherit_from: .rubocop_todo.yml</code> in your
+<code>.rubocop.yml</code>. The generated file <code>.rubocop_todo.yml</code> contains
+configuration to disable cops that currently detect an offense in the
+code by changing the configuration for the cop, excluding the offending
+files, or disabling the cop altogether once a file count limit has been
+reached.</p>
+</div>
+<div class="paragraph">
+<p>By adding the option <code>--exclude-limit COUNT</code>, e.g., <code>rubocop
+--auto-gen-config --exclude-limit 5</code>, you can change how many files are
+excluded before the cop is entirely disabled. The default COUNT is 15.</p>
+</div>
+<div class="paragraph">
+<p>The next step is to cut and paste configuration from <code>.rubocop_todo.yml</code>
+into <code>.rubocop.yml</code> for everything that you think is in line with your
+(organization&#8217;s) code style and not a good fit for a todo list. Pay
+attention to the comments above each entry. They can reveal configuration
+parameters such as <code>EnforcedStyle</code>, which can be used to modify the
+behavior of a cop instead of disabling it completely.</p>
+</div>
+<div class="paragraph">
+<p>Then you can start removing the entries in the generated
+<code>.rubocop_todo.yml</code> file one by one as you work through all the offenses
+in the code.</p>
+</div>
+<div class="paragraph">
+<p>Another way of silencing offense reports, aside from configuration, is
+through source code comments. These can be added manually or
+automatically. See "Disabling Cops within Source Code" below.</p>
+</div>
+<div class="paragraph">
+<p>The cops in the <code>Metrics</code> department will by default get <code>Max</code> parameters
+generated in <code>.rubocop_todo.yml</code>. The value of these will be just high enough
+so that no offenses are reported the next time you run <code>rubocop</code>. If you
+prefer to exclude files, like for other cops, add <code>--auto-gen-only-exclude</code>
+when running with <code>--auto-gen-config</code>. It will still change the maximum if the
+number of excluded files is higher than the exclude limit.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="updating-the-configuration-file"><a class="anchor" href="#updating-the-configuration-file"></a>Updating the configuration file</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you update RuboCop version, sometimes you need to change <code>.rubocop.yml</code>.
+If you use <a href="https://github.com/pocke/mry">mry</a>, you can update <code>.rubocop.yml</code>
+to latest version automatically.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ gem install mry
+# Update to latest version
+$ mry .rubocop.yml
+# Update to specified version
+$ mry --target=0.48.0 .rubocop.yml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See <a href="https://github.com/pocke/mry" class="bare">https://github.com/pocke/mry</a> for more information.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="disabling-cops-within-source-code"><a class="anchor" href="#disabling-cops-within-source-code"></a>Disabling Cops within Source Code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>One or more individual cops can be disabled locally in a section of a
+file by adding a comment such as</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># rubocop:disable Layout/LineLength, Style/StringLiterals
+[...]
+# rubocop:enable Layout/LineLength, Style/StringLiterals</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also disable <em>all</em> cops with</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># rubocop:disable all
+[...]
+# rubocop:enable all</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In cases where you want to differentiate intentionally-disabled cops vs. cops
+you&#8217;d like to revisit later, you can use <code>rubocop:todo</code> as an alias of
+<code>rubocop:disable</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># rubocop:todo Layout/LineLength, Style/StringLiterals
+[...]
+# rubocop:enable Layout/LineLength, Style/StringLiterals</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>One or more cops can be disabled on a single line with an end-of-line
+comment.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">for x in (0..19) # rubocop:disable Style/For</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to disable a cop that inspects comments, you can do so by
+adding an "inner comment" on the comment line.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># coding: utf-8 # rubocop:disable Style/Encoding</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Running <code>rubocop --[safe-]auto-correct --disable-uncorrectable</code> will
+create comments to disable all offenses that can&#8217;t be automatically
+corrected.</p>
+</div>
+<div class="paragraph">
+<p>Do not write anything other than cop name in the disabling comment. E.g.:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># rubocop:disable Layout/LineLength --This is a bad comment that includes other than cop name.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-the-style-guide-url"><a class="anchor" href="#setting-the-style-guide-url"></a>Setting the style guide URL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can specify the base URL of the style guide using <code>StyleGuideBaseURL</code>.
+If specified under <code>AllCops</code>, all cops are targeted.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">AllCops:
+  StyleGuideBaseURL: https://rubystyle.guide</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>StyleGuideBaseURL</code> is combined with <code>StyleGuide</code> specified to the cop.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Lint/UselessAssignment:
+  StyleGuide: '#underscore-unused-vars'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The style guide URL is <a href="https://rubystyle.guide#underscore-unused-vars" class="bare">https://rubystyle.guide#underscore-unused-vars</a>.</p>
+</div>
+<div class="paragraph">
+<p>If specified under a specific department, it takes precedence over <code>AllCops</code>.
+The following is an example of specifying <code>Rails</code> department.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Rails:
+  StyleGuideBaseURL: https://rails.rubystyle.guide</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Rails/TimeZone:
+  StyleGuide: '#time'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The style guide URL is <a href="https://rails.rubystyle.guide#time" class="bare">https://rails.rubystyle.guide#time</a>.</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="usage/caching.html">Caching</a></span>
+  <span class="next"><a href="cops.html">Cops</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>Copyright (C) 2012-2020 <a href="https://metaredux.com">Bozhidar Batsov</a> and RuboCop contributors.</p>
+</footer>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript">
+docsearch({
+  apiKey: '6d6bf5210b1f26f7f7939e192f8f8c77',
+  indexName: 'rubocop',
+  inputSelector: '#search-input',
+  debug: false // Set debug to true if you want to inspect the dropdown
+});
+</script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

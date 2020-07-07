@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/configuration.html">
     <link rel="prev" href="usage/caching.html">
     <link rel="next" href="cops.html">
-    <meta name="generator" content="Antora 2.0.0">
+    <meta name="generator" content="Antora 2.0.1">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
@@ -188,6 +188,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="0.87/index.html">0.87</a>
+        </li>
+        <li class="version">
           <a href="0.86/index.html">0.86</a>
         </li>
         <li class="version">
@@ -243,7 +246,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="0.86/index.html" class="home-link"></a>
+  <a href="0.87/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -254,6 +257,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="configuration.html">master</a>
+    <a class="version" href="0.87/configuration.html">0.87</a>
     <a class="version" href="0.86/configuration.html">0.86</a>
     <a class="version" href="0.85/configuration.html">0.85</a>
   </div>
@@ -713,6 +717,12 @@ files, and directories are specified relative to the directory where the
 configuration file is. In configuration files that don&#8217;t begin with <code>.rubocop</code>,
 e.g. <code>our_company_defaults.yml</code>, paths are relative to the directory where
 <code>rubocop</code> is run.</p>
+</div>
+<div class="paragraph">
+<p>This affects cops that have customisable paths: if the default is <code>db/migrate/<strong>.rb</code>,
+and the cop is enabled in <code>db/migrate/.rubocop.yml</code>, the path will need to be
+explicitly set as <code></strong>.rb</code>, as the default will look for <code>db/migrate/db/migrate/*.rb</code>.
+This is unlikely to be what you wanted.</p>
 </div>
 </div>
 <div class="sect2">

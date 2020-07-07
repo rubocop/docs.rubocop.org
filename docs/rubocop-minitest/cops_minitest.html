@@ -6,7 +6,7 @@
     <title>Minitest :: RuboCop Docs</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop-minitest/cops_minitest.html">
     <link rel="prev" href="cops.html">
-    <meta name="generator" content="Antora 2.0.0">
+    <meta name="generator" content="Antora 2.0.1">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
@@ -118,6 +118,9 @@
           <a href="../rubocop/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop/0.87/index.html">0.87</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/0.86/index.html">0.86</a>
         </li>
         <li class="version">
@@ -173,7 +176,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/0.86/index.html" class="home-link"></a>
+  <a href="../rubocop/0.87/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop Minitest</a></li>
@@ -270,9 +273,9 @@ assert_empty(object, 'message')</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.10</p></td>
 </tr>
 </tbody>
 </table>
@@ -474,6 +477,66 @@ assert_instance_of(Class, object, 'message')</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="minitestassertkindof"><a class="anchor" href="#minitestassertkindof"></a>Minitest/AssertKindOf</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop enforces the test to use <code>assert_kind_of(Class, object)</code>
+over <code>assert(object.kind_of?(Class))</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+assert(object.kind_of?(Class))
+assert(object.kind_of?(Class), 'message')
+
+# good
+assert_kind_of(Class, object)
+assert_kind_of(Class, object, 'message')</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-5"><a class="anchor" href="#references-5"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/rubocop-hq/minitest-style-guide#assert-kind-of" class="bare">https://github.com/rubocop-hq/minitest-style-guide#assert-kind-of</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="minitestassertmatch"><a class="anchor" href="#minitestassertmatch"></a>Minitest/AssertMatch</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -508,7 +571,7 @@ assert_instance_of(Class, object, 'message')</code></pre>
 instead of using <code>assert(matcher.match(string))</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -522,7 +585,7 @@ assert_match(matcher, string, 'message')</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-5"><a class="anchor" href="#references-5"></a>References</h3>
+<h3 id="references-6"><a class="anchor" href="#references-6"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -568,7 +631,7 @@ assert_match(matcher, string, 'message')</code></pre>
 instead of using <code>assert_equal(nil, something)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
+<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -582,11 +645,71 @@ assert_nil(actual, 'message')</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-6"><a class="anchor" href="#references-6"></a>References</h3>
+<h3 id="references-7"><a class="anchor" href="#references-7"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
 <p><a href="https://minitest.rubystyle.guide#assert-nil" class="bare">https://minitest.rubystyle.guide#assert-nil</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="minitestassertpathexists"><a class="anchor" href="#minitestassertpathexists"></a>Minitest/AssertPathExists</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop enforces the test to use <code>assert_path_exists</code>
+instead of using <code>assert(File.exist?(path))</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-9"><a class="anchor" href="#examples-9"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+assert(File.exist?(path))
+assert(File.exist?(path), 'message')
+
+# good
+assert_path_exists(path)
+assert_path_exists(path, 'message')</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-8"><a class="anchor" href="#references-8"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://minitest.rubystyle.guide/#assert-path-exists" class="bare">https://minitest.rubystyle.guide/#assert-path-exists</a></p>
 </li>
 </ul>
 </div>
@@ -628,7 +751,7 @@ assert_nil(actual, 'message')</code></pre>
 over <code>assert(object.respond_to?(:do_something))</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
+<h3 id="examples-10"><a class="anchor" href="#examples-10"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -644,11 +767,69 @@ assert_respond_to(self, :do_something)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-7"><a class="anchor" href="#references-7"></a>References</h3>
+<h3 id="references-9"><a class="anchor" href="#references-9"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
 <p><a href="https://minitest.rubystyle.guide#assert-responds-to-method" class="bare">https://minitest.rubystyle.guide#assert-responds-to-method</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="minitestassertsilent"><a class="anchor" href="#minitestassertsilent"></a>Minitest/AssertSilent</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop enforces the test to use <code>assert_silent { &#8230;&#8203; }</code>
+instead of using <code>assert_output('', '') { &#8230;&#8203; }</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-11"><a class="anchor" href="#examples-11"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+assert_output('', '') { puts object.do_something }
+
+# good
+assert_silent { puts object.do_something }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-10"><a class="anchor" href="#references-10"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/rubocop-hq/minitest-style-guide#assert-silent" class="bare">https://github.com/rubocop-hq/minitest-style-guide#assert-silent</a></p>
 </li>
 </ul>
 </div>
@@ -690,7 +871,7 @@ assert_respond_to(self, :do_something)</code></pre>
 instead of using <code>assert_equal(true, actual)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-9"><a class="anchor" href="#examples-9"></a>Examples</h3>
+<h3 id="examples-12"><a class="anchor" href="#examples-12"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -704,7 +885,7 @@ assert(actual, 'message')</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-8"><a class="anchor" href="#references-8"></a>References</h3>
+<h3 id="references-11"><a class="anchor" href="#references-11"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -750,7 +931,7 @@ assert(actual, 'message')</code></pre>
 and autocorrects them to use expect format.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-10"><a class="anchor" href="#examples-10"></a>Examples</h3>
+<h3 id="examples-13"><a class="anchor" href="#examples-13"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -766,7 +947,7 @@ _ { musts }.must_raise TypeError</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-9"><a class="anchor" href="#references-9"></a>References</h3>
+<h3 id="references-12"><a class="anchor" href="#references-12"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -774,6 +955,156 @@ _ { musts }.must_raise TypeError</code></pre>
 </li>
 </ul>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="minitestliteralasactualargument"><a class="anchor" href="#minitestliteralasactualargument"></a>Minitest/LiteralAsActualArgument</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop enforces correct order of expected and
+actual arguments for <code>assert_equal</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-14"><a class="anchor" href="#examples-14"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+assert_equal foo, 2
+assert_equal foo, [1, 2]
+assert_equal foo, [1, 2], 'message'
+
+# good
+assert_equal 2, foo
+assert_equal [1, 2], foo
+assert_equal [1, 2], foo, 'message'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-13"><a class="anchor" href="#references-13"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://minitest.rubystyle.guide/#assert-equal-arguments-order" class="bare">https://minitest.rubystyle.guide/#assert-equal-arguments-order</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="minitestmultipleassertions"><a class="anchor" href="#minitestmultipleassertions"></a>Minitest/MultipleAssertions</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop checks if test cases contain too many assertion calls.
+The maximum allowed assertion calls is configurable.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-15"><a class="anchor" href="#examples-15"></a>Examples</h3>
+<div class="sect3">
+<h4 id="max-1"><a class="anchor" href="#max-1"></a>Max: 1</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+class FooTest &lt; Minitest::Test
+  def test_asserts_twice
+    assert_equal(42, do_something)
+    assert_empty(array)
+  end
+end
+
+# good
+class FooTest &lt; Minitest::Test
+  def test_asserts_once
+    assert_equal(42, do_something)
+  end
+
+  def test_another_asserts_once
+    assert_empty(array)
+  end
+end</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Max</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -812,7 +1143,7 @@ _ { musts }.must_raise TypeError</code></pre>
 using <code>refute(object.empty?)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-11"><a class="anchor" href="#examples-11"></a>Examples</h3>
+<h3 id="examples-16"><a class="anchor" href="#examples-16"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -826,7 +1157,7 @@ refute_empty(object, 'message')</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-10"><a class="anchor" href="#references-10"></a>References</h3>
+<h3 id="references-14"><a class="anchor" href="#references-14"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -872,7 +1203,7 @@ refute_empty(object, 'message')</code></pre>
 over <code>assert_equal(expected != actual)</code> or <code>assert(! expected == actual)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-12"><a class="anchor" href="#examples-12"></a>Examples</h3>
+<h3 id="examples-17"><a class="anchor" href="#examples-17"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -885,7 +1216,7 @@ refute_equal("rubocop-minitest", actual)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-11"><a class="anchor" href="#references-11"></a>References</h3>
+<h3 id="references-15"><a class="anchor" href="#references-15"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -931,7 +1262,7 @@ refute_equal("rubocop-minitest", actual)</code></pre>
 over <code>assert_equal(false, object)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-13"><a class="anchor" href="#examples-13"></a>Examples</h3>
+<h3 id="examples-18"><a class="anchor" href="#examples-18"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -948,7 +1279,7 @@ refute(actual, 'message')</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-12"><a class="anchor" href="#references-12"></a>References</h3>
+<h3 id="references-16"><a class="anchor" href="#references-16"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -994,7 +1325,7 @@ refute(actual, 'message')</code></pre>
 instead of using <code>refute(collection.include?(object))</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-14"><a class="anchor" href="#examples-14"></a>Examples</h3>
+<h3 id="examples-19"><a class="anchor" href="#examples-19"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1008,7 +1339,7 @@ refute_includes(collection, object, 'message')</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-13"><a class="anchor" href="#references-13"></a>References</h3>
+<h3 id="references-17"><a class="anchor" href="#references-17"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1054,7 +1385,7 @@ refute_includes(collection, object, 'message')</code></pre>
 over <code>refute(object.instance_of?(Class))</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-15"><a class="anchor" href="#examples-15"></a>Examples</h3>
+<h3 id="examples-20"><a class="anchor" href="#examples-20"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1068,11 +1399,71 @@ refute_instance_of(Class, object, 'message')</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-14"><a class="anchor" href="#references-14"></a>References</h3>
+<h3 id="references-18"><a class="anchor" href="#references-18"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
 <p><a href="https://minitest.rubystyle.guide#refute-instance-of" class="bare">https://minitest.rubystyle.guide#refute-instance-of</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="minitestrefutekindof"><a class="anchor" href="#minitestrefutekindof"></a>Minitest/RefuteKindOf</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop enforces the use of <code>refute_kind_of(Class, object)</code>
+over <code>refute(object.kind_of?(Class))</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-21"><a class="anchor" href="#examples-21"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+refute(object.kind_of?(Class))
+refute(object.kind_of?(Class), 'message')
+
+# good
+refute_kind_of(Class, object)
+refute_kind_of(Class, object, 'message')</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-19"><a class="anchor" href="#references-19"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/rubocop-hq/minitest-style-guide#refute-kind-of" class="bare">https://github.com/rubocop-hq/minitest-style-guide#refute-kind-of</a></p>
 </li>
 </ul>
 </div>
@@ -1114,7 +1505,7 @@ refute_instance_of(Class, object, 'message')</code></pre>
 instead of using <code>refute(matcher.match(string))</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-16"><a class="anchor" href="#examples-16"></a>Examples</h3>
+<h3 id="examples-22"><a class="anchor" href="#examples-22"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1128,7 +1519,7 @@ refute_match(matcher, string, 'message')</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-15"><a class="anchor" href="#references-15"></a>References</h3>
+<h3 id="references-20"><a class="anchor" href="#references-20"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1174,7 +1565,7 @@ refute_match(matcher, string, 'message')</code></pre>
 instead of using <code>refute_equal(nil, something)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-17"><a class="anchor" href="#examples-17"></a>Examples</h3>
+<h3 id="examples-23"><a class="anchor" href="#examples-23"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1188,11 +1579,71 @@ refute_nil(actual, 'message')</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-16"><a class="anchor" href="#references-16"></a>References</h3>
+<h3 id="references-21"><a class="anchor" href="#references-21"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
 <p><a href="https://minitest.rubystyle.guide#refute-nil" class="bare">https://minitest.rubystyle.guide#refute-nil</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="minitestrefutepathexists"><a class="anchor" href="#minitestrefutepathexists"></a>Minitest/RefutePathExists</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop enforces the test to use <code>refute_path_exists</code>
+instead of using <code>refute(File.exist?(path))</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-24"><a class="anchor" href="#examples-24"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+refute(File.exist?(path))
+refute(File.exist?(path), 'message')
+
+# good
+refute_path_exists(path)
+refute_path_exists(path, 'message')</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-22"><a class="anchor" href="#references-22"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://minitest.rubystyle.guide/#refute-path-exists" class="bare">https://minitest.rubystyle.guide/#refute-path-exists</a></p>
 </li>
 </ul>
 </div>
@@ -1234,7 +1685,7 @@ refute_nil(actual, 'message')</code></pre>
 over <code>refute(object.respond_to?(:do_something))</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-18"><a class="anchor" href="#examples-18"></a>Examples</h3>
+<h3 id="examples-25"><a class="anchor" href="#examples-25"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1250,11 +1701,70 @@ refute_respond_to(self, :do_something)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-17"><a class="anchor" href="#references-17"></a>References</h3>
+<h3 id="references-23"><a class="anchor" href="#references-23"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
 <p><a href="https://minitest.rubystyle.guide#refute-respond-to" class="bare">https://minitest.rubystyle.guide#refute-respond-to</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="minitestunspecifiedexception"><a class="anchor" href="#minitestunspecifiedexception"></a>Minitest/UnspecifiedException</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop checks for a specified error in <code>assert_raises</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-26"><a class="anchor" href="#examples-26"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+assert_raises { raise FooException }
+assert_raises('This should have raised') { raise FooException }
+
+# good
+assert_raises(FooException) { raise FooException }
+assert_raises(FooException, 'This should have raised') { raise FooException }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-24"><a class="anchor" href="#references-24"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://minitest.rubystyle.guide#unspecified-exception" class="bare">https://minitest.rubystyle.guide#unspecified-exception</a></p>
 </li>
 </ul>
 </div>
