@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/configuration.html">
     <link rel="prev" href="usage/caching.html">
     <link rel="next" href="cops.html">
-    <meta name="generator" content="Antora 2.0.1">
+    <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="stylesheet" href="../../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
@@ -265,7 +265,7 @@
     <a class="version" href="../0.85/configuration.html">0.85</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/blob/v0.87.0/docs/modules/ROOT/pages/configuration.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/blob/v0.87.1/docs/modules/ROOT/pages/configuration.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -365,6 +365,20 @@ files:</p>
 <p><a href="https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml">RuboCop&#8217;s default configuration</a></p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+All the previous logic does not apply if a specific configuration file is passed
+on the command line through the <code>--config</code> flag. In that case, the resolved
+configuration file will be the one passed to the CLI.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -799,9 +813,21 @@ valid for the directory tree starting where they are defined. They are not
 shadowed by the setting of <code>Include</code> and <code>Exclude</code> in other <code>.rubocop.yml</code>
 files in subdirectories. This is different from all other parameters, who
 follow RuboCop&#8217;s general principle that configuration for an inspected file
-is taken from the nearest <code>.rubocop.yml</code>, searching upwards. <em>This behavior
+is taken from the nearest <code>.rubocop.yml</code>, searching upwards.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This behavior
 will be overridden if you specify the <code>--ignore-parent-exclusion</code> command line
-argument</em>.</p>
+argument.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
