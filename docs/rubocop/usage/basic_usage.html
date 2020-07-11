@@ -295,7 +295,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="1-code-style-checker"><a class="anchor" href="#1-code-style-checker"></a>1. Code style checker</h2>
+<h2 id="code-style-checker"><a class="anchor" href="#code-style-checker"></a>Code style checker</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Running <code>rubocop</code> with no arguments will check all Ruby source files
@@ -363,11 +363,22 @@ automatically fix the problems it found in your code:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop -a</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop -a
+# or
+$ rubocop --auto-correct</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>See <a href="auto_correct.html" class="page">Auto-correct</a>.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+See <a href="auto_correct.html" class="page">Auto-correct</a> for more details.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -387,7 +398,7 @@ project&#8217;s root directory.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="2-rubocop-as-a-replacement-for-ruby-w"><a class="anchor" href="#2-rubocop-as-a-replacement-for-ruby-w"></a>2. RuboCop as a replacement for <code>ruby -w</code></h2>
+<h2 id="rubocop-as-a-replacement-for-ruby-w"><a class="anchor" href="#rubocop-as-a-replacement-for-ruby-w"></a>RuboCop as a replacement for <code>ruby -w</code></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>RuboCop natively implements almost all <code>ruby -w</code> lint warning checks, and then some. If you want you can use RuboCop
@@ -395,24 +406,37 @@ simply as a replacement for <code>ruby -w</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop -l</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop -l
+# or
+$ rubocop --lint</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="3-rubocop-as-a-formatter"><a class="anchor" href="#3-rubocop-as-a-formatter"></a>3. RuboCop as a formatter</h2>
+<h2 id="rubocop-as-a-formatter"><a class="anchor" href="#rubocop-as-a-formatter"></a>RuboCop as a formatter</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>There&#8217;s a handy shortcut to run auto-correction only on code layout (a.k.a. formatting) offenses:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop -x</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop -x
+# or
+$ rubocop --fix-layout</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>This option was introduced in RuboCop 0.57.0.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This option was introduced in RuboCop 0.57.0.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -646,6 +670,7 @@ options, or an internal error.</p>
 </div>
 <footer class="footer">
   <p>Copyright (C) 2012-2020 <a href="https://metaredux.com">Bozhidar Batsov</a> and RuboCop contributors.</p>
+  <p>Except where otherwise noted, docs.rubocop.org is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a> (CC BY-SA 4.0)</p>
 </footer>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 <script type="text/javascript">

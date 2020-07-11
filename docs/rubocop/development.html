@@ -584,6 +584,29 @@ end</code></pre>
 end</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>If your code has variables of different lengths, you can use <code>%{foo}</code>,
+<code>^{foo}</code>, and <code>_{foo}</code> to format your template; you can also abbreviate
+offense messages with <code>[&#8230;&#8203;]</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">%w[raise fail].each do |keyword|
+  expect_offense(&lt;&lt;~RUBY, keyword: keyword)
+    %{keyword}(RuntimeError, msg)
+    ^{keyword}^^^^^^^^^^^^^^^^^^^ Redundant `RuntimeError` argument [...]
+  RUBY
+
+%w[has_one has_many].each do |type|
+  expect_offense(&lt;&lt;~RUBY, type: type)
+    class Book
+      %{type} :chapter, foreign_key: 'book_id'
+      _{type}           ^^^^^^^^^^^^^^^^^^^^^^ Specifying the default [...]
+    end
+  RUBY
+end</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="auto-correct"><a class="anchor" href="#auto-correct"></a>Auto-correct</h3>
@@ -804,6 +827,7 @@ the docs.</p>
 </div>
 <footer class="footer">
   <p>Copyright (C) 2012-2020 <a href="https://metaredux.com">Bozhidar Batsov</a> and RuboCop contributors.</p>
+  <p>Except where otherwise noted, docs.rubocop.org is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a> (CC BY-SA 4.0)</p>
 </footer>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 <script type="text/javascript">
