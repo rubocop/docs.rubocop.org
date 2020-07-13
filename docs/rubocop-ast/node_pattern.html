@@ -109,6 +109,9 @@
           <a href="../rubocop/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop/0.88/index.html">0.88</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/0.87/index.html">0.87</a>
         </li>
         <li class="version">
@@ -131,7 +134,7 @@
       <span class="title">RuboCop Minitest</span>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-minitest/0.10/index.html">0.10</a>
+          <a href="../rubocop-minitest/index.html">master</a>
         </li>
         <li class="version">
           <a href="../rubocop-minitest/0.1/index.html">0.1</a>
@@ -619,7 +622,7 @@ number.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="to-call-external-methods"><a class="anchor" href="#to-call-external-methods"></a><code>#</code> to call external methods</h2>
+<h2 id="to-call-functions"><a class="anchor" href="#to-call-functions"></a><code>#</code> to call functions</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Sometimes, we want to add extra logic. Let&#8217;s imagine we&#8217;re searching for
@@ -639,11 +642,44 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>We can use the <code>#prime?</code> method directly in the expression:</p>
+<p>We can use the <code>#prime?</code> function directly in the expression:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre>(int #prime?)</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="arguments-for-predicate-and-function-calls"><a class="anchor" href="#arguments-for-predicate-and-function-calls"></a>Arguments for predicate and function calls</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Arguments can be passed to predicates and function calls, like literals, parameters:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def divisible_by?(value, divisor)
+  value % divisor == 0
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Example patterns using this function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>(int #divisible_by?(42))
+(send (int _value) :+ (int #divisible_by?(_value))</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The arguments can be pattern themselves, in which case a matcher responding to <code>===</code> will be passed. This makes patterns composable:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def_node_pattern :global_const?, '(const {nil? cbase} %1)'
+def_node_pattern :class_creator, '(send #global_const?({:Class :Module}) :new ...)'</code></pre>
 </div>
 </div>
 </div>

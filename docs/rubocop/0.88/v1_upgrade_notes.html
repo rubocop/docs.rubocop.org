@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>v1 Upgrade Notes :: RuboCop Docs</title>
+    <link rel="canonical" href="https://docs.rubocop.org/rubocop/v1_upgrade_notes.html">
+    <link rel="prev" href="cops_style.html">
+    <link rel="next" href="extensions.html">
+    <meta name="generator" content="Antora 2.3.3">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140153536-1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-140153536-1')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <a href="https://rubocop.org">RuboCop</a>
+        <span class="separator">//</span>
+        <a href="https://docs.rubocop.org">Docs</a>
+      </div>
+      <div class="navbar-item">
+        <input id="search-input" type="text" placeholder="Search docs">
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href=index.html>Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Style Guides</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://rubystyle.guide">Ruby</a>
+            <a class="navbar-item" href="https://rails.rubystyle.guide">Rails</a>
+            <a class="navbar-item" href="https://rspec.rubystyle.guide">RSpec</a>
+            <a class="navbar-item" href="https://minitest.rubystyle.guide">Minitest</a>
+          </div>
+        </div>
+        <a class="navbar-item" href="https://www.rubydoc.info/gems/rubocop">API Docs</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Projects</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop">RuboCop</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-ast">RuboCop AST</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-minitest">RuboCop Minitest</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-performance">RuboCop Performance</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-rails">RuboCop Rails</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-rake">RuboCop Rake</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-rspec">RuboCop RSpec</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Community</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop-hq">GitHub Org</a>
+            <a class="navbar-item" href="https://gitter.im/bbatsov/rubocop">Chat (Gitter)</a>
+            <a class="navbar-item" href="https://opencollective.com/rubocop">Open Collective</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rubocop" data-version="0.88">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">RuboCop</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="compatibility.html">Compatibility</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Usage</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/basic_usage.html">Basic Usage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/auto_correct.html">Auto-correct</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/caching.html">Caching</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cops.html">Cops</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="formatters.html">Formatters</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cop Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_bundler.html">Bundler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_gemspec.html">Gemspec</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_layout.html">Layout</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_lint.html">Lint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_metrics.html">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_migration.html">Migration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_naming.html">Naming</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_security.html">Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_style.html">Style</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="v1_upgrade_notes.html">Upgrade Notes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="extensions.html">Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="integration_with_other_tools.html">Integration with Other Tools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="automated_code_review.html">Automated Code Review</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="contributing.html">Contributing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="support.html">Support</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="versioning.html">Versioning</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RuboCop</span>
+    <span class="version">0.88</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">RuboCop</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../index.html">master</a>
+        </li>
+        <li class="version is-current">
+          <a href="index.html">0.88</a>
+        </li>
+        <li class="version">
+          <a href="../0.87/index.html">0.87</a>
+        </li>
+        <li class="version">
+          <a href="../0.86/index.html">0.86</a>
+        </li>
+        <li class="version">
+          <a href="../0.85/index.html">0.85</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop AST</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-ast/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop Minitest</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-minitest/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.1/index.html">0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop Performance</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-performance/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.7/index.html">1.7</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop Rails</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-rails/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop RSpec</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-rspec/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../0.87/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">RuboCop</a></li>
+    <li>Cop Documentation</li>
+    <li><a href="v1_upgrade_notes.html">Upgrade Notes</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">0.88</button>
+  <div class="version-menu">
+    <a class="version" href="../v1_upgrade_notes.html">master</a>
+    <a class="version is-current" href="v1_upgrade_notes.html">0.88</a>
+    <a class="version" href="../0.87/v1_upgrade_notes.html">0.87</a>
+    <a class="version is-missing" href="../0.86/index.html">0.86</a>
+    <a class="version is-missing" href="../0.85/index.html">0.85</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/blob/v0.88.0/docs/modules/ROOT/pages/v1_upgrade_notes.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">v1 Upgrade Notes</h1>
+<div class="sect1">
+<h2 id="cop-upgrade-guide"><a class="anchor" href="#cop-upgrade-guide"></a>Cop Upgrade guide</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Your custom cops should continue to work in v1.</p>
+</div>
+<div class="paragraph">
+<p>Nevertheless it is suggested that you tweak them to use the v1 API by following the following steps:</p>
+</div>
+<div class="paragraph">
+<p>1) Your class should inherit from <code>RuboCop::Cop::Base</code> instead of <code>RuboCop::Cop::Cop</code>.</p>
+</div>
+<div class="paragraph">
+<p>2) Locate your calls to <code>add_offense</code> and make sure that you pass as the first argument either an <code>AST::Node</code>, a <code>::Parser::Source::Comment</code> or a <code>::Parser::Source::Range</code>, and no <code>location:</code> named parameter.</p>
+</div>
+<h4 id="example" class="discrete">Example:</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Before
+class MySillyCop &lt; Cop
+  def on_send(node)
+    if node.method_name == :-
+      add_offense(node, location: :selector, message: "Be positive")
+    end
+  end
+end
+
+# After
+class MySillyCop &lt; Base
+  def on_send(node)
+    if node.method_name == :-
+      add_offense(node.loc.selector, message: "Be positive")
+    end
+  end
+end</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="if-your-class-supports-autocorrection"><a class="anchor" href="#if-your-class-supports-autocorrection"></a>If your class supports autocorrection</h3>
+<div class="paragraph">
+<p>Your class must <code>extend AutoCorrector</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>corrector</code> is now yielded from <code>add_offense</code>. Move the code of your method <code>autocorrect</code> in that block and do not wrap your correction in a lambda. <code>Corrector</code> are more powerful and can now be `merge`d.</p>
+</div>
+<div class="sect3">
+<h4 id="example-2"><a class="anchor" href="#example-2"></a>Example:</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Before
+class MySillyCorrectingCop &lt; Cop
+  def on_send(node)
+    if node.method_name == :-
+      add_offense(node, location: :selector, message: 'Be positive')
+    end
+  end
+
+  def autocorrect(node)
+    lambda do |corrector|
+      corrector.replace(node.loc.selector, '+')
+    end
+  end
+end
+
+# After
+class MySillyCorrectingCop &lt; Base
+  extend AutoCorrector
+
+  def on_send(node)
+    if node.method_name == :-
+      add_offense(node.loc.selector, message: 'Be positive') do |corrector|
+        corrector.replace(node.loc.selector, '+')
+      end
+    end
+  end
+end</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="if-your-class-uses-instance-variables"><a class="anchor" href="#if-your-class-uses-instance-variables"></a>If your class uses instance variables</h3>
+<div class="paragraph">
+<p>Do not use RuboCop&#8217;s internal instance variables. If you used <code>@processed_source</code>, use <code>processed_source</code>. If you have a need to access an instance variable, open an issue with your use case.</p>
+</div>
+<div class="paragraph">
+<p>Cop instances will be called on different <code>processed_source</code> if the class supports it. In all cases it is recommended to to invalidate your cache data during the <code>on_new_investigation</code> callback:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Before
+class MyCachingCop &lt; Cop
+  def on_send(node)
+    if my_cached_data[node]
+      #...
+    end
+  end
+
+  def my_cached_data
+    @data ||= processed_source.comments.map { # ... }
+  end
+end
+
+# After
+class MyCachingCop &lt; Base
+  # ... same as above, plus...
+  def on_new_investigation
+    @data = nil
+    super  # Be nice and call super for callback
+  end
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-api-changes"><a class="anchor" href="#other-api-changes"></a>Other API changes</h3>
+<div class="paragraph">
+<p>If your cop uses <code>investigate</code>, <code>investigate_post_walk</code>, <code>join_force?</code>, or internal classes like <code>Corrector</code>, <code>Commissioner</code>, <code>Team</code>, these have changed. See the <a href="#detailed-api-changes">Detailed API Changes</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="upgrading-specs"><a class="anchor" href="#upgrading-specs"></a>Upgrading specs</h3>
+<div class="paragraph">
+<p>It is highly recommended you use <code>expect_offense</code> / <code>expect_correction</code> / <code>expect_no_offense</code> in your specs, e.g.:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">require 'rubocop/rspec/support'
+
+RSpec.describe RuboCop::Cop::Custom::MySillyCorrectingCop, :config do
+  # No need for `let(:cop)`
+  it 'is positive' do
+    expect_offense(&lt;&lt;~RUBY)
+      42 + 2 - 2
+             ^ Be positive
+    RUBY
+
+    expect_correction(&lt;&lt;~RUBY)
+      42 + 2 + 2
+    RUBY
+  end
+
+  it 'does not register an offense for calls to `despair`' do
+    expect_no_offenses(&lt;&lt;~RUBY)
+      "don't".despair
+    RUBY
+  end
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the unlikely case where you use the class <code>RuboCop::Cop::Corrector</code> directly, it has changed a bit but you can ease your transition with <code>RuboCop::Cop::Legacy::Corrector</code> that is meant to be somewhat backwards compatible. You will need to <code>require 'rubocop/cop/legacy/corrector'</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="detailed-api-changes"><a class="anchor" href="#detailed-api-changes"></a>Detailed API Changes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section lists all changes (big or small) to the API. It is meant for maintainers of the nuts &amp; bolts of RuboCop; most cop writers will not be impacted by these and are thus not the target audience.</p>
+</div>
+<div class="sect2">
+<h3 id="base-class"><a class="anchor" href="#base-class"></a>Base class</h3>
+<div class="paragraph">
+<p><em>Legacy</em>: Cops inherit from <code>Cop::Cop</code>.</p>
+</div>
+<div class="paragraph">
+<p><em>Current</em>: Cops inherit from <code>Cop::Base</code>. Having a different base class makes the implementation much cleaner and makes it easy to signal which API is being used. <code>Cop::Cop</code> inherits from <code>Cop::Base</code> and refines some methods for backward compatibility.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add_offense-api"><a class="anchor" href="#add_offense-api"></a><code>add_offense</code> API</h3>
+<div class="sect3">
+<h4 id="arguments"><a class="anchor" href="#arguments"></a>arguments</h4>
+<div class="paragraph">
+<p><em>Legacy:</em> interface allowed for a <code>node</code>, with an optional <code>location</code> (symbol or range) or a range with a mandatory range as the location. Some cops were abusing the <code>node</code> argument and passing very different things.</p>
+</div>
+<div class="paragraph">
+<p><em>Current:</em> pass a range (or node as a shortcut for <code>node.loc.expression</code>), no <code>location:</code>. No abuse tolerated.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="de-dupping-changes"><a class="anchor" href="#de-dupping-changes"></a>de-dupping changes</h4>
+<div class="paragraph">
+<p>Both de-dup on <code>range</code> and won&#8217;t process the duplicated offenses at all.</p>
+</div>
+<div class="paragraph">
+<p><em>Legacy:</em> if offenses on same <code>node</code> but different <code>range</code>: considered as multiple offenses but a single auto-correct call.</p>
+</div>
+<div class="paragraph">
+<p><em>Current:</em> not applicable and not needed with autocorrection&#8217;s API.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="yield"><a class="anchor" href="#yield"></a>yield</h4>
+<div class="paragraph">
+<p>Both yield under the same conditions (unless cop is disabled for that line), but:</p>
+</div>
+<div class="paragraph">
+<p><em>Legacy:</em> yields after offense added to <code>#offenses</code></p>
+</div>
+<div class="paragraph">
+<p><em>Current:</em> yields before offense is added to <code>#offenses</code>.</p>
+</div>
+<div class="paragraph">
+<p>Even the legacy mode yields a corrector, but if a developer uses it an error will be raised asking her to inherit from <code>Cop::Base</code> instead.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="auto-correction"><a class="anchor" href="#auto-correction"></a>Auto Correction</h3>
+<div class="sect3">
+<h4 id="autocorrect"><a class="anchor" href="#autocorrect"></a><code>#autocorrect</code></h4>
+<div class="paragraph">
+<p><em>Legacy:</em> calls <code>autocorrect</code> unless it is disabled / autocorrect is off.</p>
+</div>
+<div class="paragraph">
+<p><em>Current:</em> yields a corrector unless it is disabled. The corrector will be ignored if autocorrecting is off, etc. No support for <code>autocorrect</code> method, but a warning is issued if that method is still defined.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="empty-corrections"><a class="anchor" href="#empty-corrections"></a>Empty corrections</h4>
+<div class="paragraph">
+<p><em>Legacy:</em> <code>autocorrect</code> could return <code>nil</code> / <code>false</code> in cases where it couldn&#8217;t actually make a correction.</p>
+</div>
+<div class="paragraph">
+<p><em>Current:</em> No special API. Cases where no corrections are made are automatically detected.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="correction-timing"><a class="anchor" href="#correction-timing"></a>Correction timing</h4>
+<div class="paragraph">
+<p><em>Legacy:</em> the lambda was called only later in the process, and only under specific conditions (if the auto-correct setting is turned on, etc.)</p>
+</div>
+<div class="paragraph">
+<p><em>Current:</em> correction is built immediately (assuming the cop isn&#8217;t disabled for the line) and applied later in the process.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="exception-handling"><a class="anchor" href="#exception-handling"></a>Exception handling</h4>
+<div class="paragraph">
+<p>Both: <code>Commissioner</code> will rescue all <code>StandardError</code>s during analysis (unless <code>option[:raise_error]</code>) and store a corresponding <code>ErrorWithAnalyzedFileLocation</code> in its error list. This is done when calling the cop&#8217;s <code>on_send</code> &amp; al., or when calling <code>investigate</code> / <code>investigate_post_walk</code> callback.</p>
+</div>
+<div class="paragraph">
+<p><em>Legacy:</em> autocorrecting cops were treating errors differently depending on when they occurred. Some errors were silently ignored. Others were rescued as above. Others crashed. Some code in <code>Team</code> would rescue errors and add them to the list of errors but I don&#8217;t think the code worked.</p>
+</div>
+<div class="paragraph">
+<p><em>Current:</em> <code>Team</code> no longer has any special error handling to do as potential exceptions happen when <code>Commissioner</code> is running.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="other-error-handling"><a class="anchor" href="#other-error-handling"></a>Other error handling</h4>
+<div class="paragraph">
+<p><em>Legacy:</em> Clobbering errors are silently ignored. Calling <code>insert_before</code> with ranges that extend beyond the source code was silently fixed.</p>
+</div>
+<div class="paragraph">
+<p><em>Current:</em> Such errors are not ignored. It is still ok that a given Cop&#8217;s corrections clobber another Cop&#8217;s, but any given Cop should not issue corrections that clobber each other, or with invalid ranges, otherwise these will be listed in the processing errors.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="corrections"><a class="anchor" href="#corrections"></a><code>#corrections</code></h4>
+<div class="paragraph">
+<p><em>Legacy:</em> Corrections were held in <code>#corrections</code> as an array of lambdas. A proxy was written to maintain compatibility with <code>cop.corrections &lt;&lt; ...</code>, <code>cop.corrections.concat ...</code>, etc.</p>
+</div>
+<div class="paragraph">
+<p><em>Current:</em> Corrections are held in <code>current_corrector</code>, a <code>Corrector</code> which inherits from <code>Source::TreeRewriter</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="support_autocorrect"><a class="anchor" href="#support_autocorrect"></a><code>#support_autocorrect?</code></h4>
+<div class="paragraph">
+<p><em>Legacy:</em> was an instance method.</p>
+</div>
+<div class="paragraph">
+<p><em>Current:</em> now a class method.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="joining-forces"><a class="anchor" href="#joining-forces"></a>Joining forces</h4>
+<div class="paragraph">
+<p><em>Legacy:</em> <code>join_force?(force_class)</code> was called with every force class</p>
+</div>
+<div class="paragraph">
+<p><em>Current:</em> <code>self.joining_forces</code> is now used to return the force (or an array of forces) to join.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cop-persistence"><a class="anchor" href="#cop-persistence"></a>Cop persistence</h3>
+<div class="paragraph">
+<p>Cops can now be persisted between files. By default new cop instances are created for each source. See <code>support_multiple_source?</code> documentation.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="internal-classes"><a class="anchor" href="#internal-classes"></a>Internal classes</h3>
+<div class="sect3">
+<h4 id="corrector"><a class="anchor" href="#corrector"></a><code>Corrector</code></h4>
+<div class="paragraph">
+<p><em>Legacy:</em> <code>initialize</code> accepted a second argument (an array of lambdas). Available through <code>Legacy::Corrector</code> if needed.</p>
+</div>
+<div class="paragraph">
+<p><em>Current:</em> derives from <code>parser&#8217;s `TreeRewriter</code>. No second argument to <code>initialize</code>; not needed as correctors can be merged.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="commissioner-team"><a class="anchor" href="#commissioner-team"></a><code>Commissioner</code> &amp; <code>Team</code></h4>
+<div class="paragraph">
+<p>Refactored for better separation of concern, being reusable, better result reporting and better error handling.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="misc-api-changes"><a class="anchor" href="#misc-api-changes"></a>Misc API changes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>internal API clarified for Commissioner. It calls <code>begin_investigation</code> and receives the results in <code>complete_investigation</code>.</p>
+</li>
+<li>
+<p>New method <code>add_global_offense</code> for offenses that are not attached to a location in particular; it&#8217;s used for Syntax errors only right now.</p>
+</li>
+<li>
+<p><code>#offenses</code>: No longer accessible.</p>
+</li>
+<li>
+<p>Callbacks <code>investigate(processed_source)</code> and <code>investigate_post_walk(processed_source)</code> are renamed <code>on_new_investigation</code> and <code>on_investigation_end</code> and don&#8217;t accept an argument; all <code>on_</code> callbacks should rely on <code>processed_source</code>.</p>
+</li>
+<li>
+<p><code>#find_location</code> is deprecated.</p>
+</li>
+<li>
+<p><code>Correction</code> is deprecated.</p>
+</li>
+<li>
+<p>A few registry access methods were moved from <code>Cop</code> to <code>Registry</code> both for correctness (e.g. <code>MyCop.qualified_cop_name</code> did not work nor made sense) and so that <code>Cop::Cop</code> no longer holds any necessary code anymore. Backwards compatibility is maintained.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Cop.registry</code> =&gt; <code>Registry.global</code></p>
+</li>
+<li>
+<p><code>Cop.all</code> =&gt; <code>Registry.all</code></p>
+</li>
+<li>
+<p><code>Cop.qualified_cop_name</code> =&gt; <code>Registry.qualified_cop_name</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="cops_style.html">Style</a></span>
+  <span class="next"><a href="extensions.html">Extensions</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>Copyright (C) 2012-2020 <a href="https://metaredux.com">Bozhidar Batsov</a> and RuboCop contributors.</p>
+  <p>Except where otherwise noted, docs.rubocop.org is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a> (CC BY-SA 4.0).</p>
+</footer>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript">
+docsearch({
+  apiKey: '6d6bf5210b1f26f7f7939e192f8f8c77',
+  indexName: 'rubocop',
+  inputSelector: '#search-input',
+  debug: false // Set debug to true if you want to inspect the dropdown
+});
+</script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
