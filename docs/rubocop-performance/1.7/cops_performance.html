@@ -200,7 +200,7 @@
     <a class="version is-current" href="cops_performance.html">1.7</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop-performance/blob/v1.7.0/docs/modules/ROOT/pages/cops_performance.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop-performance/blob/v1.7.1/docs/modules/ROOT/pages/cops_performance.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -228,8 +228,8 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -298,22 +298,17 @@ A &lt;= B</code></pre>
 converted to string. Initializing from String is faster
 than from Numeric for BigDecimal.</p>
 </div>
-<div class="paragraph">
-<p>BigDecimal(1, 2)
-BigDecimal(1.2, 3, exception: true)</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>  # good
-BigDecimal('1', 2)
-BigDecimal('1.2', 3, exception: true)</pre>
-</div>
-</div>
 <div class="sect2">
 <h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad</code></pre>
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+BigDecimal(1, 2)
+BigDecimal(1.2, 3, exception: true)
+
+# good
+BigDecimal('1', 2)
+BigDecimal('1.2', 3, exception: true)</code></pre>
 </div>
 </div>
 </div>
@@ -2705,7 +2700,7 @@ for receiver is multiline string.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -2714,6 +2709,9 @@ for receiver is multiline string.</p>
 <div class="paragraph">
 <p>This cop identifies unnecessary use of a regex where
 <code>String#include?</code> would suffice.</p>
+</div>
+<div class="paragraph">
+<p>This cop&#8217;s offenses are not safe to auto-correct if a receiver is nil.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-33"><a class="anchor" href="#examples-33"></a>Examples</h3>
@@ -2731,6 +2729,30 @@ for receiver is multiline string.</p>
 'abc'.include?('ab')</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-9"><a class="anchor" href="#configurable-attributes-9"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AutoCorrect</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -2850,7 +2872,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-9"><a class="anchor" href="#configurable-attributes-9"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-10"><a class="anchor" href="#configurable-attributes-10"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
