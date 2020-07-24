@@ -219,7 +219,7 @@
           <a href="../rubocop-minitest/index.html">master</a>
         </li>
         <li class="version">
-          <a href="../rubocop-minitest/0.1/index.html">0.1</a>
+          <a href="../rubocop-minitest/0.10/index.html">0.10</a>
         </li>
       </ul>
     </li>
@@ -764,8 +764,8 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.88</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -7972,70 +7972,6 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="stylemethodmissingsuper"><a class="anchor" href="#stylemethodmissingsuper"></a>Style/MethodMissingSuper</h2>
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Enabled by default</th>
-<th class="tableblock halign-left valign-top">Safe</th>
-<th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">VersionAdded</th>
-<th class="tableblock halign-left valign-top">VersionChanged</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.56</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>This cop checks for the presence of <code>method_missing</code> without
-falling back on <code>super</code>.</p>
-</div>
-<div class="sect2">
-<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">#bad
-def method_missing(name, *args)
-  # ...
-end
-
-#good
-
-def method_missing(name, *args)
-  # ...
-  super
-end</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="references-49"><a class="anchor" href="#references-49"></a>References</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://rubystyle.guide#no-method-missing" class="bare">https://rubystyle.guide#no-method-missing</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="styleminmax"><a class="anchor" href="#styleminmax"></a>Style/MinMax</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -8069,7 +8005,7 @@ end</code></pre>
 <p>This cop checks for potential uses of <code>Enumerable#minmax</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
+<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8121,7 +8057,7 @@ return foo.minmax</code></pre>
 <p>Supported styles are: if, case, both.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
+<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-if"><a class="anchor" href="#enforcedstyle-if"></a>EnforcedStyle: if</h4>
 <div class="listingblock">
@@ -8286,7 +8222,7 @@ end</code></pre>
 defining <code>respond_to_missing?</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
+<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">#bad
@@ -8306,7 +8242,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-50"><a class="anchor" href="#references-50"></a>References</h3>
+<h3 id="references-49"><a class="anchor" href="#references-49"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8353,7 +8289,7 @@ By default it enforces mixins to be placed in separate declarations,
 but it can be configured to enforce grouping them in one declaration.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
+<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-separated-default"><a class="anchor" href="#enforcedstyle-separated-default"></a>EnforcedStyle: separated (default)</h4>
 <div class="listingblock">
@@ -8414,7 +8350,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-51"><a class="anchor" href="#references-51"></a>References</h3>
+<h3 id="references-50"><a class="anchor" href="#references-50"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8461,7 +8397,7 @@ inside classes and modules, not at the top level, so as to not affect
 the behavior of <code>Object</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
+<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8550,7 +8486,7 @@ Otherwise, it forces to change the flow of the default code.</p>
 implications to each approach.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
+<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-module_function-default"><a class="anchor" href="#enforcedstyle-module_function-default"></a>EnforcedStyle: module_function (default)</h4>
 <div class="listingblock">
@@ -8658,7 +8594,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-52"><a class="anchor" href="#references-52"></a>References</h3>
+<h3 id="references-51"><a class="anchor" href="#references-51"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8704,7 +8640,7 @@ end</code></pre>
 multiple lines.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
+<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8725,7 +8661,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-53"><a class="anchor" href="#references-53"></a>References</h3>
+<h3 id="references-52"><a class="anchor" href="#references-52"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8770,7 +8706,7 @@ end</code></pre>
 <p>Checks for uses of if/unless modifiers with multiple-lines bodies.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
+<h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8784,7 +8720,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-54"><a class="anchor" href="#references-54"></a>References</h3>
+<h3 id="references-53"><a class="anchor" href="#references-53"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8829,7 +8765,7 @@ end</code></pre>
 <p>Checks for uses of the <code>then</code> keyword in multi-line if statements.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-91"><a class="anchor" href="#examples-91"></a>Examples</h3>
+<h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8846,7 +8782,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-55"><a class="anchor" href="#references-55"></a>References</h3>
+<h3 id="references-54"><a class="anchor" href="#references-54"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8891,7 +8827,7 @@ end</code></pre>
 <p>This cop checks expressions wrapping styles for multiline memoization.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-92"><a class="anchor" href="#examples-92"></a>Examples</h3>
+<h3 id="examples-91"><a class="anchor" href="#examples-91"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-keyword-default"><a class="anchor" href="#enforcedstyle-keyword-default"></a>EnforcedStyle: keyword (default)</h4>
 <div class="listingblock">
@@ -8989,7 +8925,7 @@ foo ||= (
 <p>This cop checks for method signatures that span multiple lines.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-93"><a class="anchor" href="#examples-93"></a>Examples</h3>
+<h3 id="examples-92"><a class="anchor" href="#examples-92"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -9041,7 +8977,7 @@ end</code></pre>
 <p>This cop checks for multi-line ternary op expressions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-94"><a class="anchor" href="#examples-94"></a>Examples</h3>
+<h3 id="examples-93"><a class="anchor" href="#examples-93"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9064,7 +9000,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-56"><a class="anchor" href="#references-56"></a>References</h3>
+<h3 id="references-55"><a class="anchor" href="#references-55"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9110,7 +9046,7 @@ end</code></pre>
 in multi-line when statements.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-95"><a class="anchor" href="#examples-95"></a>Examples</h3>
+<h3 id="examples-94"><a class="anchor" href="#examples-94"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9137,7 +9073,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-57"><a class="anchor" href="#references-57"></a>References</h3>
+<h3 id="references-56"><a class="anchor" href="#references-56"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9183,7 +9119,7 @@ end</code></pre>
 <code>Array#include?</code> could be used instead to avoid code repetition.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-96"><a class="anchor" href="#examples-96"></a>Examples</h3>
+<h3 id="examples-95"><a class="anchor" href="#examples-95"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9242,7 +9178,7 @@ positives. Luckily, there is no harm in freezing an already
 frozen object.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-97"><a class="anchor" href="#examples-97"></a>Examples</h3>
+<h3 id="examples-96"><a class="anchor" href="#examples-96"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-literals-default"><a class="anchor" href="#enforcedstyle-literals-default"></a>EnforcedStyle: literals (default)</h4>
 <div class="listingblock">
@@ -9364,7 +9300,7 @@ without else are considered. There are three different styles:</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="examples-98"><a class="anchor" href="#examples-98"></a>Examples</h3>
+<h3 id="examples-97"><a class="anchor" href="#examples-97"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-both-default-3"><a class="anchor" href="#enforcedstyle-both-default-3"></a>EnforcedStyle: both (default)</h4>
 <div class="listingblock">
@@ -9465,7 +9401,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-58"><a class="anchor" href="#references-58"></a>References</h3>
+<h3 id="references-57"><a class="anchor" href="#references-57"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9524,7 +9460,7 @@ without else are considered. There are three different styles:</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="examples-99"><a class="anchor" href="#examples-99"></a>Examples</h3>
+<h3 id="examples-98"><a class="anchor" href="#examples-98"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-both-default-4"><a class="anchor" href="#enforcedstyle-both-default-4"></a>EnforcedStyle: both (default)</h4>
 <div class="listingblock">
@@ -9615,7 +9551,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-59"><a class="anchor" href="#references-59"></a>References</h3>
+<h3 id="references-58"><a class="anchor" href="#references-58"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9660,7 +9596,7 @@ end</code></pre>
 <p>Checks for uses of while with a negated condition.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-100"><a class="anchor" href="#examples-100"></a>Examples</h3>
+<h3 id="examples-99"><a class="anchor" href="#examples-99"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9683,7 +9619,7 @@ bar while !foo &amp;&amp; baz</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-60"><a class="anchor" href="#references-60"></a>References</h3>
+<h3 id="references-59"><a class="anchor" href="#references-59"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9729,7 +9665,7 @@ bar while !foo &amp;&amp; baz</code></pre>
 modifier form.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-101"><a class="anchor" href="#examples-101"></a>Examples</h3>
+<h3 id="examples-100"><a class="anchor" href="#examples-100"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9741,7 +9677,7 @@ something if b &amp;&amp; a</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-61"><a class="anchor" href="#references-61"></a>References</h3>
+<h3 id="references-60"><a class="anchor" href="#references-60"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9787,7 +9723,7 @@ something if b &amp;&amp; a</code></pre>
 of a parenthesized method call.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-102"><a class="anchor" href="#examples-102"></a>Examples</h3>
+<h3 id="examples-101"><a class="anchor" href="#examples-101"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -9858,7 +9794,7 @@ method1(method2 arg)</code></pre>
 <p>This cop checks for nested ternary op expressions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-103"><a class="anchor" href="#examples-103"></a>Examples</h3>
+<h3 id="examples-102"><a class="anchor" href="#examples-102"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9874,7 +9810,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-62"><a class="anchor" href="#references-62"></a>References</h3>
+<h3 id="references-61"><a class="anchor" href="#references-61"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9919,7 +9855,7 @@ end</code></pre>
 <p>Use <code>next</code> to skip iteration instead of a condition at the end.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-104"><a class="anchor" href="#examples-104"></a>Examples</h3>
+<h3 id="examples-103"><a class="anchor" href="#examples-103"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-skip_modifier_ifs-default"><a class="anchor" href="#enforcedstyle-skip_modifier_ifs-default"></a>EnforcedStyle: skip_modifier_ifs (default)</h4>
 <div class="listingblock">
@@ -10003,7 +9939,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-63"><a class="anchor" href="#references-63"></a>References</h3>
+<h3 id="references-62"><a class="anchor" href="#references-62"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10052,7 +9988,7 @@ end</code></pre>
 <p>Supported styles are: predicate, comparison.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-105"><a class="anchor" href="#examples-105"></a>Examples</h3>
+<h3 id="examples-104"><a class="anchor" href="#examples-104"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-predicate-default"><a class="anchor" href="#enforcedstyle-predicate-default"></a>EnforcedStyle: predicate (default)</h4>
 <div class="listingblock">
@@ -10107,7 +10043,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-64"><a class="anchor" href="#references-64"></a>References</h3>
+<h3 id="references-63"><a class="anchor" href="#references-63"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10162,7 +10098,7 @@ for <code>!x.nil?</code> and autocorrects that and <code>x != nil</code> to sole
 is <strong>usually</strong> OK, but might change behavior.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-106"><a class="anchor" href="#examples-106"></a>Examples</h3>
+<h3 id="examples-105"><a class="anchor" href="#examples-105"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10226,7 +10162,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-65"><a class="anchor" href="#references-65"></a>References</h3>
+<h3 id="references-64"><a class="anchor" href="#references-64"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10271,7 +10207,7 @@ end</code></pre>
 <p>This cop checks for uses of the keyword <code>not</code> instead of <code>!</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-107"><a class="anchor" href="#examples-107"></a>Examples</h3>
+<h3 id="examples-106"><a class="anchor" href="#examples-106"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - parentheses are required because of op precedence
@@ -10283,7 +10219,7 @@ x = !something</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-66"><a class="anchor" href="#references-66"></a>References</h3>
+<h3 id="references-65"><a class="anchor" href="#references-65"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10330,7 +10266,7 @@ uppercase prefixes and corrects them to lowercase prefix
 or no prefix (in case of decimals).</p>
 </div>
 <div class="sect2">
-<h3 id="examples-108"><a class="anchor" href="#examples-108"></a>Examples</h3>
+<h3 id="examples-107"><a class="anchor" href="#examples-107"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedoctalstyle-zero_with_o-default"><a class="anchor" href="#enforcedoctalstyle-zero_with_o-default"></a>EnforcedOctalStyle: zero_with_o (default)</h4>
 <div class="listingblock">
@@ -10394,7 +10330,7 @@ num = 01234</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-67"><a class="anchor" href="#references-67"></a>References</h3>
+<h3 id="references-66"><a class="anchor" href="#references-66"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10440,7 +10376,7 @@ num = 01234</code></pre>
 of digits in them.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-109"><a class="anchor" href="#examples-109"></a>Examples</h3>
+<h3 id="examples-108"><a class="anchor" href="#examples-108"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10502,7 +10438,7 @@ of digits in them.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-68"><a class="anchor" href="#references-68"></a>References</h3>
+<h3 id="references-67"><a class="anchor" href="#references-67"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10560,7 +10496,7 @@ populated with objects which can be compared with integers, but are
 not themselves <code>Integer</code> polymorphic.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-110"><a class="anchor" href="#examples-110"></a>Examples</h3>
+<h3 id="examples-109"><a class="anchor" href="#examples-109"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-predicate-default-2"><a class="anchor" href="#enforcedstyle-predicate-default-2"></a>EnforcedStyle: predicate (default)</h4>
 <div class="listingblock">
@@ -10638,7 +10574,7 @@ bar.baz &gt; 0</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-69"><a class="anchor" href="#references-69"></a>References</h3>
+<h3 id="references-68"><a class="anchor" href="#references-68"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10684,7 +10620,7 @@ bar.baz &gt; 0</code></pre>
 Checks for uses of if/then/else/end on a single line.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-111"><a class="anchor" href="#examples-111"></a>Examples</h3>
+<h3 id="examples-110"><a class="anchor" href="#examples-110"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10706,7 +10642,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-70"><a class="anchor" href="#references-70"></a>References</h3>
+<h3 id="references-69"><a class="anchor" href="#references-69"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10752,7 +10688,7 @@ end</code></pre>
 current Ruby version supports keyword arguments.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-112"><a class="anchor" href="#examples-112"></a>Examples</h3>
+<h3 id="examples-111"><a class="anchor" href="#examples-111"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10829,7 +10765,7 @@ end</code></pre>
 that do not come at the end of the argument list.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-113"><a class="anchor" href="#examples-113"></a>Examples</h3>
+<h3 id="examples-112"><a class="anchor" href="#examples-112"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10846,7 +10782,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-71"><a class="anchor" href="#references-71"></a>References</h3>
+<h3 id="references-70"><a class="anchor" href="#references-70"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10891,7 +10827,7 @@ end</code></pre>
 <p>This cop checks for potential usage of the <code>||=</code> operator.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-114"><a class="anchor" href="#examples-114"></a>Examples</h3>
+<h3 id="examples-113"><a class="anchor" href="#examples-113"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10918,7 +10854,7 @@ name ||= 'Bozhidar'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-72"><a class="anchor" href="#references-72"></a>References</h3>
+<h3 id="references-71"><a class="anchor" href="#references-71"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10965,7 +10901,7 @@ This will only complain when the number of variables
 being assigned matched the number of assigning variables.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-115"><a class="anchor" href="#examples-115"></a>Examples</h3>
+<h3 id="examples-114"><a class="anchor" href="#examples-114"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10984,7 +10920,7 @@ c = 3</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-73"><a class="anchor" href="#references-73"></a>References</h3>
+<h3 id="references-72"><a class="anchor" href="#references-72"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -11036,7 +10972,7 @@ an assignment to indicate "I know I&#8217;m using an assignment
 as a condition. It&#8217;s not a mistake."</p>
 </div>
 <div class="sect2">
-<h3 id="examples-116"><a class="anchor" href="#examples-116"></a>Examples</h3>
+<h3 id="examples-115"><a class="anchor" href="#examples-115"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11132,7 +11068,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-74"><a class="anchor" href="#references-74"></a>References</h3>
+<h3 id="references-73"><a class="anchor" href="#references-73"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -11182,7 +11118,7 @@ can continue to specify individual preferred delimiters to override the
 default.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-117"><a class="anchor" href="#examples-117"></a>Examples</h3>
+<h3 id="examples-116"><a class="anchor" href="#examples-116"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Style/PercentLiteralDelimiters:
@@ -11226,7 +11162,7 @@ default.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-75"><a class="anchor" href="#references-75"></a>References</h3>
+<h3 id="references-74"><a class="anchor" href="#references-74"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -11271,7 +11207,7 @@ default.</p>
 <p>This cop checks for usage of the %Q() syntax when %q() would do.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-118"><a class="anchor" href="#examples-118"></a>Examples</h3>
+<h3 id="examples-117"><a class="anchor" href="#examples-117"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-lower_case_q-default"><a class="anchor" href="#enforcedstyle-lower_case_q-default"></a>EnforcedStyle: lower_case_q (default)</h4>
 <div class="listingblock">
@@ -11365,7 +11301,7 @@ default.</p>
 backreferences like $1, $2, etc.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-119"><a class="anchor" href="#examples-119"></a>Examples</h3>
+<h3 id="examples-118"><a class="anchor" href="#examples-118"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11377,7 +11313,7 @@ puts Regexp.last_match(1)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-76"><a class="anchor" href="#references-76"></a>References</h3>
+<h3 id="references-75"><a class="anchor" href="#references-75"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -11425,7 +11361,7 @@ It is configurable to enforce the inverse, using <code>verbose</code> method
 names also.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-120"><a class="anchor" href="#examples-120"></a>Examples</h3>
+<h3 id="examples-119"><a class="anchor" href="#examples-119"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-short-default"><a class="anchor" href="#enforcedstyle-short-default"></a>EnforcedStyle: short (default)</h4>
 <div class="listingblock">
@@ -11480,7 +11416,7 @@ Hash#has_value?</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-77"><a class="anchor" href="#references-77"></a>References</h3>
+<h3 id="references-76"><a class="anchor" href="#references-76"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -11526,7 +11462,7 @@ Hash#has_value?</code></pre>
 would be more appropriate.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-121"><a class="anchor" href="#examples-121"></a>Examples</h3>
+<h3 id="examples-120"><a class="anchor" href="#examples-120"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11538,7 +11474,7 @@ p = proc { |n| puts n }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-78"><a class="anchor" href="#references-78"></a>References</h3>
+<h3 id="references-77"><a class="anchor" href="#references-77"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -11592,7 +11528,7 @@ will also suggest constructing error objects when the exception is
 passed multiple arguments.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-122"><a class="anchor" href="#examples-122"></a>Examples</h3>
+<h3 id="examples-121"><a class="anchor" href="#examples-121"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-exploded-default"><a class="anchor" href="#enforcedstyle-exploded-default"></a>EnforcedStyle: exploded (default)</h4>
 <div class="listingblock">
@@ -11649,7 +11585,7 @@ fail "message"</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-79"><a class="anchor" href="#references-79"></a>References</h3>
+<h3 id="references-78"><a class="anchor" href="#references-78"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -11697,7 +11633,7 @@ Integer#succ and Integer#pred methods. Prefer using ranges instead,
 as it clearly states the intentions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-123"><a class="anchor" href="#examples-123"></a>Examples</h3>
+<h3 id="examples-122"><a class="anchor" href="#examples-122"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11718,7 +11654,7 @@ rand(1...7)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-80"><a class="anchor" href="#references-80"></a>References</h3>
+<h3 id="references-79"><a class="anchor" href="#references-79"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -11763,7 +11699,7 @@ rand(1...7)</code></pre>
 <p>This cop checks for redundant assignment before returning.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-124"><a class="anchor" href="#examples-124"></a>Examples</h3>
+<h3 id="examples-123"><a class="anchor" href="#examples-123"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11838,7 +11774,7 @@ end</code></pre>
 <p>Currently it checks for code like this:</p>
 </div>
 <div class="sect2">
-<h3 id="examples-125"><a class="anchor" href="#examples-125"></a>Examples</h3>
+<h3 id="examples-124"><a class="anchor" href="#examples-124"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11890,7 +11826,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-81"><a class="anchor" href="#references-81"></a>References</h3>
+<h3 id="references-80"><a class="anchor" href="#references-80"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -11935,7 +11871,7 @@ end</code></pre>
 <p>This cop checks for usage of the %W() syntax when %w() would do.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-126"><a class="anchor" href="#examples-126"></a>Examples</h3>
+<h3 id="examples-125"><a class="anchor" href="#examples-125"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11985,7 +11921,7 @@ end</code></pre>
 <p>This cop checks for unnecessary conditional expressions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-127"><a class="anchor" href="#examples-127"></a>Examples</h3>
+<h3 id="examples-126"><a class="anchor" href="#examples-126"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12052,7 +11988,7 @@ end</code></pre>
 <p>This cop checks for redundant returning of true/false in conditionals.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-128"><a class="anchor" href="#examples-128"></a>Examples</h3>
+<h3 id="examples-127"><a class="anchor" href="#examples-127"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12115,7 +12051,7 @@ x != y</code></pre>
 <p>It checks for code like this:</p>
 </div>
 <div class="sect2">
-<h3 id="examples-129"><a class="anchor" href="#examples-129"></a>Examples</h3>
+<h3 id="examples-128"><a class="anchor" href="#examples-128"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Bad
@@ -12130,7 +12066,7 @@ raise 'message'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-82"><a class="anchor" href="#references-82"></a>References</h3>
+<h3 id="references-81"><a class="anchor" href="#references-81"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -12180,7 +12116,7 @@ can be replaced by <code>fetch(key, value)</code>.</p>
 than <code>fetch(key) { value }</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-130"><a class="anchor" href="#examples-130"></a>Examples</h3>
+<h3 id="examples-129"><a class="anchor" href="#examples-129"></a>Examples</h3>
 <div class="sect3">
 <h4 id="safeforconstants-false-default"><a class="anchor" href="#safeforconstants-false-default"></a>SafeForConstants: false (default)</h4>
 <div class="listingblock">
@@ -12239,7 +12175,7 @@ ENV.fetch(:key, VALUE)</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-83"><a class="anchor" href="#references-83"></a>References</h3>
+<h3 id="references-82"><a class="anchor" href="#references-82"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -12293,7 +12229,7 @@ the filename provided to <code>require</code> and <code>require_relative</code>.
       but that seems harmless.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-131"><a class="anchor" href="#examples-131"></a>Examples</h3>
+<h3 id="examples-130"><a class="anchor" href="#examples-130"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12309,7 +12245,7 @@ require_relative '../foo.so'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-84"><a class="anchor" href="#references-84"></a>References</h3>
+<h3 id="references-83"><a class="anchor" href="#references-83"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -12354,7 +12290,7 @@ require_relative '../foo.so'</code></pre>
 <p>This cop check for uses of Object#freeze on immutable objects.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-132"><a class="anchor" href="#examples-132"></a>Examples</h3>
+<h3 id="examples-131"><a class="anchor" href="#examples-131"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12401,7 +12337,7 @@ CONST = 1</code></pre>
 <p>This cop checks for strings that are just an interpolated expression.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-133"><a class="anchor" href="#examples-133"></a>Examples</h3>
+<h3 id="examples-132"><a class="anchor" href="#examples-132"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12451,7 +12387,7 @@ CONST = 1</code></pre>
 <p>This cop checks for redundant parentheses.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-134"><a class="anchor" href="#examples-134"></a>Examples</h3>
+<h3 id="examples-133"><a class="anchor" href="#examples-133"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12498,7 +12434,7 @@ x if y.z.nil?</code></pre>
 <p>This cop checks for usage of the %q/%Q syntax when '' or "" would do.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-135"><a class="anchor" href="#examples-135"></a>Examples</h3>
+<h3 id="examples-134"><a class="anchor" href="#examples-134"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12514,7 +12450,7 @@ question = '"What did you say?"'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-85"><a class="anchor" href="#references-85"></a>References</h3>
+<h3 id="references-84"><a class="anchor" href="#references-84"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -12559,7 +12495,7 @@ question = '"What did you say?"'</code></pre>
 <p>This cop checks for unnecessary single-element Regexp character classes.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-136"><a class="anchor" href="#examples-136"></a>Examples</h3>
+<h3 id="examples-135"><a class="anchor" href="#examples-135"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12615,7 +12551,7 @@ r = /[ab]/</code></pre>
 <p>This cop checks for redundant escapes inside Regexp literals.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-137"><a class="anchor" href="#examples-137"></a>Examples</h3>
+<h3 id="examples-136"><a class="anchor" href="#examples-136"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12683,7 +12619,7 @@ r = /[ab]/</code></pre>
 <p>This cop checks for redundant <code>return</code> expressions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-138"><a class="anchor" href="#examples-138"></a>Examples</h3>
+<h3 id="examples-137"><a class="anchor" href="#examples-137"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># These bad cases should be extended to handle methods whose body is
@@ -12764,7 +12700,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-86"><a class="anchor" href="#references-86"></a>References</h3>
+<h3 id="references-85"><a class="anchor" href="#references-85"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -12832,7 +12768,7 @@ protected scope, you cannot send private messages this way.</p>
 otherwise.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-139"><a class="anchor" href="#examples-139"></a>Examples</h3>
+<h3 id="examples-138"><a class="anchor" href="#examples-138"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12859,7 +12795,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-87"><a class="anchor" href="#references-87"></a>References</h3>
+<h3 id="references-86"><a class="anchor" href="#references-86"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -12911,7 +12847,7 @@ last element. Similarly, <code>Enumerable#min_by</code> and
 after which only the first or last element is used.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-140"><a class="anchor" href="#examples-140"></a>Examples</h3>
+<h3 id="examples-139"><a class="anchor" href="#examples-139"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12989,7 +12925,7 @@ arr.max_by(&amp;:foo)</code></pre>
 <code>sort</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-141"><a class="anchor" href="#examples-141"></a>Examples</h3>
+<h3 id="examples-140"><a class="anchor" href="#examples-140"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -13039,7 +12975,7 @@ array.sort</code></pre>
 <p>This cop enforces using // or %r around regular expressions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-142"><a class="anchor" href="#examples-142"></a>Examples</h3>
+<h3 id="examples-141"><a class="anchor" href="#examples-141"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-slashes-default"><a class="anchor" href="#enforcedstyle-slashes-default"></a>EnforcedStyle: slashes (default)</h4>
 <div class="listingblock">
@@ -13173,7 +13109,7 @@ x =~ /home\//</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-88"><a class="anchor" href="#references-88"></a>References</h3>
+<h3 id="references-87"><a class="anchor" href="#references-87"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -13239,7 +13175,7 @@ handle the exception.</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="examples-143"><a class="anchor" href="#examples-143"></a>Examples</h3>
+<h3 id="examples-142"><a class="anchor" href="#examples-142"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -13265,7 +13201,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-89"><a class="anchor" href="#references-89"></a>References</h3>
+<h3 id="references-88"><a class="anchor" href="#references-88"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -13312,7 +13248,7 @@ styles <code>implicit</code> and <code>explicit</code>. This cop will not regist
 if any error other than <code>StandardError</code> is specified.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-144"><a class="anchor" href="#examples-144"></a>Examples</h3>
+<h3 id="examples-143"><a class="anchor" href="#examples-143"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-implicit"><a class="anchor" href="#enforcedstyle-implicit"></a>EnforcedStyle: implicit</h4>
 <div class="listingblock">
@@ -13451,7 +13387,7 @@ end</code></pre>
 <p>Supported styles are: return, return_nil.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-145"><a class="anchor" href="#examples-145"></a>Examples</h3>
+<h3 id="examples-144"><a class="anchor" href="#examples-144"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-return-default"><a class="anchor" href="#enforcedstyle-return-default"></a>EnforcedStyle: return (default)</h4>
 <div class="listingblock">
@@ -13559,7 +13495,7 @@ of the method is. If this is converted to safe navigation,
 returns.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-146"><a class="anchor" href="#examples-146"></a>Examples</h3>
+<h3 id="examples-145"><a class="anchor" href="#examples-145"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -13671,7 +13607,7 @@ foo.bar &gt; 2 if foo</code></pre>
 <code>sample</code> instead.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-147"><a class="anchor" href="#examples-147"></a>Examples</h3>
+<h3 id="examples-146"><a class="anchor" href="#examples-146"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -13697,7 +13633,7 @@ foo.bar &gt; 2 if foo</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-90"><a class="anchor" href="#references-90"></a>References</h3>
+<h3 id="references-89"><a class="anchor" href="#references-89"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -13742,7 +13678,7 @@ foo.bar &gt; 2 if foo</code></pre>
 <p>This cop enforces the use the shorthand for self-assignment.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-148"><a class="anchor" href="#examples-148"></a>Examples</h3>
+<h3 id="examples-147"><a class="anchor" href="#examples-147"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -13754,7 +13690,7 @@ x += 1</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-91"><a class="anchor" href="#references-91"></a>References</h3>
+<h3 id="references-90"><a class="anchor" href="#references-90"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -13804,7 +13740,7 @@ It also checks for lines terminated with a semicolon.</p>
 It allows <code>;</code> to separate several expressions on the same line.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-149"><a class="anchor" href="#examples-149"></a>Examples</h3>
+<h3 id="examples-148"><a class="anchor" href="#examples-148"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -13861,7 +13797,7 @@ foo = 1; bar = 2</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-92"><a class="anchor" href="#references-92"></a>References</h3>
+<h3 id="references-91"><a class="anchor" href="#references-91"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -13906,7 +13842,7 @@ foo = 1; bar = 2</code></pre>
 <p>This cop checks for the use of the send method.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-150"><a class="anchor" href="#examples-150"></a>Examples</h3>
+<h3 id="examples-149"><a class="anchor" href="#examples-149"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -13920,7 +13856,7 @@ quuz.public_send(:fred)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-93"><a class="anchor" href="#references-93"></a>References</h3>
+<h3 id="references-92"><a class="anchor" href="#references-92"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -13965,7 +13901,7 @@ quuz.public_send(:fred)</code></pre>
 <p>This cop checks for uses of <code>fail</code> and <code>raise</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-151"><a class="anchor" href="#examples-151"></a>Examples</h3>
+<h3 id="examples-150"><a class="anchor" href="#examples-150"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-only_raise-default"><a class="anchor" href="#enforcedstyle-only_raise-default"></a>EnforcedStyle: only_raise (default)</h4>
 <div class="listingblock">
@@ -14107,7 +14043,7 @@ explicit_receiver.raise</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-94"><a class="anchor" href="#references-94"></a>References</h3>
+<h3 id="references-93"><a class="anchor" href="#references-93"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -14162,7 +14098,7 @@ Should be set to use this cop. Array of hashes, where each key is the
 method name and value - array of argument names.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-152"><a class="anchor" href="#examples-152"></a>Examples</h3>
+<h3 id="examples-151"><a class="anchor" href="#examples-151"></a>Examples</h3>
 <div class="sect3">
 <h4 id="methods-reduce-wa-b"><a class="anchor" href="#methods-reduce-wa-b"></a>Methods: [{reduce: %w[a b]}]</h4>
 <div class="listingblock">
@@ -14246,7 +14182,7 @@ end</code></pre>
 It will accept single-line methods with no body.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-153"><a class="anchor" href="#examples-153"></a>Examples</h3>
+<h3 id="examples-152"><a class="anchor" href="#examples-152"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -14303,7 +14239,7 @@ def no_op; end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-95"><a class="anchor" href="#references-95"></a>References</h3>
+<h3 id="references-94"><a class="anchor" href="#references-94"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -14361,7 +14297,7 @@ Required Ruby version: 2.6
 <code>ary[start..-1]</code> on Ruby 2.6+.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-154"><a class="anchor" href="#examples-154"></a>Examples</h3>
+<h3 id="examples-153"><a class="anchor" href="#examples-153"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -14408,7 +14344,7 @@ items[1..]</code></pre>
 <p>This cop looks for uses of Perl-style global variables.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-155"><a class="anchor" href="#examples-155"></a>Examples</h3>
+<h3 id="examples-154"><a class="anchor" href="#examples-154"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-use_english_names-default"><a class="anchor" href="#enforcedstyle-use_english_names-default"></a>EnforcedStyle: use_english_names (default)</h4>
 <div class="listingblock">
@@ -14495,7 +14431,7 @@ puts $+</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-96"><a class="anchor" href="#references-96"></a>References</h3>
+<h3 id="references-95"><a class="anchor" href="#references-95"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -14541,7 +14477,7 @@ puts $+</code></pre>
 There are two different styles. Defaults to <code>require_parentheses</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-156"><a class="anchor" href="#examples-156"></a>Examples</h3>
+<h3 id="examples-155"><a class="anchor" href="#examples-155"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-require_parentheses-default-3"><a class="anchor" href="#enforcedstyle-require_parentheses-default-3"></a>EnforcedStyle: require_parentheses (default)</h4>
 <div class="listingblock">
@@ -14592,7 +14528,7 @@ There are two different styles. Defaults to <code>require_parentheses</code>.</p
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-97"><a class="anchor" href="#references-97"></a>References</h3>
+<h3 id="references-96"><a class="anchor" href="#references-96"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -14639,7 +14575,7 @@ There are two different styles. Defaults to <code>require_parentheses</code>.</p
 the <code>-W0</code> interpreter flag or setting <code>$VERBOSE</code> to <code>nil</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-157"><a class="anchor" href="#examples-157"></a>Examples</h3>
+<h3 id="examples-156"><a class="anchor" href="#examples-156"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -14651,11 +14587,70 @@ warn('hello')</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-98"><a class="anchor" href="#references-98"></a>References</h3>
+<h3 id="references-97"><a class="anchor" href="#references-97"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
 <p><a href="https://rubystyle.guide#warn" class="bare">https://rubystyle.guide#warn</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stylestringconcatenation"><a class="anchor" href="#stylestringconcatenation"></a>Style/StringConcatenation</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.89</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop checks for places where string concatenation
+can be replaced with string interpolation.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-157"><a class="anchor" href="#examples-157"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+email_with_name = user.name + ' &lt;' + user.email + '&gt;'
+
+# good
+email_with_name = "#{user.name} &lt;#{user.email}&gt;"
+email_with_name = format('%s &lt;%s&gt;', user.name, user.email)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-98"><a class="anchor" href="#references-98"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://rubystyle.guide#string-interpolation" class="bare">https://rubystyle.guide#string-interpolation</a></p>
 </li>
 </ul>
 </div>

@@ -149,7 +149,7 @@
           <a href="../rubocop-minitest/index.html">master</a>
         </li>
         <li class="version">
-          <a href="../rubocop-minitest/0.1/index.html">0.1</a>
+          <a href="../rubocop-minitest/0.10/index.html">0.10</a>
         </li>
       </ul>
     </li>
@@ -4272,7 +4272,7 @@ Post.published.pluck(:title)
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.7</p></td>
@@ -6778,7 +6778,10 @@ validates :account, length: { minimum: MIN_LENGTH }</code></pre>
 </table>
 <div class="paragraph">
 <p>This cop checks that environments called with <code>Rails.env</code> predicates
-exist.</p>
+exist.
+By default the cop allows three environments which Rails ships with:
+<code>development</code>, <code>test</code>, and <code>production</code>.
+More can be added to the <code>Environments</code> config parameter.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
