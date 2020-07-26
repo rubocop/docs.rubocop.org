@@ -5095,6 +5095,57 @@ puts 'hello, world'</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="lintselfassignment"><a class="anchor" href="#lintselfassignment"></a>Lint/SelfAssignment</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.89</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop checks for self-assignments.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-68"><a class="anchor" href="#examples-68"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+foo = foo
+foo, bar = foo, bar
+Foo = Foo
+
+# good
+foo = bar
+foo, bar = bar, foo
+Foo = Bar</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="lintsendwithmixinargument"><a class="anchor" href="#lintsendwithmixinargument"></a>Lint/SendWithMixinArgument</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -5136,7 +5187,7 @@ And <code>extend</code> method that was originally a public method is also targe
 for style unification.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-68"><a class="anchor" href="#examples-68"></a>Examples</h3>
+<h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5202,7 +5253,7 @@ It means argument shadowing is used in order to pass parameters
 to zero arity <code>super</code> when <code>IgnoreImplicitReferences</code> is <code>true</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
+<h3 id="examples-70"><a class="anchor" href="#examples-70"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5329,7 +5380,7 @@ less specific exception being rescued before a more specific
 exception is rescued.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-70"><a class="anchor" href="#examples-70"></a>Examples</h3>
+<h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5407,7 +5458,7 @@ This is a mimic of the warning
 "shadowing outer local variable - foo" from <code>ruby -cw</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
+<h3 id="examples-72"><a class="anchor" href="#examples-72"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5472,7 +5523,7 @@ end</code></pre>
 via <code>Struct.new</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-72"><a class="anchor" href="#examples-72"></a>Examples</h3>
+<h3 id="examples-73"><a class="anchor" href="#examples-73"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5527,7 +5578,7 @@ g.count #=&gt; 2</code></pre>
 <p>This cop checks for <code>rescue</code> blocks with no body.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-73"><a class="anchor" href="#examples-73"></a>Examples</h3>
+<h3 id="examples-74"><a class="anchor" href="#examples-74"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5707,7 +5758,7 @@ generation via <code>JSON.generate(your_obj)</code>.  Since <code>JSON#generate<
 for an optional argument, your method should too.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-74"><a class="anchor" href="#examples-74"></a>Examples</h3>
+<h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5758,7 +5809,7 @@ top-level return statement with an argument, then the argument is
 always ignored. This is detected automatically since Ruby 2.7.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
+<h3 id="examples-76"><a class="anchor" href="#examples-76"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Detected since Ruby 2.7
@@ -5808,7 +5859,7 @@ sites, the <code>AllowKeywordBlockArguments</code> will allow use of underscore-
 prefixed block keyword arguments.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-76"><a class="anchor" href="#examples-76"></a>Examples</h3>
+<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
 <div class="sect3">
 <h4 id="allowkeywordblockarguments-false-default"><a class="anchor" href="#allowkeywordblockarguments-false-default"></a>AllowKeywordBlockArguments: false (default)</h4>
 <div class="listingblock">
@@ -5908,7 +5959,7 @@ end</code></pre>
 <p>This cop checks for using Fixnum or Bignum constant.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
+<h3 id="examples-78"><a class="anchor" href="#examples-78"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5963,7 +6014,7 @@ The check are based on the presence of flow of control
 statement in non-final position in <code>begin</code> (implicit) blocks.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-78"><a class="anchor" href="#examples-78"></a>Examples</h3>
+<h3 id="examples-79"><a class="anchor" href="#examples-79"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6031,7 +6082,7 @@ end</code></pre>
 <p>This cop checks for unused block arguments.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-79"><a class="anchor" href="#examples-79"></a>Examples</h3>
+<h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6177,7 +6228,7 @@ end</code></pre>
 <p>This cop checks for unused method arguments.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
+<h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6349,7 +6400,7 @@ Also this cop identifies places where <code>URI.unescape</code> can be replaced 
 or <code>URI.decode_www_form_component</code> depending on your specific use case.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
+<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6410,7 +6461,7 @@ URI.decode_www_form_component(enc_uri)</code></pre>
 not be used. Instead, use <code>URI::DEFAULT_PARSER.make_regexp</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
+<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6473,7 +6524,7 @@ This setting is an array of methods which, when called, are known to
 create other methods in the module&#8217;s current access context.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
+<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6670,7 +6721,7 @@ reassignments and properly handles varied cases such as branch, loop,
 rescue, ensure, etc.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
+<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6738,7 +6789,7 @@ end</code></pre>
 <p>This cop checks for comparison of something with itself.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
+<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6796,7 +6847,7 @@ this cop is going to be removed at some point the future.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
+<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6873,7 +6924,7 @@ detected by the cop, and it can yield a false positive.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
+<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6933,7 +6984,7 @@ end</code></pre>
 methods used in void context.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
+<h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
 <div class="sect3">
 <h4 id="checkformethodswithnosideeffects-false-default"><a class="anchor" href="#checkformethodswithnosideeffects-false-default"></a>CheckForMethodsWithNoSideEffects: false (default)</h4>
 <div class="listingblock">
