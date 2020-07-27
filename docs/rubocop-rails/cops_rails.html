@@ -588,6 +588,72 @@ are not used.</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="railsaftercommitoverride"><a class="anchor" href="#railsaftercommitoverride"></a>Rails/AfterCommitOverride</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop enforces that there is only one call to <code>after_commit</code>
+(and its aliases - <code>after_create_commit</code>, <code>after_update_commit</code>,
+and <code>after_destroy_commit</code>) with the same callback name per model.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+# This won't be triggered.
+after_create_commit :log_action
+
+# This will override the callback added by
+# after_create_commit.
+after_update_commit :log_action
+
+# bad
+# This won't be triggered.
+after_commit :log_action, on: :create
+# This won't be triggered.
+after_update_commit :log_action
+# This will override both previous callbacks.
+after_commit :log_action, on: :destroy
+
+# good
+after_save_commit :log_action
+
+# good
+after_create_commit :log_create_action
+after_update_commit :log_update_action</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="railsapplicationcontroller"><a class="anchor" href="#railsapplicationcontroller"></a>Rails/ApplicationController</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -621,7 +687,7 @@ are not used.</p>
 <p>This cop checks that controllers subclass ApplicationController.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -672,7 +738,7 @@ end</code></pre>
 <p>This cop checks that jobs subclass ApplicationJob with Rails 5.0.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
+<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -723,7 +789,7 @@ end</code></pre>
 <p>This cop checks that mailers subclass ApplicationMailer with Rails 5.0.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
+<h3 id="examples-9"><a class="anchor" href="#examples-9"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -774,7 +840,7 @@ end</code></pre>
 <p>This cop checks that models subclass ApplicationRecord with Rails 5.0.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-9"><a class="anchor" href="#examples-9"></a>Examples</h3>
+<h3 id="examples-10"><a class="anchor" href="#examples-10"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -825,7 +891,7 @@ end</code></pre>
 <p>Use <code>assert_not</code> instead of <code>assert !</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-10"><a class="anchor" href="#examples-10"></a>Examples</h3>
+<h3 id="examples-11"><a class="anchor" href="#examples-11"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -925,7 +991,7 @@ superfluous <code>optional: false</code>). Therefore, in the cases we&#8217;re u
 user can remove depending on their defaults.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-11"><a class="anchor" href="#examples-11"></a>Examples</h3>
+<h3 id="examples-12"><a class="anchor" href="#examples-12"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -993,7 +1059,7 @@ context of <code>unless else</code> if <code>Style/UnlessElse</code> is inabled.
 to prevent interference between the auto-correction of the two cops.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-12"><a class="anchor" href="#examples-12"></a>Examples</h3>
+<h3 id="examples-13"><a class="anchor" href="#examples-13"></a>Examples</h3>
 <div class="sect3">
 <h4 id="nilorempty-true-default"><a class="anchor" href="#nilorempty-true-default"></a>NilOrEmpty: true (default)</h4>
 <div class="listingblock">
@@ -1135,7 +1201,7 @@ If the adapter is not <code>mysql2</code> or <code>postgresql</code>,
 this Cop ignores offenses.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-13"><a class="anchor" href="#examples-13"></a>Examples</h3>
+<h3 id="examples-14"><a class="anchor" href="#examples-14"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1267,7 +1333,7 @@ Allow <code>content_tag</code> when the first argument is a variable because
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-14"><a class="anchor" href="#examples-14"></a>Examples</h3>
+<h3 id="examples-15"><a class="anchor" href="#examples-15"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1332,7 +1398,7 @@ when creating a new table.
 In many cases, timestamps are useful information and should be added.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-15"><a class="anchor" href="#examples-15"></a>Examples</h3>
+<h3 id="examples-16"><a class="anchor" href="#examples-16"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1449,7 +1515,7 @@ and 'to_time_in_current_zone' are reported as warning.</p>
 and only <code>to_time</code> is reported as warning.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-16"><a class="anchor" href="#examples-16"></a>Examples</h3>
+<h3 id="examples-17"><a class="anchor" href="#examples-17"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-strict"><a class="anchor" href="#enforcedstyle-strict"></a>EnforcedStyle: strict</h4>
 <div class="listingblock">
@@ -1544,7 +1610,7 @@ date.in_time_zone</code></pre>
 <p>This cop looks for uses of <code>default_scope</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-17"><a class="anchor" href="#examples-17"></a>Examples</h3>
+<h3 id="examples-18"><a class="anchor" href="#examples-18"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1623,7 +1689,7 @@ without using the <code>delegate</code> method will be a violation.
 When set to <code>false</code>, this case is legal.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-18"><a class="anchor" href="#examples-18"></a>Examples</h3>
+<h3 id="examples-19"><a class="anchor" href="#examples-19"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1737,7 +1803,7 @@ instead of :allow_nil. :allow_blank is not a valid option to pass
 to ActiveSupport#delegate.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-19"><a class="anchor" href="#examples-19"></a>Examples</h3>
+<h3 id="examples-20"><a class="anchor" href="#examples-20"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1786,7 +1852,7 @@ Use <code>find_by</code> instead of dynamic method.
 See. <a href="https://rails.rubystyle.guide#find_by" class="bare">https://rails.rubystyle.guide#find_by</a></p>
 </div>
 <div class="sect2">
-<h3 id="examples-20"><a class="anchor" href="#examples-20"></a>Examples</h3>
+<h3 id="examples-21"><a class="anchor" href="#examples-21"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1911,7 +1977,7 @@ definitions to shift. Explicitly specifying the
 value for each key prevents this from happening.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-21"><a class="anchor" href="#examples-21"></a>Examples</h3>
+<h3 id="examples-22"><a class="anchor" href="#examples-22"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1992,7 +2058,7 @@ enum status: { active: 0, archived: 1 }</code></pre>
 <p>This cop looks for duplicate values in enum declarations.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-22"><a class="anchor" href="#examples-22"></a>Examples</h3>
+<h3 id="examples-23"><a class="anchor" href="#examples-23"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2070,7 +2136,7 @@ enum status: [:active, :archived]</code></pre>
 methods instead of equality against a string or symbol.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-23"><a class="anchor" href="#examples-23"></a>Examples</h3>
+<h3 id="examples-24"><a class="anchor" href="#examples-24"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2140,7 +2206,7 @@ do its job.</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="examples-24"><a class="anchor" href="#examples-24"></a>Examples</h3>
+<h3 id="examples-25"><a class="anchor" href="#examples-25"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2218,7 +2284,7 @@ to use <code>Rails.root.join</code> clause. It is used to add uniformity when
 joining paths.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-25"><a class="anchor" href="#examples-25"></a>Examples</h3>
+<h3 id="examples-26"><a class="anchor" href="#examples-26"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-arguments"><a class="anchor" href="#enforcedstyle-arguments"></a>EnforcedStyle: arguments</h4>
 <div class="listingblock">
@@ -2309,7 +2375,7 @@ Rails.root.join('app/models/goober')</code></pre>
 change them to use <code>find_by</code> instead.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-26"><a class="anchor" href="#examples-26"></a>Examples</h3>
+<h3 id="examples-27"><a class="anchor" href="#examples-27"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2393,7 +2459,7 @@ User.find_by(name: 'Bruce')</code></pre>
 by primary key when you expect it to be found.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-27"><a class="anchor" href="#examples-27"></a>Examples</h3>
+<h3 id="examples-28"><a class="anchor" href="#examples-28"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2453,7 +2519,7 @@ User.find(id)</code></pre>
 change them to use <code>all.find_each</code> instead.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-28"><a class="anchor" href="#examples-28"></a>Examples</h3>
+<h3 id="examples-29"><a class="anchor" href="#examples-29"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2534,7 +2600,7 @@ User.all.find_each</code></pre>
 <p>This cop checks for the use of the has_and_belongs_to_many macro.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-29"><a class="anchor" href="#examples-29"></a>Examples</h3>
+<h3 id="examples-30"><a class="anchor" href="#examples-30"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2617,7 +2683,7 @@ specify a <code>:dependent</code> option.
 It doesn&#8217;t register an offense if <code>:through</code> option was specified.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-30"><a class="anchor" href="#examples-30"></a>Examples</h3>
+<h3 id="examples-31"><a class="anchor" href="#examples-31"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2715,7 +2781,7 @@ variable, consider moving the behaviour elsewhere, for
 example to a model, decorator or presenter.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-31"><a class="anchor" href="#examples-31"></a>Examples</h3>
+<h3 id="examples-32"><a class="anchor" href="#examples-32"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2795,7 +2861,7 @@ Rails/HttpPositionalArguments cop or set your TargetRailsVersion in your
 .rubocop.yml file to 4.2.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-32"><a class="anchor" href="#examples-32"></a>Examples</h3>
+<h3 id="examples-33"><a class="anchor" href="#examples-33"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2866,7 +2932,7 @@ get :new, params: { user_id: 1 }</code></pre>
 <p>Enforces use of symbolic or numeric value to define HTTP status.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-33"><a class="anchor" href="#examples-33"></a>Examples</h3>
+<h3 id="examples-34"><a class="anchor" href="#examples-34"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-symbolic-default"><a class="anchor" href="#enforcedstyle-symbolic-default"></a>EnforcedStyle: symbolic (default)</h4>
 <div class="listingblock">
@@ -2970,7 +3036,7 @@ Similarly, the <code>except</code> option will be ignored when <code>if</code> a
 are used together.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-34"><a class="anchor" href="#examples-34"></a>Examples</h3>
+<h3 id="examples-35"><a class="anchor" href="#examples-35"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3075,7 +3141,7 @@ an enumerable into a hash where the values are the original elements.
 Rails provides the <code>index_by</code> method for this purpose.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-35"><a class="anchor" href="#examples-35"></a>Examples</h3>
+<h3 id="examples-36"><a class="anchor" href="#examples-36"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3127,7 +3193,7 @@ an enumerable into a hash where the keys are the original elements.
 Rails provides the <code>index_with</code> method for this purpose.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-36"><a class="anchor" href="#examples-36"></a>Examples</h3>
+<h3 id="examples-37"><a class="anchor" href="#examples-37"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3176,7 +3242,7 @@ Hash[[1, 2, 3].collect { |el| [el, foo(el)] }]
 <p>This cop checks that Active Support&#8217;s <code>inquiry</code> method is not used.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-37"><a class="anchor" href="#examples-37"></a>Examples</h3>
+<h3 id="examples-38"><a class="anchor" href="#examples-38"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - String#inquiry
@@ -3254,7 +3320,7 @@ setting <code>nil</code> does not stop Active Record from trying to determine th
 inverse automatically, and is not considered a valid value for this.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-38"><a class="anchor" href="#examples-38"></a>Examples</h3>
+<h3 id="examples-39"><a class="anchor" href="#examples-39"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -3446,7 +3512,7 @@ define the filter in that class or module.</p>
 remember to invoke <code>super</code> in the subclass actions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-39"><a class="anchor" href="#examples-39"></a>Examples</h3>
+<h3 id="examples-40"><a class="anchor" href="#examples-40"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3600,7 +3666,7 @@ and could change its location for phishing purposes.</p>
 and removes the http-referrer header.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-40"><a class="anchor" href="#examples-40"></a>Examples</h3>
+<h3 id="examples-41"><a class="anchor" href="#examples-41"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3670,7 +3736,7 @@ link_to 'Click here', url, target: '_blank', rel: 'noreferrer'</code></pre>
 and which views are related to the mailer.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-41"><a class="anchor" href="#examples-41"></a>Examples</h3>
+<h3 id="examples-42"><a class="anchor" href="#examples-42"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3764,7 +3830,7 @@ can be replaced with a specific HTTP method.</p>
 among [:get, :post, :patch, :put, :delete] to a single action using the <code>:via</code> option.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-42"><a class="anchor" href="#examples-42"></a>Examples</h3>
+<h3 id="examples-43"><a class="anchor" href="#examples-43"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3850,7 +3916,7 @@ match 'photos/:id', to: 'photos#show', via: :all</code></pre>
 over <code>!collection.include?(obj)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-43"><a class="anchor" href="#examples-43"></a>Examples</h3>
+<h3 id="examples-44"><a class="anchor" href="#examples-44"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3910,7 +3976,7 @@ hash.exclude?(:key)</code></pre>
 in migration file.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-44"><a class="anchor" href="#examples-44"></a>Examples</h3>
+<h3 id="examples-45"><a class="anchor" href="#examples-45"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3985,7 +4051,7 @@ add_reference :products, :category, null: false, default: 1</code></pre>
 <p>This cop checks for the use of output calls like puts and print</p>
 </div>
 <div class="sect2">
-<h3 id="examples-45"><a class="anchor" href="#examples-45"></a>Examples</h3>
+<h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4062,7 +4128,7 @@ use <code>safe_join</code> to join content and escape it and concat to
 concatenate content and escape it, ensuring its safety.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>
+<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">user_content = "&lt;b&gt;hi&lt;/b&gt;"
@@ -4161,7 +4227,7 @@ safe_join([user_content, " ", content_tag(:span, user_content)])
 limit to the query so that only one value is fetched from the database.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
+<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4225,7 +4291,7 @@ element in an enumerable. When called on an Active Record relation, it
 results in a more efficient query that only selects the necessary key.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
+<h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4284,7 +4350,7 @@ Post.published.pluck(:title)
 <p>This cop enforces the use of <code>ids</code> over <code>pluck(:id)</code> and <code>pluck(primary_key)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
+<h3 id="examples-50"><a class="anchor" href="#examples-50"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4356,7 +4422,7 @@ and can be replaced with <code>select</code>.</p>
 using <code>select</code> helps to avoid additional database queries.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-50"><a class="anchor" href="#examples-50"></a>Examples</h3>
+<h3 id="examples-51"><a class="anchor" href="#examples-51"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4404,7 +4470,7 @@ Post.where(user_id: User.active.select(:id))</code></pre>
 core extensions to the numeric classes.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-51"><a class="anchor" href="#examples-51"></a>Examples</h3>
+<h3 id="examples-52"><a class="anchor" href="#examples-52"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4454,7 +4520,7 @@ core extensions to the numeric classes.</p>
 <code>Object#presence</code> defined by Active Support.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-52"><a class="anchor" href="#examples-52"></a>Examples</h3>
+<h3 id="examples-53"><a class="anchor" href="#examples-53"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4535,7 +4601,7 @@ context of <code>unless else</code> if <code>Style/UnlessElse</code> is inabled.
 to prevent interference between the auto-correction of the two cops.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-53"><a class="anchor" href="#examples-53"></a>Examples</h3>
+<h3 id="examples-54"><a class="anchor" href="#examples-54"></a>Examples</h3>
 <div class="sect3">
 <h4 id="notnilandnotempty-true-default"><a class="anchor" href="#notnilandnotempty-true-default"></a>NotNilAndNotEmpty: true (default)</h4>
 <div class="listingblock">
@@ -4672,7 +4738,7 @@ following conditions:</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="examples-54"><a class="anchor" href="#examples-54"></a>Examples</h3>
+<h3 id="examples-55"><a class="anchor" href="#examples-55"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4763,7 +4829,7 @@ an <code>ActiveModel::MissingAttributeError</code>.</p>
 is why rubocop recommends using square brackets.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-55"><a class="anchor" href="#examples-55"></a>Examples</h3>
+<h3 id="examples-56"><a class="anchor" href="#examples-56"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4847,7 +4913,7 @@ self[:attr] = val</code></pre>
 <code>allow_blank</code> is present.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-56"><a class="anchor" href="#examples-56"></a>Examples</h3>
+<h3 id="examples-57"><a class="anchor" href="#examples-57"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4932,7 +4998,7 @@ validates :x, length: { is: 5 }, allow_nil: true, allow_blank: false</code></pre
 is redundant.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-57"><a class="anchor" href="#examples-57"></a>Examples</h3>
+<h3 id="examples-58"><a class="anchor" href="#examples-58"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4992,7 +5058,7 @@ end</code></pre>
 Receiver is implicit from Rails 4.2 or higher.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-58"><a class="anchor" href="#examples-58"></a>Examples</h3>
+<h3 id="examples-59"><a class="anchor" href="#examples-59"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5084,7 +5150,7 @@ end</code></pre>
 the definition of a reflection is a string.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-59"><a class="anchor" href="#examples-59"></a>Examples</h3>
+<h3 id="examples-60"><a class="anchor" href="#examples-60"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5132,7 +5198,7 @@ has_many :accounts, class_name: 'Account'</code></pre>
 <p>Use <code>assert_not</code> methods instead of <code>refute</code> methods.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-60"><a class="anchor" href="#examples-60"></a>Examples</h3>
+<h3 id="examples-61"><a class="anchor" href="#examples-61"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-assert_not-default"><a class="anchor" href="#enforcedstyle-assert_not-default"></a>EnforcedStyle: assert_not (default)</h4>
 <div class="listingblock">
@@ -5232,7 +5298,7 @@ refute_equal true, false</code></pre>
 Because the relative date will be evaluated only once.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-61"><a class="anchor" href="#examples-61"></a>Examples</h3>
+<h3 id="examples-62"><a class="anchor" href="#examples-62"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5318,7 +5384,7 @@ end</code></pre>
 <p>This cop looks for inline rendering within controller actions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-62"><a class="anchor" href="#examples-62"></a>Examples</h3>
+<h3 id="examples-63"><a class="anchor" href="#examples-63"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5388,7 +5454,7 @@ end</code></pre>
 replaced with <code>render plain:</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-63"><a class="anchor" href="#examples-63"></a>Examples</h3>
+<h3 id="examples-64"><a class="anchor" href="#examples-64"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - explicit MIME type to `text/plain`
@@ -5491,7 +5557,7 @@ render text: 'Ruby!'</code></pre>
 <code>request.referrer</code>, depending on the cop&#8217;s configuration.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-64"><a class="anchor" href="#examples-64"></a>Examples</h3>
+<h3 id="examples-65"><a class="anchor" href="#examples-65"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-referer-default"><a class="anchor" href="#enforcedstyle-referer-default"></a>EnforcedStyle: referer (default)</h4>
 <div class="listingblock">
@@ -5578,7 +5644,7 @@ request.referrer</code></pre>
 reversible.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-65"><a class="anchor" href="#examples-65"></a>Examples</h3>
+<h3 id="examples-66"><a class="anchor" href="#examples-66"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5789,7 +5855,7 @@ end</code></pre>
 to convert <code>try</code>. It will convert code to use safe navigation.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-66"><a class="anchor" href="#examples-66"></a>Examples</h3>
+<h3 id="examples-67"><a class="anchor" href="#examples-67"></a>Examples</h3>
 <div class="sect3">
 <h4 id="converttry-false-default"><a class="anchor" href="#converttry-false-default"></a>ConvertTry: false (default)</h4>
 <div class="listingblock">
@@ -5898,7 +5964,7 @@ checking <code>foo&amp;.blank?</code> in a conditional, <code>foo</code> being <
 do the opposite of what the author intends.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-67"><a class="anchor" href="#examples-67"></a>Examples</h3>
+<h3 id="examples-68"><a class="anchor" href="#examples-68"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5981,7 +6047,7 @@ that behavior can be turned off with <code>AllowImplicitReturn: false</code>.</p
 <code>AllowedReceivers: []</code></p>
 </div>
 <div class="sect2">
-<h3 id="examples-68"><a class="anchor" href="#examples-68"></a>Examples</h3>
+<h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6145,7 +6211,7 @@ Service::Mailer::update</code></pre>
 a method (usually a scope) instead of a lambda/proc.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
+<h3 id="examples-70"><a class="anchor" href="#examples-70"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6226,7 +6292,7 @@ calls are added as offenses.</p>
 without a receiver are added as offenses.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-70"><a class="anchor" href="#examples-70"></a>Examples</h3>
+<h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6340,7 +6406,7 @@ validations which are listed in
 <p>Methods may be ignored from this rule by configuring a <code>Whitelist</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
+<h3 id="examples-72"><a class="anchor" href="#examples-72"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6462,7 +6528,7 @@ then only use of Time.zone is allowed.</p>
 to use Time.in_time_zone.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-72"><a class="anchor" href="#examples-72"></a>Examples</h3>
+<h3 id="examples-73"><a class="anchor" href="#examples-73"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-strict-2"><a class="anchor" href="#enforcedstyle-strict-2"></a>EnforcedStyle: strict</h4>
 <div class="listingblock">
@@ -6597,7 +6663,7 @@ ActiveRecord::Associations::CollectionProxy.</p>
 false positives.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-73"><a class="anchor" href="#examples-73"></a>Examples</h3>
+<h3 id="examples-74"><a class="anchor" href="#examples-74"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-conservative-default-2"><a class="anchor" href="#enforcedstyle-conservative-default-2"></a>EnforcedStyle: conservative (default)</h4>
 <div class="listingblock">
@@ -6706,7 +6772,7 @@ the query will be heavy.</p>
 <p>Note that the cop does nothing if db/schema.rb does not exist.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-74"><a class="anchor" href="#examples-74"></a>Examples</h3>
+<h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - if the schema does not have a unique index
@@ -6784,7 +6850,7 @@ By default the cop allows three environments which Rails ships with:
 More can be added to the <code>Environments</code> config parameter.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
+<h3 id="examples-76"><a class="anchor" href="#examples-76"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6857,7 +6923,7 @@ Rails.env == 'production'</code></pre>
 <p>This cop checks for the use of old-style attribute validation macros.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-76"><a class="anchor" href="#examples-76"></a>Examples</h3>
+<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6948,7 +7014,7 @@ validates :foo, uniqueness: true</code></pre>
 <p>This cop enforces the use of <code>exists?(&#8230;&#8203;)</code> over <code>where(&#8230;&#8203;).exists?</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
+<h3 id="examples-78"><a class="anchor" href="#examples-78"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
