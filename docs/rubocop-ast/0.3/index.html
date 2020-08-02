@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Migration :: RuboCop Docs</title>
-    <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_migration.html">
-    <link rel="prev" href="cops_metrics.html">
-    <link rel="next" href="cops_naming.html">
+    <title>RuboCop AST :: RuboCop Docs</title>
+    <link rel="canonical" href="https://docs.rubocop.org/rubocop-ast/index.html">
+    <link rel="next" href="installation.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="stylesheet" href="../../_/css/site-extra.css">
@@ -71,104 +70,26 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="rubocop" data-version="0.87">
+<div class="nav-container" data-component="rubocop-ast" data-version="0.3">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">RuboCop</a></h3>
+    <h3 class="title"><a href="index.html">RuboCop AST</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="index.html">Home</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="installation.html">Installation</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="compatibility.html">Compatibility</a>
+    <a class="nav-link" href="node_types.html">Node Types</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Usage</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="usage/basic_usage.html">Basic Usage</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="usage/auto_correct.html">Auto-correct</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="usage/caching.html">Caching</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="configuration.html">Configuration</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="cops.html">Cops</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="formatters.html">Formatters</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Cop Documentation</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cops_bundler.html">Bundler</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cops_gemspec.html">Gemspec</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cops_layout.html">Layout</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cops_lint.html">Lint</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cops_metrics.html">Metrics</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="cops_migration.html">Migration</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cops_naming.html">Naming</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cops_security.html">Security</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cops_style.html">Style</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="v1_upgrade_notes.html">Upgrade Notes</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="extensions.html">Extensions</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="integration_with_other_tools.html">Integration with Other Tools</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="automated_code_review.html">Automated Code Review</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="development.html">Development</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="contributing.html">Contributing</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="support.html">Support</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="versioning.html">Versioning</a>
+    <a class="nav-link" href="node_pattern.html">Node Pattern</a>
   </li>
 </ul>
   </li>
@@ -177,41 +98,41 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">RuboCop</span>
-    <span class="version">0.87</span>
+    <span class="title">RuboCop AST</span>
+    <span class="version">0.3</span>
   </div>
   <ul class="components">
-    <li class="component is-current">
+    <li class="component">
       <span class="title">RuboCop</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/0.88/index.html">0.88</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/0.87/index.html">0.87</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/0.86/index.html">0.86</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/0.85/index.html">0.85</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">RuboCop AST</span>
       <ul class="versions">
         <li class="version is-latest">
           <a href="../index.html">master</a>
         </li>
-        <li class="version">
-          <a href="../0.88/index.html">0.88</a>
-        </li>
         <li class="version is-current">
-          <a href="index.html">0.87</a>
+          <a href="index.html">0.3</a>
         </li>
         <li class="version">
-          <a href="../0.86/index.html">0.86</a>
-        </li>
-        <li class="version">
-          <a href="../0.85/index.html">0.85</a>
-        </li>
-      </ul>
-    </li>
-    <li class="component">
-      <span class="title">RuboCop AST</span>
-      <ul class="versions">
-        <li class="version is-latest">
-          <a href="../../rubocop-ast/index.html">master</a>
-        </li>
-        <li class="version">
-          <a href="../../rubocop-ast/0.3/index.html">0.3</a>
-        </li>
-        <li class="version">
-          <a href="../../rubocop-ast/0.2.0/index.html">0.2.0</a>
+          <a href="../0.2.0/index.html">0.2.0</a>
         </li>
       </ul>
     </li>
@@ -264,68 +185,167 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../0.88/index.html" class="home-link"></a>
+  <a href="../../rubocop/0.88/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">RuboCop</a></li>
-    <li>Cop Documentation</li>
-    <li><a href="cops_migration.html">Migration</a></li>
+    <li><a href="index.html">RuboCop AST</a></li>
+    <li><a href="index.html">Home</a></li>
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">0.87</button>
+  <button class="version-menu-toggle" title="Show other versions of page">0.3</button>
   <div class="version-menu">
-    <a class="version" href="../cops_migration.html">master</a>
-    <a class="version" href="../0.88/cops_migration.html">0.88</a>
-    <a class="version is-current" href="cops_migration.html">0.87</a>
-    <a class="version" href="../0.86/cops_migration.html">0.86</a>
-    <a class="version" href="../0.85/cops_migration.html">0.85</a>
+    <a class="version" href="../index.html">master</a>
+    <a class="version is-current" href="index.html">0.3</a>
+    <a class="version" href="../0.2.0/index.html">0.2.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/blob/v0.87.1/docs/modules/ROOT/pages/cops_migration.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop-ast/blob/v0.3.0/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Migration</h1>
-<div class="sect1">
-<h2 id="migrationdepartmentname"><a class="anchor" href="#migrationdepartmentname"></a>Migration/DepartmentName</h2>
+<h1 class="page">RuboCop AST</h1>
+<div id="preamble">
 <div class="sectionbody">
+<div class="paragraph">
+<p>This gem introduces two core classes of RuboCop:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>RuboCop::AST::Node</code> - this is an extension of the <a href="https://github.com/whitequark/parser/"><code>parser</code></a> gem&#8217;s <code>Node</code> class, which adds a simpler and more powerful object-oriented API to make it easier to work with nodes.</p>
+</li>
+<li>
+<p><code>RuboCop::AST::NodePattern</code> - a regular expression-style method to traverse and match nodes in an Abstract Syntax Tree. See <a href="node_pattern.html" class="page">"Node Pattern"</a> to get yourself familiar with <code>NodePattern</code>'s capabilities.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This gem may be used independently from the main RuboCop gem. It was extracted from RuboCop in version 0.84 and its only
+dependency is the <a href="https://github.com/whitequark/parser">parser</a> gem, which <code>rubocop-ast</code> extends.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rationale"><a class="anchor" href="#rationale"></a>Rationale</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>While working with <code>parser</code>'s AST representation is fairly easy (especially when compared to the AST of Ruby&#8217;s built-in <code>ripper</code> library), there&#8217;s still areas we felt could be improved:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the canonical way to work with an AST node is to deconstruct the node in array-like fashion, which results in code that&#8217;s hard to read</p>
+</li>
+<li>
+<p>looking for complex AST node patterns requires a lot of boilerplate code</p>
+</li>
+<li>
+<p>there&#8217;s no easy way to tell apart AST nodes of certain types - e.g. prefix vs postfix conditionals</p>
+</li>
+<li>
+<p>there&#8217;s no easy way to grab the parent node of some node</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Enter <code>rubocop-ast</code>, which aims to solve those problems. This library evolved for years as part of RuboCop and was eventually spun off in the hope that it might be useful
+for other projects built on top of <code>parser</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>RuboCop::AST::Node</code> provides a wrapper around <code>parser</code>'s <code>Node</code> class (in other words, <code>RuboCop::AST::Node &lt; Parser::AST::Node</code>). In addition to a number of methods to make it easier to work with, the wrapper class also provides ways to inspect the <strong>parents</strong> of nodes, which the <code>parser</code> nodes do not support.</p>
+</div>
+<div class="paragraph">
+<p>Here are a few examples using <code>parser</code> and <code>rubocop-ast</code>:</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Enabled by default</th>
-<th class="tableblock halign-left valign-top">Safe</th>
-<th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">VersionAdded</th>
-<th class="tableblock halign-left valign-top">VersionChanged</th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.75</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>parser</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>rubocop-ast</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># type = :if
+is_if = node.loc.keyword == 'if'
+if_branch = node.children[1]
+else_branch = node.children[2]
+has_elsif_branch = node.children[2].type == :if &amp;&amp; node.children[2].keyword == 'elsif'</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># type = :if
+is_if = node.if?
+if_branch = node.if_branch
+else_branch = node.else_branch
+has_elsif_branch = node.elsif_conditional?</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># type = :hash
+pairs = node.children
+pairs.each do |pair_node|
+  key = pair_node.children[0]
+  value = pair_node.children[1]
+  do_something(key, value)
+end</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># type = :hash
+node.each_pair do |pair_node|
+  do_something(pair_node.key, pair_node.value)
+end</code></pre>
+</div>
+</div></div></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Check that cop names in rubocop:disable comments are given with
-department name.</p>
+<p>Sample usage:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class MyRule &lt; Parser::AST::Processor
+  include RuboCop::AST::Traversal
+
+  def on_sym(node)
+    puts "I found a symbol! #{node.value}"
+  end
+end
+
+source = RuboCop::ProcessedSource.new(code, 2.7)
+rule = MyRule.new
+source.ast.each_node { |n| rule.process(n) }</code></pre>
+</div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="cops_metrics.html">Metrics</a></span>
-  <span class="next"><a href="cops_naming.html">Naming</a></span>
+  <span class="next"><a href="installation.html">Installation</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
