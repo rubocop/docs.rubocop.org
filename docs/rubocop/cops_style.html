@@ -188,6 +188,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="0.89/index.html">0.89</a>
+        </li>
+        <li class="version">
           <a href="0.88/index.html">0.88</a>
         </li>
         <li class="version">
@@ -276,6 +279,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_style.html">master</a>
+    <a class="version" href="0.89/cops_style.html">0.89</a>
     <a class="version" href="0.88/cops_style.html">0.88</a>
     <a class="version" href="0.87/cops_style.html">0.87</a>
     <a class="version" href="0.86/cops_style.html">0.86</a>
@@ -4829,6 +4833,11 @@ def with_tmp_dir
   end
 end
 
+# bad
+def nine_times
+  9.times { yield }
+end
+
 # good
 def with_tmp_dir(&amp;block)
   Dir.mktmpdir do |tmp_dir|
@@ -4838,6 +4847,11 @@ end
 
 with_tmp_dir do |dir|
   puts "dir is accessible as a parameter and pwd is set: #{dir}"
+end
+
+# good
+def nine_times(&amp;block)
+  9.times(&amp;block)
 end</code></pre>
 </div>
 </div>

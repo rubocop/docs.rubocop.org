@@ -188,6 +188,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="0.89/index.html">0.89</a>
+        </li>
+        <li class="version">
           <a href="0.88/index.html">0.88</a>
         </li>
         <li class="version">
@@ -276,6 +279,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="v1_upgrade_notes.html">master</a>
+    <a class="version" href="0.89/v1_upgrade_notes.html">0.89</a>
     <a class="version" href="0.88/v1_upgrade_notes.html">0.88</a>
     <a class="version" href="0.87/v1_upgrade_notes.html">0.87</a>
     <a class="version is-missing" href="0.86/index.html">0.86</a>
@@ -368,33 +372,31 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="if-your-class-uses-instance-variables"><a class="anchor" href="#if-your-class-uses-instance-variables"></a>If your class uses instance variables</h3>
+<h3 id="instance-variables"><a class="anchor" href="#instance-variables"></a>Instance variables</h3>
 <div class="paragraph">
 <p>Do not use RuboCop&#8217;s internal instance variables. If you used <code>@processed_source</code>, use <code>processed_source</code>. If you have a need to access an instance variable, open an issue with your use case.</p>
 </div>
 <div class="paragraph">
-<p>Cop instances will be called on different <code>processed_source</code> if the class supports it. In all cases it is recommended to to invalidate your cache data during the <code>on_new_investigation</code> callback:</p>
+<p>By default, a Cop instance will be called only once for a given <code>processed_source</code>, so instance variables will be uninitialized when the investigation starts. Using <code>@cache ||= &#8230;&#8203;</code> is fine. If you want to initialize some instance variable, the callback <code>on_new_investigation</code> is the best place to do so.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Before
-class MyCachingCop &lt; Cop
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class MyCachingCop &lt; Base
   def on_send(node)
     if my_cached_data[node]
+      @counts(node.method_name) += 1
       #...
     end
   end
 
+  # One way:
   def my_cached_data
     @data ||= processed_source.comments.map { # ... }
   end
-end
 
-# After
-class MyCachingCop &lt; Base
-  # ... same as above, plus...
+  # Another way:
   def on_new_investigation
-    @data = nil
+    @counts = Hash.new(0)
     super  # Be nice and call super for callback
   end
 end</code></pre>
