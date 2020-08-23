@@ -160,6 +160,14 @@
       </ul>
     </li>
     <li class="component">
+      <span class="title">RuboCop Packaging</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../rubocop-packaging/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
       <span class="title">RuboCop Performance</span>
       <ul class="versions">
         <li class="version is-latest">
@@ -3136,7 +3144,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.8</p></td>
 </tr>
 </tbody>
 </table>
@@ -3152,6 +3160,7 @@ Rails provides the <code>index_by</code> method for this purpose.</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 [1, 2, 3].each_with_object({}) { |el, h| h[foo(el)] = el }
+[1, 2, 3].to_h { |el| [foo(el), el] }
 [1, 2, 3].map { |el| [foo(el), el] }.to_h
 Hash[[1, 2, 3].collect { |el| [foo(el), el] }]
 
@@ -3188,7 +3197,7 @@ Hash[[1, 2, 3].collect { |el| [foo(el), el] }]
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.8</p></td>
 </tr>
 </tbody>
 </table>
@@ -3204,6 +3213,7 @@ Rails provides the <code>index_with</code> method for this purpose.</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 [1, 2, 3].each_with_object({}) { |el, h| h[el] = foo(el) }
+[1, 2, 3].to_h { |el| [el, foo(el)] }
 [1, 2, 3].map { |el| [el, foo(el)] }.to_h
 Hash[[1, 2, 3].collect { |el| [el, foo(el)] }]
 
@@ -4024,6 +4034,82 @@ add_reference :products, :category, null: false, default: 1</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="railsorderbyid"><a class="anchor" href="#railsorderbyid"></a>Rails/OrderById</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop checks for places where ordering by <code>id</code> column is used.</p>
+</div>
+<div class="paragraph">
+<p>Don&#8217;t use the <code>id</code> column for ordering. The sequence of ids is not guaranteed
+to be in any particular order, despite often (incidentally) being chronological.
+Use a timestamp column to order chronologically. As a bonus the intent is clearer.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Make sure the changed order column does not introduce performance
+bottlenecks and appropriate database indexes are added.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+scope :chronological, -&gt; { order(id: :asc) }
+scope :chronological, -&gt; { order(primary_key =&gt; :asc) }
+
+# good
+scope :chronological, -&gt; { order(created_at: :asc) }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-18"><a class="anchor" href="#references-18"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://rails.rubystyle.guide/#order-by-id" class="bare">https://rails.rubystyle.guide/#order-by-id</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="railsoutput"><a class="anchor" href="#railsoutput"></a>Rails/Output</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -4057,7 +4143,7 @@ add_reference :products, :category, null: false, default: 1</code></pre>
 <p>This cop checks for the use of output calls like puts and print</p>
 </div>
 <div class="sect2">
-<h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>
+<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4134,7 +4220,7 @@ use <code>safe_join</code> to join content and escape it and concat to
 concatenate content and escape it, ensuring its safety.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
+<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">user_content = "&lt;b&gt;hi&lt;/b&gt;"
@@ -4233,7 +4319,7 @@ safe_join([user_content, " ", content_tag(:span, user_content)])
 limit to the query so that only one value is fetched from the database.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
+<h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4247,7 +4333,7 @@ Model.pick(:a)
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-18"><a class="anchor" href="#references-18"></a>References</h3>
+<h3 id="references-19"><a class="anchor" href="#references-19"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4297,7 +4383,7 @@ element in an enumerable. When called on an Active Record relation, it
 results in a more efficient query that only selects the necessary key.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
+<h3 id="examples-50"><a class="anchor" href="#examples-50"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4311,7 +4397,7 @@ Post.published.pluck(:title)
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-19"><a class="anchor" href="#references-19"></a>References</h3>
+<h3 id="references-20"><a class="anchor" href="#references-20"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4356,7 +4442,7 @@ Post.published.pluck(:title)
 <p>This cop enforces the use of <code>ids</code> over <code>pluck(:id)</code> and <code>pluck(primary_key)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-50"><a class="anchor" href="#examples-50"></a>Examples</h3>
+<h3 id="examples-51"><a class="anchor" href="#examples-51"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4378,7 +4464,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-20"><a class="anchor" href="#references-20"></a>References</h3>
+<h3 id="references-21"><a class="anchor" href="#references-21"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4439,7 +4525,7 @@ as the cop cannot replace to <code>select</code> between calls to <code>pluck</c
 <code>ActiveRecord::Relation</code> instance vs a call to <code>pluck</code> on an <code>Array</code> instance.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-51"><a class="anchor" href="#examples-51"></a>Examples</h3>
+<h3 id="examples-52"><a class="anchor" href="#examples-52"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4530,7 +4616,7 @@ Post.where(user_id: active_users.pluck(:id))</code></pre>
 core extensions to the numeric classes.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-52"><a class="anchor" href="#examples-52"></a>Examples</h3>
+<h3 id="examples-53"><a class="anchor" href="#examples-53"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4580,7 +4666,7 @@ core extensions to the numeric classes.</p>
 <code>Object#presence</code> defined by Active Support.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-53"><a class="anchor" href="#examples-53"></a>Examples</h3>
+<h3 id="examples-54"><a class="anchor" href="#examples-54"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4661,7 +4747,7 @@ context of <code>unless else</code> if <code>Style/UnlessElse</code> is inabled.
 to prevent interference between the auto-correction of the two cops.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-54"><a class="anchor" href="#examples-54"></a>Examples</h3>
+<h3 id="examples-55"><a class="anchor" href="#examples-55"></a>Examples</h3>
 <div class="sect3">
 <h4 id="notnilandnotempty-true-default"><a class="anchor" href="#notnilandnotempty-true-default"></a>NotNilAndNotEmpty: true (default)</h4>
 <div class="listingblock">
@@ -4798,7 +4884,7 @@ following conditions:</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="examples-55"><a class="anchor" href="#examples-55"></a>Examples</h3>
+<h3 id="examples-56"><a class="anchor" href="#examples-56"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4889,7 +4975,7 @@ an <code>ActiveModel::MissingAttributeError</code>.</p>
 is why rubocop recommends using square brackets.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-56"><a class="anchor" href="#examples-56"></a>Examples</h3>
+<h3 id="examples-57"><a class="anchor" href="#examples-57"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4927,7 +5013,7 @@ self[:attr] = val</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-21"><a class="anchor" href="#references-21"></a>References</h3>
+<h3 id="references-22"><a class="anchor" href="#references-22"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4973,7 +5059,7 @@ self[:attr] = val</code></pre>
 <code>allow_blank</code> is present.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-57"><a class="anchor" href="#examples-57"></a>Examples</h3>
+<h3 id="examples-58"><a class="anchor" href="#examples-58"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5058,7 +5144,7 @@ validates :x, length: { is: 5 }, allow_nil: true, allow_blank: false</code></pre
 is redundant.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-58"><a class="anchor" href="#examples-58"></a>Examples</h3>
+<h3 id="examples-59"><a class="anchor" href="#examples-59"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5118,7 +5204,7 @@ end</code></pre>
 Receiver is implicit from Rails 4.2 or higher.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-59"><a class="anchor" href="#examples-59"></a>Examples</h3>
+<h3 id="examples-60"><a class="anchor" href="#examples-60"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5210,7 +5296,7 @@ end</code></pre>
 the definition of a reflection is a string.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-60"><a class="anchor" href="#examples-60"></a>Examples</h3>
+<h3 id="examples-61"><a class="anchor" href="#examples-61"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5258,7 +5344,7 @@ has_many :accounts, class_name: 'Account'</code></pre>
 <p>Use <code>assert_not</code> methods instead of <code>refute</code> methods.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-61"><a class="anchor" href="#examples-61"></a>Examples</h3>
+<h3 id="examples-62"><a class="anchor" href="#examples-62"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-assert_not-default"><a class="anchor" href="#enforcedstyle-assert_not-default"></a>EnforcedStyle: assert_not (default)</h4>
 <div class="listingblock">
@@ -5358,7 +5444,7 @@ refute_equal true, false</code></pre>
 Because the relative date will be evaluated only once.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-62"><a class="anchor" href="#examples-62"></a>Examples</h3>
+<h3 id="examples-63"><a class="anchor" href="#examples-63"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5444,7 +5530,7 @@ end</code></pre>
 <p>This cop looks for inline rendering within controller actions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-63"><a class="anchor" href="#examples-63"></a>Examples</h3>
+<h3 id="examples-64"><a class="anchor" href="#examples-64"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5468,7 +5554,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-22"><a class="anchor" href="#references-22"></a>References</h3>
+<h3 id="references-23"><a class="anchor" href="#references-23"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5514,7 +5600,7 @@ end</code></pre>
 replaced with <code>render plain:</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-64"><a class="anchor" href="#examples-64"></a>Examples</h3>
+<h3 id="examples-65"><a class="anchor" href="#examples-65"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - explicit MIME type to `text/plain`
@@ -5571,7 +5657,7 @@ render text: 'Ruby!'</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-23"><a class="anchor" href="#references-23"></a>References</h3>
+<h3 id="references-24"><a class="anchor" href="#references-24"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5617,7 +5703,7 @@ render text: 'Ruby!'</code></pre>
 <code>request.referrer</code>, depending on the cop&#8217;s configuration.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-65"><a class="anchor" href="#examples-65"></a>Examples</h3>
+<h3 id="examples-66"><a class="anchor" href="#examples-66"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-referer-default"><a class="anchor" href="#enforcedstyle-referer-default"></a>EnforcedStyle: referer (default)</h4>
 <div class="listingblock">
@@ -5704,7 +5790,7 @@ request.referrer</code></pre>
 reversible.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-66"><a class="anchor" href="#examples-66"></a>Examples</h3>
+<h3 id="examples-67"><a class="anchor" href="#examples-67"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5915,7 +6001,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-24"><a class="anchor" href="#references-24"></a>References</h3>
+<h3 id="references-25"><a class="anchor" href="#references-25"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5964,7 +6050,7 @@ end</code></pre>
 to convert <code>try</code>. It will convert code to use safe navigation.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-67"><a class="anchor" href="#examples-67"></a>Examples</h3>
+<h3 id="examples-68"><a class="anchor" href="#examples-68"></a>Examples</h3>
 <div class="sect3">
 <h4 id="converttry-false-default"><a class="anchor" href="#converttry-false-default"></a>ConvertTry: false (default)</h4>
 <div class="listingblock">
@@ -6073,7 +6159,7 @@ checking <code>foo&amp;.blank?</code> in a conditional, <code>foo</code> being <
 do the opposite of what the author intends.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-68"><a class="anchor" href="#examples-68"></a>Examples</h3>
+<h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6156,7 +6242,7 @@ that behavior can be turned off with <code>AllowImplicitReturn: false</code>.</p
 <code>AllowedReceivers: []</code></p>
 </div>
 <div class="sect2">
-<h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
+<h3 id="examples-70"><a class="anchor" href="#examples-70"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6274,7 +6360,7 @@ Service::Mailer::update</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-25"><a class="anchor" href="#references-25"></a>References</h3>
+<h3 id="references-26"><a class="anchor" href="#references-26"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6320,7 +6406,7 @@ Service::Mailer::update</code></pre>
 a method (usually a scope) instead of a lambda/proc.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-70"><a class="anchor" href="#examples-70"></a>Examples</h3>
+<h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6401,7 +6487,7 @@ calls are added as offenses.</p>
 without a receiver are added as offenses.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
+<h3 id="examples-72"><a class="anchor" href="#examples-72"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6465,7 +6551,7 @@ l Time.now</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-26"><a class="anchor" href="#references-26"></a>References</h3>
+<h3 id="references-27"><a class="anchor" href="#references-27"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6515,7 +6601,7 @@ validations which are listed in
 <p>Methods may be ignored from this rule by configuring a <code>Whitelist</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-72"><a class="anchor" href="#examples-72"></a>Examples</h3>
+<h3 id="examples-73"><a class="anchor" href="#examples-73"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6580,11 +6666,92 @@ user.touch</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-27"><a class="anchor" href="#references-27"></a>References</h3>
+<h3 id="references-28"><a class="anchor" href="#references-28"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
 <p><a href="https://guides.rubyonrails.org/active_record_validations.html#skipping-validations" class="bare">https://guides.rubyonrails.org/active_record_validations.html#skipping-validations</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="railssquishedsqlheredocs"><a class="anchor" href="#railssquishedsqlheredocs"></a>Rails/SquishedSQLHeredocs</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks SQL heredocs to use <code>.squish</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-74"><a class="anchor" href="#examples-74"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+&lt;&lt;-SQL
+  SELECT * FROM posts;
+SQL
+
+&lt;&lt;-SQL
+  SELECT * FROM posts
+    WHERE id = 1
+SQL
+
+execute(&lt;&lt;~SQL, "Post Load")
+  SELECT * FROM posts
+    WHERE post_id = 1
+SQL
+
+# good
+&lt;&lt;-SQL.squish
+  SELECT * FROM posts;
+SQL
+
+&lt;&lt;~SQL.squish
+  SELECT * FROM table
+    WHERE id = 1
+SQL
+
+execute(&lt;&lt;~SQL.squish, "Post Load")
+  SELECT * FROM posts
+    WHERE post_id = 1
+SQL</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-29"><a class="anchor" href="#references-29"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://rails.rubystyle.guide/#squished-heredocs" class="bare">https://rails.rubystyle.guide/#squished-heredocs</a></p>
 </li>
 </ul>
 </div>
@@ -6637,7 +6804,7 @@ then only use of Time.zone is allowed.</p>
 to use Time.in_time_zone.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-73"><a class="anchor" href="#examples-73"></a>Examples</h3>
+<h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-strict-2"><a class="anchor" href="#enforcedstyle-strict-2"></a>EnforcedStyle: strict</h4>
 <div class="listingblock">
@@ -6704,7 +6871,7 @@ Time.at(timestamp).in_time_zone</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-28"><a class="anchor" href="#references-28"></a>References</h3>
+<h3 id="references-30"><a class="anchor" href="#references-30"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6742,9 +6909,9 @@ Time.at(timestamp).in_time_zone</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.40</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.8</p></td>
 </tr>
 </tbody>
 </table>
@@ -6768,11 +6935,13 @@ ActiveRecord::Relation vs a call to pluck on an
 ActiveRecord::Associations::CollectionProxy.</p>
 </div>
 <div class="paragraph">
-<p>Autocorrect is disabled by default for this cop since it may generate
+<p>This cop is unsafe because the behavior may change depending on the
+database collation.
+Autocorrect is disabled by default for this cop since it may generate
 false positives.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-74"><a class="anchor" href="#examples-74"></a>Examples</h3>
+<h3 id="examples-76"><a class="anchor" href="#examples-76"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-conservative-default-3"><a class="anchor" href="#enforcedstyle-conservative-default-3"></a>EnforcedStyle: conservative (default)</h4>
 <div class="listingblock">
@@ -6881,7 +7050,7 @@ the query will be heavy.</p>
 <p>Note that the cop does nothing if db/schema.rb does not exist.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
+<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - if the schema does not have a unique index
@@ -6959,7 +7128,7 @@ By default the cop allows three environments which Rails ships with:
 More can be added to the <code>Environments</code> config parameter.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-76"><a class="anchor" href="#examples-76"></a>Examples</h3>
+<h3 id="examples-78"><a class="anchor" href="#examples-78"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7032,7 +7201,7 @@ Rails.env == 'production'</code></pre>
 <p>This cop checks for the use of old-style attribute validation macros.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
+<h3 id="examples-79"><a class="anchor" href="#examples-79"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7123,7 +7292,7 @@ validates :foo, uniqueness: true</code></pre>
 <p>This cop enforces the use of <code>exists?(&#8230;&#8203;)</code> over <code>where(&#8230;&#8203;).exists?</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-78"><a class="anchor" href="#examples-78"></a>Examples</h3>
+<h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7176,7 +7345,7 @@ user.posts.exists?(published: true)</code></pre>
 in <code>where</code> can be replaced with <code>where.not(&#8230;&#8203;)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-79"><a class="anchor" href="#examples-79"></a>Examples</h3>
+<h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7194,7 +7363,7 @@ User.where.not(name: ['john', 'jane'])</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-29"><a class="anchor" href="#references-29"></a>References</h3>
+<h3 id="references-31"><a class="anchor" href="#references-31"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>

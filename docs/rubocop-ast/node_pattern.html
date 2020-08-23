@@ -151,6 +151,14 @@
       </ul>
     </li>
     <li class="component">
+      <span class="title">RuboCop Packaging</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../rubocop-packaging/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
       <span class="title">RuboCop Performance</span>
       <ul class="versions">
         <li class="version is-latest">
@@ -698,8 +706,8 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def_node_pattern :global_const?, '(const {nil? cbase} %1)'
-def_node_pattern :class_creator, '(send #global_const?({:Class :Module}) :new ...)'</code></pre>
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def_node_matcher :global_const?, '(const {nil? cbase} %1)'
+def_node_matcher :class_creator, '(send #global_const?({:Class :Module}) :new ...)'</code></pre>
 </div>
 </div>
 </div>
