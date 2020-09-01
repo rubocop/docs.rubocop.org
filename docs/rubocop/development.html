@@ -188,6 +188,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="0.90/index.html">0.90</a>
+        </li>
+        <li class="version">
           <a href="0.89/index.html">0.89</a>
         </li>
         <li class="version">
@@ -275,7 +278,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="0.89/index.html" class="home-link"></a>
+  <a href="0.90/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -286,6 +289,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="development.html">master</a>
+    <a class="version" href="0.90/development.html">0.90</a>
     <a class="version" href="0.89/development.html">0.89</a>
     <a class="version" href="0.88/development.html">0.88</a>
     <a class="version" href="0.87/development.html">0.87</a>
@@ -557,6 +561,10 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
+<p>The <code>on_send</code> callback is the most used and can be optimized by restricting the acceptable
+method names with a constant <code>RESTRICT_ON_SEND</code>.</p>
+</div>
+<div class="paragraph">
 <p>And the final cop code will look like something like this:</p>
 </div>
 <div class="listingblock">
@@ -579,6 +587,8 @@ end</code></pre>
           (send (send $(...) :empty?) :!)
         PATTERN
 
+        RESTRICT_ON_SEND = [:!].freeze # optimization: don't call `on_send` unless
+                                       # the method name is in this list
         def on_send(node)
           return unless not_empty_call?(node)
 

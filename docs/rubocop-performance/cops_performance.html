@@ -118,6 +118,9 @@
           <a href="../rubocop/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop/0.90/index.html">0.90</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/0.89/index.html">0.89</a>
         </li>
         <li class="version">
@@ -205,7 +208,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/0.89/index.html" class="home-link"></a>
+  <a href="../rubocop/0.90/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop Performance</a></li>
@@ -878,13 +881,13 @@ array.sort_by { |a| a[:foo] }</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.31</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.8</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p>This cop is used to identify usages of <code>count</code> on an <code>Enumerable</code> that
-follow calls to <code>select</code> or <code>reject</code>. Querying logic can instead be
+follow calls to <code>select</code>, <code>find_all</code>, <code>filter</code> or <code>reject</code>. Querying logic can instead be
 passed to the <code>count</code> call.</p>
 </div>
 <div class="paragraph">
@@ -1207,13 +1210,13 @@ str.sub!(/suffix$/, '')</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.30</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.8</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p>This cop is used to identify usages of
-<code>select.first</code>, <code>select.last</code>, <code>find_all.first</code>, and <code>find_all.last</code>
+<code>select.first</code>, <code>select.last</code>, <code>find_all.first</code>, <code>find_all.last</code>, <code>filter.first</code>, and <code>filter.last</code>
 and change them to use <code>detect</code> instead.</p>
 </div>
 <div class="paragraph">
@@ -1231,6 +1234,8 @@ considered unsafe.</p>
 [].select { |item| true }.last
 [].find_all { |item| true }.first
 [].find_all { |item| true }.last
+[].filter { |item| true }.first
+[].filter { |item| true }.last
 
 # good
 [].detect { |item| true }
