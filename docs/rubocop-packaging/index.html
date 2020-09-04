@@ -177,6 +177,9 @@
           <a href="../rubocop-performance/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop-performance/1.8/index.html">1.8</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-performance/1.7/index.html">1.7</a>
         </li>
       </ul>
@@ -220,6 +223,8 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">RuboCop Packaging</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p><code>RuboCop::Packaging</code> is an extension of [RuboCop](<a href="https://rubocop.org/" class="bare">https://rubocop.org/</a>), which
 is a Ruby static code analyzer (a.k.a. linter) and code formatter.</p>
@@ -228,10 +233,33 @@ is a Ruby static code analyzer (a.k.a. linter) and code formatter.</p>
 <p>It helps to enforce some of the guidelines that are expected of upstream maintainers
 so that the downstream can build their packages in a clean environment without any problems.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="why-packaging-extension"><a class="anchor" href="#why-packaging-extension"></a>Why Packaging Extension?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Debian Ruby team has a lot of experience in packaging and maintaining Ruby libraries and
+applications for Debian. During this work, they identified several issues in upstream codebases
+that make it difficult to build a Debian package straight out of those Ruby gems (shipped via
+<a href="https://rubygems.org">RubyGems</a>).</p>
+</div>
+<div class="paragraph">
+<p>The Debian developers (downstream maintainers) have been in touch with the RubyGems &amp; Bundler
+and other upstream maintainers and we&#8217;re collaborating to make things easier for OS packagers
+while not compromising the experience for upstream maintainers.</p>
+</div>
+<div class="paragraph">
+<p>As a result, we&#8217;re working on this RuboCop extension to enforce a set of best practices that
+upstream maintainers can follow to make the lives of packagers easier. And that is how
+<code>rubocop-packaging</code> is born!</p>
+</div>
 <div class="paragraph">
 <p><a href="https://packaging.rubystyle.guide">The Packaging Style Guide</a> lists the cops with some
 good and bad examples and the rationale behind these cops can be found in the
 <a href="https://docs.rubocop.org/rubocop-packaging/cops_packaging.html">Cops Documentation</a> section.</p>
+</div>
+</div>
 </div>
 <nav class="pagination">
   <span class="next"><a href="installation.html">Installation</a></span>

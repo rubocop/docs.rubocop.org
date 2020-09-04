@@ -247,6 +247,9 @@
           <a href="../rubocop-performance/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop-performance/1.8/index.html">1.8</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-performance/1.7/index.html">1.7</a>
         </li>
       </ul>
@@ -15416,6 +15419,12 @@ warn('hello')</code></pre>
 <div class="paragraph">
 <p>This cop checks for places where string concatenation
 can be replaced with string interpolation.</p>
+</div>
+<div class="paragraph">
+<p>The cop can autocorrect simple cases but will skip autocorrecting
+more complex cases where the resulting code would be harder to read.
+In those cases, it might be useful to extract statements to local
+variables or methods which you can then interpolate in a string.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-166"><a class="anchor" href="#examples-166"></a>Examples</h3>

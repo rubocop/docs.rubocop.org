@@ -177,6 +177,9 @@
           <a href="../rubocop-performance/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop-performance/1.8/index.html">1.8</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-performance/1.7/index.html">1.7</a>
         </li>
       </ul>
@@ -7287,15 +7290,25 @@ validates :foo, uniqueness: true</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.8</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop enforces the use of <code>exists?(&#8230;&#8203;)</code> over <code>where(&#8230;&#8203;).exists?</code>.</p>
+<p>This cop enforces consistent style when using <code>exists?</code>.</p>
+</div>
+<div class="paragraph">
+<p>Two styles are supported for this cop. When EnforcedStyle is 'exists'
+then the cop enforces <code>exists?(&#8230;&#8203;)</code> over <code>where(&#8230;&#8203;).exists?</code>.</p>
+</div>
+<div class="paragraph">
+<p>When EnforcedStyle is 'where' then the cop enforces
+<code>where(&#8230;&#8203;).exists?</code> over <code>exists?(&#8230;&#8203;)</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
+<div class="sect3">
+<h4 id="enforcedstyle-exists-default"><a class="anchor" href="#enforcedstyle-exists-default"></a>EnforcedStyle: exists (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7310,6 +7323,50 @@ User.where('length(name) &gt; 10').exists?
 user.posts.exists?(published: true)</code></pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-where"><a class="anchor" href="#enforcedstyle-where"></a>EnforcedStyle: where</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+User.exists?(name: 'john')
+User.exists?(['name = ?', 'john'])
+User.exists?('name = ?', 'john')
+user.posts.exists?(published: true)
+
+# good
+User.where(name: 'john').exists?
+User.where(['name = ?', 'john']).exists?
+User.where('name = ?', 'john').exists?
+user.posts.where(published: true).exists?
+User.where('length(name) &gt; 10').exists?</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-49"><a class="anchor" href="#configurable-attributes-49"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>exists</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>exists</code>, <code>where</code></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
