@@ -188,6 +188,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="0.91/index.html">0.91</a>
+        </li>
+        <li class="version">
           <a href="0.90/index.html">0.90</a>
         </li>
         <li class="version">
@@ -296,6 +299,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_style.html">master</a>
+    <a class="version" href="0.91/cops_style.html">0.91</a>
     <a class="version" href="0.90/cops_style.html">0.90</a>
     <a class="version" href="0.89/cops_style.html">0.89</a>
     <a class="version" href="0.88/cops_style.html">0.88</a>
@@ -5892,7 +5896,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.89</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -6184,6 +6188,19 @@ ok</code></pre>
 <p>Checks for presence or absence of braces around hash literal as a last
 array item depending on configuration.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This cop will ignore arrays where all items are hashes, regardless of
+EnforcedStyle.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
 <h3 id="examples-63"><a class="anchor" href="#examples-63"></a>Examples</h3>
 <div class="sect3">
@@ -6194,7 +6211,10 @@ array item depending on configuration.</p>
 [1, 2, one: 1, two: 2]
 
 # good
-[1, 2, { one: 1, two: 2 }]</code></pre>
+[1, 2, { one: 1, two: 2 }]
+
+# good
+[{ one: 1 }, { two: 2 }]</code></pre>
 </div>
 </div>
 </div>
@@ -6206,7 +6226,10 @@ array item depending on configuration.</p>
 [1, 2, { one: 1, two: 2 }]
 
 # good
-[1, 2, one: 1, two: 2]</code></pre>
+[1, 2, one: 1, two: 2]
+
+# good
+[{ one: 1 }, { two: 2 }]</code></pre>
 </div>
 </div>
 </div>
@@ -9449,6 +9472,19 @@ end</code></pre>
 </table>
 <div class="paragraph">
 <p>This cop checks for multi-line ternary op expressions.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>return if &#8230;&#8203; else &#8230;&#8203; end</code> is syntax error. If <code>return</code> is used before
+multiline ternary operator expression, it cannot be auto-corrected.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="examples-98"><a class="anchor" href="#examples-98"></a>Examples</h3>
@@ -14159,6 +14195,10 @@ foo &amp;&amp; foo.nil? # method that `nil` responds to
 # Method calls that do not use `.`
 foo &amp;&amp; foo &lt; bar
 foo &lt; bar if foo
+
+# When checking `foo&amp;.empty?` in a conditional, `foo` being `nil` will actually
+# do the opposite of what the author intends.
+foo &amp;&amp; foo.empty?
 
 # This could start returning `nil` as well as the return of the method
 foo.nil? || foo.bar

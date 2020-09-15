@@ -118,6 +118,9 @@
           <a href="../rubocop/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop/0.91/index.html">0.91</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/0.90/index.html">0.90</a>
         </li>
         <li class="version">
@@ -251,9 +254,9 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5</p></td>
 </tr>
 </tbody>
 </table>
@@ -384,6 +387,8 @@ Gem::Specification.new do |spec|
 end
 
 # good
+require "rake/file_list"
+
 Gem::Specification.new do |spec|
   spec.files         = Rake::FileList["**/*"].exclude(*File.read(".gitignore").split)
 end
@@ -430,9 +435,9 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5</p></td>
 </tr>
 </tbody>
 </table>

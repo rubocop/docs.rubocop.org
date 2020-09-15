@@ -188,6 +188,9 @@
           <a href="../index.html">master</a>
         </li>
         <li class="version">
+          <a href="../0.91/index.html">0.91</a>
+        </li>
+        <li class="version">
           <a href="../0.90/index.html">0.90</a>
         </li>
         <li class="version">
@@ -296,6 +299,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="auto_correct.html">master</a>
+    <a class="version" href="../0.91/usage/auto_correct.html">0.91</a>
     <a class="version" href="../0.90/usage/auto_correct.html">0.90</a>
     <a class="version" href="../0.89/usage/auto_correct.html">0.89</a>
     <a class="version" href="../0.88/usage/auto_correct.html">0.88</a>
@@ -434,52 +438,50 @@ str &lt;&lt; 'world' # =&gt; now fails because `str` is frozen
 # frozen_string_literal: true
 
 str = +'hello' # =&gt; We want an unfrozen string literal here...
-str &lt;&lt; 'world' # =&gt; ok
----
-
-This diagnostic is valid since the magic comment is indeed missing (thus `Safe: true`),
-but the auto-correction is not; some string literals need to be prefixed with `+` to avoid
-having them frozen.
-
-To run all auto-corrections (safe and unsafe):
-
-[source,sh]</code></pre>
+str &lt;&lt; 'world' # =&gt; ok</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>$ rubocop -A
+<p>This diagnostic is valid since the magic comment is indeed missing (thus <code>Safe: true</code>),
+but the auto-correction is not; some string literals need to be prefixed with <code>+</code> to avoid
+having them frozen.</p>
+</div>
+<div class="paragraph">
+<p>To run all auto-corrections (safe and unsafe):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop -A
 # or
-$ rubocop --auto-correct-all</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>It is recommended to be even more vigilant when using this option and review carefully the changes.
-
-== Generating comments
-
-[source,sh]</pre>
+$ rubocop --auto-correct-all</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>$ rubocop --auto-correct --disable-uncorrectable</p>
+<p>It is recommended to be even more vigilant when using this option and review carefully the changes.</p>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="generating-comments"><a class="anchor" href="#generating-comments"></a>Generating comments</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>or
-
-[source,sh]</pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop --auto-correct --disable-uncorrectable</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>$ rubocop --auto-correct-all --disable-uncorrectable</p>
+<p>or</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>You can add the flag `--disable-uncorrectable`, which will generate
-`# rubocop:todo` comments in the code to stop the reporting of offenses that
-could not be corrected automatically.</pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop --auto-correct-all --disable-uncorrectable</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>You can add the flag <code>--disable-uncorrectable</code>, which will generate
+<code># rubocop:todo</code> comments in the code to stop the reporting of offenses that
+could not be corrected automatically.</p>
 </div>
 </div>
 </div>

@@ -188,6 +188,9 @@
           <a href="../index.html">master</a>
         </li>
         <li class="version">
+          <a href="../0.91/index.html">0.91</a>
+        </li>
+        <li class="version">
           <a href="../0.90/index.html">0.90</a>
         </li>
         <li class="version">
@@ -296,6 +299,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="caching.html">master</a>
+    <a class="version" href="../0.91/usage/caching.html">0.91</a>
     <a class="version" href="../0.90/usage/caching.html">0.90</a>
     <a class="version" href="../0.89/usage/caching.html">0.89</a>
     <a class="version" href="../0.88/usage/caching.html">0.88</a>
@@ -370,13 +374,31 @@ overrides the setting.</p>
 <div class="paragraph">
 <p>By default, the cache is stored in either
 <code>$XDG_CACHE_HOME/$UID/rubocop_cache</code> if <code>$XDG_CACHE_HOME</code> is set or in
-<code>$HOME/.cache/rubocop_cache/</code> if it&#8217;s not. The configuration parameter
-<code>AllCops: CacheRootDirectory</code> can be used to set the root to a
-different path. One reason to use this option could be that there&#8217;s a
-network disk where users on different machines want to have a common
-RuboCop cache. Another could be that a Continuous Integration system
-allows directories, but not a temporary directory, to be saved between
-runs.</p>
+<code>$HOME/.cache/rubocop_cache/</code> if it&#8217;s not.</p>
+</div>
+<div class="paragraph">
+<p>The root can be set to a different path in a number of ways (from
+<strong>highest</strong> precedence to <strong>lowest</strong>):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the <code>--cache-root</code> command line option</p>
+</li>
+<li>
+<p>the <code>$RUBOCOP_CACHE_ROOT</code> environment variable</p>
+</li>
+<li>
+<p>the <code>AllCops: CacheRootDirectory</code> configuration parameter</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>One reason to set the cache root could be that there&#8217;s a network disk
+where users on different machines want to have a common RuboCop cache.
+Another could be that a Continuous Integration system allows
+directories, but not a temporary directory, to be saved between runs,
+or that the system caches certain folders by default.</p>
 </div>
 </div>
 </div>

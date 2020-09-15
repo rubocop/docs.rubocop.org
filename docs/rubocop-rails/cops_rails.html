@@ -118,6 +118,9 @@
           <a href="../rubocop/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop/0.91/index.html">0.91</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/0.90/index.html">0.90</a>
         </li>
         <li class="version">
@@ -2892,7 +2895,8 @@ Rails/HttpPositionalArguments cop or set your TargetRailsVersion in your
 get :new, { user_id: 1}
 
 # good
-get :new, params: { user_id: 1 }</code></pre>
+get :new, params: { user_id: 1 }
+get :new, **options</code></pre>
 </div>
 </div>
 </div>
@@ -7415,6 +7419,8 @@ in <code>where</code> can be replaced with <code>where.not(&#8230;&#8203;)</code
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 User.where('name != ?', 'Gabe')
 User.where('name != :name', name: 'Gabe')
+User.where('name &lt;&gt; ?', 'Gabe')
+User.where('name &lt;&gt; :name', name: 'Gabe')
 User.where('name IS NOT NULL')
 User.where('name NOT IN (?)', ['john', 'jane'])
 User.where('name NOT IN (:names)', names: ['john', 'jane'])
