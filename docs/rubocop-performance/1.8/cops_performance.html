@@ -236,7 +236,7 @@
     <a class="version" href="../1.7/cops_performance.html">1.7</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop-performance/blob/v1.8.0/docs/modules/ROOT/pages/cops_performance.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop-performance/blob/v1.8.1/docs/modules/ROOT/pages/cops_performance.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -1228,8 +1228,8 @@ str.sub!(/suffix$/, '')</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop is used to identify usages of
-<code>select.first</code>, <code>select.last</code>, <code>find_all.first</code>, <code>find_all.last</code>, <code>filter.first</code>, and <code>filter.last</code>
+<p>This cop is used to identify usages of <code>first</code>, <code>last</code>, <code>[0]</code> or <code>[-1]</code>
+chained to <code>select</code>, <code>find_all</code>, or <code>find_all</code>
 and change them to use <code>detect</code> instead.</p>
 </div>
 <div class="paragraph">
@@ -1249,6 +1249,8 @@ considered unsafe.</p>
 [].find_all { |item| true }.last
 [].filter { |item| true }.first
 [].filter { |item| true }.last
+[].filter { |item| true }[0]
+[].filter { |item| true }[-1]
 
 # good
 [].detect { |item| true }
@@ -2988,6 +2990,7 @@ in some Enumerable object can be replaced by <code>Enumerable#sum</code> method.
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 [1, 2, 3].inject(:+)
 [1, 2, 3].reduce(10, :+)
+[1, 2, 3].inject(&amp;:+)
 [1, 2, 3].reduce { |acc, elem| acc + elem }
 
 # good
