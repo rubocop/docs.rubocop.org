@@ -147,6 +147,9 @@
           <a href="../rubocop-ast/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop-ast/0.5/index.html">0.5</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-ast/0.4/index.html">0.4</a>
         </li>
         <li class="version">
@@ -2992,11 +2995,14 @@ in some Enumerable object can be replaced by <code>Enumerable#sum</code> method.
 [1, 2, 3].reduce(10, :+)
 [1, 2, 3].inject(&amp;:+)
 [1, 2, 3].reduce { |acc, elem| acc + elem }
+[1, 2, 3].map { |elem| elem ** 2 }.sum
+[1, 2, 3].collect(&amp;:count).sum(10)
 
 # good
 [1, 2, 3].sum
 [1, 2, 3].sum(10)
-[1, 2, 3].sum</code></pre>
+[1, 2, 3].sum { |elem| elem ** 2 }
+[1, 2, 3].sum(10, &amp;:count)</code></pre>
 </div>
 </div>
 </div>
