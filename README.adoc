@@ -54,6 +54,25 @@ To check the generated site you can simply open `docs/index.html` in your favour
 If you want to make changes to the manual's page structure you'll have to edit
 link:https://github.com/rubocop-hq/rubocop/blob/master/doc/modules/ROOT/nav.adoc[nav.adoc].
 
+== Updating the Playbook
+
+When cutting new releases you'll have to updated `antora-playbook.yml` to mention
+their relevant tags from which the documentation needs to be build. Here's how this
+looks for one of the projects:
+
+[source]
+----
+- url: https://github.com/rubocop-hq/rubocop-performance.git
+  branches: master
+  tags: ['v1.7.1', 'v1.8.1']
+  start_path: docs
+----
+
+TIP: You need to add one such block for each new RuboCop module you're adding to the docs site.
+
+After releases of the main RuboCop gem you also need to update the default landing
+version (it should always be the latest version).
+
 == Troubleshooting
 
 The most common mistake that people make is to forget to update the version of an Antora docs module
