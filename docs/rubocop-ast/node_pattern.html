@@ -6,7 +6,8 @@
     <title>Node Pattern :: RuboCop Docs</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop-ast/node_pattern.html">
     <link rel="prev" href="node_types.html">
-    <meta name="generator" content="Antora 2.3.3">
+    <link rel="next" href="node_pattern_compiler.html">
+    <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
@@ -91,6 +92,9 @@
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="node_pattern.html">Node Pattern</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="node_pattern_compiler.html">Node Pattern Compiler</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -139,6 +143,12 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="0.6/index.html">0.6</a>
         </li>
         <li class="version">
           <a href="0.5/index.html">0.5</a>
@@ -228,6 +238,8 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="node_pattern.html">master</a>
+    <a class="version" href="0.7/node_pattern.html">0.7</a>
+    <a class="version" href="0.6/node_pattern.html">0.6</a>
     <a class="version" href="0.5/node_pattern.html">0.5</a>
     <a class="version" href="0.4/node_pattern.html">0.4</a>
     <a class="version" href="0.3/node_pattern.html">0.3</a>
@@ -490,7 +502,7 @@ since the first node in the brackets is found, but not the second (<code>int</co
 </div>
 </div>
 <div class="sect1">
-<h2 id="for-or"><a class="anchor" href="#for-or"></a><code>{}</code> for "OR"</h2>
+<h2 id="for-or-union"><a class="anchor" href="#for-or-union"></a><code>{}</code> for "OR" (union)</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Lets make it a bit more complex and introduce floats:</p>
@@ -506,9 +518,31 @@ $ ruby-parse -e '1.0'
 <div class="ulist">
 <ul>
 <li>
-<p><code>({int float} _)</code> - int or float types, no matter the value</p>
+<p><code>({int | float} _)</code> - int or float types, no matter the value</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Branches of the union can contain more than one term:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>(array {int int | range})</code> - matches an array with two integers or a single range element</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If all the branches have a single term, you can omit the <code>|</code>, so <code>{int | float}</code> can be
+simplified to <code>{int float}</code>.</p>
+</div>
+<div class="paragraph">
+<p>When checking for symbols or string, you can use regexp literals for a similar effect:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">(send _ /to_s|inspect/) # =&gt; matches calls to `to_s` or `inspect`</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -982,6 +1016,7 @@ are also very useful to comprehend each feature.</p>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="node_types.html">Node Types</a></span>
+  <span class="next"><a href="node_pattern_compiler.html">Node Pattern Compiler</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

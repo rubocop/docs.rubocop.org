@@ -6,7 +6,7 @@
     <title>Rails :: RuboCop Docs</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop-rails/cops_rails.html">
     <link rel="prev" href="cops.html">
-    <meta name="generator" content="Antora 2.3.3">
+    <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
@@ -148,6 +148,12 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-ast/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-ast/0.7/index.html">0.7</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-ast/0.6/index.html">0.6</a>
         </li>
         <li class="version">
           <a href="../rubocop-ast/0.5/index.html">0.5</a>
@@ -7282,6 +7288,70 @@ validates :foo, uniqueness: true</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="railswhereequals"><a class="anchor" href="#railswhereequals"></a>Rails/WhereEquals</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop identifies places where manually constructed SQL
+in <code>where</code> can be replaced with <code>where(attribute: value)</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+User.where('name = ?', 'Gabe')
+User.where('name = :name', name: 'Gabe')
+User.where('name IS NULL')
+User.where('name IN (?)', ['john', 'jane'])
+User.where('name IN (:names)', names: ['john', 'jane'])
+
+# good
+User.where(name: 'Gabe')
+User.where(name: nil)
+User.where(name: ['john', 'jane'])</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-31"><a class="anchor" href="#references-31"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://rails.rubystyle.guide/#hash-conditions" class="bare">https://rails.rubystyle.guide/#hash-conditions</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="railswhereexists"><a class="anchor" href="#railswhereexists"></a>Rails/WhereExists</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -7323,7 +7393,7 @@ then the cop enforces <code>exists?(&#8230;&#8203;)</code> over <code>where(&#82
 <code>where(&#8230;&#8203;).exists?</code> over <code>exists?(&#8230;&#8203;)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
+<h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-exists-default"><a class="anchor" href="#enforcedstyle-exists-default"></a>EnforcedStyle: exists (default)</h4>
 <div class="listingblock">
@@ -7422,7 +7492,7 @@ User.where('length(name) &gt; 10').exists?</code></pre>
 in <code>where</code> can be replaced with <code>where.not(&#8230;&#8203;)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
+<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7442,11 +7512,11 @@ User.where.not(name: ['john', 'jane'])</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-31"><a class="anchor" href="#references-31"></a>References</h3>
+<h3 id="references-32"><a class="anchor" href="#references-32"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://rails.rubystyle.guide/#where-not" class="bare">https://rails.rubystyle.guide/#where-not</a></p>
+<p><a href="https://rails.rubystyle.guide/#hash-conditions" class="bare">https://rails.rubystyle.guide/#hash-conditions</a></p>
 </li>
 </ul>
 </div>
