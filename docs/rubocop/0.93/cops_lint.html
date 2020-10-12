@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_lint.html">
     <link rel="prev" href="cops_layout.html">
     <link rel="next" href="cops_metrics.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="stylesheet" href="../../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
@@ -328,7 +328,7 @@
     <a class="version" href="../0.85/cops_lint.html">0.85</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/blob/v0.93.0/docs/modules/ROOT/pages/cops_lint.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/blob/v0.93.1/docs/modules/ROOT/pages/cops_lint.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -4950,20 +4950,40 @@ require 'unloaded_feature'</code></pre>
 </table>
 <div class="paragraph">
 <p>This cop checks for redundant safe navigation calls.
-It is marked as unsafe, because it can produce code that returns
-non <code>nil</code> while <code>nil</code> result is expected on <code>nil</code> receiver.</p>
+<code>instance_of?</code>, <code>kind_of?</code>, <code>is_a?</code>, <code>eql?</code>, <code>respond_to?</code>, and <code>equal?</code> methods
+are checked by default. These are customizable with <code>AllowedMethods</code> option.</p>
+</div>
+<div class="paragraph">
+<p>This cop is marked as unsafe, because auto-correction can change the
+return type of the expression. An offending expression that previously
+could return <code>nil</code> will be auto-corrected to never return <code>nil</code>.</p>
+</div>
+<div class="paragraph">
+<p>In the example below, the safe navigation operator (<code>&amp;.</code>) is unnecessary
+because <code>NilClass</code> has methods like <code>respond_to?</code> and <code>is_a?</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-64"><a class="anchor" href="#examples-64"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-attrs&amp;.respond_to?(:[])
-foo&amp;.dup&amp;.inspect
+do_something if attrs&amp;.respond_to?(:[])
 
 # good
-attrs.respond_to?(:[])
-foo.dup.inspect</code></pre>
+do_something if attrs.respond_to?(:[])
+
+# bad
+while node&amp;.is_a?(BeginNode)
+  node = node.parent
+end
+
+# good
+while node.is_a?(BeginNode)
+  node = node.parent
+end
+
+# good - without `&amp;.` this will always return `true`
+foo&amp;.respond_to?(:to_a)</code></pre>
 </div>
 </div>
 </div>
@@ -4984,8 +5004,8 @@ foo.dup.inspect</code></pre>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>to_c</code>, <code>to_f</code>, <code>to_i</code>, <code>to_r</code>, <code>rationalize</code>, <code>public_send</code>, <code>send</code>, <code><em>send</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>instance_of?</code>, <code>kind_of?</code>, <code>is_a?</code>, <code>eql?</code>, <code>respond_to?</code>, <code>equal?</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
