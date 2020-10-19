@@ -6,7 +6,7 @@
     <title>Rails :: RuboCop Docs</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop-rails/cops_rails.html">
     <link rel="prev" href="cops.html">
-    <meta name="generator" content="Antora 2.3.3">
+    <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
@@ -1058,8 +1058,9 @@ assert_not x</code></pre>
 </table>
 <div class="paragraph">
 <p>This cop looks for <code>attribute</code> class methods that specify a <code>:default</code> option
-which value is a method call without a block.
-It will accept all other values, such as literals and constants.</p>
+which value is an array, string literal or method call without a block.
+It will accept all other values, such as string, symbol, integer and float literals
+as well as constants.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-13"><a class="anchor" href="#examples-13"></a>Examples</h3>
@@ -1071,27 +1072,47 @@ class User &lt; ApplicationRecord
 end
 
 # good
-class User &lt; ActiveRecord::Base
+class User &lt; ApplicationRecord
   attribute :confirmed_at, :datetime, default: -&gt; { Time.zone.now }
 end
 
+# bad
+class User &lt; ApplicationRecord
+  attribute :roles, :string, array: true, default: []
+end
+
 # good
-class User &lt; ActiveRecord::Base
+class User &lt; ApplicationRecord
+  attribute :roles, :string, array: true, default: -&gt; { [] }
+end
+
+# bad
+class User &lt; ApplicationRecord
+  attribute :configuration, default: {}
+end
+
+# good
+class User &lt; ApplicationRecord
+  attribute :configuration, default: -&gt; { {} }
+end
+
+# good
+class User &lt; ApplicationRecord
   attribute :role, :string, default: :customer
 end
 
 # good
-class User &lt; ActiveRecord::Base
+class User &lt; ApplicationRecord
   attribute :activated, :boolean, default: false
 end
 
 # good
-class User &lt; ActiveRecord::Base
+class User &lt; ApplicationRecord
   attribute :login_count, :integer, default: 0
 end
 
 # good
-class User &lt; ActiveRecord::Base
+class User &lt; ApplicationRecord
   FOO = 123
   attribute :custom_attribute, :integer, default: FOO
 end</code></pre>
@@ -6781,7 +6802,7 @@ validations which are listed in
 <a href="https://guides.rubyonrails.org/active_record_validations.html#skipping-validations" class="bare">https://guides.rubyonrails.org/active_record_validations.html#skipping-validations</a></p>
 </div>
 <div class="paragraph">
-<p>Methods may be ignored from this rule by configuring a <code>Whitelist</code>.</p>
+<p>Methods may be ignored from this rule by configuring a <code>AllowedMethods</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
@@ -6805,7 +6826,7 @@ FileUtils.touch('file')</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="whitelist-touch"><a class="anchor" href="#whitelist-touch"></a>Whitelist: ["touch"]</h4>
+<h4 id="allowedmethods-touch"><a class="anchor" href="#allowedmethods-touch"></a>AllowedMethods: ["touch"]</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad

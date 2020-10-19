@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_security.html">
     <link rel="prev" href="cops_naming.html">
     <link rel="next" href="cops_style.html">
-    <meta name="generator" content="Antora 2.3.3">
+    <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
@@ -560,19 +560,19 @@ Marshal.load(Marshal.dump({}))</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.53</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for the use of <code>Kernel#open</code>.</p>
+<p>This cop checks for the use of <code>Kernel#open</code> and <code>URI.open</code>.</p>
 </div>
 <div class="paragraph">
-<p><code>Kernel#open</code> enables not only file access but also process invocation
-by prefixing a pipe symbol (e.g., <code>open("| ls")</code>). So, it may lead to
-a serious security risk by using variable input to the argument of
-<code>Kernel#open</code>. It would be better to use <code>File.open</code>, <code>IO.popen</code> or
-<code>URI#open</code> explicitly.</p>
+<p><code>Kernel#open</code> and <code>URI.open</code> enable not only file access but also process
+invocation by prefixing a pipe symbol (e.g., <code>open("| ls")</code>).
+So, it may lead to a serious security risk by using variable input to
+the argument of <code>Kernel#open</code> and <code>URI.open</code>. It would be better to use
+<code>File.open</code>, <code>IO.popen</code> or <code>URI.parse#open</code> explicitly.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
@@ -580,6 +580,7 @@ a serious security risk by using variable input to the argument of
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 open(something)
+URI.open(something)
 
 # good
 File.open(something)

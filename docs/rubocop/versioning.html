@@ -6,7 +6,7 @@
     <title>Versioning :: RuboCop Docs</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/versioning.html">
     <link rel="prev" href="support.html">
-    <meta name="generator" content="Antora 2.3.3">
+    <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
@@ -333,21 +333,12 @@
 <h1 class="page">Versioning</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Some of the information here is forward looking, as RuboCop 1.0 is still not released.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
 <p>RuboCop is stable between major versions, both in terms of API and cop
-configuration.</p>
+configuration. We aim the ease the maintenance of RuboCop extensions
+(by keeping the API stable) and the upgrades between RuboCop releases
+(by not enabling new cops and changing the configuration of existing cops).
+All big (breaking) changes are reserved for major releases.</p>
 </div>
 </div>
 </div>
@@ -355,19 +346,15 @@ configuration.</p>
 <h2 id="release-policy"><a class="anchor" href="#release-policy"></a>Release Policy</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>We&#8217;re following <a href="https://semver.org/">Semantic Versioning</a> (as much as
-one can be following it when the major version is 0). At this point
-bumps of the minor (second) version number are considered major releases
-and always include new features or significant changes to existing
-features. API compatibility between major releases is a big concern, as
-there are many RuboCop extensions that can be affected by breaking API
-changes.</p>
+<p>We&#8217;re following <a href="https://semver.org/">Semantic Versioning</a>.  API
+compatibility between major releases is a big concern, as there are
+many RuboCop extensions that can be affected by breaking API changes.</p>
 </div>
 <div class="paragraph">
-<p>The development cycle for the next major
-release starts immediately after the previous one has been
-shipped. Bugfix/point releases (if any) address only serious bugs and
-never contain new features.</p>
+<p>The development cycle for the next minor (feature) release starts
+immediately after the previous one has been shipped. Bug-fix (point)
+releases (if any) address only serious bugs and never contain new
+features.</p>
 </div>
 <div class="paragraph">
 <p>Here are a few examples:</p>
@@ -375,18 +362,32 @@ never contain new features.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>0.50.0 - Feature release</p>
+<p>1.1.0 - Feature release</p>
 </li>
 <li>
-<p>0.50.1 - Bug-fix release</p>
+<p>1.1.1 - Bug-fix release</p>
 </li>
 <li>
-<p>0.50.2 - Bug-fix release</p>
+<p>1.1.2 - Bug-fix release</p>
 </li>
 <li>
-<p>0.51.0 - Feature release</p>
+<p>1.2.0 - Feature release</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Prior to RuboCop 1.0 bumps of the minor (second) version number
+were considered major releases and always included new features and/or
+changes to existing features.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -421,11 +422,28 @@ For more information: https://docs.rubocop.org/rubocop/versioning.html</pre>
 <p>You can see that 3 new cops were added in RuboCop 0.80 and it&#8217;s up to you
 to decide if you want to enable or disable them.</p>
 </div>
-<div class="paragraph">
-<p>To suppress this message set <code>NewCops</code> to either <code>enable</code> or <code>disable</code> in your <code>.rubocop.yml</code> file.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Occasionally, some new cops will be introduced as <strong>disabled</strong> by
+default.  Usually, this means that we believe that the cop is useful,
+but not for everyone.  Typical cases might be the enforcement of
+programming styles that are not very common in the wild, or cops that
+yield too many false positives (so you&#8217;d run them manually from time
+to time, instead of running them all the time).
+</td>
+</tr>
+</table>
 </div>
+<div class="sect2">
+<h3 id="enablingdisabling-pending-cops-in-bulk"><a class="anchor" href="#enablingdisabling-pending-cops-in-bulk"></a>Enabling/Disabling Pending Cops in Bulk</h3>
 <div class="paragraph">
-<p>The following setting or using <code>rubocop --enable-pending-cops</code> command-line option, pending cops are enabled in bulk.</p>
+<p>To suppress this message set <code>NewCops</code> to either <code>enable</code> or <code>disable</code> in your <code>.rubocop.yml</code> file.
+You can use following configuration or the <code>--enable-pending-cops</code> command-line option, to enable all pending cops in bulk:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -434,7 +452,7 @@ to decide if you want to enable or disable them.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The following setting or using <code>rubocop --disable-pending-cops</code> command-line option, pending cops are disabled in bulk.</p>
+<p>Alternatively, you can use following configuration or the <code>--disable-pending-cops</code> command-line option, to disable all pending cops in bulk:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -442,11 +460,23 @@ to decide if you want to enable or disable them.</p>
   NewCops: disable</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>The command-line options takes precedence over <code>.rubocop.yml</code> file.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The command-line options takes precedence over <code>.rubocop.yml</code> file.
+</td>
+</tr>
+</table>
 </div>
+</div>
+<div class="sect2">
+<h3 id="enablingdisabling-individual-pending-cops"><a class="anchor" href="#enablingdisabling-individual-pending-cops"></a>Enabling/Disabling Individual Pending Cops</h3>
 <div class="paragraph">
-<p>Or set <code>Enabled</code> to either <code>true</code> or <code>false</code> in your <code>.rubocop.yml</code> file.</p>
+<p>Finally, you can enable/disable individual pending cops by setting their <code>Enabled</code> configuration to either <code>true</code> or <code>false</code> in your <code>.rubocop.yml</code> file:</p>
 </div>
 <div class="paragraph">
 <p><code>Style/ANewCop</code> is an example of a newly added pending cop:</p>
@@ -466,8 +496,18 @@ to decide if you want to enable or disable them.</p>
   Enabled: false</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>On major version updates, pending cops are enabled in bulk.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+On major RuboCop version updates (e.g. 1.0 &#8594; 2.0), <strong>all</strong> pending cops are enabled in bulk.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
