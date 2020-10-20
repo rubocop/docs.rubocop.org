@@ -40,16 +40,27 @@ $ cd docs.rubocop.org
 $ antora --pull antora-playbook.yml
 ----
 
-After you're done with the initial setup you can use the `deploy` script to push changes to the site:
+TIP: You can preview your changes by opening `docs/index.html` in your favorite browser.
+
+Afterwards you can publish your changes like this:
 
 [source]
 ----
-./deploy
+$ git add docs
+$ git commit -m 'Update site docs'
+$ git push
 ----
 
-NOTE: You'll need commit access to the repository for this to work.
+You can also use the `deploy` script to publish changes in a single step:
 
-To check the generated site you can simply open `docs/index.html` in your favourite browser.
+[source]
+----
+$ ./deploy
+----
+
+It basically does `antora --pull` and `git push`.
+
+NOTE: You'll need commit access to the repository for this to work.
 
 If you want to make changes to the manual's page structure you'll have to edit
 link:https://github.com/rubocop-hq/rubocop/blob/master/doc/modules/ROOT/nav.adoc[nav.adoc].
