@@ -319,6 +319,9 @@
         <li class="version is-latest">
           <a href="../rubocop-rspec/index.html">master</a>
         </li>
+        <li class="version">
+          <a href="../rubocop-rspec/1.44/index.html">1.44</a>
+        </li>
       </ul>
     </li>
   </ul>
@@ -653,6 +656,9 @@ method names with a constant <code>RESTRICT_ON_SEND</code>.</p>
   end
 end</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Note that <code>on_send</code> will be called on a given <code>node</code> before the callbacks <code>on_&lt;some type&gt;</code> for its children are called. There&#8217;s also a callback <code>after_send</code> that is called after the children are processed. There&#8217;s a similar <code>after_&lt;some type&gt;</code> callback for all types, except those that never have children.</p>
 </div>
 <div class="paragraph">
 <p>Update the spec to cover the expected syntax:</p>
