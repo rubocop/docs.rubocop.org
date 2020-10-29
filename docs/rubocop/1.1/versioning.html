@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Versioning :: RuboCop Docs</title>
+    <link rel="canonical" href="https://docs.rubocop.org/rubocop/versioning.html">
+    <link rel="prev" href="support.html">
+    <link rel="next" href="about/history.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140153536-1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-140153536-1')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <a href="https://rubocop.org">RuboCop</a>
+        <span class="separator">//</span>
+        <a href="https://docs.rubocop.org">Docs</a>
+      </div>
+      <div class="navbar-item">
+        <input id="search-input" type="text" placeholder="Search docs">
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href=index.html>Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Style Guides</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://rubystyle.guide">Ruby</a>
+            <a class="navbar-item" href="https://rails.rubystyle.guide">Rails</a>
+            <a class="navbar-item" href="https://rspec.rubystyle.guide">RSpec</a>
+            <a class="navbar-item" href="https://minitest.rubystyle.guide">Minitest</a>
+          </div>
+        </div>
+        <a class="navbar-item" href="https://www.rubydoc.info/gems/rubocop">API Docs</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Projects</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop">RuboCop</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-ast">RuboCop AST</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-minitest">RuboCop Minitest</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-performance">RuboCop Performance</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-rails">RuboCop Rails</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-rake">RuboCop Rake</a>
+            <a class="navbar-item" href="https://github.com/rubocop-hq/rubocop-rspec">RuboCop RSpec</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Community</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop-hq">GitHub Org</a>
+            <a class="navbar-item" href="https://gitter.im/bbatsov/rubocop">Chat (Gitter)</a>
+            <a class="navbar-item" href="https://opencollective.com/rubocop">Open Collective</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rubocop" data-version="1.1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">RuboCop</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="compatibility.html">Compatibility</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Usage</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/basic_usage.html">Basic Usage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/auto_correct.html">Auto-correct</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/caching.html">Caching</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cops.html">Cops</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="formatters.html">Formatters</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cop Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_bundler.html">Bundler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_gemspec.html">Gemspec</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_layout.html">Layout</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_lint.html">Lint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_metrics.html">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_migration.html">Migration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_naming.html">Naming</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_security.html">Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_style.html">Style</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="v1_upgrade_notes.html">Upgrade Notes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="extensions.html">Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="integration_with_other_tools.html">Integration with Other Tools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="automated_code_review.html">Automated Code Review</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="contributing.html">Contributing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="support.html">Support</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="versioning.html">Versioning</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">About</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/history.html">History</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/team.html">Team</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/changelog.html">Changelog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/logo.html">Logo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/license.html">License</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RuboCop</span>
+    <span class="version">1.1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">RuboCop</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../index.html">master</a>
+        </li>
+        <li class="version is-current">
+          <a href="index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../1.0/index.html">1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop AST</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-ast/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.0/index.html">1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop Minitest</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-minitest/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.10/index.html">0.10</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop Packaging</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-packaging/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop Performance</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-performance/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.8/index.html">1.8</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.7/index.html">1.7</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop Rails</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-rails/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.8/index.html">2.8</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.7/index.html">2.7</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">RuboCop RSpec</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-rspec/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/1.44/index.html">1.44</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">RuboCop</a></li>
+    <li><a href="versioning.html">Versioning</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">1.1</button>
+  <div class="version-menu">
+    <a class="version" href="../versioning.html">master</a>
+    <a class="version is-current" href="versioning.html">1.1</a>
+    <a class="version" href="../1.0/versioning.html">1.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/blob/v1.1.0/docs/modules/ROOT/pages/versioning.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Versioning</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>RuboCop is stable between major versions, both in terms of API and cop
+configuration. We aim the ease the maintenance of RuboCop extensions
+(by keeping the API stable) and the upgrades between RuboCop releases
+(by not enabling new cops and changing the configuration of existing cops).
+All big (breaking) changes are reserved for major releases.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="release-policy"><a class="anchor" href="#release-policy"></a>Release Policy</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We&#8217;re following <a href="https://semver.org/">Semantic Versioning</a>.  API
+compatibility between major releases is a big concern, as there are
+many RuboCop extensions that can be affected by breaking API changes.</p>
+</div>
+<div class="paragraph">
+<p>The development cycle for the next minor (feature) release starts
+immediately after the previous one has been shipped. Bug-fix (point)
+releases (if any) address only serious bugs and never contain new
+features.</p>
+</div>
+<div class="paragraph">
+<p>Here are a few examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>1.1.0 - Feature release</p>
+</li>
+<li>
+<p>1.1.1 - Bug-fix release</p>
+</li>
+<li>
+<p>1.1.2 - Bug-fix release</p>
+</li>
+<li>
+<p>1.2.0 - Feature release</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Prior to RuboCop 1.0 bumps of the minor (second) version number
+were considered major releases and always included new features and/or
+changes to existing features.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pending-cops"><a class="anchor" href="#pending-cops"></a>Pending Cops</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the early versions of RuboCop a common source of frustration was that
+new cops were added to pretty much every release, and as they were enabled
+by default, every upgrade resulted in broken CI builds and trying to figure
+out what exactly was changed. After considering many options to address
+this eventually we opted for an approach that limits these type of changes
+to major RuboCop releases.</p>
+</div>
+<div class="paragraph">
+<p>Now new cops introduced between major versions are set to a special pending
+status and are not enabled by default. A warning is emitted if such cops
+are not explicitly enabled or disabled in the user configuration. Here&#8217;s
+one such message:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>The following cops were added to RuboCop, but are not configured. Please
+set Enabled to either `true` or `false` in your `.rubocop.yml` file:
+ - Style/HashEachMethods (0.80)
+ - Style/HashTransformKeys (0.80)
+ - Style/HashTransformValues (0.80)
+For more information: https://docs.rubocop.org/rubocop/versioning.html</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can see that 3 new cops were added in RuboCop 0.80 and it&#8217;s up to you
+to decide if you want to enable or disable them.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Occasionally, some new cops will be introduced as <strong>disabled</strong> by
+default.  Usually, this means that we believe that the cop is useful,
+but not for everyone.  Typical cases might be the enforcement of
+programming styles that are not very common in the wild, or cops that
+yield too many false positives (so you&#8217;d run them manually from time
+to time, instead of running them all the time).
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="enablingdisabling-pending-cops-in-bulk"><a class="anchor" href="#enablingdisabling-pending-cops-in-bulk"></a>Enabling/Disabling Pending Cops in Bulk</h3>
+<div class="paragraph">
+<p>To suppress this message set <code>NewCops</code> to either <code>enable</code> or <code>disable</code> in your <code>.rubocop.yml</code> file.
+You can use following configuration or the <code>--enable-pending-cops</code> command-line option, to enable all pending cops in bulk:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">AllCops:
+  NewCops: enable</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can use following configuration or the <code>--disable-pending-cops</code> command-line option, to disable all pending cops in bulk:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">AllCops:
+  NewCops: disable</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The command-line options takes precedence over <code>.rubocop.yml</code> file.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enablingdisabling-individual-pending-cops"><a class="anchor" href="#enablingdisabling-individual-pending-cops"></a>Enabling/Disabling Individual Pending Cops</h3>
+<div class="paragraph">
+<p>Finally, you can enable/disable individual pending cops by setting their <code>Enabled</code> configuration to either <code>true</code> or <code>false</code> in your <code>.rubocop.yml</code> file:</p>
+</div>
+<div class="paragraph">
+<p><code>Style/ANewCop</code> is an example of a newly added pending cop:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Style/ANewCop:
+  Enabled: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Style/ANewCop:
+  Enabled: false</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+On major RuboCop version updates (e.g. 1.0 &#8594; 2.0), <strong>all</strong> pending cops are enabled in bulk.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="support.html">Support</a></span>
+  <span class="next"><a href="about/history.html">History</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>Copyright (C) 2012-2020 <a href="https://metaredux.com">Bozhidar Batsov</a> and RuboCop contributors.</p>
+  <p>Except where otherwise noted, docs.rubocop.org is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a> (CC BY-SA 4.0).</p>
+</footer>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript">
+docsearch({
+  apiKey: '6d6bf5210b1f26f7f7939e192f8f8c77',
+  indexName: 'rubocop',
+  inputSelector: '#search-input',
+  debug: false // Set debug to true if you want to inspect the dropdown
+});
+</script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
