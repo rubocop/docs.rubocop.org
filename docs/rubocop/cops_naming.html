@@ -209,6 +209,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.2/index.html">1.2</a>
+        </li>
+        <li class="version">
           <a href="1.1/index.html">1.1</a>
         </li>
         <li class="version">
@@ -296,7 +299,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.1/index.html" class="home-link"></a>
+  <a href="1.2/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -308,6 +311,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_naming.html">master</a>
+    <a class="version" href="1.2/cops_naming.html">1.2</a>
     <a class="version" href="1.1/cops_naming.html">1.1</a>
     <a class="version" href="1.0/cops_naming.html">1.0</a>
   </div>
@@ -1189,7 +1193,7 @@ EOS</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.53</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.58</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.2</p></td>
 </tr>
 </tbody>
 </table>
@@ -1215,6 +1219,11 @@ be set or referenced outside of the memoization method.</p>
 # not `@foo`. This can cause confusion and bugs.
 def foo
   @something ||= calculate_expensive_thing
+end
+
+def foo
+  return @something if defined?(@something)
+  @something = calculate_expensive_thing
 end
 
 # good
@@ -1256,6 +1265,11 @@ def foo
   @foo ||= calculate_expensive_thing
 end
 
+def foo
+  return @foo if defined?(@foo)
+  @foo = calculate_expensive_thing
+end
+
 # good
 def foo
   @_foo ||= calculate_expensive_thing
@@ -1264,6 +1278,11 @@ end
 # good
 def _foo
   @_foo ||= calculate_expensive_thing
+end
+
+def foo
+  return @_foo if defined?(@_foo)
+  @_foo = calculate_expensive_thing
 end</code></pre>
 </div>
 </div>
@@ -1290,6 +1309,12 @@ end
 # good
 def _foo
   @_foo ||= calculate_expensive_thing
+end
+
+# good
+def foo
+  return @_foo if defined?(@_foo)
+  @_foo = calculate_expensive_thing
 end</code></pre>
 </div>
 </div>
@@ -1917,7 +1942,7 @@ fooBar = 1</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.50</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.2</p></td>
 </tr>
 </tbody>
 </table>
@@ -1926,6 +1951,11 @@ fooBar = 1</code></pre>
 configured style, snake_case, normalcase, or non_integer,
 for their numbering.</p>
 </div>
+<div class="paragraph">
+<p>Additionally, <code>CheckMethodNames</code> and <code>CheckSymbols</code> configuration options
+can be used to specify whether method names and symbols should be checked.
+Both are enabled by default.</p>
+</div>
 <div class="sect2">
 <h3 id="examples-16"><a class="anchor" href="#examples-16"></a>Examples</h3>
 <div class="sect3">
@@ -1933,12 +1963,20 @@ for their numbering.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
+:some_sym1
 variable1 = 1
 
-# good
+def some_method1; end
 
-variable_1 = 1</code></pre>
+def some_method_1(arg1); end
+
+# good
+:some_sym_1
+variable_1 = 1
+
+def some_method_1; end
+
+def some_method_1(arg_1); end</code></pre>
 </div>
 </div>
 </div>
@@ -1947,12 +1985,20 @@ variable_1 = 1</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
+:some_sym_1
 variable_1 = 1
 
-# good
+def some_method_1; end
 
-variable1 = 1</code></pre>
+def some_method1(arg_1); end
+
+# good
+:some_sym1
+variable1 = 1
+
+def some_method1; end
+
+def some_method1(arg1); end</code></pre>
 </div>
 </div>
 </div>
@@ -1961,16 +2007,70 @@ variable1 = 1</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+:some_sym1
+:some_sym_1
 
 variable1 = 1
-
 variable_1 = 1
 
+def some_method1; end
+
+def some_method_1; end
+
+def some_methodone(arg1); end
+def some_methodone(arg_1); end
+
 # good
+:some_symone
+:some_sym_one
 
 variableone = 1
+variable_one = 1
 
-variable_one = 1</code></pre>
+def some_methodone; end
+
+def some_method_one; end
+
+def some_methodone(argone); end
+def some_methodone(arg_one); end
+
+# In the following examples, we assume `EnforcedStyle: normalcase` (default).</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="checkmethodnames-true-default"><a class="anchor" href="#checkmethodnames-true-default"></a>CheckMethodNames: true (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+def some_method_1; end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="checkmethodnames-false"><a class="anchor" href="#checkmethodnames-false"></a>CheckMethodNames: false</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+def some_method_1; end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="checksymbols-true-default"><a class="anchor" href="#checksymbols-true-default"></a>CheckSymbols: true (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+:some_sym_1</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="checksymbols-false"><a class="anchor" href="#checksymbols-false"></a>CheckSymbols: false</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+:some_sym_1</code></pre>
 </div>
 </div>
 </div>
@@ -1996,8 +2096,28 @@ variable_one = 1</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>normalcase</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>snake_case</code>, <code>normalcase</code>, <code>non_integer</code></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CheckMethodNames</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CheckSymbols</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
 </tbody>
 </table>
+</div>
+<div class="sect2">
+<h3 id="references-12"><a class="anchor" href="#references-12"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://rubystyle.guide#snake-case-symbols-methods-vars-with-numbers" class="bare">https://rubystyle.guide#snake-case-symbols-methods-vars-with-numbers</a></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>

@@ -209,6 +209,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.2/index.html">1.2</a>
+        </li>
+        <li class="version">
           <a href="1.1/index.html">1.1</a>
         </li>
         <li class="version">
@@ -296,7 +299,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.1/index.html" class="home-link"></a>
+  <a href="1.2/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -308,6 +311,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_lint.html">master</a>
+    <a class="version" href="1.2/cops_lint.html">1.2</a>
     <a class="version" href="1.1/cops_lint.html">1.1</a>
     <a class="version" href="1.0/cops_lint.html">1.0</a>
   </div>
@@ -1878,16 +1882,21 @@ sum = numbers.each_with_object(num) { |e, a| a += e }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.17</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.2</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for odd else block layout - like
-having an expression on the same line as the else keyword,
+<p>This cop checks for odd <code>else</code> block layout - like
+having an expression on the same line as the <code>else</code> keyword,
 which is usually a mistake.</p>
+</div>
+<div class="paragraph">
+<p>Its auto-correction tweaks layout to keep the syntax. So, this auto-correction
+is compatible correction for bad case syntax, but if your code makes a mistake
+with <code>elsif</code> and <code>else</code>, you will have to correct it manually.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-23"><a class="anchor" href="#examples-23"></a>Examples</h3>
@@ -1906,10 +1915,19 @@ end</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
 
+# This code is compatible with the bad case. It will be auto-corrected like this.
 if something
   # ...
 else
   do_this
+  do_that
+end
+
+# This code is incompatible with the bad case.
+# If `do_this` is a condition, `elsif` should be used instead of `else`.
+if something
+  # ...
+elsif do_this
   do_that
 end</code></pre>
 </div>
@@ -4159,6 +4177,19 @@ end</code></pre>
 attributes = {
   valid_attributes: %i[name content],
   nested_attributes: %i[name content %i[incorrectly nested]]
+}
+
+# good
+
+# Neither is incompatible with the bad case, but probably the intended code.
+attributes = {
+  valid_attributes: %i[name content],
+  nested_attributes: [:name, :content, %i[incorrectly nested]]
+}
+
+attributes = {
+  valid_attributes: %i[name content],
+  nested_attributes: [:name, :content, [:incorrectly, :nested]]
 }</code></pre>
 </div>
 </div>
@@ -8405,15 +8436,16 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.13</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.80</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.2</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p>This cop checks for setter call to local variable as the final
-expression of a function definition.</p>
+expression of a function definition.
+Its auto-correction is marked as unsafe because return value will be changed.</p>
 </div>
 <div class="admonitionblock note">
 <table>
