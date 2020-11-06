@@ -287,7 +287,7 @@
           <a href="../rubocop-rspec/index.html">master</a>
         </li>
         <li class="version">
-          <a href="../rubocop-rspec/1.44/index.html">1.44</a>
+          <a href="../rubocop-rspec/2.0/index.html">2.0</a>
         </li>
       </ul>
     </li>
@@ -7221,8 +7221,23 @@ Hash[{a: 1, b: 2}.collect { |k, v| [k, foo(v)] }]
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for identical lines at the beginning or end of
-each branch of a conditional statement.</p>
+<p>This cop checks for identical expressions at the beginning or end of
+each branch of a conditional expression. Such expressions should normally
+be placed outside the conditional expression - before or after it.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The cop is poorly named and some people might think that it actually
+checks for duplicated conditional branches. The name will probably be changed
+in a future major RuboCop release.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="examples-73"><a class="anchor" href="#examples-73"></a>Examples</h3>

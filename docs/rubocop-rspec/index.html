@@ -92,17 +92,20 @@
     <a class="nav-link" href="cops.html">Cops</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="upgrade_to_version_2.html">Upgrade to 2.x</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Cops Documentation</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cops_capybara.html">Capybara</a>
+    <a class="nav-link" href="#cops_capybara.adoc">Capybara</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cops_factorybot.html">FactoryBot</a>
+    <a class="nav-link" href="#cops_factorybot.adoc">FactoryBot</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cops_rails.html">Rails</a>
+    <a class="nav-link" href="#cops_rails.adoc">Rails</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="cops_rspec.html">RSpec</a>
@@ -205,7 +208,7 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
-          <a href="1.44/index.html">1.44</a>
+          <a href="2.0/index.html">2.0</a>
         </li>
       </ul>
     </li>
@@ -228,7 +231,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="index.html">master</a>
-    <a class="version" href="1.44/index.html">1.44</a>
+    <a class="version" href="2.0/index.html">2.0</a>
   </div>
 </div>
   <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop-rspec/edit/master/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
@@ -241,6 +244,13 @@
 <div class="paragraph">
 <p>RSpec-specific analysis for your projects, as an extension to
 <a href="https://github.com/rubocop-hq/rubocop">RuboCop</a>.</p>
+</div>
+<div class="paragraph">
+<p>RuboCop RSpec follows the <a href="https://docs.rubocop.org/rubocop/versioning.html">RuboCop versioning guide</a>.
+In a nutshell, between major versions new cops are introduced in a special <code>pending</code> status.
+That means that they won’t be run unless explicitly told otherwise.
+RuboCop will warn on start that certain cops are neither explicitly enabled and disabled.
+On a major version release, all <code>pending</code> cops are enabled.</p>
 </div>
 </div>
 </div>
