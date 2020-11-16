@@ -262,6 +262,9 @@
           <a href="../rubocop-performance/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop-performance/1.9/index.html">1.9</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-performance/1.8/index.html">1.8</a>
         </li>
         <li class="version">
@@ -4043,7 +4046,13 @@ class_eval(
       super
     end
   EOT
-)</code></pre>
+)
+
+# bad - interpolated string without comment
+class_eval("def #{unsafe_method}!(*params); end")
+
+# good - with inline comment or replace it with block comment using heredoc
+class_eval("def #{unsafe_method}!(*params); end # def capitalize!(*params); end")</code></pre>
 </div>
 </div>
 </div>
@@ -12409,7 +12418,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.19</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.48.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.48</p></td>
 </tr>
 </tbody>
 </table>
@@ -16588,7 +16597,7 @@ result = "Tests #{success ? "PASS" : "FAIL"}"</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.34</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.34.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.34</p></td>
 </tr>
 </tbody>
 </table>

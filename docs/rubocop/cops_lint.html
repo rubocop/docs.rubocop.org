@@ -262,6 +262,9 @@
           <a href="../rubocop-performance/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop-performance/1.9/index.html">1.9</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-performance/1.8/index.html">1.8</a>
         </li>
         <li class="version">
@@ -976,10 +979,13 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedmethods-enums"><a class="anchor" href="#allowedmethods-enums"></a>AllowedMethods: ['enums']</h4>
+<h4 id="allowedmethods-enums-default"><a class="anchor" href="#allowedmethods-enums-default"></a>AllowedMethods: ['enums'] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+
+# `enums` for Typed Enums via `T::Enum` in Sorbet.
+# https://sorbet.org/docs/tenum
 class TestEnum &lt; T::Enum
   enums do
     Foo = new("foo")
@@ -1007,7 +1013,7 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AllowedMethods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>enums</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -6106,7 +6112,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.27.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.27</p></td>
 </tr>
 </tbody>
 </table>
@@ -7241,23 +7247,14 @@ has correct arguments.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-def method(x, y = 1)
-  return to_enum(__method__, x) # `y` is missing
+def foo(x, y = 1)
+  return to_enum(__callee__, x) # `y` is missing
 end
 
 # good
-def method(x, y = 1)
-  return to_enum(__method__, x, y)
-end
-
-# bad
-def method(required:)
-  return to_enum(:method, required: something) # `required` has incorrect value
-end
-
-# good
-def method(required:)
-  return to_enum(:method, required: required)
+def foo(x, y = 1)
+  return to_enum(__callee__, x, y)
+  # alternatives to `__callee__` are `__method__` and `:foo`
 end</code></pre>
 </div>
 </div>
