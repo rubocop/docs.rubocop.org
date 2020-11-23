@@ -118,6 +118,9 @@
           <a href="../rubocop/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.4/index.html">1.4</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.3/index.html">1.3</a>
         </li>
         <li class="version">
@@ -214,7 +217,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.3/index.html" class="home-link"></a>
+  <a href="../rubocop/1.4/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop Rails</a></li>
@@ -4103,16 +4106,20 @@ match 'photos/:id', to: 'photos#show', via: :all</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.9</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p>This cop enforces the use of <code>collection.exclude?(obj)</code>
 over <code>!collection.include?(obj)</code>.</p>
+</div>
+<div class="paragraph">
+<p>It is marked as unsafe by default because false positive will occur for
+a receiver object that do not have <code>exclude?</code> method. (e.g. <code>IPAddr</code>)</p>
 </div>
 <div class="sect2">
 <h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>

@@ -209,6 +209,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.4/index.html">1.4</a>
+        </li>
+        <li class="version">
           <a href="1.3/index.html">1.3</a>
         </li>
         <li class="version">
@@ -305,7 +308,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.3/index.html" class="home-link"></a>
+  <a href="1.4/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -317,6 +320,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_lint.html">master</a>
+    <a class="version" href="1.4/cops_lint.html">1.4</a>
     <a class="version" href="1.3/cops_lint.html">1.3</a>
     <a class="version" href="1.2/cops_lint.html">1.2</a>
     <a class="version" href="1.1/cops_lint.html">1.1</a>
@@ -4187,13 +4191,19 @@ x += 1
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.89</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.4</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p>This cop checks for the presence of constructors and lifecycle callbacks
 without calls to <code>super</code>.</p>
+</div>
+<div class="paragraph">
+<p>This cop does not consider <code>method_missing</code> (and <code>respond_to_missing?</code>)
+because in some cases it makes sense to overtake what is considered a
+missing method. In other cases, the theoretical ideal handling could be
+challenging or verbose for no actual gain.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-50"><a class="anchor" href="#examples-50"></a>Examples</h3>
@@ -7685,6 +7695,9 @@ values.reduce(nil) do |result, value|
   break result if something?
   value
 end
+
+# good, recursive
+keys.reduce(self) { |result, key| result[key] }
 
 # ignored as the return value cannot be determined
 enum.reduce do |acc, el|

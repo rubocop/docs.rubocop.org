@@ -209,6 +209,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.4/index.html">1.4</a>
+        </li>
+        <li class="version">
           <a href="1.3/index.html">1.3</a>
         </li>
         <li class="version">
@@ -305,7 +308,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.3/index.html" class="home-link"></a>
+  <a href="1.4/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -317,6 +320,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_layout.html">master</a>
+    <a class="version" href="1.4/cops_layout.html">1.4</a>
     <a class="version" href="1.3/cops_layout.html">1.3</a>
     <a class="version" href="1.2/cops_layout.html">1.2</a>
     <a class="version" href="1.1/cops_layout.html">1.1</a>
@@ -2455,7 +2459,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.49</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.4</p></td>
 </tr>
 </tbody>
 </table>
@@ -2474,9 +2478,13 @@ one-line method definitions are considered an offense.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-21"><a class="anchor" href="#examples-21"></a>Examples</h3>
+<div class="sect3">
+<h4 id="emptylinebetweenmethoddefs-true-default"><a class="anchor" href="#emptylinebetweenmethoddefs-true-default"></a>EmptyLineBetweenMethodDefs: true (default)</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># checks for empty lines between method definitions.
+
+# bad
 def a
 end
 def b
@@ -2491,6 +2499,65 @@ end
 
 def b
 end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="emptylinebetweenclassdefs-true-default"><a class="anchor" href="#emptylinebetweenclassdefs-true-default"></a>EmptyLineBetweenClassDefs: true (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># checks for empty lines between class definitions.
+
+# bad
+class A
+end
+class B
+end
+def b
+end</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+class A
+end
+
+class B
+end
+
+def b
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="emptylinebetweenmoduledefs-true-default"><a class="anchor" href="#emptylinebetweenmoduledefs-true-default"></a>EmptyLineBetweenModuleDefs: true (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># checks for empty lines between module definitions.
+
+# bad
+module A
+end
+module B
+end
+def b
+end</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+module A
+end
+
+module B
+end
+
+def b
+end</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -2510,6 +2577,21 @@ end</code></pre>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EmptyLineBetweenMethodDefs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EmptyLineBetweenClassDefs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EmptyLineBetweenModuleDefs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AllowAdjacentOneLineDefs</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
@@ -6001,7 +6083,7 @@ end
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.25</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.4</p></td>
 </tr>
 </tbody>
 </table>
@@ -6122,7 +6204,7 @@ bar: "0000000000", baz: "0000000000"}
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AutoCorrect</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 </tr>
 <tr>
