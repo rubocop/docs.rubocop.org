@@ -138,7 +138,7 @@
       <span class="title">RuboCop AST</span>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-ast/index.html">master</a>
+          <a href="../rubocop-ast/1.2/index.html">1.2</a>
         </li>
         <li class="version">
           <a href="../rubocop-ast/1.1/index.html">1.1</a>
@@ -2709,7 +2709,7 @@ User.find(id)</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.30</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.9</p></td>
 </tr>
 </tbody>
 </table>
@@ -2726,6 +2726,15 @@ User.all.each
 
 # good
 User.all.find_each</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ignoredmethods-order"><a class="anchor" href="#ignoredmethods-order"></a>IgnoredMethods: ['order']</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+User.order(:foo).each</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -2748,6 +2757,11 @@ User.all.find_each</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/<strong>*/</strong>.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>order</code>, <code>limit</code>, <code>select</code>, <code>lock</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -6891,14 +6905,16 @@ user.touch</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.9</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks SQL heredocs to use <code>.squish</code>.</p>
+<p>Checks SQL heredocs to use <code>.squish</code>.
+Some SQL syntax (e.g. PostgreSQL comments and functions) requires newlines
+to be preserved in order to work, thus auto-correction for this cop is not safe.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-76"><a class="anchor" href="#examples-76"></a>Examples</h3>
