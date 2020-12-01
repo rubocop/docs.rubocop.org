@@ -113,6 +113,9 @@
           <a href="../rubocop/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.5/index.html">1.5</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.4/index.html">1.4</a>
         </li>
         <li class="version">
@@ -202,6 +205,9 @@
         <li class="version">
           <a href="../rubocop-rspec/2.0/index.html">2.0</a>
         </li>
+        <li class="version">
+          <a href="../rubocop-rspec/1.44/index.html">1.44</a>
+        </li>
       </ul>
     </li>
   </ul>
@@ -212,7 +218,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.4/index.html" class="home-link"></a>
+  <a href="../rubocop/1.5/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop AST</a></li>
@@ -925,7 +931,7 @@ interesting_call?(node, method: /^transform/) # match anything starting with 'tr
 </div>
 </div>
 <div class="sect1">
-<h2 id="const-for-constants"><a class="anchor" href="#const-for-constants"></a><code>%CONST</code> for constants</h2>
+<h2 id="const-or-const-for-constants"><a class="anchor" href="#const-or-const-for-constants"></a><code>CONST</code> or <code>%CONST</code> for constants</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Constants can be included in patterns. They will be matched using <code>===</code>, so
@@ -937,7 +943,7 @@ Regexp / Set / Proc can be used in addition to literals and Nodes:</p>
                  :transform_values!, :transform_keys!,
                  :to_h].freeze
 
-def_node_matcher :interesting_call?, '(send _ %SOME_CALLS ...)'</code></pre>
+def_node_matcher :interesting_call?, '(send _ SOME_CALLS ...)'</code></pre>
 </div>
 </div>
 <div class="paragraph">

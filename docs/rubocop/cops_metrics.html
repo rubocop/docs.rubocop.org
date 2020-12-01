@@ -209,6 +209,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.5/index.html">1.5</a>
+        </li>
+        <li class="version">
           <a href="1.4/index.html">1.4</a>
         </li>
         <li class="version">
@@ -229,7 +232,7 @@
       <span class="title">RuboCop AST</span>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-ast/1.2/index.html">1.2</a>
+          <a href="../rubocop-ast/index.html">master</a>
         </li>
         <li class="version">
           <a href="../rubocop-ast/1.1/index.html">1.1</a>
@@ -298,6 +301,9 @@
         <li class="version">
           <a href="../rubocop-rspec/2.0/index.html">2.0</a>
         </li>
+        <li class="version">
+          <a href="../rubocop-rspec/1.44/index.html">1.44</a>
+        </li>
       </ul>
     </li>
   </ul>
@@ -308,7 +314,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.4/index.html" class="home-link"></a>
+  <a href="1.5/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -320,6 +326,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_metrics.html">master</a>
+    <a class="version" href="1.5/cops_metrics.html">1.5</a>
     <a class="version" href="1.4/cops_metrics.html">1.4</a>
     <a class="version" href="1.3/cops_metrics.html">1.3</a>
     <a class="version" href="1.2/cops_metrics.html">1.2</a>
@@ -358,7 +365,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.27</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.81</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.5</p></td>
 </tr>
 </tbody>
 </table>
@@ -367,6 +374,36 @@
 configured maximum. The ABC size is based on assignments, branches
 (method calls), and conditions. See <a href="http://c2.com/cgi/wiki?AbcMetric" class="bare">http://c2.com/cgi/wiki?AbcMetric</a>
 and <a href="https://en.wikipedia.org/wiki/ABC_Software_Metric" class="bare">https://en.wikipedia.org/wiki/ABC_Software_Metric</a>.</p>
+</div>
+<div class="paragraph">
+<p>You can have repeated "attributes" calls count as a single "branch".
+For this purpose, attributes are any method with no argument; no attempt
+is meant to distinguish actual <code>attr_reader</code> from other methods.</p>
+</div>
+<div class="paragraph">
+<p>This cop also takes into account <code>IgnoredMethods</code> (defaults to <code>[]</code>)</p>
+</div>
+<div class="sect2">
+<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
+<div class="sect3">
+<h4 id="countrepeatedattributes-false-default-is-true"><a class="anchor" href="#countrepeatedattributes-false-default-is-true"></a>CountRepeatedAttributes: false (default is true)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># `model` and `current_user`, refenced 3 times each,
+# are each counted as only 1 branch each if
+# `CountRepeatedAttributes` is set to 'false'
+
+def search
+  @posts = model.active.visible_by(current_user)
+            .search(params[:q])
+  @posts = model.some_process(@posts, current_user)
+  @posts = model.another_process(@posts, current_user)
+
+  render 'pages/search/page'
+end</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
@@ -388,6 +425,11 @@ and <a href="https://en.wikipedia.org/wiki/ABC_Software_Metric" class="bare">htt
 <td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CountRepeatedAttributes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Max</p></td>
@@ -438,7 +480,7 @@ and <a href="https://en.wikipedia.org/wiki/ABC_Software_Metric" class="bare">htt
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.44</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.87</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.5</p></td>
 </tr>
 </tbody>
 </table>
@@ -460,13 +502,26 @@ will be counted as one line regardless of its actual size.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
+The <code>ExcludedMethods</code> configuration is deprecated and only kept
+for backwards compatibility. Please use <code>IgnoredMethods</code> instead.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 This cop does not apply for <code>Struct</code> definitions.
 </td>
 </tr>
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
+<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
 <div class="sect3">
 <h4 id="countasone-array-heredoc"><a class="anchor" href="#countasone-array-heredoc"></a>CountAsOne: ['array', 'heredoc']</h4>
 <div class="listingblock">
@@ -523,6 +578,11 @@ end                 # 5 points</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ExcludedMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>refine</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
@@ -672,7 +732,7 @@ This cop also applies for <code>Struct</code> definitions.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
+<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
 <div class="sect3">
 <h4 id="countasone-array-heredoc-2"><a class="anchor" href="#countasone-array-heredoc-2"></a>CountAsOne: ['array', 'heredoc']</h4>
 <div class="listingblock">
@@ -860,7 +920,7 @@ end                                       # total: 6</pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.25</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.87</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.5</p></td>
 </tr>
 </tbody>
 </table>
@@ -874,8 +934,21 @@ The maximum allowed length is configurable.</p>
 Available are: 'array', 'hash', and 'heredoc'. Each literal
 will be counted as one line regardless of its actual size.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>ExcludedMethods</code> configuration is deprecated and only kept
+for backwards compatibility. Please use <code>IgnoredMethods</code> instead.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
-<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
 <div class="sect3">
 <h4 id="countasone-array-heredoc-3"><a class="anchor" href="#countasone-array-heredoc-3"></a>CountAsOne: ['array', 'heredoc']</h4>
 <div class="listingblock">
@@ -935,6 +1008,11 @@ end               # 5 points</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -991,7 +1069,7 @@ Available are: 'array', 'hash', and 'heredoc'. Each literal
 will be counted as one line regardless of its actual size.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
 <div class="sect3">
 <h4 id="countasone-array-heredoc-4"><a class="anchor" href="#countasone-array-heredoc-4"></a>CountAsOne: ['array', 'heredoc']</h4>
 <div class="listingblock">
@@ -1077,14 +1155,92 @@ end                 # 5 points</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.25</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.5</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for methods with too many parameters.
-The maximum number of parameters is configurable.
-Keyword arguments can optionally be excluded from the total count.</p>
+<p>This cop checks for methods with too many parameters.</p>
+</div>
+<div class="paragraph">
+<p>The maximum number of parameters is configurable.
+Keyword arguments can optionally be excluded from the total count,
+as they add less complexity than positional or optional parameters.</p>
+</div>
+<div class="paragraph">
+<p>This cop also checks for the maximum number of optional parameters.
+This can be configured using the <code>MaxOptionalParameters</code> config option.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<div class="sect3">
+<h4 id="max-3"><a class="anchor" href="#max-3"></a>Max: 3</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+def foo(a, b, c = 1)
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="max-2"><a class="anchor" href="#max-2"></a>Max: 2</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+def foo(a, b, c = 1)
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="countkeywordargs-true-default"><a class="anchor" href="#countkeywordargs-true-default"></a>CountKeywordArgs: true (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># counts keyword args towards the maximum
+
+# bad (assuming Max is 3)
+def foo(a, b, c, d: 1)
+end
+
+# good (assuming Max is 3)
+def foo(a, b, c: 1)
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="countkeywordargs-false"><a class="anchor" href="#countkeywordargs-false"></a>CountKeywordArgs: false</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># don't count keyword args towards the maximum
+
+# good (assuming Max is 3)
+def foo(a, b, c, d: 1)
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="maxoptionalparameters-3-default"><a class="anchor" href="#maxoptionalparameters-3-default"></a>MaxOptionalParameters: 3 (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+def foo(a = 1, b = 2, c = 3)
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="maxoptionalparameters-2"><a class="anchor" href="#maxoptionalparameters-2"></a>MaxOptionalParameters: 2</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+def foo(a = 1, b = 2, c = 3)
+end</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="configurable-attributes-8"><a class="anchor" href="#configurable-attributes-8"></a>Configurable attributes</h3>
@@ -1111,6 +1267,11 @@ Keyword arguments can optionally be excluded from the total count.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CountKeywordArgs</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MaxOptionalParameters</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
 </tr>
 </tbody>
 </table>
@@ -1168,7 +1329,7 @@ nodes count. In contrast to the CyclomaticComplexity cop, this cop
 considers <code>else</code> nodes as adding complexity.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
+<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def my_method                   # 1

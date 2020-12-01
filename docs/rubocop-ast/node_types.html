@@ -113,6 +113,9 @@
           <a href="../rubocop/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.5/index.html">1.5</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.4/index.html">1.4</a>
         </li>
         <li class="version">
@@ -202,6 +205,9 @@
         <li class="version">
           <a href="../rubocop-rspec/2.0/index.html">2.0</a>
         </li>
+        <li class="version">
+          <a href="../rubocop-rspec/1.44/index.html">1.44</a>
+        </li>
       </ul>
     </li>
   </ul>
@@ -212,7 +218,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.4/index.html" class="home-link"></a>
+  <a href="../rubocop/1.5/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop AST</a></li>
@@ -466,7 +472,7 @@ usually represents the entire node, but others have additional fields.</p>
 <p>One child - a symbol, representing the argument name.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>def foo(bar)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop-hq/rubocop-ast/RuboCop/AST/ArgNode">ArgNode</a></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>args</code></p></td>
@@ -532,7 +538,7 @@ usually represents the entire node, but others have additional fields.</p>
 <p>One child - a symbol, representing the argument name.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>def foo(&amp;bar)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop-hq/rubocop-ast/RuboCop/AST/ArgNode">ArgNode</a></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>break</code></p></td>
@@ -763,7 +769,7 @@ usually represents the entire node, but others have additional fields.</p>
 <p>None</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>def whatever(foo, &#8230;&#8203;)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop-hq/rubocop-ast/RuboCop/AST/ArgNode">ArgNode</a></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>forward_args</code></p></td>
@@ -884,7 +890,7 @@ usually represents the entire node, but others have additional fields.</p>
 <p>One child - a symbol, representing the argument name.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>def foo(bar:)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop-hq/rubocop-ast/RuboCop/AST/ArgNode">ArgNode</a></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>kwbegin</code></p></td>
@@ -917,7 +923,7 @@ usually represents the entire node, but others have additional fields.</p>
 <p>Two children - a symbol, representing the argument name, and an expression node for the value.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>def foo(bar: 5)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop-hq/rubocop-ast/RuboCop/AST/ArgNode">ArgNode</a></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>kwsplat</code></p></td>
@@ -939,7 +945,7 @@ usually represents the entire node, but others have additional fields.</p>
 <p>One child - a symbol, representing the argument name, if a name is given. If no name given, it has no children..</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>def foo(**kwargs)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop-hq/rubocop-ast/RuboCop/AST/ArgNode">ArgNode</a></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>lvar</code></p></td>
@@ -977,7 +983,7 @@ usually represents the entire node, but others have additional fields.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mlhs</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Multiple left-hand side. Only used inside a <code>masgn</code>.</p>
+<p>Multiple left-hand side. Used inside a <code>masgn</code> and block argument destructuring.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Children must all be assignment nodes. Represents the left side of a multiple assignment (<code>a, b</code> in the example).</p>
@@ -1052,7 +1058,7 @@ usually represents the entire node, but others have additional fields.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>opt_arg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>optarg</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional positional argument. Must come inside an <code>args</code>.</p>
 </div></div></td>
@@ -1060,7 +1066,7 @@ usually represents the entire node, but others have additional fields.</p>
 <p>One child - a symbol, representing the argument name.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>def foo(bar=1)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop-hq/rubocop-ast/RuboCop/AST/ArgNode">ArgNode</a></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>or</code></p></td>
@@ -1170,7 +1176,7 @@ usually represents the entire node, but others have additional fields.</p>
 <p>One child - a symbol, representing the argument name (if given). If no name given, there are no children.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>def foo(*rest)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop-hq/rubocop-ast/RuboCop/AST/ArgNode">ArgNode</a></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>return</code></p></td>
@@ -1217,6 +1223,17 @@ usually represents the entire node, but others have additional fields.</p>
 <p><code>foo</code> or <code>foo.bar</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop-hq/rubocop-ast/RuboCop/AST/SendNode">SendNode</a></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shadowarg</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Shadow argument, aka block-local variable. Must come inside an <code>args</code>.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>One child - a symbol, representing the argument name.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>foo { |a; b| b }</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop-hq/rubocop-ast/RuboCop/AST/ArgNode">ArgNode</a></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>splat</code></p></td>
