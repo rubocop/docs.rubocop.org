@@ -333,7 +333,7 @@
     <a class="version" href="../1.0/extensions.html">1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/blob/v1.5.0/docs/modules/ROOT/pages/extensions.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/blob/v1.5.1/docs/modules/ROOT/pages/extensions.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -374,6 +374,37 @@ starting with a <code>.</code> are resolved relative to <code>.rubocop.yml</code
 </td>
 </tr>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="extension-suggestions"><a class="anchor" href="#extension-suggestions"></a>Extension Suggestions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Depending on what gems you have in your bundle, RuboCop might suggest extensions
+that can be added to provide further functionality. For instance, if you are using
+<code>rspec</code> without the corresponding <code>rubocop-rspec</code> extension, RuboCop will suggest
+enabling it.</p>
+</div>
+<div class="paragraph">
+<p>This message can be disabled by adding the following to your configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">AllCops:
+  SuggestExtensions: false</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also opt-out of suggestions for a particular extension library as so (unspecified
+extensions will continue to be notified, as appropriate):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">AllCops:
+  SuggestExtensions:
+    rubocop-rake: false</code></pre>
+</div>
 </div>
 </div>
 </div>
