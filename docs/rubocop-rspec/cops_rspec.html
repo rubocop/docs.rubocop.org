@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>RSpec :: RuboCop Docs</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop-rspec/cops_rspec.html">
-    <link rel="prev" href="#cops_rails.adoc">
+    <link rel="prev" href="cops_rspec/rails.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
@@ -95,20 +95,20 @@
     <a class="nav-link" href="upgrade_to_version_2.html">Upgrade to 2.x</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="#third_party_rspec_extensions.adoc">RSpec syntax extensions in third-party gems</a>
+    <a class="nav-link" href="third_party_rspec_syntax_extensions.html">RSpec syntax extensions in third-party gems</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Cops Documentation</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#cops_capybara.adoc">Capybara</a>
+    <a class="nav-link" href="cops_rspec/capybara.html">Capybara</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#cops_factorybot.adoc">FactoryBot</a>
+    <a class="nav-link" href="cops_rspec/factorybot.html">FactoryBot</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#cops_rails.adoc">Rails</a>
+    <a class="nav-link" href="cops_rspec/rails.html">Rails</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="cops_rspec.html">RSpec</a>
@@ -6617,11 +6617,21 @@ expect(foo).to receive(:bar).with(42)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-describe Foo do
-  subject(:bar) { baz }
+describe Article do
+  subject(:article) { Article.new }
 
-  before do
-    allow(bar).to receive(:qux?).and_return(true)
+  it 'indicates that the author is unknown' do
+    allow(article).to receive(:author).and_return(nil)
+    expect(article.description).to include('by an unknown author')
+  end
+end
+
+# good
+describe Article do
+  subject(:article) { Article.new(author: nil) }
+
+  it 'indicates that the author is unknown' do
+    expect(article.description).to include('by an unknown author')
   end
 end</code></pre>
 </div>
@@ -7153,7 +7163,7 @@ expect(foo).to be(:bar).and_yield(1)</code></pre>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="#cops_rails.adoc">Rails</a></span>
+  <span class="prev"><a href="cops_rspec/rails.html">Rails</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
