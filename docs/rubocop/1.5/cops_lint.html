@@ -334,7 +334,7 @@
     <a class="version" href="../1.0/cops_lint.html">1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/blob/v1.5.1/docs/modules/ROOT/pages/cops_lint.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/blob/v1.5.2/docs/modules/ROOT/pages/cops_lint.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -6960,6 +6960,27 @@ end</code></pre>
 in block arguments or block-local variables. This mirrors the warning
 given by <code>ruby -cw</code> prior to Ruby 2.6:
 "shadowing outer local variable - foo".</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Shadowing of variables in block passed to <code>Ractor.new</code> is allowed
+because <code>Ractor</code> should not access outer variables.
+eg. following syle is encouraged:
+</td>
+</tr>
+</table>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>worker_id, pipe = env
+Ractor.new(worker_id, pipe) do |worker_id, pipe|
+end</pre>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
