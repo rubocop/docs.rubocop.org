@@ -203,7 +203,7 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <span class="title">RuboCop</span>
+      <a class="title" href="index.html">RuboCop</a>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">master</a>
@@ -229,7 +229,7 @@
       </ul>
     </li>
     <li class="component">
-      <span class="title">RuboCop AST</span>
+      <a class="title" href="../rubocop-ast/index.html">RuboCop AST</a>
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-ast/index.html">master</a>
@@ -243,7 +243,7 @@
       </ul>
     </li>
     <li class="component">
-      <span class="title">RuboCop Minitest</span>
+      <a class="title" href="../rubocop-minitest/index.html">RuboCop Minitest</a>
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-minitest/index.html">master</a>
@@ -254,7 +254,7 @@
       </ul>
     </li>
     <li class="component">
-      <span class="title">RuboCop Packaging</span>
+      <a class="title" href="../rubocop-packaging/index.html">RuboCop Packaging</a>
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-packaging/index.html">master</a>
@@ -262,7 +262,7 @@
       </ul>
     </li>
     <li class="component">
-      <span class="title">RuboCop Performance</span>
+      <a class="title" href="../rubocop-performance/index.html">RuboCop Performance</a>
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-performance/index.html">master</a>
@@ -279,10 +279,13 @@
       </ul>
     </li>
     <li class="component">
-      <span class="title">RuboCop Rails</span>
+      <a class="title" href="../rubocop-rails/index.html">RuboCop Rails</a>
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-rails/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-rails/2.9/index.html">2.9</a>
         </li>
         <li class="version">
           <a href="../rubocop-rails/2.8/index.html">2.8</a>
@@ -293,7 +296,7 @@
       </ul>
     </li>
     <li class="component">
-      <span class="title">RuboCop RSpec</span>
+      <a class="title" href="../rubocop-rspec/index.html">RuboCop RSpec</a>
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-rspec/index.html">master</a>
@@ -476,6 +479,122 @@ Upstream best practices and coding conventions for downstream compatibility.</p>
 </div>
 <div class="paragraph">
 <p>Any extensions missing? Send us a Pull Request!</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuring-an-extension"><a class="anchor" href="#configuring-an-extension"></a>Configuring an Extension</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you&#8217;re writing an extension, you can tie some of its configuration into RuboCop.</p>
+</div>
+<div class="sect2">
+<h3 id="config-obsoletions"><a class="anchor" href="#config-obsoletions"></a>Config Obsoletions</h3>
+<div class="paragraph">
+<p>When a cop that has been released is later renamed or removed, or one of its parameters is, RuboCop can output error messages letting users know to update their configuration to the newest values. If any obsolete configurations are encountered, RuboCop will output an error message and quit.</p>
+</div>
+<div class="paragraph">
+<p>You can tie your extension into this system by creating your own <code>obsoletions.yml</code> file and letting RuboCop know where to find it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">RuboCop::ConfigObsoletion.files &lt;&lt; File.expand_path(filename)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There are currently three types of obsoletions that can be defined for cops:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>renamed</code>: A cop was changed to have a new name, or moved to a different department.</p>
+</li>
+<li>
+<p><code>removed</code>: A cop was deleted (usually this is configured with <code>alternatives</code> or a <code>reason</code> why it was removed).</p>
+</li>
+<li>
+<p><code>split</code>: A cop was removed and replaced with multiple other cops.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Two additional types are available to be defined for parameter changes. These configurations can apply to multiple cops and multiple parameters at the same time (so are expressed in YAML as an array of hashes):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>changed_parameters</code>: A parameter has been renamed.</p>
+</li>
+<li>
+<p><code>changed_enforced_styles</code>: A previously accepted <code>EnforcedStyle</code> value has been changed or removed.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Parameter obsoletions can be set with <code>severity: warning</code> to deprecate an old parameter but still accept it. RuboCop will output a warning but continue to run.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="example-obsoletion-configuration"><a class="anchor" href="#example-obsoletion-configuration"></a>Example Obsoletion Configuration</h4>
+<div class="paragraph">
+<p>See <code>config/obsoletion.yml</code> for more examples.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+All plural keys (eg. <code>cops</code>, <code>parameters</code>, <code>alternatives</code>, etc.) can either take a single value or an array.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">renamed:
+  Layout/AlignArguments: Layout/ArgumentAlignment
+  Lint/BlockAlignment: Layout/BlockAlignment
+
+removed:
+  Layout/SpaceAfterControlKeyword:
+    alternatives: Layout/SpaceAroundKeyword
+  Lint/InvalidCharacterLiteral:
+    reason: it was never being actually triggered
+
+split:
+  Style/MethodMissing:
+    alternatives:
+      - Style/MethodMissingSuper
+      - Style/MissingRespondToMissing
+
+changed_parameters: # must be an array of hashes
+  - cops:
+      - Metrics/BlockLength
+      - Metrics/MethodLength
+    parameters: ExcludedMethods
+    alternative: IgnoredMethods
+    severity: warning
+
+changed_enforced_styles: # must be an array of hashes
+  - cops: Layout/IndentationConsistency
+    parameters: EnforcedStyle
+    value: rails
+    reason: &gt;
+      `EnforcedStyle: rails` has been renamed to
+      `EnforcedStyle: indented_internal_methods`</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
