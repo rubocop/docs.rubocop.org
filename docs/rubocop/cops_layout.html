@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.7/index.html">1.7</a>
+        </li>
+        <li class="version">
           <a href="1.6/index.html">1.6</a>
         </li>
         <li class="version">
@@ -237,6 +240,12 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-ast/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-ast/1.3/index.html">1.3</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-ast/1.2/index.html">1.2</a>
         </li>
         <li class="version">
           <a href="../rubocop-ast/1.1/index.html">1.1</a>
@@ -324,7 +333,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.6/index.html" class="home-link"></a>
+  <a href="1.7/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -336,6 +345,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_layout.html">master</a>
+    <a class="version" href="1.7/cops_layout.html">1.7</a>
     <a class="version" href="1.6/cops_layout.html">1.6</a>
     <a class="version" href="1.5/cops_layout.html">1.5</a>
     <a class="version" href="1.4/cops_layout.html">1.4</a>
@@ -348,6 +358,9 @@
   <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/edit/master/docs/modules/ROOT/pages/cops_layout.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
 <article class="doc">
 <h1 class="page">Layout</h1>
 <div class="sect1">
@@ -2477,7 +2490,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.49</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
 </tr>
 </tbody>
 </table>
@@ -2575,6 +2588,17 @@ end
 
 def b
 end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowadjacentonelinedefs-true"><a class="anchor" href="#allowadjacentonelinedefs-true"></a>AllowAdjacentOneLineDefs: true</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+class ErrorA &lt; BaseError; end
+class ErrorB &lt; BaseError; end
+class ErrorC &lt; BaseError; end</code></pre>
 </div>
 </div>
 </div>
@@ -8643,6 +8667,69 @@ foo.map{ |a|
 </div>
 </div>
 <div class="sect1">
+<h2 id="layoutspacebeforebrackets"><a class="anchor" href="#layoutspacebeforebrackets"></a>Layout/SpaceBeforeBrackets</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks for space between the name of a receiver and a left
+brackets.</p>
+</div>
+<div class="paragraph">
+<p>This cop is marked as unsafe because it can occur false positives
+for <code>do_something [this_is_an_array_literal_argument]</code> that take
+an array without parentheses as an argument.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+collection [index_or_key]
+
+# good
+collection[index_or_key]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-37"><a class="anchor" href="#references-37"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://rubystyle.guide#space-in-brackets-access" class="bare">https://rubystyle.guide#space-in-brackets-access</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="layoutspacebeforecomma"><a class="anchor" href="#layoutspacebeforecomma"></a>Layout/SpaceBeforeComma</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -8676,7 +8763,7 @@ foo.map{ |a|
 <p>Checks for comma (,) preceded by space.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
+<h3 id="examples-78"><a class="anchor" href="#examples-78"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8728,7 +8815,7 @@ each { |a, b| }</code></pre>
 same line.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-78"><a class="anchor" href="#examples-78"></a>Examples</h3>
+<h3 id="examples-79"><a class="anchor" href="#examples-79"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8781,7 +8868,7 @@ something on a preceding or following line, if the AllowForAlignment
 config parameter is true.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-79"><a class="anchor" href="#examples-79"></a>Examples</h3>
+<h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8856,7 +8943,7 @@ something 'hello'</code></pre>
 <p>Checks for semicolon (;) preceded by space.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
+<h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8904,7 +8991,7 @@ x = 1; y = 2</code></pre>
 parenthesis (<code>(</code>) in lambda literals.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
+<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-require_no_space-default"><a class="anchor" href="#enforcedstyle-require_no_space-default"></a>EnforcedStyle: require_no_space (default)</h4>
 <div class="listingblock">
@@ -8991,7 +9078,7 @@ a = -&gt; (x, y) { x + y }</code></pre>
 surrounding space depending on configuration.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
+<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-space"><a class="anchor" href="#enforcedstyle-space"></a>EnforcedStyle: space</h4>
 <div class="listingblock">
@@ -9145,7 +9232,7 @@ bar = [ ]</code></pre>
 (i.e. %i/%w).</p>
 </div>
 <div class="sect2">
-<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
+<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9194,7 +9281,7 @@ left brace has or doesn&#8217;t have trailing space depending on
 configuration.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
+<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-space-default-3"><a class="anchor" href="#enforcedstyle-space-default-3"></a>EnforcedStyle: space (default)</h4>
 <div class="listingblock">
@@ -9363,7 +9450,7 @@ some_array.each {   }</code></pre>
 surrounding space depending on configuration.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
+<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-space-default-4"><a class="anchor" href="#enforcedstyle-space-default-4"></a>EnforcedStyle: space (default)</h4>
 <div class="listingblock">
@@ -9477,7 +9564,7 @@ foo = {     }</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-37"><a class="anchor" href="#references-37"></a>References</h3>
+<h3 id="references-38"><a class="anchor" href="#references-38"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9522,7 +9609,7 @@ foo = {     }</code></pre>
 <p>Checks for spaces inside ordinary round parentheses.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
+<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-no_space-default-2"><a class="anchor" href="#enforcedstyle-no_space-default-2"></a>EnforcedStyle: no_space (default)</h4>
 <div class="listingblock">
@@ -9587,7 +9674,7 @@ y()</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-38"><a class="anchor" href="#references-38"></a>References</h3>
+<h3 id="references-39"><a class="anchor" href="#references-39"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9633,7 +9720,7 @@ y()</code></pre>
 %i/%w/%x literals.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
+<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -9683,7 +9770,7 @@ y()</code></pre>
 <p>Checks for spaces inside range literals.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
+<h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9701,7 +9788,7 @@ y()</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-39"><a class="anchor" href="#references-39"></a>References</h3>
+<h3 id="references-40"><a class="anchor" href="#references-40"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9747,7 +9834,7 @@ y()</code></pre>
 surrounding space depending on configuration.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
+<h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-no_space-default-3"><a class="anchor" href="#enforcedstyle-no_space-default-3"></a>EnforcedStyle: no_space (default)</h4>
 <div class="listingblock">
@@ -9880,7 +9967,7 @@ foo[ ]</code></pre>
 <p>This cop checks for whitespace within string interpolations.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
+<h3 id="examples-91"><a class="anchor" href="#examples-91"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-no_space-default-4"><a class="anchor" href="#enforcedstyle-no_space-default-4"></a>EnforcedStyle: no_space (default)</h4>
 <div class="listingblock">
@@ -9931,7 +10018,7 @@ foo[ ]</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-40"><a class="anchor" href="#references-40"></a>References</h3>
+<h3 id="references-41"><a class="anchor" href="#references-41"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9977,7 +10064,7 @@ foo[ ]</code></pre>
 source code.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-91"><a class="anchor" href="#examples-91"></a>Examples</h3>
+<h3 id="examples-92"><a class="anchor" href="#examples-92"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-final_blank_line"><a class="anchor" href="#enforcedstyle-final_blank_line"></a>EnforcedStyle: final_blank_line</h4>
 <div class="listingblock">
@@ -10045,7 +10132,7 @@ class Foo; end
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-41"><a class="anchor" href="#references-41"></a>References</h3>
+<h3 id="references-42"><a class="anchor" href="#references-42"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10090,7 +10177,7 @@ class Foo; end
 <p>This cop looks for trailing whitespace in the source code.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-92"><a class="anchor" href="#examples-92"></a>Examples</h3>
+<h3 id="examples-93"><a class="anchor" href="#examples-93"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># The line in this example contains spaces after the 0.
@@ -10163,7 +10250,7 @@ RUBY</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-42"><a class="anchor" href="#references-42"></a>References</h3>
+<h3 id="references-43"><a class="anchor" href="#references-43"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10179,9 +10266,6 @@ RUBY</code></pre>
   <span class="next"><a href="cops_lint.html">Lint</a></span>
 </nav>
 </article>
-<aside class="toc sidebar" data-title="Contents" data-levels="2">
-  <div class="toc-menu"></div>
-</aside>
   </div>
 </main>
 </div>
