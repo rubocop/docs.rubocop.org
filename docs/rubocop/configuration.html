@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.9/index.html">1.9</a>
+        </li>
+        <li class="version">
           <a href="1.8/index.html">1.8</a>
         </li>
         <li class="version">
@@ -339,7 +342,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.8/index.html" class="home-link"></a>
+  <a href="1.9/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -350,6 +353,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="configuration.html">master</a>
+    <a class="version" href="1.9/configuration.html">1.9</a>
     <a class="version" href="1.8/configuration.html">1.8</a>
     <a class="version" href="1.7/configuration.html">1.7</a>
     <a class="version" href="1.6/configuration.html">1.6</a>
@@ -1034,8 +1038,12 @@ Style/Alias:
 <p>Each cop has a default severity level based on which department it belongs
 to. The level is normally <code>warning</code> for <code>Lint</code> and <code>convention</code> for all the
 others, but this can be changed in user configuration. Cops can customize their
-severity level. Allowed values are <code>refactor</code>, <code>convention</code>, <code>warning</code>, <code>error</code>
+severity level. Allowed values are <code>info</code>, <code>refactor</code>, <code>convention</code>, <code>warning</code>, <code>error</code>
 and <code>fatal</code>.</p>
+</div>
+<div class="paragraph">
+<p>Cops with severity <code>info</code> will be reported but will not cause <code>rubocop</code> to return
+a non-zero value.</p>
 </div>
 <div class="paragraph">
 <p>There is one exception from the general rule above and that is <code>Lint/Syntax</code>, a

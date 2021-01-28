@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.9/index.html">1.9</a>
+        </li>
+        <li class="version">
           <a href="1.8/index.html">1.8</a>
         </li>
         <li class="version">
@@ -339,7 +342,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.8/index.html" class="home-link"></a>
+  <a href="1.9/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -350,6 +353,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="integration_with_other_tools.html">master</a>
+    <a class="version" href="1.9/integration_with_other_tools.html">1.9</a>
     <a class="version" href="1.8/integration_with_other_tools.html">1.8</a>
     <a class="version" href="1.7/integration_with_other_tools.html">1.7</a>
     <a class="version" href="1.6/integration_with_other_tools.html">1.6</a>
@@ -458,7 +462,7 @@ RuboCop integration for your favorite editor.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="git-pre-commit-hook-integration"><a class="anchor" href="#git-pre-commit-hook-integration"></a>Git pre-commit hook integration</h2>
+<h2 id="git-pre-commit-hook-integration-with-overcommit"><a class="anchor" href="#git-pre-commit-hook-integration-with-overcommit"></a>Git pre-commit hook integration with overcommit</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="https://github.com/brigade/overcommit">overcommit</a> is a fully configurable and
@@ -470,6 +474,24 @@ following to your <code>.overcommit.yml</code> file:</p>
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">PreCommit:
   RuboCop:
     enabled: true</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="git-pre-commit-hook-integration-with-pre-commit"><a class="anchor" href="#git-pre-commit-hook-integration-with-pre-commit"></a>Git pre-commit hook integration with pre-commit</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://pre-commit.com/">pre-commit</a> is a framework for managing and maintaining
+multi-language pre-commit hooks. To use RuboCop with pre-commit, add the
+following to your <code>.pre-commit-config.yaml</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- repo: https://github.com/rubocop-hq/rubocop
+  rev: v1.8.1
+  hooks:
+    - id: rubocop</code></pre>
 </div>
 </div>
 </div>

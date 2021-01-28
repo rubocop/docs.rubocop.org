@@ -119,6 +119,9 @@
           <a href="../rubocop/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.9/index.html">1.9</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.8/index.html">1.8</a>
         </li>
         <li class="version">
@@ -248,7 +251,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.8/index.html" class="home-link"></a>
+  <a href="../rubocop/1.9/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop Performance</a></li>
@@ -1056,7 +1059,7 @@ array.sort_by { |a| a[:foo] }</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.9</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.10</p></td>
 </tr>
 </tbody>
 </table>
@@ -1065,9 +1068,9 @@ array.sort_by { |a| a[:foo] }</code></pre>
 </div>
 <div class="paragraph">
 <p>Ruby allocates a new Regexp object every time it executes a code containing such
-a regular expression. It is more efficient to extract it into a constant
-or add an <code>/o</code> option to perform <code>#{}</code> interpolation only once and reuse that
-Regexp object.</p>
+a regular expression. It is more efficient to extract it into a constant,
+memoize it, or add an <code>/o</code> option to perform <code>#{}</code> interpolation only once and
+reuse that Regexp object.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-12"><a class="anchor" href="#examples-12"></a>Examples</h3>
@@ -1087,6 +1090,11 @@ end
 # good
 def tokens(pattern)
   pattern.scan(TOKEN).reject { |token| token.match?(/\A#{SEPARATORS}\Z/o) }
+end
+
+# good
+def separators
+  @separators ||= /\A#{SEPARATORS}\Z/
 end</code></pre>
 </div>
 </div>
@@ -2474,6 +2482,54 @@ array.sort</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="performanceredundantsplitregexpargument"><a class="anchor" href="#performanceredundantsplitregexpargument"></a>Performance/RedundantSplitRegexpArgument</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop identifies places where <code>split</code> argument can be replaced from
+a deterministic regexp to a string.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-30"><a class="anchor" href="#examples-30"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+'a,b,c'.split(/,/)
+
+# good
+'a,b,c'.split(',')</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="performanceredundantstringchars"><a class="anchor" href="#performanceredundantstringchars"></a>Performance/RedundantStringChars</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -2507,7 +2563,7 @@ array.sort</code></pre>
 <p>This cop checks for redundant <code>String#chars</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-30"><a class="anchor" href="#examples-30"></a>Examples</h3>
+<h3 id="examples-31"><a class="anchor" href="#examples-31"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2585,7 +2641,7 @@ backref.
 So, when <code>MatchData</code> is not used, use <code>match?</code> instead of <code>match</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-31"><a class="anchor" href="#examples-31"></a>Examples</h3>
+<h3 id="examples-32"><a class="anchor" href="#examples-32"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2700,7 +2756,7 @@ end</code></pre>
 change them to use <code>reverse_each</code> instead.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-32"><a class="anchor" href="#examples-32"></a>Examples</h3>
+<h3 id="examples-33"><a class="anchor" href="#examples-33"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2758,7 +2814,7 @@ change them to use <code>reverse_each</code> instead.</p>
 can be replaced by <code>last(n).reverse</code> and <code>last</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-33"><a class="anchor" href="#examples-33"></a>Examples</h3>
+<h3 id="examples-34"><a class="anchor" href="#examples-34"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2812,7 +2868,7 @@ array.last</code></pre>
 have been assigned to an array or a hash.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-34"><a class="anchor" href="#examples-34"></a>Examples</h3>
+<h3 id="examples-35"><a class="anchor" href="#examples-35"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2891,7 +2947,7 @@ Hash(key: :value).size
 can be replaced by a faster <code>sort.reverse</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-35"><a class="anchor" href="#examples-35"></a>Examples</h3>
+<h3 id="examples-36"><a class="anchor" href="#examples-36"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2942,7 +2998,7 @@ can be replaced by <code>squeeze('a')</code> and <code>squeeze!('a')</code>.</p>
 <p>The <code>squeeze('a')</code> method is faster than <code>gsub(/a+/, 'a')</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-36"><a class="anchor" href="#examples-36"></a>Examples</h3>
+<h3 id="examples-37"><a class="anchor" href="#examples-37"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3006,7 +3062,7 @@ str.squeeze!('a')</code></pre>
 for receiver is multiline string.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-37"><a class="anchor" href="#examples-37"></a>Examples</h3>
+<h3 id="examples-38"><a class="anchor" href="#examples-38"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3129,7 +3185,7 @@ for receiver is multiline string.</p>
 <p>This cop&#8217;s offenses are not safe to auto-correct if a receiver is nil.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-38"><a class="anchor" href="#examples-38"></a>Examples</h3>
+<h3 id="examples-39"><a class="anchor" href="#examples-39"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3206,7 +3262,7 @@ for receiver is multiline string.</p>
 <code>tr</code> or <code>delete</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-39"><a class="anchor" href="#examples-39"></a>Examples</h3>
+<h3 id="examples-40"><a class="anchor" href="#examples-40"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3298,7 +3354,7 @@ specified as shown below:</p>
 <code>rubocop -a</code> to <code>rubocop -A</code>, which includes unsafe auto-correction.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-40"><a class="anchor" href="#examples-40"></a>Examples</h3>
+<h3 id="examples-41"><a class="anchor" href="#examples-41"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3365,7 +3421,7 @@ In most cases such calls can be replaced
 with an explicit array creation.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-41"><a class="anchor" href="#examples-41"></a>Examples</h3>
+<h3 id="examples-42"><a class="anchor" href="#examples-42"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3458,7 +3514,7 @@ So, if you expect <code>ASCII-8BIT</code> encoding, disable this cop.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-42"><a class="anchor" href="#examples-42"></a>Examples</h3>
+<h3 id="examples-43"><a class="anchor" href="#examples-43"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3511,7 +3567,7 @@ String.new('something')
 can be replaced by <code>URI::DEFAULT_PARSER</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-43"><a class="anchor" href="#examples-43"></a>Examples</h3>
+<h3 id="examples-44"><a class="anchor" href="#examples-44"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
