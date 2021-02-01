@@ -910,13 +910,13 @@ int_node_multiple?(node, 10) # =&gt; true if node is an 'int' node with a multip
 
 # ...
 
-has_user_data?(node, :password) # =&gt; true if node is a hash with a key +:password+
+has_sensitive_data?(node, :password) # =&gt; true if node is a hash with a key +:password+
 
 # matching uses ===, so to match strings or symbols, 'pass' or 'password' one can:
-has_user_data?(node, /^pass(word)?$/i)
+has_sensitive_data?(node, /^pass(word)?$/i)
 
 # one can also pass lambdas...
-has_user_data?(node, -&gt;(key) { # return true or false depending on key })</code></pre>
+has_sensitive_data?(node, -&gt;(key) { # return true or false depending on key })</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">

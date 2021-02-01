@@ -376,7 +376,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>It&#8217;s possible to extend RuboCop with custom cops and formatters.</p>
+<p>It&#8217;s possible to extend RuboCop with custom (third-party) cops and formatters.</p>
 </div>
 </div>
 </div>
@@ -460,7 +460,15 @@ other cop.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="known-custom-cops"><a class="anchor" href="#known-custom-cops"></a>Known Custom Cops</h3>
+<h3 id="cop-extensions"><a class="anchor" href="#cop-extensions"></a>Cop Extensions</h3>
+<div class="paragraph">
+<p>The main RuboCop gem focuses on the core Ruby language and doesn&#8217;t
+include functionality related to any external Ruby libraries/frameworks.
+There are, however, many RuboCop extensions dedicated to those and
+a few of them are maintained by RuboCop&#8217;s Core Team.</p>
+</div>
+<div class="sect3">
+<h4 id="official-extensions"><a class="anchor" href="#official-extensions"></a>Official Extensions</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -480,37 +488,49 @@ RSpec-specific analysis</p>
 Minitest-specific analysis</p>
 </li>
 <li>
+<p><a href="https://github.com/rubocop-hq/rubocop-rake">rubocop-rake</a> -
+Rake-specific analysis</p>
+</li>
+<li>
+<p><a href="https://github.com/rubocop-hq/rubocop-sequel">rubocop-sequel</a> -
+Code style checking for Sequel gem</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="third-party-extensions"><a class="anchor" href="#third-party-extensions"></a>Third-party Extensions</h4>
+<div class="ulist">
+<ul>
+<li>
 <p><a href="https://github.com/covermymeds/rubocop-thread_safety">rubocop-thread_safety</a> -
 Thread-safety analysis</p>
 </li>
 <li>
 <p><a href="https://github.com/milch/rubocop-require_tools">rubocop-require_tools</a> -
-Dynamic analysis for missing require statements</p>
+Dynamic analysis for missing <code>require</code> statements</p>
 </li>
 <li>
 <p><a href="https://github.com/puppetlabs/rubocop-i18n">rubocop-i18n</a> -
-i18n wrapper function analysis (gettext and rails-i18n)</p>
-</li>
-<li>
-<p><a href="https://github.com/rubocop-hq/rubocop-sequel">rubocop-sequel</a> -
-Code style checking for Sequel gem</p>
+i18n wrapper function analysis (<code>gettext</code> and <code>rails-i18n</code>)</p>
 </li>
 <li>
 <p><a href="https://github.com/chef/cookstyle">cookstyle</a> -
 Custom cops and config defaults for Chef Infra Cookbooks</p>
 </li>
 <li>
-<p><a href="https://github.com/rubocop-hq/rubocop-rake">rubocop-rake</a> -
-Rake-specific analysis</p>
+<p><a href="https://github.com/utkarsh2102/rubocop-packaging">rubocop-packaging</a> -
+Upstream best practices and coding conventions for downstream (e.g. Debian packages) compatibility.</p>
 </li>
 <li>
-<p><a href="https://github.com/utkarsh2102/rubocop-packaging">rubocop-packaging</a> -
-Upstream best practices and coding conventions for downstream compatibility.</p>
+<p><a href="https://github.com/Shopify/rubocop-sorbet">rubocop-sorbet</a>
+Sorbet-specific analysis</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>Any extensions missing? Send us a Pull Request!</p>
+</div>
 </div>
 </div>
 </div>

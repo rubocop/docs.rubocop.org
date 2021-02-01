@@ -366,7 +366,7 @@
     <a class="version" href="../1.0/cops_layout.html">1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/blob/v1.9.0/docs/modules/ROOT/pages/cops_layout.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop/blob/v1.9.1/docs/modules/ROOT/pages/cops_layout.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -4102,12 +4102,16 @@ some_object.method(arg)    # this is some comment</code></pre>
 </table>
 <div class="paragraph">
 <p>This cop checks the indentation of the first argument in a method call.
-Arguments after the first one are checked by Layout/ArgumentAlignment,
+Arguments after the first one are checked by <code>Layout/ArgumentAlignment</code>,
 not by this cop.</p>
 </div>
 <div class="paragraph">
 <p>For indenting the first parameter of method <em>definitions</em>, check out
-Layout/FirstParameterIndentation.</p>
+<code>Layout/FirstParameterIndentation</code>.</p>
+</div>
+<div class="paragraph">
+<p>This cop will respect <code>Layout/ArgumentAlignment</code> and will not work when
+<code>EnforcedStyle: with_fixed_indentation</code> is specified for <code>Layout/ArgumentAlignment</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-35"><a class="anchor" href="#examples-35"></a>Examples</h3>
