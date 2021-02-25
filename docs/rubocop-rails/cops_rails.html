@@ -274,7 +274,7 @@
     <a class="version" href="2.7/cops_rails.html">2.7</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop-rails/edit/master/docs/modules/ROOT/pages/cops_rails.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-rails/edit/master/docs/modules/ROOT/pages/cops_rails.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -7072,7 +7072,7 @@ to use Time.in_time_zone.</p>
 
 # bad
 Time.now
-Time.parse('2015-03-02 19:05:37')
+Time.parse('2015-03-02T19:05:37')
 
 # bad
 Time.current
@@ -7080,7 +7080,8 @@ Time.at(timestamp).in_time_zone
 
 # good
 Time.zone.now
-Time.zone.parse('2015-03-02 19:05:37')</code></pre>
+Time.zone.parse('2015-03-02T19:05:37')
+Time.zone.parse('2015-03-02T19:05:37Z') # Respect ISO 8601 format with timezone specifier.</code></pre>
 </div>
 </div>
 </div>
@@ -7092,11 +7093,11 @@ Time.zone.parse('2015-03-02 19:05:37')</code></pre>
 
 # bad
 Time.now
-Time.parse('2015-03-02 19:05:37')
+Time.parse('2015-03-02T19:05:37')
 
 # good
 Time.zone.now
-Time.zone.parse('2015-03-02 19:05:37')
+Time.zone.parse('2015-03-02T19:05:37')
 
 # good
 Time.current

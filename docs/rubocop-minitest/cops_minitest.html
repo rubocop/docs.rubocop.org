@@ -272,7 +272,7 @@
     <a class="version" href="0.10/cops_minitest.html">0.10</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop-hq/rubocop-minitest/edit/master/docs/modules/ROOT/pages/cops_minitest.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-minitest/edit/master/docs/modules/ROOT/pages/cops_minitest.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -366,21 +366,21 @@ assert_empty(object, 'message')</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.11</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p>This cop enforces the test to use <code>assert_empty</code>
-instead of using <code>assert([], object)</code>.</p>
+instead of using <code>assert_equal([], object)</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-assert([], object)
-assert({}, object)
+assert_equal([], object)
+assert_equal({}, object)
 
 # good
 assert_empty(object)</code></pre>
@@ -680,7 +680,7 @@ assert_kind_of(Class, object, 'message')</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/rubocop-hq/minitest-style-guide#assert-kind-of" class="bare">https://github.com/rubocop-hq/minitest-style-guide#assert-kind-of</a></p>
+<p><a href="https://github.com/rubocop/minitest-style-guide#assert-kind-of" class="bare">https://github.com/rubocop/minitest-style-guide#assert-kind-of</a></p>
 </li>
 </ul>
 </div>
@@ -1040,7 +1040,7 @@ assert_silent { puts object.do_something }</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/rubocop-hq/minitest-style-guide#assert-silent" class="bare">https://github.com/rubocop-hq/minitest-style-guide#assert-silent</a></p>
+<p><a href="https://github.com/rubocop/minitest-style-guide#assert-silent" class="bare">https://github.com/rubocop/minitest-style-guide#assert-silent</a></p>
 </li>
 </ul>
 </div>
@@ -1789,7 +1789,7 @@ refute_kind_of(Class, object, 'message')</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/rubocop-hq/minitest-style-guide#refute-kind-of" class="bare">https://github.com/rubocop-hq/minitest-style-guide#refute-kind-of</a></p>
+<p><a href="https://github.com/rubocop/minitest-style-guide#refute-kind-of" class="bare">https://github.com/rubocop/minitest-style-guide#refute-kind-of</a></p>
 </li>
 </ul>
 </div>
