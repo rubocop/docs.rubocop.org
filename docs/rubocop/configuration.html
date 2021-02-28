@@ -293,6 +293,9 @@
           <a href="../rubocop-performance/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop-performance/1.10/index.html">1.10</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-performance/1.9/index.html">1.9</a>
         </li>
         <li class="version">
@@ -384,7 +387,7 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>The behavior of RuboCop can be controlled via the
-<a href="https://github.com/rubocop-hq/rubocop/blob/master/.rubocop.yml">.rubocop.yml</a>
+<a href="https://github.com/rubocop/rubocop/blob/master/.rubocop.yml">.rubocop.yml</a>
 configuration file. It makes it possible to enable/disable certain cops
 (checks) and to alter their behavior if they accept any parameters. The file
 can be placed in your home directory, XDG config directory, or in some project
@@ -472,7 +475,7 @@ files:</p>
 <p><code>~/.config/rubocop/config.yml</code></p>
 </li>
 <li>
-<p><a href="https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml">RuboCop&#8217;s default configuration</a></p>
+<p><a href="https://github.com/rubocop/rubocop/blob/master/config/default.yml">RuboCop&#8217;s default configuration</a></p>
 </li>
 </ul>
 </div>
@@ -496,7 +499,7 @@ configuration file will be the one passed to the CLI.
 <h2 id="inheritance"><a class="anchor" href="#inheritance"></a>Inheritance</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>All configuration inherits from <a href="https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml">RuboCop&#8217;s default configuration</a> (See
+<p>All configuration inherits from <a href="https://github.com/rubocop/rubocop/blob/master/config/default.yml">RuboCop&#8217;s default configuration</a> (See
 "Defaults").</p>
 </div>
 <div class="paragraph">
@@ -671,7 +674,7 @@ value.</p>
 </div>
 <div class="paragraph">
 <p>This applies to explicit inheritance using <code>inherit_from</code> as well as implicit
-inheritance from <a href="https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml">the default configuration</a>.</p>
+inheritance from <a href="https://github.com/rubocop/rubocop/blob/master/config/default.yml">the default configuration</a>.</p>
 </div>
 <div class="paragraph">
 <p>Given the following config:</p>
@@ -759,7 +762,7 @@ ignored by Git.</p>
 <h2 id="defaults"><a class="anchor" href="#defaults"></a>Defaults</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The file <a href="https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml">config/default.yml</a> under the RuboCop home directory contains the
+<p>The file <a href="https://github.com/rubocop/rubocop/blob/master/config/default.yml">config/default.yml</a> under the RuboCop home directory contains the
 default settings that all configurations inherit from. Project and personal
 <code>.rubocop.yml</code> files need only make settings that are different from the
 default ones. If there is no <code>.rubocop.yml</code> file in the project, home or XDG
@@ -859,7 +862,7 @@ This is unlikely to be what you wanted.</p>
 extensions. But, if you&#8217;d like RuboCop to check files that are not included by
 default, you&#8217;ll need to pass them in on the command line, or to add entries for
 them under <code>AllCops</code>/<code>Include</code>. Remember that your configuration files override
-<a href="https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml">RuboCops&#8217;s defaults</a>. In the following example, we want to include
+<a href="https://github.com/rubocop/rubocop/blob/master/config/default.yml">RuboCops&#8217;s defaults</a>. In the following example, we want to include
 <code>foo.unusual_extension</code>, but we also must copy any other patterns we need from
 the overridden <code>default.yml</code>.</p>
 </div>
@@ -879,8 +882,8 @@ the overridden <code>default.yml</code>.</p>
 </div>
 <div class="paragraph">
 <p>This behavior of <code>Include</code> (overriding <code>default.yml</code>) was introduced in
-<a href="https://github.com/rubocop-hq/rubocop/blob/master/CHANGELOG.md#0560-2018-05-14">0.56.0</a>
-via <a href="https://github.com/rubocop-hq/rubocop/pull/5882">#5882</a>. This change allows
+<a href="https://github.com/rubocop/rubocop/blob/master/CHANGELOG.md#0560-2018-05-14">0.56.0</a>
+via <a href="https://github.com/rubocop/rubocop/pull/5882">#5882</a>. This change allows
 people to include/exclude precisely what they need to, without the defaults
 getting in the way.</p>
 </div>
@@ -993,7 +996,7 @@ for every cop.</p>
 <p>Most cops are enabled by default. Cops, introduced or significantly updated
 between major versions, are in a special pending status (read more in
 <a href="versioning.html" class="page">"Versioning"</a>). Some cops, configured the above <code>Enabled: false</code>
-in <a href="https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml">config/default.yml</a>,
+in <a href="https://github.com/rubocop/rubocop/blob/master/config/default.yml">config/default.yml</a>,
 are disabled by default. The cop enabling process can be altered by
 setting <code>DisabledByDefault</code> or <code>EnabledByDefault</code> (but not both) to <code>true</code>.</p>
 </div>
