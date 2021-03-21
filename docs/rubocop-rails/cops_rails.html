@@ -186,6 +186,9 @@
           <a href="../rubocop-minitest/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop-minitest/0.11/index.html">0.11</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-minitest/0.10/index.html">0.10</a>
         </li>
       </ul>
@@ -1291,15 +1294,20 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.48</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.67</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.10</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p>This cop checks for code that can be written with simpler conditionals
 using <code>Object#blank?</code> defined by Active Support.</p>
+</div>
+<div class="paragraph">
+<p>This cop is marked as unsafe auto-correction, because <code>' '.empty?</code> returns false,
+but <code>' '.blank?</code> returns true. Therefore, auto-correction is not compatible
+if the receiver is a non-empty blank string, tab, or newline meta characters.</p>
 </div>
 <div class="paragraph">
 <p>Interaction with <code>Style/UnlessElse</code>:
@@ -6019,6 +6027,81 @@ request.referrer</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="railsrequiredependency"><a class="anchor" href="#railsrequiredependency"></a>Rails/RequireDependency</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop checks for the usage of <code>require_dependency</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>require_dependency</code> is an obsolete method for Rails applications running in Zeitwerk mode.
+In Zeitwerk mode, the semantics should match Ruby&#8217;s and no need to be defensive with load order,
+just refer to classes and modules normally.
+If the constant name is dynamic, camelize if needed, and constantize.</p>
+</div>
+<div class="paragraph">
+<p>Applications running in Zeitwerk mode should not use <code>require_dependency</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This cop is disabled by default. Please enable it if you are using Zeitwerk mode.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+require_dependency 'some_lib'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-25"><a class="anchor" href="#references-25"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://guides.rubyonrails.org/autoloading_and_reloading_constants.html" class="bare">https://guides.rubyonrails.org/autoloading_and_reloading_constants.html</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="railsreversiblemigration"><a class="anchor" href="#railsreversiblemigration"></a>Rails/ReversibleMigration</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -6053,7 +6136,7 @@ request.referrer</code></pre>
 reversible.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
+<h3 id="examples-70"><a class="anchor" href="#examples-70"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6264,7 +6347,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-25"><a class="anchor" href="#references-25"></a>References</h3>
+<h3 id="references-26"><a class="anchor" href="#references-26"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6313,7 +6396,7 @@ end</code></pre>
 to convert <code>try</code>. It will convert code to use safe navigation.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-70"><a class="anchor" href="#examples-70"></a>Examples</h3>
+<h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
 <div class="sect3">
 <h4 id="converttry-false-default"><a class="anchor" href="#converttry-false-default"></a>ConvertTry: false (default)</h4>
 <div class="listingblock">
@@ -6422,7 +6505,7 @@ checking <code>foo&amp;.blank?</code> in a conditional, <code>foo</code> being <
 do the opposite of what the author intends.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
+<h3 id="examples-72"><a class="anchor" href="#examples-72"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6505,7 +6588,7 @@ that behavior can be turned off with <code>AllowImplicitReturn: false</code>.</p
 <code>AllowedReceivers: []</code></p>
 </div>
 <div class="sect2">
-<h3 id="examples-72"><a class="anchor" href="#examples-72"></a>Examples</h3>
+<h3 id="examples-73"><a class="anchor" href="#examples-73"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6623,7 +6706,7 @@ Service::Mailer::update</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-26"><a class="anchor" href="#references-26"></a>References</h3>
+<h3 id="references-27"><a class="anchor" href="#references-27"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6669,7 +6752,7 @@ Service::Mailer::update</code></pre>
 a method (usually a scope) instead of a lambda/proc.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-73"><a class="anchor" href="#examples-73"></a>Examples</h3>
+<h3 id="examples-74"><a class="anchor" href="#examples-74"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6750,7 +6833,7 @@ calls are added as offenses.</p>
 without a receiver are added as offenses.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-74"><a class="anchor" href="#examples-74"></a>Examples</h3>
+<h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6814,7 +6897,7 @@ l Time.now</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-27"><a class="anchor" href="#references-27"></a>References</h3>
+<h3 id="references-28"><a class="anchor" href="#references-28"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6864,7 +6947,7 @@ validations which are listed in
 <p>Methods may be ignored from this rule by configuring a <code>AllowedMethods</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
+<h3 id="examples-76"><a class="anchor" href="#examples-76"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6929,7 +7012,7 @@ user.touch</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-28"><a class="anchor" href="#references-28"></a>References</h3>
+<h3 id="references-29"><a class="anchor" href="#references-29"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6976,7 +7059,7 @@ Some SQL syntax (e.g. PostgreSQL comments and functions) requires newlines
 to be preserved in order to work, thus auto-correction for this cop is not safe.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-76"><a class="anchor" href="#examples-76"></a>Examples</h3>
+<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7012,7 +7095,7 @@ SQL</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-29"><a class="anchor" href="#references-29"></a>References</h3>
+<h3 id="references-30"><a class="anchor" href="#references-30"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7069,7 +7152,7 @@ then only use of Time.zone is allowed.</p>
 to use Time.in_time_zone.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
+<h3 id="examples-78"><a class="anchor" href="#examples-78"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-strict-2"><a class="anchor" href="#enforcedstyle-strict-2"></a>EnforcedStyle: strict</h4>
 <div class="listingblock">
@@ -7142,7 +7225,7 @@ Time.at(timestamp).in_time_zone</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-30"><a class="anchor" href="#references-30"></a>References</h3>
+<h3 id="references-31"><a class="anchor" href="#references-31"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7212,7 +7295,7 @@ Autocorrect is disabled by default for this cop since it may generate
 false positives.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-78"><a class="anchor" href="#examples-78"></a>Examples</h3>
+<h3 id="examples-79"><a class="anchor" href="#examples-79"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-conservative-default-3"><a class="anchor" href="#enforcedstyle-conservative-default-3"></a>EnforcedStyle: conservative (default)</h4>
 <div class="listingblock">
@@ -7321,7 +7404,7 @@ the query will be heavy.</p>
 <p>Note that the cop does nothing if db/schema.rb does not exist.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-79"><a class="anchor" href="#examples-79"></a>Examples</h3>
+<h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - if the schema does not have a unique index
@@ -7399,7 +7482,7 @@ By default the cop allows three environments which Rails ships with:
 More can be added to the <code>Environments</code> config parameter.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
+<h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7472,7 +7555,7 @@ Rails.env == 'production'</code></pre>
 <p>This cop checks for the use of old-style attribute validation macros.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
+<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7564,7 +7647,7 @@ validates :foo, uniqueness: true</code></pre>
 in <code>where</code> can be replaced with <code>where(attribute: value)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
+<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7584,7 +7667,7 @@ User.where(users: { name: 'Gabe' })</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-31"><a class="anchor" href="#references-31"></a>References</h3>
+<h3 id="references-32"><a class="anchor" href="#references-32"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7637,7 +7720,7 @@ then the cop enforces <code>exists?(&#8230;&#8203;)</code> over <code>where(&#82
 <code>where(&#8230;&#8203;).exists?</code> over <code>exists?(&#8230;&#8203;)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
+<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-exists-default"><a class="anchor" href="#enforcedstyle-exists-default"></a>EnforcedStyle: exists (default)</h4>
 <div class="listingblock">
@@ -7736,7 +7819,7 @@ User.where('length(name) &gt; 10').exists?</code></pre>
 in <code>where</code> can be replaced with <code>where.not(&#8230;&#8203;)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
+<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7758,7 +7841,7 @@ User.where.not(users: { name: 'Gabe' })</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-32"><a class="anchor" href="#references-32"></a>References</h3>
+<h3 id="references-33"><a class="anchor" href="#references-33"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7777,7 +7860,7 @@ User.where.not(users: { name: 'Gabe' })</code></pre>
 </main>
 </div>
 <footer class="footer">
-  <p>Copyright (C) 2012-2020 <a href="https://metaredux.com">Bozhidar Batsov</a> and RuboCop contributors.</p>
+  <p>Copyright (C) 2012-2021 <a href="https://metaredux.com">Bozhidar Batsov</a> and RuboCop contributors.</p>
   <p>Except where otherwise noted, docs.rubocop.org is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a> (CC BY-SA 4.0).</p>
 </footer>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
