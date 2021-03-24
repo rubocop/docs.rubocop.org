@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.12/index.html">1.12</a>
+        </li>
+        <li class="version">
           <a href="1.11/index.html">1.11</a>
         </li>
         <li class="version">
@@ -357,7 +360,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.11/index.html" class="home-link"></a>
+  <a href="1.12/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -369,6 +372,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_naming.html">master</a>
+    <a class="version" href="1.12/cops_naming.html">1.12</a>
     <a class="version" href="1.11/cops_naming.html">1.11</a>
     <a class="version" href="1.10/cops_naming.html">1.10</a>
     <a class="version" href="1.9/cops_naming.html">1.9</a>
@@ -1284,7 +1288,7 @@ EOS</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.53</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.2</p></td>
@@ -1303,6 +1307,11 @@ directive. It can be configured to allow for memoized instance variables
 prefixed with an underscore. Prefixing ivars with an underscore is a
 convention that is used to implicitly indicate that an ivar should not
 be set or referenced outside of the memoization method.</p>
+</div>
+<div class="paragraph">
+<p>This cop relies on the pattern <code>@instance_var ||= &#8230;&#8203;</code>,
+but this is sometimes used for other purposes than memoization
+so this cop is considered unsafe.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-10"><a class="anchor" href="#examples-10"></a>Examples</h3>
@@ -1863,6 +1872,21 @@ expected.</p>
 <div class="paragraph">
 <p>The <code>PreferredName</code> config option takes a <code>String</code>. It represents
 the required name of the variable. Its default is <code>e</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This cop does not consider nested rescues because it cannot
+guarantee that the variable from the outer rescue is not used within
+the inner rescue (in which case, changing the inner variable would
+shadow the outer variable).
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="examples-14"><a class="anchor" href="#examples-14"></a>Examples</h3>

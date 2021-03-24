@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.12/index.html">1.12</a>
+        </li>
+        <li class="version">
           <a href="1.11/index.html">1.11</a>
         </li>
         <li class="version">
@@ -357,7 +360,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.11/index.html" class="home-link"></a>
+  <a href="1.12/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -369,6 +372,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_lint.html">master</a>
+    <a class="version" href="1.12/cops_lint.html">1.12</a>
     <a class="version" href="1.11/cops_lint.html">1.11</a>
     <a class="version" href="1.10/cops_lint.html">1.10</a>
     <a class="version" href="1.9/cops_lint.html">1.9</a>
@@ -7708,7 +7712,7 @@ g.count #=&gt; 2</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.81</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.12</p></td>
 </tr>
 </tbody>
 </table>
@@ -7786,6 +7790,52 @@ end</code></pre>
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="allownil-true-default"><a class="anchor" href="#allownil-true-default"></a>AllowNil: true (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+def some_method
+  do_something
+rescue
+  nil
+end
+
+# good
+begin
+  do_something
+rescue
+  # do nothing
+end
+
+# good
+do_something rescue nil</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allownil-false"><a class="anchor" href="#allownil-false"></a>AllowNil: false</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+def some_method
+  do_something
+rescue
+  nil
+end
+
+# bad
+begin
+  do_something
+rescue
+  nil
+end
+
+# bad
+do_something rescue nil</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="configurable-attributes-22"><a class="anchor" href="#configurable-attributes-22"></a>Configurable attributes</h3>
@@ -7805,6 +7855,11 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AllowComments</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowNil</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 </tr>
@@ -7857,6 +7912,13 @@ end</code></pre>
 <p>This cop checks for uses of literal strings converted to
 a symbol where a literal symbol could be used instead.</p>
 </div>
+<div class="paragraph">
+<p>There are two possible styles for this cop.
+<code>strict</code> (default) will register an offense for any incorrect usage.
+<code>consistent</code> additionally requires hashes to use the same style for
+every symbol key (ie. if any symbol key needs to be quoted it requires
+all keys to be quoted).</p>
+</div>
 <div class="sect2">
 <h3 id="examples-96"><a class="anchor" href="#examples-96"></a>Examples</h3>
 <div class="listingblock">
@@ -7876,6 +7938,74 @@ a symbol where a literal symbol could be used instead.</p>
 :'hyphenated-string'</code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="enforcedstyle-strict-default"><a class="anchor" href="#enforcedstyle-strict-default"></a>EnforcedStyle: strict (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+{
+  'a': 1,
+  "b": 2,
+  'c-d': 3
+}
+
+# good (don't quote keys that don't require quoting)
+{
+  a: 1,
+  b: 2,
+  'c-d': 3
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-consistent"><a class="anchor" href="#enforcedstyle-consistent"></a>EnforcedStyle: consistent</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+{
+  a: 1,
+  'b-c': 2
+}
+
+# good (quote all keys if any need quoting)
+{
+  'a': 1,
+  'b-c': 2
+}
+
+# good (no quoting required)
+{
+  a: 1,
+  b: 2
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-23"><a class="anchor" href="#configurable-attributes-23"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>strict</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>strict</code>, <code>consistent</code></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -8305,7 +8435,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-23"><a class="anchor" href="#configurable-attributes-23"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-24"><a class="anchor" href="#configurable-attributes-24"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8410,7 +8540,7 @@ values.sort { |*x| x[0] &lt;=&gt; x[1] }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-24"><a class="anchor" href="#configurable-attributes-24"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-25"><a class="anchor" href="#configurable-attributes-25"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8801,7 +8931,7 @@ exactly(2).times { raise StandardError }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-25"><a class="anchor" href="#configurable-attributes-25"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-26"><a class="anchor" href="#configurable-attributes-26"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8932,7 +9062,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-26"><a class="anchor" href="#configurable-attributes-26"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-27"><a class="anchor" href="#configurable-attributes-27"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9094,7 +9224,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-27"><a class="anchor" href="#configurable-attributes-27"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-28"><a class="anchor" href="#configurable-attributes-28"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9423,7 +9553,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-28"><a class="anchor" href="#configurable-attributes-28"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-29"><a class="anchor" href="#configurable-attributes-29"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9677,7 +9807,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-29"><a class="anchor" href="#configurable-attributes-29"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-30"><a class="anchor" href="#configurable-attributes-30"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9917,7 +10047,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-30"><a class="anchor" href="#configurable-attributes-30"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-31"><a class="anchor" href="#configurable-attributes-31"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
