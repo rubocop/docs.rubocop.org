@@ -2452,10 +2452,10 @@ return value unless regex =~ 'str'</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.11</p></td>
 </tr>
 </tbody>
 </table>
@@ -2464,6 +2464,10 @@ return value unless regex =~ 'str'</code></pre>
 <code>Hash#[]=</code>.
 You can set the maximum number of key-value pairs to consider
 an offense with <code>MaxKeyValuePairs</code>.</p>
+</div>
+<div class="paragraph">
+<p>This cop is marked as unsafe because RuboCop cannot determine if the
+receiver of <code>merge!</code> is actually a hash or not.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-29"><a class="anchor" href="#examples-29"></a>Examples</h3>
