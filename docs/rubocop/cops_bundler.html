@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.13/index.html">1.13</a>
+        </li>
+        <li class="version">
           <a href="1.12/index.html">1.12</a>
         </li>
         <li class="version">
@@ -360,7 +363,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.12/index.html" class="home-link"></a>
+  <a href="1.13/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -372,6 +375,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_bundler.html">master</a>
+    <a class="version" href="1.13/cops_bundler.html">1.13</a>
     <a class="version" href="1.12/cops_bundler.html">1.12</a>
     <a class="version" href="1.11/cops_bundler.html">1.11</a>
     <a class="version" href="1.10/cops_bundler.html">1.10</a>
@@ -521,17 +525,28 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Add a comment describing each gem in your Gemfile.</p>
+<p>Each gem in the Gemfile should have a comment explaining
+its purpose in the project, or the reason for its version
+or source.</p>
 </div>
 <div class="paragraph">
-<p>Optionally, the "OnlyFor" configuration
+<p>The optional "OnlyFor" configuration array
 can be used to only register offenses when the gems
-use certain options or have version specifiers.
-Add "version_specifiers" and/or the gem option names
-you want to check.</p>
+use certain options or have version specifiers.</p>
 </div>
 <div class="paragraph">
-<p>A useful use-case is to enforce a comment when using
+<p>When "version_specifiers" is included, a comment
+will be enforced if the gem has any version specifier.</p>
+</div>
+<div class="paragraph">
+<p>When "restrictive_version_specifiers" is included, a comment
+will be enforced if the gem has a version specifier that
+holds back the version of the gem.</p>
+</div>
+<div class="paragraph">
+<p>For any other value in the array, a comment will be enforced for
+a gem if an option by the same name is present.
+A useful use case is to enforce a comment when using
 options that change the source of a gem:</p>
 </div>
 <div class="ulist">
@@ -555,7 +570,8 @@ options that change the source of a gem:</p>
 </div>
 <div class="paragraph">
 <p>For a full list of options supported by bundler,
-you can check the <a href="https://bundler.io/man/gemfile.5.html">official documentation</a>.</p>
+see <a href="https://bundler.io/man/gemfile.5.html" class="bare">https://bundler.io/man/gemfile.5.html</a>
+.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
@@ -583,6 +599,23 @@ gem 'foo'</code></pre>
 gem 'foo', '&lt; 2.1'
 
 # good
+
+# Version 2.1 introduces breaking change baz
+gem 'foo', '&lt; 2.1'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="onlyfor-restrictive_version_specifiers"><a class="anchor" href="#onlyfor-restrictive_version_specifiers"></a>OnlyFor: ['restrictive_version_specifiers']</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+
+gem 'foo', '&lt; 2.1'
+
+# good
+
+gem 'foo', '&gt;= 1.0'
 
 # Version 2.1 introduces breaking change baz
 gem 'foo', '&lt; 2.1'</code></pre>

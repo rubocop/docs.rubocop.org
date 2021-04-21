@@ -134,6 +134,9 @@
           <a href="../rubocop/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.13/index.html">1.13</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.12/index.html">1.12</a>
         </li>
         <li class="version">
@@ -284,7 +287,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.12/index.html" class="home-link"></a>
+  <a href="../rubocop/1.13/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop RSpec</a></li>
@@ -2134,7 +2137,7 @@ let(:foo) { bar }</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.3</p></td>
 </tr>
 </tbody>
 </table>
@@ -2145,6 +2148,11 @@ let(:foo) { bar }</code></pre>
 <p>A long example is usually more difficult to understand. Consider
 extracting out some behaviour, e.g. with a <code>let</code> block, or a helper
 method.</p>
+</div>
+<div class="paragraph">
+<p>You can set literals you want to fold with <code>CountAsOne</code>.
+Available are: 'array', 'hash', and 'heredoc'. Each literal
+will be counted as one line regardless of its actual size.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-23"><a class="anchor" href="#examples-23"></a>Examples</h3>
@@ -2165,6 +2173,28 @@ it do
   result = service.call
   expect(result).to be(true)
 end</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="countasone-array-heredoc"><a class="anchor" href="#countasone-array-heredoc"></a>CountAsOne: ['array', 'heredoc']</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">it do
+  array = [         # +1
+    1,
+    2
+  ]
+
+  hash = {          # +3
+    key: 'value'
+  }
+
+  msg = &lt;&lt;~HEREDOC  # +1
+    Heredoc
+    content.
+  HEREDOC
+end                 # 5 points</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -2188,6 +2218,11 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Max</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>5</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CountAsOne</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
 </table>
