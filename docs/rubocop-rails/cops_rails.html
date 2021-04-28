@@ -257,6 +257,9 @@
           <a href="../rubocop-rspec/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop-rspec/2.3/index.html">2.3</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-rspec/2.2/index.html">2.2</a>
         </li>
         <li class="version">
@@ -2108,10 +2111,10 @@ delegate :foo, to: :bar, allow_nil: true</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.44</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.10</p></td>
 </tr>
 </tbody>
 </table>
@@ -2963,7 +2966,8 @@ User.order(:foo).each</code></pre>
 <div class="paragraph">
 <p>This cop looks for <code>has_many</code> or <code>has_one</code> associations that don&#8217;t
 specify a <code>:dependent</code> option.
-It doesn&#8217;t register an offense if <code>:through</code> option was specified.</p>
+It doesn&#8217;t register an offense if <code>:through</code> or <code>dependent: nil</code>
+was specified.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-33"><a class="anchor" href="#examples-33"></a>Examples</h3>
@@ -2979,6 +2983,7 @@ end
 class User &lt; ActiveRecord::Base
   has_many :comments, dependent: :restrict_with_exception
   has_one :avatar, dependent: :destroy
+  has_many :articles, dependent: nil
   has_many :patients, through: :appointments
 end</code></pre>
 </div>
@@ -7838,9 +7843,9 @@ validates :foo, uniqueness: true</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.9</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.10</p></td>
 </tr>
 </tbody>
 </table>
