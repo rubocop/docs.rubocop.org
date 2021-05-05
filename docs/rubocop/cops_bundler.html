@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.14/index.html">1.14</a>
+        </li>
+        <li class="version">
           <a href="1.13/index.html">1.13</a>
         </li>
         <li class="version">
@@ -375,7 +378,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.13/index.html" class="home-link"></a>
+  <a href="1.14/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -387,6 +390,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_bundler.html">master</a>
+    <a class="version" href="1.14/cops_bundler.html">1.14</a>
     <a class="version" href="1.13/cops_bundler.html">1.13</a>
     <a class="version" href="1.12/cops_bundler.html">1.12</a>
     <a class="version" href="1.11/cops_bundler.html">1.11</a>
@@ -692,6 +696,115 @@ gem 'bar', '&lt; 2.1'</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="bundlergemversion"><a class="anchor" href="#bundlergemversion"></a>Bundler/GemVersion</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Enforce that Gem version specifications are either required
+or forbidden.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<div class="sect3">
+<h4 id="enforcedstyle-required-default"><a class="anchor" href="#enforcedstyle-required-default"></a>EnforcedStyle: required (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+gem 'rubocop'
+
+# good
+gem 'rubocop', '~&gt; 1.12'
+
+# good
+gem 'rubocop', '&gt;= 1.10.0'
+
+# good
+gem 'rubocop', '&gt;= 1.5.0', '&lt; 1.10.0'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-forbidden"><a class="anchor" href="#enforcedstyle-forbidden"></a>EnforcedStyle: forbidden</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+gem 'rubocop'
+
+# bad
+gem 'rubocop', '~&gt; 1.12'
+
+# bad
+gem 'rubocop', '&gt;= 1.10.0'
+
+# bad
+gem 'rubocop', '&gt;= 1.5.0', '&lt; 1.10.0'</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>required</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>required</code>, <code>forbidden</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>**/*.gemfile</code>, <code>**/Gemfile</code>, <code>**/gems.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedGems</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="bundlerinsecureprotocolsource"><a class="anchor" href="#bundlerinsecureprotocolsource"></a>Bundler/InsecureProtocolSource</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -738,7 +851,7 @@ intranet, a use case where HTTPS cannot be specified was considered.
 Consider using HTTP only if you cannot use HTTPS.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -753,7 +866,7 @@ source 'http://rubygems.org'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -812,7 +925,7 @@ source 'http://rubygems.org'</code></pre>
 <p>Gems should be alphabetically sorted within groups.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -837,7 +950,7 @@ gem 'rspec'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
