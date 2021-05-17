@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.15/index.html">1.15</a>
+        </li>
+        <li class="version">
           <a href="1.14/index.html">1.14</a>
         </li>
         <li class="version">
@@ -378,7 +381,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.14/index.html" class="home-link"></a>
+  <a href="1.15/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -389,6 +392,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="configuration.html">master</a>
+    <a class="version" href="1.15/configuration.html">1.15</a>
     <a class="version" href="1.14/configuration.html">1.14</a>
     <a class="version" href="1.13/configuration.html">1.13</a>
     <a class="version" href="1.12/configuration.html">1.12</a>
@@ -1028,8 +1032,13 @@ for every cop.</p>
 between major versions, are in a special pending status (read more in
 <a href="versioning.html" class="page">"Versioning"</a>). Some cops, configured the above <code>Enabled: false</code>
 in <a href="https://github.com/rubocop/rubocop/blob/master/config/default.yml">config/default.yml</a>,
-are disabled by default. The cop enabling process can be altered by
-setting <code>DisabledByDefault</code> or <code>EnabledByDefault</code> (but not both) to <code>true</code>.</p>
+are disabled by default.</p>
+</div>
+<div class="paragraph">
+<p>The cop enabling process can be altered by setting <code>DisabledByDefault</code> or
+<code>EnabledByDefault</code> (but not both) to <code>true</code>. These settings override the default for <strong>all</strong>
+cops to disabled or enabled, regardless of the cops' default values (whether enabled,
+disabled or pending).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1039,9 +1048,9 @@ setting <code>DisabledByDefault</code> or <code>EnabledByDefault</code> (but not
 </div>
 <div class="paragraph">
 <p>All cops are then disabled by default. Only cops appearing in user
-configuration files are enabled. <code>Enabled: true</code> does not have to be
-set for cops in user configuration. They will be enabled anyway. It is also
-possible to enable entire departments by adding for example</p>
+configuration files with <code>Enabled: true</code> will be enabled; every other cop will
+be disabled without having to explicitly disable them in configuration. It is
+also possible to enable entire departments by adding for example</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1050,8 +1059,7 @@ possible to enable entire departments by adding for example</p>
 </div>
 </div>
 <div class="paragraph">
-<p>All cops are then enabled by default. Only cops explicitly disabled
-using <code>Enabled: false</code> in user configuration files are disabled.</p>
+<p>All cops in the <code>Style</code> department are then enabled.</p>
 </div>
 <div class="paragraph">
 <p>If a department is disabled, cops in that department can still be individually

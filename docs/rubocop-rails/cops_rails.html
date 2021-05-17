@@ -119,6 +119,9 @@
           <a href="../rubocop/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.15/index.html">1.15</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.14/index.html">1.14</a>
         </li>
         <li class="version">
@@ -287,7 +290,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.14/index.html" class="home-link"></a>
+  <a href="../rubocop/1.15/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop Rails</a></li>
@@ -1767,7 +1770,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.30</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.33</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.11</p></td>
 </tr>
 </tbody>
 </table>
@@ -1784,14 +1787,17 @@ Rails time zone. You must use <code>Time.zone.today</code> instead.</p>
 because it doesn&#8217;t know about Rails time zone either.</p>
 </div>
 <div class="paragraph">
-<p>Two styles are supported for this cop. When EnforcedStyle is 'strict'
+<p>Two styles are supported for this cop. When <code>EnforcedStyle</code> is 'strict'
 then the Date methods <code>today</code>, <code>current</code>, <code>yesterday</code>, and <code>tomorrow</code>
 are prohibited and the usage of both <code>to_time</code>
 and 'to_time_in_current_zone' are reported as warning.</p>
 </div>
 <div class="paragraph">
-<p>When EnforcedStyle is 'flexible' then only <code>Date.today</code> is prohibited
-and only <code>to_time</code> is reported as warning.</p>
+<p>When <code>EnforcedStyle</code> is <code>flexible</code> then only <code>Date.today</code> is prohibited.</p>
+</div>
+<div class="paragraph">
+<p>And you can set a warning for <code>to_time</code> with <code>AllowToTime: false</code>.
+<code>AllowToTime</code> is <code>true</code> by default to prevent false positive on <code>DateTime</code> object.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-19"><a class="anchor" href="#examples-19"></a>Examples</h3>
@@ -1803,7 +1809,6 @@ and only <code>to_time</code> is reported as warning.</p>
 Date.current
 Date.yesterday
 Date.today
-date.to_time
 
 # good
 Time.zone.today
@@ -1817,7 +1822,6 @@ Time.zone.today - 1.day</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 Date.today
-date.to_time
 
 # good
 Time.zone.today
@@ -1825,6 +1829,24 @@ Time.zone.today - 1.day
 Date.current
 Date.yesterday
 date.in_time_zone</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowtotime-true-default"><a class="anchor" href="#allowtotime-true-default"></a>AllowToTime: true (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+date.to_time</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowtotime-false"><a class="anchor" href="#allowtotime-false"></a>AllowToTime: false</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+date.to_time</code></pre>
 </div>
 </div>
 </div>
@@ -1849,6 +1871,11 @@ date.in_time_zone</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>flexible</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>strict</code>, <code>flexible</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowToTime</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 </tr>
 </tbody>
 </table>
@@ -7412,15 +7439,28 @@ SQL</code></pre>
 and the article <a href="http://danilenko.org/2012/7/6/rails_timezones/" class="bare">http://danilenko.org/2012/7/6/rails_timezones/</a></p>
 </div>
 <div class="paragraph">
-<p>Two styles are supported for this cop. When EnforcedStyle is 'strict'
-then only use of Time.zone is allowed.</p>
+<p>Two styles are supported for this cop. When <code>EnforcedStyle</code> is 'strict'
+then only use of <code>Time.zone</code> is allowed.</p>
 </div>
 <div class="paragraph">
 <p>When EnforcedStyle is 'flexible' then it&#8217;s also allowed
-to use Time.in_time_zone.</p>
+to use <code>Time#in_time_zone</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+Time.now
+Time.parse('2015-03-02T19:05:37')
+
+# good
+Time.current
+Time.zone.now
+Time.zone.parse('2015-03-02T19:05:37')
+Time.zone.parse('2015-03-02T19:05:37Z') # Respect ISO 8601 format with timezone specifier.</code></pre>
+</div>
+</div>
 <div class="sect3">
 <h4 id="enforcedstyle-strict-2"><a class="anchor" href="#enforcedstyle-strict-2"></a>EnforcedStyle: strict</h4>
 <div class="listingblock">
@@ -7428,17 +7468,7 @@ to use Time.in_time_zone.</p>
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># `strict` means that `Time` should be used with `zone`.
 
 # bad
-Time.now
-Time.parse('2015-03-02T19:05:37')
-
-# bad
-Time.current
-Time.at(timestamp).in_time_zone
-
-# good
-Time.zone.now
-Time.zone.parse('2015-03-02T19:05:37')
-Time.zone.parse('2015-03-02T19:05:37Z') # Respect ISO 8601 format with timezone specifier.</code></pre>
+Time.at(timestamp).in_time_zone</code></pre>
 </div>
 </div>
 </div>
@@ -7448,16 +7478,7 @@ Time.zone.parse('2015-03-02T19:05:37Z') # Respect ISO 8601 format with timezone 
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># `flexible` allows usage of `in_time_zone` instead of `zone`.
 
-# bad
-Time.now
-Time.parse('2015-03-02T19:05:37')
-
 # good
-Time.zone.now
-Time.zone.parse('2015-03-02T19:05:37')
-
-# good
-Time.current
 Time.at(timestamp).in_time_zone</code></pre>
 </div>
 </div>

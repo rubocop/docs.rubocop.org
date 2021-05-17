@@ -119,6 +119,9 @@
           <a href="../rubocop/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.15/index.html">1.15</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.14/index.html">1.14</a>
         </li>
         <li class="version">
@@ -287,7 +290,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.14/index.html" class="home-link"></a>
+  <a href="../rubocop/1.15/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop Performance</a></li>
@@ -1255,10 +1258,10 @@ Required Ruby version: 2.5
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.6</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.12</p></td>
 </tr>
 </tbody>
 </table>
@@ -1267,7 +1270,8 @@ Required Ruby version: 2.5
 </div>
 <div class="paragraph">
 <p>This cop identifies places where <code>gsub(/\Aprefix/, '')</code> and <code>sub(/\Aprefix/, '')</code>
-can be replaced by <code>delete_prefix('prefix')</code>.</p>
+can be replaced by <code>delete_prefix('prefix')</code>.
+It is marked as unsafe by default because <code>Pathname</code> has <code>sub</code> but not <code>delete_prefix</code>.</p>
 </div>
 <div class="paragraph">
 <p>This cop has <code>SafeMultiline</code> configuration option that <code>true</code> by default because
@@ -1379,10 +1383,10 @@ Required Ruby version: 2.5
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.6</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.12</p></td>
 </tr>
 </tbody>
 </table>
@@ -1391,7 +1395,8 @@ Required Ruby version: 2.5
 </div>
 <div class="paragraph">
 <p>This cop identifies places where <code>gsub(/suffix\z/, '')</code> and <code>sub(/suffix\z/, '')</code>
-can be replaced by <code>delete_suffix('suffix')</code>.</p>
+can be replaced by <code>delete_suffix('suffix')</code>.
+It is marked as unsafe by default because <code>Pathname</code> has <code>sub</code> but not <code>delete_suffix</code>.</p>
 </div>
 <div class="paragraph">
 <p>This cop has <code>SafeMultiline</code> configuration option that <code>true</code> by default because
