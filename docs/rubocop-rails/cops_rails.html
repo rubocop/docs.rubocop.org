@@ -119,6 +119,9 @@
           <a href="../rubocop/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.16/index.html">1.16</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.15/index.html">1.15</a>
         </li>
         <li class="version">
@@ -299,7 +302,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.15/index.html" class="home-link"></a>
+  <a href="../rubocop/1.16/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop Rails</a></li>
@@ -7964,6 +7967,83 @@ Rails.env == 'production'</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="railsunusedignoredcolumns"><a class="anchor" href="#railsunusedignoredcolumns"></a>Rails/UnusedIgnoredColumns</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop suggests you remove a column that does not exist in the schema from <code>ignored_columns</code>.
+<code>ignored_columns</code> is necessary to drop a column from RDBMS, but you don&#8217;t need it after the migration
+to drop the column. You avoid forgetting to remove <code>ignored_columns</code> by this cop.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+class User &lt; ApplicationRecord
+  self.ignored_columns = [:already_removed_column]
+end
+
+# good
+class User &lt; ApplicationRecord
+  self.ignored_columns = [:still_existing_column]
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-52"><a class="anchor" href="#configurable-attributes-52"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/<strong>*/</strong>.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="railsvalidation"><a class="anchor" href="#railsvalidation"></a>Rails/Validation</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -7997,7 +8077,7 @@ Rails.env == 'production'</code></pre>
 <p>This cop checks for the use of old-style attribute validation macros.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
+<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8029,7 +8109,7 @@ validates :foo, uniqueness: true</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-52"><a class="anchor" href="#configurable-attributes-52"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-53"><a class="anchor" href="#configurable-attributes-53"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8089,7 +8169,7 @@ validates :foo, uniqueness: true</code></pre>
 in <code>where</code> can be replaced with <code>where(attribute: value)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
+<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8174,7 +8254,7 @@ Author.includes(:articles).exists?(articles: {id: id})
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
+<h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-exists-default"><a class="anchor" href="#enforcedstyle-exists-default"></a>EnforcedStyle: exists (default)</h4>
 <div class="listingblock">
@@ -8213,7 +8293,7 @@ User.where('length(name) &gt; 10').exists?</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-53"><a class="anchor" href="#configurable-attributes-53"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-54"><a class="anchor" href="#configurable-attributes-54"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8273,7 +8353,7 @@ User.where('length(name) &gt; 10').exists?</code></pre>
 in <code>where</code> can be replaced with <code>where.not(&#8230;&#8203;)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
+<h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad

@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.16/index.html">1.16</a>
+        </li>
+        <li class="version">
           <a href="1.15/index.html">1.15</a>
         </li>
         <li class="version">
@@ -390,7 +393,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.15/index.html" class="home-link"></a>
+  <a href="1.16/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -402,6 +405,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_layout.html">master</a>
+    <a class="version" href="1.16/cops_layout.html">1.16</a>
     <a class="version" href="1.15/cops_layout.html">1.15</a>
     <a class="version" href="1.14/cops_layout.html">1.14</a>
     <a class="version" href="1.13/cops_layout.html">1.13</a>
@@ -1203,16 +1207,16 @@ blah { |i|
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.49</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.16</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks how the <code>when</code>s of a <code>case</code> expression
+<p>This cop checks how the <code>when</code> and <code>in`s of a `case</code> expression
 are indented in relation to its <code>case</code> or <code>end</code> keyword.</p>
 </div>
 <div class="paragraph">
-<p>It will register a separate offense for each misaligned <code>when</code>.</p>
+<p>It will register a separate offense for each misaligned <code>when</code> and <code>in</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
@@ -1231,9 +1235,23 @@ case n
     y / 3
 end
 
+case n
+  in pattern
+    x * 2
+  else
+    y / 3
+end
+
 # good for all styles
 case n
 when 0
+  x * 2
+else
+  y / 3
+end
+
+case n
+in pattern
   x * 2
 else
   y / 3
@@ -1256,9 +1274,23 @@ else
   y / 3
 end
 
+a = case n
+in pattern
+  x * 2
+else
+  y / 3
+end
+
 # good
 a = case n
     when 0
+      x * 2
+    else
+      y / 3
+end
+
+a = case n
+    in pattern
       x * 2
     else
       y / 3
@@ -1278,9 +1310,23 @@ a = case n
       y / 3
 end
 
+a = case n
+    in pattern
+      x * 2
+    else
+      y / 3
+end
+
 # good
 a = case n
 when 0
+  x * 2
+else
+  y / 3
+end
+
+a = case n
+in pattern
   x * 2
 else
   y / 3
@@ -5037,7 +5083,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.49</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.77</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.16</p></td>
 </tr>
 </tbody>
 </table>
