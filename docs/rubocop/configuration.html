@@ -369,6 +369,9 @@
           <a href="../rubocop-rspec/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop-rspec/2.4/index.html">2.4</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-rspec/2.3/index.html">2.3</a>
         </li>
         <li class="version">
@@ -650,6 +653,25 @@ last one has the highest. The format for multiple inheritance using URLs is:</p>
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">inherit_from:
   - http://www.example.com/rubocop.yml
   - ../.rubocop.yml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can inherit from a repo with basic auth that is authorized to access the repo as follow:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">inherit_from:
+  - http://&lt;user_name&gt;:&lt;password&gt;@raw.github.com/example/rubocop.yml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A <a href="https://docs.github.com/en/developers/apps/about-apps#personal-access-token">GitHub personal access token</a>
+can also be configured as follow:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">inherit_from:
+  - http://&lt;personal_access_token&gt;@raw.github.com/example/rubocop.yml</code></pre>
 </div>
 </div>
 <div class="sect2">
