@@ -119,6 +119,9 @@
           <a href="../rubocop/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.17/index.html">1.17</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.16/index.html">1.16</a>
         </li>
         <li class="version">
@@ -305,7 +308,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.16/index.html" class="home-link"></a>
+  <a href="../rubocop/1.17/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop Performance</a></li>
@@ -444,11 +447,11 @@ This cop is also unsafe for string slices because strings do not have <code>#tak
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-# array[..2]
-# array[...2]
-# array[2..]
-# array[2...]
-# array.slice(..2)
+array[..2]
+array[...2]
+array[2..]
+array[2...]
+array.slice(..2)
 
 # good
 array.take(3)
