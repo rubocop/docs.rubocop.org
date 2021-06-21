@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Cops :: RuboCop Docs</title>
+    <link rel="canonical" href="https://docs.rubocop.org/rubocop-rails/cops.html">
+    <link rel="prev" href="usage.html">
+    <link rel="next" href="cops_rails.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140153536-1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-140153536-1')</script>
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <a href="https://rubocop.org">RuboCop</a>
+        <span class="separator">//</span>
+        <a href="https://docs.rubocop.org">Docs</a>
+      </div>
+      <div class="navbar-item">
+        <input id="search-input" type="text" placeholder="Search docs">
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href=index.html>Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Style Guides</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://rubystyle.guide">Ruby</a>
+            <a class="navbar-item" href="https://rails.rubystyle.guide">Rails</a>
+            <a class="navbar-item" href="https://rspec.rubystyle.guide">RSpec</a>
+            <a class="navbar-item" href="https://minitest.rubystyle.guide">Minitest</a>
+          </div>
+        </div>
+        <a class="navbar-item" href="https://www.rubydoc.info/gems/rubocop">API Docs</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Projects</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop">RuboCop</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-ast">RuboCop AST</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-minitest">RuboCop Minitest</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-performance">RuboCop Performance</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rails">RuboCop Rails</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rake">RuboCop Rake</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rspec">RuboCop RSpec</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Community</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop">GitHub Org</a>
+            <a class="navbar-item" href="https://gitter.im/bbatsov/rubocop">Chat (Gitter)</a>
+            <a class="navbar-item" href="https://opencollective.com/rubocop">Open Collective</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rubocop-rails" data-version="2.11">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">RuboCop Rails</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="usage.html">Usage</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="cops.html">Cops</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cops Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_rails.html">Rails</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RuboCop Rails</span>
+    <span class="version">2.11</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../rubocop/index.html">RuboCop</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.17/index.html">1.17</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.16/index.html">1.16</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.15/index.html">1.15</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.14/index.html">1.14</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.13/index.html">1.13</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.12/index.html">1.12</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.11/index.html">1.11</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.10/index.html">1.10</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.9/index.html">1.9</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.8/index.html">1.8</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.7/index.html">1.7</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.6/index.html">1.6</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.5/index.html">1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.4/index.html">1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.3/index.html">1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.2/index.html">1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.0/index.html">1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-ast/index.html">RuboCop AST</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-ast/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.7/index.html">1.7</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.6/index.html">1.6</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.5/index.html">1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.4/index.html">1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.3/index.html">1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.2/index.html">1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.0/index.html">1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-minitest/index.html">RuboCop Minitest</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-minitest/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.13/index.html">0.13</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.12/index.html">0.12</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.11/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.10/index.html">0.10</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-packaging/index.html">RuboCop Packaging</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-packaging/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-performance/index.html">RuboCop Performance</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-performance/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.11/index.html">1.11</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.10/index.html">1.10</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.9/index.html">1.9</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.8/index.html">1.8</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.7/index.html">1.7</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../index.html">RuboCop Rails</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../index.html">master</a>
+        </li>
+        <li class="version is-current">
+          <a href="index.html">2.11</a>
+        </li>
+        <li class="version">
+          <a href="../2.10/index.html">2.10</a>
+        </li>
+        <li class="version">
+          <a href="../2.9/index.html">2.9</a>
+        </li>
+        <li class="version">
+          <a href="../2.8/index.html">2.8</a>
+        </li>
+        <li class="version">
+          <a href="../2.7/index.html">2.7</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-rspec/index.html">RuboCop RSpec</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-rspec/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.4/index.html">2.4</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.3/index.html">2.3</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.2/index.html">2.2</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.1/index.html">2.1</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.0/index.html">2.0</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/1.44/index.html">1.44</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../rubocop/1.17/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">RuboCop Rails</a></li>
+    <li><a href="cops.html">Cops</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">2.11</button>
+  <div class="version-menu">
+    <a class="version" href="../cops.html">master</a>
+    <a class="version is-current" href="cops.html">2.11</a>
+    <a class="version" href="../2.10/cops.html">2.10</a>
+    <a class="version" href="../2.9/cops.html">2.9</a>
+    <a class="version" href="../2.8/cops.html">2.8</a>
+    <a class="version" href="../2.7/cops.html">2.7</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-rails/blob/v2.11.0/docs/modules/ROOT/pages/cops.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Cops</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In RuboCop lingo the various checks performed on the code are called cops.
+Each cop is responsible for detecting one particular offense.
+RuboCop Rails has only one Rails department.</p>
+</div>
+<div class="paragraph">
+<p>Some of the Rails cops have configuration options, allowing them to
+enforce different coding conventions.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rails"><a class="anchor" href="#rails"></a>Rails</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Rails cops check for Rails best practices and coding conventions. Many of the them are
+based on the <a href="https://rails.rubystyle.guide/">Rails Style Guide</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="department-rails"><a class="anchor" href="#department-rails"></a>Department <a href="cops_rails.html" class="page">Rails</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="cops_rails.html#railsactionfilter" class="page">Rails/ActionFilter</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsactiverecordaliases" class="page">Rails/ActiveRecordAliases</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsactiverecordcallbacksorder" class="page">Rails/ActiveRecordCallbacksOrder</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsactiverecordoverride" class="page">Rails/ActiveRecordOverride</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsactivesupportaliases" class="page">Rails/ActiveSupportAliases</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsaddcolumnindex" class="page">Rails/AddColumnIndex</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsaftercommitoverride" class="page">Rails/AfterCommitOverride</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsapplicationcontroller" class="page">Rails/ApplicationController</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsapplicationjob" class="page">Rails/ApplicationJob</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsapplicationmailer" class="page">Rails/ApplicationMailer</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsapplicationrecord" class="page">Rails/ApplicationRecord</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsarelstar" class="page">Rails/ArelStar</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsassertnot" class="page">Rails/AssertNot</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsattributedefaultblockvalue" class="page">Rails/AttributeDefaultBlockValue</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsbelongsto" class="page">Rails/BelongsTo</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsblank" class="page">Rails/Blank</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsbulkchangetable" class="page">Rails/BulkChangeTable</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railscontenttag" class="page">Rails/ContentTag</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railscreatetablewithtimestamps" class="page">Rails/CreateTableWithTimestamps</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsdate" class="page">Rails/Date</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsdefaultscope" class="page">Rails/DefaultScope</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsdelegate" class="page">Rails/Delegate</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsdelegateallowblank" class="page">Rails/DelegateAllowBlank</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsdynamicfindby" class="page">Rails/DynamicFindBy</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railseagerevaluationlogmessage" class="page">Rails/EagerEvaluationLogMessage</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsenumhash" class="page">Rails/EnumHash</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsenumuniqueness" class="page">Rails/EnumUniqueness</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsenvironmentcomparison" class="page">Rails/EnvironmentComparison</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsenvironmentvariableaccess" class="page">Rails/EnvironmentVariableAccess</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsexit" class="page">Rails/Exit</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsexpandeddaterange" class="page">Rails/ExpandedDateRange</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsfilepath" class="page">Rails/FilePath</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsfindby" class="page">Rails/FindBy</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsfindbyid" class="page">Rails/FindById</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsfindeach" class="page">Rails/FindEach</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railshasandbelongstomany" class="page">Rails/HasAndBelongsToMany</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railshasmanyorhasonedependent" class="page">Rails/HasManyOrHasOneDependent</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railshelperinstancevariable" class="page">Rails/HelperInstanceVariable</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railshttppositionalarguments" class="page">Rails/HttpPositionalArguments</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railshttpstatus" class="page">Rails/HttpStatus</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsi18nlocaleassignment" class="page">Rails/I18nLocaleAssignment</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsignoredskipactionfilteroption" class="page">Rails/IgnoredSkipActionFilterOption</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsindexby" class="page">Rails/IndexBy</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsindexwith" class="page">Rails/IndexWith</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsinquiry" class="page">Rails/Inquiry</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsinverseof" class="page">Rails/InverseOf</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railslexicallyscopedactionfilter" class="page">Rails/LexicallyScopedActionFilter</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railslinktoblank" class="page">Rails/LinkToBlank</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsmailername" class="page">Rails/MailerName</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsmatchroute" class="page">Rails/MatchRoute</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsnegateinclude" class="page">Rails/NegateInclude</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsnotnullcolumn" class="page">Rails/NotNullColumn</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsorderbyid" class="page">Rails/OrderById</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsoutput" class="page">Rails/Output</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsoutputsafety" class="page">Rails/OutputSafety</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railspick" class="page">Rails/Pick</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railspluck" class="page">Rails/Pluck</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railspluckid" class="page">Rails/PluckId</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railspluckinwhere" class="page">Rails/PluckInWhere</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railspluralizationgrammar" class="page">Rails/PluralizationGrammar</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railspresence" class="page">Rails/Presence</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railspresent" class="page">Rails/Present</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsrakeenvironment" class="page">Rails/RakeEnvironment</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsreadwriteattribute" class="page">Rails/ReadWriteAttribute</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsredundantallownil" class="page">Rails/RedundantAllowNil</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsredundantforeignkey" class="page">Rails/RedundantForeignKey</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsredundantreceiverinwithoptions" class="page">Rails/RedundantReceiverInWithOptions</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsreflectionclassname" class="page">Rails/ReflectionClassName</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsrefutemethods" class="page">Rails/RefuteMethods</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsrelativedateconstant" class="page">Rails/RelativeDateConstant</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsrenderinline" class="page">Rails/RenderInline</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsrenderplaintext" class="page">Rails/RenderPlainText</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsrequestreferer" class="page">Rails/RequestReferer</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsrequiredependency" class="page">Rails/RequireDependency</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsreversiblemigration" class="page">Rails/ReversibleMigration</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsreversiblemigrationmethoddefinition" class="page">Rails/ReversibleMigrationMethodDefinition</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railssafenavigation" class="page">Rails/SafeNavigation</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railssafenavigationwithblank" class="page">Rails/SafeNavigationWithBlank</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railssavebang" class="page">Rails/SaveBang</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsscopeargs" class="page">Rails/ScopeArgs</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsshorti18n" class="page">Rails/ShortI18n</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsskipsmodelvalidations" class="page">Rails/SkipsModelValidations</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railssquishedsqlheredocs" class="page">Rails/SquishedSQLHeredocs</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railstimezone" class="page">Rails/TimeZone</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railstimezoneassignment" class="page">Rails/TimeZoneAssignment</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsuniqbeforepluck" class="page">Rails/UniqBeforePluck</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsuniquevalidationwithoutindex" class="page">Rails/UniqueValidationWithoutIndex</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsunknownenv" class="page">Rails/UnknownEnv</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsunusedignoredcolumns" class="page">Rails/UnusedIgnoredColumns</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railsvalidation" class="page">Rails/Validation</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railswhereequals" class="page">Rails/WhereEquals</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railswhereexists" class="page">Rails/WhereExists</a></p>
+</li>
+<li>
+<p><a href="cops_rails.html#railswherenot" class="page">Rails/WhereNot</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="usage.html">Usage</a></span>
+  <span class="next"><a href="cops_rails.html">Rails</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>Copyright (C) 2012-2021 <a href="https://metaredux.com">Bozhidar Batsov</a> and RuboCop contributors.</p>
+  <p>Except where otherwise noted, docs.rubocop.org is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a> (CC BY-SA 4.0).</p>
+</footer>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript">
+docsearch({
+  apiKey: '6d6bf5210b1f26f7f7939e192f8f8c77',
+  indexName: 'rubocop',
+  inputSelector: '#search-input',
+  debug: false // Set debug to true if you want to inspect the dropdown
+});
+</script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
