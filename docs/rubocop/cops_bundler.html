@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.18/index.html">1.18</a>
+        </li>
+        <li class="version">
           <a href="1.17/index.html">1.17</a>
         </li>
         <li class="version">
@@ -405,7 +408,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.17/index.html" class="home-link"></a>
+  <a href="1.18/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -417,6 +420,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_bundler.html">master</a>
+    <a class="version" href="1.18/cops_bundler.html">1.18</a>
     <a class="version" href="1.17/cops_bundler.html">1.17</a>
     <a class="version" href="1.16/cops_bundler.html">1.16</a>
     <a class="version" href="1.15/cops_bundler.html">1.15</a>
@@ -756,8 +760,8 @@ gem 'bar', '&lt; 2.1'</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Enforce that Gem version specifications are either required
-or forbidden.</p>
+<p>Enforce that Gem version specifications or a commit reference (branch,
+ref, or tag) are either required or forbidden.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
@@ -775,7 +779,16 @@ gem 'rubocop', '~&gt; 1.12'
 gem 'rubocop', '&gt;= 1.10.0'
 
 # good
-gem 'rubocop', '&gt;= 1.5.0', '&lt; 1.10.0'</code></pre>
+gem 'rubocop', '&gt;= 1.5.0', '&lt; 1.10.0'
+
+# good
+gem 'rubocop', branch: 'feature-branch'
+
+# good
+gem 'rubocop', ref: '74b5bfbb2c4b6fd6cdbbc7254bd7084b36e0c85b'
+
+# good
+gem 'rubocop', tag: 'v1.17.0'</code></pre>
 </div>
 </div>
 </div>
@@ -793,7 +806,16 @@ gem 'rubocop', '~&gt; 1.12'
 gem 'rubocop', '&gt;= 1.10.0'
 
 # bad
-gem 'rubocop', '&gt;= 1.5.0', '&lt; 1.10.0'</code></pre>
+gem 'rubocop', '&gt;= 1.5.0', '&lt; 1.10.0'
+
+# bad
+gem 'rubocop', branch: 'feature-branch'
+
+# bad
+gem 'rubocop', ref: '74b5bfbb2c4b6fd6cdbbc7254bd7084b36e0c85b'
+
+# bad
+gem 'rubocop', tag: 'v1.17.0'</code></pre>
 </div>
 </div>
 </div>

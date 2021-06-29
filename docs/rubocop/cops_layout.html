@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.18/index.html">1.18</a>
+        </li>
+        <li class="version">
           <a href="1.17/index.html">1.17</a>
         </li>
         <li class="version">
@@ -405,7 +408,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.17/index.html" class="home-link"></a>
+  <a href="1.18/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -417,6 +420,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_layout.html">master</a>
+    <a class="version" href="1.18/cops_layout.html">1.18</a>
     <a class="version" href="1.17/cops_layout.html">1.17</a>
     <a class="version" href="1.16/cops_layout.html">1.16</a>
     <a class="version" href="1.15/cops_layout.html">1.15</a>
@@ -6234,6 +6238,139 @@ end
 </div>
 </div>
 <div class="sect1">
+<h2 id="layoutlineendstringconcatenationindentation"><a class="anchor" href="#layoutlineendstringconcatenationindentation"></a>Layout/LineEndStringConcatenationIndentation</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.18</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop checks the indentation of the next line after a line that ends with a string
+literal and a backslash.</p>
+</div>
+<div class="paragraph">
+<p>If <code>EnforcedStyle: aligned</code> is set, the concatenated string parts shall be aligned with the
+first part. There are some exceptions, such as implicit return values, where the
+concatenated string parts shall be indented regardless of <code>EnforcedStyle</code> configuration.</p>
+</div>
+<div class="paragraph">
+<p>If <code>EnforcedStyle: indented</code> is set, it&#8217;s the second line that shall be indented one step
+more than the first line. Lines 3 and forward shall be aligned with line 2. Here too there
+are exceptions. Values in a hash literal are always aligned.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-52"><a class="anchor" href="#examples-52"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+def some_method
+  'x' \
+  'y' \
+  'z'
+end
+
+my_hash = {
+  first: 'a message' \
+    'in two parts'
+}
+
+# good
+def some_method
+  'x' \
+    'y' \
+    'z'
+end
+
+my_hash = {
+  first: 'a message' \
+         'in two parts'
+}</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-aligned-default"><a class="anchor" href="#enforcedstyle-aligned-default"></a>EnforcedStyle: aligned (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+puts 'x' \
+  'y'
+
+# good
+puts 'x' \
+     'y'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-indented"><a class="anchor" href="#enforcedstyle-indented"></a>EnforcedStyle: indented</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+result = 'x' \
+         'y'
+
+# good
+result = 'x' \
+  'y'</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-30"><a class="anchor" href="#configurable-attributes-30"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>aligned</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>aligned</code>, <code>indented</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IndentationWidth</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;none&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="layoutlinelength"><a class="anchor" href="#layoutlinelength"></a>Layout/LineLength</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -6343,7 +6480,7 @@ method calls, etc. For example, let&#8217;s say the max columns
 is 25:</p>
 </div>
 <div class="sect2">
-<h3 id="examples-52"><a class="anchor" href="#examples-52"></a>Examples</h3>
+<h3 id="examples-53"><a class="anchor" href="#examples-53"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6363,7 +6500,7 @@ bar: "0000000000", baz: "0000000000"}
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-30"><a class="anchor" href="#configurable-attributes-30"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-31"><a class="anchor" href="#configurable-attributes-31"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6490,7 +6627,7 @@ after the last element of the array.</p>
 line as the last element of the array.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-53"><a class="anchor" href="#examples-53"></a>Examples</h3>
+<h3 id="examples-54"><a class="anchor" href="#examples-54"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-symmetrical-default"><a class="anchor" href="#enforcedstyle-symmetrical-default"></a>EnforcedStyle: symmetrical (default)</h4>
 <div class="listingblock">
@@ -6571,7 +6708,7 @@ line as the last element of the array.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-31"><a class="anchor" href="#configurable-attributes-31"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-32"><a class="anchor" href="#configurable-attributes-32"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6631,7 +6768,7 @@ line as the last element of the array.</p>
 starts on a separate line.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-54"><a class="anchor" href="#examples-54"></a>Examples</h3>
+<h3 id="examples-55"><a class="anchor" href="#examples-55"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6686,7 +6823,7 @@ starts on a separate line.</p>
 after the assignment operator.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-55"><a class="anchor" href="#examples-55"></a>Examples</h3>
+<h3 id="examples-56"><a class="anchor" href="#examples-56"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-new_line-default"><a class="anchor" href="#enforcedstyle-new_line-default"></a>EnforcedStyle: new_line (default)</h4>
 <div class="listingblock">
@@ -6760,7 +6897,7 @@ foo =
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-32"><a class="anchor" href="#configurable-attributes-32"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-33"><a class="anchor" href="#configurable-attributes-33"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6833,7 +6970,7 @@ block. Putting block arguments on separate lines, because the whole
 line would otherwise be too long, is accepted.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-56"><a class="anchor" href="#examples-56"></a>Examples</h3>
+<h3 id="examples-57"><a class="anchor" href="#examples-57"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6941,7 +7078,7 @@ after the last element of the hash.</p>
 line as the last element of the hash.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-57"><a class="anchor" href="#examples-57"></a>Examples</h3>
+<h3 id="examples-58"><a class="anchor" href="#examples-58"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-symmetrical-default-2"><a class="anchor" href="#enforcedstyle-symmetrical-default-2"></a>EnforcedStyle: symmetrical (default)</h4>
 <div class="listingblock">
@@ -7021,7 +7158,7 @@ line as the last element of the hash.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-33"><a class="anchor" href="#configurable-attributes-33"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-34"><a class="anchor" href="#configurable-attributes-34"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7081,7 +7218,7 @@ line as the last element of the hash.</p>
 starts on a separate line.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-58"><a class="anchor" href="#examples-58"></a>Examples</h3>
+<h3 id="examples-59"><a class="anchor" href="#examples-59"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7136,7 +7273,7 @@ starts on a separate line.</p>
 starts on a separate line.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-59"><a class="anchor" href="#examples-59"></a>Examples</h3>
+<h3 id="examples-60"><a class="anchor" href="#examples-60"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7217,7 +7354,7 @@ after the last argument of the call.</p>
 line as the last argument of the call.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-60"><a class="anchor" href="#examples-60"></a>Examples</h3>
+<h3 id="examples-61"><a class="anchor" href="#examples-61"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-symmetrical-default-3"><a class="anchor" href="#enforcedstyle-symmetrical-default-3"></a>EnforcedStyle: symmetrical (default)</h4>
 <div class="listingblock">
@@ -7298,7 +7435,7 @@ foo(a,
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-34"><a class="anchor" href="#configurable-attributes-34"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-35"><a class="anchor" href="#configurable-attributes-35"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7358,9 +7495,9 @@ foo(a,
 that span more than one line.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-61"><a class="anchor" href="#examples-61"></a>Examples</h3>
+<h3 id="examples-62"><a class="anchor" href="#examples-62"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-aligned-default"><a class="anchor" href="#enforcedstyle-aligned-default"></a>EnforcedStyle: aligned (default)</h4>
+<h4 id="enforcedstyle-aligned-default-2"><a class="anchor" href="#enforcedstyle-aligned-default-2"></a>EnforcedStyle: aligned (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7383,7 +7520,7 @@ Thing.a
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyle-indented"><a class="anchor" href="#enforcedstyle-indented"></a>EnforcedStyle: indented</h4>
+<h4 id="enforcedstyle-indented-2"><a class="anchor" href="#enforcedstyle-indented-2"></a>EnforcedStyle: indented</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -7417,7 +7554,7 @@ myvariable = Thing
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-35"><a class="anchor" href="#configurable-attributes-35"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-36"><a class="anchor" href="#configurable-attributes-36"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7509,7 +7646,7 @@ after the last parameter of the definition.</p>
 line as the last parameter of the definition.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-62"><a class="anchor" href="#examples-62"></a>Examples</h3>
+<h3 id="examples-63"><a class="anchor" href="#examples-63"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-symmetrical-default-4"><a class="anchor" href="#enforcedstyle-symmetrical-default-4"></a>EnforcedStyle: symmetrical (default)</h4>
 <div class="listingblock">
@@ -7602,7 +7739,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-36"><a class="anchor" href="#configurable-attributes-36"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-37"><a class="anchor" href="#configurable-attributes-37"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7668,9 +7805,9 @@ contexts, the second operand should be indented regardless of enforced
 style.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-63"><a class="anchor" href="#examples-63"></a>Examples</h3>
+<h3 id="examples-64"><a class="anchor" href="#examples-64"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-aligned-default-2"><a class="anchor" href="#enforcedstyle-aligned-default-2"></a>EnforcedStyle: aligned (default)</h4>
+<h4 id="enforcedstyle-aligned-default-3"><a class="anchor" href="#enforcedstyle-aligned-default-3"></a>EnforcedStyle: aligned (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7690,7 +7827,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyle-indented-2"><a class="anchor" href="#enforcedstyle-indented-2"></a>EnforcedStyle: indented</h4>
+<h4 id="enforcedstyle-indented-3"><a class="anchor" href="#enforcedstyle-indented-3"></a>EnforcedStyle: indented</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7711,7 +7848,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-37"><a class="anchor" href="#configurable-attributes-37"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-38"><a class="anchor" href="#configurable-attributes-38"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7780,7 +7917,7 @@ definition are aligned.</p>
 FirstParameterIndentation.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-64"><a class="anchor" href="#examples-64"></a>Examples</h3>
+<h3 id="examples-65"><a class="anchor" href="#examples-65"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-with_first_parameter-default"><a class="anchor" href="#enforcedstyle-with_first_parameter-default"></a>EnforcedStyle: with_first_parameter (default)</h4>
 <div class="listingblock">
@@ -7853,7 +7990,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-38"><a class="anchor" href="#configurable-attributes-38"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-39"><a class="anchor" href="#configurable-attributes-39"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7928,7 +8065,7 @@ end</code></pre>
 completely on a single line, are broken up into multiple lines unnecessarily.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-65"><a class="anchor" href="#examples-65"></a>Examples</h3>
+<h3 id="examples-66"><a class="anchor" href="#examples-66"></a>Examples</h3>
 <div class="sect3">
 <h4 id="any-configuration"><a class="anchor" href="#any-configuration"></a>any configuration</h4>
 <div class="listingblock">
@@ -7982,7 +8119,7 @@ foo(a) { |x| puts x }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-39"><a class="anchor" href="#configurable-attributes-39"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-40"><a class="anchor" href="#configurable-attributes-40"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8042,7 +8179,7 @@ foo(a) { |x| puts x }</code></pre>
 properly.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-66"><a class="anchor" href="#examples-66"></a>Examples</h3>
+<h3 id="examples-67"><a class="anchor" href="#examples-67"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8098,7 +8235,7 @@ end</code></pre>
 line break before the dot improves the readability of the code.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-67"><a class="anchor" href="#examples-67"></a>Examples</h3>
+<h3 id="examples-68"><a class="anchor" href="#examples-68"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8153,7 +8290,7 @@ N.B. this cop does not handle spaces after a ternary operator, which are
 instead handled by Layout/SpaceAroundOperators.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-68"><a class="anchor" href="#examples-68"></a>Examples</h3>
+<h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8210,7 +8347,7 @@ def f(a:, b: 2); {a: 3}; end</code></pre>
 <p>Checks for comma (,) not followed by some kind of space.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
+<h3 id="examples-70"><a class="anchor" href="#examples-70"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8269,7 +8406,7 @@ def f(a:, b: 2); {a: 3}; end</code></pre>
 <p>Checks for space between a method name and a left parenthesis in defs.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-70"><a class="anchor" href="#examples-70"></a>Examples</h3>
+<h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8328,7 +8465,7 @@ def method=(y) end</code></pre>
 <p>This cop checks for space after <code>!</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
+<h3 id="examples-72"><a class="anchor" href="#examples-72"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8385,7 +8522,7 @@ def method=(y) end</code></pre>
 <p>Checks for semicolon (;) not followed by some kind of space.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-72"><a class="anchor" href="#examples-72"></a>Examples</h3>
+<h3 id="examples-73"><a class="anchor" href="#examples-73"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8444,7 +8581,7 @@ inside parameter pipes are checked by <code>Layout/MultilineBlockLayout</code> a
 not by this cop.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-73"><a class="anchor" href="#examples-73"></a>Examples</h3>
+<h3 id="examples-74"><a class="anchor" href="#examples-74"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyleinsidepipes-no_space-default"><a class="anchor" href="#enforcedstyleinsidepipes-no_space-default"></a>EnforcedStyleInsidePipes: no_space (default)</h4>
 <div class="listingblock">
@@ -8475,7 +8612,7 @@ not by this cop.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-40"><a class="anchor" href="#configurable-attributes-40"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-41"><a class="anchor" href="#configurable-attributes-41"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8535,7 +8672,7 @@ not by this cop.</p>
 have or don&#8217;t have surrounding space depending on configuration.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-74"><a class="anchor" href="#examples-74"></a>Examples</h3>
+<h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-space-default"><a class="anchor" href="#enforcedstyle-space-default"></a>EnforcedStyle: space (default)</h4>
 <div class="listingblock">
@@ -8570,7 +8707,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-41"><a class="anchor" href="#configurable-attributes-41"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-42"><a class="anchor" href="#configurable-attributes-42"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8639,7 +8776,7 @@ end</code></pre>
 <p>Checks the spacing around the keywords.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
+<h3 id="examples-76"><a class="anchor" href="#examples-76"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8698,7 +8835,7 @@ something = 123 if test</code></pre>
 <p>Checks method call operators to not have spaces around them.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-76"><a class="anchor" href="#examples-76"></a>Examples</h3>
+<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8775,7 +8912,7 @@ uses of extra spacing if the intent is to align with an operator on
 the previous or next line, not counting empty lines or comment lines.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
+<h3 id="examples-78"><a class="anchor" href="#examples-78"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8839,7 +8976,7 @@ a ** b</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-42"><a class="anchor" href="#configurable-attributes-42"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-43"><a class="anchor" href="#configurable-attributes-43"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8914,7 +9051,7 @@ a ** b</code></pre>
 brace depending on configuration.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-78"><a class="anchor" href="#examples-78"></a>Examples</h3>
+<h3 id="examples-79"><a class="anchor" href="#examples-79"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-space-default-2"><a class="anchor" href="#enforcedstyle-space-default-2"></a>EnforcedStyle: space (default)</h4>
 <div class="listingblock">
@@ -8973,7 +9110,7 @@ foo.map{ |a|
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-43"><a class="anchor" href="#configurable-attributes-43"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-44"><a class="anchor" href="#configurable-attributes-44"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9038,7 +9175,7 @@ foo.map{ |a|
 brackets.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-79"><a class="anchor" href="#examples-79"></a>Examples</h3>
+<h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9095,7 +9232,7 @@ collection[index_or_key]</code></pre>
 <p>Checks for comma (,) preceded by space.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
+<h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9147,7 +9284,7 @@ each { |a, b| }</code></pre>
 same line.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
+<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9200,7 +9337,7 @@ something on a preceding or following line, if the AllowForAlignment
 config parameter is true.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
+<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9216,7 +9353,7 @@ something 'hello'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-44"><a class="anchor" href="#configurable-attributes-44"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-45"><a class="anchor" href="#configurable-attributes-45"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9275,7 +9412,7 @@ something 'hello'</code></pre>
 <p>Checks for semicolon (;) preceded by space.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
+<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9323,7 +9460,7 @@ x = 1; y = 2</code></pre>
 parenthesis (<code>(</code>) in lambda literals.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
+<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-require_no_space-default"><a class="anchor" href="#enforcedstyle-require_no_space-default"></a>EnforcedStyle: require_no_space (default)</h4>
 <div class="listingblock">
@@ -9350,7 +9487,7 @@ a = -&gt; (x, y) { x + y }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-45"><a class="anchor" href="#configurable-attributes-45"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-46"><a class="anchor" href="#configurable-attributes-46"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9410,7 +9547,7 @@ a = -&gt; (x, y) { x + y }</code></pre>
 surrounding space depending on configuration.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
+<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-space"><a class="anchor" href="#enforcedstyle-space"></a>EnforcedStyle: space</h4>
 <div class="listingblock">
@@ -9499,7 +9636,7 @@ bar = [ ]</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-46"><a class="anchor" href="#configurable-attributes-46"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-47"><a class="anchor" href="#configurable-attributes-47"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9564,7 +9701,7 @@ bar = [ ]</code></pre>
 (i.e. %i/%w).</p>
 </div>
 <div class="sect2">
-<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
+<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9613,7 +9750,7 @@ left brace has or doesn&#8217;t have trailing space depending on
 configuration.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
+<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-space-default-3"><a class="anchor" href="#enforcedstyle-space-default-3"></a>EnforcedStyle: space (default)</h4>
 <div class="listingblock">
@@ -9712,7 +9849,7 @@ some_array.each {   }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-47"><a class="anchor" href="#configurable-attributes-47"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-48"><a class="anchor" href="#configurable-attributes-48"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9782,7 +9919,7 @@ some_array.each {   }</code></pre>
 surrounding space depending on configuration.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
+<h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-space-default-4"><a class="anchor" href="#enforcedstyle-space-default-4"></a>EnforcedStyle: space (default)</h4>
 <div class="listingblock">
@@ -9867,7 +10004,7 @@ foo = {     }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-48"><a class="anchor" href="#configurable-attributes-48"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-49"><a class="anchor" href="#configurable-attributes-49"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9941,7 +10078,7 @@ foo = {     }</code></pre>
 <p>Checks for spaces inside ordinary round parentheses.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
+<h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-no_space-default-2"><a class="anchor" href="#enforcedstyle-no_space-default-2"></a>EnforcedStyle: no_space (default)</h4>
 <div class="listingblock">
@@ -9982,7 +10119,7 @@ y()</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-49"><a class="anchor" href="#configurable-attributes-49"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-50"><a class="anchor" href="#configurable-attributes-50"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10052,7 +10189,7 @@ y()</code></pre>
 %i/%w/%x literals.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
+<h3 id="examples-91"><a class="anchor" href="#examples-91"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -10102,7 +10239,7 @@ y()</code></pre>
 <p>Checks for spaces inside range literals.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-91"><a class="anchor" href="#examples-91"></a>Examples</h3>
+<h3 id="examples-92"><a class="anchor" href="#examples-92"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10166,7 +10303,7 @@ y()</code></pre>
 surrounding space depending on configuration.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-92"><a class="anchor" href="#examples-92"></a>Examples</h3>
+<h3 id="examples-93"><a class="anchor" href="#examples-93"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-no_space-default-3"><a class="anchor" href="#enforcedstyle-no_space-default-3"></a>EnforcedStyle: no_space (default)</h4>
 <div class="listingblock">
@@ -10235,7 +10372,7 @@ foo[ ]</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-50"><a class="anchor" href="#configurable-attributes-50"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-51"><a class="anchor" href="#configurable-attributes-51"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10299,7 +10436,7 @@ foo[ ]</code></pre>
 <p>This cop checks for whitespace within string interpolations.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-93"><a class="anchor" href="#examples-93"></a>Examples</h3>
+<h3 id="examples-94"><a class="anchor" href="#examples-94"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-no_space-default-4"><a class="anchor" href="#enforcedstyle-no_space-default-4"></a>EnforcedStyle: no_space (default)</h4>
 <div class="listingblock">
@@ -10326,7 +10463,7 @@ foo[ ]</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-51"><a class="anchor" href="#configurable-attributes-51"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-52"><a class="anchor" href="#configurable-attributes-52"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10396,7 +10533,7 @@ foo[ ]</code></pre>
 source code.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-94"><a class="anchor" href="#examples-94"></a>Examples</h3>
+<h3 id="examples-95"><a class="anchor" href="#examples-95"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-final_blank_line"><a class="anchor" href="#enforcedstyle-final_blank_line"></a>EnforcedStyle: final_blank_line</h4>
 <div class="listingblock">
@@ -10440,7 +10577,7 @@ class Foo; end
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-52"><a class="anchor" href="#configurable-attributes-52"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-53"><a class="anchor" href="#configurable-attributes-53"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10509,7 +10646,7 @@ class Foo; end
 <p>This cop looks for trailing whitespace in the source code.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-95"><a class="anchor" href="#examples-95"></a>Examples</h3>
+<h3 id="examples-96"><a class="anchor" href="#examples-96"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># The line in this example contains spaces after the 0.
@@ -10558,7 +10695,7 @@ RUBY</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-53"><a class="anchor" href="#configurable-attributes-53"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-54"><a class="anchor" href="#configurable-attributes-54"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">

@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.18/index.html">1.18</a>
+        </li>
+        <li class="version">
           <a href="1.17/index.html">1.17</a>
         </li>
         <li class="version">
@@ -405,7 +408,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.17/index.html" class="home-link"></a>
+  <a href="1.18/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -417,6 +420,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_style.html">master</a>
+    <a class="version" href="1.18/cops_style.html">1.18</a>
     <a class="version" href="1.17/cops_style.html">1.17</a>
     <a class="version" href="1.16/cops_style.html">1.16</a>
     <a class="version" href="1.15/cops_style.html">1.15</a>
@@ -17630,7 +17634,7 @@ string.chars</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.89</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.18</p></td>
 </tr>
 </tbody>
 </table>
@@ -17658,22 +17662,74 @@ lines, this cop does not register an offense; instead,
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>Two modes are supported:
+1. <code>aggressive</code> style checks and corrects all occurrences of <code>+</code> where
+either the left or right side of <code>+</code> is a string literal.
+2. <code>conservative</code> style on the other hand, checks and corrects only if
+left side (receiver of <code>+</code> method call) is a string literal.
+This is useful when the receiver is some expression that returns string like <code>Pathname</code>
+instead of a string literal.</p>
+</div>
 <div class="sect2">
 <h3 id="examples-182"><a class="anchor" href="#examples-182"></a>Examples</h3>
+<div class="sect3">
+<h4 id="mode-aggressive-default"><a class="anchor" href="#mode-aggressive-default"></a>Mode: aggressive (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 email_with_name = user.name + ' &lt;' + user.email + '&gt;'
+Pathname.new('/') + 'test'
 
 # good
 email_with_name = "#{user.name} &lt;#{user.email}&gt;"
 email_with_name = format('%s &lt;%s&gt;', user.name, user.email)
+"#{Pathname.new('/')}test"
 
 # accepted, line-end concatenation
 name = 'First' +
   'Last'</code></pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="mode-conservative"><a class="anchor" href="#mode-conservative"></a>Mode: conservative</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+'Hello' + user.name
+
+# good
+"Hello #{user.name}"
+user.name + '!!'
+Pathname.new('/') + 'test'</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-87"><a class="anchor" href="#configurable-attributes-87"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>aggressive</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="references-112"><a class="anchor" href="#references-112"></a>References</h3>
@@ -17814,7 +17870,7 @@ symbols is preferred instead.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-87"><a class="anchor" href="#configurable-attributes-87"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-88"><a class="anchor" href="#configurable-attributes-88"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -17916,7 +17972,7 @@ result = "Tests #{success ? "PASS" : "FAIL"}"</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-88"><a class="anchor" href="#configurable-attributes-88"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-89"><a class="anchor" href="#configurable-attributes-89"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -17990,7 +18046,7 @@ from the String class.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-89"><a class="anchor" href="#configurable-attributes-89"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-90"><a class="anchor" href="#configurable-attributes-90"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -18262,7 +18318,7 @@ array of 2 or fewer elements.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-90"><a class="anchor" href="#configurable-attributes-90"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-91"><a class="anchor" href="#configurable-attributes-91"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -18421,7 +18477,7 @@ something.do_something(foo) { |o| o.bar }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-91"><a class="anchor" href="#configurable-attributes-91"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-92"><a class="anchor" href="#configurable-attributes-92"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -18563,7 +18619,7 @@ foo = (bar = baz) ? a : b</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-92"><a class="anchor" href="#configurable-attributes-92"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-93"><a class="anchor" href="#configurable-attributes-93"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -18998,7 +19054,7 @@ method(
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-93"><a class="anchor" href="#configurable-attributes-93"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-94"><a class="anchor" href="#configurable-attributes-94"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -19171,7 +19227,7 @@ a = [
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-94"><a class="anchor" href="#configurable-attributes-94"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-95"><a class="anchor" href="#configurable-attributes-95"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -19420,7 +19476,7 @@ a = {
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-95"><a class="anchor" href="#configurable-attributes-95"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-96"><a class="anchor" href="#configurable-attributes-96"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -19585,7 +19641,7 @@ a, b, _something = foo()</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-96"><a class="anchor" href="#configurable-attributes-96"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-97"><a class="anchor" href="#configurable-attributes-97"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -19782,7 +19838,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-97"><a class="anchor" href="#configurable-attributes-97"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-98"><a class="anchor" href="#configurable-attributes-98"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -19994,7 +20050,7 @@ return unless a?</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-98"><a class="anchor" href="#configurable-attributes-98"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-99"><a class="anchor" href="#configurable-attributes-99"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -20423,7 +20479,7 @@ array of 2 or fewer elements.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-99"><a class="anchor" href="#configurable-attributes-99"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-100"><a class="anchor" href="#configurable-attributes-100"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -20578,7 +20634,7 @@ bar &gt; 10
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-100"><a class="anchor" href="#configurable-attributes-100"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-101"><a class="anchor" href="#configurable-attributes-101"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">

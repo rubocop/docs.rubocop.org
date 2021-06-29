@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.18/index.html">1.18</a>
+        </li>
+        <li class="version">
           <a href="1.17/index.html">1.17</a>
         </li>
         <li class="version">
@@ -405,7 +408,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.17/index.html" class="home-link"></a>
+  <a href="1.18/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -417,6 +420,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_naming.html">master</a>
+    <a class="version" href="1.18/cops_naming.html">1.18</a>
     <a class="version" href="1.17/cops_naming.html">1.17</a>
     <a class="version" href="1.16/cops_naming.html">1.16</a>
     <a class="version" href="1.15/cops_naming.html">1.15</a>
@@ -1316,6 +1320,175 @@ EOS</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="naminginclusivelanguage"><a class="anchor" href="#naminginclusivelanguage"></a>Naming/InclusiveLanguage</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.18</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cops recommends the use of inclusive language instead of problematic terms.
+The cop can check the following locations for offenses:
+- identifiers
+- constants
+- variables
+- strings
+- symbols
+- comments
+- file paths
+Each of these locations can be individually enabled/disabled via configuration,
+for example CheckIdentifiers = true/false.</p>
+</div>
+<div class="paragraph">
+<p>Flagged terms are configurable for the cop. For each flagged term an optional
+Regex can be specified to identify offenses. Suggestions for replacing a flagged term can
+be configured and will be displayed as part of the offense message.
+An AllowedRegex can be specified for a flagged term to exempt allowed uses of the term.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-10"><a class="anchor" href="#examples-10"></a>Examples</h3>
+<div class="sect3">
+<h4 id="flaggedterms-whitelist-suggestions-allowlist"><a class="anchor" href="#flaggedterms-whitelist-suggestions-allowlist"></a>FlaggedTerms: { whitelist: { Suggestions: ['allowlist'] } }</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Suggest replacing identifier whitelist with allowlist
+
+# bad
+whitelist_users = %w(user1 user1)
+
+# good
+allowlist_users = %w(user1 user2)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="flaggedterms-master-suggestions-main-primary-leader"><a class="anchor" href="#flaggedterms-master-suggestions-main-primary-leader"></a>FlaggedTerms: { master: { Suggestions: ['main', 'primary', 'leader'] } }</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Suggest replacing master in an instance variable name with main, primary, or leader
+
+# bad
+@master_node = 'node1.example.com'
+
+# good
+@primary_node = 'node1.example.com'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="flaggedterms-whitelist-regex-rubyregexp-white-_slist"><a class="anchor" href="#flaggedterms-whitelist-regex-rubyregexp-white-_slist"></a>FlaggedTerms: { whitelist: { Regex: !ruby/regexp '/white[-_\s]?list' } }</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Identify problematic terms using a Regexp
+
+# bad
+white_list = %w(user1 user2)
+
+# good
+allow_list = %w(user1 user2)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="flaggedterms-master-allowedregex-masters-degree"><a class="anchor" href="#flaggedterms-master-allowedregex-masters-degree"></a>FlaggedTerms: { master: { AllowedRegex: 'master\'?s degree' } }</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Specify allowed uses of the flagged term as a string or regexp.
+
+# bad
+# They had a masters
+
+# good
+# They had a master's degree</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CheckIdentifiers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CheckConstants</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CheckVariables</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CheckStrings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CheckSymbols</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CheckComments</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CheckFilepaths</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FlaggedTerms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"whitelist"&#8658;{"Regex"&#8658;/white[-<em>\s]?list/, "Suggestions"&#8658;["allowlist", "permit"]}, "blacklist"&#8658;{"Regex"&#8658;/black[-</em>\s]?list/, "Suggestions"&#8658;["denylist", "block"]}, "master"&#8658;{"Suggestions"&#8658;["main", "primary", "leader"], "AllowedRegex"&#8658;["Master of None", "Master Boot Record"]}, "slave"&#8658;{"Suggestions"&#8658;["replica", "secondary", "follower"]}}</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="namingmemoizedinstancevariablename"><a class="anchor" href="#namingmemoizedinstancevariablename"></a>Naming/MemoizedInstanceVariableName</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -1364,7 +1537,7 @@ but this is sometimes used for other purposes than memoization
 so this cop is considered unsafe.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-10"><a class="anchor" href="#examples-10"></a>Examples</h3>
+<h3 id="examples-11"><a class="anchor" href="#examples-11"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyleforleadingunderscores-disallowed-default"><a class="anchor" href="#enforcedstyleforleadingunderscores-disallowed-default"></a>EnforcedStyleForLeadingUnderscores: disallowed (default)</h4>
 <div class="listingblock">
@@ -1508,7 +1681,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-8"><a class="anchor" href="#configurable-attributes-8"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1582,7 +1755,7 @@ snake_case or camelCase, for their names.</p>
 <p>Method names matching patterns are always allowed.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-11"><a class="anchor" href="#examples-11"></a>Examples</h3>
+<h3 id="examples-12"><a class="anchor" href="#examples-12"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-snake_case-default"><a class="anchor" href="#enforcedstyle-snake_case-default"></a>EnforcedStyle: snake_case (default)</h4>
 <div class="listingblock">
@@ -1609,7 +1782,7 @@ def fooBar; end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-8"><a class="anchor" href="#configurable-attributes-8"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-9"><a class="anchor" href="#configurable-attributes-9"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1694,7 +1867,7 @@ offense. The <code>ForbiddenNames</code> config option takes an array of
 restricted names that will always register an offense.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-12"><a class="anchor" href="#examples-12"></a>Examples</h3>
+<h3 id="examples-13"><a class="anchor" href="#examples-13"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1728,7 +1901,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-9"><a class="anchor" href="#configurable-attributes-9"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-10"><a class="anchor" href="#configurable-attributes-10"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1802,7 +1975,7 @@ end</code></pre>
 <p>This cop makes sure that predicates are named properly.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-13"><a class="anchor" href="#examples-13"></a>Examples</h3>
+<h3 id="examples-14"><a class="anchor" href="#examples-14"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1830,7 +2003,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-10"><a class="anchor" href="#configurable-attributes-10"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-11"><a class="anchor" href="#configurable-attributes-11"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1939,7 +2112,7 @@ shadow the outer variable).
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-14"><a class="anchor" href="#examples-14"></a>Examples</h3>
+<h3 id="examples-15"><a class="anchor" href="#examples-15"></a>Examples</h3>
 <div class="sect3">
 <h4 id="preferredname-e-default"><a class="anchor" href="#preferredname-e-default"></a>PreferredName: e (default)</h4>
 <div class="listingblock">
@@ -1996,7 +2169,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-11"><a class="anchor" href="#configurable-attributes-11"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-12"><a class="anchor" href="#configurable-attributes-12"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2056,7 +2229,7 @@ end</code></pre>
 snake_case or camelCase, for their names.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-15"><a class="anchor" href="#examples-15"></a>Examples</h3>
+<h3 id="examples-16"><a class="anchor" href="#examples-16"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-snake_case-default-2"><a class="anchor" href="#enforcedstyle-snake_case-default-2"></a>EnforcedStyle: snake_case (default)</h4>
 <div class="listingblock">
@@ -2083,7 +2256,7 @@ fooBar = 1</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-12"><a class="anchor" href="#configurable-attributes-12"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-13"><a class="anchor" href="#configurable-attributes-13"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2164,7 +2337,7 @@ can be used to specify whether method names and symbols should be checked.
 Both are enabled by default.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-16"><a class="anchor" href="#examples-16"></a>Examples</h3>
+<h3 id="examples-17"><a class="anchor" href="#examples-17"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-snake_case"><a class="anchor" href="#enforcedstyle-snake_case"></a>EnforcedStyle: snake_case</h4>
 <div class="listingblock">
@@ -2292,7 +2465,7 @@ expect(Open3).to receive(:capture3)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-13"><a class="anchor" href="#configurable-attributes-13"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-14"><a class="anchor" href="#configurable-attributes-14"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">

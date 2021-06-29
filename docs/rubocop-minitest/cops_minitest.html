@@ -119,6 +119,9 @@
           <a href="../rubocop/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.18/index.html">1.18</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.17/index.html">1.17</a>
         </li>
         <li class="version">
@@ -314,7 +317,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.17/index.html" class="home-link"></a>
+  <a href="../rubocop/1.18/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop Minitest</a></li>
@@ -2270,6 +2273,60 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="minitestunreachableassertion"><a class="anchor" href="#minitestunreachableassertion"></a>Minitest/UnreachableAssertion</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop checks for <code>assert_raises</code> has an assertion method at
+the bottom of block because the assertion will be never reached.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-33"><a class="anchor" href="#examples-33"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+assert_raises FooError do
+  obj.occur_error
+  assert_equal('foo', obj.bar) # Never asserted.
+end
+
+# good
+assert_raises FooError do
+  obj.occur_error
+end
+assert_equal('foo', obj.bar)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="minitestunspecifiedexception"><a class="anchor" href="#minitestunspecifiedexception"></a>Minitest/UnspecifiedException</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -2303,7 +2360,7 @@ end</code></pre>
 <p>This cop checks for a specified error in <code>assert_raises</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-33"><a class="anchor" href="#examples-33"></a>Examples</h3>
+<h3 id="examples-34"><a class="anchor" href="#examples-34"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
