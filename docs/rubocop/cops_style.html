@@ -3325,6 +3325,8 @@ annotation.
 </div>
 <div class="sect2">
 <h3 id="examples-31"><a class="anchor" href="#examples-31"></a>Examples</h3>
+<div class="sect3">
+<h4 id="requirecolon-true-default"><a class="anchor" href="#requirecolon-true-default"></a>RequireColon: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3353,6 +3355,31 @@ annotation.
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="requirecolon-false"><a class="anchor" href="#requirecolon-false"></a>RequireColon: false</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+# TODO: make better
+
+# good
+# TODO make better
+
+# bad
+# fixme does not work
+
+# good
+# FIXME does not work
+
+# bad
+# Optimize does not work
+
+# good
+# OPTIMIZE does not work</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="sect2">
 <h3 id="configurable-attributes-16"><a class="anchor" href="#configurable-attributes-16"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
@@ -3373,6 +3400,11 @@ annotation.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Keywords</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>TODO</code>, <code>FIXME</code>, <code>OPTIMIZE</code>, <code>HACK</code>, <code>REVIEW</code>, <code>NOTE</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RequireColon</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 </tr>
 </tbody>
 </table>
