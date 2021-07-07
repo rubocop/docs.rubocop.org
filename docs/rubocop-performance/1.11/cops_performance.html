@@ -339,7 +339,7 @@
     <a class="version" href="../1.7/cops_performance.html">1.7</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-performance/blob/v1.11.3/docs/modules/ROOT/pages/cops_performance.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-performance/blob/v1.11.4/docs/modules/ROOT/pages/cops_performance.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -459,11 +459,11 @@ This cop is also unsafe for string slices because strings do not have <code>#tak
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-# array[..2]
-# array[...2]
-# array[2..]
-# array[2...]
-# array.slice(..2)
+array[..2]
+array[...2]
+array[2..]
+array[2...]
+array.slice(..2)
 
 # good
 array.take(3)
@@ -1288,10 +1288,10 @@ Required Ruby version: 2.5
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.6</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.11</p></td>
 </tr>
 </tbody>
 </table>
@@ -1300,7 +1300,8 @@ Required Ruby version: 2.5
 </div>
 <div class="paragraph">
 <p>This cop identifies places where <code>gsub(/\Aprefix/, '')</code> and <code>sub(/\Aprefix/, '')</code>
-can be replaced by <code>delete_prefix('prefix')</code>.</p>
+can be replaced by <code>delete_prefix('prefix')</code>.
+It is marked as unsafe by default because <code>Pathname</code> has <code>sub</code> but not <code>delete_prefix</code>.</p>
 </div>
 <div class="paragraph">
 <p>This cop has <code>SafeMultiline</code> configuration option that <code>true</code> by default because
@@ -1412,10 +1413,10 @@ Required Ruby version: 2.5
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.6</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.11</p></td>
 </tr>
 </tbody>
 </table>
@@ -1424,7 +1425,8 @@ Required Ruby version: 2.5
 </div>
 <div class="paragraph">
 <p>This cop identifies places where <code>gsub(/suffix\z/, '')</code> and <code>sub(/suffix\z/, '')</code>
-can be replaced by <code>delete_suffix('suffix')</code>.</p>
+can be replaced by <code>delete_suffix('suffix')</code>.
+It is marked as unsafe by default because <code>Pathname</code> has <code>sub</code> but not <code>delete_suffix</code>.</p>
 </div>
 <div class="paragraph">
 <p>This cop has <code>SafeMultiline</code> configuration option that <code>true</code> by default because
@@ -2800,28 +2802,28 @@ str[0..2].chars
 # bad
 str.chars.first
 str.chars.first(2)
-str.chars.last
-str.chars.last(2)
 
 # good
 str[0]
 str[0...2].chars
-str[-1]
-str[-2..-1].chars
 
 # bad
 str.chars.take(2)
-str.chars.drop(2)
 str.chars.length
 str.chars.size
 str.chars.empty?
 
 # good
 str[0...2].chars
-str[2..-1].chars
 str.length
 str.size
-str.empty?</code></pre>
+str.empty?
+
+# For example, if the receiver is a blank string, it will be incompatible.
+# If a negative value is specified for the receiver, `nil` is returned.
+str.chars.last    # Incompatible with `str[-1]`.
+str.chars.last(2) # Incompatible with `str[-2..-1].chars`.
+str.chars.drop(2) # Incompatible with `str[2..-1].chars`.</code></pre>
 </div>
 </div>
 </div>
