@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.19/index.html">1.19</a>
+        </li>
+        <li class="version">
           <a href="1.18/index.html">1.18</a>
         </li>
         <li class="version">
@@ -414,7 +417,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.18/index.html" class="home-link"></a>
+  <a href="1.19/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -426,6 +429,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_layout.html">master</a>
+    <a class="version" href="1.19/cops_layout.html">1.19</a>
     <a class="version" href="1.18/cops_layout.html">1.18</a>
     <a class="version" href="1.17/cops_layout.html">1.17</a>
     <a class="version" href="1.16/cops_layout.html">1.16</a>
@@ -6284,8 +6288,7 @@ concatenated string parts shall be indented regardless of <code>EnforcedStyle</c
 </div>
 <div class="paragraph">
 <p>If <code>EnforcedStyle: indented</code> is set, it&#8217;s the second line that shall be indented one step
-more than the first line. Lines 3 and forward shall be aligned with line 2. Here too there
-are exceptions. Values in a hash literal are always aligned.</p>
+more than the first line. Lines 3 and forward shall be aligned with line 2.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-52"><a class="anchor" href="#examples-52"></a>Examples</h3>
@@ -6308,12 +6311,7 @@ def some_method
   'x' \
     'y' \
     'z'
-end
-
-my_hash = {
-  first: 'a message' \
-         'in two parts'
-}</code></pre>
+end</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -6324,9 +6322,19 @@ my_hash = {
 puts 'x' \
   'y'
 
+my_hash = {
+  first: 'a message' \
+    'in two parts'
+}
+
 # good
 puts 'x' \
-     'y'</code></pre>
+     'y'
+
+my_hash = {
+  first: 'a message' \
+         'in two parts'
+}</code></pre>
 </div>
 </div>
 </div>
@@ -6338,9 +6346,19 @@ puts 'x' \
 result = 'x' \
          'y'
 
+my_hash = {
+  first: 'a message' \
+         'in two parts'
+}
+
 # good
 result = 'x' \
-  'y'</code></pre>
+  'y'
+
+my_hash = {
+  first: 'a message' \
+    'in two parts'
+}</code></pre>
 </div>
 </div>
 </div>
