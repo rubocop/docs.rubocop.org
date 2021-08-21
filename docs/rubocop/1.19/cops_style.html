@@ -451,7 +451,7 @@
     <a class="version" href="../1.0/cops_style.html">1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.19.0/docs/modules/ROOT/pages/cops_style.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.19.1/docs/modules/ROOT/pages/cops_style.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -15654,6 +15654,10 @@ self.foo += ary</code></pre>
 </table>
 <div class="paragraph">
 <p>This cop checks for places where conditional branch makes redundant self-assignment.</p>
+</div>
+<div class="paragraph">
+<p>It only detects local variable because it may replace state of instance variable,
+class variable, and global variable that have state across methods with <code>nil</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-160"><a class="anchor" href="#examples-160"></a>Examples</h3>

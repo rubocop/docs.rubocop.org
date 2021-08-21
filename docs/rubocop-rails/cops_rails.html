@@ -1705,13 +1705,12 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.6</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.12</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks that <code>tag</code> is used instead of <code>content_tag</code>
-because <code>content_tag</code> is legacy syntax.</p>
+<p>This cop checks legacy syntax usage of <code>tag</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1720,8 +1719,9 @@ because <code>content_tag</code> is legacy syntax.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Allow <code>content_tag</code> when the first argument is a variable because
-     <code>content_tag(name)</code> is simpler rather than <code>tag.public_send(name)</code>.
+Allow <code>tag</code> when the first argument is a variable because
+      <code>tag(name)</code> is simpler rather than <code>tag.public_send(name)</code>.
+      And this cop will be renamed to something like <code>LegacyTag</code> in the future. (e.g. RuboCop Rails 2.0)
 </td>
 </tr>
 </table>
@@ -1731,13 +1731,13 @@ Allow <code>content_tag</code> when the first argument is a variable because
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-content_tag(:p, 'Hello world!')
-content_tag(:br)
+tag(:p)
+tag(:br, class: 'classname')
 
 # good
-tag.p('Hello world!')
-tag.br
-content_tag(name, 'Hello world!')</code></pre>
+tag.p
+tag.br(class: 'classname')
+tag(name, class: 'classname')</code></pre>
 </div>
 </div>
 </div>
@@ -1745,6 +1745,9 @@ content_tag(name, 'Hello world!')</code></pre>
 <h3 id="references-2"><a class="anchor" href="#references-2"></a>References</h3>
 <div class="ulist">
 <ul>
+<li>
+<p><a href="https://github.com/rubocop/rubocop-rails/issues/260" class="bare">https://github.com/rubocop/rubocop-rails/issues/260</a></p>
+</li>
 <li>
 <p><a href="https://github.com/rails/rails/issues/25195" class="bare">https://github.com/rails/rails/issues/25195</a></p>
 </li>

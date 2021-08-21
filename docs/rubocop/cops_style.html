@@ -15655,6 +15655,10 @@ self.foo += ary</code></pre>
 <div class="paragraph">
 <p>This cop checks for places where conditional branch makes redundant self-assignment.</p>
 </div>
+<div class="paragraph">
+<p>It only detects local variable because it may replace state of instance variable,
+class variable, and global variable that have state across methods with <code>nil</code>.</p>
+</div>
 <div class="sect2">
 <h3 id="examples-160"><a class="anchor" href="#examples-160"></a>Examples</h3>
 <div class="listingblock">

@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Usage :: RuboCop Docs</title>
-    <link rel="canonical" href="https://docs.rubocop.org/rubocop-rspec/usage.html">
-    <link rel="prev" href="installation.html">
-    <link rel="next" href="cops.html">
+    <title>RSpec/Rails :: RuboCop Docs</title>
+    <link rel="canonical" href="https://docs.rubocop.org/rubocop-rspec/cops_rspec_rails.html">
+    <link rel="prev" href="cops_rspec_factorybot.html">
+    <link rel="next" href="cops_rspec.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
@@ -87,7 +87,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="installation.html">Installation</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="usage.html">Usage</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -109,7 +109,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="cops_rspec_factorybot.html">FactoryBot</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="cops_rspec_rails.html">Rails</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -346,199 +346,198 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop RSpec</a></li>
-    <li><a href="usage.html">Usage</a></li>
+    <li>Cops Documentation</li>
+    <li><a href="cops_rspec_rails.html">Rails</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
-    <a class="version is-current" href="usage.html">master</a>
-    <a class="version" href="2.4/usage.html">2.4</a>
-    <a class="version" href="2.3/usage.html">2.3</a>
-    <a class="version" href="2.2/usage.html">2.2</a>
-    <a class="version" href="2.1/usage.html">2.1</a>
-    <a class="version" href="2.0/usage.html">2.0</a>
-    <a class="version" href="1.44/usage.html">1.44</a>
+    <a class="version is-current" href="cops_rspec_rails.html">master</a>
+    <a class="version is-missing" href="2.4/index.html">2.4</a>
+    <a class="version is-missing" href="2.3/index.html">2.3</a>
+    <a class="version is-missing" href="2.2/index.html">2.2</a>
+    <a class="version is-missing" href="2.1/index.html">2.1</a>
+    <a class="version is-missing" href="2.0/index.html">2.0</a>
+    <a class="version is-missing" href="1.44/index.html">1.44</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-rspec/edit/master/docs/modules/ROOT/pages/usage.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-rspec/edit/master/docs/modules/ROOT/pages/cops_rspec_rails.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Usage</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>You need to tell RuboCop to load the RSpec extension.
-There are three ways to do this:</p>
-</div>
-</div>
-</div>
+<h1 class="page">RSpec/Rails</h1>
 <div class="sect1">
-<h2 id="rubocop-configuration-file"><a class="anchor" href="#rubocop-configuration-file"></a>RuboCop configuration file</h2>
+<h2 id="rspecrailsavoidsetuphook"><a class="anchor" href="#rspecrailsavoidsetuphook"></a>RSpec/Rails/AvoidSetupHook</h2>
 <div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
-<p>Put this into your <code>.rubocop.yml</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>require: rubocop-rspec</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or, if you are using several extensions:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>require:
-  - rubocop-rspec
-  - rubocop-performance</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now you can run <code>rubocop</code> and it will automatically load the RuboCop RSpec
-cops together with the standard cops.</p>
+<p>Checks that tests use RSpec <code>before</code> hook over Rails <code>setup</code> method.</p>
 </div>
 <div class="sect2">
-<h3 id="rspec-dsl-configuration"><a class="anchor" href="#rspec-dsl-configuration"></a>RSpec DSL configuration</h3>
-<div class="paragraph">
-<p>In case you <a href="https://github.com/rspec/rspec-core/blob/b0d0843a285693c64cdbe0c85726db155b46047e/lib/rspec/core/configuration.rb#L1122">define aliases for RSpec DSL</a>, i.e. examples, example groups, hooks, or include example statements, you need to configure it so those elements are properly detected by RuboCop RSpec.</p>
-</div>
+<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># spec/spec_helper.rb
-RSpec.configure do |c|
-  c.alias_example_group_to :detail, :detailed =&gt; true
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+setup do
+  allow(foo).to receive(:bar)
 end
 
-# spec/detail_spec.rb
-RSpec.detail "a detail" do
-  it "can do some less important stuff" do
-  end
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># .rubocop.yml
-RSpec:
-  Language:
-    ExampleGroups:
-      Regular:
-        - detail</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Some libraries extensively define RSpec DSL aliases (e.g. Pundit, Action Policy) or augment existing elements providing the same semantics (e.g. <code>let_it_be</code> from <code>test-prof</code>).
-Those libraries can provide necessary configuration, but won&#8217;t necessarily do so.
-If they do, their README will mention that you have to explicitly require their configuration from your <code>.rubocop.yml</code> file.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># .rubocop.yml
-
-require:
-  - rubocop-rspec
-  - test-prof
-
-# or
-
-RSpec:
-  Language:
-    Helpers:
-      - let_it_be</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-the default merge mode is to inherit, so you won&#8217;t remove any of the default settings.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>RuboCop RSpec&#8217;s <a href="https://github.com/rubocop/rubocop-rspec/blob/a43424527c09fae2e6ddb133f4b2988f6c46bb2e/config/default.yml#L6">default configuration</a> is a good source of information on what can be configured.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="command-line"><a class="anchor" href="#command-line"></a>Command line</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ rubocop --require rubocop-rspec</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="rake-task"><a class="anchor" href="#rake-task"></a>Rake task</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">RuboCop::RakeTask.new do |task|
-  task.requires &lt;&lt; 'rubocop-rspec'
+# good
+before do
+  allow(foo).to receive(:bar)
 end</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="references"><a class="anchor" href="#references"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/Rails/AvoidSetupHook" class="bare">https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/Rails/AvoidSetupHook</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div class="sect1">
-<h2 id="code-climate"><a class="anchor" href="#code-climate"></a>Code Climate</h2>
+<h2 id="rspecrailshttpstatus"><a class="anchor" href="#rspecrailshttpstatus"></a>RSpec/Rails/HttpStatus</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p><code>rubocop-rspec</code> is available on Code Climate as part of the rubocop engine. <a href="https://codeclimate.com/changelog/55a433bbe30ba00852000fac">Learn More</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="inspecting-files-that-dont-end-with-_spec-rb"><a class="anchor" href="#inspecting-files-that-dont-end-with-_spec-rb"></a>Inspecting files that don&#8217;t end with <code>_spec.rb</code></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>By default, <code>rubocop-rspec</code> only inspects code within paths ending in <code>_spec.rb</code> or including <code>spec/</code>. You can override this setting in your config file by setting <code>Include</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># Inspect files in `test/` directory
-RSpec:
-  Include:
-    - '**/test/**/*'</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># Inspect only files ending with `_test.rb`
-RSpec:
-  Include:
-    - '**/*_test.rb'</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
 <tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Please keep in mind that merge mode for <code>Include</code> is set to override the default settings, so if you intend to add a path while keeping the default paths, you should include the default <code>Include</code> paths in your configuration.
-</td>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">VersionAdded</th>
+<th class="tableblock halign-left valign-top">VersionChanged</th>
 </tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.23</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.0</p></td>
+</tr>
+</tbody>
 </table>
+<div class="paragraph">
+<p>Enforces use of symbolic or numeric value to describe HTTP status.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
+<div class="sect3">
+<h4 id="enforcedstyle-symbolic-default"><a class="anchor" href="#enforcedstyle-symbolic-default"></a><code>EnforcedStyle: symbolic</code> (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+it { is_expected.to have_http_status 200 }
+it { is_expected.to have_http_status 404 }
+
+# good
+it { is_expected.to have_http_status :ok }
+it { is_expected.to have_http_status :not_found }
+it { is_expected.to have_http_status :success }
+it { is_expected.to have_http_status :error }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-numeric"><a class="anchor" href="#enforcedstyle-numeric"></a><code>EnforcedStyle: numeric</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+it { is_expected.to have_http_status :ok }
+it { is_expected.to have_http_status :not_found }
+
+# good
+it { is_expected.to have_http_status 200 }
+it { is_expected.to have_http_status 404 }
+it { is_expected.to have_http_status :success }
+it { is_expected.to have_http_status :error }</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>symbolic</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>numeric</code>, <code>symbolic</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="references-2"><a class="anchor" href="#references-2"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/Rails/HttpStatus" class="bare">https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/Rails/HttpStatus</a></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="installation.html">Installation</a></span>
-  <span class="next"><a href="cops.html">Cops</a></span>
+  <span class="prev"><a href="cops_rspec_factorybot.html">FactoryBot</a></span>
+  <span class="next"><a href="cops_rspec.html">RSpec</a></span>
 </nav>
 </article>
   </div>
