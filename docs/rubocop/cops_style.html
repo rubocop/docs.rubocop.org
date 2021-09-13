@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.21/index.html">1.21</a>
+        </li>
+        <li class="version">
           <a href="1.20/index.html">1.20</a>
         </li>
         <li class="version">
@@ -435,7 +438,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.20/index.html" class="home-link"></a>
+  <a href="1.21/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -447,6 +450,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_style.html">master</a>
+    <a class="version" href="1.21/cops_style.html">1.21</a>
     <a class="version" href="1.20/cops_style.html">1.20</a>
     <a class="version" href="1.19/cops_style.html">1.19</a>
     <a class="version" href="1.18/cops_style.html">1.18</a>
@@ -858,9 +862,9 @@ alias_method :bar, :foo</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.25</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.21</p></td>
 </tr>
 </tbody>
 </table>
@@ -868,6 +872,11 @@ alias_method :bar, :foo</code></pre>
 <p>This cop checks for uses of <code>and</code> and <code>or</code>, and suggests using <code>&amp;&amp;</code> and
 <code>||</code> instead. It can be configured to check only in conditions or in
 all contexts.</p>
+</div>
+<div class="paragraph">
+<p>It is marked as unsafe auto-correction because it may change the
+operator precedence between logical operators (<code>&amp;&amp;</code> and <code>||</code>) and
+semantic operators (<code>and</code> and <code>or</code>).</p>
 </div>
 <div class="sect2">
 <h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
@@ -1228,11 +1237,11 @@ array literal or the second is a string literal.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.52</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.21</p></td>
 </tr>
 </tbody>
 </table>
@@ -1969,12 +1978,15 @@ end</code></pre>
 <div class="paragraph">
 <p>This cop checks for uses of the case equality operator(===).</p>
 </div>
+<div class="paragraph">
+<p>If <code>AllowOnConstant</code> option is enabled, the cop will ignore violations when the receiver of
+the case equality operator is a constant.</p>
+</div>
 <div class="sect2">
 <h3 id="examples-16"><a class="anchor" href="#examples-16"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-Array === something
 (1..100) === 7
 /something/ === some_string
 
@@ -1985,20 +1997,20 @@ something.is_a?(Array)
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowonconstant"><a class="anchor" href="#allowonconstant"></a>AllowOnConstant</h4>
+<h4 id="allowonconstant-false-default"><a class="anchor" href="#allowonconstant-false-default"></a>AllowOnConstant: false (default)</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Style/CaseEquality:
-#   AllowOnConstant: true
-
-# bad
-(1..100) === 7
-/something/ === some_string
-
-# good
-Array === something
-(1..100).include?(7)
-/something/.match?(some_string)</code></pre>
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+Array === something</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowonconstant-true"><a class="anchor" href="#allowonconstant-true"></a>AllowOnConstant: true</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+Array === something</code></pre>
 </div>
 </div>
 </div>
