@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.22/index.html">1.22</a>
+        </li>
+        <li class="version">
           <a href="1.21/index.html">1.21</a>
         </li>
         <li class="version">
@@ -282,6 +285,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-ast/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-ast/1.12/index.html">1.12</a>
         </li>
         <li class="version">
           <a href="../rubocop-ast/1.11/index.html">1.11</a>
@@ -441,7 +447,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.21/index.html" class="home-link"></a>
+  <a href="1.22/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -453,6 +459,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_bundler.html">master</a>
+    <a class="version" href="1.22/cops_bundler.html">1.22</a>
     <a class="version" href="1.21/cops_bundler.html">1.21</a>
     <a class="version" href="1.20/cops_bundler.html">1.20</a>
     <a class="version" href="1.19/cops_bundler.html">1.19</a>
@@ -501,8 +508,8 @@
 <th class="tableblock halign-left valign-top">Enabled by default</th>
 <th class="tableblock halign-left valign-top">Safe</th>
 <th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">VersionAdded</th>
-<th class="tableblock halign-left valign-top">VersionChanged</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
 </tr>
 </thead>
 <tbody>
@@ -596,8 +603,8 @@ end</code></pre>
 <th class="tableblock halign-left valign-top">Enabled by default</th>
 <th class="tableblock halign-left valign-top">Safe</th>
 <th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">VersionAdded</th>
-<th class="tableblock halign-left valign-top">VersionChanged</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
 </tr>
 </thead>
 <tbody>
@@ -781,8 +788,8 @@ gem 'bar', '&lt; 2.1'</code></pre>
 <th class="tableblock halign-left valign-top">Enabled by default</th>
 <th class="tableblock halign-left valign-top">Safe</th>
 <th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">VersionAdded</th>
-<th class="tableblock halign-left valign-top">VersionChanged</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
 </tr>
 </thead>
 <tbody>
@@ -879,8 +886,8 @@ Project contains gems.rb and gems.locked files</code></pre>
 <th class="tableblock halign-left valign-top">Enabled by default</th>
 <th class="tableblock halign-left valign-top">Safe</th>
 <th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">VersionAdded</th>
-<th class="tableblock halign-left valign-top">VersionChanged</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
 </tr>
 </thead>
 <tbody>
@@ -1006,8 +1013,8 @@ gem 'rubocop', tag: 'v1.17.0'</code></pre>
 <th class="tableblock halign-left valign-top">Enabled by default</th>
 <th class="tableblock halign-left valign-top">Safe</th>
 <th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">VersionAdded</th>
-<th class="tableblock halign-left valign-top">VersionChanged</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
 </tr>
 </thead>
 <tbody>
@@ -1036,6 +1043,10 @@ internal gem server via an intranet, or where HTTPS is prohibited.
 However, you should strongly prefer <code>https://</code> where possible, as it is
 more secure.</p>
 </div>
+<div class="paragraph">
+<p>If you don&#8217;t allow <code>http://</code>, please set <code>false</code> to <code>AllowHttpProtocol</code>.
+This option is <code>true</code> by default for safe autocorrection.</p>
+</div>
 <div class="sect2">
 <h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
 <div class="listingblock">
@@ -1046,8 +1057,25 @@ source :rubygems
 source :rubyforge
 
 # good
-source 'https://rubygems.org' # strongly recommended
+source 'https://rubygems.org' # strongly recommended</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowhttpprotocol-true-default"><a class="anchor" href="#allowhttpprotocol-true-default"></a>AllowHttpProtocol: true (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
 source 'http://rubygems.org' # use only if HTTPS is unavailable</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowhttpprotocol-false"><a class="anchor" href="#allowhttpprotocol-false"></a>AllowHttpProtocol: false</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+source 'http://rubygems.org'</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -1067,6 +1095,11 @@ source 'http://rubygems.org' # use only if HTTPS is unavailable</code></pre>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowHttpProtocol</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>**/*.gemfile</code>, <code>**/Gemfile</code>, <code>**/gems.rb</code></p></td>
@@ -1093,8 +1126,8 @@ source 'http://rubygems.org' # use only if HTTPS is unavailable</code></pre>
 <th class="tableblock halign-left valign-top">Enabled by default</th>
 <th class="tableblock halign-left valign-top">Safe</th>
 <th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">VersionAdded</th>
-<th class="tableblock halign-left valign-top">VersionChanged</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
 </tr>
 </thead>
 <tbody>

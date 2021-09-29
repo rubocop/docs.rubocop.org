@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.22/index.html">1.22</a>
+        </li>
+        <li class="version">
           <a href="1.21/index.html">1.21</a>
         </li>
         <li class="version">
@@ -282,6 +285,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-ast/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-ast/1.12/index.html">1.12</a>
         </li>
         <li class="version">
           <a href="../rubocop-ast/1.11/index.html">1.11</a>
@@ -441,7 +447,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.21/index.html" class="home-link"></a>
+  <a href="1.22/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -453,6 +459,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_metrics.html">master</a>
+    <a class="version" href="1.22/cops_metrics.html">1.22</a>
     <a class="version" href="1.21/cops_metrics.html">1.21</a>
     <a class="version" href="1.20/cops_metrics.html">1.20</a>
     <a class="version" href="1.19/cops_metrics.html">1.19</a>
@@ -501,8 +508,8 @@
 <th class="tableblock halign-left valign-top">Enabled by default</th>
 <th class="tableblock halign-left valign-top">Safe</th>
 <th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">VersionAdded</th>
-<th class="tableblock halign-left valign-top">VersionChanged</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
 </tr>
 </thead>
 <tbody>
@@ -520,6 +527,22 @@
 configured maximum. The ABC size is based on assignments, branches
 (method calls), and conditions. See <a href="http://c2.com/cgi/wiki?AbcMetric" class="bare">http://c2.com/cgi/wiki?AbcMetric</a>
 and <a href="https://en.wikipedia.org/wiki/ABC_Software_Metric" class="bare">https://en.wikipedia.org/wiki/ABC_Software_Metric</a>.</p>
+</div>
+<div class="paragraph">
+<p>Interpreting ABC size:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>&#8656; 17 satisfactory</p>
+</li>
+<li>
+<p>18..30 unsatisfactory</p>
+</li>
+<li>
+<p>&gt; 30 dangerous</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>You can have repeated "attributes" calls count as a single "branch".
@@ -616,8 +639,8 @@ end</code></pre>
 <th class="tableblock halign-left valign-top">Enabled by default</th>
 <th class="tableblock halign-left valign-top">Safe</th>
 <th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">VersionAdded</th>
-<th class="tableblock halign-left valign-top">VersionChanged</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
 </tr>
 </thead>
 <tbody>
@@ -758,8 +781,8 @@ end                 # 5 points</code></pre>
 <th class="tableblock halign-left valign-top">Enabled by default</th>
 <th class="tableblock halign-left valign-top">Safe</th>
 <th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">VersionAdded</th>
-<th class="tableblock halign-left valign-top">VersionChanged</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
 </tr>
 </thead>
 <tbody>
@@ -841,8 +864,8 @@ towards the nesting level. Set to <code>true</code> to count blocks as well.</p>
 <th class="tableblock halign-left valign-top">Enabled by default</th>
 <th class="tableblock halign-left valign-top">Safe</th>
 <th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">VersionAdded</th>
-<th class="tableblock halign-left valign-top">VersionChanged</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
 </tr>
 </thead>
 <tbody>
@@ -954,8 +977,8 @@ end                 # 5 points</code></pre>
 <th class="tableblock halign-left valign-top">Enabled by default</th>
 <th class="tableblock halign-left valign-top">Safe</th>
 <th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">VersionAdded</th>
-<th class="tableblock halign-left valign-top">VersionChanged</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
 </tr>
 </thead>
 <tbody>
@@ -1056,8 +1079,8 @@ end                                       # total: 6</pre>
 <th class="tableblock halign-left valign-top">Enabled by default</th>
 <th class="tableblock halign-left valign-top">Safe</th>
 <th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">VersionAdded</th>
-<th class="tableblock halign-left valign-top">VersionChanged</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
 </tr>
 </thead>
 <tbody>
@@ -1190,8 +1213,8 @@ end               # 5 points</code></pre>
 <th class="tableblock halign-left valign-top">Enabled by default</th>
 <th class="tableblock halign-left valign-top">Safe</th>
 <th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">VersionAdded</th>
-<th class="tableblock halign-left valign-top">VersionChanged</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
 </tr>
 </thead>
 <tbody>
@@ -1291,8 +1314,8 @@ end                 # 5 points</code></pre>
 <th class="tableblock halign-left valign-top">Enabled by default</th>
 <th class="tableblock halign-left valign-top">Safe</th>
 <th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">VersionAdded</th>
-<th class="tableblock halign-left valign-top">VersionChanged</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
 </tr>
 </thead>
 <tbody>
@@ -1450,8 +1473,8 @@ end</code></pre>
 <th class="tableblock halign-left valign-top">Enabled by default</th>
 <th class="tableblock halign-left valign-top">Safe</th>
 <th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">VersionAdded</th>
-<th class="tableblock halign-left valign-top">VersionChanged</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
 </tr>
 </thead>
 <tbody>

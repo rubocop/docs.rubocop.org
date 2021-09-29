@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.22/index.html">1.22</a>
+        </li>
+        <li class="version">
           <a href="1.21/index.html">1.21</a>
         </li>
         <li class="version">
@@ -282,6 +285,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-ast/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-ast/1.12/index.html">1.12</a>
         </li>
         <li class="version">
           <a href="../rubocop-ast/1.11/index.html">1.11</a>
@@ -441,7 +447,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.21/index.html" class="home-link"></a>
+  <a href="1.22/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -452,6 +458,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="development.html">master</a>
+    <a class="version" href="1.22/development.html">1.22</a>
     <a class="version" href="1.21/development.html">1.21</a>
     <a class="version" href="1.20/development.html">1.20</a>
     <a class="version" href="1.19/development.html">1.19</a>
@@ -510,11 +517,13 @@ File modified:
   - `require_relative 'rubocop/cop/department/name'` added into lib/rubocop.rb
   - A configuration for the cop is added into config/default.yml
 
-Do 3 steps:
-  1. Add an entry to the "New features" section in CHANGELOG.md,
-     e.g. "Add new `Department/Name` cop. ([@your_id][])"
-  2. Modify the description of Department/Name in config/default.yml
-  3. Implement your new cop in the generated file!</code></pre>
+Do 4 steps:
+  1. Modify the description of Department/Name in config/default.yml
+  2. Implement your new cop in the generated file!
+  3. Commit your new cop with a message such as
+     e.g. "Add new `Department/Name` cop."
+  4. Run `bundle exec rake changelog:new` to generate a changelog entry
+     for your new cop.</code></pre>
 </div>
 </div>
 </div>
