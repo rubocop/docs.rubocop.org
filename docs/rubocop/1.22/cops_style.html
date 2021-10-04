@@ -484,7 +484,7 @@
     <a class="version" href="../1.0/cops_style.html">1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.22.0/docs/modules/ROOT/pages/cops_style.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.22.1/docs/modules/ROOT/pages/cops_style.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -14539,7 +14539,8 @@ p = proc { |n| puts n }</code></pre>
 </table>
 <div class="paragraph">
 <p>Checks if the quotes used for quoted symbols match the configured defaults.
-By default uses the same configuration as <code>Style/StringLiterals</code>.</p>
+By default uses the same configuration as <code>Style/StringLiterals</code>; if that
+cop is not enabled, the default <code>EnforcedStyle</code> is <code>single_quotes</code>.</p>
 </div>
 <div class="paragraph">
 <p>String interpolation is always kept in double quotes.</p>
@@ -17157,9 +17158,25 @@ foo.bar &gt; 2 if foo</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop looks for places where an subset of an array
-is calculated based on a <code>Regexp</code> match, and suggests <code>grep</code> or
-<code>grep_v</code> instead.</p>
+<p>This cop looks for places where an subset of an Enumerable (array,
+range, set, etc.; see note below) is calculated based on a <code>Regexp</code>
+match, and suggests <code>grep</code> or <code>grep_v</code> instead.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Hashes do not behave as you may expect with <code>grep</code>, which
+means that <code>hash.grep</code> is not equivalent to <code>hash.select</code>. Although
+RuboCop is limited by static analysis, this cop attempts to avoid
+registering an offense when the receiver is a hash (hash literal,
+<code>Hash.new</code>, <code>Hash#[]</code>, or <code>to_h</code>/<code>to_hash</code>).
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -17181,6 +17198,11 @@ See <a href="https://bugs.ruby-lang.org/issues/17030" class="bare">https://bugs.
 <p>Autocorrection is marked as unsafe because <code>MatchData</code> will
 not be created by <code>grep</code>, but may have previously been relied
 upon after the <code>match?</code> or <code>=~</code> call.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, the cop cannot guarantee that the receiver of
+<code>select</code> or <code>reject</code> is actually an array by static analysis,
+so the correction may not be actually equivalent.</p>
 </div>
 </div>
 <div class="sect2">
