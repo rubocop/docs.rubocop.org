@@ -810,15 +810,17 @@ spec.add_dependency 'rspec'</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.52</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.89</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.22</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks that <code>required_ruby_version</code> of gemspec is specified and
-equal to <code>TargetRubyVersion</code> of .rubocop.yml.
-Thereby, RuboCop to perform static analysis working on the version
-required by gemspec.</p>
+<p>Checks that <code>required_ruby_version</code> in a gemspec file is set to a valid
+value (non-blank) and matches <code>TargetRubyVersion</code> as set in RuboCop&#8217;s
+configuration for the gem.</p>
+</div>
+<div class="paragraph">
+<p>This ensures that RuboCop is using the same Ruby version as the gem.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
@@ -839,6 +841,11 @@ end
 # bad
 Gem::Specification.new do |spec|
   spec.required_ruby_version = '&gt;= 2.6.0'
+end
+
+# bad
+Gem::Specification.new do |spec|
+  spec.required_ruby_version = ''
 end
 
 # good

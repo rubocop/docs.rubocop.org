@@ -522,6 +522,13 @@ skip_after_filter :do_stuff</code></pre>
 are more clear and easier to read.</p>
 </div>
 <div class="sect2">
+<h3 id="safety"><a class="anchor" href="#safety"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe because custom <code>update_attributes</code> method call was changed to
+<code>update</code> but the method name remained same in the method definition.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
@@ -932,7 +939,14 @@ after_update_commit :log_update_action</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks that controllers subclass ApplicationController.</p>
+<p>This cop checks that controllers subclass <code>ApplicationController</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-2"><a class="anchor" href="#safety-2"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because it may let the logic from <code>ApplicationController</code>
+sneak into a controller that is not purposed to inherit logic common among other controllers.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
@@ -983,7 +997,14 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks that jobs subclass ApplicationJob with Rails 5.0.</p>
+<p>This cop checks that jobs subclass <code>ApplicationJob</code> with Rails 5.0.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-3"><a class="anchor" href="#safety-3"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because it may let the logic from <code>ApplicationJob</code>
+sneak into a job that is not purposed to inherit logic common among other jobs.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-9"><a class="anchor" href="#examples-9"></a>Examples</h3>
@@ -1034,7 +1055,14 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks that mailers subclass ApplicationMailer with Rails 5.0.</p>
+<p>This cop checks that mailers subclass <code>ApplicationMailer</code> with Rails 5.0.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-4"><a class="anchor" href="#safety-4"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because it may let the logic from <code>ApplicationMailer</code>
+sneak into a mailer that is not purposed to inherit logic common among other mailers.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-10"><a class="anchor" href="#examples-10"></a>Examples</h3>
@@ -1085,7 +1113,15 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks that models subclass ApplicationRecord with Rails 5.0.</p>
+<p>This cop checks that models subclass <code>ApplicationRecord</code> with Rails 5.0.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-5"><a class="anchor" href="#safety-5"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because it may let the logic from <code>ApplicationRecord</code>
+sneak into an Active Record model that is not purposed to inherit logic common among other
+Active Record models.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-11"><a class="anchor" href="#examples-11"></a>Examples</h3>
@@ -1143,6 +1179,15 @@ end</code></pre>
 quoted asterisk (e.g. &lt;tt&gt;`my_model`.<code></strong></code>&lt;/tt&gt;). This causes the
 database to look for a column named &lt;tt&gt;`<strong><code>&lt;/tt&gt; (or `"</strong>"</code>) as opposed
 to expanding the column list as one would likely expect.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-6"><a class="anchor" href="#safety-6"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because it turns a quoted <code><strong></code> into
+an SQL <code></strong></code>, unquoted. <code><strong></code> is a valid column name in certain databases
+supported by Rails, and even though it is usually a mistake,
+it might denote legitimate access to a column named <code></strong></code>.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-12"><a class="anchor" href="#examples-12"></a>Examples</h3>
@@ -1473,15 +1518,18 @@ end</code></pre>
 using <code>Object#blank?</code> defined by Active Support.</p>
 </div>
 <div class="paragraph">
-<p>This cop is marked as unsafe auto-correction, because <code>' '.empty?</code> returns false,
-but <code>' '.blank?</code> returns true. Therefore, auto-correction is not compatible
-if the receiver is a non-empty blank string, tab, or newline meta characters.</p>
-</div>
-<div class="paragraph">
 <p>Interaction with <code>Style/UnlessElse</code>:
 The configuration of <code>NotPresent</code> will not produce an offense in the
 context of <code>unless else</code> if <code>Style/UnlessElse</code> is inabled. This is
 to prevent interference between the auto-correction of the two cops.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-7"><a class="anchor" href="#safety-7"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe auto-correction, because <code>' '.empty?</code> returns false,
+but <code>' '.blank?</code> returns true. Therefore, auto-correction is not compatible
+if the receiver is a non-empty blank string, tab, or newline meta characters.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-16"><a class="anchor" href="#examples-16"></a>Examples</h3>
@@ -2331,6 +2379,13 @@ delegate :foo, to: :bar, allow_nil: true</code></pre>
 <p>This cop checks dynamic <code>find_by_*</code> methods.
 Use <code>find_by</code> instead of dynamic method.
 See. <a href="https://rails.rubystyle.guide#find_by" class="bare">https://rails.rubystyle.guide#find_by</a></p>
+</div>
+<div class="sect2">
+<h3 id="safety-8"><a class="anchor" href="#safety-8"></a>Safety</h3>
+<div class="paragraph">
+<p>It is certainly unsafe when not configured properly, i.e. user-defined <code>find_by_xxx</code>
+method is not added to cop&#8217;s <code>AllowedMethods</code>.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-24"><a class="anchor" href="#examples-24"></a>Examples</h3>
@@ -4382,6 +4437,8 @@ end</code></pre>
 <p>This cop checks that methods specified in the filter&#8217;s <code>only</code> or
 <code>except</code> options are defined within the same class or module.</p>
 </div>
+<div class="sect2">
+<h3 id="safety-9"><a class="anchor" href="#safety-9"></a>Safety</h3>
 <div class="paragraph">
 <p>You can technically specify methods of superclass or methods added by
 mixins on the filter, but these can confuse developers. If you specify
@@ -4391,6 +4448,7 @@ define the filter in that class or module.</p>
 <div class="paragraph">
 <p>If you rely on behaviour defined in the superclass actions, you must
 remember to invoke <code>super</code> in the subclass actions.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
@@ -4617,6 +4675,13 @@ link_to 'Click here', url, target: '_blank', rel: 'noreferrer'</code></pre>
 and which views are related to the mailer.</p>
 </div>
 <div class="sect2">
+<h3 id="safety-10"><a class="anchor" href="#safety-10"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because renaming a constant is
+always an unsafe operation.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
@@ -4796,9 +4861,12 @@ match 'photos/:id', to: 'photos#show', via: :all</code></pre>
 <p>This cop enforces the use of <code>collection.exclude?(obj)</code>
 over <code>!collection.include?(obj)</code>.</p>
 </div>
+<div class="sect2">
+<h3 id="safety-11"><a class="anchor" href="#safety-11"></a>Safety</h3>
 <div class="paragraph">
-<p>It is marked as unsafe by default because false positive will occur for
-a receiver object that do not have <code>exclude?</code> method. (e.g. <code>IPAddr</code>)</p>
+<p>This cop is unsafe because false positive will occur for
+receiver objects that do not have an <code>exclude?</code> method. (e.g. <code>IPAddr</code>)</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-51"><a class="anchor" href="#examples-51"></a>Examples</h3>
@@ -5012,6 +5080,13 @@ scope :chronological, -&gt; { order(created_at: :asc) }</code></pre>
 <p>This cop checks for the use of output calls like puts and print</p>
 </div>
 <div class="sect2">
+<h3 id="safety-12"><a class="anchor" href="#safety-12"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because depending on the Rails log level configuration,
+changing from <code>puts</code> to <code>Rails.logger.debug</code> could result in no output being shown.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="examples-54"><a class="anchor" href="#examples-54"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
@@ -5188,6 +5263,17 @@ safe_join([user_content, " ", content_tag(:span, user_content)])
 limit to the query so that only one value is fetched from the database.</p>
 </div>
 <div class="sect2">
+<h3 id="safety-13"><a class="anchor" href="#safety-13"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe because <code>pluck</code> is defined on both <code>ActiveRecord::Relation</code> and <code>Enumerable</code>,
+whereas <code>pick</code> is only defined on <code>ActiveRecord::Relation</code> in Rails 6.0. This was addressed
+in Rails 6.1 via rails/rails#38760, at which point the cop is safe.</p>
+</div>
+<div class="paragraph">
+<p>See: <a href="https://github.com/rubocop/rubocop-rails/pull/249" class="bare">https://github.com/rubocop/rubocop-rails/pull/249</a></p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="examples-56"><a class="anchor" href="#examples-56"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
@@ -5311,6 +5397,12 @@ Post.published.pluck(:title)
 <p>This cop enforces the use of <code>ids</code> over <code>pluck(:id)</code> and <code>pluck(primary_key)</code>.</p>
 </div>
 <div class="sect2">
+<h3 id="safety-14"><a class="anchor" href="#safety-14"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe if the receiver object is not an Active Record object.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="examples-58"><a class="anchor" href="#examples-58"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
@@ -5383,15 +5475,18 @@ and can be replaced with <code>select</code>.</p>
 using <code>select</code> helps to avoid additional database queries.</p>
 </div>
 <div class="paragraph">
-<p>This cop has two different enforcement modes. When the EnforcedStyle
-is conservative (the default) then only calls to <code>pluck</code> on a constant
+<p>This cop has two different enforcement modes. When the <code>EnforcedStyle</code>
+is <code>conservative</code> (the default) then only calls to <code>pluck</code> on a constant
 (i.e. a model class) in the <code>where</code> is used as offenses.</p>
 </div>
+<div class="sect2">
+<h3 id="safety-15"><a class="anchor" href="#safety-15"></a>Safety</h3>
 <div class="paragraph">
-<p>When the EnforcedStyle is aggressive then all calls to <code>pluck</code> in the
+<p>When the <code>EnforcedStyle</code> is <code>aggressive</code> then all calls to <code>pluck</code> in the
 <code>where</code> is used as offenses. This may lead to false positives
 as the cop cannot replace to <code>select</code> between calls to <code>pluck</code> on an
 <code>ActiveRecord::Relation</code> instance vs a call to <code>pluck</code> on an <code>Array</code> instance.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-59"><a class="anchor" href="#examples-59"></a>Examples</h3>
@@ -5751,6 +5846,14 @@ following conditions:</p>
 <p>The task invokes the <code>:environment</code> task.</p>
 </li>
 </ul>
+</div>
+<div class="sect2">
+<h3 id="safety-16"><a class="anchor" href="#safety-16"></a>Safety</h3>
+<div class="paragraph">
+<p>Probably not a problem in most cases, but it is possible that calling <code>:environment</code> task
+will break a behavior. It&#8217;s also slower. E.g. some task that only needs one gem to be
+loaded to run will run significantly faster without loading the whole application.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-63"><a class="anchor" href="#examples-63"></a>Examples</h3>
@@ -6250,9 +6353,14 @@ end</code></pre>
 </table>
 <div class="paragraph">
 <p>This cop checks if the value of the option <code>class_name</code>, in
-the definition of a reflection is a string.
-It is marked as unsafe because it cannot be determined whether
+the definition of a reflection is a string.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-17"><a class="anchor" href="#safety-17"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe because it cannot be determined whether
 constant or method return value specified to <code>class_name</code> is a string.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
@@ -7289,10 +7397,22 @@ foo&amp;.bar { |e| e.baz }</code></pre>
 <p>This cop checks to make sure safe navigation isn&#8217;t used with <code>blank?</code> in
 a conditional.</p>
 </div>
+<div class="sect2">
+<h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
 <div class="paragraph">
 <p>While the safe navigation operator is generally a good idea, when
 checking <code>foo&amp;.blank?</code> in a conditional, <code>foo</code> being <code>nil</code> will actually
 do the opposite of what the author intends.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">foo&amp;.blank? #=&gt; nil
+foo.blank? #=&gt; true</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-79"><a class="anchor" href="#examples-79"></a>Examples</h3>
@@ -7376,6 +7496,28 @@ that behavior can be turned off with <code>AllowImplicitReturn: false</code>.</p
 <div class="paragraph">
 <p>You can permit receivers that are giving false positives with
 <code>AllowedReceivers: []</code></p>
+</div>
+<div class="sect2">
+<h3 id="safety-19"><a class="anchor" href="#safety-19"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because a custom <code>update</code> method call would be changed to <code>update!</code>,
+but the method name in the definition would be unchanged.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Original code
+def update_attributes
+end
+
+update_attributes
+
+# After running rubocop --safe-auto-correct
+def update_attributes
+end
+
+update</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
@@ -7844,9 +7986,14 @@ user.touch</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks SQL heredocs to use <code>.squish</code>.
-Some SQL syntax (e.g. PostgreSQL comments and functions) requires newlines
+<p>Checks SQL heredocs to use <code>.squish</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-20"><a class="anchor" href="#safety-20"></a>Safety</h3>
+<div class="paragraph">
+<p>Some SQL syntax (e.g. PostgreSQL comments and functions) requires newlines
 to be preserved in order to work, thus auto-correction for this cop is not safe.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
@@ -7919,10 +8066,10 @@ SQL</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.30</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
 </tr>
 </tbody>
 </table>
@@ -7940,6 +8087,12 @@ then only use of <code>Time.zone</code> is allowed.</p>
 <div class="paragraph">
 <p>When EnforcedStyle is 'flexible' then it&#8217;s also allowed
 to use <code>Time#in_time_zone</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-21"><a class="anchor" href="#safety-21"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because it may change handling time.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
@@ -8160,11 +8313,14 @@ as the cop cannot distinguish between calls to pluck on an
 ActiveRecord::Relation vs a call to pluck on an
 ActiveRecord::Associations::CollectionProxy.</p>
 </div>
+<div class="sect2">
+<h3 id="safety-22"><a class="anchor" href="#safety-22"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because the behavior may change depending on the
 database collation.
 Autocorrect is disabled by default for this cop since it may generate
 false positives.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
@@ -8596,6 +8752,13 @@ validates :foo, uniqueness: true</code></pre>
 in <code>where</code> can be replaced with <code>where(attribute: value)</code>.</p>
 </div>
 <div class="sect2">
+<h3 id="safety-23"><a class="anchor" href="#safety-23"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because is may change SQL.
+See: <a href="https://github.com/rubocop/rubocop-rails/issues/403" class="bare">https://github.com/rubocop/rubocop-rails/issues/403</a></p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="examples-92"><a class="anchor" href="#examples-92"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
@@ -8668,6 +8831,8 @@ then the cop enforces <code>exists?(&#8230;&#8203;)</code> over <code>where(&#82
 <p>When EnforcedStyle is 'where' then the cop enforces
 <code>where(&#8230;&#8203;).exists?</code> over <code>exists?(&#8230;&#8203;)</code>.</p>
 </div>
+<div class="sect2">
+<h3 id="safety-24"><a class="anchor" href="#safety-24"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe for auto-correction because the behavior may change on the following case:</p>
 </div>
@@ -8678,6 +8843,7 @@ then the cop enforces <code>exists?(&#8230;&#8203;)</code> over <code>where(&#82
 
 Author.includes(:articles).exists?(articles: {id: id})
 #=&gt; Perform `preload` behavior and `ActiveRecord::StatementInvalid` error occurs.</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">

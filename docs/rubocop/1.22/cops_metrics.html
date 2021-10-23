@@ -484,7 +484,7 @@
     <a class="version" href="../1.0/cops_metrics.html">1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.22.1/docs/modules/ROOT/pages/cops_metrics.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.22.2/docs/modules/ROOT/pages/cops_metrics.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -1335,6 +1335,19 @@ end                 # 5 points</code></pre>
 <p>The maximum number of parameters is configurable.
 Keyword arguments can optionally be excluded from the total count,
 as they add less complexity than positional or optional parameters.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Explicit block argument <code>&amp;block</code> is not counted to prevent
+      erroneous change that is avoided by making block argument implicit.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>This cop also checks for the maximum number of optional parameters.

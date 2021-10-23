@@ -418,6 +418,13 @@
 change them to use <code>&#8656;</code> instead.</p>
 </div>
 <div class="sect2">
+<h3 id="safety"><a class="anchor" href="#safety"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe because it can&#8217;t tell whether the receiver is a class or an object.
+e.g. the false positive was for <code>Nokogiri::XML::Node#ancestors</code>.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
@@ -487,8 +494,13 @@ Required Ruby version: 2.7
 <p>This cop identifies places where slicing arrays with semi-infinite ranges
 can be replaced by <code>Array#take</code> and <code>Array#drop</code>.
 This cop was created due to a mistake in microbenchmark and hence is disabled by default.
-Refer <a href="https://github.com/rubocop/rubocop-performance/pull/175#issuecomment-731892717" class="bare">https://github.com/rubocop/rubocop-performance/pull/175#issuecomment-731892717</a>
-This cop is also unsafe for string slices because strings do not have <code>#take</code> and <code>#drop</code> methods.</p>
+Refer <a href="https://github.com/rubocop/rubocop-performance/pull/175#issuecomment-731892717" class="bare">https://github.com/rubocop/rubocop-performance/pull/175#issuecomment-731892717</a></p>
+</div>
+<div class="sect2">
+<h3 id="safety-2"><a class="anchor" href="#safety-2"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe for string slices because strings do not have <code>#take</code> and <code>#drop</code> methods.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
@@ -790,12 +802,16 @@ conditions can be true for any given condition. A likely scenario for
 this defining a higher level when condition to override a condition
 that is inside of the splat expansion.</p>
 </div>
+<div class="sect2">
+<h3 id="safety-3"><a class="anchor" href="#safety-3"></a>Safety</h3>
 <div class="paragraph">
-<p>This is not a guaranteed performance improvement. If the data being
-processed by the <code>case</code> condition is normalized in a manner that favors
-hitting a condition in the splat expansion, it is possible that
-moving the splat condition to the end will use more memory,
-and run slightly slower.</p>
+<p>This cop is not unsafe auto-correction because it is not a guaranteed
+performance improvement. If the data being processed by the <code>case</code> condition is
+normalized in a manner that favors hitting a condition in the splat expansion,
+it is possible that moving the splat condition to the end will use more memory,
+and run slightly slower.
+See for more details: <a href="https://github.com/rubocop/rubocop/pull/6163" class="bare">https://github.com/rubocop/rubocop/pull/6163</a></p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
@@ -891,9 +907,14 @@ end</code></pre>
 </table>
 <div class="paragraph">
 <p>This cop identifies places where a case-insensitive string comparison
-can better be implemented using <code>casecmp</code>.
-This cop is unsafe because <code>String#casecmp</code> and <code>String#casecmp?</code> behave
+can better be implemented using <code>casecmp</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-4"><a class="anchor" href="#safety-4"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe because <code>String#casecmp</code> and <code>String#casecmp?</code> behave
 differently when using Non-ASCII characters.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
@@ -1243,25 +1264,31 @@ end</code></pre>
 follow calls to <code>select</code>, <code>find_all</code>, <code>filter</code> or <code>reject</code>. Querying logic can instead be
 passed to the <code>count</code> call.</p>
 </div>
+<div class="sect2">
+<h3 id="safety-5"><a class="anchor" href="#safety-5"></a>Safety</h3>
 <div class="paragraph">
-<p><code>ActiveRecord</code> compatibility:
+<p>This cop is unsafe because it has known compatibility issues with <code>ActiveRecord</code> and other
+frameworks. ActiveRecord&#8217;s <code>count</code> ignores the block that is passed to it.
 <code>ActiveRecord</code> will ignore the block that is passed to <code>count</code>.
 Other methods, such as <code>select</code>, will convert the association to an
 array and then run the block on the array. A simple work around to
 make <code>count</code> work with a block is to call <code>to_a.count {&#8230;&#8203;}</code>.</p>
 </div>
 <div class="paragraph">
-<p>Example:
-  <code>Model.where(id: [1, 2, 3]).select { |m| m.method == true }.size</code></p>
+<p>For example:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>becomes:</pre>
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">`Model.where(id: [1, 2, 3]).select { |m| m.method == true }.size`</code></pre>
 </div>
 </div>
-<div class="literalblock">
+<div class="paragraph">
+<p>becomes:</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>`Model.where(id: [1, 2, 3]).to_a.count { |m| m.method == true }`</pre>
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">`Model.where(id: [1, 2, 3]).to_a.count { |m| m.method == true }`</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1324,8 +1351,7 @@ Model.select(:value).count</code></pre>
 </div>
 <div class="paragraph">
 <p>This cop identifies places where <code>gsub(/\Aprefix/, '')</code> and <code>sub(/\Aprefix/, '')</code>
-can be replaced by <code>delete_prefix('prefix')</code>.
-It is marked as unsafe by default because <code>Pathname</code> has <code>sub</code> but not <code>delete_prefix</code>.</p>
+can be replaced by <code>delete_prefix('prefix')</code>.</p>
 </div>
 <div class="paragraph">
 <p>This cop has <code>SafeMultiline</code> configuration option that <code>true</code> by default because
@@ -1334,6 +1360,12 @@ for receiver is multiline string.</p>
 </div>
 <div class="paragraph">
 <p>The <code>delete_prefix('prefix')</code> method is faster than <code>gsub(/\Aprefix/, '')</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-6"><a class="anchor" href="#safety-6"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe because <code>Pathname</code> has <code>sub</code> but not <code>delete_prefix</code>.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-14"><a class="anchor" href="#examples-14"></a>Examples</h3>
@@ -1437,8 +1469,7 @@ str.sub!(/^prefix/, '')</code></pre>
 </div>
 <div class="paragraph">
 <p>This cop identifies places where <code>gsub(/suffix\z/, '')</code> and <code>sub(/suffix\z/, '')</code>
-can be replaced by <code>delete_suffix('suffix')</code>.
-It is marked as unsafe by default because <code>Pathname</code> has <code>sub</code> but not <code>delete_suffix</code>.</p>
+can be replaced by <code>delete_suffix('suffix')</code>.</p>
 </div>
 <div class="paragraph">
 <p>This cop has <code>SafeMultiline</code> configuration option that <code>true</code> by default because
@@ -1447,6 +1478,12 @@ for receiver is multiline string.</p>
 </div>
 <div class="paragraph">
 <p>The <code>delete_suffix('suffix')</code> method is faster than <code>gsub(/suffix\z/, '')</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-7"><a class="anchor" href="#safety-7"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe because <code>Pathname</code> has <code>sub</code> but not <code>delete_suffix</code>.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-15"><a class="anchor" href="#examples-15"></a>Examples</h3>
@@ -1555,6 +1592,14 @@ chained to <code>select</code>, <code>find_all</code> or <code>filter</code> and
 <code>ActiveRecord</code> does not implement a <code>detect</code> method and <code>find</code> has its
 own meaning. Correcting ActiveRecord methods with this cop should be
 considered unsafe.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-8"><a class="anchor" href="#safety-8"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe because is has known compatibility issues with <code>ActiveRecord</code> and other
+frameworks. <code>ActiveRecord</code> does not implement a <code>detect</code> method and <code>find</code> has its own
+meaning. Correcting <code>ActiveRecord</code> methods with this cop should be considered unsafe.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-16"><a class="anchor" href="#examples-16"></a>Examples</h3>
@@ -1702,6 +1747,14 @@ str.end_with?(var1, var2)</code></pre>
 <p>This cop has <code>SafeMultiline</code> configuration option that <code>true</code> by default because
 <code>end$</code> is unsafe as it will behave incompatible with <code>end_with?</code>
 for receiver is multiline string.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-9"><a class="anchor" href="#safety-9"></a>Safety</h3>
+<div class="paragraph">
+<p>This will change to a new method call which isn&#8217;t guaranteed to be on the
+object. Switching these methods has to be done with knowledge of the types
+of the variables which rubocop doesn&#8217;t have.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-18"><a class="anchor" href="#examples-18"></a>Examples</h3>
@@ -1995,6 +2048,12 @@ both perform an O(n) search through all of the values, calling <code>values</cod
 allocates a new array while using <code>value?</code> does not.</p>
 </div>
 <div class="sect2">
+<h3 id="safety-10"><a class="anchor" href="#safety-10"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe because it can&#8217;t tell whether the receiver is a hash object.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="examples-21"><a class="anchor" href="#examples-21"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
@@ -2146,14 +2205,19 @@ Required Ruby version: 2.7
 <p>In Ruby 2.7, <code>Enumerable#filter_map</code> has been added.</p>
 </div>
 <div class="paragraph">
-<p>This cop identifies places where <code>map { &#8230;&#8203; }.compact</code> can be replaced by <code>filter_map</code>.
-It is marked as unsafe auto-correction by default because <code>map { &#8230;&#8203; }.compact</code>
-that is not compatible with <code>filter_map</code>.</p>
+<p>This cop identifies places where <code>map { &#8230;&#8203; }.compact</code> can be replaced by <code>filter_map</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">[true, false, nil].compact              #=&gt; [true, false]
 [true, false, nil].filter_map(&amp;:itself) #=&gt; [true]</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="safety-11"><a class="anchor" href="#safety-11"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because <code>map { &#8230;&#8203; }.compact</code> that is not
+compatible with <code>filter_map</code>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2274,6 +2338,13 @@ especially in case of single-threaded
 applications with multiple <code>OpenStruct</code> instantiations.</p>
 </div>
 <div class="sect2">
+<h3 id="safety-12"><a class="anchor" href="#safety-12"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe because <code>OpenStruct.new</code> and <code>Struct.new</code>
+are not equivalent.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="examples-25"><a class="anchor" href="#examples-25"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
@@ -2333,9 +2404,12 @@ item in a <code>Range</code> to see if a specified item is there. In contrast,
 end points of the <code>Range</code>. In a great majority of cases, this is what
 is wanted.</p>
 </div>
+<div class="sect2">
+<h3 id="safety-13"><a class="anchor" href="#safety-13"></a>Safety</h3>
 <div class="paragraph">
-<p>This cop is <code>Safe: false</code> by default because <code>Range#include?</code> (or <code>Range#member?</code>) and
-<code>Range#cover?</code> are not equivalent behaviour.</p>
+<p>This cop is unsafe because <code>Range#include?</code> (or <code>Range#member?</code>) and <code>Range#cover?</code>
+are not equivalent behaviour.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-26"><a class="anchor" href="#examples-26"></a>Examples</h3>
@@ -2472,9 +2546,13 @@ and <code>Enumerable#none?</code> are compared with <code>===</code> or similar 
 <div class="paragraph">
 <p>By default, <code>Object#===</code> behaves the same as <code>Object#==</code>, but this
 behavior is appropriately overridden in subclass. For example,
-<code>Range#===</code> returns <code>true</code> when argument is within the range.
-Therefore, It is marked as unsafe by default because <code>===</code> and <code>==</code>
-do not always behave the same.</p>
+<code>Range#===</code> returns <code>true</code> when argument is within the range.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-14"><a class="anchor" href="#safety-14"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe because <code>===</code> and <code>==</code> do not always behave the same.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-28"><a class="anchor" href="#examples-28"></a>Examples</h3>
@@ -2592,9 +2670,12 @@ return value unless regex =~ 'str'</code></pre>
 You can set the maximum number of key-value pairs to consider
 an offense with <code>MaxKeyValuePairs</code>.</p>
 </div>
+<div class="sect2">
+<h3 id="safety-15"><a class="anchor" href="#safety-15"></a>Safety</h3>
 <div class="paragraph">
-<p>This cop is marked as unsafe because RuboCop cannot determine if the
+<p>This cop is unsafe because RuboCop cannot determine if the
 receiver of <code>merge!</code> is actually a hash or not.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-30"><a class="anchor" href="#examples-30"></a>Examples</h3>
@@ -3360,6 +3441,14 @@ str.squeeze!('a')</code></pre>
 for receiver is multiline string.</p>
 </div>
 <div class="sect2">
+<h3 id="safety-16"><a class="anchor" href="#safety-16"></a>Safety</h3>
+<div class="paragraph">
+<p>This will change to a new method call which isn&#8217;t guaranteed to be on the
+object. Switching these methods has to be done with knowledge of the types
+of the variables which rubocop doesn&#8217;t have.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="examples-41"><a class="anchor" href="#examples-41"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
@@ -3474,8 +3563,11 @@ for receiver is multiline string.</p>
 <p>This cop identifies unnecessary use of a regex where
 <code>String#include?</code> would suffice.</p>
 </div>
+<div class="sect2">
+<h3 id="safety-17"><a class="anchor" href="#safety-17"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s offenses are not safe to auto-correct if a receiver is nil.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-42"><a class="anchor" href="#examples-42"></a>Examples</h3>
@@ -3714,6 +3806,22 @@ In most cases such calls can be replaced
 with an explicit array creation.</p>
 </div>
 <div class="sect2">
+<h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because <code>Integer#times</code> does nothing if receiver is 0
+or less. However, <code>Array.new</code> raises an error if argument is less than 0.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">-1.times{}    # does nothing
+Array.new(-1) # ArgumentError: negative array size</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="examples-45"><a class="anchor" href="#examples-45"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
@@ -3790,21 +3898,14 @@ end</code></pre>
 literal instead of <code>String#dup</code> and <code>String.new</code>.
 Unary plus operator is faster than <code>String#dup</code>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>String.new</code> (without operator) is not exactly the same as <code>+''</code>.
-These differ in encoding. <code>String.new.encoding</code> is always <code>ASCII-8BIT</code>.
-However, <code>(+'').encoding</code> is the same as script encoding(e.g. <code>UTF-8</code>).
-Therefore, auto-correction is unsafe.
-So, if you expect <code>ASCII-8BIT</code> encoding, disable this cop.
-</td>
-</tr>
-</table>
+<div class="sect2">
+<h3 id="safety-19"><a class="anchor" href="#safety-19"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because <code>String.new</code> (without operator) is not
+exactly the same as <code>+''</code>. These differ in encoding. <code>String.new.encoding</code> is always
+<code>ASCII-8BIT</code>. However, <code>(+'').encoding</code> is the same as script encoding(e.g. <code>UTF-8</code>).
+if you expect <code>ASCII-8BIT</code> encoding, disable this cop.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>
