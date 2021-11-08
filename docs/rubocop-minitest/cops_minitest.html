@@ -190,10 +190,10 @@
       </ul>
     </li>
     <li class="component">
-      <a class="title" href="../rubocop-ast/index.html">RuboCop AST</a>
+      <a class="title" href="../rubocop-ast/1.13/index.html">RuboCop AST</a>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-ast/index.html">master</a>
+          <a href="../rubocop-ast/1.13/index.html">1.13</a>
         </li>
         <li class="version">
           <a href="../rubocop-ast/1.12/index.html">1.12</a>
@@ -327,6 +327,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-rspec/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-rspec/2.6/index.html">2.6</a>
         </li>
         <li class="version">
           <a href="../rubocop-rspec/2.5/index.html">2.5</a>
@@ -1355,7 +1358,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.16</p></td>
 </tr>
 </tbody>
 </table>
@@ -1365,6 +1368,32 @@ and autocorrects them to use expect format.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-17"><a class="anchor" href="#examples-17"></a>Examples</h3>
+<div class="sect3">
+<h4 id="enforcedstyle-_"><a class="anchor" href="#enforcedstyle-_"></a>EnforcedStyle: _</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+musts.must_equal expected_musts
+wonts.wont_match expected_wonts
+musts.must_raise TypeError
+
+expect(musts).must_equal expected_musts
+expect(wonts).wont_match expected_wonts
+expect { musts }.must_raise TypeError
+
+value(musts).must_equal expected_musts
+value(wonts).wont_match expected_wonts
+value { musts }.must_raise TypeError
+
+# good
+_(musts).must_equal expected_musts
+_(wonts).wont_match expected_wonts
+_ { musts }.must_raise TypeError</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-any-default"><a class="anchor" href="#enforcedstyle-any-default"></a>EnforcedStyle: any (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1375,9 +1404,95 @@ musts.must_raise TypeError
 # good
 _(musts).must_equal expected_musts
 _(wonts).wont_match expected_wonts
-_ { musts }.must_raise TypeError</code></pre>
+_ { musts }.must_raise TypeError
+
+expect(musts).must_equal expected_musts
+expect(wonts).wont_match expected_wonts
+expect { musts }.must_raise TypeError
+
+value(musts).must_equal expected_musts
+value(wonts).wont_match expected_wonts
+value { musts }.must_raise TypeError</code></pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-expect"><a class="anchor" href="#enforcedstyle-expect"></a>EnforcedStyle: expect</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+musts.must_equal expected_musts
+wonts.wont_match expected_wonts
+musts.must_raise TypeError
+
+_(musts).must_equal expected_musts
+_(wonts).wont_match expected_wonts
+_ { musts }.must_raise TypeError
+
+value(musts).must_equal expected_musts
+value(wonts).wont_match expected_wonts
+value { musts }.must_raise TypeError
+
+# good
+expect(musts).must_equal expected_musts
+expect(wonts).wont_match expected_wonts
+expect { musts }.must_raise TypeError</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-value"><a class="anchor" href="#enforcedstyle-value"></a>EnforcedStyle: value</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+musts.must_equal expected_musts
+wonts.wont_match expected_wonts
+musts.must_raise TypeError
+
+_(musts).must_equal expected_musts
+_(wonts).wont_match expected_wonts
+_ { musts }.must_raise TypeError
+
+expect(musts).must_equal expected_musts
+expect(wonts).wont_match expected_wonts
+expect { musts }.must_raise TypeError
+
+# good
+value(musts).must_equal expected_musts
+value(wonts).wont_match expected_wonts
+value { musts }.must_raise TypeError</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>any</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_</code>, <code>any</code>, <code>expect</code>, <code>value</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>**/test/**/*</code>, <code>**/*_test.rb</code>, <code>**/spec/**/*</code>, <code>**/*_spec.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="references-14"><a class="anchor" href="#references-14"></a>References</h3>
@@ -1516,7 +1631,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
