@@ -243,6 +243,9 @@
           <a href="../rubocop-minitest/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop-minitest/0.16/index.html">0.16</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-minitest/0.15/index.html">0.15</a>
         </li>
         <li class="version">
@@ -1805,8 +1808,8 @@ end</code></pre>
 </td>
 <td class="content">
 Allow <code>tag</code> when the first argument is a variable because
-      <code>tag(name)</code> is simpler rather than <code>tag.public_send(name)</code>.
-      And this cop will be renamed to something like <code>LegacyTag</code> in the future. (e.g. RuboCop Rails 2.0)
+<code>tag(name)</code> is simpler rather than <code>tag.public_send(name)</code>.
+And this cop will be renamed to something like <code>LegacyTag</code> in the future. (e.g. RuboCop Rails 2.0)
 </td>
 </tr>
 </table>
@@ -7720,6 +7723,62 @@ Service::Mailer::update</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="railsschemacomment"><a class="anchor" href="#railsschemacomment"></a>Rails/SchemaComment</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop enforces the use of the <code>comment</code> option when adding a new table or column
+to the database during a migration.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad (no comment for a new column or table)
+add_column :table, :column, :integer
+
+create_table :table do |t|
+  t.type :column
+end
+
+# good
+add_column :table, :column, :integer, comment: 'Number of offenses'
+
+create_table :table, comment: 'Table of offenses data' do |t|
+  t.type :column, comment: 'Number of offenses'
+end</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="railsscopeargs"><a class="anchor" href="#railsscopeargs"></a>Rails/ScopeArgs</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -7754,7 +7813,7 @@ Service::Mailer::update</code></pre>
 a method (usually a scope) instead of a lambda/proc.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
+<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7835,7 +7894,7 @@ calls are added as offenses.</p>
 without a receiver are added as offenses.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
+<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7949,7 +8008,7 @@ validations which are listed in
 <p>Methods may be ignored from this rule by configuring a <code>AllowedMethods</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
+<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8066,7 +8125,7 @@ to be preserved in order to work, thus auto-correction for this cop is not safe.
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
+<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8165,7 +8224,7 @@ to use <code>Time#in_time_zone</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
+<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8286,7 +8345,7 @@ Using <code>Time.use_zone</code> ensures the code passed in the block is the onl
 It eliminates the possibility of a <code>zone</code> sticking around longer than intended.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
+<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8360,49 +8419,47 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.40</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Prefer the use of distinct, before pluck instead of after.</p>
+<p>Prefer using <code>distinct</code> before <code>pluck</code> instead of <code>uniq</code> after <code>pluck</code>.</p>
 </div>
 <div class="paragraph">
-<p>The use of distinct before pluck is preferred because it executes within
+<p>The use of distinct before pluck is preferred because it executes by
 the database.</p>
 </div>
 <div class="paragraph">
 <p>This cop has two different enforcement modes. When the EnforcedStyle
-is conservative (the default) then only calls to pluck on a constant
-(i.e. a model class) before distinct are added as offenses.</p>
+is <code>conservative</code> (the default), then only calls to <code>pluck</code> on a constant
+(i.e. a model class) before <code>uniq</code> are added as offenses.</p>
 </div>
 <div class="paragraph">
-<p>When the EnforcedStyle is aggressive then all calls to pluck before
+<p>When the EnforcedStyle is <code>aggressive</code> then all calls to <code>pluck</code> before
 distinct are added as offenses. This may lead to false positives
-as the cop cannot distinguish between calls to pluck on an
+as the cop cannot distinguish between calls to <code>pluck</code> on an
 ActiveRecord::Relation vs a call to pluck on an
 ActiveRecord::Associations::CollectionProxy.</p>
 </div>
 <div class="sect2">
 <h3 id="safety-22"><a class="anchor" href="#safety-22"></a>Safety</h3>
 <div class="paragraph">
-<p>This cop is unsafe because the behavior may change depending on the
-database collation.
-Autocorrect is disabled by default for this cop since it may generate
-false positives.</p>
+<p>This cop is unsafe for autocorrection because the behavior may change
+depending on the database collation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
+<h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-conservative-default-3"><a class="anchor" href="#enforcedstyle-conservative-default-3"></a>EnforcedStyle: conservative (default)</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-Model.pluck(:id).uniq
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - redundantly fetches duplicate values
+Album.pluck(:band_name).uniq
 
 # good
-Model.distinct.pluck(:id)</code></pre>
+Album.distinct.pluck(:band_name)</code></pre>
 </div>
 </div>
 </div>
@@ -8410,19 +8467,19 @@ Model.distinct.pluck(:id)</code></pre>
 <h4 id="enforcedstyle-aggressive-3"><a class="anchor" href="#enforcedstyle-aggressive-3"></a>EnforcedStyle: aggressive</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-# this will return a Relation that pluck is called on
-Model.where(cond: true).pluck(:id).uniq
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - redundantly fetches duplicate values
+Album.pluck(:band_name).uniq
 
-# bad
-# an association on an instance will return a CollectionProxy
-instance.assoc.pluck(:id).uniq
+# bad - redundantly fetches duplicate values
+Album.where(year: 1985).pluck(:band_name).uniq
 
-# bad
-Model.pluck(:id).uniq
+# bad - redundantly fetches duplicate values
+customer.favourites.pluck(:color).uniq
 
 # good
-Model.distinct.pluck(:id)</code></pre>
+Album.distinct.pluck(:band_name)
+Album.distinct.where(year: 1985).pluck(:band_name)
+customer.favourites.distinct.pluck(:color)</code></pre>
 </div>
 </div>
 </div>
@@ -8447,11 +8504,6 @@ Model.distinct.pluck(:id)</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>conservative</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>conservative</code>, <code>aggressive</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AutoCorrect</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 </tr>
 </tbody>
 </table>
@@ -8502,7 +8554,7 @@ the query will be heavy.</p>
 <p>Note that the cop does nothing if db/schema.rb does not exist.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
+<h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - if the schema does not have a unique index
@@ -8580,7 +8632,7 @@ By default the cop allows three environments which Rails ships with:
 More can be added to the <code>Environments</code> config parameter.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
+<h3 id="examples-91"><a class="anchor" href="#examples-91"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8655,7 +8707,7 @@ Rails.env == 'production'</code></pre>
 to drop the column. You avoid forgetting to remove <code>ignored_columns</code> by this cop.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-91"><a class="anchor" href="#examples-91"></a>Examples</h3>
+<h3 id="examples-92"><a class="anchor" href="#examples-92"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8730,7 +8782,7 @@ end</code></pre>
 <p>This cop checks for the use of old-style attribute validation macros.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-92"><a class="anchor" href="#examples-92"></a>Examples</h3>
+<h3 id="examples-93"><a class="anchor" href="#examples-93"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8829,7 +8881,7 @@ See: <a href="https://github.com/rubocop/rubocop-rails/issues/403" class="bare">
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-93"><a class="anchor" href="#examples-93"></a>Examples</h3>
+<h3 id="examples-94"><a class="anchor" href="#examples-94"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8917,7 +8969,7 @@ Author.includes(:articles).exists?(articles: {id: id})
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-94"><a class="anchor" href="#examples-94"></a>Examples</h3>
+<h3 id="examples-95"><a class="anchor" href="#examples-95"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-exists-default"><a class="anchor" href="#enforcedstyle-exists-default"></a>EnforcedStyle: exists (default)</h4>
 <div class="listingblock">
@@ -9016,7 +9068,7 @@ User.where('length(name) &gt; 10').exists?</code></pre>
 in <code>where</code> can be replaced with <code>where.not(&#8230;&#8203;)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-95"><a class="anchor" href="#examples-95"></a>Examples</h3>
+<h3 id="examples-96"><a class="anchor" href="#examples-96"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
