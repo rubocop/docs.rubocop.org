@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.23/index.html">1.23</a>
+        </li>
+        <li class="version">
           <a href="1.22/index.html">1.22</a>
         </li>
         <li class="version">
@@ -456,7 +459,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.22/index.html" class="home-link"></a>
+  <a href="1.23/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -468,6 +471,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_naming.html">master</a>
+    <a class="version" href="1.23/cops_naming.html">1.23</a>
     <a class="version" href="1.22/cops_naming.html">1.22</a>
     <a class="version" href="1.21/cops_naming.html">1.21</a>
     <a class="version" href="1.20/cops_naming.html">1.20</a>
@@ -1077,7 +1081,7 @@ INCH_IN_CM = 2.54</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.50</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.23</p></td>
 </tr>
 </tbody>
 </table>
@@ -1091,6 +1095,21 @@ first line) are ignored.</p>
 recommends using dashes to separate namespaces in nested gems
 (i.e. <code>bundler-console</code> becomes <code>Bundler::Console</code>). As such, the
 gemspec is supposed to be named <code>bundler-console.gemspec</code>.</p>
+</div>
+<div class="paragraph">
+<p>When <code>ExpectMatchingDefinition</code> (default: <code>false</code>) is <code>true</code>, the cop requires
+each file to have a class, module or <code>Struct</code> defined in it that matches
+the filename. This can be further configured using
+<code>CheckDefinitionPathHierarchy</code> (default: <code>true</code>) to determine whether the
+path should match the namespace of the above definition.</p>
+</div>
+<div class="paragraph">
+<p>When <code>IgnoreExecutableScripts</code> (default: <code>true</code>) is <code>true</code>, files that start
+with a shebang line are not considered by the cop.</p>
+</div>
+<div class="paragraph">
+<p>When <code>Regex</code> is set, the cop will flag any filename that does not match
+the regular expression.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
@@ -1138,6 +1157,11 @@ anything/using_snake_case.rake</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CheckDefinitionPathHierarchy</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CheckDefinitionPathHierarchyRoots</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lib</code>, <code>spec</code>, <code>test</code>, <code>src</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Regex</p></td>

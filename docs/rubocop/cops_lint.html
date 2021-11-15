@@ -210,6 +210,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.23/index.html">1.23</a>
+        </li>
+        <li class="version">
           <a href="1.22/index.html">1.22</a>
         </li>
         <li class="version">
@@ -456,7 +459,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.22/index.html" class="home-link"></a>
+  <a href="1.23/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -468,6 +471,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_lint.html">master</a>
+    <a class="version" href="1.23/cops_lint.html">1.23</a>
     <a class="version" href="1.22/cops_lint.html">1.22</a>
     <a class="version" href="1.21/cops_lint.html">1.21</a>
     <a class="version" href="1.20/cops_lint.html">1.20</a>
@@ -839,7 +843,7 @@ a * b / c % d</code></pre>
 <p>Ranges have quite low precedence, which leads to unexpected behaviour when
 using a range with other operators. This cop avoids that by making ranges
 explicit by requiring parenthesis around complex range boundaries (anything
-that is not a basic literal: numerics, strings, symbols, etc.).</p>
+that is not a literal: numerics, strings, symbols, etc.).</p>
 </div>
 <div class="paragraph">
 <p>This cop can be configured with <code>RequireParenthesesForMethodChains</code> in order to
@@ -5921,6 +5925,7 @@ input if it is not a standard class.</p>
 '10'.to_i
 '10.2'.to_f
 '10'.to_c
+'1/3'.to_r
 ['1', '2', '3'].map(&amp;:to_i)
 foo.try(:to_f)
 bar.send(:to_c)
@@ -5930,6 +5935,7 @@ bar.send(:to_c)
 Integer('10', 10)
 Float('10.2')
 Complex('10')
+Rational('1/3')
 ['1', '2', '3'].map { |i| Integer(i, 10) }
 foo.try { |i| Float(i) }
 bar.send { |i| Complex(i) }</code></pre>
@@ -10564,6 +10570,105 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="lintuselessruby2keywords"><a class="anchor" href="#lintuselessruby2keywords"></a>Lint/UselessRuby2Keywords</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.23</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop looks for <code>ruby2_keywords</code> calls for methods that do not need it.</p>
+</div>
+<div class="paragraph">
+<p><code>ruby2_keywords</code> should only be called on methods that accept an argument splat
+(<code><strong>args</code>) but do not explicit keyword arguments (<code>k:</code> or <code>k: true</code>) or
+a keyword splat (<code></strong>*kwargs</code>).</p>
+</div>
+<div class="sect2">
+<h3 id="examples-121"><a class="anchor" href="#examples-121"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good (splat argument without keyword arguments)
+ruby2_keywords def foo(*args); end
+
+# bad (no arguments)
+ruby2_keywords def foo; end
+
+# good
+def foo; end
+
+# bad (positional argument)
+ruby2_keywords def foo(arg); end
+
+# good
+def foo(arg); end
+
+# bad (double splatted argument)
+ruby2_keywords def foo(**args); end
+
+# good
+def foo(**args); end
+
+# bad (keyword arguments)
+ruby2_keywords def foo(i:, j:); end
+
+# good
+def foo(i:, j:); end
+
+# bad (splat argument with keyword arguments)
+ruby2_keywords def foo(*args, i:, j:); end
+
+# good
+def foo(*args, i:, j:); end
+
+# bad (splat argument with double splat)
+ruby2_keywords def foo(*args, **kwargs); end
+
+# good
+def foo(*args, **kwargs); end
+
+# bad (ruby2_keywords given a symbol)
+def foo; end
+ruby2_keywords :foo
+
+# good
+def foo; end
+
+# bad (ruby2_keywords with dynamic method)
+define_method(:foo) { |arg| }
+ruby2_keywords :foo
+
+# good
+define_method(:foo) { |arg| }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="lintuselesssettercall"><a class="anchor" href="#lintuselesssettercall"></a>Lint/UselessSetterCall</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -10610,7 +10715,7 @@ return value will be changed.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-121"><a class="anchor" href="#examples-121"></a>Examples</h3>
+<h3 id="examples-122"><a class="anchor" href="#examples-122"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10678,7 +10783,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-122"><a class="anchor" href="#examples-122"></a>Examples</h3>
+<h3 id="examples-123"><a class="anchor" href="#examples-123"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10730,7 +10835,7 @@ do_something(1)</code></pre>
 methods used in void context.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-123"><a class="anchor" href="#examples-123"></a>Examples</h3>
+<h3 id="examples-124"><a class="anchor" href="#examples-124"></a>Examples</h3>
 <div class="sect3">
 <h4 id="checkformethodswithnosideeffects-false-default"><a class="anchor" href="#checkformethodswithnosideeffects-false-default"></a>CheckForMethodsWithNoSideEffects: false (default)</h4>
 <div class="listingblock">
