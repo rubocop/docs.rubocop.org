@@ -246,6 +246,9 @@
           <a href="../rubocop-minitest/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop-minitest/0.17/index.html">0.17</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-minitest/0.16/index.html">0.16</a>
         </li>
         <li class="version">
@@ -578,11 +581,15 @@ than from Numeric for BigDecimal.</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 BigDecimal(1, 2)
+4.to_d(6)
 BigDecimal(1.2, 3, exception: true)
+4.5.to_d(6, exception: true)
 
 # good
 BigDecimal('1', 2)
-BigDecimal('1.2', 3, exception: true)</code></pre>
+BigDecimal('4', 6)
+BigDecimal('1.2', 3, exception: true)
+BigDecimal('4.5', 6, exception: true)</code></pre>
 </div>
 </div>
 </div>
@@ -3747,9 +3754,9 @@ of the variables which rubocop doesn&#8217;t have.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.13</p></td>
 </tr>
 </tbody>
 </table>
@@ -3757,42 +3764,56 @@ of the variables which rubocop doesn&#8217;t have.</p>
 <p>This cop identifies places where custom code finding the sum of elements
 in some Enumerable object can be replaced by <code>Enumerable#sum</code> method.</p>
 </div>
+<div class="sect2">
+<h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
 <div class="paragraph">
-<p>This cop can change auto-correction scope depending on the value of
-<code>SafeAutoCorrect</code>.
-Its auto-correction is marked as safe by default (<code>SafeAutoCorrect: true</code>)
-to prevent <code>TypeError</code> in auto-correced code when initial value is not
-specified as shown below:</p>
+<p>Auto-corrections are unproblematic wherever an initial value is provided explicitly:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">['a', 'b'].sum # =&gt; (String can't be coerced into Integer)</code></pre>
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">[1, 2, 3].reduce(4, :+) # =&gt; 10
+[1, 2, 3].sum(4) # =&gt; 10
+
+[].reduce(4, :+) # =&gt; 4
+[].sum(4) # =&gt; 4</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Therefore if initial value is not specified, unsafe auto-corrected will not occur.</p>
-</div>
-<div class="paragraph">
-<p>If you always want to enable auto-correction, you can set <code>SafeAutoCorrect: false</code>.</p>
+<p>This also holds true for non-numeric types which implement a <code>:+</code> method:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Performance/Sum:
-  SafeAutoCorrect: false</code></pre>
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">['l', 'o'].reduce('Hel', :+) # =&gt; "Hello"
+['l', 'o'].sum('Hel') # =&gt; "Hello"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Please note that the auto-correction command line option will be changed from
-<code>rubocop -a</code> to <code>rubocop -A</code>, which includes unsafe auto-correction.</p>
+<p>When no initial value is provided though, <code>Enumerable#reduce</code> will pick the first enumerated value
+as initial value and successively add all following values to it, whereas
+<code>Enumerable#sum</code> will set an initial value of <code>0</code> (<code>Integer</code>) which can lead to a <code>TypeError</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">[].reduce(:+) # =&gt; nil
+[1, 2, 3].reduce(:+) # =&gt; 6
+['H', 'e', 'l', 'l', 'o'].reduce(:+) # =&gt; "Hello"
+
+[].sum # =&gt; 0
+[1, 2, 3].sum # =&gt; 6
+['H', 'e', 'l', 'l', 'o'].sum # =&gt; in `+': String can't be coerced into Integer (TypeError)</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-45"><a class="anchor" href="#examples-45"></a>Examples</h3>
+<div class="sect3">
+<h4 id="onlysumorwithinitialvalue-false-default"><a class="anchor" href="#onlysumorwithinitialvalue-false-default"></a>OnlySumOrWithInitialValue: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-[1, 2, 3].inject(:+)                        # These bad cases with no initial value are unsafe and
-[1, 2, 3].inject(&amp;:+)                       # will not be auto-correced by default. If you want to
-[1, 2, 3].reduce { |acc, elem| acc + elem } # auto-corrected, you can set `SafeAutoCorrect: false`.
+[1, 2, 3].inject(:+)                        # Auto-corrections for cases without initial value are unsafe
+[1, 2, 3].inject(&amp;:+)                       # and will only be performed when using the `-A` option.
+[1, 2, 3].reduce { |acc, elem| acc + elem } # They can be prohibited completely using `SafeAutoCorrect: true`.
 [1, 2, 3].reduce(10, :+)
 [1, 2, 3].map { |elem| elem ** 2 }.sum
 [1, 2, 3].collect(&amp;:count).sum(10)
@@ -3804,6 +3825,47 @@ specified as shown below:</p>
 [1, 2, 3].sum(10, &amp;:count)</code></pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="onlysumorwithinitialvalue-true"><a class="anchor" href="#onlysumorwithinitialvalue-true"></a>OnlySumOrWithInitialValue: true</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+[1, 2, 3].reduce(10, :+)
+[1, 2, 3].map { |elem| elem ** 2 }.sum
+[1, 2, 3].collect(&amp;:count).sum(10)
+
+# good
+[1, 2, 3].sum(10)
+[1, 2, 3].sum { |elem| elem ** 2 }
+[1, 2, 3].sum(10, &amp;:count)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-10"><a class="anchor" href="#configurable-attributes-10"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OnlySumOrWithInitialValue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="references-21"><a class="anchor" href="#references-21"></a>References</h3>
@@ -3853,7 +3915,7 @@ In most cases such calls can be replaced
 with an explicit array creation.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
+<h3 id="safety-19"><a class="anchor" href="#safety-19"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because <code>Integer#times</code> does nothing if receiver is 0
 or less. However, <code>Array.new</code> raises an error if argument is less than 0.</p>
@@ -3885,7 +3947,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-10"><a class="anchor" href="#configurable-attributes-10"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-11"><a class="anchor" href="#configurable-attributes-11"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3946,7 +4008,7 @@ literal instead of <code>String#dup</code> and <code>String.new</code>.
 Unary plus operator is faster than <code>String#dup</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-19"><a class="anchor" href="#safety-19"></a>Safety</h3>
+<h3 id="safety-20"><a class="anchor" href="#safety-20"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because <code>String.new</code> (without operator) is not
 exactly the same as <code>+''</code>. These differ in encoding. <code>String.new.encoding</code> is always
