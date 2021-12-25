@@ -232,6 +232,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.13/index.html">1.13</a>
+        </li>
+        <li class="version">
           <a href="1.12/index.html">1.12</a>
         </li>
         <li class="version">
@@ -329,6 +332,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_performance.html">master</a>
+    <a class="version" href="1.13/cops_performance.html">1.13</a>
     <a class="version" href="1.12/cops_performance.html">1.12</a>
     <a class="version" href="1.11/cops_performance.html">1.11</a>
     <a class="version" href="1.10/cops_performance.html">1.10</a>
@@ -748,7 +752,7 @@ caller_locations(1..1).first</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.34</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.59</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.13</p></td>
 </tr>
 </tbody>
 </table>
@@ -814,30 +818,6 @@ when 5
 end</code></pre>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Configurable values</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AutoCorrect</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 </div>
@@ -1043,7 +1023,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1433,7 +1413,7 @@ str.sub!(/^prefix/, '')</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1551,7 +1531,7 @@ str.sub!(/suffix$/, '')</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1610,12 +1590,6 @@ str.sub!(/suffix$/, '')</code></pre>
 <p>This cop is used to identify usages of <code>first</code>, <code>last</code>, <code>[0]</code> or <code>[-1]</code>
 chained to <code>select</code>, <code>find_all</code> or <code>filter</code> and change them to use
 <code>detect</code> instead.</p>
-</div>
-<div class="paragraph">
-<p><code>ActiveRecord</code> compatibility:
-<code>ActiveRecord</code> does not implement a <code>detect</code> method and <code>find</code> has its
-own meaning. Correcting ActiveRecord methods with this cop should be
-considered unsafe.</p>
 </div>
 <div class="sect2">
 <h3 id="safety-8"><a class="anchor" href="#safety-8"></a>Safety</h3>
@@ -1692,6 +1666,10 @@ meaning. Correcting <code>ActiveRecord</code> methods with this cop should be co
 separated by <code>||</code>. In some cases such calls can be replaced
 with an single <code>#start_with?</code>/<code>#end_with?</code> call.</p>
 </div>
+<div class="paragraph">
+<p><code>IncludeActiveSupportAliases</code> configuration option is used to check for
+<code>starts_with?</code> and <code>ends_with?</code>. These methods are defined by Active Support.</p>
+</div>
 <div class="sect2">
 <h3 id="examples-18"><a class="anchor" href="#examples-18"></a>Examples</h3>
 <div class="listingblock">
@@ -1707,9 +1685,36 @@ str.start_with?("a", "b", "c")
 str.end_with?(var1, var2)</code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="includeactivesupportaliases-false-default"><a class="anchor" href="#includeactivesupportaliases-false-default"></a>IncludeActiveSupportAliases: false (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+str.starts_with?("a", "b") || str.starts_with?("c")
+str.ends_with?(var1) || str.ends_with?(var2)
+
+str.starts_with?("a", "b", "c")
+str.ends_with?(var1, var2)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="includeactivesupportaliases-true"><a class="anchor" href="#includeactivesupportaliases-true"></a>IncludeActiveSupportAliases: true</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+str.starts_with?("a", "b") || str.starts_with?("c")
+str.ends_with?(var1) || str.ends_with?(var2)
+
+# good
+str.starts_with?("a", "b", "c")
+str.ends_with?(var1, var2)</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1826,7 +1831,7 @@ of the variables which rubocop doesn&#8217;t have.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1991,7 +1996,7 @@ change them to use <code>flat_map { &#8230;&#8203; }</code> instead.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2729,7 +2734,7 @@ hash[:b] = 2</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-8"><a class="anchor" href="#configurable-attributes-8"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3518,7 +3523,7 @@ of the variables which rubocop doesn&#8217;t have.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-9"><a class="anchor" href="#configurable-attributes-9"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-8"><a class="anchor" href="#configurable-attributes-8"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3549,6 +3554,63 @@ of the variables which rubocop doesn&#8217;t have.</p>
 <p><a href="https://github.com/JuanitoFatas/fast-ruby#stringmatch-vs-stringstart_withstringend_with-code-start-code-end" class="bare">https://github.com/JuanitoFatas/fast-ruby#stringmatch-vs-stringstart_withstringend_with-code-start-code-end</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="performancestringidentifierargument"><a class="anchor" href="#performancestringidentifierargument"></a>Performance/StringIdentifierArgument</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.13</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop identifies places where string identifier argument can be replaced
+by symbol identifier argument.
+It prevents the redundancy of the internal string-to-symbol conversion.</p>
+</div>
+<div class="paragraph">
+<p>This cop targets methods that take identifier (e.g. method name) argument
+and the following examples are parts of it.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-43"><a class="anchor" href="#examples-43"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+send('do_something')
+attr_accessor 'do_something'
+instance_variable_get('@ivar')
+
+# good
+send(:do_something)
+attr_accessor :do_something
+instance_variable_get(:@ivar)</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -3594,7 +3656,7 @@ of the variables which rubocop doesn&#8217;t have.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-43"><a class="anchor" href="#examples-43"></a>Examples</h3>
+<h3 id="examples-44"><a class="anchor" href="#examples-44"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3647,7 +3709,7 @@ of the variables which rubocop doesn&#8217;t have.</p>
 <code>tr</code> or <code>delete</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-44"><a class="anchor" href="#examples-44"></a>Examples</h3>
+<h3 id="examples-45"><a class="anchor" href="#examples-45"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3751,7 +3813,7 @@ as initial value and successively add all following values to it, whereas
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-45"><a class="anchor" href="#examples-45"></a>Examples</h3>
+<h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>
 <div class="sect3">
 <h4 id="onlysumorwithinitialvalue-false-default"><a class="anchor" href="#onlysumorwithinitialvalue-false-default"></a>OnlySumOrWithInitialValue: false (default)</h4>
 <div class="listingblock">
@@ -3790,7 +3852,7 @@ as initial value and successively add all following values to it, whereas
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-10"><a class="anchor" href="#configurable-attributes-10"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-9"><a class="anchor" href="#configurable-attributes-9"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3851,7 +3913,7 @@ as initial value and successively add all following values to it, whereas
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.50</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.13</p></td>
 </tr>
 </tbody>
 </table>
@@ -3877,7 +3939,7 @@ Array.new(-1) # ArgumentError: negative array size</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>
+<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3891,30 +3953,6 @@ Array.new(9) do |i|
 end</code></pre>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="configurable-attributes-11"><a class="anchor" href="#configurable-attributes-11"></a>Configurable attributes</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Configurable values</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AutoCorrect</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 </div>
@@ -3963,7 +4001,7 @@ if you expect <code>ASCII-8BIT</code> encoding, disable this cop.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
+<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4016,7 +4054,7 @@ String.new('something')
 can be replaced by <code>URI::DEFAULT_PARSER</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
+<h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
