@@ -9896,9 +9896,11 @@ even with arguments.</p>
 Parentheses are still allowed in cases where omitting them
 results in ambiguous or syntactically incorrect code. For example,
 parentheses are required around a method with arguments when inside an
-endless method definition introduced in Ruby 3.0.  Parentheses are also
+endless method definition introduced in Ruby 3.0. Parentheses are also
 allowed when forwarding arguments with the triple-dot syntax introduced
 in Ruby 2.7 as omitting them starts an endless range.
+And Ruby 3.1&#8217;s hash omission syntax has a case that requires parentheses
+because the issue <a href="https://bugs.ruby-lang.org/issues/18396" class="bare">https://bugs.ruby-lang.org/issues/18396</a>.
 </td>
 </tr>
 </table>
@@ -10357,8 +10359,23 @@ foo.c</code></pre>
 definitions. Both instance and class/singleton methods are checked.</p>
 </div>
 <div class="paragraph">
-<p>This cop does not consider endless methods, since parentheses are
-always required for them.</p>
+<p>Regardless of style, parentheses are necessary for:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Endless methods</p>
+</li>
+<li>
+<p>Argument lists containing a <code>forward-arg</code> (<code>&#8230;&#8203;</code>)</p>
+</li>
+<li>
+<p>Argument lists containing an anonymous block forwarding (<code>&amp;</code>)</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Removing the parens would be a syntax error here.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-98"><a class="anchor" href="#examples-98"></a>Examples</h3>

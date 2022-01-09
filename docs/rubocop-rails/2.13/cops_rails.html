@@ -347,7 +347,7 @@
     <a class="version" href="../2.7/cops_rails.html">2.7</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-rails/blob/v2.13.0/docs/modules/ROOT/pages/cops_rails.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-rails/blob/v2.13.1/docs/modules/ROOT/pages/cops_rails.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -6052,6 +6052,11 @@ an <code>ActiveModel::MissingAttributeError</code>.</p>
 <p>Explicitly raising an error in this situation is preferable, and that
 is why rubocop recommends using square brackets.</p>
 </div>
+<div class="paragraph">
+<p>When called from within a method with the same name as the attribute,
+<code>read_attribute</code> and <code>write_attribute</code> must be used to prevent an
+infinite loop:</p>
+</div>
 <div class="sect2">
 <h3 id="examples-66"><a class="anchor" href="#examples-66"></a>Examples</h3>
 <div class="listingblock">
@@ -6063,6 +6068,14 @@ write_attribute(:attr, val)
 # good
 x = self[:attr]
 self[:attr] = val</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+def foo
+  bar || read_attribute(:foo)
+end</code></pre>
 </div>
 </div>
 </div>
