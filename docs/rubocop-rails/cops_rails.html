@@ -1770,7 +1770,7 @@ blank check of block arguments to the receiver object.</p>
 </div>
 <div class="paragraph">
 <p>For example, <code>[[1, 2], [3, nil]].reject { |first, second| second.blank? }</code> and
-<code>[[1, 2], [3, nil]].compact_blank</code> are not compatible. The same is true for <code>empty?</code>.
+<code>[[1, 2], [3, nil]].compact_blank</code> are not compatible. The same is true for <code>blank?</code>.
 This will work fine when the receiver is a hash object.</p>
 </div>
 </div>
@@ -1780,18 +1780,14 @@ This will work fine when the receiver is a hash object.</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 collection.reject(&amp;:blank?)
-collection.reject(&amp;:empty?)
 collection.reject { |_k, v| v.blank? }
-collection.reject { |_k, v| v.empty? }
 
 # good
 collection.compact_blank
 
 # bad
 collection.reject!(&amp;:blank?)
-collection.reject!(&amp;:empty?)
 collection.reject! { |_k, v| v.blank? }
-collection.reject! { |_k, v| v.empty? }
 
 # good
 collection.compact_blank!</code></pre>
@@ -4482,6 +4478,28 @@ class Patient &lt; ApplicationRecord
 end</code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="ignorescopes-false-default"><a class="anchor" href="#ignorescopes-false-default"></a>IgnoreScopes: false (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+class Blog &lt; ApplicationRecord
+  has_many :posts, -&gt; { order(published_at: :desc) }
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ignorescopes-true"><a class="anchor" href="#ignorescopes-true"></a>IgnoreScopes: true</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+class Blog &lt; ApplicationRecord
+  has_many :posts, -&gt; { order(published_at: :desc) }
+end</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="configurable-attributes-28"><a class="anchor" href="#configurable-attributes-28"></a>Configurable attributes</h3>
@@ -4499,6 +4517,11 @@ end</code></pre>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IgnoreScopes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/models/<strong>*/</strong>.rb</code></p></td>
@@ -6284,9 +6307,9 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
 </tr>
 </tbody>
 </table>
@@ -6295,6 +6318,13 @@ end</code></pre>
 unless <code>config.active_record.belongs_to_required_by_default</code> is
 explicitly set to <code>false</code>. The presence validator is added
 automatically, and explicit presence validation is redundant.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because it changes the default error message
+from "can&#8217;t be blank" to "must exist".</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
@@ -6537,7 +6567,7 @@ end</code></pre>
 the definition of a reflection is a string.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
+<h3 id="safety-19"><a class="anchor" href="#safety-19"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it cannot be determined whether
 constant or method return value specified to <code>class_name</code> is a string.</p>
@@ -6692,7 +6722,7 @@ refute_equal true, false</code></pre>
 Because the relative date will be evaluated only once.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-19"><a class="anchor" href="#safety-19"></a>Safety</h3>
+<h3 id="safety-20"><a class="anchor" href="#safety-20"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because its dependence on the constant is not corrected.</p>
 </div>
@@ -7086,7 +7116,7 @@ require_dependency 'some_lib'</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.47</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
 </tr>
 </tbody>
 </table>
@@ -7299,7 +7329,7 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db/migrate/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -7346,7 +7376,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.10</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
 </tr>
 </tbody>
 </table>
@@ -7414,7 +7444,7 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db/migrate/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db/<strong>*/</strong>.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -7614,7 +7644,7 @@ foo&amp;.bar { |e| e.baz }</code></pre>
 a conditional.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-20"><a class="anchor" href="#safety-20"></a>Safety</h3>
+<h3 id="safety-21"><a class="anchor" href="#safety-21"></a>Safety</h3>
 <div class="paragraph">
 <p>While the safe navigation operator is generally a good idea, when
 checking <code>foo&amp;.blank?</code> in a conditional, <code>foo</code> being <code>nil</code> will actually
@@ -7714,7 +7744,7 @@ that behavior can be turned off with <code>AllowImplicitReturn: false</code>.</p
 <code>AllowedReceivers: []</code></p>
 </div>
 <div class="sect2">
-<h3 id="safety-21"><a class="anchor" href="#safety-21"></a>Safety</h3>
+<h3 id="safety-22"><a class="anchor" href="#safety-22"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because a custom <code>update</code> method call would be changed to <code>update!</code>,
 but the method name in the definition would be unchanged.</p>
@@ -8261,7 +8291,7 @@ user.touch</code></pre>
 <p>Checks SQL heredocs to use <code>.squish</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-22"><a class="anchor" href="#safety-22"></a>Safety</h3>
+<h3 id="safety-23"><a class="anchor" href="#safety-23"></a>Safety</h3>
 <div class="paragraph">
 <p>Some SQL syntax (e.g. PostgreSQL comments and functions) requires newlines
 to be preserved in order to work, thus auto-correction for this cop is not safe.</p>
@@ -8361,7 +8391,7 @@ then only use of <code>Time.zone</code> is allowed.</p>
 to use <code>Time#in_time_zone</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-23"><a class="anchor" href="#safety-23"></a>Safety</h3>
+<h3 id="safety-24"><a class="anchor" href="#safety-24"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because it may change handling time.</p>
 </div>
@@ -8586,7 +8616,7 @@ ActiveRecord::Relation vs a call to pluck on an
 ActiveRecord::Associations::CollectionProxy.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-24"><a class="anchor" href="#safety-24"></a>Safety</h3>
+<h3 id="safety-25"><a class="anchor" href="#safety-25"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe for autocorrection because the behavior may change
 depending on the database collation.</p>
@@ -9017,7 +9047,7 @@ validates :foo, uniqueness: true</code></pre>
 in <code>where</code> can be replaced with <code>where(attribute: value)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-25"><a class="anchor" href="#safety-25"></a>Safety</h3>
+<h3 id="safety-26"><a class="anchor" href="#safety-26"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because is may change SQL.
 See: <a href="https://github.com/rubocop/rubocop-rails/issues/403" class="bare">https://github.com/rubocop/rubocop-rails/issues/403</a></p>
@@ -9097,7 +9127,7 @@ then the cop enforces <code>exists?(&#8230;&#8203;)</code> over <code>where(&#82
 <code>where(&#8230;&#8203;).exists?</code> over <code>exists?(&#8230;&#8203;)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-26"><a class="anchor" href="#safety-26"></a>Safety</h3>
+<h3 id="safety-27"><a class="anchor" href="#safety-27"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe for auto-correction because the behavior may change on the following case:</p>
 </div>
