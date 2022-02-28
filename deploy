@@ -1,5 +1,13 @@
 #!/bin/sh
 
+set -e
+
+antora_version='3.0.1'
+if ! antora --version | grep -Fq $antora_version; then
+  echo "Error: Please use Antora v$antora_version"
+  exit 1
+fi
+
 antora --fetch antora-playbook.yml
 git add docs
 git commit -m 'Update site docs'
