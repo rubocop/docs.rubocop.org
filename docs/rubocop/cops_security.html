@@ -210,6 +210,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.26/index.html">1.26</a>
+        </li>
+        <li class="version">
           <a href="1.25/index.html">1.25</a>
         </li>
         <li class="version">
@@ -426,7 +429,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.25/index.html" class="home-link"></a>
+  <a href="1.26/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -438,6 +441,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_security.html">default</a>
+    <a class="version" href="1.26/cops_security.html">1.26</a>
     <a class="version" href="1.25/cops_security.html">1.25</a>
     <a class="version" href="1.24/cops_security.html">1.24</a>
     <a class="version" href="1.23/cops_security.html">1.23</a>
@@ -819,6 +823,18 @@ URI.open("http://example.com")</code></pre>
 potential security issues leading to remote code execution when
 loading from an untrusted source.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Ruby 3.1+ (Psych 4) uses <code>Psych.load</code> as <code>Psych.safe_load</code> by default.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
 <h3 id="safety-4"><a class="anchor" href="#safety-4"></a>Safety</h3>
 <div class="paragraph">
@@ -831,11 +847,13 @@ in the YAML payload, since <code>YAML.safe_load</code> is more restrictive.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-YAML.load("--- foo")
+YAML.load("--- !ruby/object:Foo {}") # Psych 3 is unsafe by default
 
 # good
-YAML.safe_load("--- foo")
-YAML.dump("foo")</code></pre>
+YAML.safe_load("--- !ruby/object:Foo {}", [Foo])                    # Ruby 2.5  (Psych 3)
+YAML.safe_load("--- !ruby/object:Foo {}", permitted_classes: [Foo]) # Ruby 3.0- (Psych 3)
+YAML.load("--- !ruby/object:Foo {}", permitted_classes: [Foo])      # Ruby 3.1+ (Psych 4)
+YAML.dump(foo)</code></pre>
 </div>
 </div>
 </div>

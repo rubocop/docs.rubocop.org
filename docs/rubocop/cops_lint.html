@@ -210,6 +210,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.26/index.html">1.26</a>
+        </li>
+        <li class="version">
           <a href="1.25/index.html">1.25</a>
         </li>
         <li class="version">
@@ -426,7 +429,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.25/index.html" class="home-link"></a>
+  <a href="1.26/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -438,6 +441,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_lint.html">default</a>
+    <a class="version" href="1.26/cops_lint.html">1.26</a>
     <a class="version" href="1.25/cops_lint.html">1.25</a>
     <a class="version" href="1.24/cops_lint.html">1.24</a>
     <a class="version" href="1.23/cops_lint.html">1.23</a>
@@ -4614,40 +4618,29 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.41</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.26</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop looks for error classes inheriting from <code>Exception</code>
-and its standard library subclasses, excluding subclasses of
-<code>StandardError</code>. It is configurable to suggest using either
-<code>RuntimeError</code> (default) or <code>StandardError</code> instead.</p>
+<p>This cop looks for error classes inheriting from <code>Exception</code>.
+It is configurable to suggest using either <code>StandardError</code> (default) or
+<code>RuntimeError</code> instead.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-7"><a class="anchor" href="#safety-7"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because <code>rescue</code> that omit
+exception class handle <code>StandardError</code> and its subclasses,
+but not <code>Exception</code> and its subclasses.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-50"><a class="anchor" href="#examples-50"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-runtime_error-default"><a class="anchor" href="#enforcedstyle-runtime_error-default"></a>EnforcedStyle: runtime_error (default)</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
-class C &lt; Exception; end
-
-C = Class.new(Exception)
-
-# good
-
-class C &lt; RuntimeError; end
-
-C = Class.new(RuntimeError)</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="enforcedstyle-standard_error"><a class="anchor" href="#enforcedstyle-standard_error"></a>EnforcedStyle: standard_error</h4>
+<h4 id="enforcedstyle-standard_error-default"><a class="anchor" href="#enforcedstyle-standard_error-default"></a>EnforcedStyle: standard_error (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4661,6 +4654,24 @@ C = Class.new(Exception)
 class C &lt; StandardError; end
 
 C = Class.new(StandardError)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-runtime_error"><a class="anchor" href="#enforcedstyle-runtime_error"></a>EnforcedStyle: runtime_error</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+
+class C &lt; Exception; end
+
+C = Class.new(Exception)
+
+# good
+
+class C &lt; RuntimeError; end
+
+C = Class.new(RuntimeError)</code></pre>
 </div>
 </div>
 </div>
@@ -4683,8 +4694,8 @@ C = Class.new(StandardError)</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>runtime_error</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>runtime_error</code>, <code>standard_error</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>standard_error</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>standard_error</code>, <code>runtime_error</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -4725,7 +4736,7 @@ C = Class.new(StandardError)</code></pre>
 <p>This cop checks for interpolation in a single quoted string.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-7"><a class="anchor" href="#safety-7"></a>Safety</h3>
+<h3 id="safety-8"><a class="anchor" href="#safety-8"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is generally safe, but is marked as unsafe because
 it is possible to actually intentionally have text inside
@@ -4964,7 +4975,7 @@ end</code></pre>
 <p>This cop checks for uses of <code>begin&#8230;&#8203;end while/until something</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-8"><a class="anchor" href="#safety-8"></a>Safety</h3>
+<h3 id="safety-9"><a class="anchor" href="#safety-9"></a>Safety</h3>
 <div class="paragraph">
 <p>The cop is unsafe because behaviour can change in some cases, including
 if a local variable inside the loop body is accessed outside of it, or if the
@@ -5676,7 +5687,7 @@ This cop will be deprecated and removed when supporting only Ruby 3.0 and higher
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-9"><a class="anchor" href="#safety-9"></a>Safety</h3>
+<h3 id="safety-10"><a class="anchor" href="#safety-10"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe in the case where sorting files changes existing
 expected behaviour.</p>
@@ -5868,7 +5879,7 @@ with <code>Integer()</code> and can be ignored with <code>IgnoredMethods</code>.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-10"><a class="anchor" href="#safety-10"></a>Safety</h3>
+<h3 id="safety-11"><a class="anchor" href="#safety-11"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is unsafe because it is not guaranteed that the
 replacement <code>Kernel</code> methods are able to properly handle the
@@ -6067,7 +6078,7 @@ should always be the same. If constants are assigned in multiple
 locations, the result may vary depending on the order of <code>require</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-11"><a class="anchor" href="#safety-11"></a>Safety</h3>
+<h3 id="safety-12"><a class="anchor" href="#safety-12"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because code that is already conditionally
 assigning a constant may have its behaviour changed by
@@ -6184,7 +6195,7 @@ p [''.frozen?, ''.encoding] #=&gt; [true, #&lt;Encoding:US-ASCII&gt;]</code></pr
 and thus always returns nil.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-12"><a class="anchor" href="#safety-12"></a>Safety</h3>
+<h3 id="safety-13"><a class="anchor" href="#safety-13"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it is naive in how it determines what
 references are available based on the last encountered regexp, but
@@ -6321,7 +6332,7 @@ example, mistranslating an array of literals to percent string notation)
 rather than meant to be part of the resulting strings.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-13"><a class="anchor" href="#safety-13"></a>Safety</h3>
+<h3 id="safety-14"><a class="anchor" href="#safety-14"></a>Safety</h3>
 <div class="paragraph">
 <p>The cop is unsafe because the correction changes the values in the array
 and that might have been done purposely.</p>
@@ -6452,7 +6463,7 @@ prevent the false positive by specifying a namespace to be omitted for
 name with an explicit namespace.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-14"><a class="anchor" href="#safety-14"></a>Safety</h3>
+<h3 id="safety-15"><a class="anchor" href="#safety-15"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it will change the exception class being
 raised, which is a change in behaviour.</p>
@@ -6737,15 +6748,20 @@ Required Ruby version: 3.0
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.26</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p>Sort globbed results by default in Ruby 3.0.
 This cop checks for redundant <code>sort</code> method to <code>Dir.glob</code> and <code>Dir[]</code>.</p>
+</div>
+<div class="paragraph">
+<p>This cop is unsafe, in case of having a file and a directory with
+identical names, since directory will be loaded before the file, which
+will break <code>exe/files.rb</code> that rely on <code>exe.rb</code> file.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
@@ -6871,7 +6887,7 @@ are checked by default. These are customizable with <code>AllowedMethods</code> 
 because <code>NilClass</code> has methods like <code>respond_to?</code> and <code>is_a?</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-15"><a class="anchor" href="#safety-15"></a>Safety</h3>
+<h3 id="safety-16"><a class="anchor" href="#safety-16"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, because auto-correction can change the return type of
 the expression. An offending expression that previously could return <code>nil</code>
@@ -9209,7 +9225,7 @@ this, as they are not used by the methods in question.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="safety-16"><a class="anchor" href="#safety-16"></a>Safety</h3>
+<h3 id="safety-17"><a class="anchor" href="#safety-17"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop matches for method names only and hence cannot tell apart
 methods with same name in different classes, which may lead to a
@@ -10466,7 +10482,7 @@ end</code></pre>
 and methods just delegating to <code>super</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-17"><a class="anchor" href="#safety-17"></a>Safety</h3>
+<h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe as it can register false positives for cases when an empty
 constructor just overrides the parent constructor, which is bad anyway.</p>
@@ -10662,7 +10678,7 @@ define_method(:foo) { |arg| }</code></pre>
 expression of a function definition.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
+<h3 id="safety-19"><a class="anchor" href="#safety-19"></a>Safety</h3>
 <div class="paragraph">
 <p>There are edge cases in which the local variable references a
 value that is also accessible outside the local scope. This is not
@@ -10735,7 +10751,7 @@ end</code></pre>
 (<code>1.times</code>).</p>
 </div>
 <div class="sect2">
-<h3 id="safety-19"><a class="anchor" href="#safety-19"></a>Safety</h3>
+<h3 id="safety-20"><a class="anchor" href="#safety-20"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe as <code>times</code> returns its receiver, which is
 <strong>usually</strong> OK, but might change behavior.</p>

@@ -119,6 +119,9 @@
           <a href="../rubocop/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.26/index.html">1.26</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.25/index.html">1.25</a>
         </li>
         <li class="version">
@@ -335,7 +338,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.25/index.html" class="home-link"></a>
+  <a href="../rubocop/1.26/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop Rails</a></li>
@@ -8355,6 +8358,104 @@ SQL</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="railstablenameassignment"><a class="anchor" href="#railstablenameassignment"></a>Rails/TableNameAssignment</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This cop enforces the absence of explicit table name assignment.</p>
+</div>
+<div class="paragraph">
+<p><code>self.table_name=</code> should only be used for very good reasons,
+such as not having control over the database, or working
+on a legacy project.</p>
+</div>
+<div class="paragraph">
+<p>If you need to change how your model&#8217;s name is translated to
+a table name, you may want to look at Inflections:
+<a href="https://api.rubyonrails.org/classes/ActiveSupport/Inflector/Inflections.html" class="bare">https://api.rubyonrails.org/classes/ActiveSupport/Inflector/Inflections.html</a></p>
+</div>
+<div class="paragraph">
+<p>If you wish to add a prefix in front of your model, or wish to change
+the default prefix, <code>self.table_name_prefix</code> might better suit your needs:
+<a href="https://api.rubyonrails.org/classes/ActiveRecord/ModelSchema.html#method-c-table_name_prefix-3D" class="bare">https://api.rubyonrails.org/classes/ActiveRecord/ModelSchema.html#method-c-table_name_prefix-3D</a></p>
+</div>
+<div class="paragraph">
+<p>STI base classes named <code>Base</code> are ignored by this cop.
+For more information: <a href="https://api.rubyonrails.org/classes/ActiveRecord/Inheritance.html" class="bare">https://api.rubyonrails.org/classes/ActiveRecord/Inheritance.html</a></p>
+</div>
+<div class="sect2">
+<h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">  # bad
+  self.table_name = 'some_table_name'
+  self.table_name = :some_other_name</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-50"><a class="anchor" href="#configurable-attributes-50"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exclude</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec/<strong>*/</strong></code>, <code>db/migrate/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="references-33"><a class="anchor" href="#references-33"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://rails.rubystyle.guide/#keep-ar-defaults" class="bare">https://rails.rubystyle.guide/#keep-ar-defaults</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="railstimezone"><a class="anchor" href="#railstimezone"></a>Rails/TimeZone</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -8406,7 +8507,7 @@ to use <code>Time#in_time_zone</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
+<h3 id="examples-91"><a class="anchor" href="#examples-91"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8444,7 +8545,7 @@ Time.at(timestamp).in_time_zone</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-50"><a class="anchor" href="#configurable-attributes-50"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-51"><a class="anchor" href="#configurable-attributes-51"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8473,7 +8574,7 @@ Time.at(timestamp).in_time_zone</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-33"><a class="anchor" href="#references-33"></a>References</h3>
+<h3 id="references-34"><a class="anchor" href="#references-34"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8527,7 +8628,7 @@ Using <code>Time.use_zone</code> ensures the code passed in the block is the onl
 It eliminates the possibility of a <code>zone</code> sticking around longer than intended.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-91"><a class="anchor" href="#examples-91"></a>Examples</h3>
+<h3 id="examples-92"><a class="anchor" href="#examples-92"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8540,7 +8641,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-51"><a class="anchor" href="#configurable-attributes-51"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-52"><a class="anchor" href="#configurable-attributes-52"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8564,7 +8665,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-34"><a class="anchor" href="#references-34"></a>References</h3>
+<h3 id="references-35"><a class="anchor" href="#references-35"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8632,7 +8733,7 @@ depending on the database collation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-92"><a class="anchor" href="#examples-92"></a>Examples</h3>
+<h3 id="examples-93"><a class="anchor" href="#examples-93"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-conservative-default-3"><a class="anchor" href="#enforcedstyle-conservative-default-3"></a>EnforcedStyle: conservative (default)</h4>
 <div class="listingblock">
@@ -8667,7 +8768,7 @@ customer.favourites.distinct.pluck(:color)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-52"><a class="anchor" href="#configurable-attributes-52"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-53"><a class="anchor" href="#configurable-attributes-53"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8736,7 +8837,7 @@ the query will be heavy.</p>
 <p>Note that the cop does nothing if db/schema.rb does not exist.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-93"><a class="anchor" href="#examples-93"></a>Examples</h3>
+<h3 id="examples-94"><a class="anchor" href="#examples-94"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - if the schema does not have a unique index
@@ -8751,7 +8852,7 @@ validates :account, length: { minimum: MIN_LENGTH }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-53"><a class="anchor" href="#configurable-attributes-53"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-54"><a class="anchor" href="#configurable-attributes-54"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8814,7 +8915,7 @@ By default the cop allows three environments which Rails ships with:
 More can be added to the <code>Environments</code> config parameter.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-94"><a class="anchor" href="#examples-94"></a>Examples</h3>
+<h3 id="examples-95"><a class="anchor" href="#examples-95"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8828,7 +8929,7 @@ Rails.env == 'production'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-54"><a class="anchor" href="#configurable-attributes-54"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-55"><a class="anchor" href="#configurable-attributes-55"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8889,7 +8990,7 @@ Rails.env == 'production'</code></pre>
 to drop the column. You avoid forgetting to remove <code>ignored_columns</code> by this cop.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-95"><a class="anchor" href="#examples-95"></a>Examples</h3>
+<h3 id="examples-96"><a class="anchor" href="#examples-96"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8905,7 +9006,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-55"><a class="anchor" href="#configurable-attributes-55"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-56"><a class="anchor" href="#configurable-attributes-56"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8964,7 +9065,7 @@ end</code></pre>
 <p>This cop checks for the use of old-style attribute validation macros.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-96"><a class="anchor" href="#examples-96"></a>Examples</h3>
+<h3 id="examples-97"><a class="anchor" href="#examples-97"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8996,7 +9097,7 @@ validates :foo, uniqueness: true</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-56"><a class="anchor" href="#configurable-attributes-56"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-57"><a class="anchor" href="#configurable-attributes-57"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9063,7 +9164,7 @@ See: <a href="https://github.com/rubocop/rubocop-rails/issues/403" class="bare">
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-97"><a class="anchor" href="#examples-97"></a>Examples</h3>
+<h3 id="examples-98"><a class="anchor" href="#examples-98"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9083,7 +9184,7 @@ User.where(users: { name: 'Gabe' })</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-35"><a class="anchor" href="#references-35"></a>References</h3>
+<h3 id="references-36"><a class="anchor" href="#references-36"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9151,7 +9252,7 @@ Author.includes(:articles).exists?(articles: {id: id})
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-98"><a class="anchor" href="#examples-98"></a>Examples</h3>
+<h3 id="examples-99"><a class="anchor" href="#examples-99"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-exists-default"><a class="anchor" href="#enforcedstyle-exists-default"></a>EnforcedStyle: exists (default)</h4>
 <div class="listingblock">
@@ -9190,7 +9291,7 @@ User.where('length(name) &gt; 10').exists?</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-57"><a class="anchor" href="#configurable-attributes-57"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-58"><a class="anchor" href="#configurable-attributes-58"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9250,7 +9351,7 @@ User.where('length(name) &gt; 10').exists?</code></pre>
 in <code>where</code> can be replaced with <code>where.not(&#8230;&#8203;)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-99"><a class="anchor" href="#examples-99"></a>Examples</h3>
+<h3 id="examples-100"><a class="anchor" href="#examples-100"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9272,7 +9373,7 @@ User.where.not(users: { name: 'Gabe' })</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-36"><a class="anchor" href="#references-36"></a>References</h3>
+<h3 id="references-37"><a class="anchor" href="#references-37"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
