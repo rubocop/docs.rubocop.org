@@ -6764,10 +6764,13 @@ Required Ruby version: 3.0
 <p>Sort globbed results by default in Ruby 3.0.
 This cop checks for redundant <code>sort</code> method to <code>Dir.glob</code> and <code>Dir[]</code>.</p>
 </div>
+<div class="sect2">
+<h3 id="safety-16"><a class="anchor" href="#safety-16"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, in case of having a file and a directory with
 identical names, since directory will be loaded before the file, which
 will break <code>exe/files.rb</code> that rely on <code>exe.rb</code> file.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
@@ -6893,7 +6896,7 @@ are checked by default. These are customizable with <code>AllowedMethods</code> 
 because <code>NilClass</code> has methods like <code>respond_to?</code> and <code>is_a?</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-16"><a class="anchor" href="#safety-16"></a>Safety</h3>
+<h3 id="safety-17"><a class="anchor" href="#safety-17"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, because auto-correction can change the return type of
 the expression. An offending expression that previously could return <code>nil</code>
@@ -9231,7 +9234,7 @@ this, as they are not used by the methods in question.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="safety-17"><a class="anchor" href="#safety-17"></a>Safety</h3>
+<h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop matches for method names only and hence cannot tell apart
 methods with same name in different classes, which may lead to a
@@ -10488,7 +10491,7 @@ end</code></pre>
 and methods just delegating to <code>super</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
+<h3 id="safety-19"><a class="anchor" href="#safety-19"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe as it can register false positives for cases when an empty
 constructor just overrides the parent constructor, which is bad anyway.</p>
@@ -10684,7 +10687,7 @@ define_method(:foo) { |arg| }</code></pre>
 expression of a function definition.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-19"><a class="anchor" href="#safety-19"></a>Safety</h3>
+<h3 id="safety-20"><a class="anchor" href="#safety-20"></a>Safety</h3>
 <div class="paragraph">
 <p>There are edge cases in which the local variable references a
 value that is also accessible outside the local scope. This is not
@@ -10757,7 +10760,7 @@ end</code></pre>
 (<code>1.times</code>).</p>
 </div>
 <div class="sect2">
-<h3 id="safety-20"><a class="anchor" href="#safety-20"></a>Safety</h3>
+<h3 id="safety-21"><a class="anchor" href="#safety-21"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe as <code>times</code> returns its receiver, which is
 <strong>usually</strong> OK, but might change behavior.</p>

@@ -7550,6 +7550,128 @@ let(:userFood_2) { 'fettuccine' }</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="rspecverifieddoublereference"><a class="anchor" href="#rspecverifieddoublereference"></a>RSpec/VerifiedDoubleReference</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.10.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks for consistent verified double reference style.</p>
+</div>
+<div class="paragraph">
+<p>Only investigates references that are one of the supported styles.</p>
+</div>
+<div class="paragraph">
+<p>This cop can be configured in your configuration using the
+<code>EnforcedStyle</code> option and supports <code>--auto-gen-config</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
+<div class="sect3">
+<h4 id="enforcedstyle-constant-default"><a class="anchor" href="#enforcedstyle-constant-default"></a><code>EnforcedStyle: constant</code> (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+let(:foo) do
+  instance_double('ClassName', method_name: 'returned_value')
+end
+
+# good
+let(:foo) do
+  instance_double(ClassName, method_name: 'returned_value')
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-string"><a class="anchor" href="#enforcedstyle-string"></a><code>EnforcedStyle: string</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+let(:foo) do
+  instance_double(ClassName, method_name: 'returned_value')
+end
+
+# good
+let(:foo) do
+  instance_double('ClassName', method_name: 'returned_value')
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="reference-is-not-in-the-supported-style-list-no-enforcement"><a class="anchor" href="#reference-is-not-in-the-supported-style-list-no-enforcement"></a>Reference is not in the supported style list. No enforcement</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+let(:foo) do
+  instance_double(@klass, method_name: 'returned_value')
+end</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-29"><a class="anchor" href="#configurable-attributes-29"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>constant</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>constant</code>, <code>string</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="references-82"><a class="anchor" href="#references-82"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/VerifiedDoubleReference" class="bare">https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/VerifiedDoubleReference</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="rspecverifieddoubles"><a class="anchor" href="#rspecverifieddoubles"></a>RSpec/VerifiedDoubles</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -7583,7 +7705,7 @@ let(:userFood_2) { 'fettuccine' }</code></pre>
 <p>Prefer using verifying doubles over normal doubles.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
+<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7604,7 +7726,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-29"><a class="anchor" href="#configurable-attributes-29"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-30"><a class="anchor" href="#configurable-attributes-30"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7633,7 +7755,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-82"><a class="anchor" href="#references-82"></a>References</h3>
+<h3 id="references-83"><a class="anchor" href="#references-83"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7681,7 +7803,7 @@ end</code></pre>
 <p>This cop checks void <code>expect()</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
+<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7693,7 +7815,7 @@ expect(something).to be(1)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-83"><a class="anchor" href="#references-83"></a>References</h3>
+<h3 id="references-84"><a class="anchor" href="#references-84"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7738,7 +7860,7 @@ expect(something).to be(1)</code></pre>
 <p>This cop checks for calling a block within a stub.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
+<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7750,7 +7872,7 @@ expect(foo).to receive(:bar).and_yield(1)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-84"><a class="anchor" href="#references-84"></a>References</h3>
+<h3 id="references-85"><a class="anchor" href="#references-85"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>

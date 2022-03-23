@@ -457,7 +457,7 @@
     <a class="version" href="../1.0/cops_style.html">1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.26.0/docs/modules/ROOT/pages/cops_style.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.26.1/docs/modules/ROOT/pages/cops_style.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -18514,6 +18514,11 @@ if condition_a
   end
 end
 
+# bad
+if condition_b
+  do_something
+end if condition_a
+
 # good
 if condition_a &amp;&amp; condition_b
   do_something
@@ -18527,7 +18532,12 @@ end</code></pre>
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 if condition_a
   do_something if condition_b
-end</code></pre>
+end
+
+# bad
+if condition_b
+  do_something
+end if condition_a</code></pre>
 </div>
 </div>
 </div>
@@ -18538,7 +18548,12 @@ end</code></pre>
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
 if condition_a
   do_something if condition_b
-end</code></pre>
+end
+
+# good
+if condition_b
+  do_something
+end if condition_a</code></pre>
 </div>
 </div>
 </div>
