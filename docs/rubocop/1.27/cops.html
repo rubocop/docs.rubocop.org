@@ -1,0 +1,2163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Cops :: RuboCop Docs</title>
+    <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops.html">
+    <link rel="prev" href="configuration.html">
+    <link rel="next" href="formatters.html">
+    <meta name="generator" content="Antora 3.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@alpha">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140153536-1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-140153536-1')</script>
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <a href="https://rubocop.org">RuboCop</a>
+        <span class="separator">//</span>
+        <a href="https://docs.rubocop.org">Docs</a>
+      </div>
+      <div class="navbar-item">
+        <div id="docsearch"></div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href=index.html>Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Style Guides</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://rubystyle.guide">Ruby</a>
+            <a class="navbar-item" href="https://rails.rubystyle.guide">Rails</a>
+            <a class="navbar-item" href="https://rspec.rubystyle.guide">RSpec</a>
+            <a class="navbar-item" href="https://minitest.rubystyle.guide">Minitest</a>
+          </div>
+        </div>
+        <a class="navbar-item" href="https://www.rubydoc.info/gems/rubocop">API Docs</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Projects</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop">RuboCop</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-ast">RuboCop AST</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-minitest">RuboCop Minitest</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-performance">RuboCop Performance</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rails">RuboCop Rails</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rake">RuboCop Rake</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rspec">RuboCop RSpec</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Community</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop">GitHub Org</a>
+            <a class="navbar-item" href="https://gitter.im/bbatsov/rubocop">Chat (Gitter)</a>
+            <a class="navbar-item" href="https://opencollective.com/rubocop">Open Collective</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rubocop" data-version="1.27">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">RuboCop</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="compatibility.html">Compatibility</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Usage</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/basic_usage.html">Basic Usage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/auto_correct.html">Auto-correct</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/caching.html">Caching</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="cops.html">Cops</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="formatters.html">Formatters</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cop Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_bundler.html">Bundler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_gemspec.html">Gemspec</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_layout.html">Layout</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_lint.html">Lint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_metrics.html">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_migration.html">Migration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_naming.html">Naming</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_security.html">Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_style.html">Style</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="v1_upgrade_notes.html">Upgrade Notes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="extensions.html">Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="integration_with_other_tools.html">Integration with Other Tools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="automated_code_review.html">Automated Code Review</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="contributing.html">Contributing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="support.html">Support</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="versioning.html">Versioning</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">About</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/history.html">History</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/team.html">Team</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/changelog.html">Changelog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/logo.html">Logo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/license.html">License</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RuboCop</span>
+    <span class="version">1.27</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">RuboCop</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../index.html">default</a>
+        </li>
+        <li class="version is-current">
+          <a href="index.html">1.27</a>
+        </li>
+        <li class="version">
+          <a href="../1.26/index.html">1.26</a>
+        </li>
+        <li class="version">
+          <a href="../1.25/index.html">1.25</a>
+        </li>
+        <li class="version">
+          <a href="../1.24/index.html">1.24</a>
+        </li>
+        <li class="version">
+          <a href="../1.23/index.html">1.23</a>
+        </li>
+        <li class="version">
+          <a href="../1.22/index.html">1.22</a>
+        </li>
+        <li class="version">
+          <a href="../1.21/index.html">1.21</a>
+        </li>
+        <li class="version">
+          <a href="../1.20/index.html">1.20</a>
+        </li>
+        <li class="version">
+          <a href="../1.0/index.html">1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-ast/index.html">RuboCop AST</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-ast/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.12/index.html">1.12</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.11/index.html">1.11</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.10/index.html">1.10</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.9/index.html">1.9</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.8/index.html">1.8</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.7/index.html">1.7</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.6/index.html">1.6</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.5/index.html">1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.4/index.html">1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.3/index.html">1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.2/index.html">1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.0/index.html">1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-minitest/index.html">RuboCop Minitest</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-minitest/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.19/index.html">0.19</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.18/index.html">0.18</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.17/index.html">0.17</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.16/index.html">0.16</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.15/index.html">0.15</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.14/index.html">0.14</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.13/index.html">0.13</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.12/index.html">0.12</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.11/index.html">0.11</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.10/index.html">0.10</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-packaging/index.html">RuboCop Packaging</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-packaging/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-performance/index.html">RuboCop Performance</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-performance/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.13/index.html">1.13</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.12/index.html">1.12</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.11/index.html">1.11</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.10/index.html">1.10</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.9/index.html">1.9</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.8/index.html">1.8</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.7/index.html">1.7</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-rails/index.html">RuboCop Rails</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-rails/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.14/index.html">2.14</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.13/index.html">2.13</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.12/index.html">2.12</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.11/index.html">2.11</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.10/index.html">2.10</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.9/index.html">2.9</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.8/index.html">2.8</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.7/index.html">2.7</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-rspec/index.html">RuboCop RSpec</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-rspec/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.10/index.html">2.10</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.9/index.html">2.9</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.8/index.html">2.8</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.7/index.html">2.7</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.6/index.html">2.6</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.5/index.html">2.5</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.4/index.html">2.4</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.3/index.html">2.3</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.2/index.html">2.2</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.1/index.html">2.1</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.0/index.html">2.0</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/1.44/index.html">1.44</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">RuboCop</a></li>
+    <li><a href="cops.html">Cops</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">1.27</button>
+  <div class="version-menu">
+    <a class="version" href="../cops.html">default</a>
+    <a class="version is-current" href="cops.html">1.27</a>
+    <a class="version" href="../1.26/cops.html">1.26</a>
+    <a class="version" href="../1.25/cops.html">1.25</a>
+    <a class="version" href="../1.24/cops.html">1.24</a>
+    <a class="version" href="../1.23/cops.html">1.23</a>
+    <a class="version" href="../1.22/cops.html">1.22</a>
+    <a class="version" href="../1.21/cops.html">1.21</a>
+    <a class="version" href="../1.20/cops.html">1.20</a>
+    <a class="version" href="../1.0/cops.html">1.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.27.0/docs/modules/ROOT/pages/cops.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Cops</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In RuboCop lingo the various checks performed on the code are called cops.
+Each cop is responsible for detecting one particular offense. There are several
+cop departments, grouping the cops by class of offense. A short description of
+the different departments is provided below.</p>
+</div>
+<div class="paragraph">
+<p>Many of the Style and Layout cops have configuration options, allowing them to
+enforce different coding conventions.</p>
+</div>
+<div class="paragraph">
+<p>You can also load <a href="extensions.html#custom-cops" class="xref page">custom cops</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="style"><a class="anchor" href="#style"></a>Style</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Style cops check for stylistic consistency of your code. Many of the them are
+based on the <a href="https://rubystyle.guide">Ruby Style Guide</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="layout"><a class="anchor" href="#layout"></a>Layout</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Layout cops inspect your code for consistent use of indentation, alignment,
+and white space.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="lint"><a class="anchor" href="#lint"></a>Lint</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Lint cops check for ambiguities and possible errors in your code.</p>
+</div>
+<div class="paragraph">
+<p>RuboCop implements, in a portable way, all built-in MRI lint checks
+(<code>ruby -wc</code>) and adds a lot of extra lint checks of its own.</p>
+</div>
+<div class="paragraph">
+<p>You can run only the Lint cops like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop -l</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>-l</code>/<code>--lint</code> option can be used together with <code>--only</code> to run all the
+enabled Lint cops plus a selection of other cops.</p>
+</div>
+<div class="paragraph">
+<p>Disabling Lint cops is generally a bad idea.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="metrics"><a class="anchor" href="#metrics"></a>Metrics</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Metrics cops deal with properties of the source code that can be measured,
+such as class length, method length, etc. Generally speaking, they have a
+configuration parameter called <code>Max</code> and when running
+<code>rubocop --auto-gen-config</code>, this parameter will be set to the highest value
+found for the inspected code.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="naming"><a class="anchor" href="#naming"></a>Naming</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Naming cops check for naming issue of your code, such as method name, constant
+name, file name, etc.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="security"><a class="anchor" href="#security"></a>Security</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Security cops checks for method calls and constructs which are known to be
+associated with potential security issues.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="bundler"><a class="anchor" href="#bundler"></a>Bundler</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bundler cops check for style and bad practices in Bundler files, e.g. <code>Gemfile</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="gemspec"><a class="anchor" href="#gemspec"></a>Gemspec</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Gemspec cops check for style and bad practices in gemspec files, e.g. <code>rubocop.gemspec</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="available-cops"><a class="anchor" href="#available-cops"></a>Available cops</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the following section you find all available cops:</p>
+</div>
+<div class="sect2">
+<h3 id="department-bundler"><a class="anchor" href="#department-bundler"></a>Department <a href="cops_bundler.html" class="xref page">Bundler</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="cops_bundler.html#bundlerduplicatedgem" class="xref page">Bundler/DuplicatedGem</a></p>
+</li>
+<li>
+<p><a href="cops_bundler.html#bundlergemcomment" class="xref page">Bundler/GemComment</a></p>
+</li>
+<li>
+<p><a href="cops_bundler.html#bundlergemfilename" class="xref page">Bundler/GemFilename</a></p>
+</li>
+<li>
+<p><a href="cops_bundler.html#bundlergemversion" class="xref page">Bundler/GemVersion</a></p>
+</li>
+<li>
+<p><a href="cops_bundler.html#bundlerinsecureprotocolsource" class="xref page">Bundler/InsecureProtocolSource</a></p>
+</li>
+<li>
+<p><a href="cops_bundler.html#bundlerorderedgems" class="xref page">Bundler/OrderedGems</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="department-gemspec"><a class="anchor" href="#department-gemspec"></a>Department <a href="cops_gemspec.html" class="xref page">Gemspec</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="cops_gemspec.html#gemspecdateassignment" class="xref page">Gemspec/DateAssignment</a></p>
+</li>
+<li>
+<p><a href="cops_gemspec.html#gemspecduplicatedassignment" class="xref page">Gemspec/DuplicatedAssignment</a></p>
+</li>
+<li>
+<p><a href="cops_gemspec.html#gemspecordereddependencies" class="xref page">Gemspec/OrderedDependencies</a></p>
+</li>
+<li>
+<p><a href="cops_gemspec.html#gemspecrequiremfa" class="xref page">Gemspec/RequireMFA</a></p>
+</li>
+<li>
+<p><a href="cops_gemspec.html#gemspecrequiredrubyversion" class="xref page">Gemspec/RequiredRubyVersion</a></p>
+</li>
+<li>
+<p><a href="cops_gemspec.html#gemspecrubyversionglobalsusage" class="xref page">Gemspec/RubyVersionGlobalsUsage</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="department-layout"><a class="anchor" href="#department-layout"></a>Department <a href="cops_layout.html" class="xref page">Layout</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="cops_layout.html#layoutaccessmodifierindentation" class="xref page">Layout/AccessModifierIndentation</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutargumentalignment" class="xref page">Layout/ArgumentAlignment</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutarrayalignment" class="xref page">Layout/ArrayAlignment</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutassignmentindentation" class="xref page">Layout/AssignmentIndentation</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutbeginendalignment" class="xref page">Layout/BeginEndAlignment</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutblockalignment" class="xref page">Layout/BlockAlignment</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutblockendnewline" class="xref page">Layout/BlockEndNewline</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutcaseindentation" class="xref page">Layout/CaseIndentation</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutclassstructure" class="xref page">Layout/ClassStructure</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutclosingheredocindentation" class="xref page">Layout/ClosingHeredocIndentation</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutclosingparenthesisindentation" class="xref page">Layout/ClosingParenthesisIndentation</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutcommentindentation" class="xref page">Layout/CommentIndentation</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutconditionposition" class="xref page">Layout/ConditionPosition</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutdefendalignment" class="xref page">Layout/DefEndAlignment</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutdotposition" class="xref page">Layout/DotPosition</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutelsealignment" class="xref page">Layout/ElseAlignment</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutemptycomment" class="xref page">Layout/EmptyComment</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutemptylineafterguardclause" class="xref page">Layout/EmptyLineAfterGuardClause</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutemptylineaftermagiccomment" class="xref page">Layout/EmptyLineAfterMagicComment</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutemptylineaftermultilinecondition" class="xref page">Layout/EmptyLineAfterMultilineCondition</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutemptylinebetweendefs" class="xref page">Layout/EmptyLineBetweenDefs</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutemptylines" class="xref page">Layout/EmptyLines</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutemptylinesaroundaccessmodifier" class="xref page">Layout/EmptyLinesAroundAccessModifier</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutemptylinesaroundarguments" class="xref page">Layout/EmptyLinesAroundArguments</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutemptylinesaroundattributeaccessor" class="xref page">Layout/EmptyLinesAroundAttributeAccessor</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutemptylinesaroundbeginbody" class="xref page">Layout/EmptyLinesAroundBeginBody</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutemptylinesaroundblockbody" class="xref page">Layout/EmptyLinesAroundBlockBody</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutemptylinesaroundclassbody" class="xref page">Layout/EmptyLinesAroundClassBody</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutemptylinesaroundexceptionhandlingkeywords" class="xref page">Layout/EmptyLinesAroundExceptionHandlingKeywords</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutemptylinesaroundmethodbody" class="xref page">Layout/EmptyLinesAroundMethodBody</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutemptylinesaroundmodulebody" class="xref page">Layout/EmptyLinesAroundModuleBody</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutendalignment" class="xref page">Layout/EndAlignment</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutendofline" class="xref page">Layout/EndOfLine</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutextraspacing" class="xref page">Layout/ExtraSpacing</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutfirstargumentindentation" class="xref page">Layout/FirstArgumentIndentation</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutfirstarrayelementindentation" class="xref page">Layout/FirstArrayElementIndentation</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutfirstarrayelementlinebreak" class="xref page">Layout/FirstArrayElementLineBreak</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutfirsthashelementindentation" class="xref page">Layout/FirstHashElementIndentation</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutfirsthashelementlinebreak" class="xref page">Layout/FirstHashElementLineBreak</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutfirstmethodargumentlinebreak" class="xref page">Layout/FirstMethodArgumentLineBreak</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutfirstmethodparameterlinebreak" class="xref page">Layout/FirstMethodParameterLineBreak</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutfirstparameterindentation" class="xref page">Layout/FirstParameterIndentation</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layouthashalignment" class="xref page">Layout/HashAlignment</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutheredocargumentclosingparenthesis" class="xref page">Layout/HeredocArgumentClosingParenthesis</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutheredocindentation" class="xref page">Layout/HeredocIndentation</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutindentationconsistency" class="xref page">Layout/IndentationConsistency</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutindentationstyle" class="xref page">Layout/IndentationStyle</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutindentationwidth" class="xref page">Layout/IndentationWidth</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutinitialindentation" class="xref page">Layout/InitialIndentation</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutleadingcommentspace" class="xref page">Layout/LeadingCommentSpace</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutleadingemptylines" class="xref page">Layout/LeadingEmptyLines</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutlineendstringconcatenationindentation" class="xref page">Layout/LineEndStringConcatenationIndentation</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutlinelength" class="xref page">Layout/LineLength</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutmultilinearraybracelayout" class="xref page">Layout/MultilineArrayBraceLayout</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutmultilinearraylinebreaks" class="xref page">Layout/MultilineArrayLineBreaks</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutmultilineassignmentlayout" class="xref page">Layout/MultilineAssignmentLayout</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutmultilineblocklayout" class="xref page">Layout/MultilineBlockLayout</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutmultilinehashbracelayout" class="xref page">Layout/MultilineHashBraceLayout</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutmultilinehashkeylinebreaks" class="xref page">Layout/MultilineHashKeyLineBreaks</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutmultilinemethodargumentlinebreaks" class="xref page">Layout/MultilineMethodArgumentLineBreaks</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutmultilinemethodcallbracelayout" class="xref page">Layout/MultilineMethodCallBraceLayout</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutmultilinemethodcallindentation" class="xref page">Layout/MultilineMethodCallIndentation</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutmultilinemethoddefinitionbracelayout" class="xref page">Layout/MultilineMethodDefinitionBraceLayout</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutmultilineoperationindentation" class="xref page">Layout/MultilineOperationIndentation</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutparameteralignment" class="xref page">Layout/ParameterAlignment</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutredundantlinebreak" class="xref page">Layout/RedundantLineBreak</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutrescueensurealignment" class="xref page">Layout/RescueEnsureAlignment</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutsinglelineblockchain" class="xref page">Layout/SingleLineBlockChain</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspaceaftercolon" class="xref page">Layout/SpaceAfterColon</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspaceaftercomma" class="xref page">Layout/SpaceAfterComma</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspaceaftermethodname" class="xref page">Layout/SpaceAfterMethodName</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspaceafternot" class="xref page">Layout/SpaceAfterNot</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspaceaftersemicolon" class="xref page">Layout/SpaceAfterSemicolon</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspacearoundblockparameters" class="xref page">Layout/SpaceAroundBlockParameters</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspacearoundequalsinparameterdefault" class="xref page">Layout/SpaceAroundEqualsInParameterDefault</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspacearoundkeyword" class="xref page">Layout/SpaceAroundKeyword</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspacearoundmethodcalloperator" class="xref page">Layout/SpaceAroundMethodCallOperator</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspacearoundoperators" class="xref page">Layout/SpaceAroundOperators</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspacebeforeblockbraces" class="xref page">Layout/SpaceBeforeBlockBraces</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspacebeforebrackets" class="xref page">Layout/SpaceBeforeBrackets</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspacebeforecomma" class="xref page">Layout/SpaceBeforeComma</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspacebeforecomment" class="xref page">Layout/SpaceBeforeComment</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspacebeforefirstarg" class="xref page">Layout/SpaceBeforeFirstArg</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspacebeforesemicolon" class="xref page">Layout/SpaceBeforeSemicolon</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspaceinlambdaliteral" class="xref page">Layout/SpaceInLambdaLiteral</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspaceinsidearrayliteralbrackets" class="xref page">Layout/SpaceInsideArrayLiteralBrackets</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspaceinsidearraypercentliteral" class="xref page">Layout/SpaceInsideArrayPercentLiteral</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspaceinsideblockbraces" class="xref page">Layout/SpaceInsideBlockBraces</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspaceinsidehashliteralbraces" class="xref page">Layout/SpaceInsideHashLiteralBraces</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspaceinsideparens" class="xref page">Layout/SpaceInsideParens</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspaceinsidepercentliteraldelimiters" class="xref page">Layout/SpaceInsidePercentLiteralDelimiters</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspaceinsiderangeliteral" class="xref page">Layout/SpaceInsideRangeLiteral</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspaceinsidereferencebrackets" class="xref page">Layout/SpaceInsideReferenceBrackets</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layoutspaceinsidestringinterpolation" class="xref page">Layout/SpaceInsideStringInterpolation</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layouttrailingemptylines" class="xref page">Layout/TrailingEmptyLines</a></p>
+</li>
+<li>
+<p><a href="cops_layout.html#layouttrailingwhitespace" class="xref page">Layout/TrailingWhitespace</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="department-lint"><a class="anchor" href="#department-lint"></a>Department <a href="cops_lint.html" class="xref page">Lint</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="cops_lint.html#lintambiguousassignment" class="xref page">Lint/AmbiguousAssignment</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintambiguousblockassociation" class="xref page">Lint/AmbiguousBlockAssociation</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintambiguousoperator" class="xref page">Lint/AmbiguousOperator</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintambiguousoperatorprecedence" class="xref page">Lint/AmbiguousOperatorPrecedence</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintambiguousrange" class="xref page">Lint/AmbiguousRange</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintambiguousregexpliteral" class="xref page">Lint/AmbiguousRegexpLiteral</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintassignmentincondition" class="xref page">Lint/AssignmentInCondition</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintbigdecimalnew" class="xref page">Lint/BigDecimalNew</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintbinaryoperatorwithidenticaloperands" class="xref page">Lint/BinaryOperatorWithIdenticalOperands</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintbooleansymbol" class="xref page">Lint/BooleanSymbol</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintcircularargumentreference" class="xref page">Lint/CircularArgumentReference</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintconstantdefinitioninblock" class="xref page">Lint/ConstantDefinitionInBlock</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintconstantresolution" class="xref page">Lint/ConstantResolution</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintdebugger" class="xref page">Lint/Debugger</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintdeprecatedclassmethods" class="xref page">Lint/DeprecatedClassMethods</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintdeprecatedconstants" class="xref page">Lint/DeprecatedConstants</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintdeprecatedopensslconstant" class="xref page">Lint/DeprecatedOpenSSLConstant</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintdisjunctiveassignmentinconstructor" class="xref page">Lint/DisjunctiveAssignmentInConstructor</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintduplicatebranch" class="xref page">Lint/DuplicateBranch</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintduplicatecasecondition" class="xref page">Lint/DuplicateCaseCondition</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintduplicateelsifcondition" class="xref page">Lint/DuplicateElsifCondition</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintduplicatehashkey" class="xref page">Lint/DuplicateHashKey</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintduplicatemethods" class="xref page">Lint/DuplicateMethods</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintduplicateregexpcharacterclasselement" class="xref page">Lint/DuplicateRegexpCharacterClassElement</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintduplicaterequire" class="xref page">Lint/DuplicateRequire</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintduplicaterescueexception" class="xref page">Lint/DuplicateRescueException</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#linteachwithobjectargument" class="xref page">Lint/EachWithObjectArgument</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintelselayout" class="xref page">Lint/ElseLayout</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintemptyblock" class="xref page">Lint/EmptyBlock</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintemptyclass" class="xref page">Lint/EmptyClass</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintemptyconditionalbody" class="xref page">Lint/EmptyConditionalBody</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintemptyensure" class="xref page">Lint/EmptyEnsure</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintemptyexpression" class="xref page">Lint/EmptyExpression</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintemptyfile" class="xref page">Lint/EmptyFile</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintemptyinpattern" class="xref page">Lint/EmptyInPattern</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintemptyinterpolation" class="xref page">Lint/EmptyInterpolation</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintemptywhen" class="xref page">Lint/EmptyWhen</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintensurereturn" class="xref page">Lint/EnsureReturn</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#linterbnewarguments" class="xref page">Lint/ErbNewArguments</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintflipflop" class="xref page">Lint/FlipFlop</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintfloatcomparison" class="xref page">Lint/FloatComparison</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintfloatoutofrange" class="xref page">Lint/FloatOutOfRange</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintformatparametermismatch" class="xref page">Lint/FormatParameterMismatch</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#linthashcomparebyidentity" class="xref page">Lint/HashCompareByIdentity</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintheredocmethodcallposition" class="xref page">Lint/HeredocMethodCallPosition</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintidentitycomparison" class="xref page">Lint/IdentityComparison</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintimplicitstringconcatenation" class="xref page">Lint/ImplicitStringConcatenation</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintincompatibleioselectwithfiberscheduler" class="xref page">Lint/IncompatibleIoSelectWithFiberScheduler</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintineffectiveaccessmodifier" class="xref page">Lint/IneffectiveAccessModifier</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintinheritexception" class="xref page">Lint/InheritException</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintinterpolationcheck" class="xref page">Lint/InterpolationCheck</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintlambdawithoutliteralblock" class="xref page">Lint/LambdaWithoutLiteralBlock</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintliteralascondition" class="xref page">Lint/LiteralAsCondition</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintliteralininterpolation" class="xref page">Lint/LiteralInInterpolation</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintloop" class="xref page">Lint/Loop</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintmissingcopenabledirective" class="xref page">Lint/MissingCopEnableDirective</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintmissingsuper" class="xref page">Lint/MissingSuper</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintmixedregexpcapturetypes" class="xref page">Lint/MixedRegexpCaptureTypes</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintmultiplecomparison" class="xref page">Lint/MultipleComparison</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintnestedmethoddefinition" class="xref page">Lint/NestedMethodDefinition</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintnestedpercentliteral" class="xref page">Lint/NestedPercentLiteral</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintnextwithoutaccumulator" class="xref page">Lint/NextWithoutAccumulator</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintnoreturninbeginendblocks" class="xref page">Lint/NoReturnInBeginEndBlocks</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintnondeterministicrequireorder" class="xref page">Lint/NonDeterministicRequireOrder</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintnonlocalexitfromiterator" class="xref page">Lint/NonLocalExitFromIterator</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintnumberconversion" class="xref page">Lint/NumberConversion</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintnumberedparameterassignment" class="xref page">Lint/NumberedParameterAssignment</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintorassignmenttoconstant" class="xref page">Lint/OrAssignmentToConstant</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintorderedmagiccomments" class="xref page">Lint/OrderedMagicComments</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintoutofrangeregexpref" class="xref page">Lint/OutOfRangeRegexpRef</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintparenthesesasgroupedexpression" class="xref page">Lint/ParenthesesAsGroupedExpression</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintpercentstringarray" class="xref page">Lint/PercentStringArray</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintpercentsymbolarray" class="xref page">Lint/PercentSymbolArray</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintraiseexception" class="xref page">Lint/RaiseException</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintrandone" class="xref page">Lint/RandOne</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintredundantcopdisabledirective" class="xref page">Lint/RedundantCopDisableDirective</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintredundantcopenabledirective" class="xref page">Lint/RedundantCopEnableDirective</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintredundantdirglobsort" class="xref page">Lint/RedundantDirGlobSort</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintredundantrequirestatement" class="xref page">Lint/RedundantRequireStatement</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintredundantsafenavigation" class="xref page">Lint/RedundantSafeNavigation</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintredundantsplatexpansion" class="xref page">Lint/RedundantSplatExpansion</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintredundantstringcoercion" class="xref page">Lint/RedundantStringCoercion</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintredundantwithindex" class="xref page">Lint/RedundantWithIndex</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintredundantwithobject" class="xref page">Lint/RedundantWithObject</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintrefinementimportmethods" class="xref page">Lint/RefinementImportMethods</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintregexpascondition" class="xref page">Lint/RegexpAsCondition</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintrequireparentheses" class="xref page">Lint/RequireParentheses</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintrequirerelativeselfpath" class="xref page">Lint/RequireRelativeSelfPath</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintrescueexception" class="xref page">Lint/RescueException</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintrescuetype" class="xref page">Lint/RescueType</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintreturninvoidcontext" class="xref page">Lint/ReturnInVoidContext</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintsafenavigationchain" class="xref page">Lint/SafeNavigationChain</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintsafenavigationconsistency" class="xref page">Lint/SafeNavigationConsistency</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintsafenavigationwithempty" class="xref page">Lint/SafeNavigationWithEmpty</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintscriptpermission" class="xref page">Lint/ScriptPermission</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintselfassignment" class="xref page">Lint/SelfAssignment</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintsendwithmixinargument" class="xref page">Lint/SendWithMixinArgument</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintshadowedargument" class="xref page">Lint/ShadowedArgument</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintshadowedexception" class="xref page">Lint/ShadowedException</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintshadowingouterlocalvariable" class="xref page">Lint/ShadowingOuterLocalVariable</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintstructnewoverride" class="xref page">Lint/StructNewOverride</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintsuppressedexception" class="xref page">Lint/SuppressedException</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintsymbolconversion" class="xref page">Lint/SymbolConversion</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintsyntax" class="xref page">Lint/Syntax</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#linttoenumarguments" class="xref page">Lint/ToEnumArguments</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#linttojson" class="xref page">Lint/ToJSON</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#linttoplevelreturnwithargument" class="xref page">Lint/TopLevelReturnWithArgument</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#linttrailingcommainattributedeclaration" class="xref page">Lint/TrailingCommaInAttributeDeclaration</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#linttriplequotes" class="xref page">Lint/TripleQuotes</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintunderscoreprefixedvariablename" class="xref page">Lint/UnderscorePrefixedVariableName</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintunexpectedblockarity" class="xref page">Lint/UnexpectedBlockArity</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintunifiedinteger" class="xref page">Lint/UnifiedInteger</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintunmodifiedreduceaccumulator" class="xref page">Lint/UnmodifiedReduceAccumulator</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintunreachablecode" class="xref page">Lint/UnreachableCode</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintunreachableloop" class="xref page">Lint/UnreachableLoop</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintunusedblockargument" class="xref page">Lint/UnusedBlockArgument</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintunusedmethodargument" class="xref page">Lint/UnusedMethodArgument</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#linturiescapeunescape" class="xref page">Lint/UriEscapeUnescape</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#linturiregexp" class="xref page">Lint/UriRegexp</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintuselessaccessmodifier" class="xref page">Lint/UselessAccessModifier</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintuselessassignment" class="xref page">Lint/UselessAssignment</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintuselesselsewithoutrescue" class="xref page">Lint/UselessElseWithoutRescue</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintuselessmethoddefinition" class="xref page">Lint/UselessMethodDefinition</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintuselessruby2keywords" class="xref page">Lint/UselessRuby2Keywords</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintuselesssettercall" class="xref page">Lint/UselessSetterCall</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintuselesstimes" class="xref page">Lint/UselessTimes</a></p>
+</li>
+<li>
+<p><a href="cops_lint.html#lintvoid" class="xref page">Lint/Void</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="department-metrics"><a class="anchor" href="#department-metrics"></a>Department <a href="cops_metrics.html" class="xref page">Metrics</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="cops_metrics.html#metricsabcsize" class="xref page">Metrics/AbcSize</a></p>
+</li>
+<li>
+<p><a href="cops_metrics.html#metricsblocklength" class="xref page">Metrics/BlockLength</a></p>
+</li>
+<li>
+<p><a href="cops_metrics.html#metricsblocknesting" class="xref page">Metrics/BlockNesting</a></p>
+</li>
+<li>
+<p><a href="cops_metrics.html#metricsclasslength" class="xref page">Metrics/ClassLength</a></p>
+</li>
+<li>
+<p><a href="cops_metrics.html#metricscyclomaticcomplexity" class="xref page">Metrics/CyclomaticComplexity</a></p>
+</li>
+<li>
+<p><a href="cops_metrics.html#metricsmethodlength" class="xref page">Metrics/MethodLength</a></p>
+</li>
+<li>
+<p><a href="cops_metrics.html#metricsmodulelength" class="xref page">Metrics/ModuleLength</a></p>
+</li>
+<li>
+<p><a href="cops_metrics.html#metricsparameterlists" class="xref page">Metrics/ParameterLists</a></p>
+</li>
+<li>
+<p><a href="cops_metrics.html#metricsperceivedcomplexity" class="xref page">Metrics/PerceivedComplexity</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="department-migration"><a class="anchor" href="#department-migration"></a>Department <a href="cops_migration.html" class="xref page">Migration</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="cops_migration.html#migrationdepartmentname" class="xref page">Migration/DepartmentName</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="department-naming"><a class="anchor" href="#department-naming"></a>Department <a href="cops_naming.html" class="xref page">Naming</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="cops_naming.html#namingaccessormethodname" class="xref page">Naming/AccessorMethodName</a></p>
+</li>
+<li>
+<p><a href="cops_naming.html#namingasciiidentifiers" class="xref page">Naming/AsciiIdentifiers</a></p>
+</li>
+<li>
+<p><a href="cops_naming.html#namingbinaryoperatorparametername" class="xref page">Naming/BinaryOperatorParameterName</a></p>
+</li>
+<li>
+<p><a href="cops_naming.html#namingblockforwarding" class="xref page">Naming/BlockForwarding</a></p>
+</li>
+<li>
+<p><a href="cops_naming.html#namingblockparametername" class="xref page">Naming/BlockParameterName</a></p>
+</li>
+<li>
+<p><a href="cops_naming.html#namingclassandmodulecamelcase" class="xref page">Naming/ClassAndModuleCamelCase</a></p>
+</li>
+<li>
+<p><a href="cops_naming.html#namingconstantname" class="xref page">Naming/ConstantName</a></p>
+</li>
+<li>
+<p><a href="cops_naming.html#namingfilename" class="xref page">Naming/FileName</a></p>
+</li>
+<li>
+<p><a href="cops_naming.html#namingheredocdelimitercase" class="xref page">Naming/HeredocDelimiterCase</a></p>
+</li>
+<li>
+<p><a href="cops_naming.html#namingheredocdelimiternaming" class="xref page">Naming/HeredocDelimiterNaming</a></p>
+</li>
+<li>
+<p><a href="cops_naming.html#naminginclusivelanguage" class="xref page">Naming/InclusiveLanguage</a></p>
+</li>
+<li>
+<p><a href="cops_naming.html#namingmemoizedinstancevariablename" class="xref page">Naming/MemoizedInstanceVariableName</a></p>
+</li>
+<li>
+<p><a href="cops_naming.html#namingmethodname" class="xref page">Naming/MethodName</a></p>
+</li>
+<li>
+<p><a href="cops_naming.html#namingmethodparametername" class="xref page">Naming/MethodParameterName</a></p>
+</li>
+<li>
+<p><a href="cops_naming.html#namingpredicatename" class="xref page">Naming/PredicateName</a></p>
+</li>
+<li>
+<p><a href="cops_naming.html#namingrescuedexceptionsvariablename" class="xref page">Naming/RescuedExceptionsVariableName</a></p>
+</li>
+<li>
+<p><a href="cops_naming.html#namingvariablename" class="xref page">Naming/VariableName</a></p>
+</li>
+<li>
+<p><a href="cops_naming.html#namingvariablenumber" class="xref page">Naming/VariableNumber</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="department-security"><a class="anchor" href="#department-security"></a>Department <a href="cops_security.html" class="xref page">Security</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="cops_security.html#securityeval" class="xref page">Security/Eval</a></p>
+</li>
+<li>
+<p><a href="cops_security.html#securityiomethods" class="xref page">Security/IoMethods</a></p>
+</li>
+<li>
+<p><a href="cops_security.html#securityjsonload" class="xref page">Security/JSONLoad</a></p>
+</li>
+<li>
+<p><a href="cops_security.html#securitymarshalload" class="xref page">Security/MarshalLoad</a></p>
+</li>
+<li>
+<p><a href="cops_security.html#securityopen" class="xref page">Security/Open</a></p>
+</li>
+<li>
+<p><a href="cops_security.html#securityyamlload" class="xref page">Security/YAMLLoad</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="department-style"><a class="anchor" href="#department-style"></a>Department <a href="cops_style.html" class="xref page">Style</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="cops_style.html#styleaccessmodifierdeclarations" class="xref page">Style/AccessModifierDeclarations</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleaccessorgrouping" class="xref page">Style/AccessorGrouping</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylealias" class="xref page">Style/Alias</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleandor" class="xref page">Style/AndOr</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleargumentsforwarding" class="xref page">Style/ArgumentsForwarding</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylearraycoercion" class="xref page">Style/ArrayCoercion</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylearrayjoin" class="xref page">Style/ArrayJoin</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleasciicomments" class="xref page">Style/AsciiComments</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleattr" class="xref page">Style/Attr</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleautoresourcecleanup" class="xref page">Style/AutoResourceCleanup</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylebarepercentliterals" class="xref page">Style/BarePercentLiterals</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylebeginblock" class="xref page">Style/BeginBlock</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylebisectedattraccessor" class="xref page">Style/BisectedAttrAccessor</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleblockcomments" class="xref page">Style/BlockComments</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleblockdelimiters" class="xref page">Style/BlockDelimiters</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylecaseequality" class="xref page">Style/CaseEquality</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylecaselikeif" class="xref page">Style/CaseLikeIf</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylecharacterliteral" class="xref page">Style/CharacterLiteral</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleclassandmodulechildren" class="xref page">Style/ClassAndModuleChildren</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleclasscheck" class="xref page">Style/ClassCheck</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleclassequalitycomparison" class="xref page">Style/ClassEqualityComparison</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleclassmethods" class="xref page">Style/ClassMethods</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleclassmethodsdefinitions" class="xref page">Style/ClassMethodsDefinitions</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleclassvars" class="xref page">Style/ClassVars</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylecollectioncompact" class="xref page">Style/CollectionCompact</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylecollectionmethods" class="xref page">Style/CollectionMethods</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylecolonmethodcall" class="xref page">Style/ColonMethodCall</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylecolonmethoddefinition" class="xref page">Style/ColonMethodDefinition</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylecombinableloops" class="xref page">Style/CombinableLoops</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylecommandliteral" class="xref page">Style/CommandLiteral</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylecommentannotation" class="xref page">Style/CommentAnnotation</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylecommentedkeyword" class="xref page">Style/CommentedKeyword</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleconditionalassignment" class="xref page">Style/ConditionalAssignment</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleconstantvisibility" class="xref page">Style/ConstantVisibility</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylecopyright" class="xref page">Style/Copyright</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styledatetime" class="xref page">Style/DateTime</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styledefwithparentheses" class="xref page">Style/DefWithParentheses</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styledir" class="xref page">Style/Dir</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styledisablecopswithinsourcecodedirective" class="xref page">Style/DisableCopsWithinSourceCodeDirective</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styledocumentdynamicevaldefinition" class="xref page">Style/DocumentDynamicEvalDefinition</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styledocumentation" class="xref page">Style/Documentation</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styledocumentationmethod" class="xref page">Style/DocumentationMethod</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styledoublecopdisabledirective" class="xref page">Style/DoubleCopDisableDirective</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styledoublenegation" class="xref page">Style/DoubleNegation</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleeachforsimpleloop" class="xref page">Style/EachForSimpleLoop</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleeachwithobject" class="xref page">Style/EachWithObject</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleemptyblockparameter" class="xref page">Style/EmptyBlockParameter</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleemptycasecondition" class="xref page">Style/EmptyCaseCondition</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleemptyelse" class="xref page">Style/EmptyElse</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleemptylambdaparameter" class="xref page">Style/EmptyLambdaParameter</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleemptyliteral" class="xref page">Style/EmptyLiteral</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleemptymethod" class="xref page">Style/EmptyMethod</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleencoding" class="xref page">Style/Encoding</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleendblock" class="xref page">Style/EndBlock</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleendlessmethod" class="xref page">Style/EndlessMethod</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleevalwithlocation" class="xref page">Style/EvalWithLocation</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleevenodd" class="xref page">Style/EvenOdd</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleexpandpatharguments" class="xref page">Style/ExpandPathArguments</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleexplicitblockargument" class="xref page">Style/ExplicitBlockArgument</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleexponentialnotation" class="xref page">Style/ExponentialNotation</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylefileread" class="xref page">Style/FileRead</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylefilewrite" class="xref page">Style/FileWrite</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylefloatdivision" class="xref page">Style/FloatDivision</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylefor" class="xref page">Style/For</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleformatstring" class="xref page">Style/FormatString</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleformatstringtoken" class="xref page">Style/FormatStringToken</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylefrozenstringliteralcomment" class="xref page">Style/FrozenStringLiteralComment</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleglobalstdstream" class="xref page">Style/GlobalStdStream</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleglobalvars" class="xref page">Style/GlobalVars</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleguardclause" class="xref page">Style/GuardClause</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylehashaslastarrayitem" class="xref page">Style/HashAsLastArrayItem</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylehashconversion" class="xref page">Style/HashConversion</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylehasheachmethods" class="xref page">Style/HashEachMethods</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylehashexcept" class="xref page">Style/HashExcept</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylehashlikecase" class="xref page">Style/HashLikeCase</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylehashsyntax" class="xref page">Style/HashSyntax</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylehashtransformkeys" class="xref page">Style/HashTransformKeys</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylehashtransformvalues" class="xref page">Style/HashTransformValues</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleidenticalconditionalbranches" class="xref page">Style/IdenticalConditionalBranches</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleifinsideelse" class="xref page">Style/IfInsideElse</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleifunlessmodifier" class="xref page">Style/IfUnlessModifier</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleifunlessmodifierofifunless" class="xref page">Style/IfUnlessModifierOfIfUnless</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleifwithbooleanliteralbranches" class="xref page">Style/IfWithBooleanLiteralBranches</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleifwithsemicolon" class="xref page">Style/IfWithSemicolon</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleimplicitruntimeerror" class="xref page">Style/ImplicitRuntimeError</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleinpatternthen" class="xref page">Style/InPatternThen</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleinfiniteloop" class="xref page">Style/InfiniteLoop</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleinlinecomment" class="xref page">Style/InlineComment</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleinversemethods" class="xref page">Style/InverseMethods</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleipaddresses" class="xref page">Style/IpAddresses</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylekeywordparametersorder" class="xref page">Style/KeywordParametersOrder</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylelambda" class="xref page">Style/Lambda</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylelambdacall" class="xref page">Style/LambdaCall</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylelineendconcatenation" class="xref page">Style/LineEndConcatenation</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemaptohash" class="xref page">Style/MapToHash</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemethodcallwithargsparentheses" class="xref page">Style/MethodCallWithArgsParentheses</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemethodcallwithoutargsparentheses" class="xref page">Style/MethodCallWithoutArgsParentheses</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemethodcalledondoendblock" class="xref page">Style/MethodCalledOnDoEndBlock</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemethoddefparentheses" class="xref page">Style/MethodDefParentheses</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleminmax" class="xref page">Style/MinMax</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemissingelse" class="xref page">Style/MissingElse</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemissingrespondtomissing" class="xref page">Style/MissingRespondToMissing</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemixingrouping" class="xref page">Style/MixinGrouping</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemixinusage" class="xref page">Style/MixinUsage</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemodulefunction" class="xref page">Style/ModuleFunction</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemultilineblockchain" class="xref page">Style/MultilineBlockChain</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemultilineifmodifier" class="xref page">Style/MultilineIfModifier</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemultilineifthen" class="xref page">Style/MultilineIfThen</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemultilineinpatternthen" class="xref page">Style/MultilineInPatternThen</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemultilinememoization" class="xref page">Style/MultilineMemoization</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemultilinemethodsignature" class="xref page">Style/MultilineMethodSignature</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemultilineternaryoperator" class="xref page">Style/MultilineTernaryOperator</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemultilinewhenthen" class="xref page">Style/MultilineWhenThen</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemultiplecomparison" class="xref page">Style/MultipleComparison</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylemutableconstant" class="xref page">Style/MutableConstant</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylenegatedif" class="xref page">Style/NegatedIf</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylenegatedifelsecondition" class="xref page">Style/NegatedIfElseCondition</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylenegatedunless" class="xref page">Style/NegatedUnless</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylenegatedwhile" class="xref page">Style/NegatedWhile</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylenestedfiledirname" class="xref page">Style/NestedFileDirname</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylenestedmodifier" class="xref page">Style/NestedModifier</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylenestedparenthesizedcalls" class="xref page">Style/NestedParenthesizedCalls</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylenestedternaryoperator" class="xref page">Style/NestedTernaryOperator</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylenext" class="xref page">Style/Next</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylenilcomparison" class="xref page">Style/NilComparison</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylenillambda" class="xref page">Style/NilLambda</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylenonnilcheck" class="xref page">Style/NonNilCheck</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylenot" class="xref page">Style/Not</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylenumberedparameters" class="xref page">Style/NumberedParameters</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylenumberedparameterslimit" class="xref page">Style/NumberedParametersLimit</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylenumericliteralprefix" class="xref page">Style/NumericLiteralPrefix</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylenumericliterals" class="xref page">Style/NumericLiterals</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylenumericpredicate" class="xref page">Style/NumericPredicate</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleonelineconditional" class="xref page">Style/OneLineConditional</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleopenstructuse" class="xref page">Style/OpenStructUse</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleoptionhash" class="xref page">Style/OptionHash</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleoptionalarguments" class="xref page">Style/OptionalArguments</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleoptionalbooleanparameter" class="xref page">Style/OptionalBooleanParameter</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleorassignment" class="xref page">Style/OrAssignment</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleparallelassignment" class="xref page">Style/ParallelAssignment</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleparenthesesaroundcondition" class="xref page">Style/ParenthesesAroundCondition</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylepercentliteraldelimiters" class="xref page">Style/PercentLiteralDelimiters</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylepercentqliterals" class="xref page">Style/PercentQLiterals</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleperlbackrefs" class="xref page">Style/PerlBackrefs</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylepreferredhashmethods" class="xref page">Style/PreferredHashMethods</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleproc" class="xref page">Style/Proc</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylequotedsymbols" class="xref page">Style/QuotedSymbols</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleraiseargs" class="xref page">Style/RaiseArgs</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylerandomwithoffset" class="xref page">Style/RandomWithOffset</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantargument" class="xref page">Style/RedundantArgument</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantassignment" class="xref page">Style/RedundantAssignment</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantbegin" class="xref page">Style/RedundantBegin</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantcapitalw" class="xref page">Style/RedundantCapitalW</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantcondition" class="xref page">Style/RedundantCondition</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantconditional" class="xref page">Style/RedundantConditional</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantexception" class="xref page">Style/RedundantException</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantfetchblock" class="xref page">Style/RedundantFetchBlock</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantfileextensioninrequire" class="xref page">Style/RedundantFileExtensionInRequire</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantfreeze" class="xref page">Style/RedundantFreeze</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantinitialize" class="xref page">Style/RedundantInitialize</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantinterpolation" class="xref page">Style/RedundantInterpolation</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantparentheses" class="xref page">Style/RedundantParentheses</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantpercentq" class="xref page">Style/RedundantPercentQ</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantregexpcharacterclass" class="xref page">Style/RedundantRegexpCharacterClass</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantregexpescape" class="xref page">Style/RedundantRegexpEscape</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantreturn" class="xref page">Style/RedundantReturn</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantself" class="xref page">Style/RedundantSelf</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantselfassignment" class="xref page">Style/RedundantSelfAssignment</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantselfassignmentbranch" class="xref page">Style/RedundantSelfAssignmentBranch</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantsort" class="xref page">Style/RedundantSort</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleredundantsortby" class="xref page">Style/RedundantSortBy</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleregexpliteral" class="xref page">Style/RegexpLiteral</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylerescuemodifier" class="xref page">Style/RescueModifier</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylerescuestandarderror" class="xref page">Style/RescueStandardError</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylereturnnil" class="xref page">Style/ReturnNil</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylesafenavigation" class="xref page">Style/SafeNavigation</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylesample" class="xref page">Style/Sample</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleselectbyregexp" class="xref page">Style/SelectByRegexp</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleselfassignment" class="xref page">Style/SelfAssignment</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylesemicolon" class="xref page">Style/Semicolon</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylesend" class="xref page">Style/Send</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylesignalexception" class="xref page">Style/SignalException</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylesingleargumentdig" class="xref page">Style/SingleArgumentDig</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylesinglelineblockparams" class="xref page">Style/SingleLineBlockParams</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylesinglelinemethods" class="xref page">Style/SingleLineMethods</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleslicingwithrange" class="xref page">Style/SlicingWithRange</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylesolenestedconditional" class="xref page">Style/SoleNestedConditional</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylespecialglobalvars" class="xref page">Style/SpecialGlobalVars</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylestabbylambdaparentheses" class="xref page">Style/StabbyLambdaParentheses</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylestaticclass" class="xref page">Style/StaticClass</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylestderrputs" class="xref page">Style/StderrPuts</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylestringchars" class="xref page">Style/StringChars</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylestringconcatenation" class="xref page">Style/StringConcatenation</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylestringhashkeys" class="xref page">Style/StringHashKeys</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylestringliterals" class="xref page">Style/StringLiterals</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylestringliteralsininterpolation" class="xref page">Style/StringLiteralsInInterpolation</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylestringmethods" class="xref page">Style/StringMethods</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylestrip" class="xref page">Style/Strip</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylestructinheritance" class="xref page">Style/StructInheritance</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleswapvalues" class="xref page">Style/SwapValues</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylesymbolarray" class="xref page">Style/SymbolArray</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylesymbolliteral" class="xref page">Style/SymbolLiteral</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylesymbolproc" class="xref page">Style/SymbolProc</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleternaryparentheses" class="xref page">Style/TernaryParentheses</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styletoplevelmethoddefinition" class="xref page">Style/TopLevelMethodDefinition</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styletrailingbodyonclass" class="xref page">Style/TrailingBodyOnClass</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styletrailingbodyonmethoddefinition" class="xref page">Style/TrailingBodyOnMethodDefinition</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styletrailingbodyonmodule" class="xref page">Style/TrailingBodyOnModule</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styletrailingcommainarguments" class="xref page">Style/TrailingCommaInArguments</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styletrailingcommainarrayliteral" class="xref page">Style/TrailingCommaInArrayLiteral</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styletrailingcommainblockargs" class="xref page">Style/TrailingCommaInBlockArgs</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styletrailingcommainhashliteral" class="xref page">Style/TrailingCommaInHashLiteral</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styletrailingmethodendstatement" class="xref page">Style/TrailingMethodEndStatement</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styletrailingunderscorevariable" class="xref page">Style/TrailingUnderscoreVariable</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styletrivialaccessors" class="xref page">Style/TrivialAccessors</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleunlesselse" class="xref page">Style/UnlessElse</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleunlesslogicaloperators" class="xref page">Style/UnlessLogicalOperators</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleunpackfirst" class="xref page">Style/UnpackFirst</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylevariableinterpolation" class="xref page">Style/VariableInterpolation</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylewhenthen" class="xref page">Style/WhenThen</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylewhileuntildo" class="xref page">Style/WhileUntilDo</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylewhileuntilmodifier" class="xref page">Style/WhileUntilModifier</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylewordarray" class="xref page">Style/WordArray</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#styleyodacondition" class="xref page">Style/YodaCondition</a></p>
+</li>
+<li>
+<p><a href="cops_style.html#stylezerolengthpredicate" class="xref page">Style/ZeroLengthPredicate</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="configuration.html">Configuration</a></span>
+  <span class="next"><a href="formatters.html">Formatters</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>Copyright (C) 2012-2022 <a href="https://batsov.com">Bozhidar Batsov</a> and RuboCop contributors.</p>
+  <p>Except where otherwise noted, docs.rubocop.org is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a> (CC BY-SA 4.0).</p>
+</footer>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@docsearch/js@alpha"></script>
+<script type="text/javascript">
+ docsearch({
+   container: '#docsearch',
+   appId: '2GTF3GZ5BX',
+   apiKey: 'b6bbe6539f46224f4f39cd14a1b7ae78',
+   indexName: 'rubocop',
+   debug: false // Set debug to true if you want to inspect the dropdown
+ });
+</script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
