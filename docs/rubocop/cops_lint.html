@@ -210,6 +210,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.28/index.html">1.28</a>
+        </li>
+        <li class="version">
           <a href="1.27/index.html">1.27</a>
         </li>
         <li class="version">
@@ -456,6 +459,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_lint.html">default</a>
+    <a class="version" href="1.28/cops_lint.html">1.28</a>
     <a class="version" href="1.27/cops_lint.html">1.27</a>
     <a class="version" href="1.26/cops_lint.html">1.26</a>
     <a class="version" href="1.25/cops_lint.html">1.25</a>
@@ -2579,14 +2583,21 @@ r = /[0-9x]/</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.90</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.28</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p>This cop checks for duplicate `require`s and `require_relative`s.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-5"><a class="anchor" href="#safety-5"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because it may break the dependency order
+of <code>require</code>.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-25"><a class="anchor" href="#examples-25"></a>Examples</h3>
@@ -4235,7 +4246,7 @@ for hash keys.</p>
 one of these methods: <code>key?</code>, <code>has_key?</code>, <code>fetch</code>, <code>[]</code> and <code>[]=</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-5"><a class="anchor" href="#safety-5"></a>Safety</h3>
+<h3 id="safety-6"><a class="anchor" href="#safety-6"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe. Although unlikely, the hash could store both object
 ids and other values that need be compared by value, and thus
@@ -4517,7 +4528,7 @@ It&#8217;s up to user how to handle the return value.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-6"><a class="anchor" href="#safety-6"></a>Safety</h3>
+<h3 id="safety-7"><a class="anchor" href="#safety-7"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because <code>NoMethodError</code> occurs
 if <code>require 'io/wait'</code> is not called.</p>
@@ -4661,7 +4672,7 @@ It is configurable to suggest using either <code>StandardError</code> (default) 
 <code>RuntimeError</code> instead.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-7"><a class="anchor" href="#safety-7"></a>Safety</h3>
+<h3 id="safety-8"><a class="anchor" href="#safety-8"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because <code>rescue</code> that omit
 exception class handle <code>StandardError</code> and its subclasses,
@@ -4767,7 +4778,7 @@ C = Class.new(RuntimeError)</code></pre>
 <p>This cop checks for interpolation in a single quoted string.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-8"><a class="anchor" href="#safety-8"></a>Safety</h3>
+<h3 id="safety-9"><a class="anchor" href="#safety-9"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is generally safe, but is marked as unsafe because
 it is possible to actually intentionally have text inside
@@ -5006,7 +5017,7 @@ end</code></pre>
 <p>This cop checks for uses of <code>begin&#8230;&#8203;end while/until something</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-9"><a class="anchor" href="#safety-9"></a>Safety</h3>
+<h3 id="safety-10"><a class="anchor" href="#safety-10"></a>Safety</h3>
 <div class="paragraph">
 <p>The cop is unsafe because behaviour can change in some cases, including
 if a local variable inside the loop body is accessed outside of it, or if the
@@ -5718,7 +5729,7 @@ This cop will be deprecated and removed when supporting only Ruby 3.0 and higher
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-10"><a class="anchor" href="#safety-10"></a>Safety</h3>
+<h3 id="safety-11"><a class="anchor" href="#safety-11"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe in the case where sorting files changes existing
 expected behaviour.</p>
@@ -5910,7 +5921,7 @@ with <code>Integer()</code> and can be ignored with <code>IgnoredMethods</code>.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-11"><a class="anchor" href="#safety-11"></a>Safety</h3>
+<h3 id="safety-12"><a class="anchor" href="#safety-12"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is unsafe because it is not guaranteed that the
 replacement <code>Kernel</code> methods are able to properly handle the
@@ -6109,7 +6120,7 @@ should always be the same. If constants are assigned in multiple
 locations, the result may vary depending on the order of <code>require</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-12"><a class="anchor" href="#safety-12"></a>Safety</h3>
+<h3 id="safety-13"><a class="anchor" href="#safety-13"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because code that is already conditionally
 assigning a constant may have its behaviour changed by
@@ -6226,7 +6237,7 @@ p [''.frozen?, ''.encoding] #=&gt; [true, #&lt;Encoding:US-ASCII&gt;]</code></pr
 and thus always returns nil.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-13"><a class="anchor" href="#safety-13"></a>Safety</h3>
+<h3 id="safety-14"><a class="anchor" href="#safety-14"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it is naive in how it determines what
 references are available based on the last encountered regexp, but
@@ -6363,7 +6374,7 @@ example, mistranslating an array of literals to percent string notation)
 rather than meant to be part of the resulting strings.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-14"><a class="anchor" href="#safety-14"></a>Safety</h3>
+<h3 id="safety-15"><a class="anchor" href="#safety-15"></a>Safety</h3>
 <div class="paragraph">
 <p>The cop is unsafe because the correction changes the values in the array
 and that might have been done purposely.</p>
@@ -6494,7 +6505,7 @@ prevent the false positive by specifying a namespace to be omitted for
 name with an explicit namespace.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-15"><a class="anchor" href="#safety-15"></a>Safety</h3>
+<h3 id="safety-16"><a class="anchor" href="#safety-16"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it will change the exception class being
 raised, which is a change in behaviour.</p>
@@ -6790,7 +6801,7 @@ Required Ruby version: 3.0
 This cop checks for redundant <code>sort</code> method to <code>Dir.glob</code> and <code>Dir[]</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-16"><a class="anchor" href="#safety-16"></a>Safety</h3>
+<h3 id="safety-17"><a class="anchor" href="#safety-17"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, in case of having a file and a directory with
 identical names, since directory will be loaded before the file, which
@@ -6921,7 +6932,7 @@ are checked by default. These are customizable with <code>AllowedMethods</code> 
 because <code>NilClass</code> has methods like <code>respond_to?</code> and <code>is_a?</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-17"><a class="anchor" href="#safety-17"></a>Safety</h3>
+<h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, because auto-correction can change the return type of
 the expression. An offending expression that previously could return <code>nil</code>
@@ -7348,7 +7359,7 @@ These methods are deprecated and should be replaced with <code>Refinement#import
 <p>It emulates deprecation warnings in Ruby 3.1.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
+<h3 id="safety-19"><a class="anchor" href="#safety-19"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because <code>include M</code> will affect the included class
 if any changes are made to module <code>M</code>.
@@ -9340,7 +9351,7 @@ this, as they are not used by the methods in question.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="safety-19"><a class="anchor" href="#safety-19"></a>Safety</h3>
+<h3 id="safety-20"><a class="anchor" href="#safety-20"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop matches for method names only and hence cannot tell apart
 methods with same name in different classes, which may lead to a
@@ -9672,7 +9683,7 @@ Block methods that are used with `Enumerable`s are considered to be loops.
 </table>
 </div>
 <div class="paragraph">
-<p><code>IgnoredPatterns</code> can be used to match against the block receiver in order to allow
+<p><code>AllowedPatterns</code> can be used to match against the block receiver in order to allow
 code that would otherwise be registered as an offense (eg. <code>times</code> used not in an
 <code>Enumerable</code> context).</p>
 </div>
@@ -9745,7 +9756,7 @@ end
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoredpatterns-exactlyat_leastat_mostd-times-default"><a class="anchor" href="#ignoredpatterns-exactlyat_leastat_mostd-times-default"></a>IgnoredPatterns: [/(exactly|at_least|at_most)\(\d+\)\.times/] (default)</h4>
+<h4 id="allowedpatterns-exactlyat_leastat_mostd-times-default"><a class="anchor" href="#allowedpatterns-exactlyat_leastat_mostd-times-default"></a>AllowedPatterns: [/(exactly|at_least|at_most)\(\d+\)\.times/] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -9771,9 +9782,14 @@ exactly(2).times { raise StandardError }</code></pre>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredPatterns</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedPatterns</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">`(?-mix:(exactly</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">at_least</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">at_most)\(\d+\)\.times)`</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredPatterns</p></td>
 </tr>
 </tbody>
 </table>
@@ -10597,7 +10613,7 @@ end</code></pre>
 and methods just delegating to <code>super</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-20"><a class="anchor" href="#safety-20"></a>Safety</h3>
+<h3 id="safety-21"><a class="anchor" href="#safety-21"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe as it can register false positives for cases when an empty
 constructor just overrides the parent constructor, which is bad anyway.</p>
@@ -10769,7 +10785,7 @@ define_method(:foo) { |arg| }</code></pre>
 expression of a function definition.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-21"><a class="anchor" href="#safety-21"></a>Safety</h3>
+<h3 id="safety-22"><a class="anchor" href="#safety-22"></a>Safety</h3>
 <div class="paragraph">
 <p>There are edge cases in which the local variable references a
 value that is also accessible outside the local scope. This is not
@@ -10842,7 +10858,7 @@ end</code></pre>
 (<code>1.times</code>).</p>
 </div>
 <div class="sect2">
-<h3 id="safety-22"><a class="anchor" href="#safety-22"></a>Safety</h3>
+<h3 id="safety-23"><a class="anchor" href="#safety-23"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe as <code>times</code> returns its receiver, which is
 <strong>usually</strong> OK, but might change behavior.</p>

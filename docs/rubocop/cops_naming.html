@@ -210,6 +210,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.28/index.html">1.28</a>
+        </li>
+        <li class="version">
           <a href="1.27/index.html">1.27</a>
         </li>
         <li class="version">
@@ -456,6 +459,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_naming.html">default</a>
+    <a class="version" href="1.28/cops_naming.html">1.28</a>
     <a class="version" href="1.27/cops_naming.html">1.27</a>
     <a class="version" href="1.26/cops_naming.html">1.26</a>
     <a class="version" href="1.25/cops_naming.html">1.25</a>
@@ -1937,12 +1941,12 @@ end</code></pre>
 snake_case or camelCase, for their names.</p>
 </div>
 <div class="paragraph">
-<p>This cop has <code>IgnoredPatterns</code> configuration option.</p>
+<p>This cop has <code>AllowedPatterns</code> configuration option.</p>
 </div>
 <div class="literalblock">
 <div class="content">
 <pre>Naming/MethodName:
-  IgnoredPatterns:
+  AllowedPatterns:
     - '\A\s*onSelectionBulkChange\s*'
     - '\A\s*onSelectionCleared\s*'</pre>
 </div>
@@ -1997,6 +2001,11 @@ def fooBar; end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>snake_case</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>snake_case</code>, <code>camelCase</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedPatterns</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredPatterns</p></td>
