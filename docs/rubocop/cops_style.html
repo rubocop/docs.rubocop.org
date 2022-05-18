@@ -98,7 +98,7 @@
     <a class="nav-link" href="usage/basic_usage.html">Basic Usage</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="usage/auto_correct.html">Auto-correct</a>
+    <a class="nav-link" href="usage/autocorrect.html">Autocorrect</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="usage/caching.html">Caching</a>
@@ -405,6 +405,9 @@
           <a href="../rubocop-rspec/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop-rspec/2.11/index.html">2.11</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-rspec/2.10/index.html">2.10</a>
         </li>
         <li class="version">
@@ -427,15 +430,6 @@
         </li>
         <li class="version">
           <a href="../rubocop-rspec/2.3/index.html">2.3</a>
-        </li>
-        <li class="version">
-          <a href="../rubocop-rspec/2.2/index.html">2.2</a>
-        </li>
-        <li class="version">
-          <a href="../rubocop-rspec/2.1/index.html">2.1</a>
-        </li>
-        <li class="version">
-          <a href="../rubocop-rspec/2.0/index.html">2.0</a>
         </li>
         <li class="version">
           <a href="../rubocop-rspec/1.44/index.html">1.44</a>
@@ -877,7 +871,7 @@ all contexts.</p>
 <div class="sect2">
 <h3 id="safety"><a class="anchor" href="#safety"></a>Safety</h3>
 <div class="paragraph">
-<p>Auto-correction is unsafe because there is a different operator precedence
+<p>Autocorrection is unsafe because there is a different operator precedence
 between logical operators (<code>&amp;&amp;</code> and <code>||</code>) and semantic operators (<code>and</code> and <code>or</code>),
 and that might change the behavior.</p>
 </div>
@@ -3602,13 +3596,13 @@ These keywords are: <code>class</code>, <code>module</code>, <code>def</code>, <
 are allowed.</p>
 </div>
 <div class="paragraph">
-<p>Auto-correction removes comments from <code>end</code> keyword and keeps comments
+<p>Autocorrection removes comments from <code>end</code> keyword and keeps comments
 for <code>class</code>, <code>module</code>, <code>def</code> and <code>begin</code> above the keyword.</p>
 </div>
 <div class="sect2">
 <h3 id="safety-8"><a class="anchor" href="#safety-8"></a>Safety</h3>
 <div class="paragraph">
-<p>Auto-correction is unsafe because it may remove a comment that is
+<p>Autocorrection is unsafe because it may remove a comment that is
 meaningful.</p>
 </div>
 </div>
@@ -8702,7 +8696,7 @@ in a future major RuboCop release.
 <div class="sect2">
 <h3 id="safety-19"><a class="anchor" href="#safety-19"></a>Safety</h3>
 <div class="paragraph">
-<p>Auto-correction is unsafe because changing the order of method invocations
+<p>Autocorrection is unsafe because changing the order of method invocations
 may change the behavior of the code. For example:</p>
 </div>
 <div class="listingblock">
@@ -9110,7 +9104,7 @@ The conditions to be checked are comparison methods, predicate methods, and doub
 <div class="sect2">
 <h3 id="safety-20"><a class="anchor" href="#safety-20"></a>Safety</h3>
 <div class="paragraph">
-<p>Auto-correction is unsafe because there is no guarantee that all predicate methods
+<p>Autocorrection is unsafe because there is no guarantee that all predicate methods
 will return a boolean value. Those methods can be allowed with <code>AllowedMethods</code> config.</p>
 </div>
 </div>
@@ -10050,6 +10044,18 @@ some_str = 'ala' \
 <div class="sect1">
 <h2 id="stylemaptohash"><a class="anchor" href="#stylemaptohash"></a>Style/MapToHash</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Required Ruby version: 2.6
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -11958,7 +11964,7 @@ end</code></pre>
 </td>
 <td class="content">
 <code>return if &#8230;&#8203; else &#8230;&#8203; end</code> is syntax error. If <code>return</code> is used before
-multiline ternary operator expression, it will be auto-corrected to single-line
+multiline ternary operator expression, it will be autocorrected to single-line
 ternary operator. The same is true for <code>break</code>, <code>next</code>, and method call.
 </td>
 </tr>
@@ -14240,7 +14246,7 @@ obj.yield_self { |x| x.do_something }</code></pre>
 <p>Checks for uses of if/then/else/end constructs on a single line.
 AlwaysCorrectToMultiline config option can be set to true to auto-convert all offenses to
 multi-line constructs. When AlwaysCorrectToMultiline is false (default case) the
-auto-correct will first try converting them to ternary operators.</p>
+autocorrect will first try converting them to ternary operators.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-136"><a class="anchor" href="#examples-136"></a>Examples</h3>
@@ -18883,7 +18889,7 @@ It will accept single-line methods with no body.</p>
 </div>
 <div class="paragraph">
 <p>If <code>Style/EndlessMethod</code> is enabled with <code>EnforcedStyle: allow_single_line</code> or
-<code>allow_always</code>, single-line methods will be auto-corrected to endless
+<code>allow_always</code>, single-line methods will be autocorrected to endless
 methods if there is only one statement in the body.</p>
 </div>
 <div class="sect2">
@@ -18959,6 +18965,18 @@ def no_op; end</code></pre>
 <div class="sect1">
 <h2 id="styleslicingwithrange"><a class="anchor" href="#styleslicingwithrange"></a>Style/SlicingWithRange</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Required Ruby version: 2.6
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -20192,7 +20210,7 @@ from the String class.</p>
 <div class="sect2">
 <h3 id="safety-46"><a class="anchor" href="#safety-46"></a>Safety</h3>
 <div class="paragraph">
-<p>Auto-correction is unsafe because it will change the inheritance
+<p>Autocorrection is unsafe because it will change the inheritance
 tree (e.g. return value of <code>Module#ancestors</code>) of the constant.</p>
 </div>
 </div>

@@ -98,7 +98,7 @@
     <a class="nav-link" href="usage/basic_usage.html">Basic Usage</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="usage/auto_correct.html">Auto-correct</a>
+    <a class="nav-link" href="usage/autocorrect.html">Autocorrect</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="usage/caching.html">Caching</a>
@@ -405,6 +405,9 @@
           <a href="../rubocop-rspec/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop-rspec/2.11/index.html">2.11</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-rspec/2.10/index.html">2.10</a>
         </li>
         <li class="version">
@@ -427,15 +430,6 @@
         </li>
         <li class="version">
           <a href="../rubocop-rspec/2.3/index.html">2.3</a>
-        </li>
-        <li class="version">
-          <a href="../rubocop-rspec/2.2/index.html">2.2</a>
-        </li>
-        <li class="version">
-          <a href="../rubocop-rspec/2.1/index.html">2.1</a>
-        </li>
-        <li class="version">
-          <a href="../rubocop-rspec/2.0/index.html">2.0</a>
         </li>
         <li class="version">
           <a href="../rubocop-rspec/1.44/index.html">1.44</a>
@@ -500,6 +494,21 @@ All big (breaking) changes are reserved for major releases.</p>
 <p>We&#8217;re following <a href="https://semver.org/">Semantic Versioning</a>.  API
 compatibility between major releases is a big concern, as there are
 many RuboCop extensions that can be affected by breaking API changes.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Dropping <strong>runtime</strong> support for a particular Ruby version is not considered a breaking change,
+as it doesn&#8217;t affect clients in any way. They are simply restricted to the last version of
+RuboCop supporting their Ruby runtime. In practice this means that dropping runtime support for Ruby versions
+can happen in any minor release.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The development cycle for the next minor (feature) release starts

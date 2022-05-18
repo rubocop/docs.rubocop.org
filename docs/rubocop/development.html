@@ -98,7 +98,7 @@
     <a class="nav-link" href="usage/basic_usage.html">Basic Usage</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="usage/auto_correct.html">Auto-correct</a>
+    <a class="nav-link" href="usage/autocorrect.html">Autocorrect</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="usage/caching.html">Caching</a>
@@ -405,6 +405,9 @@
           <a href="../rubocop-rspec/index.html">master</a>
         </li>
         <li class="version">
+          <a href="../rubocop-rspec/2.11/index.html">2.11</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-rspec/2.10/index.html">2.10</a>
         </li>
         <li class="version">
@@ -427,15 +430,6 @@
         </li>
         <li class="version">
           <a href="../rubocop-rspec/2.3/index.html">2.3</a>
-        </li>
-        <li class="version">
-          <a href="../rubocop-rspec/2.2/index.html">2.2</a>
-        </li>
-        <li class="version">
-          <a href="../rubocop-rspec/2.1/index.html">2.1</a>
-        </li>
-        <li class="version">
-          <a href="../rubocop-rspec/2.0/index.html">2.0</a>
         </li>
         <li class="version">
           <a href="../rubocop-rspec/1.44/index.html">1.44</a>
@@ -487,7 +481,7 @@
 <div class="paragraph">
 <p>This section of the documentation will teach you how to develop new cops.  We&#8217;ll
 start with generating a cop template and then we&#8217;ll address the various aspects
-of its implementation (interacting with the AST, auto-correct, configuration)
+of its implementation (interacting with the AST, autocorrect, configuration)
 and testing.</p>
 </div>
 </div>
@@ -845,9 +839,9 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="auto-correct"><a class="anchor" href="#auto-correct"></a>Auto-correct</h3>
+<h3 id="autocorrect"><a class="anchor" href="#autocorrect"></a>Autocorrect</h3>
 <div class="paragraph">
-<p>The auto-correct can help humans automatically fix offenses that have been detected.
+<p>The autocorrect can help humans automatically fix offenses that have been detected.
 It&#8217;s necessary to <code>extend AutoCorrector</code>.
 The method <code>add_offense</code> yields a corrector object that is a thin wrapper on
 <a href="https://www.rubydoc.info/gems/parser/Parser/Source/TreeRewriter">parser&#8217;s TreeRewriter</a>
