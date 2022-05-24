@@ -253,6 +253,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="1.14/index.html">1.14</a>
+        </li>
+        <li class="version">
           <a href="1.13/index.html">1.13</a>
         </li>
         <li class="version">
@@ -365,6 +368,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_performance.html">master</a>
+    <a class="version" href="1.14/cops_performance.html">1.14</a>
     <a class="version" href="1.13/cops_performance.html">1.13</a>
     <a class="version" href="1.12/cops_performance.html">1.12</a>
     <a class="version" href="1.11/cops_performance.html">1.11</a>
@@ -413,8 +417,7 @@
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop is used to identify usages of <code>ancestors.include?</code> and
-change them to use <code>&#8656;</code> instead.</p>
+<p>Identifies usages of <code>ancestors.include?</code> and change them to use <code>&#8656;</code> instead.</p>
 </div>
 <div class="sect2">
 <h3 id="safety"><a class="anchor" href="#safety"></a>Safety</h3>
@@ -490,7 +493,7 @@ Required Ruby version: 2.7
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where slicing arrays with semi-infinite ranges
+<p>Identifies places where slicing arrays with semi-infinite ranges
 can be replaced by <code>Array#take</code> and <code>Array#drop</code>.
 This cop was created due to a mistake in microbenchmark and hence is disabled by default.
 Refer <a href="https://github.com/rubocop/rubocop-performance/pull/175#issuecomment-731892717" class="bare">https://github.com/rubocop/rubocop-performance/pull/175#issuecomment-731892717</a></p>
@@ -554,7 +557,7 @@ array.take(3)</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where numeric argument to BigDecimal should be
+<p>Identifies places where numeric argument to BigDecimal should be
 converted to string. Initializing from String is faster
 than from Numeric for BigDecimal.</p>
 </div>
@@ -677,7 +680,7 @@ umethod.bind_call(obj, foo, bar)</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies unnecessary use of a <code>block_given?</code> where explicit check
+<p>Identifies unnecessary use of a <code>block_given?</code> where explicit check
 of block argument would suffice.</p>
 </div>
 <div class="sect2">
@@ -736,8 +739,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where <code>caller[n]</code>
-can be replaced by <code>caller(n..n).first</code>.</p>
+<p>Identifies places where <code>caller[n]</code> can be replaced by <code>caller(n..n).first</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
@@ -808,7 +810,7 @@ that is inside of the splat expansion.</p>
 <div class="sect2">
 <h3 id="safety-3"><a class="anchor" href="#safety-3"></a>Safety</h3>
 <div class="paragraph">
-<p>This cop is not unsafe auto-correction because it is not a guaranteed
+<p>This cop is not unsafe autocorrection because it is not a guaranteed
 performance improvement. If the data being processed by the <code>case</code> condition is
 normalized in a manner that favors hitting a condition in the splat expansion,
 it is possible that moving the splat condition to the end will use more memory,
@@ -885,7 +887,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where a case-insensitive string comparison
+<p>Identifies places where a case-insensitive string comparison
 can better be implemented using <code>casecmp</code>.</p>
 </div>
 <div class="sect2">
@@ -955,7 +957,7 @@ str.casecmp('ABC').zero?
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop is used to identify usages of <code>array.compact.flatten.map { |x| x.downcase }</code>.
+<p>Identifies usages of <code>array.compact.flatten.map { |x| x.downcase }</code>.
 Each of these methods (<code>compact</code>, <code>flatten</code>, <code>map</code>) will generate a new intermediate array
 that is promptly thrown away. Instead it is faster to mutate when we know it&#8217;s safe.</p>
 </div>
@@ -1019,8 +1021,8 @@ array</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where Array and Hash literals are used
-within loops. It is better to extract them into a local variable or constant
+<p>Identifies places where Array and Hash literals are used within loops.
+It is better to extract them into a local variable or constant
 to avoid unnecessary allocations on each iteration.</p>
 </div>
 <div class="paragraph">
@@ -1108,7 +1110,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where <code>sort { |a, b| a.foo &lt;&#8658; b.foo }</code>
+<p>Identifies places where <code>sort { |a, b| a.foo &lt;&#8658; b.foo }</code>
 can be replaced by <code>sort_by(&amp;:foo)</code>.
 This cop also checks <code>max</code> and <code>min</code> methods.</p>
 </div>
@@ -1167,7 +1169,7 @@ array.sort_by { |a| a[:foo] }</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where <code>Concurrent.monotonic_time</code>
+<p>Identifies places where <code>Concurrent.monotonic_time</code>
 can be replaced by <code>Process.clock_gettime(Process::CLOCK_MONOTONIC)</code>.</p>
 </div>
 <div class="sect2">
@@ -1225,7 +1227,7 @@ Process.clock_gettime(Process::CLOCK_MONOTONIC)</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop finds regular expressions with dynamic components that are all constants.</p>
+<p>Finds regular expressions with dynamic components that are all constants.</p>
 </div>
 <div class="paragraph">
 <p>Ruby allocates a new Regexp object every time it executes a code containing such
@@ -1293,7 +1295,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop is used to identify usages of <code>count</code> on an <code>Enumerable</code> that
+<p>Identifies usages of <code>count</code> on an <code>Enumerable</code> that
 follow calls to <code>select</code>, <code>find_all</code>, <code>filter</code> or <code>reject</code>. Querying logic can instead be
 passed to the <code>count</code> call.</p>
 </div>
@@ -1352,6 +1354,18 @@ Model.select(:value).count</code></pre>
 <div class="sect1">
 <h2 id="performancedeleteprefix"><a class="anchor" href="#performancedeleteprefix"></a>Performance/DeletePrefix</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Required Ruby version: 2.5
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -1470,6 +1484,18 @@ str.sub!(/^prefix/, '')</code></pre>
 <div class="sect1">
 <h2 id="performancedeletesuffix"><a class="anchor" href="#performancedeletesuffix"></a>Performance/DeleteSuffix</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Required Ruby version: 2.5
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -1616,7 +1642,7 @@ str.sub!(/suffix$/, '')</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop is used to identify usages of <code>first</code>, <code>last</code>, <code>[0]</code> or <code>[-1]</code>
+<p>Identifies usages of <code>first</code>, <code>last</code>, <code>[0]</code> or <code>[-1]</code>
 chained to <code>select</code>, <code>find_all</code> or <code>filter</code> and change them to use
 <code>detect</code> instead.</p>
 </div>
@@ -1691,7 +1717,7 @@ meaning. Correcting <code>ActiveRecord</code> methods with this cop should be co
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for double <code>#start_with?</code> or <code>#end_with?</code> calls
+<p>Checks for double <code>#start_with?</code> or <code>#end_with?</code> calls
 separated by <code>||</code>. In some cases such calls can be replaced
 with an single <code>#start_with?</code>/<code>#end_with?</code> call.</p>
 </div>
@@ -1799,7 +1825,7 @@ str.ends_with?(var1, var2)</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies unnecessary use of a regex where <code>String#end_with?</code> would suffice.</p>
+<p>Identifies unnecessary use of a regex where <code>String#end_with?</code> would suffice.</p>
 </div>
 <div class="paragraph">
 <p>This cop has <code>SafeMultiline</code> configuration option that <code>true</code> by default because
@@ -2006,7 +2032,7 @@ waldo.size</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop is used to identify usages of <code>map { &#8230;&#8203; }.flatten</code> and
+<p>Identifies usages of <code>map { &#8230;&#8203; }.flatten</code> and
 change them to use <code>flat_map { &#8230;&#8203; }</code> instead.</p>
 </div>
 <div class="sect2">
@@ -2091,7 +2117,7 @@ change them to use <code>flat_map { &#8230;&#8203; }</code> instead.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for inefficient searching of keys and values within
+<p>Checks for inefficient searching of keys and values within
 hashes.</p>
 </div>
 <div class="paragraph">
@@ -2180,7 +2206,7 @@ h = { a: 1, b: 2 }; h.value?(nil)</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where inefficient <code>readlines</code> method
+<p>Identifies places where inefficient <code>readlines</code> method
 can be replaced by <code>each_line</code> to avoid fully loading file content into memory.</p>
 </div>
 <div class="sect2">
@@ -2326,7 +2352,7 @@ ary.compact.map(&amp;:foo)</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where methods are converted to blocks, with the
+<p>Identifies places where methods are converted to blocks, with the
 use of <code>&amp;method</code>, and passed as arguments to method calls.
 It is faster to replace those with explicit blocks, calling those methods inside.</p>
 </div>
@@ -2387,7 +2413,7 @@ array.map { |x| do_something(x) }
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for <code>OpenStruct.new</code> calls.
+<p>Checks for <code>OpenStruct.new</code> calls.
 Instantiation of an <code>OpenStruct</code> invalidates
 Ruby global method cache as it causes dynamic method
 definition during program runtime.
@@ -2456,7 +2482,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies uses of <code>Range#include?</code> and <code>Range#member?</code>, which iterates over each
+<p>Identifies uses of <code>Range#include?</code> and <code>Range#member?</code>, which iterates over each
 item in a <code>Range</code> to see if a specified item is there. In contrast,
 <code>Range#cover?</code> simply compares the target item with the beginning and
 end points of the <code>Range</code>. In a great majority of cases, this is what
@@ -2530,7 +2556,7 @@ are not equivalent behavior.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies the use of a <code>&amp;block</code> parameter and <code>block.call</code>
+<p>Identifies the use of a <code>&amp;block</code> parameter and <code>block.call</code>
 where <code>yield</code> would do just as well.</p>
 </div>
 <div class="sect2">
@@ -2570,6 +2596,18 @@ end</code></pre>
 <div class="sect1">
 <h2 id="performanceredundantequalitycomparisonblock"><a class="anchor" href="#performanceredundantequalitycomparisonblock"></a>Performance/RedundantEqualityComparisonBlock</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Required Ruby version: 2.5
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -2598,7 +2636,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for uses <code>Enumerable#all?</code>, <code>Enumerable#any?</code>, <code>Enumerable#one?</code>,
+<p>Checks for uses <code>Enumerable#all?</code>, <code>Enumerable#any?</code>, <code>Enumerable#one?</code>,
 and <code>Enumerable#none?</code> are compared with <code>===</code> or similar methods in block.</p>
 </div>
 <div class="paragraph">
@@ -2670,7 +2708,7 @@ items.all?(pattern)</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies the use of <code>Regexp#match</code> or <code>String#match</code>, which
+<p>Identifies the use of <code>Regexp#match</code> or <code>String#match</code>, which
 returns <code>#&lt;MatchData&gt;</code>/<code>nil</code>. The return value of <code>=~</code> is an integral
 index/<code>nil</code> and is more performant.</p>
 </div>
@@ -2723,8 +2761,7 @@ return value unless regex =~ 'str'</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where <code>Hash#merge!</code> can be replaced by
-<code>Hash#[]=</code>.
+<p>Identifies places where <code>Hash#merge!</code> can be replaced by <code>Hash#[]=</code>.
 You can set the maximum number of key-value pairs to consider
 an offense with <code>MaxKeyValuePairs</code>.</p>
 </div>
@@ -2829,8 +2866,7 @@ hash[:b] = 2</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where <code>sort { |a, b| a &lt;&#8658; b }</code>
-can be replaced with <code>sort</code>.</p>
+<p>Identifies places where <code>sort { |a, b| a &lt;&#8658; b }</code> can be replaced with <code>sort</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-32"><a class="anchor" href="#examples-32"></a>Examples</h3>
@@ -2877,7 +2913,7 @@ array.sort</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where <code>split</code> argument can be replaced from
+<p>Identifies places where <code>split</code> argument can be replaced from
 a deterministic regexp to a string.</p>
 </div>
 <div class="sect2">
@@ -2925,7 +2961,7 @@ a deterministic regexp to a string.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for redundant <code>String#chars</code>.</p>
+<p>Checks for redundant <code>String#chars</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-34"><a class="anchor" href="#examples-34"></a>Examples</h3>
@@ -3117,8 +3153,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop is used to identify usages of <code>reverse.each</code> and
-change them to use <code>reverse_each</code> instead.</p>
+<p>Identifies usages of <code>reverse.each</code> and change them to use <code>reverse_each</code> instead.</p>
 </div>
 <div class="paragraph">
 <p>If the return value is used, it will not be detected because the result will be different.</p>
@@ -3184,7 +3219,7 @@ items.reverse_each</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where <code>reverse.first(n)</code> and <code>reverse.first</code>
+<p>Identifies places where <code>reverse.first(n)</code> and <code>reverse.first</code>
 can be replaced by <code>last(n).reverse</code> and <code>last</code>.</p>
 </div>
 <div class="sect2">
@@ -3297,8 +3332,7 @@ ary.filter_map { |o| o.bar if o.foo }</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop is used to identify usages of <code>count</code> on an
-<code>Array</code> and <code>Hash</code> and change them to <code>size</code>.</p>
+<p>Identifies usages of <code>count</code> on an <code>Array</code> and <code>Hash</code> and change them to <code>size</code>.</p>
 </div>
 <div class="paragraph">
 <p>TODO: Add advanced detection of variables that could
@@ -3380,7 +3414,7 @@ Hash(key: :value).size
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where <code>sort { |a, b| b &lt;&#8658; a }</code>
+<p>Identifies places where <code>sort { |a, b| b &lt;&#8658; a }</code>
 can be replaced by a faster <code>sort.reverse</code>.</p>
 </div>
 <div class="sect2">
@@ -3428,7 +3462,7 @@ array.sort.reverse</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where <code>gsub(/a+/, 'a')</code> and <code>gsub!(/a+/, 'a')</code>
+<p>Identifies places where <code>gsub(/a+/, 'a')</code> and <code>gsub!(/a+/, 'a')</code>
 can be replaced by <code>squeeze('a')</code> and <code>squeeze!('a')</code>.</p>
 </div>
 <div class="paragraph">
@@ -3491,7 +3525,7 @@ str.squeeze!('a')</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies unnecessary use of a regex where <code>String#start_with?</code> would suffice.</p>
+<p>Identifies unnecessary use of a regex where <code>String#start_with?</code> would suffice.</p>
 </div>
 <div class="paragraph">
 <p>This cop has <code>SafeMultiline</code> configuration option that <code>true</code> by default because
@@ -3618,7 +3652,7 @@ of the variables which rubocop doesn&#8217;t have.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where string identifier argument can be replaced
+<p>Identifies places where string identifier argument can be replaced
 by symbol identifier argument.
 It prevents the redundancy of the internal string-to-symbol conversion.</p>
 </div>
@@ -3675,13 +3709,12 @@ instance_variable_get(:@ivar)</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies unnecessary use of a regex where
-<code>String#include?</code> would suffice.</p>
+<p>Identifies unnecessary use of a regex where <code>String#include?</code> would suffice.</p>
 </div>
 <div class="sect2">
 <h3 id="safety-17"><a class="anchor" href="#safety-17"></a>Safety</h3>
 <div class="paragraph">
-<p>This cop&#8217;s offenses are not safe to auto-correct if a receiver is nil.</p>
+<p>This cop&#8217;s offenses are not safe to autocorrect if a receiver is nil.</p>
 </div>
 </div>
 <div class="sect2">
@@ -3734,8 +3767,7 @@ instance_variable_get(:@ivar)</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where <code>gsub</code> can be replaced by
-<code>tr</code> or <code>delete</code>.</p>
+<p>Identifies places where <code>gsub</code> can be replaced by <code>tr</code> or <code>delete</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-45"><a class="anchor" href="#examples-45"></a>Examples</h3>
@@ -3798,7 +3830,7 @@ instance_variable_get(:@ivar)</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where custom code finding the sum of elements
+<p>Identifies places where custom code finding the sum of elements
 in some Enumerable object can be replaced by <code>Enumerable#sum</code> method.</p>
 </div>
 <div class="sect2">
@@ -3947,7 +3979,7 @@ as initial value and successively add all following values to it, whereas
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for .times.map calls.
+<p>Checks for .times.map calls.
 In most cases such calls can be replaced
 with an explicit array creation.</p>
 </div>
@@ -4079,8 +4111,7 @@ String.new('something')
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop identifies places where <code>URI::Parser.new</code>
-can be replaced by <code>URI::DEFAULT_PARSER</code>.</p>
+<p>Identifies places where <code>URI::Parser.new</code> can be replaced by <code>URI::DEFAULT_PARSER</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
