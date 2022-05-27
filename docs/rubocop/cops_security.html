@@ -210,6 +210,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.30/index.html">1.30</a>
+        </li>
+        <li class="version">
           <a href="1.29/index.html">1.29</a>
         </li>
         <li class="version">
@@ -459,6 +462,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_security.html">default</a>
+    <a class="version" href="1.30/cops_security.html">1.30</a>
     <a class="version" href="1.29/cops_security.html">1.29</a>
     <a class="version" href="1.28/cops_security.html">1.28</a>
     <a class="version" href="1.27/cops_security.html">1.27</a>
@@ -511,7 +515,7 @@
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for implementations of the <code>hash</code> method which combine
+<p>Checks for implementations of the <code>hash</code> method which combine
 values using custom logic instead of delegating to <code>Array#hash</code>.</p>
 </div>
 <div class="paragraph">
@@ -576,7 +580,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for the use of <code>Kernel#eval</code> and <code>Binding#eval</code>.</p>
+<p>Checks for the use of <code>Kernel#eval</code> and <code>Binding#eval</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
@@ -687,7 +691,7 @@ IO.read('| command') # Allow intentional command invocation.</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for the use of JSON class methods which have potential
+<p>Checks for the use of JSON class methods which have potential
 security issues.</p>
 </div>
 <div class="sect2">
@@ -758,7 +762,7 @@ JSON.parse("{}")</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for the use of Marshal class methods which have
+<p>Checks for the use of Marshal class methods which have
 potential security issues leading to remote code execution when
 loading from an untrusted source.</p>
 </div>
@@ -821,7 +825,7 @@ Marshal.load(Marshal.dump({}))</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for the use of <code>Kernel#open</code> and <code>URI.open</code> with dynamic
+<p>Checks for the use of <code>Kernel#open</code> and <code>URI.open</code> with dynamic
 data.</p>
 </div>
 <div class="paragraph">
@@ -905,7 +909,7 @@ URI.open("http://example.com")</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for the use of YAML class methods which have
+<p>Checks for the use of YAML class methods which have
 potential security issues leading to remote code execution when
 loading from an untrusted source.</p>
 </div>

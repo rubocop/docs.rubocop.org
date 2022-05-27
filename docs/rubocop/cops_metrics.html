@@ -210,6 +210,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.30/index.html">1.30</a>
+        </li>
+        <li class="version">
           <a href="1.29/index.html">1.29</a>
         </li>
         <li class="version">
@@ -459,6 +462,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_metrics.html">default</a>
+    <a class="version" href="1.30/cops_metrics.html">1.30</a>
     <a class="version" href="1.29/cops_metrics.html">1.29</a>
     <a class="version" href="1.28/cops_metrics.html">1.28</a>
     <a class="version" href="1.27/cops_metrics.html">1.27</a>
@@ -511,7 +515,7 @@
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks that the ABC size of methods is not higher than the
+<p>Checks that the ABC size of methods is not higher than the
 configured maximum. The ABC size is based on assignments, branches
 (method calls), and conditions. See <a href="http://c2.com/cgi/wiki?AbcMetric" class="bare">http://c2.com/cgi/wiki?AbcMetric</a>
 and <a href="https://en.wikipedia.org/wiki/ABC_Software_Metric" class="bare">https://en.wikipedia.org/wiki/ABC_Software_Metric</a>.</p>
@@ -642,7 +646,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks if the length of a block exceeds some maximum value.
+<p>Checks if the length of a block exceeds some maximum value.
 Comment lines can optionally be ignored.
 The maximum allowed length is configurable.
 The cop can be configured to ignore blocks passed to certain methods.</p>
@@ -784,7 +788,7 @@ end                 # 5 points</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for excessive nesting of conditional and looping
+<p>Checks for excessive nesting of conditional and looping
 constructs.</p>
 </div>
 <div class="paragraph">
@@ -867,7 +871,7 @@ towards the nesting level. Set to <code>true</code> to count blocks as well.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks if the length a class exceeds some maximum value.
+<p>Checks if the length a class exceeds some maximum value.
 Comment lines can optionally be ignored.
 The maximum allowed length is configurable.</p>
 </div>
@@ -980,7 +984,7 @@ end                 # 5 points</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks that the cyclomatic complexity of methods is not higher
+<p>Checks that the cyclomatic complexity of methods is not higher
 than the configured maximum. The cyclomatic complexity is the number of
 linearly independent paths through a method. The algorithm counts
 decision points and adds one.</p>
@@ -1082,7 +1086,7 @@ end                                       # total: 6</pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks if the length of a method exceeds some maximum value.
+<p>Checks if the length of a method exceeds some maximum value.
 Comment lines can optionally be ignored.
 The maximum allowed length is configurable.</p>
 </div>
@@ -1216,7 +1220,7 @@ end               # 5 points</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks if the length a module exceeds some maximum value.
+<p>Checks if the length a module exceeds some maximum value.
 Comment lines can optionally be ignored.
 The maximum allowed length is configurable.</p>
 </div>
@@ -1317,7 +1321,7 @@ end                 # 5 points</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for methods with too many parameters.</p>
+<p>Checks for methods with too many parameters.</p>
 </div>
 <div class="paragraph">
 <p>The maximum number of parameters is configurable.
@@ -1489,7 +1493,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop tries to produce a complexity score that&#8217;s a measure of the
+<p>Tries to produce a complexity score that&#8217;s a measure of the
 complexity the reader experiences when looking at a method. For that
 reason it considers <code>when</code> nodes as something that doesn&#8217;t add as much
 complexity as an <code>if</code> or a <code>&amp;&amp;</code>. Except if it&#8217;s one of those special
