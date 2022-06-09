@@ -298,7 +298,7 @@
       <a class="title" href="../rubocop-minitest/index.html">RuboCop Minitest</a>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-minitest/index.html">master</a>
+          <a href="../rubocop-minitest/index.html">default</a>
         </li>
         <li class="version">
           <a href="../rubocop-minitest/0.20/index.html">0.20</a>
@@ -347,7 +347,7 @@
       <a class="title" href="../rubocop-performance/index.html">RuboCop Performance</a>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-performance/index.html">master</a>
+          <a href="../rubocop-performance/index.html">default</a>
         </li>
         <li class="version">
           <a href="../rubocop-performance/1.14/index.html">1.14</a>
@@ -379,7 +379,7 @@
       <a class="title" href="../rubocop-rails/index.html">RuboCop Rails</a>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-rails/index.html">master</a>
+          <a href="../rubocop-rails/index.html">default</a>
         </li>
         <li class="version">
           <a href="../rubocop-rails/2.14/index.html">2.14</a>
@@ -2566,28 +2566,6 @@ Both are enabled by default.</p>
 <div class="sect2">
 <h3 id="examples-18"><a class="anchor" href="#examples-18"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-snake_case"><a class="anchor" href="#enforcedstyle-snake_case"></a>EnforcedStyle: snake_case</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-:some_sym1
-variable1 = 1
-
-def some_method1; end
-
-def some_method_1(arg1); end
-
-# good
-:some_sym_1
-variable_1 = 1
-
-def some_method_1; end
-
-def some_method_1(arg_1); end</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
 <h4 id="enforcedstyle-normalcase-default"><a class="anchor" href="#enforcedstyle-normalcase-default"></a>EnforcedStyle: normalcase (default)</h4>
 <div class="listingblock">
 <div class="content">
@@ -2606,6 +2584,28 @@ variable1 = 1
 def some_method1; end
 
 def some_method1(arg1); end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-snake_case"><a class="anchor" href="#enforcedstyle-snake_case"></a>EnforcedStyle: snake_case</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+:some_sym1
+variable1 = 1
+
+def some_method1; end
+
+def some_method_1(arg1); end
+
+# good
+:some_sym_1
+variable_1 = 1
+
+def some_method_1; end
+
+def some_method_1(arg_1); end</code></pre>
 </div>
 </div>
 </div>

@@ -298,7 +298,7 @@
       <a class="title" href="../rubocop-minitest/index.html">RuboCop Minitest</a>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-minitest/index.html">master</a>
+          <a href="../rubocop-minitest/index.html">default</a>
         </li>
         <li class="version">
           <a href="../rubocop-minitest/0.20/index.html">0.20</a>
@@ -347,7 +347,7 @@
       <a class="title" href="../rubocop-performance/index.html">RuboCop Performance</a>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-performance/index.html">master</a>
+          <a href="../rubocop-performance/index.html">default</a>
         </li>
         <li class="version">
           <a href="../rubocop-performance/1.14/index.html">1.14</a>
@@ -379,7 +379,7 @@
       <a class="title" href="../rubocop-rails/index.html">RuboCop Rails</a>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-rails/index.html">master</a>
+          <a href="../rubocop-rails/index.html">default</a>
         </li>
         <li class="version">
           <a href="../rubocop-rails/2.14/index.html">2.14</a>
@@ -889,26 +889,6 @@ and that might change the behavior.</p>
 <div class="sect2">
 <h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-always"><a class="anchor" href="#enforcedstyle-always"></a>EnforcedStyle: always</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-foo.save and return
-
-# bad
-if foo and bar
-end
-
-# good
-foo.save &amp;&amp; return
-
-# good
-if foo &amp;&amp; bar
-end</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
 <h4 id="enforcedstyle-conditionals-default"><a class="anchor" href="#enforcedstyle-conditionals-default"></a>EnforcedStyle: conditionals (default)</h4>
 <div class="listingblock">
 <div class="content">
@@ -921,6 +901,26 @@ foo.save &amp;&amp; return
 
 # good
 foo.save and return
+
+# good
+if foo &amp;&amp; bar
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-always"><a class="anchor" href="#enforcedstyle-always"></a>EnforcedStyle: always</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+foo.save and return
+
+# bad
+if foo and bar
+end
+
+# good
+foo.save &amp;&amp; return
 
 # good
 if foo &amp;&amp; bar
@@ -5288,6 +5288,39 @@ explicit <code>nil</code> depending on the EnforcedStyle.</p>
 <div class="sect2">
 <h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
 <div class="sect3">
+<h4 id="enforcedstyle-both-default"><a class="anchor" href="#enforcedstyle-both-default"></a>EnforcedStyle: both (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># warn on empty else and else with nil in it
+
+# bad
+if condition
+  statement
+else
+  nil
+end
+
+# bad
+if condition
+  statement
+else
+end
+
+# good
+if condition
+  statement
+else
+  statement
+end
+
+# good
+if condition
+  statement
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="enforcedstyle-empty"><a class="anchor" href="#enforcedstyle-empty"></a>EnforcedStyle: empty</h4>
 <div class="listingblock">
 <div class="content">
@@ -5334,39 +5367,6 @@ else
 end
 
 # good
-if condition
-  statement
-else
-end
-
-# good
-if condition
-  statement
-else
-  statement
-end
-
-# good
-if condition
-  statement
-end</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="enforcedstyle-both-default"><a class="anchor" href="#enforcedstyle-both-default"></a>EnforcedStyle: both (default)</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># warn on empty else and else with nil in it
-
-# bad
-if condition
-  statement
-else
-  nil
-end
-
-# bad
 if condition
   statement
 else
@@ -11077,6 +11077,40 @@ it raises <code>NoMatchingPatternError</code> if the pattern doesn&#8217;t match
 <div class="sect2">
 <h3 id="examples-103"><a class="anchor" href="#examples-103"></a>Examples</h3>
 <div class="sect3">
+<h4 id="enforcedstyle-both-default-2"><a class="anchor" href="#enforcedstyle-both-default-2"></a>EnforcedStyle: both (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># warn when an `if` or `case` expression is missing an `else` branch.
+
+# bad
+if condition
+  statement
+end
+
+# bad
+case var
+when condition
+  statement
+end
+
+# good
+if condition
+  statement
+else
+  # the content of `else` branch will be determined by Style/EmptyElse
+end
+
+# good
+case var
+when condition
+  statement
+else
+  # the content of `else` branch will be determined by Style/EmptyElse
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="enforcedstyle-if"><a class="anchor" href="#enforcedstyle-if"></a>EnforcedStyle: if</h4>
 <div class="listingblock">
 <div class="content">
@@ -11137,40 +11171,6 @@ end
 
 # good
 if condition
-  statement
-else
-  # the content of `else` branch will be determined by Style/EmptyElse
-end</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="enforcedstyle-both-default-2"><a class="anchor" href="#enforcedstyle-both-default-2"></a>EnforcedStyle: both (default)</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># warn when an `if` or `case` expression is missing an `else` branch.
-
-# bad
-if condition
-  statement
-end
-
-# bad
-case var
-when condition
-  statement
-end
-
-# good
-if condition
-  statement
-else
-  # the content of `else` branch will be determined by Style/EmptyElse
-end
-
-# good
-case var
-when condition
   statement
 else
   # the content of `else` branch will be determined by Style/EmptyElse
@@ -17914,23 +17914,23 @@ if any error other than <code>StandardError</code> is specified.</p>
 <div class="sect2">
 <h3 id="examples-177"><a class="anchor" href="#examples-177"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-implicit"><a class="anchor" href="#enforcedstyle-implicit"></a>EnforcedStyle: implicit</h4>
+<h4 id="enforcedstyle-explicit-default"><a class="anchor" href="#enforcedstyle-explicit-default"></a>EnforcedStyle: explicit (default)</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># `implicit` will enforce using `rescue` instead of
-# `rescue StandardError`.
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># `explicit` will enforce using `rescue StandardError`
+# instead of `rescue`.
 
 # bad
 begin
   foo
-rescue StandardError
+rescue
   bar
 end
 
 # good
 begin
   foo
-rescue
+rescue StandardError
   bar
 end
 
@@ -17951,23 +17951,23 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyle-explicit-default"><a class="anchor" href="#enforcedstyle-explicit-default"></a>EnforcedStyle: explicit (default)</h4>
+<h4 id="enforcedstyle-implicit"><a class="anchor" href="#enforcedstyle-implicit"></a>EnforcedStyle: implicit</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># `explicit` will enforce using `rescue StandardError`
-# instead of `rescue`.
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># `implicit` will enforce using `rescue` instead of
+# `rescue StandardError`.
 
 # bad
 begin
   foo
-rescue
+rescue StandardError
   bar
 end
 
 # good
 begin
   foo
-rescue StandardError
+rescue
   bar
 end
 
@@ -18114,6 +18114,18 @@ end</code></pre>
 <div class="sect1">
 <h2 id="stylesafenavigation"><a class="anchor" href="#stylesafenavigation"></a>Style/SafeNavigation</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Required Ruby version: 2.3
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">

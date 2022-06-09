@@ -222,7 +222,7 @@
       <a class="title" href="../rubocop-minitest/index.html">RuboCop Minitest</a>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-minitest/index.html">master</a>
+          <a href="../rubocop-minitest/index.html">default</a>
         </li>
         <li class="version">
           <a href="../rubocop-minitest/0.20/index.html">0.20</a>
@@ -271,7 +271,7 @@
       <a class="title" href="../rubocop-performance/index.html">RuboCop Performance</a>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-performance/index.html">master</a>
+          <a href="../rubocop-performance/index.html">default</a>
         </li>
         <li class="version">
           <a href="../rubocop-performance/1.14/index.html">1.14</a>
@@ -303,7 +303,7 @@
       <a class="title" href="../rubocop-rails/index.html">RuboCop Rails</a>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-rails/index.html">master</a>
+          <a href="../rubocop-rails/index.html">default</a>
         </li>
         <li class="version">
           <a href="../rubocop-rails/2.14/index.html">2.14</a>
@@ -1127,6 +1127,8 @@ end</code></pre>
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 expect { run }.to change(Foo, :bar).by(0)
 expect { run }.to change { Foo.bar }.by(0)
+
+# bad - compound expectations
 expect { run }
   .to change(Foo, :bar).by(0)
   .and change(Foo, :baz).by(0)
@@ -1137,6 +1139,9 @@ expect { run }
 # good
 expect { run }.not_to change(Foo, :bar)
 expect { run }.not_to change { Foo.bar }
+
+# good - compound expectations
+define_negated_matcher :not_change, :change
 expect { run }
   .to not_change(Foo, :bar)
   .and not_change(Foo, :baz)
@@ -1633,7 +1638,7 @@ directory.</p>
 <div class="sect2">
 <h3 id="examples-16"><a class="anchor" href="#examples-16"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-described_class"><a class="anchor" href="#enforcedstyle-described_class"></a><code>EnforcedStyle: described_class</code></h4>
+<h4 id="enforcedstyle-described_class-default"><a class="anchor" href="#enforcedstyle-described_class-default"></a><code>EnforcedStyle: described_class</code> (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2658,7 +2663,7 @@ on the configured style.</p>
 <div class="sect2">
 <h3 id="examples-27"><a class="anchor" href="#examples-27"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-always_allow"><a class="anchor" href="#enforcedstyle-always_allow"></a><code>EnforcedStyle: always_allow</code></h4>
+<h4 id="enforcedstyle-always_allow-default"><a class="anchor" href="#enforcedstyle-always_allow-default"></a><code>EnforcedStyle: always_allow</code> (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3050,19 +3055,7 @@ or passing a block that reads the attribute value.</p>
 <div class="sect2">
 <h3 id="examples-31"><a class="anchor" href="#examples-31"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-block"><a class="anchor" href="#enforcedstyle-block"></a><code>EnforcedStyle: block</code></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-expect { run }.to change(Foo, :bar)
-
-# good
-expect { run }.to change { Foo.bar }</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="enforcedstyle-method_call"><a class="anchor" href="#enforcedstyle-method_call"></a><code>EnforcedStyle: method_call</code></h4>
+<h4 id="enforcedstyle-method_call-default"><a class="anchor" href="#enforcedstyle-method_call-default"></a><code>EnforcedStyle: method_call</code> (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3075,6 +3068,18 @@ expect { run }.to change(foo, :baz)
 # also good when there are arguments or chained method calls
 expect { run }.to change { Foo.bar(:count) }
 expect { run }.to change { user.reload.name }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-block"><a class="anchor" href="#enforcedstyle-block"></a><code>EnforcedStyle: block</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+expect { run }.to change(Foo, :bar)
+
+# good
+expect { run }.to change { Foo.bar }</code></pre>
 </div>
 </div>
 </div>
@@ -3502,7 +3507,7 @@ the same behavior.</p>
 <div class="sect2">
 <h3 id="examples-36"><a class="anchor" href="#examples-36"></a>Examples</h3>
 <div class="sect3">
-<h4 id="when-configuration-is-enforcedstyle-implicit"><a class="anchor" href="#when-configuration-is-enforcedstyle-implicit"></a>when configuration is <code>EnforcedStyle: implicit</code></h4>
+<h4 id="enforcedstyle-implicit-default"><a class="anchor" href="#enforcedstyle-implicit-default"></a><code>EnforcedStyle: implicit</code> (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3523,7 +3528,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="when-configuration-is-enforcedstyle-each"><a class="anchor" href="#when-configuration-is-enforcedstyle-each"></a>when configuration is <code>EnforcedStyle: each</code></h4>
+<h4 id="enforcedstyle-each"><a class="anchor" href="#enforcedstyle-each"></a><code>EnforcedStyle: each</code></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3544,7 +3549,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="when-configuration-is-enforcedstyle-example"><a class="anchor" href="#when-configuration-is-enforcedstyle-example"></a>when configuration is <code>EnforcedStyle: example</code></h4>
+<h4 id="enforcedstyle-example"><a class="anchor" href="#enforcedstyle-example"></a><code>EnforcedStyle: example</code></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3837,7 +3842,7 @@ and supports the <code>--auto-gen-config</code> flag.</p>
 <div class="sect2">
 <h3 id="examples-40"><a class="anchor" href="#examples-40"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-is_expected"><a class="anchor" href="#enforcedstyle-is_expected"></a><code>EnforcedStyle: is_expected</code></h4>
+<h4 id="enforcedstyle-is_expected-default"><a class="anchor" href="#enforcedstyle-is_expected-default"></a><code>EnforcedStyle: is_expected</code> (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4247,7 +4252,7 @@ end</code></pre>
 <div class="sect2">
 <h3 id="examples-44"><a class="anchor" href="#examples-44"></a>Examples</h3>
 <div class="sect3">
-<h4 id="when-configuration-is-enforcedstyle-it_behaves_like"><a class="anchor" href="#when-configuration-is-enforcedstyle-it_behaves_like"></a>when configuration is <code>EnforcedStyle: it_behaves_like</code></h4>
+<h4 id="enforcedstyle-it_behaves_like-default"><a class="anchor" href="#enforcedstyle-it_behaves_like-default"></a><code>EnforcedStyle: it_behaves_like</code> (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4259,7 +4264,7 @@ it_behaves_like 'a foo'</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="when-configuration-is-enforcedstyle-it_should_behave_like"><a class="anchor" href="#when-configuration-is-enforcedstyle-it_should_behave_like"></a>when configuration is <code>EnforcedStyle: it_should_behave_like</code></h4>
+<h4 id="enforcedstyle-it_should_behave_like"><a class="anchor" href="#enforcedstyle-it_should_behave_like"></a><code>EnforcedStyle: it_should_behave_like</code></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4841,7 +4846,7 @@ allow(foo).to receive(:bar).and_return(thing)</code></pre>
 <div class="sect2">
 <h3 id="examples-51"><a class="anchor" href="#examples-51"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-allow"><a class="anchor" href="#enforcedstyle-allow"></a><code>EnforcedStyle: allow</code></h4>
+<h4 id="enforcedstyle-allow-default"><a class="anchor" href="#enforcedstyle-allow-default"></a><code>EnforcedStyle: allow</code> (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4941,13 +4946,16 @@ expect(foo).to receive(:bar)</code></pre>
 <div class="sect2">
 <h3 id="examples-52"><a class="anchor" href="#examples-52"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-have_received"><a class="anchor" href="#enforcedstyle-have_received"></a><code>EnforcedStyle: have_received</code></h4>
+<h4 id="enforcedstyle-have_received-default"><a class="anchor" href="#enforcedstyle-have_received-default"></a><code>EnforcedStyle: have_received</code> (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 expect(foo).to receive(:bar)
+do_something
 
 # good
+allow(foo).to receive(:bar) # or use instance_spy
+do_something
 expect(foo).to have_received(:bar)</code></pre>
 </div>
 </div>
@@ -4957,10 +4965,13 @@ expect(foo).to have_received(:bar)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+allow(foo).to receive(:bar)
+do_something
 expect(foo).to have_received(:bar)
 
 # good
-expect(foo).to receive(:bar)</code></pre>
+expect(foo).to receive(:bar)
+do_something</code></pre>
 </div>
 </div>
 </div>
@@ -5819,6 +5830,8 @@ end</code></pre>
 </div>
 <div class="sect2">
 <h3 id="examples-60"><a class="anchor" href="#examples-60"></a>Examples</h3>
+<div class="sect3">
+<h4 id="enforcedstyle-not_to-default"><a class="anchor" href="#enforcedstyle-not_to-default"></a><code>EnforcedStyle: not_to</code> (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5830,6 +5843,23 @@ end
 it '...' do
   expect(false).not_to be_true
 end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-to_not"><a class="anchor" href="#enforcedstyle-to_not"></a><code>EnforcedStyle: to_not</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+it '...' do
+  expect(false).not_to be_true
+end
+
+# good
+it '...' do
+  expect(false).to_not be_true
+end</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -6730,6 +6760,22 @@ are the result would be different</p>
 <div class="sect2">
 <h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
 <div class="sect3">
+<h4 id="enforcedstyle-and_return-default"><a class="anchor" href="#enforcedstyle-and_return-default"></a><code>EnforcedStyle: and_return</code> (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+allow(Foo).to receive(:bar) { "baz" }
+expect(Foo).to receive(:bar) { "baz" }
+
+# good
+allow(Foo).to receive(:bar).and_return("baz")
+expect(Foo).to receive(:bar).and_return("baz")
+# also good as the returned value is dynamic
+allow(Foo).to receive(:bar) { bar.baz }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="enforcedstyle-block-2"><a class="anchor" href="#enforcedstyle-block-2"></a><code>EnforcedStyle: block</code></h4>
 <div class="listingblock">
 <div class="content">
@@ -6742,22 +6788,6 @@ allow(Foo).to receive(:bar) { "baz" }
 expect(Foo).to receive(:bar) { "baz" }
 # also good as the returned value is dynamic
 allow(Foo).to receive(:bar).and_return(bar.baz)</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="enforcedstyle-and_return"><a class="anchor" href="#enforcedstyle-and_return"></a><code>EnforcedStyle: and_return</code></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-allow(Foo).to receive(:bar) { "baz" }
-expect(Foo).to receive(:bar) { "baz" }
-
-# good
-allow(Foo).to receive(:bar).and_return("baz")
-expect(Foo).to receive(:bar).and_return("baz")
-# also good as the returned value is dynamic
-allow(Foo).to receive(:bar) { bar.baz }</code></pre>
 </div>
 </div>
 </div>

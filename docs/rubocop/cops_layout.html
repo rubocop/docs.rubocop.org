@@ -298,7 +298,7 @@
       <a class="title" href="../rubocop-minitest/index.html">RuboCop Minitest</a>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-minitest/index.html">master</a>
+          <a href="../rubocop-minitest/index.html">default</a>
         </li>
         <li class="version">
           <a href="../rubocop-minitest/0.20/index.html">0.20</a>
@@ -347,7 +347,7 @@
       <a class="title" href="../rubocop-performance/index.html">RuboCop Performance</a>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-performance/index.html">master</a>
+          <a href="../rubocop-performance/index.html">default</a>
         </li>
         <li class="version">
           <a href="../rubocop-performance/1.14/index.html">1.14</a>
@@ -379,7 +379,7 @@
       <a class="title" href="../rubocop-rails/index.html">RuboCop Rails</a>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-rails/index.html">master</a>
+          <a href="../rubocop-rails/index.html">default</a>
         </li>
         <li class="version">
           <a href="../rubocop-rails/2.14/index.html">2.14</a>
@@ -3409,6 +3409,18 @@ the configuration.</p>
 <div class="sect2">
 <h3 id="examples-27"><a class="anchor" href="#examples-27"></a>Examples</h3>
 <div class="sect3">
+<h4 id="enforcedstyle-no_empty_lines-default"><a class="anchor" href="#enforcedstyle-no_empty_lines-default"></a>EnforcedStyle: no_empty_lines (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+
+foo do |bar|
+  # ...
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="enforcedstyle-empty_lines"><a class="anchor" href="#enforcedstyle-empty_lines"></a>EnforcedStyle: empty_lines</h4>
 <div class="listingblock">
 <div class="content">
@@ -3418,18 +3430,6 @@ foo do |bar|
 
   # ...
 
-end</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="enforcedstyle-no_empty_lines-default"><a class="anchor" href="#enforcedstyle-no_empty_lines-default"></a>EnforcedStyle: no_empty_lines (default)</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-
-foo do |bar|
-  # ...
 end</code></pre>
 </div>
 </div>
@@ -3508,6 +3508,20 @@ the configuration.</p>
 <div class="sect2">
 <h3 id="examples-28"><a class="anchor" href="#examples-28"></a>Examples</h3>
 <div class="sect3">
+<h4 id="enforcedstyle-no_empty_lines-default-2"><a class="anchor" href="#enforcedstyle-no_empty_lines-default-2"></a>EnforcedStyle: no_empty_lines (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+
+class Foo
+  def bar
+    # ...
+  end
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="enforcedstyle-empty_lines-2"><a class="anchor" href="#enforcedstyle-empty_lines-2"></a>EnforcedStyle: empty_lines</h4>
 <div class="listingblock">
 <div class="content">
@@ -3578,20 +3592,6 @@ class Foo
     # ...
   end
 
-end</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="enforcedstyle-no_empty_lines-default-2"><a class="anchor" href="#enforcedstyle-no_empty_lines-default-2"></a>EnforcedStyle: no_empty_lines (default)</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-
-class Foo
-  def bar
-    # ...
-  end
 end</code></pre>
 </div>
 </div>
@@ -3838,6 +3838,20 @@ the configuration.</p>
 <div class="sect2">
 <h3 id="examples-31"><a class="anchor" href="#examples-31"></a>Examples</h3>
 <div class="sect3">
+<h4 id="enforcedstyle-no_empty_lines-default-3"><a class="anchor" href="#enforcedstyle-no_empty_lines-default-3"></a>EnforcedStyle: no_empty_lines (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+
+module Foo
+  def bar
+    # ...
+  end
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="enforcedstyle-empty_lines-3"><a class="anchor" href="#enforcedstyle-empty_lines-3"></a>EnforcedStyle: empty_lines</h4>
 <div class="listingblock">
 <div class="content">
@@ -3878,20 +3892,6 @@ module Foo
 
   def bar; end
 
-end</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="enforcedstyle-no_empty_lines-default-3"><a class="anchor" href="#enforcedstyle-no_empty_lines-default-3"></a>EnforcedStyle: no_empty_lines (default)</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-
-module Foo
-  def bar
-    # ...
-  end
 end</code></pre>
 </div>
 </div>
@@ -4375,6 +4375,38 @@ second_param</code></pre>
 </div>
 </div>
 <div class="sect3">
+<h4 id="enforcedstyle-special_for_inner_method_call_in_parentheses-default"><a class="anchor" href="#enforcedstyle-special_for_inner_method_call_in_parentheses-default"></a>EnforcedStyle: special_for_inner_method_call_in_parentheses (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Same as `special_for_inner_method_call` except that the special rule
+# only applies if the outer method call encloses its arguments in
+# parentheses.
+
+# good
+some_method(
+  first_param,
+second_param)
+
+foo = some_method(
+  first_param,
+second_param)
+
+foo = some_method(nested_call(
+                    nested_first_param),
+second_param)
+
+foo = some_method(
+  nested_call(
+    nested_first_param),
+second_param)
+
+some_method nested_call(
+  nested_first_param),
+second_param</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="enforcedstyle-consistent"><a class="anchor" href="#enforcedstyle-consistent"></a>EnforcedStyle: consistent</h4>
 <div class="listingblock">
 <div class="content">
@@ -4465,38 +4497,6 @@ second_param)
 
 some_method nested_call(
               nested_first_param),
-second_param</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="enforcedstyle-special_for_inner_method_call_in_parentheses-default"><a class="anchor" href="#enforcedstyle-special_for_inner_method_call_in_parentheses-default"></a>EnforcedStyle: special_for_inner_method_call_in_parentheses (default)</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Same as `special_for_inner_method_call` except that the special rule
-# only applies if the outer method call encloses its arguments in
-# parentheses.
-
-# good
-some_method(
-  first_param,
-second_param)
-
-foo = some_method(
-  first_param,
-second_param)
-
-foo = some_method(nested_call(
-                    nested_first_param),
-second_param)
-
-foo = some_method(
-  nested_call(
-    nested_first_param),
-second_param)
-
-some_method nested_call(
-  nested_first_param),
 second_param</code></pre>
 </div>
 </div>
@@ -9691,21 +9691,6 @@ surrounding space depending on configuration.</p>
 <div class="sect2">
 <h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-space"><a class="anchor" href="#enforcedstyle-space"></a>EnforcedStyle: space</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># The `space` style enforces that array literals have
-# surrounding space.
-
-# bad
-array = [a, b, c, d]
-
-# good
-array = [ a, b, c, d ]</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
 <h4 id="enforcedstyle-no_space-default"><a class="anchor" href="#enforcedstyle-no_space-default"></a>EnforcedStyle: no_space (default)</h4>
 <div class="listingblock">
 <div class="content">
@@ -9717,6 +9702,21 @@ array = [ a, b, c, d ]
 
 # good
 array = [a, b, c, d]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-space"><a class="anchor" href="#enforcedstyle-space"></a>EnforcedStyle: space</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># The `space` style enforces that array literals have
+# surrounding space.
+
+# bad
+array = [a, b, c, d]
+
+# good
+array = [ a, b, c, d ]</code></pre>
 </div>
 </div>
 </div>
@@ -10703,6 +10703,26 @@ source code.</p>
 <div class="sect2">
 <h3 id="examples-95"><a class="anchor" href="#examples-95"></a>Examples</h3>
 <div class="sect3">
+<h4 id="enforcedstyle-final_newline-default"><a class="anchor" href="#enforcedstyle-final_newline-default"></a>EnforcedStyle: final_newline (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># `final_newline` looks for one newline at the end of files.
+
+# bad
+class Foo; end
+
+# EOF
+
+# bad
+class Foo; end # EOF
+
+# good
+class Foo; end
+# EOF</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="enforcedstyle-final_blank_line"><a class="anchor" href="#enforcedstyle-final_blank_line"></a>EnforcedStyle: final_blank_line</h4>
 <div class="listingblock">
 <div class="content">
@@ -10719,26 +10739,6 @@ class Foo; end # EOF
 # good
 class Foo; end
 
-# EOF</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="enforcedstyle-final_newline-default"><a class="anchor" href="#enforcedstyle-final_newline-default"></a>EnforcedStyle: final_newline (default)</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># `final_newline` looks for one newline at the end of files.
-
-# bad
-class Foo; end
-
-# EOF
-
-# bad
-class Foo; end # EOF
-
-# good
-class Foo; end
 # EOF</code></pre>
 </div>
 </div>
