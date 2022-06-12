@@ -589,6 +589,73 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="rspeccapybaraspecificmatcher"><a class="anchor" href="#rspeccapybaraspecificmatcher"></a>RSpec/Capybara/SpecificMatcher</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.12</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks for there is a more specific matcher offered by Capybara.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+expect(page).to have_selector('button')
+expect(page).to have_no_selector('button.cls')
+expect(page).to have_css('button')
+expect(page).to have_no_css('a.cls', exact_text: 'foo')
+expect(page).to have_css('table.cls')
+expect(page).to have_css('select')
+
+# good
+expect(page).to have_button
+expect(page).to have_no_button(class: 'cls')
+expect(page).to have_button
+expect(page).to have_no_link('foo', class: 'cls')
+expect(page).to have_table(class: 'cls')
+expect(page).to have_select</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-3"><a class="anchor" href="#references-3"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/Capybara/SpecificMatcher" class="bare">https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/Capybara/SpecificMatcher</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="rspeccapybaravisibilitymatcher"><a class="anchor" href="#rspeccapybaravisibilitymatcher"></a>RSpec/Capybara/VisibilityMatcher</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -632,7 +699,7 @@ Read more in
 <a href="https://www.rubydoc.info/gems/capybara/Capybara%2FNode%2FFinders:all">the documentation</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -648,7 +715,7 @@ expect(page).to have_link('my link', visible: :hidden)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-3"><a class="anchor" href="#references-3"></a>References</h3>
+<h3 id="references-4"><a class="anchor" href="#references-4"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>

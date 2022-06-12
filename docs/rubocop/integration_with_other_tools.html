@@ -103,6 +103,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="usage/caching.html">Caching</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/server.html">Server</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -496,7 +499,7 @@ which may result in some slowness, as <code>rubocop</code> has to require its en
 each call.</p>
 </div>
 <div class="paragraph">
-<p>You can alleviate some of that boot time by using
+<p>You can alleviate some of that boot time by using <a href="#server.adoc" class="xref unresolved">"Server"</a> or
 <a href="https://github.com/fohte/rubocop-daemon">rubocop-daemon</a>. <code>rubocop-daemon</code> is a
 wrapper around <code>rubocop</code> that loads everything into a daemonized process so that
 subsequent runs save on that boot time after the first execution. Please see the
@@ -705,8 +708,8 @@ RuboCop::RakeTask.new</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rake rubocop                                  # Run RuboCop
-$ rake rubocop:auto_correct                     # Autocorrect RuboCop offenses</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rake rubocop                                 # Run RuboCop
+$ rake rubocop:autocorrect                     # Autocorrect RuboCop offenses</code></pre>
 </div>
 </div>
 <div class="paragraph">
