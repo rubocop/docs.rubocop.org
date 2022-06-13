@@ -387,7 +387,7 @@
     <a class="version" href="../0.10/cops_minitest.html">0.10</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-minitest/blob/v0.20.0/docs/modules/ROOT/pages/cops_minitest.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-minitest/blob/v0.20.1/docs/modules/ROOT/pages/cops_minitest.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -1523,30 +1523,6 @@ and autocorrects them to use expect format.</p>
 <div class="sect2">
 <h3 id="examples-19"><a class="anchor" href="#examples-19"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-_"><a class="anchor" href="#enforcedstyle-_"></a>EnforcedStyle: _</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-musts.must_equal expected_musts
-wonts.wont_match expected_wonts
-musts.must_raise TypeError
-
-expect(musts).must_equal expected_musts
-expect(wonts).wont_match expected_wonts
-expect { musts }.must_raise TypeError
-
-value(musts).must_equal expected_musts
-value(wonts).wont_match expected_wonts
-value { musts }.must_raise TypeError
-
-# good
-_(musts).must_equal expected_musts
-_(wonts).wont_match expected_wonts
-_ { musts }.must_raise TypeError</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
 <h4 id="enforcedstyle-any-default"><a class="anchor" href="#enforcedstyle-any-default"></a>EnforcedStyle: any (default)</h4>
 <div class="listingblock">
 <div class="content">
@@ -1567,6 +1543,30 @@ expect { musts }.must_raise TypeError
 value(musts).must_equal expected_musts
 value(wonts).wont_match expected_wonts
 value { musts }.must_raise TypeError</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-_"><a class="anchor" href="#enforcedstyle-_"></a>EnforcedStyle: _</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+musts.must_equal expected_musts
+wonts.wont_match expected_wonts
+musts.must_raise TypeError
+
+expect(musts).must_equal expected_musts
+expect(wonts).wont_match expected_wonts
+expect { musts }.must_raise TypeError
+
+value(musts).must_equal expected_musts
+value(wonts).wont_match expected_wonts
+value { musts }.must_raise TypeError
+
+# good
+_(musts).must_equal expected_musts
+_(wonts).wont_match expected_wonts
+_ { musts }.must_raise TypeError</code></pre>
 </div>
 </div>
 </div>
