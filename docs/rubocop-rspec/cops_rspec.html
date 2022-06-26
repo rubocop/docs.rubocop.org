@@ -5211,6 +5211,34 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
+<h4 id="aggregate_failures-true-default"><a class="anchor" href="#aggregate_failures-true-default"></a><code>aggregate_failures: true</code> (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good - the cop ignores when RSpec aggregates failures
+ describe UserCreator do
+   it 'builds a user', :aggregate_failures do
+     expect(user.name).to eq("John")
+     expect(user.age).to eq(22)
+   end
+ end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aggregate_failures-false"><a class="anchor" href="#aggregate_failures-false"></a><code>aggregate_failures: false</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Detected as an offense
+ describe UserCreator do
+   it 'builds a user', aggregate_failures: false do
+     expect(user.name).to eq("John")
+     expect(user.age).to eq(22)
+   end
+ end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="configuration"><a class="anchor" href="#configuration"></a>configuration</h4>
 <div class="listingblock">
 <div class="content">

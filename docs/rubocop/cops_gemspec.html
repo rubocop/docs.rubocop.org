@@ -493,57 +493,6 @@
 </aside>
 <article class="doc">
 <h1 class="page">Gemspec</h1>
-<div class="sect1">
-<h2 id="gemspecdateassignment"><a class="anchor" href="#gemspecdateassignment"></a>Gemspec/DateAssignment</h2>
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Enabled by default</th>
-<th class="tableblock halign-left valign-top">Safe</th>
-<th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">Version Added</th>
-<th class="tableblock halign-left valign-top">Version Changed</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.10</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Checks that <code>date =</code> is not used in gemspec file.
-It is set automatically when the gem is packaged.</p>
-</div>
-<div class="sect2">
-<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-Gem::Specification.new do |spec|
-  spec.name = 'your_cool_gem_name'
-  spec.date = Time.now.strftime('%Y-%m-%d')
-end
-
-# good
-Gem::Specification.new do |spec|
-  spec.name = 'your_cool_gem_name'
-end</code></pre>
-</div>
-</div>
-</div>
 <div class="sect2">
 <h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
@@ -567,8 +516,6 @@ end</code></pre>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
 </div>
 <div class="sect1">
 <h2 id="gemspecdependencyversion"><a class="anchor" href="#gemspecdependencyversion"></a>Gemspec/DependencyVersion</h2>
@@ -605,7 +552,7 @@ end</code></pre>
 ref, or tag) are either required or forbidden.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
+<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-required-default"><a class="anchor" href="#enforcedstyle-required-default"></a>EnforcedStyle: required (default)</h4>
 <div class="listingblock">
@@ -730,7 +677,7 @@ end</code></pre>
 Removing <code>test_files</code> allows the user to receive smaller packed gems.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -819,7 +766,7 @@ as <code>spec.requirements</code>, <code>spec.add_runtime_dependency</code>, and
 permitted because it is the intended use of appending values.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -907,7 +854,7 @@ end</code></pre>
 <p>Dependencies in the gemspec should be alphabetically sorted.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
+<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1089,7 +1036,7 @@ end</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1186,7 +1133,7 @@ configuration for the gem.</p>
 <p>This ensures that RuboCop is using the same Ruby version as the gem.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
+<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># When `TargetRubyVersion` of .rubocop.yml is `2.5`.
@@ -1298,7 +1245,7 @@ It&#8217;s possible to have dependency based on ruby version used
 to execute <code>rake release</code> and not user&#8217;s ruby version.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
+<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
