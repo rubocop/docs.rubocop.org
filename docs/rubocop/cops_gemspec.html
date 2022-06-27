@@ -213,6 +213,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.31/index.html">1.31</a>
+        </li>
+        <li class="version">
           <a href="1.30/index.html">1.30</a>
         </li>
         <li class="version">
@@ -459,7 +462,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.30/index.html" class="home-link"></a>
+  <a href="1.31/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -471,6 +474,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_gemspec.html">default</a>
+    <a class="version" href="1.31/cops_gemspec.html">1.31</a>
     <a class="version" href="1.30/cops_gemspec.html">1.30</a>
     <a class="version" href="1.29/cops_gemspec.html">1.29</a>
     <a class="version" href="1.28/cops_gemspec.html">1.28</a>
@@ -493,30 +497,6 @@
 </aside>
 <article class="doc">
 <h1 class="page">Gemspec</h1>
-<div class="sect2">
-<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Configurable values</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>**/*.gemspec</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
-</tr>
-</tbody>
-</table>
-</div>
 <div class="sect1">
 <h2 id="gemspecdependencyversion"><a class="anchor" href="#gemspecdependencyversion"></a>Gemspec/DependencyVersion</h2>
 <div class="sectionbody">
@@ -607,7 +587,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -674,7 +654,7 @@ end</code></pre>
 </table>
 <div class="paragraph">
 <p>Checks that deprecated attribute attributes are not set in a gemspec file.
-Removing <code>test_files</code> allows the user to receive smaller packed gems.</p>
+Removing deprecated attributes allows the user to receive smaller packed gems.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
@@ -700,7 +680,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -795,7 +775,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -905,7 +885,7 @@ spec.add_dependency 'rspec'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -999,42 +979,6 @@ operations):</p>
 <p>This helps make your gem more secure, as users can be more
 confident that gem updates were pushed by maintainers.</p>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre># bad
-Gem::Specification.new do |spec|
-  spec.metadata = {
-    'rubygems_mfa_required' =&gt; 'false'
-  }
-end</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre># good
-Gem::Specification.new do |spec|
-  spec.metadata = {
-    'rubygems_mfa_required' =&gt; 'true'
-  }
-end</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre># bad
-Gem::Specification.new do |spec|
-  spec.metadata['rubygems_mfa_required'] = 'false'
-end</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre># good
-Gem::Specification.new do |spec|
-  spec.metadata['rubygems_mfa_required'] = 'true'
-end</pre>
-</div>
-</div>
 <div class="sect2">
 <h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
 <div class="listingblock">
@@ -1054,12 +998,36 @@ end
 # good
 Gem::Specification.new do |spec|
   spec.metadata['rubygems_mfa_required'] = 'true'
+end
+
+# bad
+Gem::Specification.new do |spec|
+  spec.metadata = {
+    'rubygems_mfa_required' =&gt; 'false'
+  }
+end
+
+# good
+Gem::Specification.new do |spec|
+  spec.metadata = {
+    'rubygems_mfa_required' =&gt; 'true'
+  }
+end
+
+# bad
+Gem::Specification.new do |spec|
+  spec.metadata['rubygems_mfa_required'] = 'false'
+end
+
+# good
+Gem::Specification.new do |spec|
+  spec.metadata['rubygems_mfa_required'] = 'true'
 end</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1182,7 +1150,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1265,7 +1233,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-8"><a class="anchor" href="#configurable-attributes-8"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
