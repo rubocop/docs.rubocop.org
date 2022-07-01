@@ -489,7 +489,7 @@
     <a class="version" href="../1.0/cops_lint.html">1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.31.0/docs/modules/ROOT/pages/cops_lint.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.31.1/docs/modules/ROOT/pages/cops_lint.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -4977,6 +4977,19 @@ lambda { do_something } # If you use lambda.</code></pre>
 <p>Checks for literals used as the conditions or as
 operands in and/or expressions serving as the conditions of
 if/while/until/case-when/case-in.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Literals in <code>case-in</code> condition where the match variable is used in
+<code>in</code> are accepted as a pattern matching.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="examples-54"><a class="anchor" href="#examples-54"></a>Examples</h3>
