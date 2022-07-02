@@ -345,6 +345,9 @@
           <a href="index.html">master</a>
         </li>
         <li class="version">
+          <a href="2.12/index.html">2.12</a>
+        </li>
+        <li class="version">
           <a href="2.11/index.html">2.11</a>
         </li>
         <li class="version">
@@ -367,9 +370,6 @@
         </li>
         <li class="version">
           <a href="2.4/index.html">2.4</a>
-        </li>
-        <li class="version">
-          <a href="2.3/index.html">2.3</a>
         </li>
         <li class="version">
           <a href="1.44/index.html">1.44</a>
@@ -396,6 +396,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">master</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_rspec_rails.html">master</a>
+    <a class="version" href="2.12/cops_rspec_rails.html">2.12</a>
     <a class="version" href="2.11/cops_rspec_rails.html">2.11</a>
     <a class="version" href="2.10/cops_rspec_rails.html">2.10</a>
     <a class="version" href="2.9/cops_rspec_rails.html">2.9</a>
@@ -404,7 +405,6 @@
     <a class="version" href="2.6/cops_rspec_rails.html">2.6</a>
     <a class="version" href="2.5/cops_rspec_rails.html">2.5</a>
     <a class="version is-missing" href="2.4/index.html">2.4</a>
-    <a class="version is-missing" href="2.3/index.html">2.3</a>
     <a class="version is-missing" href="1.44/index.html">1.44</a>
   </div>
 </div>
@@ -478,6 +478,63 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="rspecrailshavehttpstatus"><a class="anchor" href="#rspecrailshavehttpstatus"></a>RSpec/Rails/HaveHttpStatus</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.12</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks that tests use <code>have_http_status</code> instead of equality matchers.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+expect(response.status).to be(200)
+
+# good
+expect(response).to have_http_status(200)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-2"><a class="anchor" href="#references-2"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/Rails/HaveHttpStatus" class="bare">https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/Rails/HaveHttpStatus</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="rspecrailshttpstatus"><a class="anchor" href="#rspecrailshttpstatus"></a>RSpec/Rails/HttpStatus</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -511,7 +568,7 @@ end</code></pre>
 <p>Enforces use of symbolic or numeric value to describe HTTP status.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
+<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-symbolic-default"><a class="anchor" href="#enforcedstyle-symbolic-default"></a><code>EnforcedStyle: symbolic</code> (default)</h4>
 <div class="listingblock">
@@ -570,7 +627,7 @@ it { is_expected.to have_http_status :error }</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-2"><a class="anchor" href="#references-2"></a>References</h3>
+<h3 id="references-3"><a class="anchor" href="#references-3"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
