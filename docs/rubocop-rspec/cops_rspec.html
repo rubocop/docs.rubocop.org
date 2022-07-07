@@ -1969,9 +1969,9 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
 </tr>
 </tbody>
 </table>
@@ -2375,12 +2375,16 @@ it { does_something }</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.27</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p>Checks if there is an empty line after hook blocks.</p>
+</div>
+<div class="paragraph">
+<p><code>AllowConsecutiveOneLiners</code> configures whether adjacent
+one-line definitions are considered an offense.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-24"><a class="anchor" href="#examples-24"></a>Examples</h3>
@@ -2399,11 +2403,27 @@ around { |test| test.run }
 it { does_something }
 
 # good
-before { do_something }
+after { do_something }
 
 it { does_something }
 
-# good
+# fair - it's ok to have non-separated one-liners hooks
+around { |test| test.run }
+after { do_something }
+
+it { does_something }</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="with-allowconsecutiveoneliners-configuration-2"><a class="anchor" href="#with-allowconsecutiveoneliners-configuration-2"></a>with AllowConsecutiveOneLiners configuration</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># rubocop.yml
+# RSpec/EmptyLineAfterHook:
+#   AllowConsecutiveOneLiners: false
+
+# bad
+around { |test| test.run }
 after { do_something }
 
 it { does_something }
@@ -2411,9 +2431,36 @@ it { does_something }
 # good
 around { |test| test.run }
 
+after { do_something }
+
 it { does_something }</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-8"><a class="anchor" href="#configurable-attributes-8"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowConsecutiveOneLiners</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="references-24"><a class="anchor" href="#references-24"></a>References</h3>
@@ -2581,7 +2628,7 @@ end                 # 5 points</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-8"><a class="anchor" href="#configurable-attributes-8"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-9"><a class="anchor" href="#configurable-attributes-9"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2719,7 +2766,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-9"><a class="anchor" href="#configurable-attributes-9"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-10"><a class="anchor" href="#configurable-attributes-10"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2820,7 +2867,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-10"><a class="anchor" href="#configurable-attributes-10"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-11"><a class="anchor" href="#configurable-attributes-11"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2986,7 +3033,7 @@ expect(name).to eq("John")</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-11"><a class="anchor" href="#configurable-attributes-11"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-12"><a class="anchor" href="#configurable-attributes-12"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3094,7 +3141,7 @@ expect { run }.to change { Foo.bar }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-12"><a class="anchor" href="#configurable-attributes-12"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-13"><a class="anchor" href="#configurable-attributes-13"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3359,7 +3406,7 @@ my_class_spec.rb         # describe MyClass, '#method'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-13"><a class="anchor" href="#configurable-attributes-13"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-14"><a class="anchor" href="#configurable-attributes-14"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3580,7 +3627,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-14"><a class="anchor" href="#configurable-attributes-14"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-15"><a class="anchor" href="#configurable-attributes-15"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3876,7 +3923,7 @@ it { should be_truthy }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-15"><a class="anchor" href="#configurable-attributes-15"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-16"><a class="anchor" href="#configurable-attributes-16"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4004,7 +4051,7 @@ it { expect(subject).to be_truthy }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-16"><a class="anchor" href="#configurable-attributes-16"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-17"><a class="anchor" href="#configurable-attributes-17"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4187,7 +4234,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-17"><a class="anchor" href="#configurable-attributes-17"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-18"><a class="anchor" href="#configurable-attributes-18"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4286,7 +4333,7 @@ it_should_behave_like 'a foo'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-18"><a class="anchor" href="#configurable-attributes-18"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-19"><a class="anchor" href="#configurable-attributes-19"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4880,7 +4927,7 @@ expect(foo).to receive(:bar)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-19"><a class="anchor" href="#configurable-attributes-19"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-20"><a class="anchor" href="#configurable-attributes-20"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4986,7 +5033,7 @@ do_something</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-20"><a class="anchor" href="#configurable-attributes-20"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-21"><a class="anchor" href="#configurable-attributes-21"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5264,7 +5311,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-21"><a class="anchor" href="#configurable-attributes-21"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-22"><a class="anchor" href="#configurable-attributes-22"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5428,7 +5475,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-22"><a class="anchor" href="#configurable-attributes-22"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-23"><a class="anchor" href="#configurable-attributes-23"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5635,7 +5682,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-23"><a class="anchor" href="#configurable-attributes-23"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-24"><a class="anchor" href="#configurable-attributes-24"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5797,7 +5844,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-24"><a class="anchor" href="#configurable-attributes-24"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-25"><a class="anchor" href="#configurable-attributes-25"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5901,7 +5948,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-25"><a class="anchor" href="#configurable-attributes-25"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-26"><a class="anchor" href="#configurable-attributes-26"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6174,7 +6221,7 @@ expect(foo.something?).to be_truthy</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-26"><a class="anchor" href="#configurable-attributes-26"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-27"><a class="anchor" href="#configurable-attributes-27"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6830,7 +6877,7 @@ allow(Foo).to receive(:bar).and_return(bar.baz)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-27"><a class="anchor" href="#configurable-attributes-27"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-28"><a class="anchor" href="#configurable-attributes-28"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7583,7 +7630,7 @@ let('user_name') { 'Adam' }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-28"><a class="anchor" href="#configurable-attributes-28"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-29"><a class="anchor" href="#configurable-attributes-29"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7706,7 +7753,7 @@ let(:userFood_2) { 'fettuccine' }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-29"><a class="anchor" href="#configurable-attributes-29"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-30"><a class="anchor" href="#configurable-attributes-30"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7833,7 +7880,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-30"><a class="anchor" href="#configurable-attributes-30"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-31"><a class="anchor" href="#configurable-attributes-31"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7923,7 +7970,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-31"><a class="anchor" href="#configurable-attributes-31"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-32"><a class="anchor" href="#configurable-attributes-32"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
