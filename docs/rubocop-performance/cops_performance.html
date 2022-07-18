@@ -3860,7 +3860,7 @@ in some Enumerable object can be replaced by <code>Enumerable#sum</code> method.
 <div class="sect2">
 <h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
 <div class="paragraph">
-<p>Auto-corrections are unproblematic wherever an initial value is provided explicitly:</p>
+<p>Autocorrections are unproblematic wherever an initial value is provided explicitly:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3904,7 +3904,7 @@ as initial value and successively add all following values to it, whereas
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-[1, 2, 3].inject(:+)                        # Auto-corrections for cases without initial value are unsafe
+[1, 2, 3].inject(:+)                        # Autocorrections for cases without initial value are unsafe
 [1, 2, 3].inject(&amp;:+)                       # and will only be performed when using the `-A` option.
 [1, 2, 3].reduce { |acc, elem| acc + elem } # They can be prohibited completely using `SafeAutoCorrect: true`.
 [1, 2, 3].reduce(10, :+)

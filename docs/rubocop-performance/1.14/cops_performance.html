@@ -390,7 +390,7 @@
     <a class="version" href="../1.7/cops_performance.html">1.7</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-performance/blob/v1.14.0/docs/modules/ROOT/pages/cops_performance.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-performance/blob/v1.14.3/docs/modules/ROOT/pages/cops_performance.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -3019,6 +3019,18 @@ str.chars.drop(2) # Incompatible with `str[2..-1].chars`.</code></pre>
 <div class="sect1">
 <h2 id="performanceregexpmatch"><a class="anchor" href="#performanceregexpmatch"></a>Performance/RegexpMatch</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Required Ruby version: 2.4
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -3848,7 +3860,7 @@ in some Enumerable object can be replaced by <code>Enumerable#sum</code> method.
 <div class="sect2">
 <h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
 <div class="paragraph">
-<p>Auto-corrections are unproblematic wherever an initial value is provided explicitly:</p>
+<p>Autocorrections are unproblematic wherever an initial value is provided explicitly:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3892,7 +3904,7 @@ as initial value and successively add all following values to it, whereas
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-[1, 2, 3].inject(:+)                        # Auto-corrections for cases without initial value are unsafe
+[1, 2, 3].inject(:+)                        # Autocorrections for cases without initial value are unsafe
 [1, 2, 3].inject(&amp;:+)                       # and will only be performed when using the `-A` option.
 [1, 2, 3].reduce { |acc, elem| acc + elem } # They can be prohibited completely using `SafeAutoCorrect: true`.
 [1, 2, 3].reduce(10, :+)
