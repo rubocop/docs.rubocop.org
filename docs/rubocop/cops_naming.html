@@ -213,6 +213,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.33/index.html">1.33</a>
+        </li>
+        <li class="version">
           <a href="1.32/index.html">1.32</a>
         </li>
         <li class="version">
@@ -468,7 +471,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.32/index.html" class="home-link"></a>
+  <a href="1.33/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -480,6 +483,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_naming.html">default</a>
+    <a class="version" href="1.33/cops_naming.html">1.33</a>
     <a class="version" href="1.32/cops_naming.html">1.32</a>
     <a class="version" href="1.31/cops_naming.html">1.31</a>
     <a class="version" href="1.30/cops_naming.html">1.30</a>
@@ -2202,9 +2206,53 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Makes sure that predicates are named properly.
-<code>is_a?</code> method is allowed by default.
-These are customizable with <code>AllowedMethods</code> option.</p>
+<p>Checks that predicate methods names end with a question mark and
+do not start with a forbidden prefix.</p>
+</div>
+<div class="paragraph">
+<p>A method is determined to be a predicate method if its name starts
+with one of the prefixes defined in the <code>NamePrefix</code> configuration.
+You can change what prefixes are considered by changing this option.
+Any method name that starts with one of these prefixes is required by
+the cop to end with a <code>?</code>. Other methods can be allowed by adding to
+the <code>AllowedMethods</code> configuration.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>is_a?</code> method is allowed by default.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If <code>ForbiddenPrefixes</code> is set, methods that start with the configured
+prefixes will not be allowed and will be removed by autocorrection.</p>
+</div>
+<div class="paragraph">
+<p>In other words, if <code>ForbiddenPrefixes</code> is empty, a method named <code>is_foo</code>
+will register an offense only due to the lack of question mark (and will be
+autocorrected to <code>is_foo?</code>). If <code>ForbiddenPrefixes</code> contains <code>is_</code>,
+<code>is_foo</code> will register an offense both because the ? is missing and because of
+the <code>is_</code> prefix, and will be corrected to <code>foo?</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>ForbiddenPrefixes</code> is only applied to prefixes in <code>NamePrefix</code>;
+a prefix in the former but not the latter will not be considered by
+this cop.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="examples-15"><a class="anchor" href="#examples-15"></a>Examples</h3>

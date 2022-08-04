@@ -213,6 +213,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.33/index.html">1.33</a>
+        </li>
+        <li class="version">
           <a href="1.32/index.html">1.32</a>
         </li>
         <li class="version">
@@ -468,7 +471,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.32/index.html" class="home-link"></a>
+  <a href="1.33/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -480,6 +483,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_metrics.html">default</a>
+    <a class="version" href="1.33/cops_metrics.html">1.33</a>
     <a class="version" href="1.32/cops_metrics.html">1.32</a>
     <a class="version" href="1.31/cops_metrics.html">1.31</a>
     <a class="version" href="1.30/cops_metrics.html">1.30</a>
@@ -562,7 +566,8 @@ For this purpose, attributes are any method with no argument; no attempt
 is meant to distinguish actual <code>attr_reader</code> from other methods.</p>
 </div>
 <div class="paragraph">
-<p>This cop also takes into account <code>IgnoredMethods</code> (defaults to <code>[]</code>)</p>
+<p>This cop also takes into account <code>AllowedMethods</code> (defaults to <code>[]</code>)
+And <code>AllowedPatterns</code> (defaults to <code>[]</code>)</p>
 </div>
 <div class="sect2">
 <h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
@@ -602,6 +607,16 @@ end</code></pre>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedPatterns</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
@@ -684,8 +699,8 @@ will be counted as one line regardless of its actual size.</p>
 </td>
 <td class="content">
 The <code>ExcludedMethods</code> configuration is deprecated and only kept
-for backwards compatibility. Please use <code>IgnoredMethods</code> instead.
-By default, there are no methods to ignored.
+for backwards compatibility. Please use <code>AllowedMethods</code> and <code>AllowedPatterns</code>
+instead. By default, there are no methods to allowed.
 </td>
 </tr>
 </table>
@@ -764,8 +779,18 @@ end                 # 5 points</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedMethods</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>refine</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedPatterns</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 <tr>
@@ -1062,6 +1087,16 @@ end                                       # total: 6</pre>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedPatterns</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
@@ -1108,7 +1143,7 @@ end                                       # total: 6</pre>
 </table>
 <div class="paragraph">
 <p>Checks if the length of a method exceeds some maximum value.
-Comment lines can optionally be ignored.
+Comment lines can optionally be allowed.
 The maximum allowed length is configurable.</p>
 </div>
 <div class="paragraph">
@@ -1123,9 +1158,10 @@ will be counted as one line regardless of its actual size.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The <code>ExcludedMethods</code> configuration is deprecated and only kept
-for backwards compatibility. Please use <code>IgnoredMethods</code> instead.
-By default, there are no methods to ignored.
+The <code>ExcludedMethods</code> and <code>IgnoredMethods</code> configuration is
+deprecated and only kept for backwards compatibility.
+Please use <code>AllowedMethods</code> and <code>AllowedPatterns</code> instead.
+By default, there are no methods to allowed.
 </td>
 </tr>
 </table>
@@ -1188,6 +1224,16 @@ end               # 5 points</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ExcludedMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedPatterns</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
@@ -1559,6 +1605,16 @@ end                             # 7 complexity points</code></pre>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedPatterns</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>

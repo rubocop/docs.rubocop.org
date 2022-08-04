@@ -134,6 +134,9 @@
           <a href="../rubocop/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.33/index.html">1.33</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.32/index.html">1.32</a>
         </li>
         <li class="version">
@@ -389,7 +392,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.32/index.html" class="home-link"></a>
+  <a href="../rubocop/1.33/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop RSpec</a></li>
@@ -1132,6 +1135,9 @@ end</code></pre>
 <div class="paragraph">
 <p>Prefer negated matchers over <code>to change.by(0)</code>.</p>
 </div>
+<div class="paragraph">
+<p>This cop does not support autocorrection in some cases.</p>
+</div>
 <div class="sect2">
 <h3 id="examples-10"><a class="anchor" href="#examples-10"></a>Examples</h3>
 <div class="listingblock">
@@ -1140,7 +1146,7 @@ end</code></pre>
 expect { run }.to change(Foo, :bar).by(0)
 expect { run }.to change { Foo.bar }.by(0)
 
-# bad - compound expectations
+# bad - compound expectations (does not support autocorrection)
 expect { run }
   .to change(Foo, :bar).by(0)
   .and change(Foo, :baz).by(0)
@@ -3034,7 +3040,10 @@ expect("John").to eq(name)
 # good
 expect(price).to eq(5)
 expect(pattern).to eq(/foo/)
-expect(name).to eq("John")</code></pre>
+expect(name).to eq("John")
+
+# bad (not supported autocorrection)
+expect(false).to eq(true)</code></pre>
 </div>
 </div>
 </div>
@@ -3495,6 +3504,9 @@ my_class_spec.rb         # describe MyClass, '#method'</code></pre>
 <div class="paragraph">
 <p>Checks if examples are focused.</p>
 </div>
+<div class="paragraph">
+<p>This cop does not support autocorrection in some cases.</p>
+</div>
 <div class="sect2">
 <h3 id="examples-35"><a class="anchor" href="#examples-35"></a>Examples</h3>
 <div class="listingblock">
@@ -3511,7 +3523,22 @@ end
 
 # good
 describe MyClass do
-end</code></pre>
+end
+
+# bad
+fdescribe 'test' do; end
+
+# good
+describe 'test' do; end
+
+# bad
+fdescribe 'test' do; end
+
+# good
+describe 'test' do; end
+
+# bad (does not support autocorrection)
+focus 'test' do; end</code></pre>
 </div>
 </div>
 </div>
@@ -5558,7 +5585,8 @@ end</code></pre>
 <p>Checks if an example group defines <code>subject</code> multiple times.</p>
 </div>
 <div class="paragraph">
-<p>The autocorrect behavior for this cop depends on the type of
+<p>This cop does not support autocorrection in some cases.
+The autocorrect behavior for this cop depends on the type of
 duplication:</p>
 </div>
 <div class="ulist">
@@ -5594,6 +5622,20 @@ end
 describe Foo do
   let(:user) { User.new }
   subject(:post) { Post.new }
+end
+
+# bad (does not support autocorrection)
+describe Foo do
+  subject!(:user) { User.new }
+  subject!(:post) { Post.new }
+end
+
+# good
+describe Foo do
+  before do
+    User.new
+    Post.new
+  end
 end</code></pre>
 </div>
 </div>

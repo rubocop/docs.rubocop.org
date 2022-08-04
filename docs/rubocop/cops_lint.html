@@ -213,6 +213,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.33/index.html">1.33</a>
+        </li>
+        <li class="version">
           <a href="1.32/index.html">1.32</a>
         </li>
         <li class="version">
@@ -468,7 +471,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.32/index.html" class="home-link"></a>
+  <a href="1.33/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -480,6 +483,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_lint.html">default</a>
+    <a class="version" href="1.33/cops_lint.html">1.33</a>
     <a class="version" href="1.32/cops_lint.html">1.32</a>
     <a class="version" href="1.31/cops_lint.html">1.31</a>
     <a class="version" href="1.30/cops_lint.html">1.30</a>
@@ -592,8 +596,8 @@ x != y # or x = !y</code></pre>
 when param passed without parentheses.</p>
 </div>
 <div class="paragraph">
-<p>This cop can customize ignored methods with <code>IgnoredMethods</code>.
-By default, there are no methods to ignored.</p>
+<p>This cop can customize allowed methods with <code>AllowedMethods</code>.
+By default, there are no methods to allowed.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
@@ -621,7 +625,7 @@ foo = -&gt;(bar) { bar.baz }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoredmethods-default"><a class="anchor" href="#ignoredmethods-default"></a>IgnoredMethods: [] (default)</h4>
+<h4 id="allowedmethods-default"><a class="anchor" href="#allowedmethods-default"></a>AllowedMethods: [] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -630,11 +634,30 @@ expect { do_something }.to change { object.attribute }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoredmethods-change"><a class="anchor" href="#ignoredmethods-change"></a>IgnoredMethods: [change]</h4>
+<h4 id="allowedmethods-change"><a class="anchor" href="#allowedmethods-change"></a>AllowedMethods: [change]</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
 expect { do_something }.to change { object.attribute }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowedpatterns-default"><a class="anchor" href="#allowedpatterns-default"></a>AllowedPatterns: [] (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+expect { do_something }.to change { object.attribute }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowedpatterns-change"><a class="anchor" href="#allowedpatterns-change"></a>AllowedPatterns: [/change/]</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+expect { do_something }.to change { object.attribute }
+expect { do_something }.to not_change { object.attribute }</code></pre>
 </div>
 </div>
 </div>
@@ -655,6 +678,16 @@ expect { do_something }.to change { object.attribute }</code></pre>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedPatterns</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
@@ -1785,7 +1818,19 @@ debug entrypoints are configured (<code>Kernel</code>, <code>Byebug</code>, <cod
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Lint/Debugger:
-  WebConsole: ~</code></pre>
+  DebuggerMethods:
+    WebConsole: ~</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also add your own methods by adding a new category:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Lint/Debugger:
+  DebuggerMethods:
+    MyDebugger:
+      MyDebugger.debug_this</code></pre>
 </div>
 </div>
 <div class="sect2">
@@ -3223,14 +3268,26 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.89</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.33</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p>Checks for the presence of <code>if</code>, <code>elsif</code> and <code>unless</code> branches without a body.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+empty <code>else</code> branches are handled by <code>Style/EmptyElse</code>.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="examples-32"><a class="anchor" href="#examples-32"></a>Examples</h3>
@@ -5859,6 +5916,16 @@ FileUtils.rm_f(path)</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="references-13"><a class="anchor" href="#references-13"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://rubystyle.guide#atomic-file-operations" class="bare">https://rubystyle.guide#atomic-file-operations</a></p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -6103,8 +6170,8 @@ always correct to raise if a value is not numeric.</p>
 Some values cannot be converted properly using one of the <code>Kernel</code>
 method (for instance, <code>Time</code> and <code>DateTime</code> values are allowed by this
 cop by default). Similarly, Rails' duration methods do not work well
-with <code>Integer()</code> and can be ignored with <code>IgnoredMethods</code>. By default,
-there are no methods to ignored.
+with <code>Integer()</code> and can be allowed with <code>AllowedMethods</code>. By default,
+there are no methods to allowed.
 </td>
 </tr>
 </table>
@@ -6143,7 +6210,7 @@ bar.send { |i| Complex(i) }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoredmethods-default-2"><a class="anchor" href="#ignoredmethods-default-2"></a>IgnoredMethods: [] (default)</h4>
+<h4 id="allowedmethods-default-2"><a class="anchor" href="#allowedmethods-default-2"></a>AllowedMethods: [] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6152,7 +6219,25 @@ bar.send { |i| Complex(i) }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoredmethods-minutes"><a class="anchor" href="#ignoredmethods-minutes"></a>IgnoredMethods: [minutes]</h4>
+<h4 id="allowedmethods-minutes"><a class="anchor" href="#allowedmethods-minutes"></a>AllowedMethods: [minutes]</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+10.minutes.to_i</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowedpatterns-default-2"><a class="anchor" href="#allowedpatterns-default-2"></a>AllowedPatterns: [] (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+10.minutes.to_i</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowedpatterns-min"><a class="anchor" href="#allowedpatterns-min"></a>AllowedPatterns: [/min*/]</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -6186,6 +6271,16 @@ Time.now.to_datetime.to_i</code></pre>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedPatterns</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
@@ -6521,7 +6616,7 @@ do_something (foo * bar).baz</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-13"><a class="anchor" href="#references-13"></a>References</h3>
+<h3 id="references-14"><a class="anchor" href="#references-14"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6758,7 +6853,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-14"><a class="anchor" href="#references-14"></a>References</h3>
+<h3 id="references-15"><a class="anchor" href="#references-15"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7397,7 +7492,7 @@ which is redundant.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-15"><a class="anchor" href="#references-15"></a>References</h3>
+<h3 id="references-16"><a class="anchor" href="#references-16"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7919,7 +8014,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-16"><a class="anchor" href="#references-16"></a>References</h3>
+<h3 id="references-17"><a class="anchor" href="#references-17"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9019,7 +9114,7 @@ do_something rescue nil</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-17"><a class="anchor" href="#references-17"></a>References</h3>
+<h3 id="references-18"><a class="anchor" href="#references-18"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10245,7 +10340,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-18"><a class="anchor" href="#references-18"></a>References</h3>
+<h3 id="references-19"><a class="anchor" href="#references-19"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10412,7 +10507,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-19"><a class="anchor" href="#references-19"></a>References</h3>
+<h3 id="references-20"><a class="anchor" href="#references-20"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10806,7 +10901,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-20"><a class="anchor" href="#references-20"></a>References</h3>
+<h3 id="references-21"><a class="anchor" href="#references-21"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>

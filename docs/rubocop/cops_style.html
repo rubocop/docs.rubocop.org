@@ -213,6 +213,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.33/index.html">1.33</a>
+        </li>
+        <li class="version">
           <a href="1.32/index.html">1.32</a>
         </li>
         <li class="version">
@@ -468,7 +471,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.32/index.html" class="home-link"></a>
+  <a href="1.33/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -480,6 +483,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_style.html">default</a>
+    <a class="version" href="1.33/cops_style.html">1.33</a>
     <a class="version" href="1.32/cops_style.html">1.32</a>
     <a class="version" href="1.31/cops_style.html">1.31</a>
     <a class="version" href="1.30/cops_style.html">1.30</a>
@@ -1769,7 +1773,7 @@ multi-line blocks.</p>
 <p>Methods that can be either procedural or functional and cannot be
 categorised from their usage alone is ignored.
 <code>lambda</code>, <code>proc</code>, and <code>it</code> are their defaults.
-Additional methods can be added to the <code>IgnoredMethods</code>.</p>
+Additional methods can be added to the <code>AllowedMethods</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-15"><a class="anchor" href="#examples-15"></a>Examples</h3>
@@ -1835,7 +1839,7 @@ map { |x|
   x
 }.inspect
 
-# The AllowBracesOnProceduralOneLiners option is ignored unless the
+# The AllowBracesOnProceduralOneLiners option is allowed unless the
 # EnforcedStyle is set to `semantic`. If so:
 
 # If the AllowBracesOnProceduralOneLiners option is unspecified, or
@@ -1899,7 +1903,7 @@ words.each { |word|
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Methods listed in the BracesRequiredMethods list, such as 'sig'
 # in this example, will require `{...}` braces. This option takes
-# precedence over all other configurations except IgnoredMethods.
+# precedence over all other configurations except AllowedMethods.
 
 # bad
 sig do
@@ -1924,7 +1928,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoredmethods-lambda-proc-it-default"><a class="anchor" href="#ignoredmethods-lambda-proc-it-default"></a>IgnoredMethods: ['lambda', 'proc', 'it' ] (default)</h4>
+<h4 id="allowedmethods-lambda-proc-it-default"><a class="anchor" href="#allowedmethods-lambda-proc-it-default"></a>AllowedMethods: ['lambda', 'proc', 'it' ] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -1935,6 +1939,30 @@ end
 foo = lambda do |x|
   x * 100
 end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowedpatterns-default"><a class="anchor" href="#allowedpatterns-default"></a>AllowedPatterns: [] (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+things.map { |thing|
+  something = thing.some_method
+  process(something)
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowedpatterns-map"><a class="anchor" href="#allowedpatterns-map"></a>AllowedPatterns: [/map/]</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+things.map { |thing|
+  something = thing.some_method
+  process(something)
+}</code></pre>
 </div>
 </div>
 </div>
@@ -1971,8 +1999,18 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedMethods</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>lambda</code>, <code>proc</code>, <code>it</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedPatterns</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 <tr>
@@ -2499,8 +2537,8 @@ var.kind_of?(String)</code></pre>
 <div class="paragraph">
 <p>Enforces the use of <code>Object#instance_of?</code> instead of class comparison
 for equality.
-<code>==</code>, <code>equal?</code>, and <code>eql?</code> methods are ignored by default.
-These are customizable with <code>IgnoredMethods</code> option.</p>
+<code>==</code>, <code>equal?</code>, and <code>eql?</code> methods are allowed by default.
+These are customizable with <code>AllowedMethods</code> option.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-21"><a class="anchor" href="#examples-21"></a>Examples</h3>
@@ -2517,7 +2555,7 @@ var.instance_of?(Date)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoremethods-default"><a class="anchor" href="#ignoremethods-default"></a>IgnoreMethods: [] (default)</h4>
+<h4 id="allowedmethods-default"><a class="anchor" href="#allowedmethods-default"></a>AllowedMethods: [] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -2532,7 +2570,7 @@ var.class.name == 'Date'</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoremethods"><a class="anchor" href="#ignoremethods"></a>IgnoreMethods: [<code>==</code>]</h4>
+<h4 id="allowedmethods"><a class="anchor" href="#allowedmethods"></a>AllowedMethods: [<code>==</code>]</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -2543,6 +2581,36 @@ var.class.name == 'Date'
 # bad
 var.class.equal?(Date)
 var.class.eql?(Date)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowedpatterns-default-2"><a class="anchor" href="#allowedpatterns-default-2"></a>AllowedPatterns: [] (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+var.instance_of?(Date)
+
+# bad
+var.class == Date
+var.class.equal?(Date)
+var.class.eql?(Date)
+var.class.name == 'Date'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowedpatterns-eq"><a class="anchor" href="#allowedpatterns-eq"></a>AllowedPatterns: [<code>/eq/</code>]</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+var.instance_of?(Date)
+var.class.equal?(Date)
+var.class.eql?(Date)
+
+# bad
+var.class == Date
+var.class.name == 'Date'</code></pre>
 </div>
 </div>
 </div>
@@ -2564,8 +2632,18 @@ var.class.eql?(Date)</code></pre>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedMethods</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>==</code>, <code>equal?</code>, <code>eql?</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedPatterns</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -7344,8 +7422,8 @@ to encoded URLs or Date/Time formatting strings.
 </table>
 </div>
 <div class="paragraph">
-<p>This cop can be customized ignored methods with <code>IgnoredMethods</code>.
-By default, there are no methods to ignored.</p>
+<p>This cop can be customized allowed methods with <code>AllowedMethods</code>.
+By default, there are no methods to allowed.</p>
 </div>
 <div class="paragraph">
 <p>It is allowed to contain unannotated token
@@ -7419,7 +7497,7 @@ format('%06d', 10)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoredmethods-default"><a class="anchor" href="#ignoredmethods-default"></a>IgnoredMethods: [] (default)</h4>
+<h4 id="allowedmethods-default-2"><a class="anchor" href="#allowedmethods-default-2"></a>AllowedMethods: [] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7428,7 +7506,25 @@ redirect('foo/%{bar_id}')</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoredmethods-redirect"><a class="anchor" href="#ignoredmethods-redirect"></a>IgnoredMethods: [redirect]</h4>
+<h4 id="allowedmethods-redirect"><a class="anchor" href="#allowedmethods-redirect"></a>AllowedMethods: [redirect]</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+redirect('foo/%{bar_id}')</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowedpatterns-default-3"><a class="anchor" href="#allowedpatterns-default-3"></a>AllowedPatterns: [] (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+redirect('foo/%{bar_id}')</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowedpatterns-redirect"><a class="anchor" href="#allowedpatterns-redirect"></a>AllowedPatterns: [/redirect/]</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -7462,6 +7558,16 @@ redirect('foo/%{bar_id}')</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MaxUnannotatedPlaceholdersAllowed</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>1</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedPatterns</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
@@ -10468,8 +10574,8 @@ something.to_h { |v| [v, v * 2] }
 method calls containing parameters.</p>
 </div>
 <div class="paragraph">
-<p>In the default style (require_parentheses), macro methods are ignored.
-Additional methods can be added to the <code>IgnoredMethods</code>
+<p>In the default style (require_parentheses), macro methods are allowed.
+Additional methods can be added to the <code>AllowedMethods</code>
 or <code>AllowedPatterns</code> list. These options are
 valid only in the default style. Macros can be included by
 either setting <code>IgnoreMacros</code> to false or adding specific macros to
@@ -10481,7 +10587,7 @@ the <code>IncludedMacros</code> list.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>IgnoredMethods</code></p>
+<p><code>AllowedMethods</code></p>
 </li>
 <li>
 <p><code>AllowedPatterns</code></p>
@@ -10493,8 +10599,8 @@ the <code>IncludedMacros</code> list.</p>
 </div>
 <div class="paragraph">
 <p>eg. If a method is listed in both
-<code>IncludedMacros</code> and <code>IgnoredMethods</code>, then the latter takes
-precedence (that is, the method is ignored).</p>
+<code>IncludedMacros</code> and <code>AllowedMethods</code>, then the latter takes
+precedence (that is, the method is allowed).</p>
 </div>
 <div class="paragraph">
 <p>In the alternative style (omit_parentheses), there are three additional
@@ -10560,7 +10666,7 @@ foo == bar
 # Setter methods don't need parens
 foo.bar = baz
 
-# okay with `puts` listed in `IgnoredMethods`
+# okay with `puts` listed in `AllowedMethods`
 puts 'test'
 
 # okay with `^assert` listed in `AllowedPatterns`
@@ -10757,6 +10863,11 @@ Array 1</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
@@ -10850,8 +10961,8 @@ Array 1</code></pre>
 <p>Checks for unwanted parentheses in parameterless method calls.</p>
 </div>
 <div class="paragraph">
-<p>This cop can be customized ignored methods with <code>IgnoredMethods</code>.
-By default, there are no methods to ignored.</p>
+<p>This cop can be customized allowed methods with <code>AllowedMethods</code>.
+By default, there are no methods to allowed.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-100"><a class="anchor" href="#examples-100"></a>Examples</h3>
@@ -10865,7 +10976,7 @@ object.some_method</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoredmethods-default-2"><a class="anchor" href="#ignoredmethods-default-2"></a>IgnoredMethods: [] (default)</h4>
+<h4 id="allowedmethods-default-3"><a class="anchor" href="#allowedmethods-default-3"></a>AllowedMethods: [] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10874,7 +10985,7 @@ object.foo()</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoredmethods-foo"><a class="anchor" href="#ignoredmethods-foo"></a>IgnoredMethods: [foo]</h4>
+<h4 id="allowedmethods-foo"><a class="anchor" href="#allowedmethods-foo"></a>AllowedMethods: [foo]</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -10899,6 +11010,16 @@ object.foo()</code></pre>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedPatterns</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
@@ -13312,7 +13433,7 @@ method1(method2 arg)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedmethods-foo"><a class="anchor" href="#allowedmethods-foo"></a>AllowedMethods: [foo]</h4>
+<h4 id="allowedmethods-foo-2"><a class="anchor" href="#allowedmethods-foo-2"></a>AllowedMethods: [foo]</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -14353,8 +14474,8 @@ These can be replaced by their respective predicate methods.
 This cop can also be configured to do the reverse.</p>
 </div>
 <div class="paragraph">
-<p>This cop can be customized ignored methods with <code>IgnoredMethods</code>.
-By default, there are no methods to ignored.</p>
+<p>This cop can be customized allowed methods with <code>AllowedMethods</code>.
+By default, there are no methods to allowed.</p>
 </div>
 <div class="paragraph">
 <p>This cop disregards <code>#nonzero?</code> as its value is truthy or falsey,
@@ -14362,7 +14483,7 @@ but not <code>true</code> and <code>false</code>, and thus not always interchang
 <code>!= 0</code>.</p>
 </div>
 <div class="paragraph">
-<p>This cop ignores comparisons to global variables, since they are often
+<p>This cop allows comparisons to global variables, since they are often
 populated with objects which can be compared with integers, but are
 not themselves <code>Integer</code> polymorphic.</p>
 </div>
@@ -14409,7 +14530,7 @@ bar.baz &gt; 0</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoredmethods-default-with-enforcedstyle-predicate"><a class="anchor" href="#ignoredmethods-default-with-enforcedstyle-predicate"></a>IgnoredMethods: [] (default) with EnforcedStyle: predicate</h4>
+<h4 id="allowedmethods-default-with-enforcedstyle-predicate"><a class="anchor" href="#allowedmethods-default-with-enforcedstyle-predicate"></a>AllowedMethods: [] (default) with EnforcedStyle: predicate</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -14420,7 +14541,7 @@ bar.baz &gt; 0</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoredmethods-with-enforcedstyle-predicate"><a class="anchor" href="#ignoredmethods-with-enforcedstyle-predicate"></a>IgnoredMethods: [==] with EnforcedStyle: predicate</h4>
+<h4 id="allowedmethods-with-enforcedstyle-predicate"><a class="anchor" href="#allowedmethods-with-enforcedstyle-predicate"></a>AllowedMethods: [==] with EnforcedStyle: predicate</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -14429,6 +14550,31 @@ foo == 0
 # bad
 0 &gt; foo
 bar.baz &gt; 0</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowedpatterns-default-with-enforcedstyle-comparison"><a class="anchor" href="#allowedpatterns-default-with-enforcedstyle-comparison"></a>AllowedPatterns: [] (default) with EnforcedStyle: comparison</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+foo.zero?
+foo.negative?
+bar.baz.positive?</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowedpatterns-zero-with-enforcedstyle-predicate"><a class="anchor" href="#allowedpatterns-zero-with-enforcedstyle-predicate"></a>AllowedPatterns: [/zero/] with EnforcedStyle: predicate</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+# bad
+foo.zero?
+
+# bad
+foo.negative?
+bar.baz.positive?</code></pre>
 </div>
 </div>
 </div>
@@ -14453,6 +14599,16 @@ bar.baz &gt; 0</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>predicate</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>predicate</code>, <code>comparison</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedPatterns</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
@@ -20921,15 +21077,15 @@ array of 2 or fewer elements.</p>
 <div class="paragraph">
 <p>If you prefer a style that allows block for method with arguments,
 please set <code>true</code> to <code>AllowMethodsWithArguments</code>.
-respond_to , and <code>define_method?</code> methods are ignored by default.
-These are customizable with <code>IgnoredMethods</code> option.</p>
+respond_to , and <code>define_method?</code> methods are allowed by default.
+These are customizable with <code>AllowedMethods</code> option.</p>
 </div>
 <div class="sect2">
 <h3 id="safety-49"><a class="anchor" href="#safety-49"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because <code>proc`s and blocks work differently
 when additional arguments are passed in. A block will silently
-ignore additional arguments, but a `proc</code> will raise
+allow additional arguments, but a `proc</code> will raise
 an <code>ArgumentError</code>.</p>
 </div>
 <div class="paragraph">
@@ -21014,12 +21170,30 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoredmethods-respond_to-define_method-default"><a class="anchor" href="#ignoredmethods-respond_to-define_method-default"></a>IgnoredMethods: [respond_to, define_method] (default)</h4>
+<h4 id="allowedmethods-respond_to-define_method-default"><a class="anchor" href="#allowedmethods-respond_to-define_method-default"></a>AllowedMethods: [respond_to, define_method] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
 respond_to { |foo| foo.bar }
 define_method(:foo) { |foo| foo.bar }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowedpatterns-default-4"><a class="anchor" href="#allowedpatterns-default-4"></a>AllowedPatterns: [] (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+something.map { |s| s.upcase }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowedpatterns-map-default"><a class="anchor" href="#allowedpatterns-map-default"></a>AllowedPatterns: [/map/] (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+something.map { |s| s.upcase }</code></pre>
 </div>
 </div>
 </div>
@@ -21046,8 +21220,18 @@ define_method(:foo) { |foo| foo.bar }</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedMethods</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>respond_to</code>, <code>define_method</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedPatterns</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 <tr>
