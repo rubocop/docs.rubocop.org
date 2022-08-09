@@ -213,6 +213,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.34/index.html">1.34</a>
+        </li>
+        <li class="version">
           <a href="1.33/index.html">1.33</a>
         </li>
         <li class="version">
@@ -471,7 +474,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.33/index.html" class="home-link"></a>
+  <a href="1.34/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -483,6 +486,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_lint.html">default</a>
+    <a class="version" href="1.34/cops_lint.html">1.34</a>
     <a class="version" href="1.33/cops_lint.html">1.33</a>
     <a class="version" href="1.32/cops_lint.html">1.32</a>
     <a class="version" href="1.31/cops_lint.html">1.31</a>
@@ -1902,7 +1906,7 @@ end</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DebuggerMethods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"Kernel"&#8658;["binding.irb"], "Byebug"&#8658;["byebug", "remote_byebug", "Kernel.byebug", "Kernel.remote_byebug"], "Capybara"&#8658;["save_and_open_page", "save_and_open_screenshot"], "debug.rb"&#8658;["binding.b", "binding.break", "Kernel.binding.b", "Kernel.binding.break"], "Pry"&#8658;["binding.pry", "binding.remote_pry", "binding.pry_remote", "Pry.rescue"], "Rails"&#8658;["debugger", "Kernel.debugger"], "RubyJard"&#8658;["jard"], "WebConsole"&#8658;["binding.console"]}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"Kernel"&#8658;["binding.irb", "Kernel.binding.irb"], "Byebug"&#8658;["byebug", "remote_byebug", "Kernel.byebug", "Kernel.remote_byebug"], "Capybara"&#8658;["save_and_open_page", "save_and_open_screenshot"], "debug.rb"&#8658;["binding.b", "binding.break", "Kernel.binding.b", "Kernel.binding.break"], "Pry"&#8658;["binding.pry", "binding.remote_pry", "binding.pry_remote", "Kernel.binding.pry", "Kernel.binding.remote_pry", "Kernel.binding.pry_remote", "Pry.rescue"], "Rails"&#8658;["debugger", "Kernel.debugger"], "RubyJard"&#8658;["jard"], "WebConsole"&#8658;["binding.console"]}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -3268,9 +3272,9 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.89</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.33</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.34</p></td>
 </tr>
 </tbody>
 </table>
@@ -3288,6 +3292,14 @@ empty <code>else</code> branches are handled by <code>Style/EmptyElse</code>.
 </td>
 </tr>
 </table>
+</div>
+<div class="sect2">
+<h3 id="safety-6"><a class="anchor" href="#safety-6"></a>Safety</h3>
+<div class="paragraph">
+<p>Autocorrection for this cop is not safe. The conditions for empty branches that
+the autocorrection removes may have side effects, or the logic in subsequent
+branches may change due to the removal of a previous condition.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-32"><a class="anchor" href="#examples-32"></a>Examples</h3>
@@ -4395,7 +4407,7 @@ for hash keys.</p>
 one of these methods: <code>key?</code>, <code>has_key?</code>, <code>fetch</code>, <code>[]</code> and <code>[]=</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-6"><a class="anchor" href="#safety-6"></a>Safety</h3>
+<h3 id="safety-7"><a class="anchor" href="#safety-7"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe. Although unlikely, the hash could store both object
 ids and other values that need be compared by value, and thus
@@ -4677,7 +4689,7 @@ It&#8217;s up to user how to handle the return value.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-7"><a class="anchor" href="#safety-7"></a>Safety</h3>
+<h3 id="safety-8"><a class="anchor" href="#safety-8"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because <code>NoMethodError</code> occurs
 if <code>require 'io/wait'</code> is not called.</p>
@@ -4821,7 +4833,7 @@ It is configurable to suggest using either <code>StandardError</code> (default) 
 <code>RuntimeError</code> instead.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-8"><a class="anchor" href="#safety-8"></a>Safety</h3>
+<h3 id="safety-9"><a class="anchor" href="#safety-9"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because <code>rescue</code> that omit
 exception class handle <code>StandardError</code> and its subclasses,
@@ -4927,7 +4939,7 @@ C = Class.new(RuntimeError)</code></pre>
 <p>Checks for interpolation in a single quoted string.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-9"><a class="anchor" href="#safety-9"></a>Safety</h3>
+<h3 id="safety-10"><a class="anchor" href="#safety-10"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is generally safe, but is marked as unsafe because
 it is possible to actually intentionally have text inside
@@ -5179,7 +5191,7 @@ end</code></pre>
 <p>Checks for uses of <code>begin&#8230;&#8203;end while/until something</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-10"><a class="anchor" href="#safety-10"></a>Safety</h3>
+<h3 id="safety-11"><a class="anchor" href="#safety-11"></a>Safety</h3>
 <div class="paragraph">
 <p>The cop is unsafe because behavior can change in some cases, including
 if a local variable inside the loop body is accessed outside of it, or if the
@@ -5887,7 +5899,7 @@ when the directory existed at the time of <code>exist?</code>,
 but someone else deleted it shortly afterwards.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-11"><a class="anchor" href="#safety-11"></a>Safety</h3>
+<h3 id="safety-12"><a class="anchor" href="#safety-12"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, because autocorrection change to atomic processing.
 The atomic processing of the replacement destination is not guaranteed
@@ -5984,7 +5996,7 @@ This cop will be deprecated and removed when supporting only Ruby 3.0 and higher
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-12"><a class="anchor" href="#safety-12"></a>Safety</h3>
+<h3 id="safety-13"><a class="anchor" href="#safety-13"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe in the case where sorting files changes existing
 expected behavior.</p>
@@ -6177,7 +6189,7 @@ there are no methods to allowed.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-13"><a class="anchor" href="#safety-13"></a>Safety</h3>
+<h3 id="safety-14"><a class="anchor" href="#safety-14"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is unsafe because it is not guaranteed that the
 replacement <code>Kernel</code> methods are able to properly handle the
@@ -6413,7 +6425,7 @@ should always be the same. If constants are assigned in multiple
 locations, the result may vary depending on the order of <code>require</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-14"><a class="anchor" href="#safety-14"></a>Safety</h3>
+<h3 id="safety-15"><a class="anchor" href="#safety-15"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because code that is already conditionally
 assigning a constant may have its behavior changed by autocorrection.</p>
@@ -6529,7 +6541,7 @@ p [''.frozen?, ''.encoding] #=&gt; [true, #&lt;Encoding:US-ASCII&gt;]</code></pr
 and thus always returns nil.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-15"><a class="anchor" href="#safety-15"></a>Safety</h3>
+<h3 id="safety-16"><a class="anchor" href="#safety-16"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it is naive in how it determines what
 references are available based on the last encountered regexp, but
@@ -6666,7 +6678,7 @@ example, mistranslating an array of literals to percent string notation)
 rather than meant to be part of the resulting strings.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-16"><a class="anchor" href="#safety-16"></a>Safety</h3>
+<h3 id="safety-17"><a class="anchor" href="#safety-17"></a>Safety</h3>
 <div class="paragraph">
 <p>The cop is unsafe because the correction changes the values in the array
 and that might have been done purposely.</p>
@@ -6797,7 +6809,7 @@ prevent the false positive by specifying a namespace to be omitted for
 name with an explicit namespace.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-17"><a class="anchor" href="#safety-17"></a>Safety</h3>
+<h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it will change the exception class being
 raised, which is a change in behavior.</p>
@@ -7093,7 +7105,7 @@ Required Ruby version: 3.0
 This cop checks for redundant <code>sort</code> method to <code>Dir.glob</code> and <code>Dir[]</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
+<h3 id="safety-19"><a class="anchor" href="#safety-19"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, in case of having a file and a directory with
 identical names, since directory will be loaded before the file, which
@@ -7236,7 +7248,7 @@ are checked by default. These are customizable with <code>AllowedMethods</code> 
 because <code>NilClass</code> has methods like <code>respond_to?</code> and <code>is_a?</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-19"><a class="anchor" href="#safety-19"></a>Safety</h3>
+<h3 id="safety-20"><a class="anchor" href="#safety-20"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, because autocorrection can change the return type of
 the expression. An offending expression that previously could return <code>nil</code>
@@ -7675,7 +7687,7 @@ These methods are deprecated and should be replaced with <code>Refinement#import
 <p>It emulates deprecation warnings in Ruby 3.1.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-20"><a class="anchor" href="#safety-20"></a>Safety</h3>
+<h3 id="safety-21"><a class="anchor" href="#safety-21"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because <code>include M</code> will affect the included class
 if any changes are made to module <code>M</code>.
@@ -8747,6 +8759,15 @@ end</code></pre>
 less specific exception being rescued before a more specific
 exception is rescued.</p>
 </div>
+<div class="paragraph">
+<p>An exception is considered shadowed if it is rescued after its
+ancestor is, or if it and its ancestor are both rescued in the
+same <code>rescue</code> statement. In both cases, the more specific rescue is
+unnecessary because it is covered by rescuing the less specific
+exception. (ie. <code>rescue Exception, StandardError</code> has the same behavior
+whether <code>StandardError</code> is included or not, because all <code>StandardError`s
+are rescued by `rescue Exception</code>).</p>
+</div>
 <div class="sect2">
 <h3 id="examples-101"><a class="anchor" href="#examples-101"></a>Examples</h3>
 <div class="listingblock">
@@ -8759,6 +8780,13 @@ rescue Exception
   handle_exception
 rescue StandardError
   handle_standard_error
+end
+
+# bad
+begin
+  something
+rescue Exception, StandardError
+  handle_error
 end
 
 # good
@@ -9760,7 +9788,7 @@ this, as they are not used by the methods in question.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="safety-21"><a class="anchor" href="#safety-21"></a>Safety</h3>
+<h3 id="safety-22"><a class="anchor" href="#safety-22"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop matches for method names only and hence cannot tell apart
 methods with same name in different classes, which may lead to a
@@ -11021,7 +11049,7 @@ end</code></pre>
 and methods just delegating to <code>super</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-22"><a class="anchor" href="#safety-22"></a>Safety</h3>
+<h3 id="safety-23"><a class="anchor" href="#safety-23"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe as it can register false positives for cases when an empty
 constructor just overrides the parent constructor, which is bad anyway.</p>
@@ -11193,7 +11221,7 @@ define_method(:foo) { |arg| }</code></pre>
 expression of a function definition.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-23"><a class="anchor" href="#safety-23"></a>Safety</h3>
+<h3 id="safety-24"><a class="anchor" href="#safety-24"></a>Safety</h3>
 <div class="paragraph">
 <p>There are edge cases in which the local variable references a
 value that is also accessible outside the local scope. This is not
@@ -11266,7 +11294,7 @@ end</code></pre>
 (<code>1.times</code>).</p>
 </div>
 <div class="sect2">
-<h3 id="safety-24"><a class="anchor" href="#safety-24"></a>Safety</h3>
+<h3 id="safety-25"><a class="anchor" href="#safety-25"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe as <code>times</code> returns its receiver, which is
 <strong>usually</strong> OK, but might change behavior.</p>
