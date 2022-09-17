@@ -8523,6 +8523,13 @@ so we can apply many IO methods directly.</p>
 <code>Style/FileRead</code>, <code>Style/FileWrite</code> and <code>Rails/RootJoinChain</code>.</p>
 </div>
 <div class="sect2">
+<h3 id="safety-26"><a class="anchor" href="#safety-26"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe for autocorrection because <code>Dir&#8217;s `children</code>, <code>each_child</code>, <code>entries</code>, and <code>glob</code>
+methods return string element, but these methods of <code>Pathname</code> return <code>Pathname</code> element.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="examples-93"><a class="anchor" href="#examples-93"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
@@ -8543,6 +8550,30 @@ Rails.root.join('db', 'schema.rb').write(content)
 Rails.root.join('db', 'schema.rb').binwrite(content)</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-49"><a class="anchor" href="#configurable-attributes-49"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SafeAutocorrect</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -8689,7 +8720,7 @@ foo&amp;.bar { |e| e.baz }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-49"><a class="anchor" href="#configurable-attributes-49"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-50"><a class="anchor" href="#configurable-attributes-50"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8749,7 +8780,7 @@ foo&amp;.bar { |e| e.baz }</code></pre>
 a conditional.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-26"><a class="anchor" href="#safety-26"></a>Safety</h3>
+<h3 id="safety-27"><a class="anchor" href="#safety-27"></a>Safety</h3>
 <div class="paragraph">
 <p>While the safe navigation operator is generally a good idea, when
 checking <code>foo&amp;.blank?</code> in a conditional, <code>foo</code> being <code>nil</code> will actually
@@ -8849,7 +8880,7 @@ that behavior can be turned off with <code>AllowImplicitReturn: false</code>.</p
 <code>AllowedReceivers: []</code></p>
 </div>
 <div class="sect2">
-<h3 id="safety-27"><a class="anchor" href="#safety-27"></a>Safety</h3>
+<h3 id="safety-28"><a class="anchor" href="#safety-28"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because a custom <code>update</code> method call would be changed to <code>update!</code>,
 but the method name in the definition would be unchanged.</p>
@@ -8960,7 +8991,7 @@ Service::Mailer::update</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-50"><a class="anchor" href="#configurable-attributes-50"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-51"><a class="anchor" href="#configurable-attributes-51"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9103,7 +9134,7 @@ scope :something, -&gt; { where(something: true) }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-51"><a class="anchor" href="#configurable-attributes-51"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-52"><a class="anchor" href="#configurable-attributes-52"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9212,7 +9243,7 @@ l Time.now</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-52"><a class="anchor" href="#configurable-attributes-52"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-53"><a class="anchor" href="#configurable-attributes-53"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9322,7 +9353,7 @@ user.touch</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-53"><a class="anchor" href="#configurable-attributes-53"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-54"><a class="anchor" href="#configurable-attributes-54"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9396,7 +9427,7 @@ user.touch</code></pre>
 <p>Checks SQL heredocs to use <code>.squish</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-28"><a class="anchor" href="#safety-28"></a>Safety</h3>
+<h3 id="safety-29"><a class="anchor" href="#safety-29"></a>Safety</h3>
 <div class="paragraph">
 <p>Some SQL syntax (e.g. PostgreSQL comments and functions) requires newlines
 to be preserved in order to work, thus autocorrection for this cop is not safe.</p>
@@ -9591,7 +9622,7 @@ self.table_name = :some_other_name</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-54"><a class="anchor" href="#configurable-attributes-54"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-55"><a class="anchor" href="#configurable-attributes-55"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9672,7 +9703,7 @@ then only use of <code>Time.zone</code> is allowed.</p>
 to use <code>Time#in_time_zone</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-29"><a class="anchor" href="#safety-29"></a>Safety</h3>
+<h3 id="safety-30"><a class="anchor" href="#safety-30"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because it may change handling time.</p>
 </div>
@@ -9716,7 +9747,7 @@ Time.at(timestamp).in_time_zone</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-55"><a class="anchor" href="#configurable-attributes-55"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-56"><a class="anchor" href="#configurable-attributes-56"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9812,7 +9843,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-56"><a class="anchor" href="#configurable-attributes-56"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-57"><a class="anchor" href="#configurable-attributes-57"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9909,7 +9940,7 @@ time.to_formatted_s(:db)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-57"><a class="anchor" href="#configurable-attributes-57"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-58"><a class="anchor" href="#configurable-attributes-58"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9978,7 +10009,7 @@ time.to_formatted_s(:db)</code></pre>
 <p>Identifies passing any argument to <code>#to_s</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-30"><a class="anchor" href="#safety-30"></a>Safety</h3>
+<h3 id="safety-31"><a class="anchor" href="#safety-31"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is marked as unsafe because it may detect <code>#to_s</code> calls
 that are not related to Active Support implementation.</p>
@@ -10188,7 +10219,7 @@ ActiveRecord::Relation vs a call to pluck on an
 ActiveRecord::Associations::CollectionProxy.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-31"><a class="anchor" href="#safety-31"></a>Safety</h3>
+<h3 id="safety-32"><a class="anchor" href="#safety-32"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe for autocorrection because the behavior may change
 depending on the database collation.</p>
@@ -10230,7 +10261,7 @@ customer.favourites.distinct.pluck(:color)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-58"><a class="anchor" href="#configurable-attributes-58"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-59"><a class="anchor" href="#configurable-attributes-59"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10314,7 +10345,7 @@ validates :account, length: { minimum: MIN_LENGTH }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-59"><a class="anchor" href="#configurable-attributes-59"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-60"><a class="anchor" href="#configurable-attributes-60"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10391,7 +10422,7 @@ Rails.env == 'production'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-60"><a class="anchor" href="#configurable-attributes-60"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-61"><a class="anchor" href="#configurable-attributes-61"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10468,7 +10499,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-61"><a class="anchor" href="#configurable-attributes-61"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-62"><a class="anchor" href="#configurable-attributes-62"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10559,7 +10590,7 @@ validates :foo, uniqueness: true</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-62"><a class="anchor" href="#configurable-attributes-62"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-63"><a class="anchor" href="#configurable-attributes-63"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10619,7 +10650,7 @@ validates :foo, uniqueness: true</code></pre>
 in <code>where</code> can be replaced with <code>where(attribute: value)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-32"><a class="anchor" href="#safety-32"></a>Safety</h3>
+<h3 id="safety-33"><a class="anchor" href="#safety-33"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because is may change SQL.
 See: <a href="https://github.com/rubocop/rubocop-rails/issues/403" class="bare">https://github.com/rubocop/rubocop-rails/issues/403</a></p>
@@ -10699,7 +10730,7 @@ then the cop enforces <code>exists?(&#8230;&#8203;)</code> over <code>where(&#82
 <code>where(&#8230;&#8203;).exists?</code> over <code>exists?(&#8230;&#8203;)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-33"><a class="anchor" href="#safety-33"></a>Safety</h3>
+<h3 id="safety-34"><a class="anchor" href="#safety-34"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe for autocorrection because the behavior may change on the following case:</p>
 </div>
@@ -10753,7 +10784,7 @@ User.where('length(name) &gt; 10').exists?</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-63"><a class="anchor" href="#configurable-attributes-63"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-64"><a class="anchor" href="#configurable-attributes-64"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
