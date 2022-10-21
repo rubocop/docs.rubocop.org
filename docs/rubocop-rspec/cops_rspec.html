@@ -134,6 +134,9 @@
           <a href="../rubocop/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.37/index.html">1.37</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.36/index.html">1.36</a>
         </li>
         <li class="version">
@@ -410,7 +413,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.36/index.html" class="home-link"></a>
+  <a href="../rubocop/1.37/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop RSpec</a></li>
@@ -1146,7 +1149,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.11</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -1512,7 +1515,7 @@ end</code></pre>
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># .rubocop.yml
 # RSpec/ContextWording:
 #   AllowedPatterns:
-#     - /とき$/</code></pre>
+#     - とき$</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -3050,7 +3053,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
 </tr>
 </tbody>
 </table>
@@ -3058,11 +3061,17 @@ end</code></pre>
 <p>Checks for common mistakes in example descriptions.</p>
 </div>
 <div class="paragraph">
-<p>This cop will correct docstrings that begin with 'should' and 'it'.</p>
+<p>This cop will correct docstrings that begin with 'should' and 'it'.
+This cop will also look for insufficient examples and call them out.</p>
 </div>
 <div class="paragraph">
 <p>The autocorrect is experimental - use with care! It can be configured
 with CustomTransform (e.g. have &#8658; has) and IgnoredWords (e.g. only).</p>
+</div>
+<div class="paragraph">
+<p>Use the DisallowedExamples setting to prevent unclear or insufficient
+descriptions. Please note that this config will not be treated as
+case sensitive.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-29"><a class="anchor" href="#examples-29"></a>Examples</h3>
@@ -3086,6 +3095,20 @@ end
 # good
 it 'does things' do
 end</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="disallowedexamples-works-default"><a class="anchor" href="#disallowedexamples-works-default"></a><code>DisallowedExamples: ['works']</code> (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+it 'works' do
+end
+
+# good
+it 'marks the task as done' do
+end</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -3113,6 +3136,11 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredWords</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DisallowedExamples</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>works</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -4230,7 +4258,7 @@ it { should be_truthy }</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.29</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.30</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
 </tr>
 </tbody>
 </table>
@@ -4292,6 +4320,31 @@ it { expect(subject).to be_truthy }</code></pre>
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="enforcedstyle-require_implicit"><a class="anchor" href="#enforcedstyle-require_implicit"></a><code>EnforcedStyle: require_implicit</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+it { expect(subject).to be_truthy }
+
+# good
+it { is_expected.to be_truthy }
+
+# bad
+it do
+  expect(subject).to be_truthy
+end
+
+# good
+it do
+  is_expected.to be_truthy
+end
+
+# good
+it { expect(named_subject).to be_truthy }</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="configurable-attributes-19"><a class="anchor" href="#configurable-attributes-19"></a>Configurable attributes</h3>
@@ -4312,7 +4365,7 @@ it { expect(subject).to be_truthy }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>single_line_only</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>single_line_only</code>, <code>single_statement_only</code>, <code>disallow</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>single_line_only</code>, <code>single_statement_only</code>, <code>disallow</code>, <code>require_implicit</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -6190,7 +6243,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.14</p></td>
 </tr>
 </tbody>
 </table>
@@ -6213,6 +6266,11 @@ add the following configuration:</p>
       - custom_expect</pre>
 </div>
 </div>
+<div class="paragraph">
+<p>This cop can be customized with an allowed expectation methods pattern
+with an <code>AllowedPatterns</code> option. ^expect_ and ^assert_ are allowed
+by default.</p>
+</div>
 <div class="sect2">
 <h3 id="examples-61"><a class="anchor" href="#examples-61"></a>Examples</h3>
 <div class="listingblock">
@@ -6228,6 +6286,59 @@ it do
 end</code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="allowedpatterns-configuration-2"><a class="anchor" href="#allowedpatterns-configuration-2"></a><code>AllowedPatterns</code> configuration</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># .rubocop.yml
+# RSpec/NoExpectationExample:
+#   AllowedPatterns:
+#     - ^expect_
+#     - ^assert_</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+it do
+  not_expect_something
+end
+
+# good
+it do
+  expect_something
+end
+
+it do
+  assert_something
+end</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-28"><a class="anchor" href="#configurable-attributes-28"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedPatterns</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>^expect_</code>, <code>^assert_</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="references-61"><a class="anchor" href="#references-61"></a>References</h3>
@@ -6310,7 +6421,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-28"><a class="anchor" href="#configurable-attributes-28"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-29"><a class="anchor" href="#configurable-attributes-29"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6583,7 +6694,7 @@ expect(foo.something?).to be_truthy</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-29"><a class="anchor" href="#configurable-attributes-29"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-30"><a class="anchor" href="#configurable-attributes-30"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7239,7 +7350,7 @@ allow(Foo).to receive(:bar).and_return(bar.baz)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-30"><a class="anchor" href="#configurable-attributes-30"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-31"><a class="anchor" href="#configurable-attributes-31"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7992,7 +8103,7 @@ let('user_name') { 'Adam' }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-31"><a class="anchor" href="#configurable-attributes-31"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-32"><a class="anchor" href="#configurable-attributes-32"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8095,7 +8206,7 @@ let(:userName2) { 'Adam' }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedpatterns-configuration-2"><a class="anchor" href="#allowedpatterns-configuration-2"></a>AllowedPatterns configuration</h4>
+<h4 id="allowedpatterns-configuration-3"><a class="anchor" href="#allowedpatterns-configuration-3"></a>AllowedPatterns configuration</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># rubocop.yml
@@ -8115,7 +8226,7 @@ let(:userFood_2) { 'fettuccine' }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-32"><a class="anchor" href="#configurable-attributes-32"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-33"><a class="anchor" href="#configurable-attributes-33"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8137,11 +8248,6 @@ let(:userFood_2) { 'fettuccine' }</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AllowedPatterns</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredPatterns</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
@@ -8247,7 +8353,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-33"><a class="anchor" href="#configurable-attributes-33"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-34"><a class="anchor" href="#configurable-attributes-34"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8337,7 +8443,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-34"><a class="anchor" href="#configurable-attributes-34"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-35"><a class="anchor" href="#configurable-attributes-35"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8515,7 +8621,7 @@ expect(foo).to receive(:bar).and_yield(1)</code></pre>
    debug: false // Set debug to true if you want to inspect the dropdown
  });
 </script>
-<script src="../_/js/site.js"></script>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
 <script async src="../_/js/vendor/highlight.js"></script>
   </body>
 </html>

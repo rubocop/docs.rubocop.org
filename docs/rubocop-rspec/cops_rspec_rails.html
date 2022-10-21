@@ -135,6 +135,9 @@
           <a href="../rubocop/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.37/index.html">1.37</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.36/index.html">1.36</a>
         </li>
         <li class="version">
@@ -411,7 +414,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.36/index.html" class="home-link"></a>
+  <a href="../rubocop/1.37/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop RSpec</a></li>
@@ -665,6 +668,135 @@ it { is_expected.to have_http_status :error }</code></pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="rspecrailsinferredspectype"><a class="anchor" href="#rspecrailsinferredspectype"></a>RSpec/Rails/InferredSpecType</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Identifies redundant spec type.</p>
+</div>
+<div class="paragraph">
+<p>After setting up rspec-rails, you will have enabled
+<code>config.infer_spec_type_from_file_location!</code> by default in
+spec/rails_helper.rb. This cop works in conjunction with this config.
+If you disable this config, disable this cop as well.</p>
+</div>
+<div class="sect2">
+<h3 id="safety"><a class="anchor" href="#safety"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is marked as unsafe because
+<code>config.infer_spec_type_from_file_location!</code> may not be enabled.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+# spec/models/user_spec.rb
+RSpec.describe User, type: :model do
+end
+
+# good
+# spec/models/user_spec.rb
+RSpec.describe User do
+end
+
+# good
+# spec/models/user_spec.rb
+RSpec.describe User, type: :common do
+end</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="inferences-configuration"><a class="anchor" href="#inferences-configuration"></a><code>Inferences</code> configuration</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># .rubocop.yml
+# RSpec/InferredSpecType:
+#   Inferences:
+#     services: service
+
+# bad
+# spec/services/user_spec.rb
+RSpec.describe User, type: :service do
+end
+
+# good
+# spec/services/user_spec.rb
+RSpec.describe User do
+end
+
+# good
+# spec/services/user_spec.rb
+RSpec.describe User, type: :common do
+end</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Inferences</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"channels"&#8658;"channel", "controllers"&#8658;"controller", "features"&#8658;"feature", "generator"&#8658;"generator", "helpers"&#8658;"helper", "jobs"&#8658;"job", "mailboxes"&#8658;"mailbox", "mailers"&#8658;"mailer", "models"&#8658;"model", "requests"&#8658;"request", "integration"&#8658;"request", "api"&#8658;"request", "routing"&#8658;"routing", "system"&#8658;"system", "views"&#8658;"view"}</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="references-4"><a class="anchor" href="#references-4"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/Rails/InferredSpecType" class="bare">https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/Rails/InferredSpecType</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 <nav class="pagination">
   <span class="prev"><a href="cops_rspec_factorybot.html">FactoryBot</a></span>
   <span class="next"><a href="cops_rspec.html">RSpec</a></span>
@@ -687,7 +819,7 @@ it { is_expected.to have_http_status :error }</code></pre>
    debug: false // Set debug to true if you want to inspect the dropdown
  });
 </script>
-<script src="../_/js/site.js"></script>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
 <script async src="../_/js/vendor/highlight.js"></script>
   </body>
 </html>
