@@ -415,6 +415,9 @@
           <a href="../rubocop-rails/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-rails/2.17/index.html">2.17</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-rails/2.16/index.html">2.16</a>
         </li>
         <li class="version">
@@ -1345,7 +1348,10 @@ reached.</p>
 <div class="paragraph">
 <p>By adding the option <code>--exclude-limit COUNT</code>, e.g., <code>rubocop
 --auto-gen-config --exclude-limit 5</code>, you can change how many files are
-excluded before the cop is entirely disabled. The default COUNT is 15.</p>
+excluded before the cop is entirely disabled. The default COUNT is 15.
+If you don&#8217;t want the cop to be entirely disabled regardless of the
+number of files, use the <code>--no-exclude-limit</code> option, e.g.,
+<code>rubocop --auto-gen-config --no-exclude-limit</code>.</p>
 </div>
 <div class="paragraph">
 <p>The next step is to cut and paste configuration from <code>.rubocop_todo.yml</code>
