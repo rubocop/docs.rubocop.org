@@ -5944,7 +5944,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.5.3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -5960,12 +5960,14 @@ should be the most important object in your tests so they deserve
 a descriptive name.</p>
 </div>
 <div class="paragraph">
-<p>This cop can be configured in your configuration using the
-<code>IgnoreSharedExamples</code> which will not report offenses for implicit
+<p>This cop can be configured in your configuration using <code>EnforcedStyle</code>,
+and <code>IgnoreSharedExamples</code> which will not report offenses for implicit
 subjects in shared example groups.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-59"><a class="anchor" href="#examples-59"></a>Examples</h3>
+<div class="sect3">
+<h4 id="enforcedstyle-always-default"><a class="anchor" href="#enforcedstyle-always-default"></a><code>EnforcedStyle: always</code> (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5978,7 +5980,7 @@ RSpec.describe User do
 end
 
 # good
-RSpec.describe Foo do
+RSpec.describe User do
   subject(:user) { described_class.new }
 
   it 'is valid' do
@@ -5987,11 +5989,52 @@ RSpec.describe Foo do
 end
 
 # also good
-RSpec.describe Foo do
+RSpec.describe User do
   subject(:user) { described_class.new }
 
   it { is_expected.to be_valid }
 end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-named_only"><a class="anchor" href="#enforcedstyle-named_only"></a><code>EnforcedStyle: named_only</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+RSpec.describe User do
+  subject(:user) { described_class.new }
+
+  it 'is valid' do
+    expect(subject.valid?).to be(true)
+  end
+end
+
+# good
+RSpec.describe User do
+  subject(:user) { described_class.new }
+
+  it 'is valid' do
+    expect(user.valid?).to be(true)
+  end
+end
+
+# also good
+RSpec.describe User do
+  subject { described_class.new }
+
+  it { is_expected.to be_valid }
+end
+
+# acceptable
+RSpec.describe User do
+  subject { described_class.new }
+
+  it 'is valid' do
+    expect(subject.valid?).to be(true)
+  end
+end</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -6011,6 +6054,11 @@ end</code></pre>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>always</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>always</code>, <code>named_only</code></p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IgnoreSharedExamples</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
