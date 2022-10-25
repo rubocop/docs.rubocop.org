@@ -4693,15 +4693,13 @@ render json: { foo: 'bar' }, status: 200
 render plain: 'foo/bar', status: 304
 redirect_to root_url, status: 301
 head 200
-get '/foobar', to: redirect('/foobar/baz', status: 301)
 
 # good
 render :foo, status: :ok
 render json: { foo: 'bar' }, status: :ok
 render plain: 'foo/bar', status: :not_modified
 redirect_to root_url, status: :moved_permanently
-head :ok
-get '/foobar', to: redirect('/foobar/baz', status: :moved_permanently)</code></pre>
+head :ok</code></pre>
 </div>
 </div>
 </div>
@@ -4715,15 +4713,13 @@ render json: { foo: 'bar' }, status: :not_found
 render plain: 'foo/bar', status: :not_modified
 redirect_to root_url, status: :moved_permanently
 head :ok
-get '/foobar', to: redirect('/foobar/baz', status: :moved_permanently)
 
 # good
 render :foo, status: 200
 render json: { foo: 'bar' }, status: 404
 render plain: 'foo/bar', status: 304
 redirect_to root_url, status: 301
-head 200
-get '/foobar', to: redirect('/foobar/baz', status: 301)</code></pre>
+head 200</code></pre>
 </div>
 </div>
 </div>
