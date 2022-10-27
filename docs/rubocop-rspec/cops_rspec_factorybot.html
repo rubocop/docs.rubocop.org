@@ -606,7 +606,17 @@ build(:login)</code></pre>
 create :user
 build :user
 create :login
-create :login</code></pre>
+create :login
+
+# also good
+# when method name and first argument are not on same line
+create(
+  :user
+)
+build(
+  :user,
+  name: 'foo'
+)</code></pre>
 </div>
 </div>
 </div>
