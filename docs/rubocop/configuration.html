@@ -325,6 +325,9 @@
           <a href="../rubocop-minitest/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-minitest/0.23/index.html">0.23</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-minitest/0.22/index.html">0.22</a>
         </li>
         <li class="version">
@@ -1479,6 +1482,69 @@ corrected.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># rubocop:disable Layout/LineLength --This is a bad comment that includes other than cop name.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="temporarily-enabling-cops-in-source-code"><a class="anchor" href="#temporarily-enabling-cops-in-source-code"></a>Temporarily enabling cops in source code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In a similar way to disabling cops within source code, you can also temporarily enable specific
+cops if you want to enforce specific rules for part of the totality of a file.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s use the cop <code>Style/AsciiComments</code>, which is by default <code>Enabled: false</code>. If you want a
+specific file to have ASCII-only comments to be compatible with some specific post-processing.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># rubocop:enable Style/AsciiComments
+# If applicable, leave a comment to others explaining the rationale:
+# We need the comments to remain ASCII only for compatibility with lib/post_processor.rb
+
+class Restaurant
+  # This comment has to be ASCII-only because of the rubocop:enable directive
+  def menu
+    return dishes.map(&amp;:humanize)
+  end
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also enforce the same for part of a file by disabling the cop afterwards</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class Dish
+  def humanize
+    return [
+      "Delicious #{self.name}"
+      *ingredients
+    ].join("\n")
+  end
+end
+
+# rubocop:enable Style/AsciiComments
+# If applicable, leave a comment to others explaining the rationale:
+# We need the comments to remain ASCII only for compatibility with lib/post_processor.rb
+
+class Restaurant
+  # This comment has to be ASCII-only because of the rubocop:enable directive
+  def menu
+    return dishes.map(&amp;:humanize)
+  end
+end
+
+# rubocop:disable Style/AsciiComments
+
+class Ingredient
+  # Notice how the comment below is non-ASCII
+  # Gets rid of odd characters like 😀, ͸
+  def sanitize
+    self.name.gsub(/[^a-z]/, '')
+  end
+end</code></pre>
 </div>
 </div>
 </div>
