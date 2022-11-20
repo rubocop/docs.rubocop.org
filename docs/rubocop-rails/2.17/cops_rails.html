@@ -435,7 +435,7 @@
     <a class="version" href="../2.7/cops_rails.html">2.7</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-rails/blob/v2.17.2/docs/modules/ROOT/pages/cops_rails.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-rails/blob/v2.17.3/docs/modules/ROOT/pages/cops_rails.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -754,7 +754,8 @@ skip_after_filter :do_stuff</code></pre>
 </div>
 <div class="paragraph">
 <p>The cop is configurable and can enforce any ordering of the standard actions.
-All other methods are ignored.</p>
+All other methods are ignored. So, the actions specified in <code>ExpectedOrder</code> should be
+defined before actions not specified.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4809,7 +4810,7 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>controllers/**/*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>app/controllers/**/*.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
