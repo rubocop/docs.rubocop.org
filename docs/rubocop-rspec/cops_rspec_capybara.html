@@ -138,6 +138,9 @@
           <a href="../rubocop/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.41/index.html">1.41</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.40/index.html">1.40</a>
         </li>
         <li class="version">
@@ -408,7 +411,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.40/index.html" class="home-link"></a>
+  <a href="../rubocop/1.41/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop RSpec</a></li>
@@ -626,6 +629,92 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="rspeccapybaramatchstyle"><a class="anchor" href="#rspeccapybaramatchstyle"></a>RSpec/Capybara/MatchStyle</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks for usage of deprecated style methods.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<div class="sect3">
+<h4 id="when-using-assert_style"><a class="anchor" href="#when-using-assert_style"></a>when using <code>assert_style</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+page.find(:css, '#first').assert_style(display: 'block')
+
+# good
+page.find(:css, '#first').assert_matches_style(display: 'block')</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="when-using-has_style"><a class="anchor" href="#when-using-has_style"></a>when using <code>has_style?</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+expect(page.find(:css, 'first')
+  .has_style?(display: 'block')).to be true
+
+# good
+expect(page.find(:css, 'first')
+  .matches_style?(display: 'block')).to be true</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="when-using-have_style"><a class="anchor" href="#when-using-have_style"></a>when using <code>have_style</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+expect(page).to have_style(display: 'block')
+
+# good
+expect(page).to match_style(display: 'block')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-3"><a class="anchor" href="#references-3"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/Capybara/MatchStyle" class="bare">https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/Capybara/MatchStyle</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="rspeccapybaranegationmatcher"><a class="anchor" href="#rspeccapybaranegationmatcher"></a>RSpec/Capybara/NegationMatcher</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -659,7 +748,7 @@ end</code></pre>
 <p>Enforces use of <code>have_no_*</code> or <code>not_to</code> for negated expectations.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-not_to-default"><a class="anchor" href="#enforcedstyle-not_to-default"></a>EnforcedStyle: not_to (default)</h4>
 <div class="listingblock">
@@ -714,7 +803,7 @@ expect(page).to have_no_css('a')</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-3"><a class="anchor" href="#references-3"></a>References</h3>
+<h3 id="references-4"><a class="anchor" href="#references-4"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -759,7 +848,7 @@ expect(page).to have_no_css('a')</code></pre>
 <p>Checks for there is a more specific actions offered by Capybara.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -777,7 +866,7 @@ find('div').click_button</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-4"><a class="anchor" href="#references-4"></a>References</h3>
+<h3 id="references-5"><a class="anchor" href="#references-5"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -822,7 +911,7 @@ find('div').click_button</code></pre>
 <p>Checks if there is a more specific finder offered by Capybara.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
+<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -836,7 +925,7 @@ find_by_id('some-id', visible: true)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-5"><a class="anchor" href="#references-5"></a>References</h3>
+<h3 id="references-6"><a class="anchor" href="#references-6"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -881,7 +970,7 @@ find_by_id('some-id', visible: true)</code></pre>
 <p>Checks for there is a more specific matcher offered by Capybara.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -905,7 +994,7 @@ expect(page).to have_field('foo')</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-6"><a class="anchor" href="#references-6"></a>References</h3>
+<h3 id="references-7"><a class="anchor" href="#references-7"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -960,7 +1049,7 @@ Read more in
 <a href="https://www.rubydoc.info/gems/capybara/Capybara%2FNode%2FFinders:all">the documentation</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
+<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -976,7 +1065,7 @@ expect(page).to have_link('my link', visible: :hidden)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-7"><a class="anchor" href="#references-7"></a>References</h3>
+<h3 id="references-8"><a class="anchor" href="#references-8"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>

@@ -213,6 +213,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.41/index.html">1.41</a>
+        </li>
+        <li class="version">
           <a href="1.40/index.html">1.40</a>
         </li>
         <li class="version">
@@ -483,7 +486,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.40/index.html" class="home-link"></a>
+  <a href="1.41/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -495,6 +498,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_layout.html">default</a>
+    <a class="version" href="1.41/cops_layout.html">1.41</a>
     <a class="version" href="1.40/cops_layout.html">1.40</a>
     <a class="version" href="1.39/cops_layout.html">1.39</a>
     <a class="version" href="1.38/cops_layout.html">1.38</a>
@@ -4760,6 +4764,37 @@ multi-line array.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-37"><a class="anchor" href="#examples-37"></a>Examples</h3>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-false-default"><a class="anchor" href="#allowmultilinefinalelement-false-default"></a>AllowMultilineFinalElement: false (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+[ :a,
+  :b]
+
+# bad
+[ :a, {
+  :b =&gt; :c
+}]
+
+# good
+[:a, :b]
+
+# good
+[
+  :a,
+  :b]
+
+# good
+[
+  :a, {
+  :b =&gt; :c
+}]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-true"><a class="anchor" href="#allowmultilinefinalelement-true"></a>AllowMultilineFinalElement: true</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4767,11 +4802,44 @@ multi-line array.</p>
   :b]
 
 # good
+[ :a, {
+  :b =&gt; :c
+}]
+
+# good
 [
   :a,
-  :b]</code></pre>
+  :b]
+
+# good
+[:a, :b]</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-24"><a class="anchor" href="#configurable-attributes-24"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#allowmultilinefinalelement">AllowMultilineFinalElement</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -4935,7 +5003,7 @@ takes_multi_pairs_hash(x: {
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-24"><a class="anchor" href="#configurable-attributes-24"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-25"><a class="anchor" href="#configurable-attributes-25"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5001,18 +5069,88 @@ multi-line hash.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-39"><a class="anchor" href="#examples-39"></a>Examples</h3>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-false-default-2"><a class="anchor" href="#allowmultilinefinalelement-false-default-2"></a>AllowMultilineFinalElement: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 { a: 1,
   b: 2}
 
+# bad
+{ a: 1, b: {
+  c: 3
+}}
+
 # good
 {
   a: 1,
-  b: 2 }</code></pre>
+  b: 2 }
+
+# good
+{
+  a: 1, b: {
+  c: 3
+}}</code></pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-true-2"><a class="anchor" href="#allowmultilinefinalelement-true-2"></a>AllowMultilineFinalElement: true</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+{ a: 1,
+  b: 2}
+
+# bad
+{ a: 1,
+  b: {
+  c: 3
+}}
+
+# good
+{ a: 1, b: {
+  c: 3
+}}
+
+# good
+{
+  a: 1,
+  b: 2 }
+
+# good
+{
+  a: 1, b: {
+  c: 3
+}}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-26"><a class="anchor" href="#configurable-attributes-26"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#allowmultilinefinalelement">AllowMultilineFinalElement</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -5052,22 +5190,106 @@ multi-line method call.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-40"><a class="anchor" href="#examples-40"></a>Examples</h3>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-false-default-3"><a class="anchor" href="#allowmultilinefinalelement-false-default-3"></a>AllowMultilineFinalElement: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 method(foo, bar,
   baz)
 
+# bad
+method(foo, bar, {
+  baz: "a",
+  qux: "b",
+})
+
 # good
 method(
   foo, bar,
   baz)
+
+# good
+method(
+  foo, bar, {
+  baz: "a",
+  qux: "b",
+})
 
 # ignored
 method foo, bar,
   baz</code></pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-true-3"><a class="anchor" href="#allowmultilinefinalelement-true-3"></a>AllowMultilineFinalElement: true</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+method(foo, bar,
+  baz)
+
+# bad
+method(foo,
+  bar,
+  {
+    baz: "a",
+    qux: "b",
+  }
+)
+
+# good
+method(foo, bar, {
+  baz: "a",
+  qux: "b",
+})
+
+# good
+method(
+  foo, bar,
+  baz)
+
+# good
+method(
+  foo,
+  bar,
+  {
+    baz: "a",
+    qux: "b",
+  }
+)
+
+# ignored
+method foo, bar,
+  baz</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-27"><a class="anchor" href="#configurable-attributes-27"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#allowmultilinefinalelement">AllowMultilineFinalElement</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -5107,11 +5329,60 @@ multi-line method parameter definition.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-41"><a class="anchor" href="#examples-41"></a>Examples</h3>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-false-default-4"><a class="anchor" href="#allowmultilinefinalelement-false-default-4"></a>AllowMultilineFinalElement: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 def method(foo, bar,
     baz)
+  do_something
+end
+
+# bad
+def method(foo, bar, baz = {
+  :a =&gt; "b",
+})
+  do_something
+end
+
+# good
+def method(
+    foo, bar,
+    baz)
+  do_something
+end
+
+# good
+def method(
+  foo, bar, baz = {
+  :a =&gt; "b",
+})
+  do_something
+end
+
+# ignored
+def method foo,
+    bar
+  do_something
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-true-4"><a class="anchor" href="#allowmultilinefinalelement-true-4"></a>AllowMultilineFinalElement: true</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+def method(foo, bar,
+    baz)
+  do_something
+end
+
+# good
+def method(foo, bar, baz = {
+  :a =&gt; "b",
+})
   do_something
 end
 
@@ -5129,6 +5400,31 @@ def method foo,
 end</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-28"><a class="anchor" href="#configurable-attributes-28"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#allowmultilinefinalelement">AllowMultilineFinalElement</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -5218,7 +5514,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-25"><a class="anchor" href="#configurable-attributes-25"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-29"><a class="anchor" href="#configurable-attributes-29"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5525,7 +5821,7 @@ do_something({foo: 1,
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-26"><a class="anchor" href="#configurable-attributes-26"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-30"><a class="anchor" href="#configurable-attributes-30"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5884,7 +6180,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-27"><a class="anchor" href="#configurable-attributes-27"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-31"><a class="anchor" href="#configurable-attributes-31"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5996,7 +6292,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-28"><a class="anchor" href="#configurable-attributes-28"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-32"><a class="anchor" href="#configurable-attributes-32"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6119,7 +6415,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-29"><a class="anchor" href="#configurable-attributes-29"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-33"><a class="anchor" href="#configurable-attributes-33"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6314,7 +6610,7 @@ or rackup options.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-30"><a class="anchor" href="#configurable-attributes-30"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-34"><a class="anchor" href="#configurable-attributes-34"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6499,7 +6795,7 @@ instead of trailing spaces.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-31"><a class="anchor" href="#configurable-attributes-31"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-35"><a class="anchor" href="#configurable-attributes-35"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6599,7 +6895,7 @@ preceding text by exactly one space (default) or zero spaces.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-32"><a class="anchor" href="#configurable-attributes-32"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-36"><a class="anchor" href="#configurable-attributes-36"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6746,7 +7042,7 @@ my_hash = {
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-33"><a class="anchor" href="#configurable-attributes-33"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-37"><a class="anchor" href="#configurable-attributes-37"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6912,7 +7208,7 @@ bar: "0000000000", baz: "0000000000"}
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-34"><a class="anchor" href="#configurable-attributes-34"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-38"><a class="anchor" href="#configurable-attributes-38"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7120,7 +7416,7 @@ line as the last element of the array.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-35"><a class="anchor" href="#configurable-attributes-35"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-39"><a class="anchor" href="#configurable-attributes-39"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7181,6 +7477,41 @@ starts on a separate line.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-57"><a class="anchor" href="#examples-57"></a>Examples</h3>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-false-default-5"><a class="anchor" href="#allowmultilinefinalelement-false-default-5"></a>AllowMultilineFinalElement: false (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+[
+  a, b,
+  c
+]
+
+# bad
+[ a, b, foo(
+  bar
+)]
+
+# good
+[
+  a,
+  b,
+  c
+]
+
+# good
+[
+  a,
+  b,
+  foo(
+    bar
+  )
+]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-true-5"><a class="anchor" href="#allowmultilinefinalelement-true-5"></a>AllowMultilineFinalElement: true</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7190,13 +7521,52 @@ starts on a separate line.</p>
 ]
 
 # good
+[ a, b, foo(
+  bar
+)]
+
+# good
 [
   a,
   b,
   c
+]
+
+# good
+[
+  a,
+  b,
+  foo(
+    bar
+  )
 ]</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-40"><a class="anchor" href="#configurable-attributes-40"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#allowmultilinefinalelement">AllowMultilineFinalElement</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -7309,7 +7679,7 @@ foo =
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-36"><a class="anchor" href="#configurable-attributes-36"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-41"><a class="anchor" href="#configurable-attributes-41"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7570,7 +7940,7 @@ line as the last element of the hash.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-37"><a class="anchor" href="#configurable-attributes-37"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-42"><a class="anchor" href="#configurable-attributes-42"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7631,6 +8001,40 @@ starts on a separate line.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-61"><a class="anchor" href="#examples-61"></a>Examples</h3>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-false-default-6"><a class="anchor" href="#allowmultilinefinalelement-false-default-6"></a>AllowMultilineFinalElement: false (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+{
+  a: 1, b: 2,
+  c: 3
+}
+
+# bad
+{ a: 1, b: {
+  c: 3,
+}}
+
+# good
+{
+  a: 1,
+  b: 2,
+  c: 3
+}
+
+# good
+{
+  a: 1,
+  b: {
+    c: 3,
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-true-6"><a class="anchor" href="#allowmultilinefinalelement-true-6"></a>AllowMultilineFinalElement: true</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7640,13 +8044,51 @@ starts on a separate line.</p>
 }
 
 # good
+{ a: 1, b: {
+  c: 3,
+}}
+
+# good
 {
   a: 1,
   b: 2,
   c: 3
+}
+
+# good
+{
+  a: 1,
+  b: {
+    c: 3,
+  }
 }</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-43"><a class="anchor" href="#configurable-attributes-43"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#allowmultilinefinalelement">AllowMultilineFinalElement</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -7699,12 +8141,19 @@ be on a separate line, see <code>Layout/FirstMethodArgumentLineBreak</code>.
 </div>
 <div class="sect2">
 <h3 id="examples-62"><a class="anchor" href="#examples-62"></a>Examples</h3>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-false-default-7"><a class="anchor" href="#allowmultilinefinalelement-false-default-7"></a>AllowMultilineFinalElement: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 foo(a, b,
   c
 )
+
+# bad
+foo(a, b, {
+  foo: "bar",
+})
 
 # good
 foo(
@@ -7714,9 +8163,78 @@ foo(
 )
 
 # good
-foo(a, b, c)</code></pre>
+foo(a, b, c)
+
+# good
+foo(
+  a,
+  b,
+  {
+    foo: "bar",
+  }
+)</code></pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-true-7"><a class="anchor" href="#allowmultilinefinalelement-true-7"></a>AllowMultilineFinalElement: true</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+foo(a, b,
+  c
+)
+
+# good
+foo(a, b, {
+  foo: "bar",
+})
+
+# good
+foo(
+  a,
+  b,
+  c
+)
+
+# good
+foo(a, b, c)
+
+# good
+foo(
+  a,
+  b,
+  {
+    foo: "bar",
+  }
+)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-44"><a class="anchor" href="#configurable-attributes-44"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#allowmultilinefinalelement">AllowMultilineFinalElement</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -7863,7 +8381,7 @@ foo(a,
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-38"><a class="anchor" href="#configurable-attributes-38"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-45"><a class="anchor" href="#configurable-attributes-45"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7982,7 +8500,7 @@ myvariable = Thing
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-39"><a class="anchor" href="#configurable-attributes-39"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-46"><a class="anchor" href="#configurable-attributes-46"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8167,7 +8685,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-40"><a class="anchor" href="#configurable-attributes-40"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-47"><a class="anchor" href="#configurable-attributes-47"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8241,12 +8759,20 @@ be on a separate line, see <code>Layout/FirstMethodParameterLineBreak</code>.
 </div>
 <div class="sect2">
 <h3 id="examples-66"><a class="anchor" href="#examples-66"></a>Examples</h3>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-false-default-8"><a class="anchor" href="#allowmultilinefinalelement-false-default-8"></a>AllowMultilineFinalElement: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 def foo(a, b,
   c
 )
+end
+
+# bad
+def foo(a, b = {
+  foo: "bar",
+})
 end
 
 # good
@@ -8258,10 +8784,83 @@ def foo(
 end
 
 # good
+def foo(
+  a,
+  b = {
+    foo: "bar",
+  }
+)
+end
+
+# good
 def foo(a, b, c)
 end</code></pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-true-8"><a class="anchor" href="#allowmultilinefinalelement-true-8"></a>AllowMultilineFinalElement: true</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+def foo(a, b,
+  c
+)
+end
+
+# good
+def foo(a, b = {
+  foo: "bar",
+})
+end
+
+# good
+def foo(
+  a,
+  b,
+  c
+)
+end
+
+# good
+def foo(
+  a,
+  b = {
+    foo: "bar",
+  }
+)
+end
+
+# good
+def foo(a, b, c)
+end</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-48"><a class="anchor" href="#configurable-attributes-48"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#allowmultilinefinalelement">AllowMultilineFinalElement</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -8348,7 +8947,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-41"><a class="anchor" href="#configurable-attributes-41"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-49"><a class="anchor" href="#configurable-attributes-49"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8490,7 +9089,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-42"><a class="anchor" href="#configurable-attributes-42"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-50"><a class="anchor" href="#configurable-attributes-50"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8619,7 +9218,7 @@ foo(a) { |x| puts x }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-43"><a class="anchor" href="#configurable-attributes-43"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-51"><a class="anchor" href="#configurable-attributes-51"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9112,7 +9711,7 @@ not by this cop.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-44"><a class="anchor" href="#configurable-attributes-44"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-52"><a class="anchor" href="#configurable-attributes-52"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9207,7 +9806,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-45"><a class="anchor" href="#configurable-attributes-45"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-53"><a class="anchor" href="#configurable-attributes-53"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9476,7 +10075,7 @@ a ** b</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-46"><a class="anchor" href="#configurable-attributes-46"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-54"><a class="anchor" href="#configurable-attributes-54"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9610,7 +10209,7 @@ foo.map{ |a|
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-47"><a class="anchor" href="#configurable-attributes-47"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-55"><a class="anchor" href="#configurable-attributes-55"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9853,7 +10452,7 @@ something 'hello'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-48"><a class="anchor" href="#configurable-attributes-48"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-56"><a class="anchor" href="#configurable-attributes-56"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9987,7 +10586,7 @@ a = -&gt; (x, y) { x + y }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-49"><a class="anchor" href="#configurable-attributes-49"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-57"><a class="anchor" href="#configurable-attributes-57"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10136,7 +10735,7 @@ bar = [ ]</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-50"><a class="anchor" href="#configurable-attributes-50"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-58"><a class="anchor" href="#configurable-attributes-58"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10353,7 +10952,7 @@ some_array.each {   }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-51"><a class="anchor" href="#configurable-attributes-51"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-59"><a class="anchor" href="#configurable-attributes-59"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10512,7 +11111,7 @@ foo = {
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-52"><a class="anchor" href="#configurable-attributes-52"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-60"><a class="anchor" href="#configurable-attributes-60"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10653,7 +11252,7 @@ g((( 3 + 5 ) * f ) ** x, 5 )</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-53"><a class="anchor" href="#configurable-attributes-53"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-61"><a class="anchor" href="#configurable-attributes-61"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10927,7 +11526,7 @@ foo[ ]</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-54"><a class="anchor" href="#configurable-attributes-54"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-62"><a class="anchor" href="#configurable-attributes-62"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11018,7 +11617,7 @@ foo[ ]</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-55"><a class="anchor" href="#configurable-attributes-55"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-63"><a class="anchor" href="#configurable-attributes-63"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11132,7 +11731,7 @@ class Foo; end
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-56"><a class="anchor" href="#configurable-attributes-56"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-64"><a class="anchor" href="#configurable-attributes-64"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11250,7 +11849,7 @@ RUBY</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-57"><a class="anchor" href="#configurable-attributes-57"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-65"><a class="anchor" href="#configurable-attributes-65"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11281,6 +11880,135 @@ RUBY</code></pre>
 <p><a href="https://rubystyle.guide#no-trailing-whitespace" class="bare">https://rubystyle.guide#no-trailing-whitespace</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="allowmultilinefinalelement"><a class="anchor" href="#allowmultilinefinalelement"></a>AllowMultilineFinalElement</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>AllowMultilineFinalElement</code> is a boolean option (<code>false</code> by default) that
+is available on the following Layout cops:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>FirstArrayElementLineBreak</p>
+</li>
+<li>
+<p>FirstHashElementLineBreak</p>
+</li>
+<li>
+<p>FirstMethodArgumentLineBreak</p>
+</li>
+<li>
+<p>FirstMethodParameterLineBreak</p>
+</li>
+<li>
+<p>MultilineArrayLineBreaks</p>
+</li>
+<li>
+<p>MultilineHashKeyLineBreaks</p>
+</li>
+<li>
+<p>MultilineMethodArgumentLineBreaks</p>
+</li>
+<li>
+<p>MultilineMethodParameterLineBreaks</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Those cops ignore their respective expressions if all or the elements of
+the expression are on the same line. If <code>AllowMultilineFinalElement</code> is
+set to <code>true</code>, the cop will also ignore multiline expressions if the last
+element starts on the same line, but ends on a different one.</p>
+</div>
+<div class="paragraph">
+<p>This works well with <code>Layout/LineLength</code> to present elements on
+individual lines when wrapping, while not affecting expressions
+that are already short enough, and only considered multiline
+because of their last element.</p>
+</div>
+<div class="paragraph">
+<p>Each cop can be configured independently allowing for more fine-grained
+control ovwer what is considered good ok in the codebase.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-100"><a class="anchor" href="#examples-100"></a>Examples</h3>
+<div class="paragraph">
+<p>Here are some examples of real world expressions that get wrapped
+by their respective cops, but that are considered ok when setting
+<code>AllowMultilineFinalElement</code> to <code>true</code> on those same cops.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+
+# FirstArrayElementLineBreak and MultilineArrayLineBreaks
+
+  # Array of error containing a single error
+  errors = [{
+    error: "Something went wrong",
+    error_code: error_code,
+  }]
+
+  # Array of flags, with last flag computed
+  flags = [:a, :b, foo(
+    bar,
+    baz
+  )]
+
+# FirstHashElementLineBreak and MultilineHashKeyLineBreaks
+  hash = { foo: 1, bar: 2, baz: {
+    c: 1,
+    d: 2
+  }}
+
+# FirstMethodArgumentLineBreak and MultilineMethodArgumentLineBreaks
+  single_argument_hash_method_call({
+    a: 1,
+    b: 2,
+    c: 3
+  })
+
+  # Call some method, with a long last argument, that is a hash
+  write_log(:error,  {
+    "job_class" =&gt; job.class.name,
+    "resource" =&gt; resource.id,
+    "message" =&gt; "Something wrong happened here",
+  })
+
+  # Rails before action with long last argument
+  before_action :load_something, only: [
+    :show,
+    :list,
+    :some_other_long_action_name,
+  ]
+
+  # Rails validation with inline callback
+  validate :name, presence: true, on: [:create, :activate], if: -&gt; {
+    active? &amp;&amp; some_relationship.any?
+  }
+
+  # Rails after commit hook, with some Sorbet bindings
+  after_commit :geolocate, unless: -&gt; {
+    T.bind(self, Address)
+    archived? || invalid?
+  }
+
+# FirstMethodParameterLineBreak and MultilineMethodParameterLineBreaks
+
+  # Method with a long last parameter default value
+  def foo(foo, bar, baz = {
+    a: 1,
+    b: 2,
+    c: 3
+  })
+    do_something
+  end</code></pre>
+</div>
 </div>
 </div>
 </div>
