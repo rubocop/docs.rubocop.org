@@ -415,7 +415,7 @@
     <a class="version" href="../1.7/cops_performance.html">1.7</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-performance/blob/v1.15.0/docs/modules/ROOT/pages/cops_performance.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-performance/blob/v1.15.2/docs/modules/ROOT/pages/cops_performance.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -3007,6 +3007,7 @@ a deterministic regexp to a string.</p>
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 str.chars[0..2]
 str.chars.slice(0..2)
+str.chars.last
 
 # good
 str[0..2].chars
@@ -3018,6 +3019,7 @@ str.chars.first(2)
 # good
 str[0]
 str[0...2].chars
+str[-1]
 
 # bad
 str.chars.take(2)
@@ -3031,9 +3033,8 @@ str.length
 str.size
 str.empty?
 
-# For example, if the receiver is a blank string, it will be incompatible.
+# For example, if the receiver is an empty string, it will be incompatible.
 # If a negative value is specified for the receiver, `nil` is returned.
-str.chars.last    # Incompatible with `str[-1]`.
 str.chars.last(2) # Incompatible with `str[-2..-1].chars`.
 str.chars.drop(2) # Incompatible with `str[2..-1].chars`.</code></pre>
 </div>
@@ -3851,6 +3852,18 @@ instance_variable_get(:@ivar)</code></pre>
 <div class="sect1">
 <h2 id="performancesum"><a class="anchor" href="#performancesum"></a>Performance/Sum</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Required Ruby version: 2.4
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
