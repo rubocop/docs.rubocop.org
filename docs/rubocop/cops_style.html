@@ -214,6 +214,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.43/index.html">1.43</a>
+        </li>
+        <li class="version">
           <a href="1.42/index.html">1.42</a>
         </li>
         <li class="version">
@@ -513,6 +516,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_style.html">default</a>
+    <a class="version" href="1.43/cops_style.html">1.43</a>
     <a class="version" href="1.42/cops_style.html">1.42</a>
     <a class="version" href="1.41/cops_style.html">1.41</a>
     <a class="version" href="1.40/cops_style.html">1.40</a>
@@ -8657,7 +8661,7 @@ execute(sql).values.each { |v| p v }</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AllowedReceivers</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Thread.current</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -12023,7 +12027,7 @@ a &lt;= b ? a : b
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.30</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.38</p></td>
 </tr>
@@ -24687,11 +24691,11 @@ bar &gt; 10
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.42</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.43</p></td>
 </tr>
 </tbody>
 </table>
@@ -24699,6 +24703,14 @@ bar &gt; 10
 <p>Forbids Yoda expressions, i.e. binary operations (using <code>*</code>, <code>+</code>, <code>&amp;</code>, <code>|</code>,
 and <code>^</code> operators) where the order of expression is reversed, eg. <code>1 + x</code>.
 This cop complements <code>Style/YodaCondition</code> cop, which has a similar purpose.</p>
+</div>
+<div class="paragraph">
+<p>This cop is disabled by default to respect user intentions such as:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">config.server_port = 9000 + ENV["TEST_ENV_NUMBER"].to_i</code></pre>
+</div>
 </div>
 <div class="sect2">
 <h3 id="safety-60"><a class="anchor" href="#safety-60"></a>Safety</h3>

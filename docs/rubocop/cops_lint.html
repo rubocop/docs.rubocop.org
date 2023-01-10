@@ -214,6 +214,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.43/index.html">1.43</a>
+        </li>
+        <li class="version">
           <a href="1.42/index.html">1.42</a>
         </li>
         <li class="version">
@@ -513,6 +516,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_lint.html">default</a>
+    <a class="version" href="1.43/cops_lint.html">1.43</a>
     <a class="version" href="1.42/cops_lint.html">1.42</a>
     <a class="version" href="1.41/cops_lint.html">1.41</a>
     <a class="version" href="1.40/cops_lint.html">1.40</a>
@@ -11320,6 +11324,87 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="lintuselessrescue"><a class="anchor" href="#lintuselessrescue"></a>Lint/UselessRescue</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.43</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks for useless `rescue`s, which only reraise rescued exceptions.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-126"><a class="anchor" href="#examples-126"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+def foo
+  do_something
+rescue
+  raise
+end
+
+# bad
+def foo
+  do_something
+rescue =&gt; e
+  raise # or 'raise e', or 'raise $!', or 'raise $ERROR_INFO'
+end
+
+# good
+def foo
+  do_something
+rescue
+  do_cleanup
+  raise
+end
+
+# bad (latest rescue)
+def foo
+  do_something
+rescue ArgumentError
+  # noop
+rescue
+  raise
+end
+
+# good (not the latest rescue)
+def foo
+  do_something
+rescue ArgumentError
+  raise
+rescue
+  # noop
+end</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="lintuselessruby2keywords"><a class="anchor" href="#lintuselessruby2keywords"></a>Lint/UselessRuby2Keywords</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -11358,7 +11443,7 @@ end</code></pre>
 a keyword splat (<code>**kwargs</code>).</p>
 </div>
 <div class="sect2">
-<h3 id="examples-126"><a class="anchor" href="#examples-126"></a>Examples</h3>
+<h3 id="examples-127"><a class="anchor" href="#examples-127"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good (splat argument without keyword arguments)
@@ -11465,7 +11550,7 @@ return value will be changed.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-127"><a class="anchor" href="#examples-127"></a>Examples</h3>
+<h3 id="examples-128"><a class="anchor" href="#examples-128"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11533,7 +11618,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-128"><a class="anchor" href="#examples-128"></a>Examples</h3>
+<h3 id="examples-129"><a class="anchor" href="#examples-129"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11585,7 +11670,7 @@ do_something(1)</code></pre>
 methods used in void context.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-129"><a class="anchor" href="#examples-129"></a>Examples</h3>
+<h3 id="examples-130"><a class="anchor" href="#examples-130"></a>Examples</h3>
 <div class="sect3">
 <h4 id="checkformethodswithnosideeffects-false-default"><a class="anchor" href="#checkformethodswithnosideeffects-false-default"></a>CheckForMethodsWithNoSideEffects: false (default)</h4>
 <div class="listingblock">
