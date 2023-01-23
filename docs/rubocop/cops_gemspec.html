@@ -214,6 +214,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.44/index.html">1.44</a>
+        </li>
+        <li class="version">
           <a href="1.43/index.html">1.43</a>
         </li>
         <li class="version">
@@ -486,7 +489,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.43/index.html" class="home-link"></a>
+  <a href="1.44/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -498,6 +501,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_gemspec.html">default</a>
+    <a class="version" href="1.44/cops_gemspec.html">1.44</a>
     <a class="version" href="1.43/cops_gemspec.html">1.43</a>
     <a class="version" href="1.42/cops_gemspec.html">1.42</a>
     <a class="version" href="1.41/cops_gemspec.html">1.41</a>
@@ -737,6 +741,155 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="gemspecdevelopmentdependencies"><a class="anchor" href="#gemspecdevelopmentdependencies"></a>Gemspec/DevelopmentDependencies</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.44</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Enforce that development dependencies for a gem are specified in
+<code>Gemfile</code>, rather than in the <code>gemspec</code> using
+<code>add_development_dependency</code>. Alternatively, using <code>EnforcedStyle:
+gemspec</code>, enforce that all dependencies are specified in <code>gemspec</code>,
+rather than in <code>Gemfile</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<div class="sect3">
+<h4 id="enforcedstyle-gemfile-default"><a class="anchor" href="#enforcedstyle-gemfile-default"></a>EnforcedStyle: Gemfile (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Specify runtime dependencies in your gemspec,
+# but all other dependencies in your Gemfile.
+
+# bad
+# example.gemspec
+s.add_development_dependency "foo"
+
+# good
+# Gemfile
+gem "foo"
+
+# good
+# gems.rb
+gem "foo"
+
+# good (with AllowedGems: ["bar"])
+# example.gemspec
+s.add_development_dependency "bar"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-gems-rb"><a class="anchor" href="#enforcedstyle-gems-rb"></a>EnforcedStyle: gems.rb</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Specify runtime dependencies in your gemspec,
+# but all other dependencies in your Gemfile.
+#
+# Identical to `EnforcedStyle: Gemfile`, but with a different error message.
+# Rely on Bundler/GemFilename to enforce the use of `Gemfile` vs `gems.rb`.
+
+# bad
+# example.gemspec
+s.add_development_dependency "foo"
+
+# good
+# Gemfile
+gem "foo"
+
+# good
+# gems.rb
+gem "foo"
+
+# good (with AllowedGems: ["bar"])
+# example.gemspec
+s.add_development_dependency "bar"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-gemspec"><a class="anchor" href="#enforcedstyle-gemspec"></a>EnforcedStyle: gemspec</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Specify all dependencies in your gemspec.
+
+# bad
+# Gemfile
+gem "foo"
+
+# good
+# example.gemspec
+s.add_development_dependency "foo"
+
+# good (with AllowedGems: ["bar"])
+# Gemfile
+gem "bar"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Gemfile</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Gemfile</code>, <code>gems.rb</code>, <code>gemspec</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedGems</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bundler</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>**/*.gemspec</code>, <code>**/Gemfile</code>, <code>**/gems.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="gemspecduplicatedassignment"><a class="anchor" href="#gemspecduplicatedassignment"></a>Gemspec/DuplicatedAssignment</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -777,7 +930,7 @@ as <code>spec.requirements</code>, <code>spec.add_runtime_dependency</code>, and
 permitted because it is the intended use of appending values.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -806,7 +959,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -870,7 +1023,7 @@ end</code></pre>
 <p>Dependencies in the gemspec should be alphabetically sorted.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -921,7 +1074,7 @@ spec.add_dependency 'rspec'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1016,7 +1169,7 @@ operations):</p>
 confident that gem updates were pushed by maintainers.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
+<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1063,7 +1216,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1142,7 +1295,7 @@ configuration for the gem.</p>
 <p>This ensures that RuboCop is using the same Ruby version as the gem.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># When `TargetRubyVersion` of .rubocop.yml is `2.5`.
@@ -1191,7 +1344,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1259,7 +1412,7 @@ It&#8217;s possible to have dependency based on ruby version used
 to execute <code>rake release</code> and not user&#8217;s ruby version.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
+<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1279,7 +1432,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-8"><a class="anchor" href="#configurable-attributes-8"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
