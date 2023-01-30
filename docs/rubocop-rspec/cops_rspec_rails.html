@@ -253,6 +253,9 @@
           <a href="../rubocop-minitest/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-minitest/0.27/index.html">0.27</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-minitest/0.26/index.html">0.26</a>
         </li>
         <li class="version">
@@ -852,6 +855,79 @@ expect(a).not_to eq(b)</code></pre>
 <ul>
 <li>
 <p><a href="https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/Rails/MinitestAssertions" class="bare">https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/Rails/MinitestAssertions</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rspecrailstravelaround"><a class="anchor" href="#rspecrailstravelaround"></a>RSpec/Rails/TravelAround</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Prefer to travel in <code>before</code> rather than <code>around</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-2"><a class="anchor" href="#safety-2"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe because the automatic <code>travel_back</code> is only run
+on test cases that are considered as Rails related.</p>
+</div>
+<div class="paragraph">
+<p>And also, this cop&#8217;s autocorrection is unsafe because the order of
+execution will change if other steps exist before traveling in
+<code>around</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+around do |example|
+  freeze_time do
+    example.run
+  end
+end
+
+# good
+before { freeze_time }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-6"><a class="anchor" href="#references-6"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/Rails/TravelAround" class="bare">https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/Rails/TravelAround</a></p>
 </li>
 </ul>
 </div>
