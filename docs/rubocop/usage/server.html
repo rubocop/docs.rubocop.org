@@ -6,7 +6,7 @@
     <title>Server Mode :: RuboCop Docs</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/usage/server.html">
     <link rel="prev" href="caching.html">
-    <link rel="next" href="../configuration.html">
+    <link rel="next" href="profiling.html">
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="stylesheet" href="../../_/css/site-extra.css">
@@ -106,6 +106,9 @@
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="server.html">Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="profiling.html">Profiling</a>
   </li>
 </ul>
   </li>
@@ -377,6 +380,9 @@
           <a href="../../rubocop-performance/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../../rubocop-performance/1.16/index.html">1.16</a>
+        </li>
+        <li class="version">
           <a href="../../rubocop-performance/1.15/index.html">1.15</a>
         </li>
         <li class="version">
@@ -641,6 +647,14 @@ RuboCop version incompatibility found, RuboCop server restarting...
 RuboCop server starting on 127.0.0.1:60665.</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>If you would like to start the server in the foreground, which can be useful when running within Docker, you can pass the <code>--no-detach</code> option.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">% rubocop --start-server --no-detach</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -701,6 +715,10 @@ RuboCop server starting on 127.0.0.1:55822.</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--server-status</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Show server status.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--no-detach</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Run the server process in the foreground.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="admonitionblock tip">
@@ -750,7 +768,7 @@ environment variables.</p>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="caching.html">Caching</a></span>
-  <span class="next"><a href="../configuration.html">Configuration</a></span>
+  <span class="next"><a href="profiling.html">Profiling</a></span>
 </nav>
 </article>
   </div>

@@ -107,6 +107,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="usage/server.html">Server</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/profiling.html">Profiling</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -375,6 +378,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-performance/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-performance/1.16/index.html">1.16</a>
         </li>
         <li class="version">
           <a href="../rubocop-performance/1.15/index.html">1.15</a>
@@ -864,6 +870,71 @@ For example, when you have defined <code>MyCustomFormatter</code> in
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop --require ./path/to/my_custom_formatter --format MyCustomFormatter</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="template-support"><a class="anchor" href="#template-support"></a>Template support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RuboCop has API for extensions to support templates such as ERB, Haml, Slim, etc.</p>
+</div>
+<div class="paragraph">
+<p>Normally, RuboCop extracts one Ruby code from one Ruby file, however there are multiple embedded Ruby codes in one template file. To solve this problem, RuboCop has a mechanism called <code>Rubocop::Runner.ruby_extractors</code>, to which any Ruby extractor can be added on the extension side.</p>
+</div>
+<div class="paragraph">
+<p>Ruby extractor must be a callable object that takes a <code>RuboCop::ProcessedSource</code> and returns an <code>Array</code> of <code>Hash</code> that contains Ruby source codes and their offsets from original source code, or returns <code>nil</code> for unrelated file.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">---
+ruby_extractor.call(processed_source)
+---</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An example returned value from a Ruby extractor would be as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">---
+[
+  {
+    offset: 2,
+    processed_source: #&lt;RuboCop::ProcessedSource&gt;
+  },
+  {
+    offset: 10,
+    processed_source: #&lt;RuboCop::ProcessedSource&gt;
+  },
+]
+---</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>On the extension side, the code would be something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">---
+RuboCop::Runner.ruby_extractors.unshift(ruby_extractor)
+---</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>RuboCop::Runners.ruby_extractors</code> is processed from the beginning and ends when one of them returns a non-nil value. By default, there is a Ruby extractor that returns the given Ruby source code with offset 0, so you can unshift any Ruby extractor before it.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is still an experimental feature and may change in the future.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
