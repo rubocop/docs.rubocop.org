@@ -139,6 +139,9 @@
           <a href="../rubocop/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.45/index.html">1.45</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.44/index.html">1.44</a>
         </li>
         <li class="version">
@@ -420,7 +423,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.44/index.html" class="home-link"></a>
+  <a href="../rubocop/1.45/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop RSpec</a></li>
@@ -663,7 +666,7 @@ def_node_matcher :shared_context,
 
 # After
 def_node_matcher :shared_context,
-                 block_pattern('#SharedGroups.context')</code></pre>
+                 '(block (send #rspec? #SharedGroups.context ...) ...)'</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -674,7 +677,7 @@ def_node_search :examples?,
 
 # After
 def_node_search :examples?,
-                send_pattern('{#Includes.examples #Examples.all}')</code></pre>
+                '(send nil? {#Includes.examples #Examples.all} ...)'</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -685,7 +688,7 @@ def_node_search :find_rspec_blocks,
 
 # After
 def_node_search :find_rspec_blocks,
-                block_pattern('#ExampleGroups.all')</code></pre>
+                '(block (send #rspec? #ExampleGroups.all ...) ...)'</code></pre>
 </div>
 </div>
 <div class="paragraph">
