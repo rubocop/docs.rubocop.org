@@ -510,7 +510,6 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.46/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -766,6 +765,15 @@ end
 # good
 class Foo
   attr_reader :bar, :baz
+end
+
+# good
+class Foo
+  # may be intended comment for bar.
+  attr_reader :bar
+
+  may_be_intended_annotation :baz
+  attr_reader :baz
 end</code></pre>
 </div>
 </div>
@@ -9675,6 +9683,30 @@ written as modifier <code>if</code>/<code>unless</code>. The cop also checks for
 <p>The maximum line length is configured in the <code>Layout/LineLength</code>
 cop. The tab size is configured in the <code>IndentationWidth</code> of the
 <code>Layout/IndentationStyle</code> cop.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is allowed when <code>defined?</code> argument has an undefined value,
+because using the modifier form causes the following incompatibility:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">unless defined?(undefined_foo)
+  undefined_foo = 'default_value'
+end
+undefined_foo # =&gt; 'default_value'
+
+undefined_bar = 'default_value' unless defined?(undefined_bar)
+undefined_bar # =&gt; nil</code></pre>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
@@ -25031,10 +25063,23 @@ CONST + 1
 </table>
 <div class="paragraph">
 <p>Checks for numeric comparisons that can be replaced
-by a predicate method, such as receiver.length == 0,
-receiver.length &gt; 0, receiver.length != 0,
-receiver.length &lt; 1 and receiver.size == 0 that can be
-replaced by receiver.empty? and !receiver.empty?.</p>
+by a predicate method, such as <code>receiver.length == 0</code>,
+<code>receiver.length &gt; 0</code>, and <code>receiver.length != 0</code>,
+<code>receiver.length &lt; 1</code> and <code>receiver.size == 0</code> that can be
+replaced by <code>receiver.empty?</code> and <code>!receiver.empty?</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>File</code>, <code>Tempfile</code>, and <code>StringIO</code> do not have <code>empty?</code>
+so allow <code>size == 0</code> and <code>size.zero?</code>.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="safety-62"><a class="anchor" href="#safety-62"></a>Safety</h3>

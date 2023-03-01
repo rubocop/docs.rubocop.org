@@ -510,7 +510,6 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.46/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -1037,6 +1036,112 @@ end                 # 6 points</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="metricscollectionliterallength"><a class="anchor" href="#metricscollectionliterallength"></a>Metrics/CollectionLiteralLength</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.47</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks for literals with extremely many entries. This is indicative of
+configuration or data that may be better extracted somewhere else, like
+a database, fetched from an API, or read from a non-code file (CSV,
+JSON, YAML, etc.).</p>
+</div>
+<div class="sect2">
+<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+# Huge Array literal
+[1, 2, '...', 999_999_999]
+
+# bad
+# Huge Hash literal
+{ 1 =&gt; 1, 2 =&gt; 2, '...' =&gt; '...', 999_999_999 =&gt; 999_999_999}
+
+# bad
+# Huge Set "literal"
+Set[1, 2, '...', 999_999_999]
+
+# good
+# Reasonably sized Array literal
+[1, 2, '...', 10]
+
+# good
+# Reading huge Array from external data source
+# File.readlines('numbers.txt', chomp: true).map!(&amp;:to_i)
+
+# good
+# Reasonably sized Hash literal
+{ 1 =&gt; 1, 2 =&gt; 2, '...' =&gt; '...', 10 =&gt; 10}
+
+# good
+# Reading huge Hash from external data source
+CSV.foreach('numbers.csv', headers: true).each_with_object({}) do |row, hash|
+  hash[row["key"].to_i] = row["value"].to_i
+end
+
+# good
+# Reasonably sized Set "literal"
+Set[1, 2, '...', 10]
+
+# good
+# Reading huge Set from external data source
+SomeFramework.config_for(:something)[:numbers].to_set</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LengthThreshold</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>250</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="metricscyclomaticcomplexity"><a class="anchor" href="#metricscyclomaticcomplexity"></a>Metrics/CyclomaticComplexity</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -1108,7 +1213,7 @@ end                                       # total: 6</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1199,7 +1304,7 @@ By default, there are no methods to allowed.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
 <div class="sect3">
 <h4 id="countasone-array-heredoc-method_call-3"><a class="anchor" href="#countasone-array-heredoc-method_call-3"></a>CountAsOne: ['array', 'heredoc', 'method_call']</h4>
 <div class="listingblock">
@@ -1229,7 +1334,7 @@ end               # 6 points</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1325,7 +1430,7 @@ Available are: 'array', 'hash', 'heredoc', and 'method_call'. Each construct
 will be counted as one line regardless of its actual size.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
+<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
 <div class="sect3">
 <h4 id="countasone-array-heredoc-method_call-4"><a class="anchor" href="#countasone-array-heredoc-method_call-4"></a>CountAsOne: ['array', 'heredoc', 'method_call']</h4>
 <div class="listingblock">
@@ -1355,7 +1460,7 @@ end                 # 6 points</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-8"><a class="anchor" href="#configurable-attributes-8"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1462,7 +1567,7 @@ erroneous change that is avoided by making block argument implicit.
 This can be configured using the <code>MaxOptionalParameters</code> config option.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
 <div class="sect3">
 <h4 id="max-3"><a class="anchor" href="#max-3"></a>Max: 3</h4>
 <div class="listingblock">
@@ -1533,7 +1638,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-8"><a class="anchor" href="#configurable-attributes-8"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-9"><a class="anchor" href="#configurable-attributes-9"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1619,7 +1724,7 @@ nodes count. In contrast to the CyclomaticComplexity cop, this cop
 considers <code>else</code> nodes as adding complexity.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
+<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def my_method                   # 1
@@ -1638,7 +1743,7 @@ end                             # 7 complexity points</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-9"><a class="anchor" href="#configurable-attributes-9"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-10"><a class="anchor" href="#configurable-attributes-10"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
