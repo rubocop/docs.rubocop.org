@@ -1425,7 +1425,12 @@ expect(object).to be_a_kind_of(String)</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Prefer <code>match_array</code> when matching array values.</p>
+<p>Checks where <code>contain_exactly</code> is used.</p>
+</div>
+<div class="paragraph">
+<p>This cop checks for the following:
+- Prefer <code>match_array</code> when matching array values.
+- Prefer <code>be_empty</code> when using <code>contain_exactly</code> with no arguments.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-12"><a class="anchor" href="#examples-12"></a>Examples</h3>
@@ -1438,7 +1443,15 @@ it { is_expected.to contain_exactly(*array1, *array2) }
 it { is_expected.to match_array(array1 + array2) }
 
 # good
-it { is_expected.to contain_exactly(content, *array) }</code></pre>
+it { is_expected.to contain_exactly(content, *array) }
+
+# bad
+it { is_expected.to contain_exactly }
+it { is_expected.to contain_exactly() }
+
+# good
+it { is_expected.to be_empty }
+it { is_expected.to be_empty }</code></pre>
 </div>
 </div>
 </div>
