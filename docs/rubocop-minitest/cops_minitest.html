@@ -6,7 +6,7 @@
     <title>Minitest :: RuboCop Docs</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop-minitest/cops_minitest.html">
     <link rel="prev" href="cops.html">
-    <meta name="generator" content="Antora 3.1.3">
+    <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@alpha">
@@ -219,6 +219,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="0.30/index.html">0.30</a>
+        </li>
+        <li class="version">
           <a href="0.29/index.html">0.29</a>
         </li>
         <li class="version">
@@ -232,30 +235,6 @@
         </li>
         <li class="version">
           <a href="0.25/index.html">0.25</a>
-        </li>
-        <li class="version">
-          <a href="0.24/index.html">0.24</a>
-        </li>
-        <li class="version">
-          <a href="0.23/index.html">0.23</a>
-        </li>
-        <li class="version">
-          <a href="0.22/index.html">0.22</a>
-        </li>
-        <li class="version">
-          <a href="0.21/index.html">0.21</a>
-        </li>
-        <li class="version">
-          <a href="0.20/index.html">0.20</a>
-        </li>
-        <li class="version">
-          <a href="0.19/index.html">0.19</a>
-        </li>
-        <li class="version">
-          <a href="0.18/index.html">0.18</a>
-        </li>
-        <li class="version">
-          <a href="0.17/index.html">0.17</a>
         </li>
       </ul>
     </li>
@@ -407,19 +386,12 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_minitest.html">default</a>
+    <a class="version" href="0.30/cops_minitest.html">0.30</a>
     <a class="version" href="0.29/cops_minitest.html">0.29</a>
     <a class="version" href="0.28/cops_minitest.html">0.28</a>
     <a class="version" href="0.27/cops_minitest.html">0.27</a>
     <a class="version" href="0.26/cops_minitest.html">0.26</a>
     <a class="version" href="0.25/cops_minitest.html">0.25</a>
-    <a class="version" href="0.24/cops_minitest.html">0.24</a>
-    <a class="version" href="0.23/cops_minitest.html">0.23</a>
-    <a class="version" href="0.22/cops_minitest.html">0.22</a>
-    <a class="version" href="0.21/cops_minitest.html">0.21</a>
-    <a class="version" href="0.20/cops_minitest.html">0.20</a>
-    <a class="version" href="0.19/cops_minitest.html">0.19</a>
-    <a class="version" href="0.18/cops_minitest.html">0.18</a>
-    <a class="version" href="0.17/cops_minitest.html">0.17</a>
   </div>
 </div>
   <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-minitest/edit/master/docs/modules/ROOT/pages/cops_minitest.adoc">Edit this Page</a></div>
@@ -757,6 +729,10 @@ over <code>assert(object.instance_of?(Class))</code>.</p>
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 assert(object.instance_of?(Class))
 assert(object.instance_of?(Class), 'message')
+
+# bad
+assert_equal(Class, object.class)
+assert_equal(Class, object.class, 'message')
 
 # good
 assert_instance_of(Class, object)
@@ -2309,6 +2285,60 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="minitestnotestcases"><a class="anchor" href="#minitestnotestcases"></a>Minitest/NoTestCases</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.30</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks if test class contains any test cases.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-28"><a class="anchor" href="#examples-28"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+class FooTest &lt; Minitest::Test
+  def do_something
+  end
+end
+
+# good
+class FooTest &lt; Minitest::Test
+  def test_something
+    assert true
+  end
+end</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="minitestnonpublictestmethod"><a class="anchor" href="#minitestnonpublictestmethod"></a>Minitest/NonPublicTestMethod</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -2343,7 +2373,7 @@ end</code></pre>
 Minitest runs only test methods which are <code>public</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-28"><a class="anchor" href="#examples-28"></a>Examples</h3>
+<h3 id="examples-29"><a class="anchor" href="#examples-29"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2439,7 +2469,7 @@ end</code></pre>
 <p>Enforces to use <code>refute_empty</code> instead of using <code>refute(object.empty?)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-29"><a class="anchor" href="#examples-29"></a>Examples</h3>
+<h3 id="examples-30"><a class="anchor" href="#examples-30"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2499,7 +2529,7 @@ refute_empty(object, 'message')</code></pre>
 over <code>assert(expected != actual)</code> or <code>assert(! expected == actual)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-30"><a class="anchor" href="#examples-30"></a>Examples</h3>
+<h3 id="examples-31"><a class="anchor" href="#examples-31"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2570,7 +2600,7 @@ refute(nil)              # success</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-31"><a class="anchor" href="#examples-31"></a>Examples</h3>
+<h3 id="examples-32"><a class="anchor" href="#examples-32"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2633,7 +2663,7 @@ refute(actual, 'message')</code></pre>
 instead of using <code>refute_equal</code> to compare floats.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-32"><a class="anchor" href="#examples-32"></a>Examples</h3>
+<h3 id="examples-33"><a class="anchor" href="#examples-33"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2693,7 +2723,7 @@ refute_in_delta(0.2, actual, 0.001, 'message')</code></pre>
 instead of using <code>refute(collection.include?(object))</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-33"><a class="anchor" href="#examples-33"></a>Examples</h3>
+<h3 id="examples-34"><a class="anchor" href="#examples-34"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2753,12 +2783,16 @@ refute_includes(collection, object, 'message')</code></pre>
 over <code>refute(object.instance_of?(Class))</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-34"><a class="anchor" href="#examples-34"></a>Examples</h3>
+<h3 id="examples-35"><a class="anchor" href="#examples-35"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 refute(object.instance_of?(Class))
 refute(object.instance_of?(Class), 'message')
+
+# bad
+refute_equal(Class, object.class)
+refute_equal(Class, object.class, 'message')
 
 # good
 refute_instance_of(Class, object)
@@ -2813,7 +2847,7 @@ refute_instance_of(Class, object, 'message')</code></pre>
 over <code>refute(object.kind_of?(Class))</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-35"><a class="anchor" href="#examples-35"></a>Examples</h3>
+<h3 id="examples-36"><a class="anchor" href="#examples-36"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2873,7 +2907,7 @@ refute_kind_of(Class, object, 'message')</code></pre>
 instead of using <code>refute(matcher.match(string))</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-36"><a class="anchor" href="#examples-36"></a>Examples</h3>
+<h3 id="examples-37"><a class="anchor" href="#examples-37"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2935,7 +2969,7 @@ refute_match(matcher, string, 'message')</code></pre>
 <code>refute_equal(nil, something)</code>, <code>refute(something.nil?)</code>, or <code>refute_predicate(something, :nil?)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-37"><a class="anchor" href="#examples-37"></a>Examples</h3>
+<h3 id="examples-38"><a class="anchor" href="#examples-38"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2998,7 +3032,7 @@ refute_nil(actual, 'message')</code></pre>
 <p>Enforces the test to use <code>refute_path_exists</code> instead of using <code>refute(File.exist?(path))</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-38"><a class="anchor" href="#examples-38"></a>Examples</h3>
+<h3 id="examples-39"><a class="anchor" href="#examples-39"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3058,7 +3092,7 @@ refute_path_exists(path, 'message')</code></pre>
 instead of using <code>refute(obj.a_predicate_method?)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-39"><a class="anchor" href="#examples-39"></a>Examples</h3>
+<h3 id="examples-40"><a class="anchor" href="#examples-40"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3118,7 +3152,7 @@ refute_predicate(obj, :one?, 'message')</code></pre>
 over <code>refute(object.respond_to?(:do_something))</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-40"><a class="anchor" href="#examples-40"></a>Examples</h3>
+<h3 id="examples-41"><a class="anchor" href="#examples-41"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3193,7 +3227,7 @@ Use <code>refute_same</code> only when there is a need to compare by identity.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-41"><a class="anchor" href="#examples-41"></a>Examples</h3>
+<h3 id="examples-42"><a class="anchor" href="#examples-42"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3255,7 +3289,7 @@ If conditional <code>skip</code> is used, it checks that <code>ensure</code> is 
 setup process.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-42"><a class="anchor" href="#examples-42"></a>Examples</h3>
+<h3 id="examples-43"><a class="anchor" href="#examples-43"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3370,7 +3404,7 @@ end</code></pre>
 <p>Checks for skipped tests missing the skipping reason.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-43"><a class="anchor" href="#examples-43"></a>Examples</h3>
+<h3 id="examples-44"><a class="anchor" href="#examples-44"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3430,7 +3464,7 @@ Files which define classes having names ending with <code>Test</code> are checke
 Not following this convention may result in tests not being run.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-44"><a class="anchor" href="#examples-44"></a>Examples</h3>
+<h3 id="examples-45"><a class="anchor" href="#examples-45"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3489,7 +3523,7 @@ test_my_class.rb</code></pre>
 It aims to prevent tests that aren&#8217;t executed by forgetting to start test method name with <code>test_</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-45"><a class="anchor" href="#examples-45"></a>Examples</h3>
+<h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3551,7 +3585,7 @@ end</code></pre>
 the bottom of block because the assertion will be never reached.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>
+<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3628,7 +3662,7 @@ assert_equal('foo', obj.bar)</code></pre>
 <p>Checks for a specified error in <code>assert_raises</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
+<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3687,7 +3721,7 @@ assert_raises(FooException, 'This should have raised') { raise FooException }</c
 <p>Detects useless assertions (assertions that either always pass or always fail).</p>
 </div>
 <div class="sect2">
-<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
+<h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
