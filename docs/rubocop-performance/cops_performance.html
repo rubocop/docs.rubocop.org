@@ -2631,7 +2631,7 @@ behavior is appropriately overridden in subclass. For example,
 <code>Range#===</code> returns <code>true</code> when argument is within the range.</p>
 </div>
 <div class="paragraph">
-<p>This cop has <code>AllowRegexpMatch</code> option and it is false by default because
+<p>This cop has <code>AllowRegexpMatch</code> option and it is true by default because
 <code>regexp.match?('string')</code> often used in block changes to the opposite result:</p>
 </div>
 <div class="listingblock">
@@ -2701,7 +2701,7 @@ items.all? { |item| item.match?(pattern) }</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AllowRegexpMatch</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 </tr>
 </tbody>
