@@ -327,6 +327,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="2.20/index.html">2.20</a>
+        </li>
+        <li class="version">
           <a href="2.19/index.html">2.19</a>
         </li>
         <li class="version">
@@ -349,9 +352,6 @@
         </li>
         <li class="version">
           <a href="2.12/index.html">2.12</a>
-        </li>
-        <li class="version">
-          <a href="2.11/index.html">2.11</a>
         </li>
         <li class="version">
           <a href="1.44/index.html">1.44</a>
@@ -378,6 +378,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_rspec_rails.html">default</a>
+    <a class="version" href="2.20/cops_rspec_rails.html">2.20</a>
     <a class="version" href="2.19/cops_rspec_rails.html">2.19</a>
     <a class="version" href="2.18/cops_rspec_rails.html">2.18</a>
     <a class="version" href="2.17/cops_rspec_rails.html">2.17</a>
@@ -386,7 +387,6 @@
     <a class="version" href="2.14/cops_rspec_rails.html">2.14</a>
     <a class="version" href="2.13/cops_rspec_rails.html">2.13</a>
     <a class="version" href="2.12/cops_rspec_rails.html">2.12</a>
-    <a class="version" href="2.11/cops_rspec_rails.html">2.11</a>
     <a class="version is-missing" href="1.44/index.html">1.44</a>
   </div>
 </div>
@@ -498,6 +498,7 @@ end</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 expect(response.status).to be(200)
+expect(response.code).to eq("200")
 
 # good
 expect(response).to have_http_status(200)</code></pre>
@@ -542,12 +543,18 @@ expect(response).to have_http_status(200)</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.23</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.20</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p>Enforces use of symbolic or numeric value to describe HTTP status.</p>
+</div>
+<div class="paragraph">
+<p>This cop inspects only <code>have_http_status</code> calls.
+So, this cop does not check if a method starting with <code>be_*</code> is used
+when setting for <code>EnforcedStyle: symbolic</code> or
+<code>EnforcedStyle: numeric</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
@@ -583,6 +590,24 @@ it { is_expected.to have_http_status :error }</code></pre>
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="enforcedstyle-be_status"><a class="anchor" href="#enforcedstyle-be_status"></a><code>EnforcedStyle: be_status</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+it { is_expected.to have_http_status :ok }
+it { is_expected.to have_http_status :not_found }
+it { is_expected.to have_http_status 200 }
+it { is_expected.to have_http_status 404 }
+
+# good
+it { is_expected.to be_ok }
+it { is_expected.to be_not_found }
+it { is_expected.to have_http_status :success }
+it { is_expected.to have_http_status :error }</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
@@ -603,7 +628,7 @@ it { is_expected.to have_http_status :error }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>symbolic</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>numeric</code>, <code>symbolic</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>numeric</code>, <code>symbolic</code>, <code>be_status</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -792,9 +817,9 @@ assert_equal a, b, "must be equal"
 refute_equal(a, b)
 
 # good
-expect(a).to eq(b)
-expect(a).to(eq(b), "must be equal")
-expect(a).not_to eq(b)</code></pre>
+expect(b).to eq(a)
+expect(b).to(eq(a), "must be equal")
+expect(b).not_to eq(a)</code></pre>
 </div>
 </div>
 </div>
