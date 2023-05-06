@@ -226,6 +226,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="0.31/index.html">0.31</a>
+        </li>
+        <li class="version">
           <a href="0.30/index.html">0.30</a>
         </li>
         <li class="version">
@@ -363,6 +366,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_minitest.html">default</a>
+    <a class="version" href="0.31/cops_minitest.html">0.31</a>
     <a class="version" href="0.30/cops_minitest.html">0.30</a>
     <a class="version" href="0.29/cops_minitest.html">0.29</a>
     <a class="version" href="0.28/cops_minitest.html">0.28</a>
@@ -2150,7 +2154,8 @@ assert_equal [1, 2], foo, 'message'</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks if test cases contain too many assertion calls.
+<p>Checks if test cases contain too many assertion calls. If conditional code with assertions
+is used, the branch with maximum assertions is counted.
 The maximum allowed assertion calls is configurable.</p>
 </div>
 <div class="sect2">
@@ -3228,6 +3233,69 @@ refute_same(expected, actual)</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="minitestreturnintestmethod"><a class="anchor" href="#minitestreturnintestmethod"></a>Minitest/ReturnInTestMethod</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.31</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Enforces the use of <code>skip</code> instead of <code>return</code> in test methods.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-43"><a class="anchor" href="#examples-43"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+def test_something
+  return if condition?
+  assert_equal(42, something)
+end
+
+# good
+def test_something
+  skip if condition?
+  assert_equal(42, something)
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-33"><a class="anchor" href="#references-33"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://minitest.rubystyle.guide/#skipping-runnable-methods" class="bare">https://minitest.rubystyle.guide/#skipping-runnable-methods</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="minitestskipensure"><a class="anchor" href="#minitestskipensure"></a>Minitest/SkipEnsure</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -3266,7 +3334,7 @@ If conditional <code>skip</code> is used, it checks that <code>ensure</code> is 
 setup process.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-43"><a class="anchor" href="#examples-43"></a>Examples</h3>
+<h3 id="examples-44"><a class="anchor" href="#examples-44"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3381,7 +3449,7 @@ end</code></pre>
 <p>Checks for skipped tests missing the skipping reason.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-44"><a class="anchor" href="#examples-44"></a>Examples</h3>
+<h3 id="examples-45"><a class="anchor" href="#examples-45"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3441,7 +3509,7 @@ Files which define classes having names ending with <code>Test</code> are checke
 Not following this convention may result in tests not being run.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-45"><a class="anchor" href="#examples-45"></a>Examples</h3>
+<h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3454,7 +3522,7 @@ test_my_class.rb</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-33"><a class="anchor" href="#references-33"></a>References</h3>
+<h3 id="references-34"><a class="anchor" href="#references-34"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3500,7 +3568,7 @@ test_my_class.rb</code></pre>
 It aims to prevent tests that aren&#8217;t executed by forgetting to start test method name with <code>test_</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>
+<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3562,7 +3630,7 @@ end</code></pre>
 the bottom of block because the assertion will be never reached.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
+<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3639,7 +3707,7 @@ assert_equal('foo', obj.bar)</code></pre>
 <p>Checks for a specified error in <code>assert_raises</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
+<h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3653,7 +3721,7 @@ assert_raises(FooException, 'This should have raised') { raise FooException }</c
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-34"><a class="anchor" href="#references-34"></a>References</h3>
+<h3 id="references-35"><a class="anchor" href="#references-35"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3698,7 +3766,7 @@ assert_raises(FooException, 'This should have raised') { raise FooException }</c
 <p>Detects useless assertions (assertions that either always pass or always fail).</p>
 </div>
 <div class="sect2">
-<h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
+<h3 id="examples-50"><a class="anchor" href="#examples-50"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad

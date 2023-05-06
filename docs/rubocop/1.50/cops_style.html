@@ -323,6 +323,9 @@
           <a href="../../rubocop-minitest/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../../rubocop-minitest/0.31/index.html">0.31</a>
+        </li>
+        <li class="version">
           <a href="../../rubocop-minitest/0.30/index.html">0.30</a>
         </li>
         <li class="version">
@@ -474,7 +477,7 @@
     <a class="version" href="../1.0/cops_style.html">1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.50.1/docs/modules/ROOT/pages/cops_style.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.50.2/docs/modules/ROOT/pages/cops_style.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -3123,6 +3126,18 @@ end</code></pre>
 <div class="sect1">
 <h2 id="stylecollectioncompact"><a class="anchor" href="#stylecollectioncompact"></a>Style/CollectionCompact</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Required Ruby version: 2.4
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -10600,10 +10615,10 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.44</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.50</p></td>
 </tr>
 </tbody>
 </table>
@@ -18199,12 +18214,24 @@ raise 'message'</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Identifies places where <code>fetch(key) { value }</code>
-can be replaced by <code>fetch(key, value)</code>.</p>
+<p>Identifies places where <code>fetch(key) { value }</code> can be replaced by <code>fetch(key, value)</code>.</p>
 </div>
 <div class="paragraph">
-<p>In such cases <code>fetch(key, value)</code> method is faster
-than <code>fetch(key) { value }</code>.</p>
+<p>In such cases <code>fetch(key, value)</code> method is faster than <code>fetch(key) { value }</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The block string <code>'value'</code> in <code>hash.fetch(:key) { 'value' }</code> is detected
+when frozen string literal magic comment is enabled (i.e. <code># frozen_string_literal: true</code>),
+but not when disabled.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="safety-43"><a class="anchor" href="#safety-43"></a>Safety</h3>

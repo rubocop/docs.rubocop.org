@@ -323,6 +323,9 @@
           <a href="../../rubocop-minitest/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../../rubocop-minitest/0.31/index.html">0.31</a>
+        </li>
+        <li class="version">
           <a href="../../rubocop-minitest/0.30/index.html">0.30</a>
         </li>
         <li class="version">
@@ -474,7 +477,7 @@
     <a class="version" href="../1.0/cops_layout.html">1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.50.1/docs/modules/ROOT/pages/cops_layout.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.50.2/docs/modules/ROOT/pages/cops_layout.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -4725,26 +4728,29 @@ multi-line array.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-37"><a class="anchor" href="#examples-37"></a>Examples</h3>
-<div class="sect3">
-<h4 id="allowmultilinefinalelement-false-default"><a class="anchor" href="#allowmultilinefinalelement-false-default"></a>AllowMultilineFinalElement: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 [ :a,
   :b]
 
-# bad
-[ :a, {
-  :b =&gt; :c
-}]
-
-# good
-[:a, :b]
-
 # good
 [
   :a,
   :b]
+
+# good
+[:a, :b]</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-false-default"><a class="anchor" href="#allowmultilinefinalelement-false-default"></a>AllowMultilineFinalElement: false (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+[ :a, {
+  :b =&gt; :c
+}]
 
 # good
 [
@@ -4758,22 +4764,10 @@ multi-line array.</p>
 <h4 id="allowmultilinefinalelement-true"><a class="anchor" href="#allowmultilinefinalelement-true"></a>AllowMultilineFinalElement: true</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-[ :a,
-  :b]
-
-# good
-[ :a, {
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+[:a, {
   :b =&gt; :c
-}]
-
-# good
-[
-  :a,
-  :b]
-
-# good
-[:a, :b]</code></pre>
+}]</code></pre>
 </div>
 </div>
 </div>
@@ -5030,18 +5024,11 @@ multi-line hash.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-39"><a class="anchor" href="#examples-39"></a>Examples</h3>
-<div class="sect3">
-<h4 id="allowmultilinefinalelement-false-default-2"><a class="anchor" href="#allowmultilinefinalelement-false-default-2"></a>AllowMultilineFinalElement: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 { a: 1,
   b: 2}
-
-# bad
-{ a: 1, b: {
-  c: 3
-}}
 
 # good
 {
@@ -5055,6 +5042,16 @@ multi-line hash.</p>
 }}</code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-false-default-2"><a class="anchor" href="#allowmultilinefinalelement-false-default-2"></a>AllowMultilineFinalElement: false (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+{ a: 1, b: {
+  c: 3
+}}</code></pre>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="allowmultilinefinalelement-true-2"><a class="anchor" href="#allowmultilinefinalelement-true-2"></a>AllowMultilineFinalElement: true</h4>
@@ -5062,27 +5059,12 @@ multi-line hash.</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 { a: 1,
-  b: 2}
-
-# bad
-{ a: 1,
   b: {
   c: 3
 }}
 
 # good
 { a: 1, b: {
-  c: 3
-}}
-
-# good
-{
-  a: 1,
-  b: 2 }
-
-# good
-{
-  a: 1, b: {
   c: 3
 }}</code></pre>
 </div>
@@ -5151,15 +5133,27 @@ multi-line method call.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-40"><a class="anchor" href="#examples-40"></a>Examples</h3>
-<div class="sect3">
-<h4 id="allowmultilinefinalelement-false-default-3"><a class="anchor" href="#allowmultilinefinalelement-false-default-3"></a>AllowMultilineFinalElement: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 method(foo, bar,
   baz)
 
-# bad
+# good
+method(
+  foo, bar,
+  baz)
+
+  # ignored
+  method foo, bar,
+    baz</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-false-default-3"><a class="anchor" href="#allowmultilinefinalelement-false-default-3"></a>AllowMultilineFinalElement: false (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 method(foo, bar, {
   baz: "a",
   qux: "b",
@@ -5167,19 +5161,10 @@ method(foo, bar, {
 
 # good
 method(
-  foo, bar,
-  baz)
-
-# good
-method(
   foo, bar, {
   baz: "a",
   qux: "b",
-})
-
-# ignored
-method foo, bar,
-  baz</code></pre>
+})</code></pre>
 </div>
 </div>
 </div>
@@ -5188,10 +5173,6 @@ method foo, bar,
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-method(foo, bar,
-  baz)
-
-# bad
 method(foo,
   bar,
   {
@@ -5208,22 +5189,13 @@ method(foo, bar, {
 
 # good
 method(
-  foo, bar,
-  baz)
-
-# good
-method(
   foo,
   bar,
   {
     baz: "a",
     qux: "b",
   }
-)
-
-# ignored
-method foo, bar,
-  baz</code></pre>
+)</code></pre>
 </div>
 </div>
 </div>
@@ -5290,8 +5262,6 @@ multi-line method parameter definition.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-41"><a class="anchor" href="#examples-41"></a>Examples</h3>
-<div class="sect3">
-<h4 id="allowmultilinefinalelement-false-default-4"><a class="anchor" href="#allowmultilinefinalelement-false-default-4"></a>AllowMultilineFinalElement: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5300,25 +5270,10 @@ def method(foo, bar,
   do_something
 end
 
-# bad
-def method(foo, bar, baz = {
-  :a =&gt; "b",
-})
-  do_something
-end
-
 # good
 def method(
     foo, bar,
     baz)
-  do_something
-end
-
-# good
-def method(
-  foo, bar, baz = {
-  :a =&gt; "b",
-})
   do_something
 end
 
@@ -5329,18 +5284,11 @@ def method foo,
 end</code></pre>
 </div>
 </div>
-</div>
 <div class="sect3">
-<h4 id="allowmultilinefinalelement-true-4"><a class="anchor" href="#allowmultilinefinalelement-true-4"></a>AllowMultilineFinalElement: true</h4>
+<h4 id="allowmultilinefinalelement-false-default-4"><a class="anchor" href="#allowmultilinefinalelement-false-default-4"></a>AllowMultilineFinalElement: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-def method(foo, bar,
-    baz)
-  do_something
-end
-
-# good
 def method(foo, bar, baz = {
   :a =&gt; "b",
 })
@@ -5349,14 +5297,22 @@ end
 
 # good
 def method(
-    foo, bar,
-    baz)
+  foo, bar, baz = {
+  :a =&gt; "b",
+})
   do_something
-end
-
-# ignored
-def method foo,
-    bar
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-true-4"><a class="anchor" href="#allowmultilinefinalelement-true-4"></a>AllowMultilineFinalElement: true</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+def method(foo, bar, baz = {
+  :a =&gt; "b",
+})
   do_something
 end</code></pre>
 </div>
@@ -7418,8 +7374,6 @@ starts on a separate line.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-57"><a class="anchor" href="#examples-57"></a>Examples</h3>
-<div class="sect3">
-<h4 id="allowmultilinefinalelement-false-default-5"><a class="anchor" href="#allowmultilinefinalelement-false-default-5"></a>AllowMultilineFinalElement: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7427,11 +7381,6 @@ starts on a separate line.</p>
   a, b,
   c
 ]
-
-# bad
-[ a, b, foo(
-  bar
-)]
 
 # good
 [
@@ -7448,6 +7397,16 @@ starts on a separate line.</p>
     bar
   )
 ]</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-false-default-5"><a class="anchor" href="#allowmultilinefinalelement-false-default-5"></a>AllowMultilineFinalElement: false (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+[a, b, foo(
+  bar
+)]</code></pre>
 </div>
 </div>
 </div>
@@ -7455,32 +7414,10 @@ starts on a separate line.</p>
 <h4 id="allowmultilinefinalelement-true-5"><a class="anchor" href="#allowmultilinefinalelement-true-5"></a>AllowMultilineFinalElement: true</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-[
-  a, b,
-  c
-]
-
-# good
-[ a, b, foo(
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+[a, b, foo(
   bar
-)]
-
-# good
-[
-  a,
-  b,
-  c
-]
-
-# good
-[
-  a,
-  b,
-  foo(
-    bar
-  )
-]</code></pre>
+)]</code></pre>
 </div>
 </div>
 </div>
@@ -7942,8 +7879,6 @@ starts on a separate line.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-61"><a class="anchor" href="#examples-61"></a>Examples</h3>
-<div class="sect3">
-<h4 id="allowmultilinefinalelement-false-default-6"><a class="anchor" href="#allowmultilinefinalelement-false-default-6"></a>AllowMultilineFinalElement: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7951,11 +7886,6 @@ starts on a separate line.</p>
   a: 1, b: 2,
   c: 3
 }
-
-# bad
-{ a: 1, b: {
-  c: 3,
-}}
 
 # good
 {
@@ -7971,6 +7901,16 @@ starts on a separate line.</p>
     c: 3,
   }
 }</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-false-default-6"><a class="anchor" href="#allowmultilinefinalelement-false-default-6"></a>AllowMultilineFinalElement: false (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+{ a: 1, b: {
+  c: 3,
+}}</code></pre>
 </div>
 </div>
 </div>
@@ -7978,31 +7918,10 @@ starts on a separate line.</p>
 <h4 id="allowmultilinefinalelement-true-6"><a class="anchor" href="#allowmultilinefinalelement-true-6"></a>AllowMultilineFinalElement: true</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-{
-  a: 1, b: 2,
-  c: 3
-}
-
-# good
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
 { a: 1, b: {
   c: 3,
-}}
-
-# good
-{
-  a: 1,
-  b: 2,
-  c: 3
-}
-
-# good
-{
-  a: 1,
-  b: {
-    c: 3,
-  }
-}</code></pre>
+}}</code></pre>
 </div>
 </div>
 </div>
@@ -8082,8 +8001,6 @@ be on a separate line, see <code>Layout/FirstMethodArgumentLineBreak</code>.
 </div>
 <div class="sect2">
 <h3 id="examples-62"><a class="anchor" href="#examples-62"></a>Examples</h3>
-<div class="sect3">
-<h4 id="allowmultilinefinalelement-false-default-7"><a class="anchor" href="#allowmultilinefinalelement-false-default-7"></a>AllowMultilineFinalElement: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8104,9 +8021,14 @@ foo(
 )
 
 # good
-foo(a, b, c)
-
-# good
+foo(a, b, c)</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-false-default-7"><a class="anchor" href="#allowmultilinefinalelement-false-default-7"></a>AllowMultilineFinalElement: false (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
 foo(
   a,
   b,
@@ -8121,27 +8043,7 @@ foo(
 <h4 id="allowmultilinefinalelement-true-7"><a class="anchor" href="#allowmultilinefinalelement-true-7"></a>AllowMultilineFinalElement: true</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-foo(a, b,
-  c
-)
-
-# good
-foo(a, b, {
-  foo: "bar",
-})
-
-# good
-foo(
-  a,
-  b,
-  c
-)
-
-# good
-foo(a, b, c)
-
-# good
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
 foo(
   a,
   b,
@@ -8700,20 +8602,12 @@ be on a separate line, see <code>Layout/FirstMethodParameterLineBreak</code>.
 </div>
 <div class="sect2">
 <h3 id="examples-66"><a class="anchor" href="#examples-66"></a>Examples</h3>
-<div class="sect3">
-<h4 id="allowmultilinefinalelement-false-default-8"><a class="anchor" href="#allowmultilinefinalelement-false-default-8"></a>AllowMultilineFinalElement: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 def foo(a, b,
   c
 )
-end
-
-# bad
-def foo(a, b = {
-  foo: "bar",
-})
 end
 
 # good
@@ -8738,42 +8632,26 @@ def foo(a, b, c)
 end</code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="allowmultilinefinalelement-false-default-8"><a class="anchor" href="#allowmultilinefinalelement-false-default-8"></a>AllowMultilineFinalElement: false (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+def foo(a, b = {
+  foo: "bar",
+})
+end</code></pre>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="allowmultilinefinalelement-true-8"><a class="anchor" href="#allowmultilinefinalelement-true-8"></a>AllowMultilineFinalElement: true</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-def foo(a, b,
-  c
-)
-end
-
-# good
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
 def foo(a, b = {
   foo: "bar",
 })
-end
-
-# good
-def foo(
-  a,
-  b,
-  c
-)
-end
-
-# good
-def foo(
-  a,
-  b = {
-    foo: "bar",
-  }
-)
-end
-
-# good
-def foo(a, b, c)
 end</code></pre>
 </div>
 </div>

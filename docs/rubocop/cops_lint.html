@@ -323,6 +323,9 @@
           <a href="../rubocop-minitest/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-minitest/0.31/index.html">0.31</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-minitest/0.30/index.html">0.30</a>
         </li>
         <li class="version">
@@ -4222,9 +4225,9 @@ Required Ruby version: 2.6
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">% cat example.rb
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ cat example.rb
 ERB.new('hi', nil, '-', '@output_buffer')
-% ruby -rerb example.rb
+$ ruby -rerb example.rb
 example.rb:1: warning: Passing safe_level with the 2nd argument of ERB.new is
 deprecated. Do not use it, and specify other arguments as keyword arguments.
 example.rb:1: warning: Passing trim_mode with the 3rd argument of ERB.new is
@@ -5183,7 +5186,7 @@ It emulates the following warning in Ruby 3.0:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>% ruby -vwe 'lambda(&amp;proc {})'
+<pre>$ ruby -vwe 'lambda(&amp;proc {})'
 ruby 3.0.0p0 (2020-12-25 revision 95aff21468) [x86_64-darwin19]
 -e:1: warning: lambda without a literal block is deprecated; use the proc without
 lambda instead</pre>
@@ -6618,7 +6621,7 @@ It emulates the following warning in Ruby 2.7:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>% ruby -ve '_1 = :value'
+<pre>$ ruby -ve '_1 = :value'
 ruby 2.7.2p137 (2020-10-01 revision 5445e04352) [x86_64-darwin19]
 -e:1: warning: `_1' is reserved for numbered parameter; consider another name</pre>
 </div>
@@ -6628,7 +6631,7 @@ ruby 2.7.2p137 (2020-10-01 revision 5445e04352) [x86_64-darwin19]
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>% ruby -ve '_1 = :value'
+<pre>$ ruby -ve '_1 = :value'
 ruby 3.0.0p0 (2020-12-25 revision 95aff21468) [x86_64-darwin19]
 -e:1: _1 is reserved for numbered parameter</pre>
 </div>
