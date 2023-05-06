@@ -8,6 +8,7 @@ if ! antora --version | grep -Fq $antora_version; then
   exit 1
 fi
 
+rm -rf docs/rubocop*
 antora --fetch antora-playbook.yml
 git add docs
 git commit -m 'Update site docs'
