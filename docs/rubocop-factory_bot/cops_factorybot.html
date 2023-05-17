@@ -232,6 +232,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="2.23/index.html">2.23</a>
+        </li>
+        <li class="version">
           <a href="2.22/index.html">2.22</a>
         </li>
       </ul>
@@ -383,6 +386,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_factorybot.html">default</a>
+    <a class="version" href="2.23/cops_factorybot.html">2.23</a>
     <a class="version" href="2.22/cops_factorybot.html">2.22</a>
   </div>
 </div>
@@ -394,6 +398,137 @@
 </aside>
 <article class="doc">
 <h1 class="page">FactoryBot</h1>
+<div class="sect1">
+<h2 id="factorybotassociationstyle"><a class="anchor" href="#factorybotassociationstyle"></a>FactoryBot/AssociationStyle</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.23</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Use a consistent style to define associations.</p>
+</div>
+<div class="sect2">
+<h3 id="safety"><a class="anchor" href="#safety"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop may cause false-positives in <code>EnforcedStyle: explicit</code>
+case. It recognizes any method call that has no arguments as an
+implicit association but it might be a user-defined trait call.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
+<div class="sect3">
+<h4 id="enforcedstyle-implicit-default"><a class="anchor" href="#enforcedstyle-implicit-default"></a>EnforcedStyle: implicit (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+factory :post do
+  association :user
+end
+
+# good
+factory :post do
+  user
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-explicit"><a class="anchor" href="#enforcedstyle-explicit"></a>EnforcedStyle: explicit</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+factory :post do
+  user
+end
+
+# good
+factory :post do
+  association :user
+end
+
+# good (NonImplicitAssociationMethodNames: ['email'])
+sequence :email do |n|
+  "person#{n}@example.com"
+end
+
+factory :user do
+  email
+end</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec/factories.rb</code>, <code>spec/factories/**/*.rb</code>, <code>features/support/factories/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>implicit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>explicit</code>, <code>implicit</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NonImplicitAssociationMethodNames</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;none&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="references"><a class="anchor" href="#references"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.rubydoc.info/gems/rubocop-factory_bot/RuboCop/Cop/FactoryBot/AssociationStyle" class="bare">https://www.rubydoc.info/gems/rubocop-factory_bot/RuboCop/Cop/FactoryBot/AssociationStyle</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="factorybotattributedefinedstatically"><a class="anchor" href="#factorybotattributedefinedstatically"></a>FactoryBot/AttributeDefinedStatically</h2>
 <div class="sectionbody">
@@ -428,7 +563,7 @@
 <p>Always declare attribute values as blocks.</p>
 </div>
 <div class="sect2">
-<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
+<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -452,7 +587,7 @@ count { 1 }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -476,7 +611,7 @@ count { 1 }</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references"><a class="anchor" href="#references"></a>References</h3>
+<h3 id="references-2"><a class="anchor" href="#references-2"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -513,7 +648,7 @@ count { 1 }</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.14</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.23</p></td>
 </tr>
 </tbody>
 </table>
@@ -521,7 +656,7 @@ count { 1 }</code></pre>
 <p>Use a consistent style for parentheses in factory_bot calls.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
+<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-require_parentheses-default"><a class="anchor" href="#enforcedstyle-require_parentheses-default"></a><code>EnforcedStyle: require_parentheses</code> (default)</h4>
 <div class="listingblock">
@@ -560,9 +695,39 @@ build(
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="explicitonly-false-default"><a class="anchor" href="#explicitonly-false-default"></a><code>ExplicitOnly: false</code> (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - with `EnforcedStyle: require_parentheses`
+FactoryBot.create :user
+build :user
+
+# good - with `EnforcedStyle: require_parentheses`
+FactoryBot.create(:user)
+build(:user)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="explicitonly-true"><a class="anchor" href="#explicitonly-true"></a><code>ExplicitOnly: true</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - with `EnforcedStyle: require_parentheses`
+FactoryBot.create :user
+FactoryBot.build :user
+
+# good - with `EnforcedStyle: require_parentheses`
+FactoryBot.create(:user)
+FactoryBot.build(:user)
+create :user
+build :user</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -582,11 +747,16 @@ build(
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>require_parentheses</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>require_parentheses</code>, <code>omit_parentheses</code></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ExplicitOnly</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-2"><a class="anchor" href="#references-2"></a>References</h3>
+<h3 id="references-3"><a class="anchor" href="#references-3"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -623,7 +793,7 @@ build(
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.25</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.23</p></td>
 </tr>
 </tbody>
 </table>
@@ -634,20 +804,23 @@ build(
 <p>This cop can be configured using the <code>EnforcedStyle</code> option</p>
 </div>
 <div class="sect2">
-<h3 id="safety"><a class="anchor" href="#safety"></a>Safety</h3>
+<h3 id="safety-2"><a class="anchor" href="#safety-2"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because replacing <code>n.times</code> to
 <code>create_list</code> changes its returned value.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-create_list-default"><a class="anchor" href="#enforcedstyle-create_list-default"></a><code>EnforcedStyle: create_list</code> (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 3.times { create :user }
+3.times.map { create :user }
+[create(:user), create(:user), create(:user)]
+Array.new(3) { create :user }
 
 # good
 create_list :user, 3
@@ -669,15 +842,44 @@ create_list :user, 3
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 create_list :user, 3
+[create(:user), create(:user), create(:user)]
 
 # good
+3.times.map { create :user }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="explicitonly-false-default-2"><a class="anchor" href="#explicitonly-false-default-2"></a><code>ExplicitOnly: false</code> (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - with `EnforcedStyle: create_list`
+3.times { FactoryBot.create :user }
+3.times { create :user }
+
+# good - with `EnforcedStyle: create_list`
+FactoryBot.create_list :user, 3
+create_list :user, 3</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="explicitonly-true-2"><a class="anchor" href="#explicitonly-true-2"></a><code>ExplicitOnly: true</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - with `EnforcedStyle: create_list`
+3.times { FactoryBot.create :user }
+
+# good - with `EnforcedStyle: create_list`
+FactoryBot.create_list :user, 3
+create_list :user, 3
 3.times { create :user }</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -702,15 +904,91 @@ create_list :user, 3
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>create_list</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>create_list</code>, <code>n_times</code></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ExplicitOnly</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-3"><a class="anchor" href="#references-3"></a>References</h3>
+<h3 id="references-4"><a class="anchor" href="#references-4"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
 <p><a href="https://www.rubydoc.info/gems/rubocop-factory_bot/RuboCop/Cop/FactoryBot/CreateList" class="bare">https://www.rubydoc.info/gems/rubocop-factory_bot/RuboCop/Cop/FactoryBot/CreateList</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="factorybotfactoryassociationwithstrategy"><a class="anchor" href="#factorybotfactoryassociationwithstrategy"></a>FactoryBot/FactoryAssociationWithStrategy</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.23</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.23</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Use definition in factory association instead of hard coding a strategy.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - only works for one strategy
+factory :foo do
+  profile { create(:profile) }
+end
+
+# good - implicit
+factory :foo do
+  profile
+end
+
+# good - explicit
+factory :foo do
+  association :profile
+end
+
+# good - inline
+factory :foo do
+  profile { association :profile }
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-5"><a class="anchor" href="#references-5"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.rubydoc.info/gems/rubocop-factory_bot/RuboCop/Cop/FactoryBot/FactoryAssociationWithStrategy" class="bare">https://www.rubydoc.info/gems/rubocop-factory_bot/RuboCop/Cop/FactoryBot/FactoryAssociationWithStrategy</a></p>
 </li>
 </ul>
 </div>
@@ -757,7 +1035,7 @@ in combination with external libraries by avoiding a preload of
 application files from the factory files.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -771,7 +1049,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -795,7 +1073,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-4"><a class="anchor" href="#references-4"></a>References</h3>
+<h3 id="references-6"><a class="anchor" href="#references-6"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -832,7 +1110,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.23</p></td>
 </tr>
 </tbody>
 </table>
@@ -840,7 +1118,7 @@ end</code></pre>
 <p>Checks for name style for argument of FactoryBot::Syntax::Methods.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
+<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-symbol-default"><a class="anchor" href="#enforcedstyle-symbol-default"></a>EnforcedStyle: symbol (default)</h4>
 <div class="listingblock">
@@ -869,9 +1147,39 @@ build "user", username: "NAME"</code></pre>
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="explicitonly-false-default-3"><a class="anchor" href="#explicitonly-false-default-3"></a><code>ExplicitOnly: false</code> (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - with `EnforcedStyle: symbol`
+FactoryBot.create('user')
+create('user')
+
+# good - with `EnforcedStyle: symbol`
+FactoryBot.create(:user)
+create(:user)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="explicitonly-true-3"><a class="anchor" href="#explicitonly-true-3"></a><code>ExplicitOnly: true</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - with `EnforcedStyle: symbol`
+FactoryBot.create(:user)
+FactoryBot.build "user", username: "NAME"
+
+# good - with `EnforcedStyle: symbol`
+FactoryBot.create('user')
+FactoryBot.build "user", username: "NAME"
+FactoryBot.create(:user)
+create(:user)</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -891,11 +1199,16 @@ build "user", username: "NAME"</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>symbol</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>symbol</code>, <code>string</code></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ExplicitOnly</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-5"><a class="anchor" href="#references-5"></a>References</h3>
+<h3 id="references-7"><a class="anchor" href="#references-7"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -931,7 +1244,7 @@ build "user", username: "NAME"</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.23</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 </tbody>
@@ -940,7 +1253,7 @@ build "user", username: "NAME"</code></pre>
 <p>Checks for redundant <code>factory</code> option.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -952,7 +1265,7 @@ association :user</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-6"><a class="anchor" href="#references-6"></a>References</h3>
+<h3 id="references-8"><a class="anchor" href="#references-8"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -997,7 +1310,7 @@ association :user</code></pre>
 <p>Use shorthands from <code>FactoryBot::Syntax::Methods</code> in your specs.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-2"><a class="anchor" href="#safety-2"></a>Safety</h3>
+<h3 id="safety-3"><a class="anchor" href="#safety-3"></a>Safety</h3>
 <div class="paragraph">
 <p>The autocorrection is marked as unsafe because the cop
 cannot verify whether you already include
@@ -1031,7 +1344,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
+<h3 id="examples-9"><a class="anchor" href="#examples-9"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1047,7 +1360,7 @@ attributes_for(:bar)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-7"><a class="anchor" href="#references-7"></a>References</h3>
+<h3 id="references-9"><a class="anchor" href="#references-9"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
