@@ -280,6 +280,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.18/index.html">1.18</a>
+        </li>
+        <li class="version">
           <a href="1.17/index.html">1.17</a>
         </li>
         <li class="version">
@@ -383,6 +386,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_performance.html">default</a>
+    <a class="version" href="1.18/cops_performance.html">1.18</a>
     <a class="version" href="1.17/cops_performance.html">1.17</a>
     <a class="version" href="1.16/cops_performance.html">1.16</a>
     <a class="version" href="1.15/cops_performance.html">1.15</a>
@@ -1125,26 +1129,30 @@ end</code></pre>
 <div class="paragraph">
 <p>Identifies places where <code>sort { |a, b| a.foo &lt;&#8658; b.foo }</code>
 can be replaced by <code>sort_by(&amp;:foo)</code>.
-This cop also checks <code>max</code> and <code>min</code> methods.</p>
+This cop also checks <code>sort!</code>, <code>min</code>, <code>max</code> and <code>minmax</code> methods.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-11"><a class="anchor" href="#examples-11"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-array.sort { |a, b| a.foo &lt;=&gt; b.foo }
-array.max { |a, b| a.foo &lt;=&gt; b.foo }
-array.min { |a, b| a.foo &lt;=&gt; b.foo }
-array.sort { |a, b| a[:foo] &lt;=&gt; b[:foo] }
+array.sort   { |a, b| a.foo &lt;=&gt; b.foo }
+array.sort!  { |a, b| a.foo &lt;=&gt; b.foo }
+array.max    { |a, b| a.foo &lt;=&gt; b.foo }
+array.min    { |a, b| a.foo &lt;=&gt; b.foo }
+array.minmax { |a, b| a.foo &lt;=&gt; b.foo }
+array.sort   { |a, b| a[:foo] &lt;=&gt; b[:foo] }
 
 # good
 array.sort_by(&amp;:foo)
+array.sort_by!(&amp;:foo)
 array.sort_by { |v| v.foo }
 array.sort_by do |var|
   var.foo
 end
 array.max_by(&amp;:foo)
 array.min_by(&amp;:foo)
+array.minmax_by(&amp;:foo)
 array.sort_by { |a| a[:foo] }</code></pre>
 </div>
 </div>

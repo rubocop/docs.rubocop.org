@@ -283,6 +283,9 @@
           <a href="../rubocop-performance/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-performance/1.18/index.html">1.18</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-performance/1.17/index.html">1.17</a>
         </li>
         <li class="version">
@@ -453,6 +456,16 @@ end
 # good
 factory :post do
   user
+end
+
+# bad
+factory :post do
+  association :user, :author
+end
+
+# good
+factory :post do
+  user factory: %i[user author]
 end</code></pre>
 </div>
 </div>
@@ -469,6 +482,16 @@ end
 # good
 factory :post do
   association :user
+end
+
+# bad
+factory :post do
+  user factory: %i[user author]
+end
+
+# good
+factory :post do
+  association :user, :author
 end
 
 # good (NonImplicitAssociationMethodNames: ['email'])
