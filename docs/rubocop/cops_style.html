@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_style.html">
     <link rel="prev" href="cops_security.html">
     <link rel="next" href="v1_upgrade_notes.html">
-    <meta name="generator" content="Antora 3.1.2">
+    <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -104,6 +104,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="usage/caching.html">Caching</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/lsp.html">LSP</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="usage/server.html">Server</a>
@@ -407,6 +410,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-rails/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-rails/2.20/index.html">2.20</a>
         </li>
         <li class="version">
           <a href="../rubocop-rails/2.19/index.html">2.19</a>
@@ -1727,7 +1733,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for BEGIN blocks.</p>
+<p>Checks for BEGIN blocks.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-13"><a class="anchor" href="#examples-13"></a>Examples</h3>
@@ -2729,7 +2735,7 @@ var.kind_of?(String)</code></pre>
 <div class="paragraph">
 <p>Enforces the use of <code>Object#instance_of?</code> instead of class comparison
 for equality.
-<code>==</code>, <code>equal?</code>, and <code>eql?</code> methods are allowed by default.
+<code>==</code>, <code>equal?</code>, and <code>eql?</code> custom method definitions are allowed by default.
 These are customizable with <code>AllowedMethods</code> option.</p>
 </div>
 <div class="sect2">
@@ -2747,36 +2753,21 @@ var.instance_of?(Date)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedmethods-default"><a class="anchor" href="#allowedmethods-default"></a>AllowedMethods: [] (default)</h4>
+<h4 id="allowedmethods-equal-eql-default"><a class="anchor" href="#allowedmethods-equal-eql-default"></a>AllowedMethods: ['==', 'equal?', 'eql?'] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-var.instance_of?(Date)
+def ==(other)
+  self.class == other.class &amp;&amp; name == other.name
+end
 
-# bad
-var.class == Date
-var.class.equal?(Date)
-var.class.eql?(Date)
-var.class.name == 'Date'
-var.class.to_s == 'Date'
-var.class.inspect == 'Date'</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="allowedmethods"><a class="anchor" href="#allowedmethods"></a>AllowedMethods: [<code>==</code>]</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-var.instance_of?(Date)
-var.class == Date
-var.class.name == 'Date'
-var.class.to_s == 'Date'
-var.class.inspect == 'Date'
+def equal?(other)
+  self.class.equal?(other.class) &amp;&amp; name.equal?(other.name)
+end
 
-# bad
-var.class.equal?(Date)
-var.class.eql?(Date)</code></pre>
+def eql?(other)
+  self.class.eql?(other.class) &amp;&amp; name.eql?(other.name)
+end</code></pre>
 </div>
 </div>
 </div>
@@ -2784,16 +2775,10 @@ var.class.eql?(Date)</code></pre>
 <h4 id="allowedpatterns-default-2"><a class="anchor" href="#allowedpatterns-default-2"></a>AllowedPatterns: [] (default)</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-var.instance_of?(Date)
-
-# bad
-var.class == Date
-var.class.equal?(Date)
-var.class.eql?(Date)
-var.class.name == 'Date'
-var.class.to_s == 'Date'
-var.class.inspect == 'Date'</code></pre>
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+def eq(other)
+  self.class.eq(other.class) &amp;&amp; name.eq(other.name)
+end</code></pre>
 </div>
 </div>
 </div>
@@ -2802,15 +2787,9 @@ var.class.inspect == 'Date'</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-var.instance_of?(Date)
-var.class.equal?(Date)
-var.class.eql?(Date)
-
-# bad
-var.class == Date
-var.class.name == 'Date'
-var.class.to_s == 'Date'
-var.class.inspect == 'Date'</code></pre>
+def eq(other)
+  self.class.eq(other.class) &amp;&amp; name.eq(other.name)
+end</code></pre>
 </div>
 </div>
 </div>
@@ -4854,7 +4833,7 @@ Required Ruby version: 2.0
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for places where the <code>#<em>dir</em></code> method can replace more
+<p>Checks for places where the <code>#_\_dir\_\_</code> method can replace more
 complex constructs to retrieve a canonicalized absolute path to the
 current file.</p>
 </div>
@@ -6819,13 +6798,13 @@ ENV.fetch('HOME', default)</code></pre>
 </table>
 <div class="paragraph">
 <p>Ensures that eval methods (<code>eval</code>, <code>instance_eval</code>, <code>class_eval</code>
-and <code>module_eval</code>) are given filename and line number values (<code><em>FILE</em></code>
-and <code><em>LINE</em></code>). This data is used to ensure that any errors raised
+and <code>module_eval</code>) are given filename and line number values (<code>_\_FILE\__</code>
+and <code>\__LINE\_\_</code>). This data is used to ensure that any errors raised
 within the evaluated code will be given the correct identification
 in a backtrace.</p>
 </div>
 <div class="paragraph">
-<p>The cop also checks that the line number given relative to <code><em>LINE</em></code> is
+<p>The cop also checks that the line number given relative to <code>_\_LINE\_\_</code> is
 correct.</p>
 </div>
 <div class="paragraph">
@@ -8164,7 +8143,7 @@ format('%06d', 10)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedmethods-default-2"><a class="anchor" href="#allowedmethods-default-2"></a>AllowedMethods: [] (default)</h4>
+<h4 id="allowedmethods-default"><a class="anchor" href="#allowedmethods-default"></a>AllowedMethods: [] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9595,8 +9574,8 @@ Required Ruby version: 2.5
 </tbody>
 </table>
 <div class="paragraph">
-<p>Looks for uses of <code><em>.each_with_object({}) {&#8230;&#8203;}</code>,
-<code></em>.map {&#8230;&#8203;}.to_h</code>, and <code>Hash[_.map {&#8230;&#8203;}]</code> that are actually just
+<p>Looks for uses of <code>_.each_with_object({}) {&#8230;&#8203;}</code>,
+<code>\_.map {&#8230;&#8203;}.to_h</code>, and <code>Hash[\_.map {&#8230;&#8203;}]</code> that are actually just
 transforming the keys of a hash, and tries to use a simpler &amp; faster
 call to <code>transform_keys</code> instead.
 It should only be enabled on Ruby version 2.5 or newer.
@@ -9671,8 +9650,8 @@ Required Ruby version: 2.4
 </tbody>
 </table>
 <div class="paragraph">
-<p>Looks for uses of <code><em>.each_with_object({}) {&#8230;&#8203;}</code>,
-<code></em>.map {&#8230;&#8203;}.to_h</code>, and <code>Hash[_.map {&#8230;&#8203;}]</code> that are actually just
+<p>Looks for uses of <code>_.each_with_object({}) {&#8230;&#8203;}</code>,
+<code>\_.map {&#8230;&#8203;}.to_h</code>, and <code>Hash[\_.map {&#8230;&#8203;}]</code> that are actually just
 transforming the values of a hash, and tries to use a simpler &amp; faster
 call to <code>transform_values</code> instead.</p>
 </div>
@@ -12149,7 +12128,7 @@ object.some_method</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedmethods-default-3"><a class="anchor" href="#allowedmethods-default-3"></a>AllowedMethods: [] (default)</h4>
+<h4 id="allowedmethods-default-2"><a class="anchor" href="#allowedmethods-default-2"></a>AllowedMethods: [] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -21886,7 +21865,7 @@ end if condition_a</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop looks for uses of Perl-style global variables.
+<p>Looks for uses of Perl-style global variables.
 Correcting to global variables in the 'English' library
 will add a require statement to the top of the file if
 enabled by RequireEnglish config.</p>

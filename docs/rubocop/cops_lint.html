@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_lint.html">
     <link rel="prev" href="cops_layout.html">
     <link rel="next" href="cops_metrics.html">
-    <meta name="generator" content="Antora 3.1.2">
+    <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -104,6 +104,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="usage/caching.html">Caching</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/lsp.html">LSP</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="usage/server.html">Server</a>
@@ -407,6 +410,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-rails/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-rails/2.20/index.html">2.20</a>
         </li>
         <li class="version">
           <a href="../rubocop-rails/2.19/index.html">2.19</a>
@@ -4246,7 +4252,7 @@ Required Ruby version: 2.6
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop emulates the following Ruby warnings in Ruby 2.6.</p>
+<p>Emulates the following Ruby warnings in Ruby 2.6.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4880,7 +4886,7 @@ array = [
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for <code>IO.select</code> that is incompatible with Fiber Scheduler since Ruby 3.0.</p>
+<p>Checks for <code>IO.select</code> that is incompatible with Fiber Scheduler since Ruby 3.0.</p>
 </div>
 <div class="paragraph">
 <p>When an array of IO objects waiting for an exception (the third argument of <code>IO.select</code>)
@@ -8901,7 +8907,7 @@ Foo = Bar</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>This cop checks for <code>send</code>, <code>public_send</code>, and <code><em>send</em></code> methods
+<p>Checks for <code>send</code>, <code>public_send</code>, and <code><em>send</em></code> methods
 when using mix-in.</p>
 </div>
 <div class="paragraph">
