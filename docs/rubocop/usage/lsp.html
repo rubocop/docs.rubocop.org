@@ -221,6 +221,9 @@
           <a href="../index.html">default</a>
         </li>
         <li class="version">
+          <a href="../1.54/index.html">1.54</a>
+        </li>
+        <li class="version">
           <a href="../1.53/index.html">1.53</a>
         </li>
         <li class="version">
@@ -483,7 +486,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../1.53/index.html" class="home-link"></a>
+  <a href="../1.54/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">RuboCop</a></li>
@@ -495,6 +498,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="lsp.html">default</a>
+    <a class="version" href="../1.54/usage/lsp.html">1.54</a>
     <a class="version" href="../1.53/usage/lsp.html">1.53</a>
     <a class="version is-missing" href="../1.52/index.html">1.52</a>
     <a class="version is-missing" href="../1.51/index.html">1.51</a>
@@ -550,31 +554,6 @@ but also offer a straightforward setup for integration.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="run-as-a-language-server"><a class="anchor" href="#run-as-a-language-server"></a>Run as a Language Server</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Run <code>rubocop --lsp</code> command from LSP client.</p>
-</div>
-<div class="paragraph">
-<p>When the language server is started, the command displays the language server&#8217;s PID:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ ps aux | grep rubocop
-user             17414   0.0  0.2  5557716 144376   ??  Ss    4:48PM   0:02.13 /Users/user/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/bin/rubocop --lsp</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="autocorrection"><a class="anchor" href="#autocorrection"></a>Autocorrection</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The language server supports <code>textDocument/formatting</code> method and is autocorrectable. The autocorrection is safe.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="examples-of-lsp-client"><a class="anchor" href="#examples-of-lsp-client"></a>Examples of LSP Client</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -619,6 +598,75 @@ user             17414   0.0  0.2  5557716 144376   ??  Ss    4:48PM   0:02.13 /
 <div class="paragraph">
 <p>See Eglot&#8217;s official documentation for more information.</p>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="autocorrection"><a class="anchor" href="#autocorrection"></a>Autocorrection</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The language server supports <code>textDocument/formatting</code> method and is autocorrectable. The autocorrection is safe by default (<code>rubocop -a</code>).</p>
+</div>
+<div class="paragraph">
+<p>LSP client can switch to unsafe autocorrection (<code>rubocop -A</code>) by passing the following <code>safeAutocorrect</code> parameter in the <code>initialize</code> request.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "initialize",
+  "params": {
+    "initializationOptions": {
+      "safeAutocorrect": false
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For detailed instructions on setting the parameter, please refer to the configuration methods of your LSP client.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>safeAutocorrect</code> parameter was introduced in RuboCop 1.54.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="run-as-a-language-server"><a class="anchor" href="#run-as-a-language-server"></a>Run as a Language Server</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Run <code>rubocop --lsp</code> command from LSP client.</p>
+</div>
+<div class="paragraph">
+<p>When the language server is started, the command displays the language server&#8217;s PID:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ ps aux | grep rubocop
+user             17414   0.0  0.2  5557716 144376   ??  Ss    4:48PM   0:02.13 /Users/user/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/bin/rubocop --lsp</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>rubocop --lsp</code> is for starting LSP client, so users don&#8217;t manually execute it.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
