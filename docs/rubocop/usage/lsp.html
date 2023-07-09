@@ -599,6 +599,44 @@ but also offer a straightforward setup for integration.</p>
 <p>See Eglot&#8217;s official documentation for more information.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="neovim-coc-nvim"><a class="anchor" href="#neovim-coc-nvim"></a>Neovim (coc.nvim)</h3>
+<div class="paragraph">
+<p><a href="https://github.com/neoclide/coc.nvim">coc.nvim</a> is an extension host for Vim and Neovim, powered by Node.js.
+It allows the loading of extensions similar to VSCode and provides hosting for language servers.</p>
+</div>
+<div class="paragraph">
+<p>Add the following to your coc.nvim configuration file (e.g. <code>~/.config/nvim/coc-settings.json</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "languageserver": {
+    "rubocop": {
+      "command": "bundle",
+      "args" : ["exec", "rubocop", "--lsp"],
+      "filetypes": ["ruby"],
+      "rootPatterns": [".git", "Gemfile"],
+      "requireRootPattern": true
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Below is an example of additional setting for autocorrecting on save:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "coc.preferences.formatOnSave": true
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See coc.nvim&#8217;s official documentation for more information.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">

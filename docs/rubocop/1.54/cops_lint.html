@@ -516,7 +516,7 @@
     <a class="version" href="../1.0/cops_lint.html">1.0</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.54.0/docs/modules/ROOT/pages/cops_lint.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.54.1/docs/modules/ROOT/pages/cops_lint.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -7613,6 +7613,15 @@ end</code></pre>
 </table>
 <div class="paragraph">
 <p>Checks for redundant quantifiers inside Regexp literals.</p>
+</div>
+<div class="paragraph">
+<p>It is always allowed when interpolation is used in a regexp literal,
+because it&#8217;s unknown what kind of string will be expanded as a result:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">/(?:a*#{interpolation})?/x</code></pre>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
