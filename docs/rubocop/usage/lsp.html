@@ -546,7 +546,7 @@ The built-in language server was introduced in RuboCop 1.53. This experimental f
 </div>
 <div class="paragraph">
 <p>Offense detection and autocorrection are performed in real-time by editors and IDEs using the language server.
-The <a href="#">Server Mode</a> is primarily used to speed up RuboCop runs in the terminal.
+The <a href="server.html" class="xref page">Server Mode</a> is primarily used to speed up RuboCop runs in the terminal.
 Therefore, if you want real-time feedback from RuboCop in your editor or IDE,
 opting to use this language server instead of the server mode will not only provide a fast and efficient solution,
 but also offer a straightforward setup for integration.</p>
@@ -600,13 +600,14 @@ but also offer a straightforward setup for integration.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="neovim-coc-nvim"><a class="anchor" href="#neovim-coc-nvim"></a>Neovim (coc.nvim)</h3>
+<h3 id="vim-and-neovim-coc-nvim"><a class="anchor" href="#vim-and-neovim-coc-nvim"></a>Vim and Neovim (coc.nvim)</h3>
 <div class="paragraph">
 <p><a href="https://github.com/neoclide/coc.nvim">coc.nvim</a> is an extension host for Vim and Neovim, powered by Node.js.
 It allows the loading of extensions similar to VSCode and provides hosting for language servers.</p>
 </div>
 <div class="paragraph">
-<p>Add the following to your coc.nvim configuration file (e.g. <code>~/.config/nvim/coc-settings.json</code>):</p>
+<p>Add the following to your coc.nvim configuration file. For example, in Vim, it would be <code>~/.vim/coc-settings.json</code>,
+and in Neovim, it would be <code>~/.config/nvim/coc-settings.json</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -635,6 +636,45 @@ It allows the loading of extensions similar to VSCode and provides hosting for l
 </div>
 <div class="paragraph">
 <p>See coc.nvim&#8217;s official documentation for more information.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="neovim-nvim-lspconfig"><a class="anchor" href="#neovim-nvim-lspconfig"></a>Neovim (nvim-lspconfig)</h3>
+<div class="paragraph">
+<p><a href="https://github.com/neovim/nvim-lspconfig">nvim-lspconfig</a> provides quickstart configs for Neovim&#8217;s LSP.</p>
+</div>
+<div class="paragraph">
+<p>Add the following to your nvim-lspconfig configuration file (e.g. <code>~/.config/nvim/init.lua</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-lua hljs" data-lang="lua">vim.opt.signcolumn = "yes"
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "ruby",
+  callback = function()
+    vim.lsp.start {
+      name = "rubocop",
+      cmd = { "bundle", "exec", "rubocop", "--lsp" },
+    }
+  end,
+})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Below is an example of additional setting for autocorrecting on save:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-lua hljs" data-lang="lua">vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "ruby",
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See nvim-lspconfig&#8217;s official documentation for more information.</p>
 </div>
 </div>
 </div>
@@ -673,6 +713,47 @@ It allows the loading of extensions similar to VSCode and provides hosting for l
 </td>
 <td class="content">
 The <code>safeAutocorrect</code> parameter was introduced in RuboCop 1.54.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="layout-mode"><a class="anchor" href="#layout-mode"></a>Layout Mode</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>LSP client can run layout cops by passing the following <code>layoutMode</code> parameter in the <code>initialize</code> request
+if you only want to enable the feature as a formatter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "initialize",
+  "params": {
+    "initializationOptions": {
+      "layoutMode": true
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Furthermore, enabling autocorrect in a LSP client at the time of saving equates to the effect of <code>rubocop -x</code> option.</p>
+</div>
+<div class="paragraph">
+<p>For detailed instructions on setting the parameter, please refer to the configuration methods of your LSP client.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>layoutMode</code> parameter was introduced in RuboCop 1.55.
 </td>
 </tr>
 </table>

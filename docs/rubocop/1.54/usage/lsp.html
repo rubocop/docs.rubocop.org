@@ -516,7 +516,7 @@
     <a class="version is-missing" href="../../1.0/index.html">1.0</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.54.1/docs/modules/ROOT/pages/usage/lsp.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.54.2/docs/modules/ROOT/pages/usage/lsp.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -546,7 +546,7 @@ The built-in language server was introduced in RuboCop 1.53. This experimental f
 </div>
 <div class="paragraph">
 <p>Offense detection and autocorrection are performed in real-time by editors and IDEs using the language server.
-The <a href="#">Server Mode</a> is primarily used to speed up RuboCop runs in the terminal.
+The <a href="server.html" class="xref page">Server Mode</a> is primarily used to speed up RuboCop runs in the terminal.
 Therefore, if you want real-time feedback from RuboCop in your editor or IDE,
 opting to use this language server instead of the server mode will not only provide a fast and efficient solution,
 but also offer a straightforward setup for integration.</p>
@@ -597,6 +597,83 @@ but also offer a straightforward setup for integration.</p>
 </div>
 <div class="paragraph">
 <p>See Eglot&#8217;s official documentation for more information.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="neovim-coc-nvim"><a class="anchor" href="#neovim-coc-nvim"></a>Neovim (coc.nvim)</h3>
+<div class="paragraph">
+<p><a href="https://github.com/neoclide/coc.nvim">coc.nvim</a> is an extension host for Vim and Neovim, powered by Node.js.
+It allows the loading of extensions similar to VSCode and provides hosting for language servers.</p>
+</div>
+<div class="paragraph">
+<p>Add the following to your coc.nvim configuration file (e.g. <code>~/.config/nvim/coc-settings.json</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "languageserver": {
+    "rubocop": {
+      "command": "bundle",
+      "args" : ["exec", "rubocop", "--lsp"],
+      "filetypes": ["ruby"],
+      "rootPatterns": [".git", "Gemfile"],
+      "requireRootPattern": true
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Below is an example of additional setting for autocorrecting on save:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "coc.preferences.formatOnSave": true
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See coc.nvim&#8217;s official documentation for more information.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="neovim-nvim-lspconfig"><a class="anchor" href="#neovim-nvim-lspconfig"></a>Neovim (nvim-lspconfig)</h3>
+<div class="paragraph">
+<p><a href="https://github.com/neovim/nvim-lspconfig">nvim-lspconfig</a> provides quickstart configs for Neovim&#8217;s LSP.</p>
+</div>
+<div class="paragraph">
+<p>Add the following to your nvim-lspconfig configuration file (e.g. <code>~/.config/nvim/init.lua</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-lua hljs" data-lang="lua">vim.opt.signcolumn = "yes"
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "ruby",
+  callback = function()
+    vim.lsp.start {
+      name = "rubocop",
+      cmd = { "bundle", "exec", "rubocop", "--lsp" },
+    }
+  end,
+})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Below is an example of additional setting for autocorrecting on save:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-lua hljs" data-lang="lua">vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "ruby",
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See nvim-lspconfig&#8217;s official documentation for more information.</p>
 </div>
 </div>
 </div>
