@@ -15,7 +15,6 @@
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140153536-1"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-140153536-1')</script>
-    <script>var uiRootPath = '../../_'</script>
   </head>
   <body class="article">
 <header class="header" role="banner">
@@ -219,6 +218,9 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="../index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../1.55/index.html">1.55</a>
         </li>
         <li class="version">
           <a href="../1.54/index.html">1.54</a>
@@ -486,7 +488,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../1.54/index.html" class="home-link"></a>
+  <a href="../1.55/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">RuboCop</a></li>
@@ -498,6 +500,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="lsp.html">default</a>
+    <a class="version" href="../1.55/usage/lsp.html">1.55</a>
     <a class="version" href="../1.54/usage/lsp.html">1.54</a>
     <a class="version" href="../1.53/usage/lsp.html">1.53</a>
     <a class="version is-missing" href="../1.52/index.html">1.52</a>
@@ -713,6 +716,47 @@ vim.api.nvim_create_autocmd("FileType", {
 </td>
 <td class="content">
 The <code>safeAutocorrect</code> parameter was introduced in RuboCop 1.54.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="lint-mode"><a class="anchor" href="#lint-mode"></a>Lint Mode</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>LSP client can run lint cops by passing the following <code>lintMode</code> parameter in the <code>initialize</code> request
+if you only want to enable the feature as a linter like <code>ruby -w</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "initialize",
+  "params": {
+    "initializationOptions": {
+      "lintMode": true
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Furthermore, enabling autocorrect in a LSP client at the time of saving equates to the effect of <code>rubocop -l</code> option.</p>
+</div>
+<div class="paragraph">
+<p>For detailed instructions on setting the parameter, please refer to the configuration methods of your LSP client.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>lintMode</code> parameter was introduced in RuboCop 1.55.
 </td>
 </tr>
 </table>

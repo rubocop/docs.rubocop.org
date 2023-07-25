@@ -14,7 +14,6 @@
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140153536-1"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-140153536-1')</script>
-    <script>var uiRootPath = '../_'</script>
   </head>
   <body class="article">
 <header class="header" role="banner">
@@ -137,6 +136,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop/1.55/index.html">1.55</a>
         </li>
         <li class="version">
           <a href="../rubocop/1.54/index.html">1.54</a>
@@ -404,7 +406,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.54/index.html" class="home-link"></a>
+  <a href="../rubocop/1.55/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop RSpec</a></li>
@@ -1114,7 +1116,7 @@ expect(foo).to be(nil)</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.12</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -1163,7 +1165,7 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Exclude</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec/spec_helper.rb</code>, <code>spec/rails_helper.rb</code>, <code>spec/support/**/*.rb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>**/spec/spec_helper.rb</code>, <code>**/spec/rails_helper.rb</code>, <code>**/spec/support/**/*.rb</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -3452,7 +3454,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -3499,7 +3501,7 @@ expect(false).to eq(true)</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Exclude</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spec/routing/**/*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>**/spec/routing/**/*</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -3970,6 +3972,18 @@ fdescribe 'test' do; end
 
 # good
 describe 'test' do; end
+
+# bad
+shared_examples 'test', focus: true do; end
+
+# good
+shared_examples 'test' do; end
+
+# bad
+shared_context 'test', focus: true do; end
+
+# good
+shared_context 'test' do; end
 
 # bad (does not support autocorrection)
 focus 'test' do; end</code></pre>

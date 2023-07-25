@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Basic Usage :: RuboCop Docs</title>
+    <link rel="canonical" href="https://docs.rubocop.org/rubocop/usage/basic_usage.html">
+    <link rel="prev" href="../compatibility.html">
+    <link rel="next" href="autocorrect.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="../../../_/css/site-extra.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
+<style>:root{--docsearch-primary-color: #bd362f} </style>
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140153536-1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-140153536-1')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <a href="https://rubocop.org">RuboCop</a>
+        <span class="separator">//</span>
+        <a href="https://docs.rubocop.org">Docs</a>
+      </div>
+      <div class="navbar-item">
+        <div id="docsearch"></div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href=index.html>Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Style Guides</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://rubystyle.guide">Ruby</a>
+            <a class="navbar-item" href="https://rails.rubystyle.guide">Rails</a>
+            <a class="navbar-item" href="https://rspec.rubystyle.guide">RSpec</a>
+            <a class="navbar-item" href="https://minitest.rubystyle.guide">Minitest</a>
+          </div>
+        </div>
+        <a class="navbar-item" href="https://www.rubydoc.info/gems/rubocop">API Docs</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Projects</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop">RuboCop</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-ast">RuboCop AST</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-capybara">RuboCop Capybara</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-minitest">RuboCop Minitest</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-performance">RuboCop Performance</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rails">RuboCop Rails</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rake">RuboCop Rake</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rspec">RuboCop RSpec</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Community</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop">GitHub Org</a>
+            <a class="navbar-item" href="https://gitter.im/bbatsov/rubocop">Chat (Gitter)</a>
+            <a class="navbar-item" href="https://opencollective.com/rubocop">Open Collective</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rubocop" data-version="1.55">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">RuboCop</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../compatibility.html">Compatibility</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Usage</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="basic_usage.html">Basic Usage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="autocorrect.html">Autocorrect</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="caching.html">Caching</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="lsp.html">LSP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="server.html">Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="profiling.html">Profiling</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../cops.html">Cops</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../formatters.html">Formatters</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cop Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cops_bundler.html">Bundler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cops_gemspec.html">Gemspec</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cops_layout.html">Layout</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cops_lint.html">Lint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cops_metrics.html">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cops_migration.html">Migration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cops_naming.html">Naming</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cops_security.html">Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cops_style.html">Style</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../v1_upgrade_notes.html">Upgrade Notes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../extensions.html">Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../integration_with_other_tools.html">Integration with Other Tools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../automated_code_review.html">Automated Code Review</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../contributing.html">Contributing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../support.html">Support</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../versioning.html">Versioning</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">About</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../about/history.html">History</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../about/team.html">Team</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../about/changelog.html">Changelog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../about/logo.html">Logo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../about/license.html">License</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RuboCop</span>
+    <span class="version">1.55</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../index.html">RuboCop</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../index.html">default</a>
+        </li>
+        <li class="version is-current">
+          <a href="../index.html">1.55</a>
+        </li>
+        <li class="version">
+          <a href="../../1.54/index.html">1.54</a>
+        </li>
+        <li class="version">
+          <a href="../../1.53/index.html">1.53</a>
+        </li>
+        <li class="version">
+          <a href="../../1.52/index.html">1.52</a>
+        </li>
+        <li class="version">
+          <a href="../../1.51/index.html">1.51</a>
+        </li>
+        <li class="version">
+          <a href="../../1.50/index.html">1.50</a>
+        </li>
+        <li class="version">
+          <a href="../../1.49/index.html">1.49</a>
+        </li>
+        <li class="version">
+          <a href="../../1.48/index.html">1.48</a>
+        </li>
+        <li class="version">
+          <a href="../../1.47/index.html">1.47</a>
+        </li>
+        <li class="version">
+          <a href="../../1.46/index.html">1.46</a>
+        </li>
+        <li class="version">
+          <a href="../../1.45/index.html">1.45</a>
+        </li>
+        <li class="version">
+          <a href="../../1.44/index.html">1.44</a>
+        </li>
+        <li class="version">
+          <a href="../../1.43/index.html">1.43</a>
+        </li>
+        <li class="version">
+          <a href="../../1.42/index.html">1.42</a>
+        </li>
+        <li class="version">
+          <a href="../../1.41/index.html">1.41</a>
+        </li>
+        <li class="version">
+          <a href="../../1.40/index.html">1.40</a>
+        </li>
+        <li class="version">
+          <a href="../../1.0/index.html">1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../rubocop-ast/index.html">RuboCop AST</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../rubocop-ast/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.12/index.html">1.12</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.11/index.html">1.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.10/index.html">1.10</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.9/index.html">1.9</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.8/index.html">1.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.7/index.html">1.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.6/index.html">1.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.5/index.html">1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.4/index.html">1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.3/index.html">1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.2/index.html">1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.0/index.html">1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../rubocop-capybara/index.html">RuboCop Capybara</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../rubocop-capybara/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-capybara/2.18/index.html">2.18</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-capybara/2.17/index.html">2.17</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../rubocop-factory_bot/index.html">RuboCop factory_bot</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../rubocop-factory_bot/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-factory_bot/2.23/index.html">2.23</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-factory_bot/2.22/index.html">2.22</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../rubocop-minitest/index.html">RuboCop Minitest</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../rubocop-minitest/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.31/index.html">0.31</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.30/index.html">0.30</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.29/index.html">0.29</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.28/index.html">0.28</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.27/index.html">0.27</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.26/index.html">0.26</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.25/index.html">0.25</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../rubocop-packaging/index.html">RuboCop Packaging</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../rubocop-packaging/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../rubocop-performance/index.html">RuboCop Performance</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../rubocop-performance/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.18/index.html">1.18</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.17/index.html">1.17</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.16/index.html">1.16</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.15/index.html">1.15</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.14/index.html">1.14</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.13/index.html">1.13</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.12/index.html">1.12</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../rubocop-rails/index.html">RuboCop Rails</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../rubocop-rails/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.20/index.html">2.20</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.19/index.html">2.19</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.18/index.html">2.18</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.17/index.html">2.17</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.16/index.html">2.16</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.15/index.html">2.15</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.14/index.html">2.14</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../rubocop-rspec/index.html">RuboCop RSpec</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../rubocop-rspec/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/2.22/index.html">2.22</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/2.21/index.html">2.21</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/2.20/index.html">2.20</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/2.19/index.html">2.19</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/2.18/index.html">2.18</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/2.17/index.html">2.17</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/2.16/index.html">2.16</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/2.15/index.html">2.15</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/2.14/index.html">2.14</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/1.44/index.html">1.44</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">RuboCop</a></li>
+    <li>Usage</li>
+    <li><a href="basic_usage.html">Basic Usage</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">1.55</button>
+  <div class="version-menu">
+    <a class="version" href="../../usage/basic_usage.html">default</a>
+    <a class="version is-current" href="basic_usage.html">1.55</a>
+    <a class="version" href="../../1.54/usage/basic_usage.html">1.54</a>
+    <a class="version" href="../../1.53/usage/basic_usage.html">1.53</a>
+    <a class="version" href="../../1.52/usage/basic_usage.html">1.52</a>
+    <a class="version" href="../../1.51/usage/basic_usage.html">1.51</a>
+    <a class="version" href="../../1.50/usage/basic_usage.html">1.50</a>
+    <a class="version" href="../../1.49/usage/basic_usage.html">1.49</a>
+    <a class="version" href="../../1.48/usage/basic_usage.html">1.48</a>
+    <a class="version" href="../../1.47/usage/basic_usage.html">1.47</a>
+    <a class="version" href="../../1.46/usage/basic_usage.html">1.46</a>
+    <a class="version" href="../../1.45/usage/basic_usage.html">1.45</a>
+    <a class="version" href="../../1.44/usage/basic_usage.html">1.44</a>
+    <a class="version" href="../../1.43/usage/basic_usage.html">1.43</a>
+    <a class="version" href="../../1.42/usage/basic_usage.html">1.42</a>
+    <a class="version" href="../../1.41/usage/basic_usage.html">1.41</a>
+    <a class="version" href="../../1.40/usage/basic_usage.html">1.40</a>
+    <a class="version" href="../../1.0/usage/basic_usage.html">1.0</a>
+  </div>
+</div>
+<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.55.0/docs/modules/ROOT/pages/usage/basic_usage.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Basic Usage</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>RuboCop has three primary uses:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Code style checker (a.k.a. linter)</p>
+</li>
+<li>
+<p>A replacement for <code>ruby -w</code> (a subset of its linting capabilities)</p>
+</li>
+<li>
+<p>Code formatter</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In the next sections we&#8217;ll briefly cover all of them.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="code-style-checker"><a class="anchor" href="#code-style-checker"></a>Code style checker</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Running <code>rubocop</code> with no arguments will check all Ruby source files
+in the current directory:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively you can pass <code>rubocop</code> a list of files and directories to check:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop app spec lib/something.rb</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s RuboCop in action. Consider the following Ruby source code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def badName
+  if something
+    test
+    end
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Running RuboCop on it (assuming it&#8217;s in a file named <code>test.rb</code>) would produce the following report:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Inspecting 1 file
+W
+
+Offenses:
+
+test.rb:1:1: C: Style/FrozenStringLiteralComment: Missing magic comment # frozen_string_literal: true.
+def badName
+^
+test.rb:1:5: C: Naming/MethodName: Use snake_case for method names.
+def badName
+    ^^^^^^^
+test.rb:2:3: C: Style/GuardClause: Use a guard clause instead of wrapping the code inside a conditional expression.
+  if something
+  ^^
+test.rb:2:3: C: Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &amp;&amp;/||.
+  if something
+  ^^
+test.rb:4:5: W: Layout/EndAlignment: end at 4, 4 is not aligned with if at 2, 2.
+    end
+    ^^^
+
+1 file inspected, 5 offenses detected</pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="autocorrecting-offenses"><a class="anchor" href="#autocorrecting-offenses"></a>Autocorrecting offenses</h3>
+<div class="paragraph">
+<p>You can also run RuboCop in an autocorrect mode, where it will try to
+automatically fix the problems it found in your code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop -a
+# or
+$ rubocop --autocorrect</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+See <a href="autocorrect.html" class="xref page">Autocorrect</a> for more details.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-what-rubocop-considers-to-be-offenses"><a class="anchor" href="#changing-what-rubocop-considers-to-be-offenses"></a>Changing what RuboCop considers to be offenses</h3>
+<div class="paragraph">
+<p>RuboCop comes with a preconfigured set of rules for each of its cops, based on the <a href="https://rubystyle.guide">Ruby Style Guide</a>.
+Depending on your project, you may wish to reconfigure a cop, tell to ignore certain files, or disable it altogether.</p>
+</div>
+<div class="paragraph">
+<p>The most common way to change RuboCop&#8217;s behavior is to create a configuration file named <code>.rubocop.yml</code> in the
+project&#8217;s root directory.</p>
+</div>
+<div class="paragraph">
+<p>For more information, see <a href="../configuration.html" class="xref page">Configuration</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rubocop-as-a-replacement-for-ruby-w"><a class="anchor" href="#rubocop-as-a-replacement-for-ruby-w"></a>RuboCop as a replacement for <code>ruby -w</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RuboCop natively implements almost all <code>ruby -w</code> lint warning checks, and then some. If you want you can use RuboCop
+simply as a replacement for <code>ruby -w</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop -l
+# or
+$ rubocop --lint</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rubocop-as-a-formatter"><a class="anchor" href="#rubocop-as-a-formatter"></a>RuboCop as a formatter</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There&#8217;s a handy shortcut to run autocorrection only on code layout (a.k.a. formatting) offenses:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop -x
+# or
+$ rubocop --fix-layout</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This option was introduced in RuboCop 0.57.0.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="command-line-flags"><a class="anchor" href="#command-line-flags"></a>Command-line flags</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For more details check the available command-line options:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop -h</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To specify multiple cops for one flag, separate cops with commas and no spaces:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop --only Rails/Blank,Layout/HeredocIndentation,Naming/FileName</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command flag</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-a/--autocorrect</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Autocorrect offenses (only when it&#8217;s safe). See <a href="autocorrect.html" class="xref page">Autocorrect</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--auto-correct</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated alias of <code>-a/--autocorrect</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-A/--autocorrect-all</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Autocorrect offenses (safe and unsafe). See <a href="autocorrect.html" class="xref page">Autocorrect</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--auto-correct-all</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated alias of <code>-A/--autocorrect-all</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--auto-gen-config</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generate a configuration file acting as a TODO list.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--[no-]color</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Force color output on or off.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-c/--config</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Run with specified config file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-C/--cache</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Store and reuse results for faster operation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-d/--debug</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays some extra debug output.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--disable-pending-cops</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Run without pending cops.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--disable-uncorrectable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used with --autocorrect to annotate any offenses that do not support autocorrect with <code>rubocop:todo</code> comments.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-D/--[no-]display-cop-names</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays cop names in offense messages. Default is true.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--display-only-fail-level-offenses</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only output offense messages at the specified <code>--fail-level</code> or above.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--display-only-correctable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only output correctable offense messages.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--display-only-safe-correctable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only output safe correctable offense messages.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--enable-pending-cops</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Run with pending cops.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--except</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Run all cops enabled by configuration except the specified cop(s) and/or departments.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--exclude-limit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Limit how many individual files <code>--auto-gen-config</code> can list in <code>Exclude</code> parameters, default is 15.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-E/--extra-details</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays extra details in offense messages.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-f/--format</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Choose a formatter, see <a href="../formatters.html" class="xref page">Formatters</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-F/--fail-fast</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Inspect files in order of modification time and stops after first file with offenses.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--fail-level</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minimum <a href="../configuration.html#severity" class="xref page">severity</a> for exit with error code. Full severity name or upper case initial can be given. Normally, autocorrected offenses are ignored. Use <code>A</code> or <code>autocorrect</code> if you&#8217;d like them to trigger failure.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--force-exclusion</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Force excluding files specified in the configuration <code>Exclude</code> even if they are explicitly passed as arguments.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--only-recognized-file-types</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Inspect files given on the command line only if they are listed in <code>AllCops</code>/<code>Include</code> parameters of user configuration or default configuration.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-h/--help</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Print usage information.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--ignore-parent-exclusion</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ignores all Exclude: settings from all .rubocop.yml files present in parent folders. This is useful when you are importing submodules when you want to test them without being affected by the parent module&#8217;s rubocop settings.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--ignore-unrecognized-cops</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ignore unrecognized cops or departments in the config.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--init</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generate a .rubocop.yml file in the current directory.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-l/--lint</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Run only lint cops.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-L/--list-target-files</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List all files RuboCop will inspect.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--[no-]auto-gen-only-exclude</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generate only <code>Exclude</code> parameters and not <code>Max</code> when running <code>--auto-gen-config</code>, except if the number of files with offenses is bigger than <code>exclude-limit</code>. Default is false</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--[no-]auto-gen-timestamp</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Include the date and time when <code>--auto-gen-config</code> was run in the config file it generates. Default is true.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--[no-]offense-counts</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Show offense counts in config file generated by <code>--auto-gen-config</code>. Default is true.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--only</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Run only the specified cop(s) and/or cops in the specified departments.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-o/--out</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Write output to a file instead of STDOUT.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--[no-]parallel</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use available CPUs to execute inspection in parallel. Default is parallel.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--raise-cop-error</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Raise cop-related errors with cause and location. This is used to prevent cops from failing silently. Default is false.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-r/--require</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Require Ruby file (see <a href="../extensions.html#loading-extensions" class="xref page">Loading Extensions</a>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--regenerate-todo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Regenerate the TODO list using the same options as the last time it was generated with <code>--auto-gen-config</code> (generation options can be overridden).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--safe</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Run only safe cops.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--safe-auto-correct</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated alias of <code>-a/--autocorrect</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--show-cops</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows available cops and their configuration.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--show-docs-url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows urls for documentation pages of supplied cops.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--stderr</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Write all output to stderr except for the autocorrected source. This is especially useful when combined with <code>--autocorrect</code> and <code>--stdin</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-s/--stdin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pipe source from STDIN. This is useful for editor integration. Takes one argument, a path, relative to the root of the project. RuboCop will use this path to determine which cops are enabled (via eg. Include/Exclude), and so that certain cops like Naming/FileName can be checked.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-S/--display-style-guide</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display style guide URLs in offense messages.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-x/--fix-layout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Autocorrect only code layout (formatting) offenses.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-v/--version</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the current version and exits.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-V/--verbose-version</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays the current version plus the version of Parser and Ruby.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Default command-line options are loaded from <code>.rubocop</code> and <code>RUBOCOP_OPTS</code> and are combined with command-line options that are explicitly passed to <code>rubocop</code>.
+Thus, the options have the following order of precedence (from highest to lowest):</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Explicit command-line options</p>
+</li>
+<li>
+<p>Options from <code>RUBOCOP_OPTS</code> environment variable</p>
+</li>
+<li>
+<p>Options from <code>.rubocop</code> file.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exit-codes"><a class="anchor" href="#exit-codes"></a>Exit codes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RuboCop exits with the following status codes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>0</code> if no offenses are found or if the severity of all offenses are less than
+<code>--fail-level</code>. (By default, if you use <code>--autocorrect</code>, offenses which are
+autocorrected do not cause RuboCop to fail.)</p>
+</li>
+<li>
+<p><code>1</code> if one or more offenses equal or greater to <code>--fail-level</code> are found. (By
+default, this is any offense which is not autocorrected.)</p>
+</li>
+<li>
+<p><code>2</code> if RuboCop terminates abnormally due to invalid configuration, invalid CLI
+options, or an internal error.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../compatibility.html">Compatibility</a></span>
+  <span class="next"><a href="autocorrect.html">Autocorrect</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>Copyright (C) 2012-2023 <a href="https://batsov.com">Bozhidar Batsov</a> and RuboCop contributors.</p>
+  <p>Except where otherwise noted, docs.rubocop.org is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a> (CC BY-SA 4.0).</p>
+</footer>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@docsearch/js@3.3.3"></script>
+<script type="text/javascript">
+ docsearch({
+   container: '#docsearch',
+   appId: '2GTF3GZ5BX',
+   apiKey: 'b6bbe6539f46224f4f39cd14a1b7ae78',
+   indexName: 'rubocop',
+   debug: false // Set debug to true if you want to inspect the dropdown
+ });
+</script>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

@@ -15,7 +15,6 @@
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140153536-1"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-140153536-1')</script>
-    <script>var uiRootPath = '../_'</script>
   </head>
   <body class="article">
 <header class="header" role="banner">
@@ -219,6 +218,9 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="1.55/index.html">1.55</a>
         </li>
         <li class="version">
           <a href="1.54/index.html">1.54</a>
@@ -486,7 +488,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.54/index.html" class="home-link"></a>
+  <a href="1.55/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -498,6 +500,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_style.html">default</a>
+    <a class="version" href="1.55/cops_style.html">1.55</a>
     <a class="version" href="1.54/cops_style.html">1.54</a>
     <a class="version" href="1.53/cops_style.html">1.53</a>
     <a class="version" href="1.52/cops_style.html">1.52</a>
@@ -1078,6 +1081,14 @@ Required Ruby version: 2.7
 <p>This cop identifies places where <code>do_something(*args, &amp;block)</code>
 can be replaced by <code>do_something(&#8230;&#8203;)</code>.</p>
 </div>
+<div class="paragraph">
+<p>In Ruby 3.2, anonymous args/kwargs forwarding has been added.</p>
+</div>
+<div class="paragraph">
+<p>This cop also identifies places where <code>use_args(<strong>args)</code>/<code>use_kwargs(<strong>kwargs)</code> can be
+replaced by <code>use_args(</strong>)</code>/<code>use_kwargs(</strong>)</code>; if desired, this functionality can be disabled
+by setting UseAnonymousForwarding: false.</p>
+</div>
 <div class="sect2">
 <h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
 <div class="listingblock">
@@ -1099,7 +1110,37 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowonlyrestargument-true-default"><a class="anchor" href="#allowonlyrestargument-true-default"></a>AllowOnlyRestArgument: true (default)</h4>
+<h4 id="useanonymousforwarding-true-default-only-relevant-for-ruby-3-2"><a class="anchor" href="#useanonymousforwarding-true-default-only-relevant-for-ruby-3-2"></a>UseAnonymousForwarding: true (default, only relevant for Ruby &gt;= 3.2)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+def foo(*args, **kwargs)
+  args_only(*args)
+  kwargs_only(**kwargs)
+end
+
+# good
+def foo(*, **)
+  args_only(*)
+  kwargs_only(**)
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="useanonymousforwarding-false-only-relevant-for-ruby-3-2"><a class="anchor" href="#useanonymousforwarding-false-only-relevant-for-ruby-3-2"></a>UseAnonymousForwarding: false (only relevant for Ruby &gt;= 3.2)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+def foo(*args, **kwargs)
+  args_only(*args)
+  kwargs_only(**kwargs)
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowonlyrestargument-true-default-only-relevant-for-ruby-3-2"><a class="anchor" href="#allowonlyrestargument-true-default-only-relevant-for-ruby-3-2"></a>AllowOnlyRestArgument: true (default, only relevant for Ruby &lt; 3.2)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -1114,7 +1155,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowonlyrestargument-false"><a class="anchor" href="#allowonlyrestargument-false"></a>AllowOnlyRestArgument: false</h4>
+<h4 id="allowonlyrestargument-false-only-relevant-for-ruby-3-2"><a class="anchor" href="#allowonlyrestargument-false-only-relevant-for-ruby-3-2"></a>AllowOnlyRestArgument: false (only relevant for Ruby &lt; 3.2)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1149,6 +1190,11 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AllowOnlyRestArgument</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UseAnonymousForwarding</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 </tr>
@@ -8898,9 +8944,9 @@ EnforcedStyle.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.10</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.55</p></td>
 </tr>
 </tbody>
 </table>
@@ -8912,6 +8958,19 @@ sequences of values to hashes.</p>
 <p>Correction code from splat argument (<code>Hash[*ary]</code>) is not simply determined. For example,
 <code>Hash[*ary]</code> can be replaced with <code>ary.each_slice(2).to_h</code> but it will be complicated.
 So, <code>AllowSplatArgument</code> option is true by default to allow splat argument for simple code.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-21"><a class="anchor" href="#safety-21"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because <code>ArgumentError</code> occurs
+if the number of elements is odd:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">Hash[[[1, 2], [3]]] #=&gt; {1=&gt;2, 3=&gt;nil}
+[[1, 2], [5]].to_h  #=&gt; wrong array length at 1 (expected 2, was 1) (ArgumentError)</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
@@ -9033,7 +9092,7 @@ If you have an array of two-element arrays, you can put
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-21"><a class="anchor" href="#safety-21"></a>Safety</h3>
+<h3 id="safety-22"><a class="anchor" href="#safety-22"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it cannot be guaranteed that the receiver
 is a <code>Hash</code>. The <code>AllowedReceivers</code> configuration can mitigate,
@@ -9156,7 +9215,7 @@ when used <code>==</code>.
 And do not check <code>Hash#delete_if</code> and <code>Hash#keep_if</code> to change receiver object.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-22"><a class="anchor" href="#safety-22"></a>Safety</h3>
+<h3 id="safety-23"><a class="anchor" href="#safety-23"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it cannot be guaranteed that the receiver
 is a <code>Hash</code> or responds to the replacement method.</p>
@@ -9590,7 +9649,7 @@ It should only be enabled on Ruby version 2.5 or newer.
 (<code>transform_keys</code> was added in Ruby 2.5.)</p>
 </div>
 <div class="sect2">
-<h3 id="safety-23"><a class="anchor" href="#safety-23"></a>Safety</h3>
+<h3 id="safety-24"><a class="anchor" href="#safety-24"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, as it can produce false positives if we are
 transforming an enumerable of key-value-like pairs that isn&#8217;t actually
@@ -9664,7 +9723,7 @@ transforming the values of a hash, and tries to use a simpler &amp; faster
 call to <code>transform_values</code> instead.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-24"><a class="anchor" href="#safety-24"></a>Safety</h3>
+<h3 id="safety-25"><a class="anchor" href="#safety-25"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, as it can produce false positives if we are
 transforming an enumerable of key-value-like pairs that isn&#8217;t actually
@@ -9739,7 +9798,7 @@ in a future major RuboCop release.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-25"><a class="anchor" href="#safety-25"></a>Safety</h3>
+<h3 id="safety-26"><a class="anchor" href="#safety-26"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is unsafe because changing the order of method invocations
 may change the behavior of the code. For example:</p>
@@ -10204,7 +10263,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="safety-26"><a class="anchor" href="#safety-26"></a>Safety</h3>
+<h3 id="safety-27"><a class="anchor" href="#safety-27"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is unsafe because there is no guarantee that all predicate methods
 will return a boolean value. Those methods can be allowed with <code>AllowedMethods</code> config.</p>
@@ -10493,7 +10552,7 @@ end</code></pre>
 <p>Use <code>Kernel#loop</code> for infinite loops.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-27"><a class="anchor" href="#safety-27"></a>Safety</h3>
+<h3 id="safety-28"><a class="anchor" href="#safety-28"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe as the rule should not necessarily apply if the loop
 body might raise a <code>StopIteration</code> exception; contrary to other infinite
@@ -10624,7 +10683,7 @@ of the block that is passed to the method should be defined in
 <code>InverseBlocks</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-28"><a class="anchor" href="#safety-28"></a>Safety</h3>
+<h3 id="safety-29"><a class="anchor" href="#safety-29"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it cannot be guaranteed that the method
 and its inverse method are both defined on receiver, and also are
@@ -10742,7 +10801,7 @@ For example,</p>
 <p>will suggest both <code>even?</code> and <code>odd?</code> to be inverted, but only <code>!=</code> (and not <code>==</code>).</p>
 </div>
 <div class="sect2">
-<h3 id="safety-29"><a class="anchor" href="#safety-29"></a>Safety</h3>
+<h3 id="safety-30"><a class="anchor" href="#safety-30"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it cannot be guaranteed that the method
 and its inverse method are both defined on receiver, and also are
@@ -11219,7 +11278,7 @@ lambda.(x, y)</code></pre>
 the end of a line.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-30"><a class="anchor" href="#safety-30"></a>Safety</h3>
+<h3 id="safety-31"><a class="anchor" href="#safety-31"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it cannot be guaranteed that the
 receiver is a string, in which case replacing <code>&lt;&lt;</code> with <code>\</code>
@@ -11599,7 +11658,7 @@ transformed.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-31"><a class="anchor" href="#safety-31"></a>Safety</h3>
+<h3 id="safety-32"><a class="anchor" href="#safety-32"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, as it can produce false positives if the receiver
 is not an <code>Enumerable</code>.</p>
@@ -11660,7 +11719,7 @@ something.to_h { |v| [v, v * 2] }
 written with just <code>to_set</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-32"><a class="anchor" href="#safety-32"></a>Safety</h3>
+<h3 id="safety-33"><a class="anchor" href="#safety-33"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, as it can produce false positives if the receiver
 is not an <code>Enumerable</code>.</p>
@@ -12556,7 +12615,7 @@ a.clamp(..b) # Same as `[a, b].min`</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="safety-33"><a class="anchor" href="#safety-33"></a>Safety</h3>
+<h3 id="safety-34"><a class="anchor" href="#safety-34"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because even if a value has <code>&lt;</code> or <code>&gt;</code> method,
 it is not necessarily <code>Comparable</code>.</p>
@@ -13065,7 +13124,7 @@ contains any private methods</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="safety-34"><a class="anchor" href="#safety-34"></a>Safety</h3>
+<h3 id="safety-35"><a class="anchor" href="#safety-35"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is unsafe (and is disabled by default) because <code>extend self</code>
 and <code>module_function</code> do not behave exactly the same.</p>
@@ -14011,7 +14070,7 @@ the <code>shareable_constant_value</code> directive is used.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-35"><a class="anchor" href="#safety-35"></a>Safety</h3>
+<h3 id="safety-36"><a class="anchor" href="#safety-36"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe since any mutations on objects that
 are made frozen will change from being accepted to raising <code>FrozenError</code>,
@@ -15793,7 +15852,7 @@ populated with objects which can be compared with integers, but are
 not themselves <code>Integer</code> polymorphic.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-36"><a class="anchor" href="#safety-36"></a>Safety</h3>
+<h3 id="safety-37"><a class="anchor" href="#safety-37"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it cannot be guaranteed that the receiver
 defines the predicates or can be compared to a number, which may lead
@@ -16179,7 +16238,7 @@ end</code></pre>
 to be used for performance, version compatibility, and potential security issues.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-37"><a class="anchor" href="#safety-37"></a>Safety</h3>
+<h3 id="safety-38"><a class="anchor" href="#safety-38"></a>Safety</h3>
 <div class="paragraph">
 <p>Note that this cop may flag false positives; for instance, the following legal
 use of a hand-rolled <code>OpenStruct</code> type would be considered an offense:</p>
@@ -16410,7 +16469,7 @@ end</code></pre>
 that do not come at the end of the argument list.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-38"><a class="anchor" href="#safety-38"></a>Safety</h3>
+<h3 id="safety-39"><a class="anchor" href="#safety-39"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because changing a method signature will
 implicitly change behavior.</p>
@@ -16481,7 +16540,7 @@ boolean arguments when defining methods. <code>respond_to_missing?</code> method
 These are customizable with <code>AllowedMethods</code> option.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-39"><a class="anchor" href="#safety-39"></a>Safety</h3>
+<h3 id="safety-40"><a class="anchor" href="#safety-40"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because changing a method signature will
 implicitly change behavior.</p>
@@ -17127,7 +17186,7 @@ puts Regexp.last_match(1)</code></pre>
 <code>EnforcedStyle: verbose</code> configuration.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-40"><a class="anchor" href="#safety-40"></a>Safety</h3>
+<h3 id="safety-41"><a class="anchor" href="#safety-41"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it cannot be guaranteed that the receiver
 is a <code>Hash</code> or responds to the replacement methods.</p>
@@ -17579,7 +17638,7 @@ rand(1...7)</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.40</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.55</p></td>
 </tr>
 </tbody>
 </table>
@@ -17613,7 +17672,7 @@ This cop is limited to methods with single parameter.
 </div>
 </div>
 <div class="sect2">
-<h3 id="safety-41"><a class="anchor" href="#safety-41"></a>Safety</h3>
+<h3 id="safety-42"><a class="anchor" href="#safety-42"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because of the following limitations:</p>
 </div>
@@ -17640,6 +17699,8 @@ global is changed, <code>''</code> is no longer a redundant argument.</p>
 array.join('')
 [1, 2, 3].join("")
 array.sum(0)
+exit(true)
+exit!(false)
 string.split(" ")
 "first\nsecond".split(" ")
 string.chomp("\n")
@@ -17650,6 +17711,8 @@ A.foo(2)
 array.join
 [1, 2, 3].join
 array.sum
+exit
+exit!
 string.split
 "first second".split
 string.chomp
@@ -17676,7 +17739,7 @@ A.foo</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Methods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"join"&#8658;"", "sum"&#8658;0, "split"&#8658;" ", "chomp"&#8658;"\n", "chomp!"&#8658;"\n"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"join"&#8658;"", "sum"&#8658;0, "exit"&#8658;true, "exit!"&#8658;false, "split"&#8658;" ", "chomp"&#8658;"\n", "chomp!"&#8658;"\n"}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -18312,7 +18375,7 @@ do_something(foo: bar, baz: qux)</code></pre>
 <p>Checks for redundant <code>each</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-42"><a class="anchor" href="#safety-42"></a>Safety</h3>
+<h3 id="safety-43"><a class="anchor" href="#safety-43"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, as it can produce false positives if the receiver
 is not an <code>Enumerator</code>.</p>
@@ -18460,7 +18523,7 @@ but not when disabled.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-43"><a class="anchor" href="#safety-43"></a>Safety</h3>
+<h3 id="safety-44"><a class="anchor" href="#safety-44"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it cannot be guaranteed that the receiver
 does not have a different implementation of <code>fetch</code>.</p>
@@ -18887,7 +18950,7 @@ initializer.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-44"><a class="anchor" href="#safety-44"></a>Safety</h3>
+<h3 id="safety-45"><a class="anchor" href="#safety-45"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because if subclass overrides <code>initialize</code> method with
 a different arity than superclass.</p>
@@ -19038,7 +19101,7 @@ end</code></pre>
 <p>Checks for strings that are just an interpolated expression.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-45"><a class="anchor" href="#safety-45"></a>Safety</h3>
+<h3 id="safety-46"><a class="anchor" href="#safety-46"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is unsafe because when calling a destructive method to string,
 the resulting string may have different behavior or raise <code>FrozenError</code>.</p>
@@ -19791,7 +19854,7 @@ end</code></pre>
 modification methods.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-46"><a class="anchor" href="#safety-46"></a>Safety</h3>
+<h3 id="safety-47"><a class="anchor" href="#safety-47"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, because it can produce false positives for
 user defined methods having one of the expected names, but not modifying
@@ -19920,7 +19983,7 @@ last element. Similarly, <code>Enumerable#min_by</code> and
 after which only the first or last element is used.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-47"><a class="anchor" href="#safety-47"></a>Safety</h3>
+<h3 id="safety-48"><a class="anchor" href="#safety-48"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, because <code>sort&#8230;&#8203;last</code> and <code>max</code> may not return the
 same element in all cases.</p>
@@ -20348,7 +20411,7 @@ x =~ /home\//</code></pre>
 <p>Sort <code>require</code> and <code>require_relative</code> in alphabetical order.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-48"><a class="anchor" href="#safety-48"></a>Safety</h3>
+<h3 id="safety-49"><a class="anchor" href="#safety-49"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because it will obviously change the execution order.</p>
 </div>
@@ -20773,7 +20836,7 @@ end</code></pre>
 <p>Checks if <code>return</code> or <code>return nil</code> is used in predicate method definitions.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-49"><a class="anchor" href="#safety-49"></a>Safety</h3>
+<h3 id="safety-50"><a class="anchor" href="#safety-50"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is marked as unsafe because the change of the return value
 from <code>nil</code> to <code>false</code> could potentially lead to incompatibility issues.</p>
@@ -20937,7 +21000,7 @@ We have limited the cop to not register an offense for method chains
 that exceed this option is set.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-50"><a class="anchor" href="#safety-50"></a>Safety</h3>
+<h3 id="safety-51"><a class="anchor" href="#safety-51"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is unsafe because if a value is <code>false</code>, the resulting
 code will have different behavior or raise an error.</p>
@@ -21180,7 +21243,7 @@ See <a href="https://bugs.ruby-lang.org/issues/17030" class="bare">https://bugs.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-51"><a class="anchor" href="#safety-51"></a>Safety</h3>
+<h3 id="safety-52"><a class="anchor" href="#safety-52"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is marked as unsafe because <code>MatchData</code> will
 not be created by <code>grep</code>, but may have previously been relied
@@ -21661,7 +21724,7 @@ explicit_receiver.raise</code></pre>
 argument. In such cases, dig should be replaced with [].</p>
 </div>
 <div class="sect2">
-<h3 id="safety-52"><a class="anchor" href="#safety-52"></a>Safety</h3>
+<h3 id="safety-53"><a class="anchor" href="#safety-53"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it cannot be guaranteed that the receiver
 is an <code>Enumerable</code> or does not have a nonstandard implementation
@@ -21944,7 +22007,7 @@ Required Ruby version: 2.6
 <code>ary[start..-1]</code> on Ruby 2.6+.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-53"><a class="anchor" href="#safety-53"></a>Safety</h3>
+<h3 id="safety-54"><a class="anchor" href="#safety-54"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because <code>x..-1</code> and <code>x..</code> are only guaranteed to
 be equivalent for <code>Array#[]</code>, <code>String#[]</code>, and the cop cannot determine what class
@@ -22158,7 +22221,7 @@ puts $*</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="safety-54"><a class="anchor" href="#safety-54"></a>Safety</h3>
+<h3 id="safety-55"><a class="anchor" href="#safety-55"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is marked as unsafe because if <code>RequireEnglish</code> is not
 true, replacing perl-style variables with english variables will break.</p>
@@ -22403,7 +22466,7 @@ replaced with a module. Classes should be used only when it makes sense to creat
 instances out of them.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-55"><a class="anchor" href="#safety-55"></a>Safety</h3>
+<h3 id="safety-56"><a class="anchor" href="#safety-56"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, because it is possible that this class is a parent
 for some other subclass, monkey-patched with instance methods or
@@ -22551,7 +22614,7 @@ warn('hello')</code></pre>
 <p>Checks for uses of <code>String#split</code> with empty string or regexp literal argument.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-56"><a class="anchor" href="#safety-56"></a>Safety</h3>
+<h3 id="safety-57"><a class="anchor" href="#safety-57"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it cannot be guaranteed that the receiver
 is actually a string. If another class has a <code>split</code> method with
@@ -22647,7 +22710,7 @@ This is useful when the receiver is some expression that returns string like <co
 instead of a string literal.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-57"><a class="anchor" href="#safety-57"></a>Safety</h3>
+<h3 id="safety-58"><a class="anchor" href="#safety-58"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe in <code>aggressive</code> mode, as it cannot be guaranteed that
 the receiver is actually a string, which can result in a false positive.</p>
@@ -22760,7 +22823,7 @@ Pathname.new('/') + 'test'</code></pre>
 symbols is preferred instead.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-58"><a class="anchor" href="#safety-58"></a>Safety</h3>
+<h3 id="safety-59"><a class="anchor" href="#safety-59"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because while symbols are preferred for hash keys,
 there are instances when string keys are required.</p>
@@ -23143,7 +23206,7 @@ from the String class.</p>
 <p>Checks for inheritance from Struct.new.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-59"><a class="anchor" href="#safety-59"></a>Safety</h3>
+<h3 id="safety-60"><a class="anchor" href="#safety-60"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is unsafe because it will change the inheritance
 tree (e.g. return value of <code>Module#ancestors</code>) of the constant.</p>
@@ -23215,7 +23278,7 @@ end</code></pre>
 <p>Enforces the use of shorthand-style swapping of 2 variables.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-60"><a class="anchor" href="#safety-60"></a>Safety</h3>
+<h3 id="safety-61"><a class="anchor" href="#safety-61"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is unsafe, because the temporary variable used to
 swap variables will be removed, but may be referred to elsewhere.</p>
@@ -23314,7 +23377,16 @@ array of 2 or fewer elements.</p>
 %i[foo bar baz]
 
 # bad
-[:foo, :bar, :baz]</code></pre>
+[:foo, :bar, :baz]
+
+# bad (contains spaces)
+%i[foo\ bar baz\ quux]
+
+# bad (contains [] with spaces)
+%i[foo \[ \]]
+
+# bad (contains () with spaces)
+%i(foo \( \))</code></pre>
 </div>
 </div>
 </div>
@@ -23459,7 +23531,7 @@ please set <code>true</code> to <code>AllowMethodsWithArguments</code>.
 These are customizable with <code>AllowedMethods</code> option.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-61"><a class="anchor" href="#safety-61"></a>Safety</h3>
+<h3 id="safety-62"><a class="anchor" href="#safety-62"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because there is a difference that a <code>Proc</code>
 generated from <code>Symbol#to_proc</code> behaves as a lambda, while
@@ -24409,7 +24481,7 @@ that comma to be present. Blocks with more than one argument never
 require a trailing comma.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-62"><a class="anchor" href="#safety-62"></a>Safety</h3>
+<h3 id="safety-63"><a class="anchor" href="#safety-63"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because a trailing comma can indicate there are
 more parameters that are not used.</p>
@@ -25836,7 +25908,7 @@ i.e. comparison operations where the order of expression is reversed.
 eg. <code>5 == x</code></p>
 </div>
 <div class="sect2">
-<h3 id="safety-63"><a class="anchor" href="#safety-63"></a>Safety</h3>
+<h3 id="safety-64"><a class="anchor" href="#safety-64"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because comparison operators can be defined
 differently on different classes, and are not guaranteed to
@@ -26010,7 +26082,7 @@ This cop complements <code>Style/YodaCondition</code> cop, which has a similar p
 </div>
 </div>
 <div class="sect2">
-<h3 id="safety-64"><a class="anchor" href="#safety-64"></a>Safety</h3>
+<h3 id="safety-65"><a class="anchor" href="#safety-65"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because binary operators can be defined
 differently on different classes, and are not guaranteed to
@@ -26112,7 +26184,7 @@ so allow <code>size == 0</code> and <code>size.zero?</code>.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-65"><a class="anchor" href="#safety-65"></a>Safety</h3>
+<h3 id="safety-66"><a class="anchor" href="#safety-66"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it cannot be guaranteed that the receiver
 has an <code>empty?</code> method that is defined in terms of <code>length</code>. If there
