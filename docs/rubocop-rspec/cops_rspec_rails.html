@@ -368,6 +368,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="2.23/index.html">2.23</a>
+        </li>
+        <li class="version">
           <a href="2.22/index.html">2.22</a>
         </li>
         <li class="version">
@@ -390,9 +393,6 @@
         </li>
         <li class="version">
           <a href="2.15/index.html">2.15</a>
-        </li>
-        <li class="version">
-          <a href="2.14/index.html">2.14</a>
         </li>
         <li class="version">
           <a href="1.44/index.html">1.44</a>
@@ -419,6 +419,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_rspec_rails.html">default</a>
+    <a class="version" href="2.23/cops_rspec_rails.html">2.23</a>
     <a class="version" href="2.22/cops_rspec_rails.html">2.22</a>
     <a class="version" href="2.21/cops_rspec_rails.html">2.21</a>
     <a class="version" href="2.20/cops_rspec_rails.html">2.20</a>
@@ -427,7 +428,6 @@
     <a class="version" href="2.17/cops_rspec_rails.html">2.17</a>
     <a class="version" href="2.16/cops_rspec_rails.html">2.16</a>
     <a class="version" href="2.15/cops_rspec_rails.html">2.15</a>
-    <a class="version" href="2.14/cops_rspec_rails.html">2.14</a>
     <a class="version is-missing" href="1.44/index.html">1.44</a>
   </div>
 </div>
@@ -899,15 +899,22 @@ expect(b).not_to eq(a)</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.23</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p>Enforces use of <code>be_invalid</code> or <code>not_to</code> for negated be_valid.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-2"><a class="anchor" href="#safety-2"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe because it cannot guarantee that
+the test target is an instance of <code>ActiveModel::Validations`</code>.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
@@ -1006,7 +1013,7 @@ expect(foo).to be_invalid</code></pre>
 <p>Prefer to travel in <code>before</code> rather than <code>around</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-2"><a class="anchor" href="#safety-2"></a>Safety</h3>
+<h3 id="safety-3"><a class="anchor" href="#safety-3"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because the automatic <code>travel_back</code> is only run
 on test cases that are considered as Rails related.</p>

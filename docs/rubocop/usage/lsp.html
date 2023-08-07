@@ -449,6 +449,9 @@
           <a href="../../rubocop-rspec/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../../rubocop-rspec/2.23/index.html">2.23</a>
+        </li>
+        <li class="version">
           <a href="../../rubocop-rspec/2.22/index.html">2.22</a>
         </li>
         <li class="version">
@@ -471,9 +474,6 @@
         </li>
         <li class="version">
           <a href="../../rubocop-rspec/2.15/index.html">2.15</a>
-        </li>
-        <li class="version">
-          <a href="../../rubocop-rspec/2.14/index.html">2.14</a>
         </li>
         <li class="version">
           <a href="../../rubocop-rspec/1.44/index.html">1.44</a>
@@ -716,6 +716,23 @@ vim.api.nvim_create_autocmd("FileType", {
 </td>
 <td class="content">
 The <code>safeAutocorrect</code> parameter was introduced in RuboCop 1.54.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>As execute commands in the <code>workspace/executeCommand</code> parameters, it provides <code>rubocop.formatAutocorrects</code> for safe autocorrections (<code>rubocop -a</code>) and
+<code>rubocop.formatAutocorrectsAll</code> for unsafe autocorrections (<code>rubocop -A</code>).
+These parameters take precedence over the <code>initializationOptions:safeAutocorrect</code> value set in the <code>initialize</code> parameter.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>rubocop.formatAutocorrectsAll</code> execute command was introduced in RuboCop 1.56.
 </td>
 </tr>
 </table>

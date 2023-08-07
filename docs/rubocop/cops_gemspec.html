@@ -449,6 +449,9 @@
           <a href="../rubocop-rspec/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-rspec/2.23/index.html">2.23</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-rspec/2.22/index.html">2.22</a>
         </li>
         <li class="version">
@@ -471,9 +474,6 @@
         </li>
         <li class="version">
           <a href="../rubocop-rspec/2.15/index.html">2.15</a>
-        </li>
-        <li class="version">
-          <a href="../rubocop-rspec/2.14/index.html">2.14</a>
         </li>
         <li class="version">
           <a href="../rubocop-rspec/1.44/index.html">1.44</a>
@@ -1063,13 +1063,31 @@ spec.add_runtime_dependency 'rubocop'
 # good
 spec.add_runtime_dependency 'rubocop'
 
-spec.add_runtime_dependency 'rspec'
-
-# good only if TreatCommentsAsGroupSeparators is true
+spec.add_runtime_dependency 'rspec'</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="treatcommentsasgroupseparators-true-default"><a class="anchor" href="#treatcommentsasgroupseparators-true-default"></a>TreatCommentsAsGroupSeparators: true (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
 # For code quality
 spec.add_dependency 'rubocop'
 # For tests
 spec.add_dependency 'rspec'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="treatcommentsasgroupseparators-false"><a class="anchor" href="#treatcommentsasgroupseparators-false"></a>TreatCommentsAsGroupSeparators: false</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+# For code quality
+spec.add_dependency 'rubocop'
+# For tests
+spec.add_dependency 'rspec'</code></pre>
+</div>
 </div>
 </div>
 </div>
