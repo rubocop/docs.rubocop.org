@@ -139,6 +139,9 @@
           <a href="../rubocop/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.56/index.html">1.56</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.55/index.html">1.55</a>
         </li>
         <li class="version">
@@ -407,7 +410,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.55/index.html" class="home-link"></a>
+  <a href="../rubocop/1.56/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop RSpec</a></li>
@@ -926,7 +929,10 @@ the test target is an instance of <code>ActiveModel::Validations`</code>.</p>
 expect(foo).to be_invalid
 
 # good
-expect(foo).not_to be_valid</code></pre>
+expect(foo).not_to be_valid
+
+# good (with method chain)
+expect(foo).to be_invalid.and be_odd</code></pre>
 </div>
 </div>
 </div>
@@ -938,7 +944,10 @@ expect(foo).not_to be_valid</code></pre>
 expect(foo).not_to be_valid
 
 # good
-expect(foo).to be_invalid</code></pre>
+expect(foo).to be_invalid
+
+# good (with method chain)
+expect(foo).to be_invalid.or be_even</code></pre>
 </div>
 </div>
 </div>
