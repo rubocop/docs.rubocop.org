@@ -294,6 +294,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.19/index.html">1.19</a>
+        </li>
+        <li class="version">
           <a href="1.18/index.html">1.18</a>
         </li>
         <li class="version">
@@ -403,6 +406,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_performance.html">default</a>
+    <a class="version" href="1.19/cops_performance.html">1.19</a>
     <a class="version" href="1.18/cops_performance.html">1.18</a>
     <a class="version" href="1.17/cops_performance.html">1.17</a>
     <a class="version" href="1.16/cops_performance.html">1.16</a>
@@ -2360,6 +2364,84 @@ ary.compact.map(&amp;:foo)</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="performancemapmethodchain"><a class="anchor" href="#performancemapmethodchain"></a>Performance/MapMethodChain</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.19</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks if the map method is used in a chain.</p>
+</div>
+<div class="paragraph">
+<p>Autocorrection is not supported because an appropriate block variable name cannot be determined automatically.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class X
+  def initialize
+    @@num = 0
+  end
+
+  def foo
+    @@num += 1
+    self
+  end
+
+  def bar
+    @@num * 2
+  end
+end
+
+[X.new, X.new].map(&amp;:foo).map(&amp;:bar) # =&gt; [4, 4]
+[X.new, X.new].map { |x| x.foo.bar } # =&gt; [2, 4]</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="safety-12"><a class="anchor" href="#safety-12"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe because false positives occur if the number of times the first method is executed
+affects the return value of subsequent methods.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="examples-25"><a class="anchor" href="#examples-25"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+array.map(&amp;:foo).map(&amp;:bar)
+
+# good
+array.map { |item| item.foo.bar }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="performancemethodobjectasblock"><a class="anchor" href="#performancemethodobjectasblock"></a>Performance/MethodObjectAsBlock</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -2395,7 +2477,7 @@ use of <code>&amp;method</code>, and passed as arguments to method calls.
 It is faster to replace those with explicit blocks, calling those methods inside.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-25"><a class="anchor" href="#examples-25"></a>Examples</h3>
+<h3 id="examples-26"><a class="anchor" href="#examples-26"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2460,14 +2542,14 @@ especially in case of single-threaded
 applications with multiple <code>OpenStruct</code> instantiations.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-12"><a class="anchor" href="#safety-12"></a>Safety</h3>
+<h3 id="safety-13"><a class="anchor" href="#safety-13"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because <code>OpenStruct.new</code> and <code>Struct.new</code>
 are not equivalent.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-26"><a class="anchor" href="#examples-26"></a>Examples</h3>
+<h3 id="examples-27"><a class="anchor" href="#examples-27"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2527,14 +2609,14 @@ end points of the <code>Range</code>. In a great majority of cases, this is what
 is wanted.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-13"><a class="anchor" href="#safety-13"></a>Safety</h3>
+<h3 id="safety-14"><a class="anchor" href="#safety-14"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because <code>Range#include?</code> (or <code>Range#member?</code>) and <code>Range#cover?</code>
 are not equivalent behavior.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-27"><a class="anchor" href="#examples-27"></a>Examples</h3>
+<h3 id="examples-28"><a class="anchor" href="#examples-28"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2598,7 +2680,7 @@ are not equivalent behavior.</p>
 where <code>yield</code> would do just as well.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-28"><a class="anchor" href="#examples-28"></a>Examples</h3>
+<h3 id="examples-29"><a class="anchor" href="#examples-29"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2694,13 +2776,13 @@ behavior is appropriately overridden in subclass. For example,
 </div>
 </div>
 <div class="sect2">
-<h3 id="safety-14"><a class="anchor" href="#safety-14"></a>Safety</h3>
+<h3 id="safety-15"><a class="anchor" href="#safety-15"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because <code>===</code> and <code>==</code> do not always behave the same.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-29"><a class="anchor" href="#examples-29"></a>Examples</h3>
+<h3 id="examples-30"><a class="anchor" href="#examples-30"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2807,7 +2889,7 @@ returns <code>#&lt;MatchData&gt;</code>/<code>nil</code>. The return value of <c
 index/<code>nil</code> and is more performant.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-30"><a class="anchor" href="#examples-30"></a>Examples</h3>
+<h3 id="examples-31"><a class="anchor" href="#examples-31"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2860,14 +2942,14 @@ You can set the maximum number of key-value pairs to consider
 an offense with <code>MaxKeyValuePairs</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-15"><a class="anchor" href="#safety-15"></a>Safety</h3>
+<h3 id="safety-16"><a class="anchor" href="#safety-16"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because RuboCop cannot determine if the
 receiver of <code>merge!</code> is actually a hash or not.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-31"><a class="anchor" href="#examples-31"></a>Examples</h3>
+<h3 id="examples-32"><a class="anchor" href="#examples-32"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2963,7 +3045,7 @@ hash[:b] = 2</code></pre>
 <p>Identifies places where <code>sort { |a, b| a &lt;&#8658; b }</code> can be replaced with <code>sort</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-32"><a class="anchor" href="#examples-32"></a>Examples</h3>
+<h3 id="examples-33"><a class="anchor" href="#examples-33"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3011,7 +3093,7 @@ array.sort</code></pre>
 a deterministic regexp to a string.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-33"><a class="anchor" href="#examples-33"></a>Examples</h3>
+<h3 id="examples-34"><a class="anchor" href="#examples-34"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3058,7 +3140,7 @@ a deterministic regexp to a string.</p>
 <p>Checks for redundant <code>String#chars</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-34"><a class="anchor" href="#examples-34"></a>Examples</h3>
+<h3 id="examples-35"><a class="anchor" href="#examples-35"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3149,7 +3231,7 @@ backref.
 So, when <code>MatchData</code> is not used, use <code>match?</code> instead of <code>match</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-35"><a class="anchor" href="#examples-35"></a>Examples</h3>
+<h3 id="examples-36"><a class="anchor" href="#examples-36"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3272,7 +3354,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-36"><a class="anchor" href="#examples-36"></a>Examples</h3>
+<h3 id="examples-37"><a class="anchor" href="#examples-37"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3330,7 +3412,7 @@ items.reverse_each</code></pre>
 can be replaced by <code>last(n).reverse</code> and <code>last</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-37"><a class="anchor" href="#examples-37"></a>Examples</h3>
+<h3 id="examples-38"><a class="anchor" href="#examples-38"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3394,7 +3476,7 @@ Required Ruby version: 2.7
 <p>This cop identifies places where <code>select.map</code> can be replaced by <code>filter_map</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-38"><a class="anchor" href="#examples-38"></a>Examples</h3>
+<h3 id="examples-39"><a class="anchor" href="#examples-39"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3446,7 +3528,7 @@ ary.filter_map { |o| o.bar if o.foo }</code></pre>
 have been assigned to an array or a hash.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-39"><a class="anchor" href="#examples-39"></a>Examples</h3>
+<h3 id="examples-40"><a class="anchor" href="#examples-40"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3525,7 +3607,7 @@ Hash(key: :value).size
 can be replaced by a faster <code>sort.reverse</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-40"><a class="anchor" href="#examples-40"></a>Examples</h3>
+<h3 id="examples-41"><a class="anchor" href="#examples-41"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3576,7 +3658,7 @@ can be replaced by <code>squeeze('a')</code> and <code>squeeze!('a')</code>.</p>
 <p>The <code>squeeze('a')</code> method is faster than <code>gsub(/a+/, 'a')</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-41"><a class="anchor" href="#examples-41"></a>Examples</h3>
+<h3 id="examples-42"><a class="anchor" href="#examples-42"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3640,7 +3722,7 @@ str.squeeze!('a')</code></pre>
 for receiver is multiline string.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-16"><a class="anchor" href="#safety-16"></a>Safety</h3>
+<h3 id="safety-17"><a class="anchor" href="#safety-17"></a>Safety</h3>
 <div class="paragraph">
 <p>This will change to a new method call which isn&#8217;t guaranteed to be on the
 object. Switching these methods has to be done with knowledge of the types
@@ -3648,7 +3730,7 @@ of the variables which rubocop doesn&#8217;t have.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-42"><a class="anchor" href="#examples-42"></a>Examples</h3>
+<h3 id="examples-43"><a class="anchor" href="#examples-43"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3768,7 +3850,7 @@ It prevents the redundancy of the internal string-to-symbol conversion.</p>
 and the following examples are parts of it.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-43"><a class="anchor" href="#examples-43"></a>Examples</h3>
+<h3 id="examples-44"><a class="anchor" href="#examples-44"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3819,13 +3901,13 @@ instance_variable_get(:@ivar)</code></pre>
 <p>Identifies unnecessary use of a regex where <code>String#include?</code> would suffice.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-17"><a class="anchor" href="#safety-17"></a>Safety</h3>
+<h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s offenses are not safe to autocorrect if a receiver is nil or a Symbol.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-44"><a class="anchor" href="#examples-44"></a>Examples</h3>
+<h3 id="examples-45"><a class="anchor" href="#examples-45"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3877,7 +3959,7 @@ str.include?('ab')</code></pre>
 <p>Identifies places where <code>gsub</code> can be replaced by <code>tr</code> or <code>delete</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-45"><a class="anchor" href="#examples-45"></a>Examples</h3>
+<h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3953,7 +4035,7 @@ Required Ruby version: 2.4
 in some Enumerable object can be replaced by <code>Enumerable#sum</code> method.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
+<h3 id="safety-19"><a class="anchor" href="#safety-19"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrections are unproblematic wherever an initial value is provided explicitly:</p>
 </div>
@@ -3993,7 +4075,7 @@ as initial value and successively add all following values to it, whereas
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>
+<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
 <div class="sect3">
 <h4 id="onlysumorwithinitialvalue-false-default"><a class="anchor" href="#onlysumorwithinitialvalue-false-default"></a>OnlySumOrWithInitialValue: false (default)</h4>
 <div class="listingblock">
@@ -4103,7 +4185,7 @@ In most cases such calls can be replaced
 with an explicit array creation.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-19"><a class="anchor" href="#safety-19"></a>Safety</h3>
+<h3 id="safety-20"><a class="anchor" href="#safety-20"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because <code>Integer#times</code> does nothing if receiver is 0
 or less. However, <code>Array.new</code> raises an error if argument is less than 0.</p>
@@ -4119,7 +4201,7 @@ Array.new(-1) # ArgumentError: negative array size</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
+<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4172,7 +4254,7 @@ literal instead of <code>String#dup</code> and <code>String.new</code>.
 Unary plus operator is faster than <code>String#dup</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-20"><a class="anchor" href="#safety-20"></a>Safety</h3>
+<h3 id="safety-21"><a class="anchor" href="#safety-21"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because <code>String.new</code> (without operator) is not
 exactly the same as <code>+''</code>. These differ in encoding. <code>String.new.encoding</code> is always
@@ -4181,7 +4263,7 @@ if you expect <code>ASCII-8BIT</code> encoding, disable this cop.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
+<h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4233,7 +4315,7 @@ String.new('something')
 <p>Identifies places where <code>URI::Parser.new</code> can be replaced by <code>URI::DEFAULT_PARSER</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
+<h3 id="examples-50"><a class="anchor" href="#examples-50"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
