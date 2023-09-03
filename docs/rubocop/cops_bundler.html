@@ -667,6 +667,25 @@ end</code></pre>
 <div class="paragraph">
 <p>A Gem group, or a set of groups, should be listed only once in a Gemfile.</p>
 </div>
+<div class="paragraph">
+<p>For example, if the values of <code>source</code>, <code>git</code>, <code>platforms</code>, or <code>path</code>
+surrounding <code>group</code> are different, no offense will be registered:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">platforms :ruby do
+  group :default do
+    gem 'openssl'
+  end
+end
+
+platforms :jruby do
+  group :default do
+    gem 'jruby-openssl'
+  end
+end</code></pre>
+</div>
+</div>
 <div class="sect2">
 <h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
 <div class="listingblock">

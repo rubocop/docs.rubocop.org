@@ -526,7 +526,7 @@
     <a class="version" href="../1.0/cops_bundler.html">1.0</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.56.0/docs/modules/ROOT/pages/cops_bundler.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.56.2/docs/modules/ROOT/pages/cops_bundler.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -666,6 +666,25 @@ end</code></pre>
 </table>
 <div class="paragraph">
 <p>A Gem group, or a set of groups, should be listed only once in a Gemfile.</p>
+</div>
+<div class="paragraph">
+<p>For example, if the values of <code>source</code>, <code>git</code>, <code>platforms</code>, or <code>path</code>
+surrounding <code>group</code> are different, no offense will be registered:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">platforms :ruby do
+  group :default do
+    gem 'openssl'
+  end
+end
+
+platforms :jruby do
+  group :default do
+    gem 'jruby-openssl'
+  end
+end</code></pre>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>

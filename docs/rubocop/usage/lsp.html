@@ -610,6 +610,19 @@ but also offer a straightforward setup for integration.</p>
 </div>
 </div>
 <div class="sect2">
+<h3 id="emacs-lsp-mode"><a class="anchor" href="#emacs-lsp-mode"></a>Emacs (LSP Mode)</h3>
+<div class="paragraph">
+<p><a href="https://github.com/emacs-lsp/lsp-mode">LSP Mode</a> is an Emacs client/library for the Language Server Protocol.</p>
+</div>
+<div class="paragraph">
+<p>You can get the new <code>lsp-mode</code> package from <a href="https://melpa.org/#/lsp-mode">MELPA</a>.</p>
+</div>
+<div class="paragraph">
+<p>See LSP Mode official documentation for more information:
+<a href="https://emacs-lsp.github.io/lsp-mode/page/lsp-rubocop/" class="bare">https://emacs-lsp.github.io/lsp-mode/page/lsp-rubocop/</a></p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="vim-and-neovim-coc-nvim"><a class="anchor" href="#vim-and-neovim-coc-nvim"></a>Vim and Neovim (coc.nvim)</h3>
 <div class="paragraph">
 <p><a href="https://github.com/neoclide/coc.nvim">coc.nvim</a> is an extension host for Vim and Neovim, powered by Node.js.
@@ -685,6 +698,27 @@ vim.api.nvim_create_autocmd("FileType", {
 </div>
 <div class="paragraph">
 <p>See nvim-lspconfig&#8217;s official documentation for more information.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="helix"><a class="anchor" href="#helix"></a>Helix</h3>
+<div class="paragraph">
+<p><a href="https://github.com/helix-editor/helix">Helix</a> is a post-modern modal text editor with built-in language server support.</p>
+</div>
+<div class="paragraph">
+<p>Add the following to your Helix language configuration file (e.g. <code>~/.config/helix/languages.toml</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[[language]]
+name = "ruby"
+language-server = { command = "bundle", args = ["exec", "rubocop", "--lsp"] }
+auto-format = true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See Helix&#8217;s official documentation for more information:
+<a href="https://docs.helix-editor.com/languages.html" class="bare">https://docs.helix-editor.com/languages.html</a></p>
 </div>
 </div>
 </div>

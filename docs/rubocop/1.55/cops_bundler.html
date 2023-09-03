@@ -526,7 +526,7 @@
     <a class="version" href="../1.0/cops_bundler.html">1.0</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.55.0/docs/modules/ROOT/pages/cops_bundler.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.55.1/docs/modules/ROOT/pages/cops_bundler.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -1210,13 +1210,31 @@ gem 'rubocop'
 # good
 gem 'rubocop'
 
-gem 'rspec'
-
-# good only if TreatCommentsAsGroupSeparators is true
+gem 'rspec'</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="treatcommentsasgroupseparators-true-default"><a class="anchor" href="#treatcommentsasgroupseparators-true-default"></a>TreatCommentsAsGroupSeparators: true (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
 # For code quality
 gem 'rubocop'
 # For tests
 gem 'rspec'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="treatcommentsasgroupseparators-false"><a class="anchor" href="#treatcommentsasgroupseparators-false"></a>TreatCommentsAsGroupSeparators: false</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+# For code quality
+gem 'rubocop'
+# For tests
+gem 'rspec'</code></pre>
+</div>
 </div>
 </div>
 </div>

@@ -525,7 +525,7 @@
     <a class="version" href="../1.0/development.html">1.0</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.56.0/docs/modules/ROOT/pages/development.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.56.2/docs/modules/ROOT/pages/development.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -565,13 +565,10 @@ The following rake task can only be run inside the rubocop project directory its
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ bundle exec rake 'new_cop[Department/Name]'
-Files created:
-  - lib/rubocop/cop/department/name.rb
-  - spec/rubocop/cop/department/name_spec.rb
-File modified:
-  - `require_relative 'rubocop/cop/department/name'` added into lib/rubocop.rb
-  - A configuration for the cop is added into config/default.yml
-
+[create] lib/rubocop/cop/department/name.rb
+[create] spec/rubocop/cop/department/name_spec.rb
+[modify] lib/rubocop.rb - `require_relative 'rubocop/cop/department/name'` was injected.
+[modify] A configuration for the cop is added into config/default.yml.
 Do 4 steps:
   1. Modify the description of Department/Name in config/default.yml
   2. Implement your new cop in the generated file!
