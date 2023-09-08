@@ -358,6 +358,9 @@
           <a href="../rubocop-rspec/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-rspec/2.24/index.html">2.24</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-rspec/2.23/index.html">2.23</a>
         </li>
         <li class="version">
@@ -380,9 +383,6 @@
         </li>
         <li class="version">
           <a href="../rubocop-rspec/2.16/index.html">2.16</a>
-        </li>
-        <li class="version">
-          <a href="../rubocop-rspec/2.15/index.html">2.15</a>
         </li>
         <li class="version">
           <a href="../rubocop-rspec/1.44/index.html">1.44</a>
@@ -784,11 +784,11 @@ find('div').click_button</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 find('#some-id')
-find('[visible][id=some-id]')
+find('[id=some-id]')
+find(:css, '#some-id')
 
 # good
-find_by_id('some-id')
-find_by_id('some-id', visible: true)</code></pre>
+find_by_id('some-id')</code></pre>
 </div>
 </div>
 </div>

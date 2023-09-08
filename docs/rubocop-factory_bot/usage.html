@@ -359,6 +359,9 @@
           <a href="../rubocop-rspec/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-rspec/2.24/index.html">2.24</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-rspec/2.23/index.html">2.23</a>
         </li>
         <li class="version">
@@ -381,9 +384,6 @@
         </li>
         <li class="version">
           <a href="../rubocop-rspec/2.16/index.html">2.16</a>
-        </li>
-        <li class="version">
-          <a href="../rubocop-rspec/2.15/index.html">2.15</a>
         </li>
         <li class="version">
           <a href="../rubocop-rspec/1.44/index.html">1.44</a>
@@ -479,7 +479,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="inspecting-files-that-dont-end-with-_spec-rb"><a class="anchor" href="#inspecting-files-that-dont-end-with-_spec-rb"></a>Inspecting files that don&#8217;t end with <code>_spec.rb</code></h2>
+<h2 id="inspecting-non-default-file-paths"><a class="anchor" href="#inspecting-non-default-file-paths"></a>Inspecting non-default file paths</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>By default, <code>rubocop-factory_bot</code> only inspects code within below:</p>
@@ -488,11 +488,10 @@ end</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">FactoryBot:
   Include:
-    - "**/*_spec.rb"
-    - "**/spec/**/*"
-    - "**/test/**/*"
     - "**/spec/factories.rb"
     - "**/spec/factories/**/*.rb"
+    - "**/test/factories.rb"
+    - "**/test/factories/**/*.rb"
     - "**/features/support/factories/**/*.rb"</code></pre>
 </div>
 </div>
