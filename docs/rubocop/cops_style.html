@@ -1364,6 +1364,16 @@ can be replaced by <code>array1.intersect?(array2)</code>.</p>
 <p>The <code>array1.intersect?(array2)</code> method is faster than
 <code>(array1 &amp; array2).any?</code> and is more readable.</p>
 </div>
+<div class="paragraph">
+<p>In cases like the following, compatibility is not ensured,
+so it will not be detected when using block argument.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">([1] &amp; [1,2]).any? { |x| false }    # =&gt; false
+[1].intersect?([1,2]) { |x| false } # =&gt; true</code></pre>
+</div>
+</div>
 <div class="sect2">
 <h3 id="safety-4"><a class="anchor" href="#safety-4"></a>Safety</h3>
 <div class="paragraph">
@@ -26127,24 +26137,25 @@ have the same result if reversed.</p>
 <div class="sect2">
 <h3 id="examples-255"><a class="anchor" href="#examples-255"></a>Examples</h3>
 <div class="sect3">
-<h4 id="supportedoperators"><a class="anchor" href="#supportedoperators"></a>SupportedOperators: ['*', '+', '&amp;'']</h4>
+<h4 id="supportedoperators-default"><a class="anchor" href="#supportedoperators-default"></a>SupportedOperators: ['*', '+', '&amp;', '|', '^'] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-1 + x
 10 * y
+1 + x
 1 &amp; z
+1 | x
+1 ^ x
 1 + CONST
 
 # good
-60 * 24
-x + 1
 y * 10
+x + 1
 z &amp; 1
+x | 1
+x ^ 1
 CONST + 1
-
-# good
-1 | x</code></pre>
+60 * 24</code></pre>
 </div>
 </div>
 </div>

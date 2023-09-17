@@ -11483,15 +11483,28 @@ end</code></pre>
 scope.
 The basic idea for this cop was from the warning of <code>ruby -cw</code>:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>assigned but unused variable - foo</pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">assigned but unused variable - foo</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Currently this cop has advanced logic that detects unreferenced
 reassignments and properly handles varied cases such as branch, loop,
 rescue, ensure, etc.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Given the assignment <code>foo = 1, bar = 2</code>, removing unused variables
+can lead to a syntax error, so this case is not autocorrected.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="safety-26"><a class="anchor" href="#safety-26"></a>Safety</h3>
