@@ -232,6 +232,9 @@
           <a href="../rubocop-capybara/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-capybara/2.19/index.html">2.19</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-capybara/2.18/index.html">2.18</a>
         </li>
         <li class="version">
@@ -244,6 +247,9 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="2.24/index.html">2.24</a>
         </li>
         <li class="version">
           <a href="2.23/index.html">2.23</a>
@@ -412,6 +418,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_factorybot.html">default</a>
+    <a class="version" href="2.24/cops_factorybot.html">2.24</a>
     <a class="version" href="2.23/cops_factorybot.html">2.23</a>
     <a class="version" href="2.22/cops_factorybot.html">2.22</a>
   </div>
@@ -450,7 +457,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.23</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.24</p></td>
 </tr>
 </tbody>
 </table>
@@ -596,7 +603,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.28</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.24</p></td>
 </tr>
 </tbody>
 </table>
@@ -815,7 +822,7 @@ build :user</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.25</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.24</p></td>
 </tr>
 </tbody>
 </table>
@@ -1067,7 +1074,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.37</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.24</p></td>
 </tr>
 </tbody>
 </table>
@@ -1247,6 +1254,67 @@ create(:user)</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="factorybotidsequence"><a class="anchor" href="#factorybotidsequence"></a>FactoryBot/IdSequence</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.24</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Do not create a FactoryBot sequence for an id column.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - can lead to conflicts between FactoryBot and DB sequences
+factory :foo do
+  sequence :id
+end
+
+# good - a non-id column
+factory :foo do
+  sequence :some_non_id_column
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-8"><a class="anchor" href="#references-8"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.rubydoc.info/gems/rubocop-factory_bot/RuboCop/Cop/FactoryBot/IdSequence" class="bare">https://www.rubydoc.info/gems/rubocop-factory_bot/RuboCop/Cop/FactoryBot/IdSequence</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="factorybotredundantfactoryoption"><a class="anchor" href="#factorybotredundantfactoryoption"></a>FactoryBot/RedundantFactoryOption</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -1280,7 +1348,7 @@ create(:user)</code></pre>
 <p>Checks for redundant <code>factory</code> option.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
+<h3 id="examples-9"><a class="anchor" href="#examples-9"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1316,7 +1384,7 @@ association :user</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-8"><a class="anchor" href="#references-8"></a>References</h3>
+<h3 id="references-9"><a class="anchor" href="#references-9"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1395,7 +1463,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-9"><a class="anchor" href="#examples-9"></a>Examples</h3>
+<h3 id="examples-10"><a class="anchor" href="#examples-10"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1435,7 +1503,7 @@ attributes_for(:bar)</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-9"><a class="anchor" href="#references-9"></a>References</h3>
+<h3 id="references-10"><a class="anchor" href="#references-10"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>

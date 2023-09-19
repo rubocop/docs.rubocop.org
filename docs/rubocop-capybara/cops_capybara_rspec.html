@@ -231,6 +231,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="2.19/index.html">2.19</a>
+        </li>
+        <li class="version">
           <a href="2.18/index.html">2.18</a>
         </li>
         <li class="version">
@@ -243,6 +246,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-factory_bot/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-factory_bot/2.24/index.html">2.24</a>
         </li>
         <li class="version">
           <a href="../rubocop-factory_bot/2.23/index.html">2.23</a>
@@ -410,6 +416,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_capybara_rspec.html">default</a>
+    <a class="version" href="2.19/cops_capybara_rspec.html">2.19</a>
     <a class="version is-missing" href="2.18/index.html">2.18</a>
     <a class="version is-missing" href="2.17/index.html">2.17</a>
   </div>
@@ -422,6 +429,117 @@
 </aside>
 <article class="doc">
 <h1 class="page">Capybara/RSpec</h1>
+<div class="sect1">
+<h2 id="capybararspechaveselector"><a class="anchor" href="#capybararspechaveselector"></a>Capybara/RSpec/HaveSelector</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.19</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Use <code>have_css</code> or <code>have_xpath</code> instead of <code>have_selector</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+expect(foo).to have_selector(:css, 'bar')
+
+# good
+expect(foo).to have_css('bar')
+
+# bad
+expect(foo).to have_selector(:xpath, 'bar')
+
+# good
+expect(foo).to have_xpath('bar')</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="defaultselector-css-default"><a class="anchor" href="#defaultselector-css-default"></a>DefaultSelector: css (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+expect(foo).to have_selector('bar')
+
+# good
+expect(foo).to have_css('bar')</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="defaultselector-xpath"><a class="anchor" href="#defaultselector-xpath"></a>DefaultSelector: xpath</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+expect(foo).to have_selector('bar')
+
+# good
+expect(foo).to have_xpath('bar')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DefaultSelector</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>css</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="references"><a class="anchor" href="#references"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.rubydoc.info/gems/rubocop-capybara/RuboCop/Cop/Capybara/RSpec/HaveSelector" class="bare">https://www.rubydoc.info/gems/rubocop-capybara/RuboCop/Cop/Capybara/RSpec/HaveSelector</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="capybararspecpredicatematcher"><a class="anchor" href="#capybararspecpredicatematcher"></a>Capybara/RSpec/PredicateMatcher</h2>
 <div class="sectionbody">
@@ -447,7 +565,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.19</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 </tbody>
@@ -461,7 +579,7 @@ This cop recommends to use the predicate matcher instead of using
 predicate method directly.</p>
 </div>
 <div class="sect2">
-<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
+<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
 <div class="sect3">
 <h4 id="strict-true-enforcedstyle-inflected-default"><a class="anchor" href="#strict-true-enforcedstyle-inflected-default"></a>Strict: true, EnforcedStyle: inflected (default)</h4>
 <div class="listingblock">
@@ -522,7 +640,7 @@ expect(foo.matches_style?(bar: 'baz')).to be_truthy</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -556,7 +674,7 @@ expect(foo.matches_style?(bar: 'baz')).to be_truthy</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references"><a class="anchor" href="#references"></a>References</h3>
+<h3 id="references-2"><a class="anchor" href="#references-2"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
