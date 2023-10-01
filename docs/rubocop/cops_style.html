@@ -3394,6 +3394,7 @@ this cop may register false positives.</p>
 # bad
 items.collect
 items.collect!
+items.collect_concat
 items.inject
 items.detect
 items.find_all
@@ -3402,6 +3403,7 @@ items.member?
 # good
 items.map
 items.map!
+items.flat_map
 items.reduce
 items.find
 items.select
@@ -3427,7 +3429,7 @@ items.include?</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PreferredMethods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"collect"&#8658;"map", "collect!"&#8658;"map!", "inject"&#8658;"reduce", "detect"&#8658;"find", "find_all"&#8658;"select", "member?"&#8658;"include?"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"collect"&#8658;"map", "collect!"&#8658;"map!", "collect_concat"&#8658;"flat_map", "inject"&#8658;"reduce", "detect"&#8658;"find", "find_all"&#8658;"select", "member?"&#8658;"include?"}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -20771,10 +20773,15 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Enforces consistency between 'return nil' and 'return'.</p>
+<p>Enforces consistency between <code>return nil</code> and <code>return</code>.</p>
 </div>
 <div class="paragraph">
-<p>Supported styles are: return, return_nil.</p>
+<p>This cop is disabled by default. Because there seems to be a perceived semantic difference
+between <code>return</code> and <code>return nil</code>. The former can be seen as just halting evaluation,
+while the latter might be used when the return value is of specific concern.</p>
+</div>
+<div class="paragraph">
+<p>Supported styles are <code>return</code> and <code>return_nil</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-203"><a class="anchor" href="#examples-203"></a>Examples</h3>

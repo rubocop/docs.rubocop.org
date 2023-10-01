@@ -3911,7 +3911,7 @@ expect { my_app.print_report }.to output('Hello World').to_stdout</code></pre>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.2</p></td>
@@ -3921,6 +3921,13 @@ expect { my_app.print_report }.to output('Hello World').to_stdout</code></pre>
 </table>
 <div class="paragraph">
 <p>Checks that spec file paths are consistent and well-formed.</p>
+</div>
+<div class="paragraph">
+<p>This cop is deprecated.
+We plan to remove it in the next major version update to 3.0.
+The migration targets are <code>RSpec/SpecFilePathSuffix</code>
+and <code>RSpec/SpecFilePathFormat</code>.
+If you are using this cop, please plan for migration.</p>
 </div>
 <div class="paragraph">
 <p>By default, this checks that spec file paths are consistent with the

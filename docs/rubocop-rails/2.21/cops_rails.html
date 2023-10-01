@@ -429,7 +429,7 @@
     <a class="version" href="../2.14/cops_rails.html">2.14</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-rails/blob/v2.21.0/docs/modules/ROOT/pages/cops_rails.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-rails/blob/v2.21.2/docs/modules/ROOT/pages/cops_rails.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -7614,6 +7614,40 @@ users.where(id: ids)
 user.articles.order(:created_at)</code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="allowedreceivers-actionmailerpreview-activesupporttimezone-default"><a class="anchor" href="#allowedreceivers-actionmailerpreview-activesupporttimezone-default"></a>AllowedReceivers: ['ActionMailer::Preview', 'ActiveSupport::TimeZone'] (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+ActionMailer::Preview.all.first
+ActiveSupport::TimeZone.all.first</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-46"><a class="anchor" href="#configurable-attributes-46"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedReceivers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ActionMailer::Preview</code>, <code>ActiveSupport::TimeZone</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="references-36"><a class="anchor" href="#references-36"></a>References</h3>
@@ -7687,7 +7721,7 @@ validates :x, length: { is: 5 }, allow_nil: true, allow_blank: false</code></pre
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-46"><a class="anchor" href="#configurable-attributes-46"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-47"><a class="anchor" href="#configurable-attributes-47"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7996,7 +8030,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-47"><a class="anchor" href="#configurable-attributes-47"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-48"><a class="anchor" href="#configurable-attributes-48"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8146,7 +8180,7 @@ refute_equal true, false</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-48"><a class="anchor" href="#configurable-attributes-48"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-49"><a class="anchor" href="#configurable-attributes-49"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8382,7 +8416,7 @@ render text: 'Ruby!'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-49"><a class="anchor" href="#configurable-attributes-49"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-50"><a class="anchor" href="#configurable-attributes-50"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8479,7 +8513,7 @@ request.referrer</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-50"><a class="anchor" href="#configurable-attributes-50"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-51"><a class="anchor" href="#configurable-attributes-51"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8633,7 +8667,7 @@ response.parsed_body</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-51"><a class="anchor" href="#configurable-attributes-51"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-52"><a class="anchor" href="#configurable-attributes-52"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8857,7 +8891,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-52"><a class="anchor" href="#configurable-attributes-52"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-53"><a class="anchor" href="#configurable-attributes-53"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8972,7 +9006,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-53"><a class="anchor" href="#configurable-attributes-53"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-54"><a class="anchor" href="#configurable-attributes-54"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9265,7 +9299,7 @@ foo&amp;.bar { |e| e.baz }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-54"><a class="anchor" href="#configurable-attributes-54"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-55"><a class="anchor" href="#configurable-attributes-55"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9536,7 +9570,7 @@ Service::Mailer::update</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-55"><a class="anchor" href="#configurable-attributes-55"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-56"><a class="anchor" href="#configurable-attributes-56"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9679,7 +9713,7 @@ scope :something, -&gt; { where(something: true) }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-56"><a class="anchor" href="#configurable-attributes-56"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-57"><a class="anchor" href="#configurable-attributes-57"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9846,7 +9880,7 @@ l Time.now</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-57"><a class="anchor" href="#configurable-attributes-57"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-58"><a class="anchor" href="#configurable-attributes-58"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9956,7 +9990,7 @@ user.touch</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-58"><a class="anchor" href="#configurable-attributes-58"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-59"><a class="anchor" href="#configurable-attributes-59"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10225,7 +10259,7 @@ self.table_name = :some_other_name</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-59"><a class="anchor" href="#configurable-attributes-59"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-60"><a class="anchor" href="#configurable-attributes-60"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10311,7 +10345,7 @@ t.boolean :active, default: true, null: false</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-60"><a class="anchor" href="#configurable-attributes-60"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-61"><a class="anchor" href="#configurable-attributes-61"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10437,7 +10471,7 @@ Time.at(timestamp).in_time_zone</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-61"><a class="anchor" href="#configurable-attributes-61"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-62"><a class="anchor" href="#configurable-attributes-62"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10533,7 +10567,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-62"><a class="anchor" href="#configurable-attributes-62"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-63"><a class="anchor" href="#configurable-attributes-63"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10630,7 +10664,7 @@ time.to_formatted_s(:db)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-63"><a class="anchor" href="#configurable-attributes-63"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-64"><a class="anchor" href="#configurable-attributes-64"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10766,7 +10800,7 @@ ActiveSupport::HashWithIndifferentAccess.new(foo: 'bar')</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-64"><a class="anchor" href="#configurable-attributes-64"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-65"><a class="anchor" href="#configurable-attributes-65"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10901,7 +10935,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-65"><a class="anchor" href="#configurable-attributes-65"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-66"><a class="anchor" href="#configurable-attributes-66"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11028,7 +11062,7 @@ customer.favourites.distinct.pluck(:color)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-66"><a class="anchor" href="#configurable-attributes-66"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-67"><a class="anchor" href="#configurable-attributes-67"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11112,7 +11146,7 @@ validates :account, length: { minimum: MIN_LENGTH }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-67"><a class="anchor" href="#configurable-attributes-67"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-68"><a class="anchor" href="#configurable-attributes-68"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11189,7 +11223,7 @@ Rails.env == 'production'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-68"><a class="anchor" href="#configurable-attributes-68"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-69"><a class="anchor" href="#configurable-attributes-69"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11271,7 +11305,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-69"><a class="anchor" href="#configurable-attributes-69"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-70"><a class="anchor" href="#configurable-attributes-70"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11320,7 +11354,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.21</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -11342,13 +11376,13 @@ render 'foo', status: :continue
 render status: 100, plain: 'Ruby!'
 
 # good
-render status: :continue
-render status: 100</code></pre>
+head :continue
+head 100</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-70"><a class="anchor" href="#configurable-attributes-70"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-71"><a class="anchor" href="#configurable-attributes-71"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11439,7 +11473,7 @@ validates :foo, uniqueness: true</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-71"><a class="anchor" href="#configurable-attributes-71"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-72"><a class="anchor" href="#configurable-attributes-72"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11632,7 +11666,7 @@ User.where('length(name) &gt; 10').exists?</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-72"><a class="anchor" href="#configurable-attributes-72"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-73"><a class="anchor" href="#configurable-attributes-73"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11843,7 +11877,7 @@ User.where.not('trashed = ? OR role = ?', true, 'admin')</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-73"><a class="anchor" href="#configurable-attributes-73"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-74"><a class="anchor" href="#configurable-attributes-74"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
