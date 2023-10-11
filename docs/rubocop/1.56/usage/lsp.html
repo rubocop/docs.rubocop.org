@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/usage/lsp.html">
     <link rel="prev" href="caching.html">
     <link rel="next" href="server.html">
-    <meta name="generator" content="Antora 3.1.3">
+    <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -219,6 +219,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../../index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../1.57/index.html">1.57</a>
         </li>
         <li class="version is-current">
           <a href="../index.html">1.56</a>
@@ -507,7 +510,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../index.html" class="home-link"></a>
+  <a href="../../1.57/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">RuboCop</a></li>
@@ -519,6 +522,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">1.56</button>
   <div class="version-menu">
     <a class="version" href="../../usage/lsp.html">default</a>
+    <a class="version" href="../../1.57/usage/lsp.html">1.57</a>
     <a class="version is-current" href="lsp.html">1.56</a>
     <a class="version" href="../../1.55/usage/lsp.html">1.55</a>
     <a class="version" href="../../1.54/usage/lsp.html">1.54</a>
@@ -539,7 +543,7 @@
     <a class="version is-missing" href="../../1.0/index.html">1.0</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.56.2/docs/modules/ROOT/pages/usage/lsp.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.56.4/docs/modules/ROOT/pages/usage/lsp.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -711,6 +715,27 @@ vim.api.nvim_create_autocmd("FileType", {
 </div>
 <div class="paragraph">
 <p>See nvim-lspconfig&#8217;s official documentation for more information.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="helix"><a class="anchor" href="#helix"></a>Helix</h3>
+<div class="paragraph">
+<p><a href="https://github.com/helix-editor/helix">Helix</a> is a post-modern modal text editor with built-in language server support.</p>
+</div>
+<div class="paragraph">
+<p>Add the following to your Helix language configuration file (e.g. <code>~/.config/helix/languages.toml</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[[language]]
+name = "ruby"
+language-server = { command = "bundle", args = ["exec", "rubocop", "--lsp"] }
+auto-format = true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See Helix&#8217;s official documentation for more information:
+<a href="https://docs.helix-editor.com/languages.html" class="bare">https://docs.helix-editor.com/languages.html</a></p>
 </div>
 </div>
 </div>

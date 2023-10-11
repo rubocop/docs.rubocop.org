@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_style.html">
     <link rel="prev" href="cops_security.html">
     <link rel="next" href="v1_upgrade_notes.html">
-    <meta name="generator" content="Antora 3.1.3">
+    <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="stylesheet" href="../../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -219,6 +219,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../1.57/index.html">1.57</a>
         </li>
         <li class="version is-current">
           <a href="index.html">1.56</a>
@@ -507,7 +510,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link"></a>
+  <a href="../1.57/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -519,6 +522,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">1.56</button>
   <div class="version-menu">
     <a class="version" href="../cops_style.html">default</a>
+    <a class="version" href="../1.57/cops_style.html">1.57</a>
     <a class="version is-current" href="cops_style.html">1.56</a>
     <a class="version" href="../1.55/cops_style.html">1.55</a>
     <a class="version" href="../1.54/cops_style.html">1.54</a>
@@ -539,7 +543,7 @@
     <a class="version" href="../1.0/cops_style.html">1.0</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.56.2/docs/modules/ROOT/pages/cops_style.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.56.4/docs/modules/ROOT/pages/cops_style.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -1373,6 +1377,16 @@ can be replaced by <code>array1.intersect?(array2)</code>.</p>
 <div class="paragraph">
 <p>The <code>array1.intersect?(array2)</code> method is faster than
 <code>(array1 &amp; array2).any?</code> and is more readable.</p>
+</div>
+<div class="paragraph">
+<p>In cases like the following, compatibility is not ensured,
+so it will not be detected when using block argument.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">([1] &amp; [1,2]).any? { |x| false }    # =&gt; false
+[1].intersect?([1,2]) { |x| false } # =&gt; true</code></pre>
+</div>
 </div>
 <div class="sect2">
 <h3 id="safety-4"><a class="anchor" href="#safety-4"></a>Safety</h3>
@@ -3384,6 +3398,7 @@ this cop may register false positives.</p>
 # bad
 items.collect
 items.collect!
+items.collect_concat
 items.inject
 items.detect
 items.find_all
@@ -3392,6 +3407,7 @@ items.member?
 # good
 items.map
 items.map!
+items.flat_map
 items.reduce
 items.find
 items.select
@@ -3417,7 +3433,7 @@ items.include?</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PreferredMethods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"collect"&#8658;"map", "collect!"&#8658;"map!", "inject"&#8658;"reduce", "detect"&#8658;"find", "find_all"&#8658;"select", "member?"&#8658;"include?"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"collect"&#8658;"map", "collect!"&#8658;"map!", "collect_concat"&#8658;"flat_map", "inject"&#8658;"reduce", "detect"&#8658;"find", "find_all"&#8658;"select", "member?"&#8658;"include?"}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -20761,10 +20777,15 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Enforces consistency between 'return nil' and 'return'.</p>
+<p>Enforces consistency between <code>return nil</code> and <code>return</code>.</p>
 </div>
 <div class="paragraph">
-<p>Supported styles are: return, return_nil.</p>
+<p>This cop is disabled by default. Because there seems to be a perceived semantic difference
+between <code>return</code> and <code>return nil</code>. The former can be seen as just halting evaluation,
+while the latter might be used when the return value is of specific concern.</p>
+</div>
+<div class="paragraph">
+<p>Supported styles are <code>return</code> and <code>return_nil</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-203"><a class="anchor" href="#examples-203"></a>Examples</h3>
@@ -26137,24 +26158,25 @@ have the same result if reversed.</p>
 <div class="sect2">
 <h3 id="examples-255"><a class="anchor" href="#examples-255"></a>Examples</h3>
 <div class="sect3">
-<h4 id="supportedoperators"><a class="anchor" href="#supportedoperators"></a>SupportedOperators: ['*', '+', '&amp;'']</h4>
+<h4 id="supportedoperators-default"><a class="anchor" href="#supportedoperators-default"></a>SupportedOperators: ['*', '+', '&amp;', '|', '^'] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-1 + x
 10 * y
+1 + x
 1 &amp; z
+1 | x
+1 ^ x
 1 + CONST
 
 # good
-60 * 24
-x + 1
 y * 10
+x + 1
 z &amp; 1
+x | 1
+x ^ 1
 CONST + 1
-
-# good
-1 | x</code></pre>
+60 * 24</code></pre>
 </div>
 </div>
 </div>

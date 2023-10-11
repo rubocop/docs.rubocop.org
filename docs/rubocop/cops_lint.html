@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_lint.html">
     <link rel="prev" href="cops_layout.html">
     <link rel="next" href="cops_metrics.html">
-    <meta name="generator" content="Antora 3.1.3">
+    <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -219,6 +219,9 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="1.57/index.html">1.57</a>
         </li>
         <li class="version">
           <a href="1.56/index.html">1.56</a>
@@ -507,7 +510,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.56/index.html" class="home-link"></a>
+  <a href="1.57/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -519,6 +522,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_lint.html">default</a>
+    <a class="version" href="1.57/cops_lint.html">1.57</a>
     <a class="version" href="1.56/cops_lint.html">1.56</a>
     <a class="version" href="1.55/cops_lint.html">1.55</a>
     <a class="version" href="1.54/cops_lint.html">1.54</a>
@@ -3228,7 +3232,7 @@ end</code></pre>
 <div class="paragraph">
 <p>Checks for blocks without a body.
 Such empty blocks are typically an oversight or we should provide a comment
-be clearer what we&#8217;re aiming for.</p>
+to clarify what we&#8217;re aiming for.</p>
 </div>
 <div class="paragraph">
 <p>Empty lambdas and procs are ignored by default.</p>
@@ -7696,9 +7700,9 @@ because it&#8217;s unknown what kind of string will be expanded as a result:</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.76</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.57</p></td>
 </tr>
 </tbody>
 </table>
@@ -7748,6 +7752,13 @@ ruby 2.2.8p477 (2017-09-14 revision 59906) [x86_64-darwin13]
 <p>This cop target those features.</p>
 </div>
 <div class="sect2">
+<h3 id="safety-23"><a class="anchor" href="#safety-23"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because if <code>require 'pp'</code> is removed from one file,
+<code>NameError</code> can be encountered when another file uses <code>PP.pp</code>.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
@@ -7794,8 +7805,13 @@ require 'unloaded_feature'</code></pre>
 </table>
 <div class="paragraph">
 <p>Checks for redundant safe navigation calls.
-<code>instance_of?</code>, <code>kind_of?</code>, <code>is_a?</code>, <code>eql?</code>, <code>respond_to?</code>, and <code>equal?</code> methods
-are checked by default. These are customizable with <code>AllowedMethods</code> option.</p>
+Use cases where a constant is <code>nil</code> are rare and an offense is detected
+when the receiver is a constant.</p>
+</div>
+<div class="paragraph">
+<p>For all receivers, the <code>instance_of?</code>, <code>kind_of?</code>, <code>is_a?</code>, <code>eql?</code>, <code>respond_to?</code>,
+and <code>equal?</code> methods are checked by default.
+These are customizable with <code>AllowedMethods</code> option.</p>
 </div>
 <div class="paragraph">
 <p>The <code>AllowedMethods</code> option specifies nil-safe methods,
@@ -7808,7 +7824,7 @@ for which to suppress (allow) this cop&#8217;s check.</p>
 because <code>NilClass</code> has methods like <code>respond_to?</code> and <code>is_a?</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-23"><a class="anchor" href="#safety-23"></a>Safety</h3>
+<h3 id="safety-24"><a class="anchor" href="#safety-24"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, because autocorrection can change the return type of
 the expression. An offending expression that previously could return <code>nil</code>
@@ -7820,6 +7836,9 @@ will be autocorrected to never return <code>nil</code>.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+Const&amp;.do_something
+
+# bad
 do_something if attrs&amp;.respond_to?(:[])
 
 # good
@@ -7829,6 +7848,9 @@ do_something if attrs.respond_to?(:[])
 while node&amp;.is_a?(BeginNode)
   node = node.parent
 end
+
+# good
+Const.do_something
 
 # good
 while node.is_a?(BeginNode)
@@ -8254,7 +8276,7 @@ These methods are deprecated and should be replaced with <code>Refinement#import
 <p>It emulates deprecation warnings in Ruby 3.1.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-24"><a class="anchor" href="#safety-24"></a>Safety</h3>
+<h3 id="safety-25"><a class="anchor" href="#safety-25"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because <code>include M</code> will affect the included class
 if any changes are made to module <code>M</code>.
@@ -10391,7 +10413,7 @@ this, as they are not used by the methods in question.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="safety-25"><a class="anchor" href="#safety-25"></a>Safety</h3>
+<h3 id="safety-26"><a class="anchor" href="#safety-26"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop matches for method names only and hence cannot tell apart
 methods with same name in different classes, which may lead to a
@@ -11517,7 +11539,7 @@ can lead to a syntax error, so this case is not autocorrected.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-26"><a class="anchor" href="#safety-26"></a>Safety</h3>
+<h3 id="safety-27"><a class="anchor" href="#safety-27"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because removing assignment from
 operator assignment can cause NameError if this assignment has been used to declare
@@ -11669,7 +11691,7 @@ end</code></pre>
 and methods just delegating to <code>super</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-27"><a class="anchor" href="#safety-27"></a>Safety</h3>
+<h3 id="safety-28"><a class="anchor" href="#safety-28"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe as it can register false positives for cases when an empty
 constructor just overrides the parent constructor, which is bad anyway.</p>
@@ -11922,7 +11944,7 @@ define_method(:foo) { |arg| }</code></pre>
 expression of a function definition.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-28"><a class="anchor" href="#safety-28"></a>Safety</h3>
+<h3 id="safety-29"><a class="anchor" href="#safety-29"></a>Safety</h3>
 <div class="paragraph">
 <p>There are edge cases in which the local variable references a
 value that is also accessible outside the local scope. This is not
@@ -11995,7 +12017,7 @@ end</code></pre>
 (<code>1.times</code>).</p>
 </div>
 <div class="sect2">
-<h3 id="safety-29"><a class="anchor" href="#safety-29"></a>Safety</h3>
+<h3 id="safety-30"><a class="anchor" href="#safety-30"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe as <code>times</code> returns its receiver, which is
 <strong>usually</strong> OK, but might change behavior.</p>

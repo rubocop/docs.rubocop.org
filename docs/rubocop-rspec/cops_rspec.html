@@ -6,7 +6,7 @@
     <title>RSpec :: RuboCop Docs</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop-rspec/cops_rspec.html">
     <link rel="prev" href="cops_rspec_rails.html">
-    <meta name="generator" content="Antora 3.1.3">
+    <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -137,6 +137,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop/1.57/index.html">1.57</a>
         </li>
         <li class="version">
           <a href="../rubocop/1.56/index.html">1.56</a>
@@ -425,7 +428,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.56/index.html" class="home-link"></a>
+  <a href="../rubocop/1.57/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop RSpec</a></li>
@@ -3135,9 +3138,10 @@ extracting out some behavior, e.g. with a <code>let</code> block, or a helper
 method.</p>
 </div>
 <div class="paragraph">
-<p>You can set literals you want to fold with <code>CountAsOne</code>.
-Available are: 'array', 'hash', and 'heredoc'. Each literal
-will be counted as one line regardless of its actual size.</p>
+<p>You can set constructs you want to fold with <code>CountAsOne</code>.
+Available are: 'array', 'hash', 'heredoc', and 'method_call'.
+Each construct will be counted as one line regardless of
+its actual size.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-32"><a class="anchor" href="#examples-32"></a>Examples</h3>
@@ -3161,7 +3165,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="countasone-array-heredoc"><a class="anchor" href="#countasone-array-heredoc"></a>CountAsOne: ['array', 'heredoc']</h4>
+<h4 id="countasone-array-heredoc-method_call"><a class="anchor" href="#countasone-array-heredoc-method_call"></a>CountAsOne: ['array', 'heredoc', 'method_call']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">it do
@@ -3178,7 +3182,12 @@ end</code></pre>
     Heredoc
     content.
   HEREDOC
-end                 # 5 points</code></pre>
+
+  foo(            # +1
+    1,
+    2
+  )
+end               # 6 points</code></pre>
 </div>
 </div>
 </div>

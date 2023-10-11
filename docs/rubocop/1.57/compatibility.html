@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Compatibility :: RuboCop Docs</title>
+    <link rel="canonical" href="https://docs.rubocop.org/rubocop/compatibility.html">
+    <link rel="prev" href="installation.html">
+    <link rel="next" href="usage/basic_usage.html">
+    <meta name="generator" content="Antora 3.1.2">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
+<style>:root{--docsearch-primary-color: #bd362f} </style>
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140153536-1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-140153536-1')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <a href="https://rubocop.org">RuboCop</a>
+        <span class="separator">//</span>
+        <a href="https://docs.rubocop.org">Docs</a>
+      </div>
+      <div class="navbar-item">
+        <div id="docsearch"></div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href=index.html>Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Style Guides</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://rubystyle.guide">Ruby</a>
+            <a class="navbar-item" href="https://rails.rubystyle.guide">Rails</a>
+            <a class="navbar-item" href="https://rspec.rubystyle.guide">RSpec</a>
+            <a class="navbar-item" href="https://minitest.rubystyle.guide">Minitest</a>
+          </div>
+        </div>
+        <a class="navbar-item" href="https://www.rubydoc.info/gems/rubocop">API Docs</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Projects</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop">RuboCop</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-ast">RuboCop AST</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-capybara">RuboCop Capybara</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-factory_bot">RuboCop factory_bot</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-minitest">RuboCop Minitest</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-performance">RuboCop Performance</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rails">RuboCop Rails</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rake">RuboCop Rake</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rspec">RuboCop RSpec</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Community</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop">GitHub Org</a>
+            <a class="navbar-item" href="https://gitter.im/bbatsov/rubocop">Chat (Gitter)</a>
+            <a class="navbar-item" href="https://opencollective.com/rubocop">Open Collective</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rubocop" data-version="1.57">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">RuboCop</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="installation.html">Installation</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="compatibility.html">Compatibility</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Usage</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/basic_usage.html">Basic Usage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/autocorrect.html">Autocorrect</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/caching.html">Caching</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/lsp.html">LSP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/server.html">Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/profiling.html">Profiling</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cops.html">Cops</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="formatters.html">Formatters</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cop Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_bundler.html">Bundler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_gemspec.html">Gemspec</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_layout.html">Layout</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_lint.html">Lint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_metrics.html">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_migration.html">Migration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_naming.html">Naming</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_security.html">Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_style.html">Style</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="v1_upgrade_notes.html">Upgrade Notes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="extensions.html">Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="integration_with_other_tools.html">Integration with Other Tools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="automated_code_review.html">Automated Code Review</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="contributing.html">Contributing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="support.html">Support</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="versioning.html">Versioning</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">About</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/history.html">History</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/team.html">Team</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/changelog.html">Changelog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/logo.html">Logo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/license.html">License</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RuboCop</span>
+    <span class="version">1.57</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">RuboCop</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../index.html">default</a>
+        </li>
+        <li class="version is-current">
+          <a href="index.html">1.57</a>
+        </li>
+        <li class="version">
+          <a href="../1.56/index.html">1.56</a>
+        </li>
+        <li class="version">
+          <a href="../1.55/index.html">1.55</a>
+        </li>
+        <li class="version">
+          <a href="../1.54/index.html">1.54</a>
+        </li>
+        <li class="version">
+          <a href="../1.53/index.html">1.53</a>
+        </li>
+        <li class="version">
+          <a href="../1.52/index.html">1.52</a>
+        </li>
+        <li class="version">
+          <a href="../1.51/index.html">1.51</a>
+        </li>
+        <li class="version">
+          <a href="../1.50/index.html">1.50</a>
+        </li>
+        <li class="version">
+          <a href="../1.49/index.html">1.49</a>
+        </li>
+        <li class="version">
+          <a href="../1.48/index.html">1.48</a>
+        </li>
+        <li class="version">
+          <a href="../1.47/index.html">1.47</a>
+        </li>
+        <li class="version">
+          <a href="../1.46/index.html">1.46</a>
+        </li>
+        <li class="version">
+          <a href="../1.45/index.html">1.45</a>
+        </li>
+        <li class="version">
+          <a href="../1.44/index.html">1.44</a>
+        </li>
+        <li class="version">
+          <a href="../1.43/index.html">1.43</a>
+        </li>
+        <li class="version">
+          <a href="../1.42/index.html">1.42</a>
+        </li>
+        <li class="version">
+          <a href="../1.41/index.html">1.41</a>
+        </li>
+        <li class="version">
+          <a href="../1.40/index.html">1.40</a>
+        </li>
+        <li class="version">
+          <a href="../1.0/index.html">1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-ast/index.html">RuboCop AST</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-ast/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.12/index.html">1.12</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.11/index.html">1.11</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.10/index.html">1.10</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.9/index.html">1.9</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.8/index.html">1.8</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.7/index.html">1.7</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.6/index.html">1.6</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.5/index.html">1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.4/index.html">1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.3/index.html">1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.2/index.html">1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.0/index.html">1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-capybara/index.html">RuboCop Capybara</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-capybara/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-capybara/2.19/index.html">2.19</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-capybara/2.18/index.html">2.18</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-capybara/2.17/index.html">2.17</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-factory_bot/index.html">RuboCop factory_bot</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-factory_bot/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-factory_bot/2.24/index.html">2.24</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-factory_bot/2.23/index.html">2.23</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-factory_bot/2.22/index.html">2.22</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-minitest/index.html">RuboCop Minitest</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-minitest/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.32/index.html">0.32</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.31/index.html">0.31</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.30/index.html">0.30</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.29/index.html">0.29</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.28/index.html">0.28</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.27/index.html">0.27</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.26/index.html">0.26</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.25/index.html">0.25</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-packaging/index.html">RuboCop Packaging</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-packaging/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-performance/index.html">RuboCop Performance</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-performance/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.19/index.html">1.19</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.18/index.html">1.18</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.17/index.html">1.17</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.16/index.html">1.16</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.15/index.html">1.15</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.14/index.html">1.14</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.13/index.html">1.13</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.12/index.html">1.12</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-rails/index.html">RuboCop Rails</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-rails/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.21/index.html">2.21</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.20/index.html">2.20</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.19/index.html">2.19</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.18/index.html">2.18</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.17/index.html">2.17</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.16/index.html">2.16</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.15/index.html">2.15</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.14/index.html">2.14</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../rubocop-rspec/index.html">RuboCop RSpec</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-rspec/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.24/index.html">2.24</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.23/index.html">2.23</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.22/index.html">2.22</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.21/index.html">2.21</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.20/index.html">2.20</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.19/index.html">2.19</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.18/index.html">2.18</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.17/index.html">2.17</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.16/index.html">2.16</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/1.44/index.html">1.44</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">RuboCop</a></li>
+    <li><a href="compatibility.html">Compatibility</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">1.57</button>
+  <div class="version-menu">
+    <a class="version" href="../compatibility.html">default</a>
+    <a class="version is-current" href="compatibility.html">1.57</a>
+    <a class="version" href="../1.56/compatibility.html">1.56</a>
+    <a class="version" href="../1.55/compatibility.html">1.55</a>
+    <a class="version" href="../1.54/compatibility.html">1.54</a>
+    <a class="version" href="../1.53/compatibility.html">1.53</a>
+    <a class="version" href="../1.52/compatibility.html">1.52</a>
+    <a class="version" href="../1.51/compatibility.html">1.51</a>
+    <a class="version" href="../1.50/compatibility.html">1.50</a>
+    <a class="version" href="../1.49/compatibility.html">1.49</a>
+    <a class="version" href="../1.48/compatibility.html">1.48</a>
+    <a class="version" href="../1.47/compatibility.html">1.47</a>
+    <a class="version" href="../1.46/compatibility.html">1.46</a>
+    <a class="version" href="../1.45/compatibility.html">1.45</a>
+    <a class="version" href="../1.44/compatibility.html">1.44</a>
+    <a class="version" href="../1.43/compatibility.html">1.43</a>
+    <a class="version" href="../1.42/compatibility.html">1.42</a>
+    <a class="version" href="../1.41/compatibility.html">1.41</a>
+    <a class="version" href="../1.40/compatibility.html">1.40</a>
+    <a class="version" href="../1.0/compatibility.html">1.0</a>
+  </div>
+</div>
+<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.57.0/docs/modules/ROOT/pages/compatibility.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Compatibility</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>RuboCop targets Ruby 2.0+ code analysis.<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p>RuboCop officially runtime supports MRI (a.k.a. CRuby) and JRuby.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>MRI 2.7+</p>
+</li>
+<li>
+<p>JRuby 9.4+</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The oldest supported JRuby version is derived from the oldest compatible MRI version.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+RuboCop might be working with other Ruby implementations as well, but it&#8217;s tested only on MRI and JRuby.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="support-matrix"><a class="anchor" href="#support-matrix"></a>Support Matrix</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RuboCop generally aims to follow MRI&#8217;s own support policy - meaning RuboCop would support all officially supported MRI releases.<sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup> To give people extra time for a smooth transition, we&#8217;ve customarily provided support for about one year after EOL of MRI version.
+This means that if Ruby 2.7 reaches its EOL in Spring 2023, it would be supported by RuboCop (at least) until Spring 2024.<sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnotedef_3" title="View footnote.">3</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p>The following table is the runtime support matrix.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Supported runtime Ruby version</th>
+<th class="tableblock halign-left valign-top">Last supported RuboCop version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.41</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.50</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.57</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.68</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.81</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.12</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.28</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.50</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.3 (experimental)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>RuboCop targets Ruby 2.0+ code analysis since RuboCop 1.30. It restored code analysis support that had been removed earlier by mistake, together with dropping runtime support for unsupported Ruby versions.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The compatibility <a href="configuration.html#setting-the-target-ruby-version" class="xref page">setting <code>TargetRubyVersion</code></a> is about code analysis (what RuboCop can analyze), not runtime (is RuboCop capable of running on some Ruby or not).
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="forward-compatibility"><a class="anchor" href="#forward-compatibility"></a>Forward Compatibility</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Features may be provided for development version of Ruby. These are all considered experimental, and may change before the stable version of Ruby will be released.</p>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. As defined by its reference implementation MRI.
+</div>
+<div class="footnote" id="_footnotedef_2">
+<a href="#_footnoteref_2">2</a>. Typically the last 3 releases.
+</div>
+<div class="footnote" id="_footnotedef_3">
+<a href="#_footnoteref_3">3</a>. At the core team&#8217;s discretion this policy might be waived aside for MRI releases causing significant maintenance overhead.
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="installation.html">Installation</a></span>
+  <span class="next"><a href="usage/basic_usage.html">Basic Usage</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>Copyright (C) 2012-2023 <a href="https://batsov.com">Bozhidar Batsov</a> and RuboCop contributors.</p>
+  <p>Except where otherwise noted, docs.rubocop.org is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a> (CC BY-SA 4.0).</p>
+</footer>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@docsearch/js@3.3.3"></script>
+<script type="text/javascript">
+ docsearch({
+   container: '#docsearch',
+   appId: '2GTF3GZ5BX',
+   apiKey: 'b6bbe6539f46224f4f39cd14a1b7ae78',
+   indexName: 'rubocop',
+   debug: false // Set debug to true if you want to inspect the dropdown
+ });
+</script>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
