@@ -6,7 +6,7 @@
     <title>Minitest :: RuboCop Docs</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop-minitest/cops_minitest.html">
     <link rel="prev" href="cops.html">
-    <meta name="generator" content="Antora 3.1.2">
+    <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -267,6 +267,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="0.33/index.html">0.33</a>
+        </li>
+        <li class="version">
           <a href="0.32/index.html">0.32</a>
         </li>
         <li class="version">
@@ -422,6 +425,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_minitest.html">default</a>
+    <a class="version" href="0.33/cops_minitest.html">0.33</a>
     <a class="version" href="0.32/cops_minitest.html">0.32</a>
     <a class="version" href="0.31/cops_minitest.html">0.31</a>
     <a class="version" href="0.30/cops_minitest.html">0.30</a>
@@ -588,6 +592,7 @@ over <code>assert(expected == actual)</code>.</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 assert("rubocop-minitest" == actual)
+assert_operator("rubocop-minitest", :==, actual)
 
 # good
 assert_equal("rubocop-minitest", actual)</code></pre>
@@ -892,6 +897,7 @@ instead of using <code>assert(matcher.match(string))</code>.</p>
 assert(matcher.match(string))
 assert(matcher.match?(string))
 assert(matcher =~ string)
+assert_operator(matcher, :=~, string)
 assert(matcher.match(string), 'message')
 
 # good
@@ -2630,6 +2636,9 @@ over <code>assert(expected != actual)</code> or <code>assert(! expected == actua
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 assert("rubocop-minitest" != actual)
+refute("rubocop-minitest" == actual)
+assert_operator("rubocop-minitest", :!=, actual)
+refute_operator("rubocop-minitest", :==, actual)
 
 # good
 refute_equal("rubocop-minitest", actual)</code></pre>
@@ -3009,6 +3018,8 @@ instead of using <code>refute(matcher.match(string))</code>.</p>
 refute(matcher.match(string))
 refute(matcher.match?(string))
 refute(matcher =~ string)
+refute_operator(matcher, :=~, string)
+assert_operator(matcher, :!~, string)
 refute(matcher.match(string), 'message')
 
 # good

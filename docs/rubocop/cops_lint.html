@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_lint.html">
     <link rel="prev" href="cops_layout.html">
     <link rel="next" href="cops_metrics.html">
-    <meta name="generator" content="Antora 3.1.2">
+    <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -365,6 +365,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-minitest/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-minitest/0.33/index.html">0.33</a>
         </li>
         <li class="version">
           <a href="../rubocop-minitest/0.32/index.html">0.32</a>
@@ -7805,8 +7808,8 @@ require 'unloaded_feature'</code></pre>
 </table>
 <div class="paragraph">
 <p>Checks for redundant safe navigation calls.
-Use cases where a constant is <code>nil</code> are rare and an offense is detected
-when the receiver is a constant.</p>
+Use cases where a constant, named in camel case for classes and modules is <code>nil</code> are rare,
+and an offense is not detected when the receiver is a snake case constant.</p>
 </div>
 <div class="paragraph">
 <p>For all receivers, the <code>instance_of?</code>, <code>kind_of?</code>, <code>is_a?</code>, <code>eql?</code>, <code>respond_to?</code>,
@@ -7836,7 +7839,7 @@ will be autocorrected to never return <code>nil</code>.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-Const&amp;.do_something
+CamelCaseConst&amp;.do_something
 
 # bad
 do_something if attrs&amp;.respond_to?(:[])
@@ -7850,7 +7853,7 @@ while node&amp;.is_a?(BeginNode)
 end
 
 # good
-Const.do_something
+CamelCaseConst.do_something
 
 # good
 while node.is_a?(BeginNode)

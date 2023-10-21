@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_style.html">
     <link rel="prev" href="cops_security.html">
     <link rel="next" href="v1_upgrade_notes.html">
-    <meta name="generator" content="Antora 3.1.2">
+    <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -365,6 +365,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-minitest/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-minitest/0.33/index.html">0.33</a>
         </li>
         <li class="version">
           <a href="../rubocop-minitest/0.32/index.html">0.32</a>
@@ -18524,21 +18527,23 @@ array.each_with_object { |v, o| do_something(v, o) }</code></pre>
 <div class="paragraph">
 <p>Checks for RuntimeError as the argument of raise/fail.</p>
 </div>
-<div class="paragraph">
-<p>It checks for code like this:</p>
-</div>
 <div class="sect2">
 <h3 id="examples-177"><a class="anchor" href="#examples-177"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Bad
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 raise RuntimeError, 'message'
-
-# Bad
 raise RuntimeError.new('message')
 
-# Good
-raise 'message'</code></pre>
+# good
+raise 'message'
+
+# bad - message is not a string
+raise RuntimeError, Object.new
+raise RuntimeError.new(Object.new)
+
+# good
+raise Object.new.to_s</code></pre>
 </div>
 </div>
 </div>
