@@ -280,10 +280,10 @@
       </ul>
     </li>
     <li class="component">
-      <a class="title" href="../rubocop-ast/index.html">RuboCop AST</a>
+      <a class="title" href="../rubocop-ast/1.30/index.html">RuboCop AST</a>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-ast/index.html">master</a>
+          <a href="../rubocop-ast/1.30/index.html">1.30</a>
         </li>
         <li class="version">
           <a href="../rubocop-ast/1.12/index.html">1.12</a>
@@ -440,6 +440,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-rails/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-rails/2.22/index.html">2.22</a>
         </li>
         <li class="version">
           <a href="../rubocop-rails/2.21/index.html">2.21</a>
@@ -12077,6 +12080,17 @@ do_something(1)</code></pre>
 <div class="paragraph">
 <p>Checks for operators, variables, literals, lambda, proc and nonmutating
 methods used in void context.</p>
+</div>
+<div class="paragraph">
+<p><code>each</code> blocks are allowed to prevent false positives.
+For example, the expression inside the <code>each</code> block below.
+It&#8217;s not void, especially when the receiver is an <code>Enumerator</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">enumerator = [1, 2, 3].filter
+enumerator.each { |item| item &gt;= 2 } #=&gt; [2, 3]</code></pre>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-134"><a class="anchor" href="#examples-134"></a>Examples</h3>
