@@ -731,6 +731,26 @@ vim.api.nvim_create_autocmd("FileType", {
 <div class="paragraph">
 <p>Add the following to your Helix language configuration file (e.g. <code>~/.config/helix/languages.toml</code>):</p>
 </div>
+<div class="paragraph">
+<p>Helix 23.10 or later:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[language-server.rubocop]
+command = "bundle"
+args = ["exec", "rubocop", "--lsp"]
+
+[[language]]
+name = "ruby"
+auto-format = true
+language-servers = [
+  { name = "rubocop" }
+]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Before Helix 23.10 or earlier:</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">[[language]]

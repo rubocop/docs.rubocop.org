@@ -652,7 +652,7 @@ something_filter methods or the newer something_action methods.</p>
 </td>
 <td class="content">
 This cop is deprecated. Because the <code>*_filter</code> methods were removed in Rails 4.2,
-and that Rals version is no longer supported by RuboCop Rails. This cop will be removed in RuboCop Rails 3.0.
+and that Rails version is no longer supported by RuboCop Rails. This cop will be removed in RuboCop Rails 3.0.
 </td>
 </tr>
 </table>
@@ -3163,12 +3163,12 @@ belongs_to :bar
 has_one :foo
 
 # bad
-belongs_to :foo, class_name: 'Foo'
-belongs_to :bar, class_name: 'Foo'
+has_many :foo, class_name: 'Foo'
+has_many :bar, class_name: 'Foo'
 has_one :baz
 
 # good
-belongs_to :bar, class_name: 'Foo'
+has_many :bar, class_name: 'Foo'
 has_one :foo</code></pre>
 </div>
 </div>
