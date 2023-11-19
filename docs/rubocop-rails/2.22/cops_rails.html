@@ -78,6 +78,7 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all"></button>
     <h3 class="title"><a href="index.html">RuboCop Rails</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
@@ -439,7 +440,7 @@
     <a class="version" href="../2.14/cops_rails.html">2.14</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-rails/blob/v2.22.1/docs/modules/ROOT/pages/cops_rails.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop-rails/blob/v2.22.2/docs/modules/ROOT/pages/cops_rails.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -866,10 +867,10 @@ are more clear and easier to read.</p>
 <h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">#bad
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 book.update_attributes!(author: 'Alice')
 
-#good
+# good
 book.update!(author: 'Alice')</code></pre>
 </div>
 </div>
@@ -3515,10 +3516,10 @@ when no output would be produced anyway.</p>
 <h3 id="examples-36"><a class="anchor" href="#examples-36"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">#bad
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 Rails.logger.debug "The time is #{Time.zone.now}."
 
-#good
+# good
 Rails.logger.debug { "The time is #{Time.zone.now}." }</code></pre>
 </div>
 </div>
@@ -7671,6 +7672,23 @@ end</code></pre>
 </table>
 <div class="paragraph">
 <p>Detect redundant <code>all</code> used as a receiver for Active Record query methods.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For the methods <code>delete_all</code> and <code>destroy_all</code>,
+this cop will only check cases where the receiver is a model.
+It will ignore cases where the receiver is an association (e.g., <code>user.articles.all.delete_all</code>).
+This is because omitting <code>all</code> from an association changes the methods
+from <code>ActiveRecord::Relation</code> to <code>ActiveRecord::Associations::CollectionProxy</code>,
+which can affect their behavior.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="safety-26"><a class="anchor" href="#safety-26"></a>Safety</h3>

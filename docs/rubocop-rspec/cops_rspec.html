@@ -78,6 +78,7 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all"></button>
     <h3 class="title"><a href="index.html">RuboCop RSpec</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
@@ -1149,25 +1150,19 @@ expect(foo).to be(nil)</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Check that before/after(:all) isn&#8217;t being used.</p>
+<p>Check that before/after(:all/:context) isn&#8217;t being used.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-10"><a class="anchor" href="#examples-10"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-#
-# Faster but risk of state leaking between examples
-#
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - Faster but risk of state leaking between examples
 describe MyClass do
   before(:all) { Widget.create }
-  after(:all) { Widget.delete_all }
+  after(:context) { Widget.delete_all }
 end
 
-# good
-#
-# Slower but examples are properly isolated
-#
+# good - Slower but examples are properly isolated
 describe MyClass do
   before(:each) { Widget.create }
   after(:each) { Widget.delete_all }
