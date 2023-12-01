@@ -79,7 +79,7 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all"></button>
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
     <h3 class="title"><a href="index.html">RuboCop</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
@@ -212,7 +212,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">RuboCop</span>
-    <span class="version">default</span>
+    <span class="version"></span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -220,6 +220,9 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="1.58/index.html">1.58</a>
         </li>
         <li class="version">
           <a href="1.57/index.html">1.57</a>
@@ -517,7 +520,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.57/index.html" class="home-link"></a>
+  <a href="1.58/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -529,6 +532,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_layout.html">default</a>
+    <a class="version" href="1.58/cops_layout.html">1.58</a>
     <a class="version" href="1.57/cops_layout.html">1.57</a>
     <a class="version" href="1.56/cops_layout.html">1.56</a>
     <a class="version" href="1.55/cops_layout.html">1.55</a>
@@ -4700,7 +4704,7 @@ styles are 'consistent' and 'align_brackets'. Here are examples:</p>
 # element are on separate lines is indented one step (two spaces) more
 # than the position inside the opening parenthesis.
 
-#bad
+# bad
 array = [
   :value
 ]
@@ -4708,7 +4712,7 @@ and_in_a_method_call([
   :no_difference
                      ])
 
-#good
+# good
 array = [
   :value
 ]
@@ -4727,7 +4731,7 @@ but_in_a_method_call([
 # separate lines is indented the same as an array literal which is not
 # defined inside a method call.
 
-#bad
+# bad
 # consistent
 array = [
   :value
@@ -4736,7 +4740,7 @@ but_in_a_method_call([
                        :its_like_this
 ])
 
-#good
+# good
 array = [
   :value
 ]
@@ -4753,13 +4757,13 @@ and_in_a_method_call([
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># The `align_brackets` style enforces that the opening and closing
 # brackets are indented to the same position.
 
-#bad
+# bad
 # align_brackets
 and_now_for_something = [
                           :completely_different
 ]
 
-#good
+# good
 # align_brackets
 and_now_for_something = [
                           :completely_different
@@ -10011,6 +10015,30 @@ a ** b</code></pre>
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="enforcedstyleforrationalliterals-no_space-default"><a class="anchor" href="#enforcedstyleforrationalliterals-no_space-default"></a>EnforcedStyleForRationalLiterals: no_space (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+1 / 48r
+
+# good
+1/48r</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyleforrationalliterals-space"><a class="anchor" href="#enforcedstyleforrationalliterals-space"></a>EnforcedStyleForRationalLiterals: space</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+1/48r
+
+# good
+1 / 48r</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="configurable-attributes-54"><a class="anchor" href="#configurable-attributes-54"></a>Configurable attributes</h3>
@@ -10035,6 +10063,11 @@ a ** b</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyleForExponentOperator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>no_space</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>space</code>, <code>no_space</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyleForRationalLiterals</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>no_space</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>space</code>, <code>no_space</code></p></td>
 </tr>

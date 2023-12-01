@@ -79,7 +79,7 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all"></button>
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
     <h3 class="title"><a href="index.html">RuboCop AST</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
@@ -115,6 +115,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../../rubocop/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop/1.58/index.html">1.58</a>
         </li>
         <li class="version">
           <a href="../../rubocop/1.57/index.html">1.57</a>
@@ -412,7 +415,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../../rubocop/1.57/index.html" class="home-link"></a>
+  <a href="../../rubocop/1.58/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop AST</a></li>
@@ -705,7 +708,7 @@ usually represents the entire node, but others have additional fields.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/ArrayNode">ArrayNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>back-ref</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>back_ref</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Regular expression back-reference, e.g. $&amp;.</p>
 </div></div></td>
@@ -971,7 +974,7 @@ usually represents the entire node, but others have additional fields.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>forward_arg</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Forwarding argument, for Ruby 2.8 (when <code>emit_forward_arg</code> is true). Must come inside an <code>args</code> node.</p>
+<p>Forwarding argument, for Ruby 3.0 (when <code>emit_forward_arg</code> is true). Must come inside an <code>args</code> node.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>None</p>
@@ -991,7 +994,7 @@ usually represents the entire node, but others have additional fields.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/ForwardArgsNode">ForwardArgsNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>forwarded-args</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>forwarded_args</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Forwarding arguments into a method call</p>
 </div></div></td>
@@ -1002,7 +1005,7 @@ usually represents the entire node, but others have additional fields.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>forwarded-restarg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>forwarded_restarg</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Forwarding positional arguments into a method call</p>
 </div></div></td>
@@ -1013,7 +1016,7 @@ usually represents the entire node, but others have additional fields.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>forwarded-kwrestarg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>forwarded_kwrestarg</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Forwarding keyword arguments into a method call</p>
 </div></div></td>
@@ -1255,7 +1258,7 @@ usually represents the entire node, but others have additional fields.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>nth-ref</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>nth_ref</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Regular expression capture group ($1, $2 etc.)</p>
 </div></div></td>
@@ -1576,7 +1579,7 @@ usually represents the entire node, but others have additional fields.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/WhileNode">WhileNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>while-post</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>while_post</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Loop with condition coming last.</p>
 </div></div></td>
