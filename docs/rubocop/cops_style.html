@@ -222,6 +222,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.59/index.html">1.59</a>
+        </li>
+        <li class="version">
           <a href="1.58/index.html">1.58</a>
         </li>
         <li class="version">
@@ -520,7 +523,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.58/index.html" class="home-link"></a>
+  <a href="1.59/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -532,6 +535,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_style.html">default</a>
+    <a class="version" href="1.59/cops_style.html">1.59</a>
     <a class="version" href="1.58/cops_style.html">1.58</a>
     <a class="version" href="1.57/cops_style.html">1.57</a>
     <a class="version" href="1.56/cops_style.html">1.56</a>
@@ -1443,7 +1447,7 @@ Array(paths).each { |path| do_something(path) }</code></pre>
 </table>
 <div class="paragraph">
 <p>Identifies usages of <code>arr[0]</code> and <code>arr[-1]</code> and suggests to change
-them to use <code>arr.first</code> and <code>arr.instead</code>.</p>
+them to use <code>arr.first</code> and <code>arr.last</code> instead.</p>
 </div>
 <div class="paragraph">
 <p>The cop is disabled by default due to safety concerns.</p>
@@ -12433,6 +12437,19 @@ Array 1</code></pre>
 <p>This cop can be customized allowed methods with <code>AllowedMethods</code>.
 By default, there are no methods to allowed.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This cop allows the use of <code>it()</code> without arguments in blocks,
+as in <code>0.times { it() }</code>, following <code>Lint/ItWithoutArgumentsInBlock</code> cop.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
 <h3 id="examples-111"><a class="anchor" href="#examples-111"></a>Examples</h3>
 <div class="listingblock">
@@ -20059,7 +20076,8 @@ protected scope, you cannot send private messages this way.</p>
 </div>
 <div class="paragraph">
 <p>Note we allow uses of <code>self</code> with operators because it would be awkward
-otherwise.</p>
+otherwise. Also allows the use of <code>self.it</code> without arguments in blocks,
+as in <code>0.times { self.it }</code>, following <code>Lint/ItWithoutArgumentsInBlock</code> cop.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-194"><a class="anchor" href="#examples-194"></a>Examples</h3>
@@ -22006,8 +22024,12 @@ explicit_receiver.raise</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Sometimes using dig method ends up with just a single
-argument. In such cases, dig should be replaced with [].</p>
+<p>Sometimes using <code>dig</code> method ends up with just a single
+argument. In such cases, dig should be replaced with <code>[]</code>.</p>
+</div>
+<div class="paragraph">
+<p>Since replacing <code>hash&amp;.dig(:key)</code> with <code>hash[:key]</code> could potentially lead to error,
+calls to the <code>dig</code> method using safe navigation will be ignored.</p>
 </div>
 <div class="sect2">
 <h3 id="safety-56"><a class="anchor" href="#safety-56"></a>Safety</h3>

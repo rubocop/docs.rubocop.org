@@ -129,6 +129,9 @@
           <a href="../rubocop/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.59/index.html">1.59</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.58/index.html">1.58</a>
         </li>
         <li class="version">
@@ -427,7 +430,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.58/index.html" class="home-link"></a>
+  <a href="../rubocop/1.59/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop Capybara</a></li>
@@ -821,6 +824,77 @@ expect(page).to have_no_css('a')</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="capybararedundantwithinfind"><a class="anchor" href="#capybararedundantwithinfind"></a>Capybara/RedundantWithinFind</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks for redundant <code>within find(&#8230;&#8203;)</code> calls.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+within find('foo.bar') do
+  # ...
+end
+
+# good
+within 'foo.bar' do
+  # ...
+end
+
+# bad
+within find_by_id('foo') do
+  # ...
+end
+
+# good
+within '#foo' do
+  # ...
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-5"><a class="anchor" href="#references-5"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.rubydoc.info/gems/rubocop-capybara/RuboCop/Cop/Capybara/RedundantWithinFind" class="bare">https://www.rubydoc.info/gems/rubocop-capybara/RuboCop/Cop/Capybara/RedundantWithinFind</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="capybaraspecificactions"><a class="anchor" href="#capybaraspecificactions"></a>Capybara/SpecificActions</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -854,7 +928,7 @@ expect(page).to have_no_css('a')</code></pre>
 <p>Checks for there is a more specific actions offered by Capybara.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
+<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -872,7 +946,7 @@ find('div').click_button</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-5"><a class="anchor" href="#references-5"></a>References</h3>
+<h3 id="references-6"><a class="anchor" href="#references-6"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -917,7 +991,7 @@ find('div').click_button</code></pre>
 <p>Checks if there is a more specific finder offered by Capybara.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -931,7 +1005,7 @@ find_by_id('some-id')</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-6"><a class="anchor" href="#references-6"></a>References</h3>
+<h3 id="references-7"><a class="anchor" href="#references-7"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -976,7 +1050,7 @@ find_by_id('some-id')</code></pre>
 <p>Checks for there is a more specific matcher offered by Capybara.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
+<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1000,7 +1074,7 @@ expect(page).to have_field('foo')</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-7"><a class="anchor" href="#references-7"></a>References</h3>
+<h3 id="references-8"><a class="anchor" href="#references-8"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1055,7 +1129,7 @@ Read more in
 <a href="https://www.rubydoc.info/gems/capybara/Capybara%2FNode%2FFinders:all">the documentation</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
+<h3 id="examples-9"><a class="anchor" href="#examples-9"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1071,7 +1145,7 @@ expect(page).to have_link('my link', visible: :hidden)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-8"><a class="anchor" href="#references-8"></a>References</h3>
+<h3 id="references-9"><a class="anchor" href="#references-9"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
