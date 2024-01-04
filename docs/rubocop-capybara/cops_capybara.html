@@ -400,6 +400,9 @@
           <a href="../rubocop-rspec/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-rspec/2.26/index.html">2.26</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-rspec/2.25/index.html">2.25</a>
         </li>
         <li class="version">
@@ -422,9 +425,6 @@
         </li>
         <li class="version">
           <a href="../rubocop-rspec/2.18/index.html">2.18</a>
-        </li>
-        <li class="version">
-          <a href="../rubocop-rspec/2.17/index.html">2.17</a>
         </li>
         <li class="version">
           <a href="../rubocop-rspec/1.44/index.html">1.44</a>
@@ -490,7 +490,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.19</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.20</p></td>
 </tr>
 </tbody>
 </table>
@@ -758,7 +758,7 @@ expect(page).to match_style(display: 'block')</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.14</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.20</p></td>
 </tr>
 </tbody>
 </table>
@@ -768,21 +768,7 @@ expect(page).to match_style(display: 'block')</code></pre>
 <div class="sect2">
 <h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-not_to-default"><a class="anchor" href="#enforcedstyle-not_to-default"></a>EnforcedStyle: not_to (default)</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-expect(page).to have_no_selector
-expect(page).to have_no_css('a')
-
-# good
-expect(page).not_to have_selector
-expect(page).not_to have_css('a')</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="enforcedstyle-have_no"><a class="anchor" href="#enforcedstyle-have_no"></a>EnforcedStyle: have_no</h4>
+<h4 id="enforcedstyle-have_no-default"><a class="anchor" href="#enforcedstyle-have_no-default"></a>EnforcedStyle: have_no (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -792,6 +778,20 @@ expect(page).not_to have_css('a')
 # good
 expect(page).to have_no_selector
 expect(page).to have_no_css('a')</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-not_to"><a class="anchor" href="#enforcedstyle-not_to"></a>EnforcedStyle: not_to</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+expect(page).to have_no_selector
+expect(page).to have_no_css('a')
+
+# good
+expect(page).not_to have_selector
+expect(page).not_to have_css('a')</code></pre>
 </div>
 </div>
 </div>
@@ -814,7 +814,7 @@ expect(page).to have_no_css('a')</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>not_to</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>have_no</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>have_no</code>, <code>not_to</code></p></td>
 </tr>
 </tbody>
@@ -857,7 +857,7 @@ expect(page).to have_no_css('a')</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.20</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 </tbody>

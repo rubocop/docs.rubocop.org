@@ -411,6 +411,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="2.26/index.html">2.26</a>
+        </li>
+        <li class="version">
           <a href="2.25/index.html">2.25</a>
         </li>
         <li class="version">
@@ -433,9 +436,6 @@
         </li>
         <li class="version">
           <a href="2.18/index.html">2.18</a>
-        </li>
-        <li class="version">
-          <a href="2.17/index.html">2.17</a>
         </li>
         <li class="version">
           <a href="1.44/index.html">1.44</a>
@@ -462,6 +462,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_rspec.html">default</a>
+    <a class="version" href="2.26/cops_rspec.html">2.26</a>
     <a class="version" href="2.25/cops_rspec.html">2.25</a>
     <a class="version" href="2.24/cops_rspec.html">2.24</a>
     <a class="version" href="2.23/cops_rspec.html">2.23</a>
@@ -470,7 +471,6 @@
     <a class="version" href="2.20/cops_rspec.html">2.20</a>
     <a class="version" href="2.19/cops_rspec.html">2.19</a>
     <a class="version" href="2.18/cops_rspec.html">2.18</a>
-    <a class="version" href="2.17/cops_rspec.html">2.17</a>
     <a class="version" href="1.44/cops_rspec.html">1.44</a>
   </div>
 </div>
@@ -7884,7 +7884,7 @@ end
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.26</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 </tbody>
@@ -7943,7 +7943,7 @@ expect(foo).not_to include(bar)</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.26</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 </tbody>
@@ -8761,15 +8761,23 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.25</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.26</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Enforces use of string to titleize shared examples.</p>
+<p>Checks for consistent style for shared example names.</p>
+</div>
+<div class="paragraph">
+<p>Enforces either <code>string</code> or <code>symbol</code> for shared example names.</p>
+</div>
+<div class="paragraph">
+<p>This cop can be configured using the <code>EnforcedStyle</code> option</p>
 </div>
 <div class="sect2">
 <h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
+<div class="sect3">
+<h4 id="enforcedstyle-string-default"><a class="anchor" href="#enforcedstyle-string-default"></a><code>EnforcedStyle: string</code> (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8787,6 +8795,51 @@ shared_examples_for 'foo bar baz'
 include_examples 'foo bar baz'</code></pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="enforcedstyle-symbol"><a class="anchor" href="#enforcedstyle-symbol"></a><code>EnforcedStyle: symbol</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+it_behaves_like 'foo bar baz'
+it_should_behave_like 'foo bar baz'
+shared_examples 'foo bar baz'
+shared_examples_for 'foo bar baz'
+include_examples 'foo bar baz'
+
+# good
+it_behaves_like :foo_bar_baz
+it_should_behave_like :foo_bar_baz
+shared_examples :foo_bar_baz
+shared_examples_for :foo_bar_baz
+include_examples :foo_bar_baz</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-34"><a class="anchor" href="#configurable-attributes-34"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code>, <code>symbol</code></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="references-90"><a class="anchor" href="#references-90"></a>References</h3>
@@ -9076,7 +9129,7 @@ whatever_spec.rb         # describe MyClass, type: :routing do; end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-34"><a class="anchor" href="#configurable-attributes-34"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-35"><a class="anchor" href="#configurable-attributes-35"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9182,7 +9235,7 @@ spec/models/user.rb       # shared_examples_for 'foo'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-35"><a class="anchor" href="#configurable-attributes-35"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-36"><a class="anchor" href="#configurable-attributes-36"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9577,7 +9630,7 @@ let('user_name') { 'Adam' }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-36"><a class="anchor" href="#configurable-attributes-36"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-37"><a class="anchor" href="#configurable-attributes-37"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9700,7 +9753,7 @@ let(:userFood_2) { 'fettuccine' }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-37"><a class="anchor" href="#configurable-attributes-37"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-38"><a class="anchor" href="#configurable-attributes-38"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9827,7 +9880,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-38"><a class="anchor" href="#configurable-attributes-38"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-39"><a class="anchor" href="#configurable-attributes-39"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9920,7 +9973,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-39"><a class="anchor" href="#configurable-attributes-39"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-40"><a class="anchor" href="#configurable-attributes-40"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
