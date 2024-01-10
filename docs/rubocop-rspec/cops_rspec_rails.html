@@ -891,7 +891,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.17</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -907,10 +907,16 @@ assert_equal(a, b)
 assert_equal a, b, "must be equal"
 refute_equal(a, b)
 
+assert_nil a
+refute_nil a
+
 # good
 expect(b).to eq(a)
 expect(b).to(eq(a), "must be equal")
-expect(b).not_to eq(a)</code></pre>
+expect(b).not_to eq(a)
+
+expect(a).to eq(nil)
+expect(a).not_to eq(nil)</code></pre>
 </div>
 </div>
 </div>
