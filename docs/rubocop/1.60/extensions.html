@@ -570,7 +570,7 @@
     <a class="version" href="../1.0/extensions.html">1.0</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.60.1/docs/modules/ROOT/pages/extensions.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.60.2/docs/modules/ROOT/pages/extensions.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -942,9 +942,7 @@ For example, when you have defined <code>MyCustomFormatter</code> in
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">---
-ruby_extractor.call(processed_source)
----</code></pre>
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">ruby_extractor.call(processed_source)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -952,8 +950,7 @@ ruby_extractor.call(processed_source)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">---
-[
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">[
   {
     offset: 2,
     processed_source: #&lt;RuboCop::ProcessedSource&gt;
@@ -961,9 +958,8 @@ ruby_extractor.call(processed_source)
   {
     offset: 10,
     processed_source: #&lt;RuboCop::ProcessedSource&gt;
-  },
-]
----</code></pre>
+  }
+]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -971,9 +967,7 @@ ruby_extractor.call(processed_source)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">---
-RuboCop::Runner.ruby_extractors.unshift(ruby_extractor)
----</code></pre>
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">RuboCop::Runner.ruby_extractors.unshift(ruby_extractor)</code></pre>
 </div>
 </div>
 <div class="paragraph">
