@@ -290,10 +290,10 @@
       </ul>
     </li>
     <li class="component">
-      <div class="title"><a href="../rubocop-ast/1.30/index.html">RuboCop AST</a></div>
+      <div class="title"><a href="../rubocop-ast/index.html">RuboCop AST</a></div>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-ast/1.30/index.html">1.30</a>
+          <a href="../rubocop-ast/index.html">master</a>
         </li>
         <li class="version">
           <a href="../rubocop-ast/1.12/index.html">1.12</a>
@@ -496,6 +496,9 @@
           <a href="../rubocop-rspec/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-rspec/2.27/index.html">2.27</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-rspec/2.26/index.html">2.26</a>
         </li>
         <li class="version">
@@ -518,9 +521,6 @@
         </li>
         <li class="version">
           <a href="../rubocop-rspec/2.19/index.html">2.19</a>
-        </li>
-        <li class="version">
-          <a href="../rubocop-rspec/2.18/index.html">2.18</a>
         </li>
         <li class="version">
           <a href="../rubocop-rspec/1.44/index.html">1.44</a>
@@ -626,12 +626,16 @@ where the inspected file is and continue its way up to the root directory.</p>
 </div>
 <div class="paragraph">
 <p>If it cannot be found until reaching the project&#8217;s root directory, then it will
-be searched for in the user&#8217;s global config locations, which consists of a
+be searched for in the <a href="https://dot-config.github.io">.config directory of the project root</a>
+and the user&#8217;s global config locations. The user&#8217;s global config locations consist of a
 dotfile or a config file inside the <a href="https://specifications.freedesktop.org/basedir-spec/latest/index.html">XDG Base Directory
 specification</a>.</p>
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p><code>.config/.rubocop.yml</code> or <code>.config/rubocop/config.yml</code> at the project root</p>
+</li>
 <li>
 <p><code>~/.rubocop.yml</code></p>
 </li>
@@ -659,6 +663,12 @@ files:</p>
 </li>
 <li>
 <p><code>/path/to/project/.rubocop.yml</code></p>
+</li>
+<li>
+<p><code>/path/to/project/.config/.rubocop.yml</code></p>
+</li>
+<li>
+<p><code>/path/to/project/.config/rubocop/config.yml</code></p>
 </li>
 <li>
 <p><code>/.rubocop.yml</code></p>
@@ -1324,13 +1334,63 @@ Metrics/CyclomaticComplexity:
 <div class="sect2">
 <h3 id="autocorrect"><a class="anchor" href="#autocorrect"></a>AutoCorrect</h3>
 <div class="paragraph">
-<p>Cops that support the <code>--autocorrect</code> option can have that support
-disabled. For example:</p>
+<p>Cops that support the <code>--autocorrect</code> option offer flexible settings for autocorrection.
+These settings can be specified in the configuration file as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>always</code></p>
+</li>
+<li>
+<p><code>contextual</code></p>
+</li>
+<li>
+<p><code>disabled</code></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="always-default"><a class="anchor" href="#always-default"></a><code>always (Default)</code></h4>
+<div class="paragraph">
+<p>This setting enables autocorrection always by default. For backward compatibility, <code>true</code> is treated the same as <code>always</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Style/PerlBackrefs:
-  AutoCorrect: false</code></pre>
+  AutoCorrect: always # or true</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="contextual"><a class="anchor" href="#contextual"></a><code>contextual</code></h4>
+<div class="paragraph">
+<p>This setting enables autocorrection when launched from the <code>rubocop</code> command, but it is not available through LSP.
+e.g., <code>rubocop --lsp</code>, <code>rubocop --editor-mode</code>, or a program where <code>RuboCop::LSP.enable</code> has been applied.</p>
+</div>
+<div class="paragraph">
+<p>Inspections via the command line are treated as code that has been finalized.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Style/PerlBackrefs:
+  AutoCorrect: contextual</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This setting prevents autocorrection during editing in the editor.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="disabled"><a class="anchor" href="#disabled"></a><code>disabled</code></h4>
+<div class="paragraph">
+<p>This setting disables autocorrection. For backward compatibility, <code>false</code> is treated the same as <code>disabled</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Style/PerlBackrefs:
+  AutoCorrect: disabled # or false</code></pre>
+</div>
 </div>
 </div>
 </div>

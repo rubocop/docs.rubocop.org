@@ -208,10 +208,10 @@
       </ul>
     </li>
     <li class="component">
-      <div class="title"><a href="../rubocop-ast/1.30/index.html">RuboCop AST</a></div>
+      <div class="title"><a href="../rubocop-ast/index.html">RuboCop AST</a></div>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-ast/1.30/index.html">1.30</a>
+          <a href="../rubocop-ast/index.html">master</a>
         </li>
         <li class="version">
           <a href="../rubocop-ast/1.12/index.html">1.12</a>
@@ -414,6 +414,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="2.27/index.html">2.27</a>
+        </li>
+        <li class="version">
           <a href="2.26/index.html">2.26</a>
         </li>
         <li class="version">
@@ -436,9 +439,6 @@
         </li>
         <li class="version">
           <a href="2.19/index.html">2.19</a>
-        </li>
-        <li class="version">
-          <a href="2.18/index.html">2.18</a>
         </li>
         <li class="version">
           <a href="1.44/index.html">1.44</a>
@@ -465,6 +465,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_rspec.html">default</a>
+    <a class="version" href="2.27/cops_rspec.html">2.27</a>
     <a class="version" href="2.26/cops_rspec.html">2.26</a>
     <a class="version" href="2.25/cops_rspec.html">2.25</a>
     <a class="version" href="2.24/cops_rspec.html">2.24</a>
@@ -473,7 +474,6 @@
     <a class="version" href="2.21/cops_rspec.html">2.21</a>
     <a class="version" href="2.20/cops_rspec.html">2.20</a>
     <a class="version" href="2.19/cops_rspec.html">2.19</a>
-    <a class="version" href="2.18/cops_rspec.html">2.18</a>
     <a class="version" href="1.44/cops_rspec.html">1.44</a>
   </div>
 </div>
@@ -509,7 +509,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.16</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -570,7 +570,7 @@ let(:a)      { b }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.16</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -841,7 +841,7 @@ expect(foo).to be(true)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.20</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -899,7 +899,7 @@ expect(array).to be_empty</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.9.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.16</p></td>
 </tr>
@@ -971,7 +971,7 @@ expect(foo).to be(nil)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.16</p></td>
 </tr>
@@ -1058,7 +1058,7 @@ expect(foo).to be(nil)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.9.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.10.0</p></td>
 </tr>
@@ -1251,7 +1251,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.11</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.14</p></td>
 </tr>
@@ -1387,7 +1387,7 @@ expect { run }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -1490,7 +1490,7 @@ expect(object).to be_a_kind_of(String)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.19</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -1555,7 +1555,7 @@ it { is_expected.to contain_exactly(content, *array) }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.36</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -2014,7 +2014,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.11</p></td>
 </tr>
@@ -2225,7 +2225,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.33</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -2373,7 +2373,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.16</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -2430,7 +2430,7 @@ describe 'Something', :a</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
 </tr>
@@ -2513,7 +2513,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.39</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -2581,7 +2581,7 @@ after(:all) { cleanup_feed }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.36</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -2698,7 +2698,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.27</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -2769,7 +2769,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.14</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -2834,7 +2834,7 @@ it { does_something }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.27</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
 </tr>
@@ -2962,7 +2962,7 @@ it { does_something }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.14</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -3025,7 +3025,7 @@ let(:foo) { bar }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.24</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -3085,7 +3085,7 @@ describe 'Something'</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.24</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -3287,7 +3287,8 @@ end               # 6 points</code></pre>
 </div>
 <div class="paragraph">
 <p>RSpec allows for auto-generated example descriptions when there is no
-description provided or the description is an empty one.</p>
+description provided or the description is an empty one.
+It is acceptable to use <code>specify</code> without a description</p>
 </div>
 <div class="paragraph">
 <p>This cop removes empty descriptions.
@@ -3299,20 +3300,29 @@ on the configured style.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-33"><a class="anchor" href="#examples-33"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># always good
+specify do
+  result = service.call
+  expect(result).to be(true)
+end</code></pre>
+</div>
+</div>
 <div class="sect3">
 <h4 id="enforcedstyle-always_allow-default"><a class="anchor" href="#enforcedstyle-always_allow-default"></a><code>EnforcedStyle: always_allow</code> (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 it('') { is_expected.to be_good }
-it '' do
+specify '' do
   result = service.call
   expect(result).to be(true)
 end
 
 # good
 it { is_expected.to be_good }
-it do
+specify do
   result = service.call
   expect(result).to be(true)
 end</code></pre>
@@ -3409,7 +3419,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
 </tr>
@@ -3549,7 +3559,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.5</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -3619,7 +3629,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.23</p></td>
 </tr>
@@ -3710,7 +3720,7 @@ expect(false).to eq(true)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.22</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.5</p></td>
 </tr>
@@ -4105,7 +4115,7 @@ my_class_spec.rb         # describe MyClass, '#method'</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.5</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.1</p></td>
 </tr>
@@ -4200,7 +4210,7 @@ focus 'test' do; end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -4344,7 +4354,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.29</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -4536,7 +4546,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.8</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -4639,7 +4649,7 @@ it { should be_truthy }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.29</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.13</p></td>
 </tr>
@@ -4932,7 +4942,7 @@ let(:item_2) { create(:item) }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.12</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -5095,6 +5105,72 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="rspecisexpectedspecify"><a class="anchor" href="#rspecisexpectedspecify"></a>RSpec/IsExpectedSpecify</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.27</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Check for <code>specify</code> with <code>is_expected</code> and one-liner expectations.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-51"><a class="anchor" href="#examples-51"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+specify { is_expected.to be_truthy }
+
+# good
+it { is_expected.to be_truthy }
+
+# good
+specify do
+  # ...
+end
+specify { expect(sqrt(4)).to eq(2) }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-51"><a class="anchor" href="#references-51"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://rspec.rubystyle.guide/#it-and-specify" class="bare">https://rspec.rubystyle.guide/#it-and-specify</a></p>
+</li>
+<li>
+<p><a href="https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/IsExpectedSpecify" class="bare">https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/IsExpectedSpecify</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="rspecitbehaveslike"><a class="anchor" href="#rspecitbehaveslike"></a>RSpec/ItBehavesLike</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -5118,7 +5194,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.13</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -5128,7 +5204,7 @@ end</code></pre>
 <p>Checks that only one <code>it_behaves_like</code> style is used.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-51"><a class="anchor" href="#examples-51"></a>Examples</h3>
+<h3 id="examples-52"><a class="anchor" href="#examples-52"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-it_behaves_like-default"><a class="anchor" href="#enforcedstyle-it_behaves_like-default"></a><code>EnforcedStyle: it_behaves_like</code> (default)</h4>
 <div class="listingblock">
@@ -5179,7 +5255,7 @@ it_should_behave_like 'a foo'</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-51"><a class="anchor" href="#references-51"></a>References</h3>
+<h3 id="references-52"><a class="anchor" href="#references-52"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5224,7 +5300,7 @@ it_should_behave_like 'a foo'</code></pre>
 <p>Check that <code>all</code> matcher is used instead of iterating over an array.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-52"><a class="anchor" href="#examples-52"></a>Examples</h3>
+<h3 id="examples-53"><a class="anchor" href="#examples-53"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5240,7 +5316,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-52"><a class="anchor" href="#references-52"></a>References</h3>
+<h3 id="references-53"><a class="anchor" href="#references-53"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5275,7 +5351,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.14</p></td>
 </tr>
@@ -5285,7 +5361,7 @@ end</code></pre>
 <p>Enforce that subject is the first definition in the test.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-53"><a class="anchor" href="#examples-53"></a>Examples</h3>
+<h3 id="examples-54"><a class="anchor" href="#examples-54"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5315,7 +5391,7 @@ it { expect_something_else }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-53"><a class="anchor" href="#references-53"></a>References</h3>
+<h3 id="references-54"><a class="anchor" href="#references-54"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5378,7 +5454,7 @@ Even worse when a class that exists in the codebase is reopened.</p>
 namespace name clashes.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-54"><a class="anchor" href="#examples-54"></a>Examples</h3>
+<h3 id="examples-55"><a class="anchor" href="#examples-55"></a>Examples</h3>
 <div class="sect3">
 <h4 id="constants-leak-between-examples"><a class="anchor" href="#constants-leak-between-examples"></a>Constants leak between examples</h4>
 <div class="listingblock">
@@ -5465,7 +5541,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-54"><a class="anchor" href="#references-54"></a>References</h3>
+<h3 id="references-55"><a class="anchor" href="#references-55"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5506,7 +5582,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.16</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.22</p></td>
 </tr>
@@ -5516,7 +5592,7 @@ end</code></pre>
 <p>Checks for <code>let</code> definitions that come after an example.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-55"><a class="anchor" href="#examples-55"></a>Examples</h3>
+<h3 id="examples-56"><a class="anchor" href="#examples-56"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5547,7 +5623,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-55"><a class="anchor" href="#references-55"></a>References</h3>
+<h3 id="references-56"><a class="anchor" href="#references-56"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5592,7 +5668,7 @@ end</code></pre>
 <p>Checks unreferenced <code>let!</code> calls being used for test setup.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-56"><a class="anchor" href="#examples-56"></a>Examples</h3>
+<h3 id="examples-57"><a class="anchor" href="#examples-57"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5618,7 +5694,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-56"><a class="anchor" href="#references-56"></a>References</h3>
+<h3 id="references-57"><a class="anchor" href="#references-57"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5653,7 +5729,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.19</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -5668,7 +5744,7 @@ end</code></pre>
 - Prefer <code>eq</code> when using <code>match_array</code> with an empty array literal.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-57"><a class="anchor" href="#examples-57"></a>Examples</h3>
+<h3 id="examples-58"><a class="anchor" href="#examples-58"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5686,7 +5762,7 @@ it { is_expected.to match_array(%w(tremble in fear foolish mortals)) }</code></p
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-57"><a class="anchor" href="#references-57"></a>References</h3>
+<h3 id="references-58"><a class="anchor" href="#references-58"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5731,7 +5807,7 @@ it { is_expected.to match_array(%w(tremble in fear foolish mortals)) }</code></p
 <p>Check that chains of messages are not being stubbed.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-58"><a class="anchor" href="#examples-58"></a>Examples</h3>
+<h3 id="examples-59"><a class="anchor" href="#examples-59"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5744,7 +5820,7 @@ allow(foo).to receive(:bar).and_return(thing)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-58"><a class="anchor" href="#references-58"></a>References</h3>
+<h3 id="references-59"><a class="anchor" href="#references-59"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5793,7 +5869,7 @@ allow(foo).to receive(:bar).and_return(thing)</code></pre>
 <code>EnforcedStyle</code> option and supports <code>--auto-gen-config</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-59"><a class="anchor" href="#examples-59"></a>Examples</h3>
+<h3 id="examples-60"><a class="anchor" href="#examples-60"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-allow-default"><a class="anchor" href="#enforcedstyle-allow-default"></a><code>EnforcedStyle: allow</code> (default)</h4>
 <div class="listingblock">
@@ -5844,7 +5920,7 @@ expect(foo).to receive(:bar)</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-59"><a class="anchor" href="#references-59"></a>References</h3>
+<h3 id="references-60"><a class="anchor" href="#references-60"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5893,7 +5969,7 @@ expect(foo).to receive(:bar)</code></pre>
 <code>EnforcedStyle</code> option and supports <code>--auto-gen-config</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-60"><a class="anchor" href="#examples-60"></a>Examples</h3>
+<h3 id="examples-61"><a class="anchor" href="#examples-61"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-have_received-default"><a class="anchor" href="#enforcedstyle-have_received-default"></a><code>EnforcedStyle: have_received</code> (default)</h4>
 <div class="listingblock">
@@ -5950,7 +6026,7 @@ do_something</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-60"><a class="anchor" href="#references-60"></a>References</h3>
+<h3 id="references-61"><a class="anchor" href="#references-61"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5985,7 +6061,7 @@ do_something</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.24</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -6000,7 +6076,7 @@ do_something</code></pre>
 (e.g. <code>describe 'Something', :a, b</code>)</p>
 </div>
 <div class="sect2">
-<h3 id="examples-61"><a class="anchor" href="#examples-61"></a>Examples</h3>
+<h3 id="examples-62"><a class="anchor" href="#examples-62"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-symbol-default-2"><a class="anchor" href="#enforcedstyle-symbol-default-2"></a>EnforcedStyle: symbol (default)</h4>
 <div class="listingblock">
@@ -6051,7 +6127,7 @@ describe 'Something', a: true</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-61"><a class="anchor" href="#references-61"></a>References</h3>
+<h3 id="references-62"><a class="anchor" href="#references-62"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6096,7 +6172,7 @@ describe 'Something', a: true</code></pre>
 <p>Checks that the first argument to an example group is not empty.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-62"><a class="anchor" href="#examples-62"></a>Examples</h3>
+<h3 id="examples-63"><a class="anchor" href="#examples-63"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6116,7 +6192,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-62"><a class="anchor" href="#references-62"></a>References</h3>
+<h3 id="references-63"><a class="anchor" href="#references-63"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6165,7 +6241,7 @@ end</code></pre>
 be nested or separated into different test files.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-63"><a class="anchor" href="#examples-63"></a>Examples</h3>
+<h3 id="examples-64"><a class="anchor" href="#examples-64"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6185,7 +6261,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-63"><a class="anchor" href="#references-63"></a>References</h3>
+<h3 id="references-64"><a class="anchor" href="#references-64"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6234,7 +6310,7 @@ end</code></pre>
 and works with <code>--auto-gen-config</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-64"><a class="anchor" href="#examples-64"></a>Examples</h3>
+<h3 id="examples-65"><a class="anchor" href="#examples-65"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6286,14 +6362,24 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="configuration"><a class="anchor" href="#configuration"></a>configuration</h4>
+<h4 id="max-1-default-2"><a class="anchor" href="#max-1-default-2"></a><code>Max: 1</code> (default)</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># .rubocop.yml
-# RSpec/MultipleExpectations:
-#   Max: 2
-
-# not flagged by rubocop
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+describe UserCreator do
+  it 'builds a user' do
+    expect(user.name).to eq("John")
+    expect(user.age).to eq(22)
+  end
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="max-2-2"><a class="anchor" href="#max-2-2"></a><code>Max: 2</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
 describe UserCreator do
   it 'builds a user' do
     expect(user.name).to eq("John")
@@ -6329,7 +6415,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-64"><a class="anchor" href="#references-64"></a>References</h3>
+<h3 id="references-65"><a class="anchor" href="#references-65"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6385,7 +6471,7 @@ which will configure the cop to only register offenses on calls to
 <code>let</code> and not calls to <code>subject</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-65"><a class="anchor" href="#examples-65"></a>Examples</h3>
+<h3 id="examples-66"><a class="anchor" href="#examples-66"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6501,7 +6587,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-65"><a class="anchor" href="#references-65"></a>References</h3>
+<h3 id="references-66"><a class="anchor" href="#references-66"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6539,7 +6625,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.16</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -6573,7 +6659,7 @@ a <code>before</code> hook on their own</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="examples-66"><a class="anchor" href="#examples-66"></a>Examples</h3>
+<h3 id="examples-67"><a class="anchor" href="#examples-67"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6605,7 +6691,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-66"><a class="anchor" href="#references-66"></a>References</h3>
+<h3 id="references-67"><a class="anchor" href="#references-67"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6663,7 +6749,7 @@ and <code>IgnoreSharedExamples</code> which will not report offenses for implici
 subjects in shared example groups.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-67"><a class="anchor" href="#examples-67"></a>Examples</h3>
+<h3 id="examples-68"><a class="anchor" href="#examples-68"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-always-default"><a class="anchor" href="#enforcedstyle-always-default"></a><code>EnforcedStyle: always</code> (default)</h4>
 <div class="listingblock">
@@ -6766,7 +6852,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-67"><a class="anchor" href="#references-67"></a>References</h3>
+<h3 id="references-68"><a class="anchor" href="#references-68"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6818,7 +6904,7 @@ end</code></pre>
 and supports <code>--auto-gen-config</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-68"><a class="anchor" href="#examples-68"></a>Examples</h3>
+<h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6883,7 +6969,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="max-2-2"><a class="anchor" href="#max-2-2"></a><code>Max: 2</code></h4>
+<h4 id="max-2-3"><a class="anchor" href="#max-2-3"></a><code>Max: 2</code></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6955,7 +7041,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-68"><a class="anchor" href="#references-68"></a>References</h3>
+<h3 id="references-69"><a class="anchor" href="#references-69"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7021,7 +7107,7 @@ with an <code>AllowedPatterns</code> option. ^expect_ and ^assert_ are allowed
 by default.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
+<h3 id="examples-70"><a class="anchor" href="#examples-70"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7090,7 +7176,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-69"><a class="anchor" href="#references-69"></a>References</h3>
+<h3 id="references-70"><a class="anchor" href="#references-70"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7125,7 +7211,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -7135,7 +7221,7 @@ end</code></pre>
 <p>Checks for consistent method usage for negating expectations.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-70"><a class="anchor" href="#examples-70"></a>Examples</h3>
+<h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-not_to-default"><a class="anchor" href="#enforcedstyle-not_to-default"></a><code>EnforcedStyle: not_to</code> (default)</h4>
 <div class="listingblock">
@@ -7194,7 +7280,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-70"><a class="anchor" href="#references-70"></a>References</h3>
+<h3 id="references-71"><a class="anchor" href="#references-71"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7239,7 +7325,7 @@ end</code></pre>
 <p>Checks if there is a let/subject that overwrites an existing one.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
+<h3 id="examples-72"><a class="anchor" href="#examples-72"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7261,7 +7347,7 @@ let!(:other) { other }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-71"><a class="anchor" href="#references-71"></a>References</h3>
+<h3 id="references-72"><a class="anchor" href="#references-72"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7306,7 +7392,7 @@ let!(:other) { other }</code></pre>
 <p>Checks for any pending or skipped examples.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-72"><a class="anchor" href="#examples-72"></a>Examples</h3>
+<h3 id="examples-73"><a class="anchor" href="#examples-73"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7338,7 +7424,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-72"><a class="anchor" href="#references-72"></a>References</h3>
+<h3 id="references-73"><a class="anchor" href="#references-73"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7383,7 +7469,7 @@ end</code></pre>
 <p>Checks for pending or skipped examples without reason.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-73"><a class="anchor" href="#examples-73"></a>Examples</h3>
+<h3 id="examples-74"><a class="anchor" href="#examples-74"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7440,7 +7526,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-73"><a class="anchor" href="#references-73"></a>References</h3>
+<h3 id="references-74"><a class="anchor" href="#references-74"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7475,7 +7561,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.16</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -7490,7 +7576,7 @@ This cop recommends to use the predicate matcher instead of using
 predicate method directly.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-74"><a class="anchor" href="#examples-74"></a>Examples</h3>
+<h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
 <div class="sect3">
 <h4 id="strict-true-enforcedstyle-inflected-default"><a class="anchor" href="#strict-true-enforcedstyle-inflected-default"></a>Strict: true, EnforcedStyle: inflected (default)</h4>
 <div class="listingblock">
@@ -7590,7 +7676,7 @@ expect(foo.something?).to be_truthy</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-74"><a class="anchor" href="#references-74"></a>References</h3>
+<h3 id="references-75"><a class="anchor" href="#references-75"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7628,7 +7714,7 @@ expect(foo.something?).to be_truthy</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.26</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -7638,7 +7724,7 @@ expect(foo.something?).to be_truthy</code></pre>
 <p>Check for <code>once</code> and <code>twice</code> receive counts matchers usage.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
+<h3 id="examples-76"><a class="anchor" href="#examples-76"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7660,7 +7746,7 @@ expect(foo).to receive(:bar).at_most(:twice).times</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-75"><a class="anchor" href="#references-75"></a>References</h3>
+<h3 id="references-76"><a class="anchor" href="#references-76"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7695,7 +7781,7 @@ expect(foo).to receive(:bar).at_most(:twice).times</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.23</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -7713,7 +7799,7 @@ before they are defined.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-76"><a class="anchor" href="#examples-76"></a>Examples</h3>
+<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7736,7 +7822,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-76"><a class="anchor" href="#references-76"></a>References</h3>
+<h3 id="references-77"><a class="anchor" href="#references-77"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7771,7 +7857,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.28</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -7781,7 +7867,7 @@ end</code></pre>
 <p>Prefer <code>not_to receive(&#8230;&#8203;)</code> over <code>receive(&#8230;&#8203;).never</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
+<h3 id="examples-78"><a class="anchor" href="#examples-78"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7793,7 +7879,7 @@ expect(foo).not_to receive(:bar)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-77"><a class="anchor" href="#references-77"></a>References</h3>
+<h3 id="references-78"><a class="anchor" href="#references-78"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7828,7 +7914,7 @@ expect(foo).not_to receive(:bar)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.19</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -7838,7 +7924,7 @@ expect(foo).not_to receive(:bar)</code></pre>
 <p>Remove redundant <code>around</code> hook.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-78"><a class="anchor" href="#examples-78"></a>Examples</h3>
+<h3 id="examples-79"><a class="anchor" href="#examples-79"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7851,7 +7937,7 @@ end
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-78"><a class="anchor" href="#references-78"></a>References</h3>
+<h3 id="references-79"><a class="anchor" href="#references-79"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7886,7 +7972,7 @@ end
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.26</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -7896,7 +7982,7 @@ end
 <p>Checks for redundant predicate matcher.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-79"><a class="anchor" href="#examples-79"></a>Examples</h3>
+<h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7912,7 +7998,7 @@ expect(foo).to all be(bar)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-79"><a class="anchor" href="#references-79"></a>References</h3>
+<h3 id="references-80"><a class="anchor" href="#references-80"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7957,7 +8043,7 @@ expect(foo).to all be(bar)</code></pre>
 <p>Checks that <code>remove_const</code> is not used in specs.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
+<h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7972,7 +8058,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-80"><a class="anchor" href="#references-80"></a>References</h3>
+<h3 id="references-81"><a class="anchor" href="#references-81"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8017,7 +8103,7 @@ end</code></pre>
 <p>Check for repeated description strings in example groups.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
+<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8056,7 +8142,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-81"><a class="anchor" href="#references-81"></a>References</h3>
+<h3 id="references-82"><a class="anchor" href="#references-82"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8101,7 +8187,7 @@ end</code></pre>
 <p>Check for repeated examples within example groups.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
+<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">it 'is valid' do
@@ -8115,7 +8201,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-82"><a class="anchor" href="#references-82"></a>References</h3>
+<h3 id="references-83"><a class="anchor" href="#references-83"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8160,7 +8246,7 @@ end</code></pre>
 <p>Check for repeated describe and context block body.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
+<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8202,7 +8288,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-83"><a class="anchor" href="#references-83"></a>References</h3>
+<h3 id="references-84"><a class="anchor" href="#references-84"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8247,7 +8333,7 @@ end</code></pre>
 <p>Check for repeated example group descriptions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
+<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8289,7 +8375,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-84"><a class="anchor" href="#references-84"></a>References</h3>
+<h3 id="references-85"><a class="anchor" href="#references-85"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8334,7 +8420,7 @@ end</code></pre>
 <p>Check for repeated include of shared examples.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
+<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8379,7 +8465,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-85"><a class="anchor" href="#references-85"></a>References</h3>
+<h3 id="references-86"><a class="anchor" href="#references-86"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8415,7 +8501,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.27</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 </tbody>
@@ -8424,7 +8510,7 @@ end</code></pre>
 <p>Checks for repeated calls to subject missing that it is memoized.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
+<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8447,7 +8533,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-86"><a class="anchor" href="#references-86"></a>References</h3>
+<h3 id="references-87"><a class="anchor" href="#references-87"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8482,7 +8568,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.16</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.22</p></td>
 </tr>
@@ -8500,7 +8586,7 @@ are the result would be different</p>
 <p>This cop can be configured using the <code>EnforcedStyle</code> option</p>
 </div>
 <div class="sect2">
-<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
+<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-and_return-default"><a class="anchor" href="#enforcedstyle-and_return-default"></a><code>EnforcedStyle: and_return</code> (default)</h4>
 <div class="listingblock">
@@ -8559,7 +8645,7 @@ allow(Foo).to receive(:bar).and_return(bar.baz)</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-87"><a class="anchor" href="#references-87"></a>References</h3>
+<h3 id="references-88"><a class="anchor" href="#references-88"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8594,7 +8680,7 @@ allow(Foo).to receive(:bar).and_return(bar.baz)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.14</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.39</p></td>
 </tr>
@@ -8607,7 +8693,7 @@ allow(Foo).to receive(:bar).and_return(bar.baz)</code></pre>
 <p>Group lets together</p>
 </div>
 <div class="sect2">
-<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
+<h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8631,7 +8717,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-88"><a class="anchor" href="#references-88"></a>References</h3>
+<h3 id="references-89"><a class="anchor" href="#references-89"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8666,7 +8752,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.10</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -8679,7 +8765,7 @@ end</code></pre>
 <p>Unify <code>before</code>, <code>after</code>, and <code>around</code> hooks when possible.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
+<h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8699,7 +8785,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-89"><a class="anchor" href="#references-89"></a>References</h3>
+<h3 id="references-90"><a class="anchor" href="#references-90"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8734,7 +8820,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.13</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -8748,7 +8834,7 @@ end</code></pre>
 If there is no setup defined, use shared_examples.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
+<h3 id="examples-91"><a class="anchor" href="#examples-91"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8797,7 +8883,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-90"><a class="anchor" href="#references-90"></a>References</h3>
+<h3 id="references-91"><a class="anchor" href="#references-91"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8832,7 +8918,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.25</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.26</p></td>
 </tr>
@@ -8848,7 +8934,7 @@ end</code></pre>
 <p>This cop can be configured using the <code>EnforcedStyle</code> option</p>
 </div>
 <div class="sect2">
-<h3 id="examples-91"><a class="anchor" href="#examples-91"></a>Examples</h3>
+<h3 id="examples-92"><a class="anchor" href="#examples-92"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-string-default"><a class="anchor" href="#enforcedstyle-string-default"></a><code>EnforcedStyle: string</code> (default)</h4>
 <div class="listingblock">
@@ -8915,7 +9001,7 @@ include_examples :foo_bar_baz</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-91"><a class="anchor" href="#references-91"></a>References</h3>
+<h3 id="references-92"><a class="anchor" href="#references-92"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8950,7 +9036,7 @@ include_examples :foo_bar_baz</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.10</p></td>
 </tr>
@@ -8960,7 +9046,7 @@ include_examples :foo_bar_baz</code></pre>
 <p>Checks that chains of messages contain more than one element.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-92"><a class="anchor" href="#examples-92"></a>Examples</h3>
+<h3 id="examples-93"><a class="anchor" href="#examples-93"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8976,7 +9062,7 @@ allow(foo).to receive("bar.baz")</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-92"><a class="anchor" href="#references-92"></a>References</h3>
+<h3 id="references-93"><a class="anchor" href="#references-93"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9021,7 +9107,7 @@ allow(foo).to receive("bar.baz")</code></pre>
 <p>Checks for passing a block to <code>skip</code> within examples.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-93"><a class="anchor" href="#examples-93"></a>Examples</h3>
+<h3 id="examples-94"><a class="anchor" href="#examples-94"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9044,7 +9130,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-93"><a class="anchor" href="#references-93"></a>References</h3>
+<h3 id="references-94"><a class="anchor" href="#references-94"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9079,7 +9165,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.14</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -9089,7 +9175,7 @@ end</code></pre>
 <p>Sort RSpec metadata alphabetically.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-94"><a class="anchor" href="#examples-94"></a>Examples</h3>
+<h3 id="examples-95"><a class="anchor" href="#examples-95"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9105,7 +9191,7 @@ it 'works', :a, :b, baz: true, foo: 'bar'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-94"><a class="anchor" href="#references-94"></a>References</h3>
+<h3 id="references-95"><a class="anchor" href="#references-95"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9150,7 +9236,7 @@ it 'works', :a, :b, baz: true, foo: 'bar'</code></pre>
 <p>Checks that spec file paths are consistent and well-formed.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-95"><a class="anchor" href="#examples-95"></a>Examples</h3>
+<h3 id="examples-96"><a class="anchor" href="#examples-96"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9246,7 +9332,7 @@ whatever_spec.rb         # describe MyClass, type: :routing do; end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-95"><a class="anchor" href="#references-95"></a>References</h3>
+<h3 id="references-96"><a class="anchor" href="#references-96"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9291,7 +9377,7 @@ whatever_spec.rb         # describe MyClass, type: :routing do; end</code></pre>
 <p>Checks that spec file paths suffix are consistent and well-formed.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-96"><a class="anchor" href="#examples-96"></a>Examples</h3>
+<h3 id="examples-97"><a class="anchor" href="#examples-97"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9332,7 +9418,7 @@ spec/models/user.rb       # shared_examples_for 'foo'</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-96"><a class="anchor" href="#references-96"></a>References</h3>
+<h3 id="references-97"><a class="anchor" href="#references-97"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9377,7 +9463,7 @@ spec/models/user.rb       # shared_examples_for 'foo'</code></pre>
 <p>Checks that message expectations do not have a configured response.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-97"><a class="anchor" href="#examples-97"></a>Examples</h3>
+<h3 id="examples-98"><a class="anchor" href="#examples-98"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9390,7 +9476,7 @@ expect(foo).to receive(:bar).with(42)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-97"><a class="anchor" href="#references-97"></a>References</h3>
+<h3 id="references-98"><a class="anchor" href="#references-98"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9435,7 +9521,7 @@ expect(foo).to receive(:bar).with(42)</code></pre>
 <p>Ensure that subject is defined using subject helper.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-98"><a class="anchor" href="#examples-98"></a>Examples</h3>
+<h3 id="examples-99"><a class="anchor" href="#examples-99"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9454,7 +9540,7 @@ subject(:test_subject) { foo }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-98"><a class="anchor" href="#references-98"></a>References</h3>
+<h3 id="references-99"><a class="anchor" href="#references-99"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9503,7 +9589,7 @@ subject(:test_subject) { foo }</code></pre>
 when subject is also defined in parent example groups.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-99"><a class="anchor" href="#examples-99"></a>Examples</h3>
+<h3 id="examples-100"><a class="anchor" href="#examples-100"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9542,7 +9628,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-99"><a class="anchor" href="#references-99"></a>References</h3>
+<h3 id="references-100"><a class="anchor" href="#references-100"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9601,7 +9687,7 @@ expression to match against the exception message as a parameter
 to <code>raise_error</code></p>
 </div>
 <div class="sect2">
-<h3 id="examples-100"><a class="anchor" href="#examples-100"></a>Examples</h3>
+<h3 id="examples-101"><a class="anchor" href="#examples-101"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9627,7 +9713,7 @@ expect { do_something }.not_to raise_error</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-100"><a class="anchor" href="#references-100"></a>References</h3>
+<h3 id="references-101"><a class="anchor" href="#references-101"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9662,7 +9748,7 @@ expect { do_something }.not_to raise_error</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.40</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -9672,7 +9758,7 @@ expect { do_something }.not_to raise_error</code></pre>
 <p>Checks that memoized helpers names are symbols or strings.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-101"><a class="anchor" href="#examples-101"></a>Examples</h3>
+<h3 id="examples-102"><a class="anchor" href="#examples-102"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-symbols-default"><a class="anchor" href="#enforcedstyle-symbols-default"></a>EnforcedStyle: symbols (default)</h4>
 <div class="listingblock">
@@ -9727,7 +9813,7 @@ let('user_name') { 'Adam' }</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-101"><a class="anchor" href="#references-101"></a>References</h3>
+<h3 id="references-102"><a class="anchor" href="#references-102"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9776,7 +9862,7 @@ let('user_name') { 'Adam' }</code></pre>
 option.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-102"><a class="anchor" href="#examples-102"></a>Examples</h3>
+<h3 id="examples-103"><a class="anchor" href="#examples-103"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-snake_case-default"><a class="anchor" href="#enforcedstyle-snake_case-default"></a>EnforcedStyle: snake_case (default)</h4>
 <div class="listingblock">
@@ -9855,7 +9941,7 @@ let(:userFood_2) { 'fettuccine' }</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-102"><a class="anchor" href="#references-102"></a>References</h3>
+<h3 id="references-103"><a class="anchor" href="#references-103"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9890,7 +9976,7 @@ let(:userFood_2) { 'fettuccine' }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.10.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.12</p></td>
 </tr>
@@ -9907,7 +9993,7 @@ let(:userFood_2) { 'fettuccine' }</code></pre>
 <code>EnforcedStyle</code> option and supports <code>--auto-gen-config</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-103"><a class="anchor" href="#examples-103"></a>Examples</h3>
+<h3 id="examples-104"><a class="anchor" href="#examples-104"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-constant-default"><a class="anchor" href="#enforcedstyle-constant-default"></a><code>EnforcedStyle: constant</code> (default)</h4>
 <div class="listingblock">
@@ -9977,7 +10063,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-103"><a class="anchor" href="#references-103"></a>References</h3>
+<h3 id="references-104"><a class="anchor" href="#references-104"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10025,7 +10111,7 @@ end</code></pre>
 <p>Prefer using verifying doubles over normal doubles.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-104"><a class="anchor" href="#examples-104"></a>Examples</h3>
+<h3 id="examples-105"><a class="anchor" href="#examples-105"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10075,7 +10161,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-104"><a class="anchor" href="#references-104"></a>References</h3>
+<h3 id="references-105"><a class="anchor" href="#references-105"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10126,7 +10212,7 @@ end</code></pre>
 <p>Checks void <code>expect()</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-105"><a class="anchor" href="#examples-105"></a>Examples</h3>
+<h3 id="examples-106"><a class="anchor" href="#examples-106"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10138,7 +10224,7 @@ expect(something).to be(1)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-105"><a class="anchor" href="#references-105"></a>References</h3>
+<h3 id="references-106"><a class="anchor" href="#references-106"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10173,7 +10259,7 @@ expect(something).to be(1)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.32</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -10183,7 +10269,7 @@ expect(something).to be(1)</code></pre>
 <p>Checks for calling a block within a stub.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-106"><a class="anchor" href="#examples-106"></a>Examples</h3>
+<h3 id="examples-107"><a class="anchor" href="#examples-107"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10195,7 +10281,7 @@ expect(foo).to receive(:bar).and_yield(1)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-106"><a class="anchor" href="#references-106"></a>References</h3>
+<h3 id="references-107"><a class="anchor" href="#references-107"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>

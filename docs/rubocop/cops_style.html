@@ -290,10 +290,10 @@
       </ul>
     </li>
     <li class="component">
-      <div class="title"><a href="../rubocop-ast/1.30/index.html">RuboCop AST</a></div>
+      <div class="title"><a href="../rubocop-ast/index.html">RuboCop AST</a></div>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-ast/1.30/index.html">1.30</a>
+          <a href="../rubocop-ast/index.html">master</a>
         </li>
         <li class="version">
           <a href="../rubocop-ast/1.12/index.html">1.12</a>
@@ -496,6 +496,9 @@
           <a href="../rubocop-rspec/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-rspec/2.27/index.html">2.27</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-rspec/2.26/index.html">2.26</a>
         </li>
         <li class="version">
@@ -518,9 +521,6 @@
         </li>
         <li class="version">
           <a href="../rubocop-rspec/2.19/index.html">2.19</a>
-        </li>
-        <li class="version">
-          <a href="../rubocop-rspec/2.18/index.html">2.18</a>
         </li>
         <li class="version">
           <a href="../rubocop-rspec/1.44/index.html">1.44</a>
@@ -603,7 +603,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.57</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.81</p></td>
 </tr>
@@ -756,7 +756,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.87</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -880,7 +880,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
 </tr>
@@ -986,7 +986,7 @@ alias_method :bar, :foo</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.21</p></td>
 </tr>
@@ -1120,7 +1120,7 @@ Required Ruby version: 2.7
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.58</p></td>
 </tr>
@@ -1132,6 +1132,14 @@ Required Ruby version: 2.7
 <div class="paragraph">
 <p>This cop identifies places where <code>do_something(*args, &amp;block)</code>
 can be replaced by <code>do_something(&#8230;&#8203;)</code>.</p>
+</div>
+<div class="paragraph">
+<p>In Ruby 3.1, anonymous block forwarding has been added.</p>
+</div>
+<div class="paragraph">
+<p>This cop identifies places where <code>do_something(&amp;block)</code> can be replaced
+by <code>do_something(&amp;)</code>; if desired, this functionality can be disabled
+by setting <code>UseAnonymousForwarding: false</code>.</p>
 </div>
 <div class="paragraph">
 <p>In Ruby 3.2, anonymous args/kwargs forwarding has been added.</p>
@@ -1178,15 +1186,17 @@ end</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-def foo(*args, **kwargs)
+def foo(*args, **kwargs, &amp;block)
   args_only(*args)
   kwargs_only(**kwargs)
+  block_only(&amp;block)
 end
 
 # good
-def foo(*, **)
+def foo(*, **, &amp;)
   args_only(*)
   kwargs_only(**)
+  block_only(&amp;)
 end</code></pre>
 </div>
 </div>
@@ -1196,9 +1206,10 @@ end</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-def foo(*args, **kwargs)
+def foo(*args, **kwargs, &amp;block)
   args_only(*args)
   kwargs_only(**kwargs)
+  block_only(&amp;block)
 end</code></pre>
 </div>
 </div>
@@ -1364,7 +1375,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.88</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -1452,7 +1463,7 @@ Array(paths).each { |path| do_something(path) }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.58</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -1538,7 +1549,7 @@ Required Ruby version: 3.1
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.40</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -1636,7 +1647,7 @@ array1.intersect?(array2)
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.20</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.31</p></td>
 </tr>
@@ -1781,7 +1792,7 @@ in comments. You could set an array of allowed non-ascii chars in
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.12</p></td>
 </tr>
@@ -1899,7 +1910,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.25</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -2053,7 +2064,7 @@ BEGIN { test }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.87</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -2106,7 +2117,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.23</p></td>
 </tr>
@@ -2167,7 +2178,7 @@ of comments...
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.30</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.35</p></td>
 </tr>
@@ -2465,7 +2476,7 @@ things.map { |thing|
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.89</p></td>
 </tr>
@@ -2591,7 +2602,7 @@ self.class === something</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.88</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.48</p></td>
 </tr>
@@ -2718,7 +2729,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -2786,7 +2797,7 @@ That&#8217;s a good use case of ? literal so it doesn&#8217;t count it as an off
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.19</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -2899,7 +2910,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.24</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -2999,7 +3010,7 @@ var.kind_of?(String)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.93</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.57</p></td>
 </tr>
@@ -3140,7 +3151,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.20</p></td>
 </tr>
@@ -3206,7 +3217,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.89</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -3444,7 +3455,7 @@ Required Ruby version: 2.4
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.3</p></td>
 </tr>
@@ -3553,7 +3564,7 @@ params.reject(&amp;:nil?)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
 </tr>
@@ -3675,7 +3686,7 @@ items.include?</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -3737,7 +3748,7 @@ Marshal.dump(obj)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.52</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -3801,7 +3812,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.90</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -3895,7 +3906,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.30</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -4068,7 +4079,7 @@ folders = %x(find . -type d).split
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.10</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.20</p></td>
 </tr>
@@ -4220,7 +4231,7 @@ annotation.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.51</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.19</p></td>
 </tr>
@@ -4313,7 +4324,7 @@ Required Ruby version: 2.4
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.44</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -4380,7 +4391,7 @@ x.clamp(low, high)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.41</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -4439,7 +4450,7 @@ list.push(qux, quux, corge)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.47</p></td>
 </tr>
@@ -4447,8 +4458,8 @@ list.push(qux, quux, corge)</code></pre>
 </table>
 <div class="paragraph">
 <p>Check for <code>if</code> and <code>case</code> statements where each branch is used for
-assignment to the same variable when using the return of the
-condition can be used instead.</p>
+both the assignment and comparison of the same variable
+when using the return of the condition can be used instead.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-37"><a class="anchor" href="#examples-37"></a>Examples</h3>
@@ -4725,7 +4736,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.30</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -4816,7 +4827,7 @@ Required Ruby version: 3.2
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.49</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.51</p></td>
 </tr>
@@ -4888,7 +4899,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.51</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.92</p></td>
 </tr>
@@ -5014,7 +5025,7 @@ something.to_time</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.12</p></td>
 </tr>
@@ -5111,7 +5122,7 @@ Required Ruby version: 2.0
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.50</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -5175,7 +5186,7 @@ Required Ruby version: 2.4
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.48</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -5225,7 +5236,7 @@ Dir.empty?('path/to/dir')</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.82</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.9</p></td>
 </tr>
@@ -5754,7 +5765,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.73</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -5810,7 +5821,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.19</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.2</p></td>
 </tr>
@@ -5962,7 +5973,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.41</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -6023,7 +6034,7 @@ using a Range literal and <code>#each</code>. This can be done more readably usi
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.22</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.42</p></td>
 </tr>
@@ -6076,7 +6087,7 @@ parameter is assigned to within the block.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.52</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -6133,7 +6144,7 @@ a { do_something }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.40</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -6203,9 +6214,9 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Command-line only</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.28</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.61</p></td>
 </tr>
 </tbody>
 </table>
@@ -6412,9 +6423,9 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Command-line only</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.32</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.61</p></td>
 </tr>
 </tbody>
 </table>
@@ -6479,7 +6490,7 @@ do_something('')</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.52</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -6531,7 +6542,7 @@ redundant.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.12</p></td>
 </tr>
@@ -6593,9 +6604,9 @@ s = ''</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Command-line only</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.46</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.61</p></td>
 </tr>
 </tbody>
 </table>
@@ -6735,7 +6746,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.50</p></td>
 </tr>
@@ -6791,7 +6802,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.81</p></td>
 </tr>
@@ -6860,7 +6871,7 @@ Required Ruby version: 3.0
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.8</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -7010,7 +7021,7 @@ def my_method() = x.foo
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.29</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -7075,7 +7086,7 @@ ENV.fetch('HOME', default)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.52</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -7168,7 +7179,7 @@ eval code</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.12</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.29</p></td>
 </tr>
@@ -7228,7 +7239,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.51</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -7284,7 +7295,7 @@ string != 'string'</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.53</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -7360,7 +7371,7 @@ Pathname.new(__dir__).expand_path</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.89</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.8</p></td>
 </tr>
@@ -7601,7 +7612,7 @@ trailing zeroes.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.28</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -7704,7 +7715,7 @@ Required Ruby version: 2.4
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.48</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -7766,7 +7777,7 @@ FileTest.empty?('path/to/file')</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.24</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -7848,7 +7859,7 @@ File.binread(filename)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.24</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -7943,7 +7954,7 @@ File.binwrite(filename, content)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.72</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.9</p></td>
 </tr>
@@ -8087,7 +8098,7 @@ a.fdiv(b)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.13</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.26</p></td>
 </tr>
@@ -8209,7 +8220,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.19</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.49</p></td>
 </tr>
@@ -8340,7 +8351,7 @@ puts '%10s' % 'hoge'</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.49</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.0</p></td>
 </tr>
@@ -8554,7 +8565,7 @@ Required Ruby version: 2.3
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.79</p></td>
 </tr>
@@ -8713,7 +8724,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.89</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -8885,7 +8896,7 @@ $stdin.read</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.20</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.31</p></td>
 </tr>
@@ -9091,7 +9102,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.88</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -9207,7 +9218,7 @@ EnforcedStyle.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.10</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.55</p></td>
 </tr>
@@ -9331,7 +9342,7 @@ Hash[*ary]</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.80</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.16</p></td>
 </tr>
@@ -9464,7 +9475,7 @@ Required Ruby version: 3.0
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.39</p></td>
 </tr>
@@ -9636,7 +9647,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.24</p></td>
 </tr>
@@ -9903,7 +9914,7 @@ Required Ruby version: 2.5
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.80</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.90</p></td>
 </tr>
@@ -9979,7 +9990,7 @@ Required Ruby version: 2.4
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.80</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.90</p></td>
 </tr>
@@ -10041,7 +10052,7 @@ Hash[{a: 1, b: 2}.collect { |k, v| [k, foo(v)] }]
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.19</p></td>
 </tr>
@@ -10198,7 +10209,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.3</p></td>
 </tr>
@@ -10325,7 +10336,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.30</p></td>
 </tr>
@@ -10443,7 +10454,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.39</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.87</p></td>
 </tr>
@@ -10500,7 +10511,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -10629,7 +10640,7 @@ num.nonzero? ? true : false</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.83</p></td>
 </tr>
@@ -10748,7 +10759,7 @@ Required Ruby version: 2.7
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.16</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -10811,7 +10822,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.26</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.61</p></td>
 </tr>
@@ -10932,7 +10943,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.48</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -11042,7 +11053,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.44</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.50</p></td>
 </tr>
@@ -11086,12 +11097,14 @@ foo unless !bar
 foo unless x != y
 foo unless x &gt;= 10
 foo unless x.even?
+foo unless odd?
 
 # good
 foo if bar
 foo if x == y
 foo if x &lt; 10
 foo if x.odd?
+foo if even?
 
 # bad (complex condition)
 foo unless x != y || x.even?
@@ -11234,7 +11247,7 @@ ip_address = ENV['DEPLOYMENT_IP_ADDRESS']</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.90</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
 </tr>
@@ -11311,7 +11324,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.40</p></td>
 </tr>
@@ -11440,7 +11453,7 @@ f = -&gt;(x) do
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.13</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.14</p></td>
 </tr>
@@ -11536,7 +11549,7 @@ lambda.(x, y)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.18</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.64</p></td>
 </tr>
@@ -11607,7 +11620,7 @@ some_str = 'ala' \
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.35</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -11819,7 +11832,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.30</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -11902,7 +11915,7 @@ Required Ruby version: 2.6
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.24</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -11977,7 +11990,7 @@ something.to_h { |v| [v, v * 2] }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.42</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -12038,7 +12051,7 @@ something.to_set { |i| i * 2 }
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.47</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
 </tr>
@@ -12439,7 +12452,7 @@ Array 1</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.47</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.55</p></td>
 </tr>
@@ -12627,7 +12640,7 @@ foo.c</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.16</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
 </tr>
@@ -12819,7 +12832,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.50</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -12868,7 +12881,7 @@ return foo.minmax</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.42</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -12949,7 +12962,7 @@ a &lt;= b ? a : b
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.30</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.38</p></td>
 </tr>
@@ -13195,7 +13208,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.48</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.49</p></td>
 </tr>
@@ -13379,7 +13392,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.11</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.65</p></td>
 </tr>
@@ -13638,7 +13651,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.45</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -13697,7 +13710,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.26</p></td>
 </tr>
@@ -13771,7 +13784,7 @@ Required Ruby version: 2.7
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.16</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -13843,7 +13856,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.44</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.48</p></td>
 </tr>
@@ -13941,7 +13954,7 @@ foo ||= (
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.59</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
 </tr>
@@ -13993,7 +14006,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.86</p></td>
 </tr>
@@ -14081,7 +14094,7 @@ return cond ? b : c</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.73</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -14154,7 +14167,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.49</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.1</p></td>
 </tr>
@@ -14287,7 +14300,7 @@ foo if a == 'a' || a == 'b'</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.34</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.8</p></td>
 </tr>
@@ -14470,7 +14483,7 @@ CONST = [1, 2, 3]</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.20</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.48</p></td>
 </tr>
@@ -14630,7 +14643,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -14692,7 +14705,7 @@ x ? do_something_else : do_something</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.69</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -14842,7 +14855,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.20</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -14922,7 +14935,7 @@ Required Ruby version: 3.1
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.26</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -14970,7 +14983,7 @@ File.dirname(path, 2)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.35</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -15028,7 +15041,7 @@ something if b &amp;&amp; a</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.77</p></td>
 </tr>
@@ -15113,7 +15126,7 @@ method1(foo arg)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.86</p></td>
 </tr>
@@ -15174,7 +15187,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.22</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.35</p></td>
 </tr>
@@ -15303,7 +15316,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.12</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.59</p></td>
 </tr>
@@ -15407,7 +15420,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.15</p></td>
 </tr>
@@ -15474,7 +15487,7 @@ Proc.new { nil if x }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.20</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.22</p></td>
 </tr>
@@ -15596,7 +15609,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.20</p></td>
 </tr>
@@ -15850,7 +15863,7 @@ hash.each { use_only_hash_value_as_numbered_parameter(_2) }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.41</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -15961,7 +15974,7 @@ num = 01234</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.48</p></td>
 </tr>
@@ -16107,7 +16120,7 @@ only correct to the standard pattern of an <code>_</code> every 3 digits.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.42</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.59</p></td>
 </tr>
@@ -16312,7 +16325,7 @@ Required Ruby version: 2.6
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.28</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -16409,7 +16422,7 @@ obj.yield_self { |x| x.do_something }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.90</p></td>
 </tr>
@@ -16597,7 +16610,7 @@ allow(test_double).to receive(:a).and_return('b')</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.37</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -16931,7 +16944,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.50</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -17003,7 +17016,7 @@ name ||= 'Bozhidar'</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.32</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -17069,7 +17082,7 @@ c = 3</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.56</p></td>
 </tr>
@@ -17217,7 +17230,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.19</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.48</p></td>
 </tr>
@@ -17311,7 +17324,7 @@ default.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.25</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -17404,7 +17417,7 @@ default.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.13</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -17463,7 +17476,7 @@ puts Regexp.last_match(1)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.41</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.70</p></td>
 </tr>
@@ -17575,7 +17588,7 @@ Hash#has_value?</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.18</p></td>
 </tr>
@@ -17633,7 +17646,7 @@ p = proc { |n| puts n }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.16</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -17732,10 +17745,10 @@ style to use for symbols that require quotes.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.14</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.61</p></td>
 </tr>
 </tbody>
 </table>
@@ -17754,6 +17767,12 @@ passed multiple arguments.</p>
 <div class="paragraph">
 <p>The exploded style has an <code>AllowedCompactTypes</code> configuration
 option that takes an Array of exception name Strings.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-44"><a class="anchor" href="#safety-44"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe because <code>raise Foo</code> calls <code>Foo.exception</code>, not <code>Foo.new</code>.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-165"><a class="anchor" href="#examples-165"></a>Examples</h3>
@@ -17859,7 +17878,7 @@ fail 'message'</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.52</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -17928,7 +17947,7 @@ rand(1...7)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.55</p></td>
 </tr>
@@ -17964,7 +17983,7 @@ This cop is limited to methods with single parameter.
 </div>
 </div>
 <div class="sect2">
-<h3 id="safety-44"><a class="anchor" href="#safety-44"></a>Safety</h3>
+<h3 id="safety-45"><a class="anchor" href="#safety-45"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because of the following limitations:</p>
 </div>
@@ -18063,7 +18082,7 @@ A.foo</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.52</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -18119,7 +18138,7 @@ Array.new(3) { 'foo' }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.87</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -18191,7 +18210,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.10</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.21</p></td>
 </tr>
@@ -18299,7 +18318,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.76</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -18349,7 +18368,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.76</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -18416,7 +18435,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.50</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -18476,7 +18495,7 @@ x != y</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.40</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -18563,7 +18582,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.53</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -18610,7 +18629,7 @@ require_relative 'path/to/feature'</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.41</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -18663,7 +18682,7 @@ do_something(foo: bar, baz: qux, **options)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.38</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -18673,7 +18692,7 @@ do_something(foo: bar, baz: qux, **options)</code></pre>
 <p>Checks for redundant <code>each</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-45"><a class="anchor" href="#safety-45"></a>Safety</h3>
+<h3 id="safety-46"><a class="anchor" href="#safety-46"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, as it can produce false positives if the receiver
 is not an <code>Enumerator</code>.</p>
@@ -18731,7 +18750,7 @@ array.each_with_object { |v, o| do_something(v, o) }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.14</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.29</p></td>
 </tr>
@@ -18796,7 +18815,7 @@ raise Object.new.to_s</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.86</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -18823,7 +18842,7 @@ but not when disabled.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-46"><a class="anchor" href="#safety-46"></a>Safety</h3>
+<h3 id="safety-47"><a class="anchor" href="#safety-47"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it cannot be guaranteed that the receiver
 does not have a different implementation of <code>fetch</code>.</p>
@@ -18924,7 +18943,7 @@ ENV.fetch(:key, VALUE)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.88</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -18994,7 +19013,7 @@ require_relative '../foo.so'</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.52</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.57</p></td>
 </tr>
@@ -19005,7 +19024,7 @@ require_relative '../foo.so'</code></pre>
 chained to <code>select</code>/<code>filter</code>/<code>find_all</code> and change them to use predicate method instead.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-47"><a class="anchor" href="#safety-47"></a>Safety</h3>
+<h3 id="safety-48"><a class="anchor" href="#safety-48"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because <code>array.select.any?</code> evaluates all elements
 through the <code>select</code> method, while <code>array.any?</code> uses short-circuit evaluation.
@@ -19092,7 +19111,7 @@ arr.any? { |x| x &gt; 1 }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.34</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.66</p></td>
 </tr>
@@ -19164,7 +19183,7 @@ CONST = 1</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.45</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -19224,9 +19243,9 @@ EOS</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Command-line only (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.27</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.28</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.61</p></td>
 </tr>
 </tbody>
 </table>
@@ -19268,7 +19287,7 @@ initializer.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-48"><a class="anchor" href="#safety-48"></a>Safety</h3>
+<h3 id="safety-49"><a class="anchor" href="#safety-49"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because if subclass overrides <code>initialize</code> method with
 a different arity than superclass.</p>
@@ -19409,7 +19428,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.76</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.30</p></td>
 </tr>
@@ -19419,7 +19438,7 @@ end</code></pre>
 <p>Checks for strings that are just an interpolated expression.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-49"><a class="anchor" href="#safety-49"></a>Safety</h3>
+<h3 id="safety-50"><a class="anchor" href="#safety-50"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is unsafe because when calling a destructive method to string,
 the resulting string may have different behavior or raise <code>FrozenError</code>.</p>
@@ -19483,7 +19502,7 @@ y &lt;&lt; 'b'   # raise `FrozenError`.</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.49</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -19583,7 +19602,7 @@ some_method \
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -19630,7 +19649,7 @@ x if y.z.nil?</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.76</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -19691,7 +19710,7 @@ question = '"What did you say?"'</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.53</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -19759,7 +19778,7 @@ a deterministic regexp to a string.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.85</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -19821,7 +19840,7 @@ r = /[ab]/</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.52</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -19872,7 +19891,7 @@ Regexp.compile('regexp')</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.85</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -19940,7 +19959,7 @@ Regexp.compile('regexp')</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.10</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.14</p></td>
 </tr>
@@ -20071,7 +20090,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.10</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.13</p></td>
 </tr>
@@ -20167,7 +20186,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.90</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -20178,7 +20197,7 @@ end</code></pre>
 modification methods.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-50"><a class="anchor" href="#safety-50"></a>Safety</h3>
+<h3 id="safety-51"><a class="anchor" href="#safety-51"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, because it can produce false positives for
 user defined methods having one of the expected names, but not modifying
@@ -20233,7 +20252,7 @@ self.foo += ary</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.19</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -20290,7 +20309,7 @@ foo = bar unless condition</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.76</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.22</p></td>
 </tr>
@@ -20307,7 +20326,7 @@ last element. Similarly, <code>Enumerable#min_by</code> and
 after which only the first or last element is used.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-51"><a class="anchor" href="#safety-51"></a>Safety</h3>
+<h3 id="safety-52"><a class="anchor" href="#safety-52"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, because <code>sort&#8230;&#8203;last</code> and <code>max</code> may not return the
 same element in all cases.</p>
@@ -20406,7 +20425,7 @@ arr.max_by(&amp;:foo)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -20457,7 +20476,7 @@ array.sort</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.37</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -20527,7 +20546,7 @@ STR</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.30</p></td>
 </tr>
@@ -20725,7 +20744,7 @@ x =~ /home\//</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.40</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -20735,7 +20754,7 @@ x =~ /home\//</code></pre>
 <p>Sort <code>require</code> and <code>require_relative</code> in alphabetical order.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-52"><a class="anchor" href="#safety-52"></a>Safety</h3>
+<h3 id="safety-53"><a class="anchor" href="#safety-53"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because it will obviously change the execution order.</p>
 </div>
@@ -20826,7 +20845,7 @@ require 'a'</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.34</p></td>
 </tr>
@@ -20915,7 +20934,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.52</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -21053,7 +21072,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.50</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -21155,7 +21174,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.53</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -21165,7 +21184,7 @@ end</code></pre>
 <p>Checks if <code>return</code> or <code>return nil</code> is used in predicate method definitions.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-53"><a class="anchor" href="#safety-53"></a>Safety</h3>
+<h3 id="safety-54"><a class="anchor" href="#safety-54"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is marked as unsafe because the change of the return value
 from <code>nil</code> to <code>false</code> could potentially lead to incompatibility issues.</p>
@@ -21301,7 +21320,7 @@ Required Ruby version: 2.3
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.43</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.27</p></td>
 </tr>
@@ -21329,7 +21348,7 @@ We have limited the cop to not register an offense for method chains
 that exceed this option is set.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-54"><a class="anchor" href="#safety-54"></a>Safety</h3>
+<h3 id="safety-55"><a class="anchor" href="#safety-55"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is unsafe because if a value is <code>false</code>, the resulting
 code will have different behavior or raise an error.</p>
@@ -21457,7 +21476,7 @@ foo.bar &gt; 2 if foo</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.30</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -21530,7 +21549,7 @@ foo.bar &gt; 2 if foo</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.22</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -21572,7 +21591,7 @@ See <a href="https://bugs.ruby-lang.org/issues/17030" class="bare">https://bugs.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-55"><a class="anchor" href="#safety-55"></a>Safety</h3>
+<h3 id="safety-56"><a class="anchor" href="#safety-56"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is marked as unsafe because <code>MatchData</code> will
 not be created by <code>grep</code>, but may have previously been relied
@@ -21632,7 +21651,7 @@ array.grep_v(regexp)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.19</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.29</p></td>
 </tr>
@@ -21689,7 +21708,7 @@ x += 1</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.19</p></td>
 </tr>
@@ -21855,7 +21874,7 @@ quuz.public_send(:fred)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.11</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.37</p></td>
 </tr>
@@ -22042,7 +22061,7 @@ explicit_receiver.raise</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.89</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -22057,7 +22076,7 @@ argument. In such cases, dig should be replaced with <code>[]</code>.</p>
 calls to the <code>dig</code> method using safe navigation will be ignored.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-56"><a class="anchor" href="#safety-56"></a>Safety</h3>
+<h3 id="safety-57"><a class="anchor" href="#safety-57"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it cannot be guaranteed that the receiver
 is an <code>Enumerable</code> or does not have a nonstandard implementation
@@ -22112,7 +22131,7 @@ keys = %i[key1 key2]
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.16</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.6</p></td>
 </tr>
@@ -22205,7 +22224,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.57</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -22275,7 +22294,7 @@ end
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.8</p></td>
 </tr>
@@ -22399,7 +22418,7 @@ Required Ruby version: 2.6
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.83</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -22411,7 +22430,7 @@ and ensures arrays are sliced with endless ranges instead of <code>ary[start..-1
 and with beginless ranges instead of <code>ary[nil..end]</code> on Ruby 2.7+.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-57"><a class="anchor" href="#safety-57"></a>Safety</h3>
+<h3 id="safety-58"><a class="anchor" href="#safety-58"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because <code>x..-1</code> and <code>x..</code> are only guaranteed to
 be equivalent for <code>Array#[]</code>, <code>String#[]</code>, and the cop cannot determine what class
@@ -22492,7 +22511,7 @@ items[0..42]   # Ruby 2.7+</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.89</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.5</p></td>
 </tr>
@@ -22608,7 +22627,7 @@ end if condition_a</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.13</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
 </tr>
@@ -22651,7 +22670,7 @@ puts $*</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="safety-58"><a class="anchor" href="#safety-58"></a>Safety</h3>
+<h3 id="safety-59"><a class="anchor" href="#safety-59"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is marked as unsafe because if <code>RequireEnglish</code> is not
 true, replacing perl-style variables with english variables will break.</p>
@@ -22787,7 +22806,7 @@ puts $*</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.35</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -22884,7 +22903,7 @@ There are two different styles. Defaults to <code>require_parentheses</code>.</p
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -22896,7 +22915,7 @@ replaced with a module. Classes should be used only when it makes sense to creat
 instances out of them.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-59"><a class="anchor" href="#safety-59"></a>Safety</h3>
+<h3 id="safety-60"><a class="anchor" href="#safety-60"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, because it is possible that this class is a parent
 for some other subclass, monkey-patched with instance methods or
@@ -22975,7 +22994,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.51</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -23034,7 +23053,7 @@ warn('hello')</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.12</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -23044,7 +23063,7 @@ warn('hello')</code></pre>
 <p>Checks for uses of <code>String#split</code> with empty string or regexp literal argument.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-60"><a class="anchor" href="#safety-60"></a>Safety</h3>
+<h3 id="safety-61"><a class="anchor" href="#safety-61"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it cannot be guaranteed that the receiver
 is actually a string. If another class has a <code>split</code> method with
@@ -23100,7 +23119,7 @@ string.chars</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.89</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.18</p></td>
 </tr>
@@ -23140,7 +23159,7 @@ This is useful when the receiver is some expression that returns string like <co
 instead of a string literal.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-61"><a class="anchor" href="#safety-61"></a>Safety</h3>
+<h3 id="safety-62"><a class="anchor" href="#safety-62"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe in <code>aggressive</code> mode, as it cannot be guaranteed that
 the receiver is actually a string, which can result in a false positive.</p>
@@ -23242,7 +23261,7 @@ Pathname.new('/') + 'test'</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.52</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.75</p></td>
 </tr>
@@ -23253,7 +23272,7 @@ Pathname.new('/') + 'test'</code></pre>
 symbols is preferred instead.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-62"><a class="anchor" href="#safety-62"></a>Safety</h3>
+<h3 id="safety-63"><a class="anchor" href="#safety-63"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because while symbols are preferred for hash keys,
 there are instances when string keys are required.</p>
@@ -23307,7 +23326,7 @@ there are instances when string keys are required.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
 </tr>
@@ -23416,7 +23435,7 @@ there are instances when string keys are required.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.27</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -23523,7 +23542,7 @@ regexp = /Tests #{success ? "PASS" : "FAIL"}/</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.34</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.34</p></td>
 </tr>
@@ -23597,7 +23616,7 @@ from the String class.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -23646,7 +23665,7 @@ from the String class.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.29</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.20</p></td>
 </tr>
@@ -23656,7 +23675,7 @@ from the String class.</p>
 <p>Checks for inheritance from Struct.new.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-63"><a class="anchor" href="#safety-63"></a>Safety</h3>
+<h3 id="safety-64"><a class="anchor" href="#safety-64"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is unsafe because it will change the inheritance
 tree (e.g. return value of <code>Module#ancestors</code>) of the constant.</p>
@@ -23718,7 +23737,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.58</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -23778,7 +23797,7 @@ super(name, age)</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -23788,7 +23807,7 @@ super(name, age)</code></pre>
 <p>Enforces the use of shorthand-style swapping of 2 variables.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-64"><a class="anchor" href="#safety-64"></a>Safety</h3>
+<h3 id="safety-65"><a class="anchor" href="#safety-65"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is unsafe, because the temporary variable used to
 swap variables will be removed, but may be referred to elsewhere.</p>
@@ -23856,7 +23875,7 @@ Required Ruby version: 2.0
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.49</p></td>
 </tr>
@@ -23978,7 +23997,7 @@ array of 2 or fewer elements.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.30</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -24025,7 +24044,7 @@ array of 2 or fewer elements.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.26</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.40</p></td>
 </tr>
@@ -24041,7 +24060,7 @@ please set <code>true</code> to <code>AllowMethodsWithArguments</code>.
 These are customizable with <code>AllowedMethods</code> option.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-65"><a class="anchor" href="#safety-65"></a>Safety</h3>
+<h3 id="safety-66"><a class="anchor" href="#safety-66"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because there is a difference that a <code>Proc</code>
 generated from <code>Symbol#to_proc</code> behaves as a lambda, while
@@ -24261,7 +24280,7 @@ something.map { |s| s.upcase }</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.42</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.46</p></td>
 </tr>
@@ -24494,7 +24513,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.53</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -24544,7 +24563,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.52</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -24617,7 +24636,7 @@ def endless_method = do_stuff</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.53</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -24667,7 +24686,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.36</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -24843,7 +24862,7 @@ method(
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.53</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -25016,7 +25035,7 @@ a = [
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.81</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -25029,7 +25048,7 @@ that comma to be present. Blocks with more than one argument never
 require a trailing comma.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-66"><a class="anchor" href="#safety-66"></a>Safety</h3>
+<h3 id="safety-67"><a class="anchor" href="#safety-67"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because a trailing comma can indicate there are
 more parameters that are not used.</p>
@@ -25117,7 +25136,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.53</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -25280,7 +25299,7 @@ a = {
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.52</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -25348,7 +25367,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.31</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.35</p></td>
 </tr>
@@ -25445,7 +25464,7 @@ a, b, _something = foo()</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.15</p></td>
 </tr>
@@ -25675,7 +25694,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -25877,7 +25896,7 @@ Required Ruby version: 2.4
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.54</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -25928,7 +25947,7 @@ which can be replaced with the shorter method <code>unpack1</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.20</p></td>
 </tr>
@@ -25989,7 +26008,7 @@ which can be replaced with the shorter method <code>unpack1</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -26052,7 +26071,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -26126,7 +26145,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.30</p></td>
 </tr>
@@ -26209,7 +26228,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.19</p></td>
 </tr>
@@ -26376,7 +26395,7 @@ array of 2 or fewer elements.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.53</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -26444,7 +26463,7 @@ YAML.safe_load_file(path)       # Ruby 3.0 and newer</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.49</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.75</p></td>
 </tr>
@@ -26456,7 +26475,7 @@ i.e. comparison operations where the order of expression is reversed.
 eg. <code>5 == x</code></p>
 </div>
 <div class="sect2">
-<h3 id="safety-67"><a class="anchor" href="#safety-67"></a>Safety</h3>
+<h3 id="safety-68"><a class="anchor" href="#safety-68"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because comparison operators can be defined
 differently on different classes, and are not guaranteed to
@@ -26610,7 +26629,7 @@ bar &gt; 10
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.42</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.43</p></td>
 </tr>
@@ -26630,7 +26649,7 @@ This cop complements <code>Style/YodaCondition</code> cop, which has a similar p
 </div>
 </div>
 <div class="sect2">
-<h3 id="safety-68"><a class="anchor" href="#safety-68"></a>Safety</h3>
+<h3 id="safety-69"><a class="anchor" href="#safety-69"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because binary operators can be defined
 differently on different classes, and are not guaranteed to
@@ -26706,7 +26725,7 @@ CONST + 1
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.37</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.39</p></td>
 </tr>
@@ -26733,7 +26752,7 @@ so allow <code>size == 0</code> and <code>size.zero?</code>.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-69"><a class="anchor" href="#safety-69"></a>Safety</h3>
+<h3 id="safety-70"><a class="anchor" href="#safety-70"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it cannot be guaranteed that the receiver
 has an <code>empty?</code> method that is defined in terms of <code>length</code>. If there

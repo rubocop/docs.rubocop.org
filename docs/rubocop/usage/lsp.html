@@ -290,10 +290,10 @@
       </ul>
     </li>
     <li class="component">
-      <div class="title"><a href="../../rubocop-ast/1.30/index.html">RuboCop AST</a></div>
+      <div class="title"><a href="../../rubocop-ast/index.html">RuboCop AST</a></div>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../../rubocop-ast/1.30/index.html">1.30</a>
+          <a href="../../rubocop-ast/index.html">master</a>
         </li>
         <li class="version">
           <a href="../../rubocop-ast/1.12/index.html">1.12</a>
@@ -496,6 +496,9 @@
           <a href="../../rubocop-rspec/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../../rubocop-rspec/2.27/index.html">2.27</a>
+        </li>
+        <li class="version">
           <a href="../../rubocop-rspec/2.26/index.html">2.26</a>
         </li>
         <li class="version">
@@ -518,9 +521,6 @@
         </li>
         <li class="version">
           <a href="../../rubocop-rspec/2.19/index.html">2.19</a>
-        </li>
-        <li class="version">
-          <a href="../../rubocop-rspec/2.18/index.html">2.18</a>
         </li>
         <li class="version">
           <a href="../../rubocop-rspec/1.44/index.html">1.44</a>
@@ -976,6 +976,27 @@ user             17414   0.0  0.2  5557716 144376   ??  Ss    4:48PM   0:02.13 /
 </td>
 </tr>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="language-server-development"><a class="anchor" href="#language-server-development"></a>Language Server Development</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RuboCop provides APIs for developers of original language server or tools analogous to LSP, using RuboCop as the backend, instead of the RuboCop&#8217;s built-in LSP.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>RuboCop::LSP.enable</code> enables LSP mode, customizing for LSP-specific features such as autocorrection and short offense message.</p>
+</li>
+<li>
+<p><code>RuboCop::LSP.disable</code> disables LSP mode, which can be particularly useful for testing.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When implementing custom cops, <code>RuboCop::LSP.enabled?</code> can be used to achieve behavior that considers these states.</p>
 </div>
 </div>
 </div>

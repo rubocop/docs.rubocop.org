@@ -290,10 +290,10 @@
       </ul>
     </li>
     <li class="component">
-      <div class="title"><a href="../rubocop-ast/1.30/index.html">RuboCop AST</a></div>
+      <div class="title"><a href="../rubocop-ast/index.html">RuboCop AST</a></div>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-ast/1.30/index.html">1.30</a>
+          <a href="../rubocop-ast/index.html">master</a>
         </li>
         <li class="version">
           <a href="../rubocop-ast/1.12/index.html">1.12</a>
@@ -496,6 +496,9 @@
           <a href="../rubocop-rspec/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-rspec/2.27/index.html">2.27</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-rspec/2.26/index.html">2.26</a>
         </li>
         <li class="version">
@@ -518,9 +521,6 @@
         </li>
         <li class="version">
           <a href="../rubocop-rspec/2.19/index.html">2.19</a>
-        </li>
-        <li class="version">
-          <a href="../rubocop-rspec/2.18/index.html">2.18</a>
         </li>
         <li class="version">
           <a href="../rubocop-rspec/1.44/index.html">1.44</a>
@@ -945,17 +945,17 @@ cops and the number of offenses found for each by running:</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop --format offenses
 
-36   Layout/LineLength
-18   Style/StringLiterals
+36   Layout/LineLength [Safe Correctable]
+18   Style/StringLiterals [Safe Correctable]
 13   Style/Documentation
-10   Style/ExpandPathArguments
-8    Style/EmptyMethod
-6    Layout/IndentationConsistency
+10   Style/ExpandPathArguments [Safe Correctable]
+8    Style/EmptyMethod [Safe Correctable]
+6    Layout/IndentationConsistency [Safe Correctable]
 4    Lint/SuppressedException
-3    Layout/EmptyLinesAroundAccessModifier
-2    Layout/ExtraSpacing
-1    Layout/AccessModifierIndentation
-1    Style/ClassAndModuleChildren
+3    Layout/EmptyLinesAroundAccessModifier [Safe Correctable]
+2    Layout/ExtraSpacing [Safe Correctable]
+1    Layout/AccessModifierIndentation [Safe Correctable]
+1    Style/ClassAndModuleChildren [Unsafe Correctable]
 --
 102  Total in 31 files</code></pre>
 </div>
