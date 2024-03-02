@@ -222,6 +222,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.61/index.html">1.61</a>
+        </li>
+        <li class="version">
           <a href="1.60/index.html">1.60</a>
         </li>
         <li class="version">
@@ -535,7 +538,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.60/index.html" class="home-link"></a>
+  <a href="1.61/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -546,6 +549,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="compatibility.html">default</a>
+    <a class="version" href="1.61/compatibility.html">1.61</a>
     <a class="version" href="1.60/compatibility.html">1.60</a>
     <a class="version" href="1.59/compatibility.html">1.59</a>
     <a class="version" href="1.58/compatibility.html">1.58</a>
@@ -705,7 +709,10 @@ There are major version incompatibilities between Ruby 2.7 and Ruby 3.0, and the
 </tbody>
 </table>
 <div class="paragraph">
-<p>RuboCop targets Ruby 2.0+ code analysis since RuboCop 1.30. It restored code analysis support that had been removed earlier by mistake, together with dropping runtime support for unsupported Ruby versions.</p>
+<p>RuboCop targets Ruby 2.0+ code analysis with Parser gem as a parser since RuboCop 1.30. It restored code analysis support that had been removed earlier by mistake, together with dropping runtime support for unsupported Ruby versions.</p>
+</div>
+<div class="paragraph">
+<p>Starting from RuboCop 1.62, support for Prism&#8217;s <code>Prism::Translation::parser</code> will enable analysis of Ruby 3.3+. For more details, please refer to the <a href="configuration.html#setting-the-parser-engine" class="xref page">setting <code>ParserEngine</code></a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
