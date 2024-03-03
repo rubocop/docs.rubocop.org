@@ -2025,7 +2025,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.27</p></td>
 </tr>
 </tbody>
 </table>
@@ -2037,8 +2037,10 @@ end</code></pre>
 each example via described_class.</p>
 </div>
 <div class="paragraph">
-<p>This cop can be configured using the <code>EnforcedStyle</code> and <code>SkipBlocks</code>
-options.</p>
+<p>This cop can be configured using the <code>EnforcedStyle</code>, <code>SkipBlocks</code>
+and <code>OnlyStaticConstants</code> options.
+<code>OnlyStaticConstants</code> is only relevant when <code>EnforcedStyle</code> is
+<code>described_class</code>.</p>
 </div>
 <div class="paragraph">
 <p>There&#8217;s a known caveat with rspec-rails&#8217;s <code>controller</code> helper that
@@ -2065,6 +2067,28 @@ end
 # good
 describe MyClass do
   subject { described_class.do_something }
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="onlystaticconstants-true-default"><a class="anchor" href="#onlystaticconstants-true-default"></a><code>OnlyStaticConstants: true</code> (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+describe MyClass do
+  subject { MyClass::CONSTANT }
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="onlystaticconstants-false"><a class="anchor" href="#onlystaticconstants-false"></a><code>OnlyStaticConstants: false</code></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+describe MyClass do
+  subject { MyClass::CONSTANT }
 end</code></pre>
 </div>
 </div>
@@ -2128,6 +2152,11 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>described_class</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>described_class</code>, <code>explicit</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OnlyStaticConstants</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 </tr>
 </tbody>
 </table>
