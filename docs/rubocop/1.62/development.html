@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Development :: RuboCop Docs</title>
+    <link rel="canonical" href="https://docs.rubocop.org/rubocop/development.html">
+    <link rel="prev" href="automated_code_review.html">
+    <link rel="next" href="contributing.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
+<style>:root{--docsearch-primary-color: #bd362f} </style>
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140153536-1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-140153536-1')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <a href="https://rubocop.org">RuboCop</a>
+        <span class="separator">//</span>
+        <a href="https://docs.rubocop.org">Docs</a>
+      </div>
+      <div class="navbar-item">
+        <div id="docsearch"></div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href=index.html>Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Style Guides</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://rubystyle.guide">Ruby</a>
+            <a class="navbar-item" href="https://rails.rubystyle.guide">Rails</a>
+            <a class="navbar-item" href="https://rspec.rubystyle.guide">RSpec</a>
+            <a class="navbar-item" href="https://minitest.rubystyle.guide">Minitest</a>
+          </div>
+        </div>
+        <a class="navbar-item" href="https://www.rubydoc.info/gems/rubocop">API Docs</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Projects</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop">RuboCop</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-ast">RuboCop AST</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-capybara">RuboCop Capybara</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-factory_bot">RuboCop factory_bot</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-minitest">RuboCop Minitest</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-performance">RuboCop Performance</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rails">RuboCop Rails</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rake">RuboCop Rake</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rspec">RuboCop RSpec</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Community</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop">GitHub Org</a>
+            <a class="navbar-item" href="https://gitter.im/bbatsov/rubocop">Chat (Gitter)</a>
+            <a class="navbar-item" href="https://opencollective.com/rubocop">Open Collective</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rubocop" data-version="1.62">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">RuboCop</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="compatibility.html">Compatibility</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Usage</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/basic_usage.html">Basic Usage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/autocorrect.html">Autocorrect</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/caching.html">Caching</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/lsp.html">LSP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/server.html">Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="usage/profiling.html">Profiling</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="cops.html">Cops</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="formatters.html">Formatters</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cop Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_bundler.html">Bundler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_gemspec.html">Gemspec</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_layout.html">Layout</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_lint.html">Lint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_metrics.html">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_migration.html">Migration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_naming.html">Naming</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_security.html">Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cops_style.html">Style</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="v1_upgrade_notes.html">Upgrade Notes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="extensions.html">Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="integration_with_other_tools.html">Integration with Other Tools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="automated_code_review.html">Automated Code Review</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="contributing.html">Contributing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="support.html">Support</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="versioning.html">Versioning</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">About</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/history.html">History</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/team.html">Team</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/changelog.html">Changelog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/logo.html">Logo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="about/license.html">License</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RuboCop</span>
+    <span class="version">1.62</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="../index.html">RuboCop</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../index.html">default</a>
+        </li>
+        <li class="version is-current">
+          <a href="index.html">1.62</a>
+        </li>
+        <li class="version">
+          <a href="../1.61/index.html">1.61</a>
+        </li>
+        <li class="version">
+          <a href="../1.60/index.html">1.60</a>
+        </li>
+        <li class="version">
+          <a href="../1.59/index.html">1.59</a>
+        </li>
+        <li class="version">
+          <a href="../1.58/index.html">1.58</a>
+        </li>
+        <li class="version">
+          <a href="../1.57/index.html">1.57</a>
+        </li>
+        <li class="version">
+          <a href="../1.56/index.html">1.56</a>
+        </li>
+        <li class="version">
+          <a href="../1.55/index.html">1.55</a>
+        </li>
+        <li class="version">
+          <a href="../1.54/index.html">1.54</a>
+        </li>
+        <li class="version">
+          <a href="../1.53/index.html">1.53</a>
+        </li>
+        <li class="version">
+          <a href="../1.52/index.html">1.52</a>
+        </li>
+        <li class="version">
+          <a href="../1.51/index.html">1.51</a>
+        </li>
+        <li class="version">
+          <a href="../1.50/index.html">1.50</a>
+        </li>
+        <li class="version">
+          <a href="../1.49/index.html">1.49</a>
+        </li>
+        <li class="version">
+          <a href="../1.48/index.html">1.48</a>
+        </li>
+        <li class="version">
+          <a href="../1.47/index.html">1.47</a>
+        </li>
+        <li class="version">
+          <a href="../1.46/index.html">1.46</a>
+        </li>
+        <li class="version">
+          <a href="../1.45/index.html">1.45</a>
+        </li>
+        <li class="version">
+          <a href="../1.44/index.html">1.44</a>
+        </li>
+        <li class="version">
+          <a href="../1.43/index.html">1.43</a>
+        </li>
+        <li class="version">
+          <a href="../1.42/index.html">1.42</a>
+        </li>
+        <li class="version">
+          <a href="../1.41/index.html">1.41</a>
+        </li>
+        <li class="version">
+          <a href="../1.40/index.html">1.40</a>
+        </li>
+        <li class="version">
+          <a href="../1.0/index.html">1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../rubocop-ast/index.html">RuboCop AST</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-ast/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.12/index.html">1.12</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.11/index.html">1.11</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.10/index.html">1.10</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.9/index.html">1.9</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.8/index.html">1.8</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.7/index.html">1.7</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.6/index.html">1.6</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.5/index.html">1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.4/index.html">1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.3/index.html">1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.2/index.html">1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-ast/1.0/index.html">1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../rubocop-capybara/index.html">RuboCop Capybara</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-capybara/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-capybara/2.19/index.html">2.19</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-capybara/2.18/index.html">2.18</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-capybara/2.17/index.html">2.17</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../rubocop-factory_bot/index.html">RuboCop factory_bot</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-factory_bot/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-factory_bot/2.24/index.html">2.24</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-factory_bot/2.23/index.html">2.23</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-factory_bot/2.22/index.html">2.22</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../rubocop-minitest/index.html">RuboCop Minitest</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-minitest/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.34/index.html">0.34</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.33/index.html">0.33</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.32/index.html">0.32</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.31/index.html">0.31</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.30/index.html">0.30</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.29/index.html">0.29</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.28/index.html">0.28</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.27/index.html">0.27</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.26/index.html">0.26</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-minitest/0.25/index.html">0.25</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../rubocop-packaging/index.html">RuboCop Packaging</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-packaging/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../rubocop-performance/index.html">RuboCop Performance</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-performance/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.20/index.html">1.20</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.19/index.html">1.19</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.18/index.html">1.18</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.17/index.html">1.17</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.16/index.html">1.16</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.15/index.html">1.15</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.14/index.html">1.14</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.13/index.html">1.13</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-performance/1.12/index.html">1.12</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../rubocop-rails/index.html">RuboCop Rails</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-rails/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.24/index.html">2.24</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.23/index.html">2.23</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.22/index.html">2.22</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.21/index.html">2.21</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.20/index.html">2.20</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.19/index.html">2.19</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.18/index.html">2.18</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.17/index.html">2.17</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.16/index.html">2.16</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.15/index.html">2.15</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rails/2.14/index.html">2.14</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../rubocop-rspec/index.html">RuboCop RSpec</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../rubocop-rspec/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.27/index.html">2.27</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.26/index.html">2.26</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.25/index.html">2.25</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.24/index.html">2.24</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.23/index.html">2.23</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.22/index.html">2.22</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.21/index.html">2.21</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.20/index.html">2.20</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/2.19/index.html">2.19</a>
+        </li>
+        <li class="version">
+          <a href="../../rubocop-rspec/1.44/index.html">1.44</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">RuboCop</a></li>
+    <li><a href="development.html">Development</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">1.62</button>
+  <div class="version-menu">
+    <a class="version" href="../development.html">default</a>
+    <a class="version is-current" href="development.html">1.62</a>
+    <a class="version" href="../1.61/development.html">1.61</a>
+    <a class="version" href="../1.60/development.html">1.60</a>
+    <a class="version" href="../1.59/development.html">1.59</a>
+    <a class="version" href="../1.58/development.html">1.58</a>
+    <a class="version" href="../1.57/development.html">1.57</a>
+    <a class="version" href="../1.56/development.html">1.56</a>
+    <a class="version" href="../1.55/development.html">1.55</a>
+    <a class="version" href="../1.54/development.html">1.54</a>
+    <a class="version" href="../1.53/development.html">1.53</a>
+    <a class="version" href="../1.52/development.html">1.52</a>
+    <a class="version" href="../1.51/development.html">1.51</a>
+    <a class="version" href="../1.50/development.html">1.50</a>
+    <a class="version" href="../1.49/development.html">1.49</a>
+    <a class="version" href="../1.48/development.html">1.48</a>
+    <a class="version" href="../1.47/development.html">1.47</a>
+    <a class="version" href="../1.46/development.html">1.46</a>
+    <a class="version" href="../1.45/development.html">1.45</a>
+    <a class="version" href="../1.44/development.html">1.44</a>
+    <a class="version" href="../1.43/development.html">1.43</a>
+    <a class="version" href="../1.42/development.html">1.42</a>
+    <a class="version" href="../1.41/development.html">1.41</a>
+    <a class="version" href="../1.40/development.html">1.40</a>
+    <a class="version" href="../1.0/development.html">1.0</a>
+  </div>
+</div>
+<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.62.0/docs/modules/ROOT/pages/development.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Development</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section of the documentation will teach you how to develop new cops.  We&#8217;ll
+start with generating a cop template and then we&#8217;ll address the various aspects
+of its implementation (interacting with the AST, autocorrect, configuration)
+and testing.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="create-a-new-cop"><a class="anchor" href="#create-a-new-cop"></a>Create a new cop</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Clone the repository and run <code>bundle install</code> if not done yet.
+The following rake task can only be run inside the rubocop project directory itself.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Use the bundled rake task <code>new_cop</code> to generate a cop template:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ bundle exec rake 'new_cop[Department/Name]'
+[create] lib/rubocop/cop/department/name.rb
+[create] spec/rubocop/cop/department/name_spec.rb
+[modify] lib/rubocop.rb - `require_relative 'rubocop/cop/department/name'` was injected.
+[modify] A configuration for the cop is added into config/default.yml.
+Do 4 steps:
+  1. Modify the description of Department/Name in config/default.yml
+  2. Implement your new cop in the generated file!
+  3. Commit your new cop with a message such as
+     e.g. "Add new `Department/Name` cop"
+  4. Run `bundle exec rake changelog:new` to generate a changelog entry
+     for your new cop.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="basics"><a class="anchor" href="#basics"></a>Basics</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RuboCop uses the <a href="https://github.com/whitequark/parser">parser</a> library to create the
+Abstract Syntax Tree (AST) representation of the code.</p>
+</div>
+<div class="paragraph">
+<p>You can install <code>parser</code> gem and use <code>ruby-parse</code> command line utility to check
+what the AST looks like in the output.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ gem install parser</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And then try to parse a simple integer representation with <code>ruby-parse</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ ruby-parse -e '1'
+(int 1)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Each expression surrounded by parentheses represents a node in the AST. The first
+element is the node type and the tail contains the children with all
+information needed to represent the code.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s another example - a local variable <code>name</code> being assigned the
+string value "John":</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ ruby-parse -e 'name = "John"'
+(lvasgn :name
+  (str "John"))</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inspecting-the-ast-representation"><a class="anchor" href="#inspecting-the-ast-representation"></a>Inspecting the AST representation</h3>
+<div class="paragraph">
+<p>Let&#8217;s imagine we want to simplify statements from <code>!array.empty?</code> to
+<code>array.any?</code>:</p>
+</div>
+<div class="paragraph">
+<p>First, check what the bad code returns in the Abstract Syntax Tree
+representation.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ ruby-parse -e '!array.empty?'
+(send
+  (send
+    (send nil :array) :empty?) :!)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, it&#8217;s time to debug our expression using the REPL from RuboCop:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ bin/console</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>First we need to declare the code that we want to match, and use the
+<a href="https://www.rubydoc.info/gems/rubocop-ast/RuboCop/AST/ProcessedSource">ProcessedSource</a>
+that is a simple wrap to make the parser interpret the code and build the AST:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">code = '!something.empty?'
+source = RuboCop::ProcessedSource.new(code, RUBY_VERSION.to_f)
+node = source.ast
+# =&gt; s(:send, s(:send, s(:send, nil, :something), :empty?), :!)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The node has a few attributes that can be useful in the journey:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">node.type # =&gt; :send
+node.children # =&gt; [s(:send, s(:send, nil, :something), :empty?), :!]
+node.source # =&gt; "!something.empty?"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementation"><a class="anchor" href="#implementation"></a>Implementation</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="writing-node-pattern-rules"><a class="anchor" href="#writing-node-pattern-rules"></a>Writing Node Pattern Rules</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can write cops without using <code>NodePattern</code> (and many older cops don&#8217;t use it), but it
+generally simplifies a lot the code, as manual node matching and destructuring can be
+quite verbose.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now that you&#8217;re familiar with AST, you can learn a bit about the
+<a href="https://www.rubydoc.info/gems/rubocop-ast/RuboCop/AST/NodePattern">node pattern</a>
+and use patterns to match with specific nodes that you want to match.</p>
+</div>
+<div class="paragraph">
+<p>You can learn more about Node Pattern <a href="https://github.com/rubocop/rubocop-ast/blob/master/docs/modules/ROOT/pages/node_pattern.adoc">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>Node pattern matches something very similar to the current output from AST
+representation, then let&#8217;s start with something very generic:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">NodePattern.new('send').match(node) # =&gt; true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It matches because the root is a <code>send</code> type. Now lets match it deeply using
+parentheses to define details for sub-nodes. If you don&#8217;t care about what an internal
+node is, you can use <code>...</code> to skip it and just consider " a node".</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">NodePattern.new('(send ...)').match(node) # =&gt; true
+NodePattern.new('(send (send ...) :!)').match(node) # =&gt; true
+NodePattern.new('(send (send (send ...) :empty?) :!)').match(node) # =&gt; true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Sometimes it&#8217;s hard to comprehend complex expressions you&#8217;re building with the
+pattern, then, if you got lost with the node pattern parens surrounding deeply,
+try to use the <code>$</code> to capture the internal expression and check exactly each
+piece of the expression:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">NodePattern.new('(send (send (send $...) :empty?) :!)').match(node) # =&gt; [nil, :something]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It&#8217;s not needed to strictly receive a send in the internal node because maybe
+it can also be a literal array like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">![].empty?</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The code above has the following representation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">=&gt; s(:send, s(:send, s(:array), :empty?), :!)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It&#8217;s possible to skip the internal node with <code>...</code> to make sure that it&#8217;s just
+another internal node:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">NodePattern.new('(send (send (...) :empty?) :!)').match(node) # =&gt; true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In other words, it says: "Match code calling <code>!&lt;expression&gt;.empty?</code>".</p>
+</div>
+<div class="paragraph">
+<p>Great! Now, lets implement our cop to simplify such statements:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rake 'new_cop[Style/SimplifyNotEmptyWithAny]'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After the cop scaffold is generated, change the node matcher to match with
+the expression achieved previously:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def_node_matcher :not_empty_call?, &lt;&lt;~PATTERN
+  (send (send $(...) :empty?) :!)
+PATTERN</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that we added a <code>$</code> sign to capture the "expression" in <code>!&lt;expression&gt;.empty?</code>,
+it will become useful later.</p>
+</div>
+<div class="paragraph">
+<p>Get yourself familiar with the AST node hooks that
+<a href="https://www.rubydoc.info/gems/parser/Parser/AST/Processor"><code>parser</code></a>
+and <a href="https://www.rubydoc.info/gems/rubocop-ast/RuboCop/AST/Traversal"><code>rubocop-ast</code></a>
+provide.</p>
+</div>
+<div class="paragraph">
+<p>As it starts with a <code>send</code> type, it&#8217;s needed to implement the <code>on_send</code> method, as the
+cop scaffold already suggested:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def on_send(node)
+  return unless not_empty_call?(node)
+
+  add_offense(node)
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>on_send</code> callback is the most used and can be optimized by restricting the acceptable
+method names with a constant <code>RESTRICT_ON_SEND</code>.</p>
+</div>
+<div class="paragraph">
+<p>And the final cop code will look like something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">module RuboCop
+  module Cop
+    module Style
+      # `array.any?` is a simplified way to say `!array.empty?`
+      #
+      # @example
+      #   # bad
+      #   !array.empty?
+      #
+      #   # good
+      #   array.any?
+      #
+      class SimplifyNotEmptyWithAny &lt; Base
+        MSG = 'Use `.any?` and remove the negation part.'.freeze
+        RESTRICT_ON_SEND = [:!].freeze # optimization: don't call `on_send` unless
+                                       # the method name is in this list
+
+        def_node_matcher :not_empty_call?, &lt;&lt;~PATTERN
+          (send (send $(...) :empty?) :!)
+        PATTERN
+
+        def on_send(node)
+          return unless not_empty_call?(node)
+
+          add_offense(node)
+        end
+      end
+    end
+  end
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that <code>on_send</code> will be called on a given <code>node</code> before the callbacks <code>on_&lt;some type&gt;</code> for its children are called. There&#8217;s also a callback <code>after_send</code> that is called after the children are processed. There&#8217;s a similar <code>after_&lt;some type&gt;</code> callback for all types, except those that never have children.</p>
+</div>
+<div class="paragraph">
+<p>Update the spec to cover the expected syntax:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">describe RuboCop::Cop::Style::SimplifyNotEmptyWithAny, :config do
+  it 'registers an offense when using `!a.empty?`' do
+    expect_offense(&lt;&lt;~RUBY)
+      !array.empty?
+      ^^^^^^^^^^^^^ Use `.any?` and remove the negation part.
+    RUBY
+  end
+
+  it 'does not register an offense when using `.any?` or `.empty?`' do
+    expect_no_offenses(&lt;&lt;~RUBY)
+      array.any?
+      array.empty?
+    RUBY
+  end
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If your code has variables of different lengths, you can use <code>%{foo}</code>,
+<code>^{foo}</code>, and <code>_{foo}</code> to format your template; you can also abbreviate
+offense messages with <code>[&#8230;&#8203;]</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">%w[raise fail].each do |keyword|
+  expect_offense(&lt;&lt;~RUBY, keyword: keyword)
+    %{keyword}(RuntimeError, msg)
+    ^{keyword}^^^^^^^^^^^^^^^^^^^ Redundant `RuntimeError` argument [...]
+  RUBY
+
+%w[has_one has_many].each do |type|
+  expect_offense(&lt;&lt;~RUBY, type: type)
+    class Book
+      %{type} :chapter, foreign_key: 'book_id'
+      _{type}           ^^^^^^^^^^^^^^^^^^^^^^ Specifying the default [...]
+    end
+  RUBY
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="autocorrect"><a class="anchor" href="#autocorrect"></a>Autocorrect</h3>
+<div class="paragraph">
+<p>The autocorrect can help humans automatically fix offenses that have been detected.
+It&#8217;s necessary to <code>extend AutoCorrector</code>.
+The method <code>add_offense</code> yields a corrector object that is a thin wrapper on
+<a href="https://www.rubydoc.info/gems/parser/Parser/Source/TreeRewriter">parser&#8217;s TreeRewriter</a>
+to which you can give instructions about what to do with the
+offensive node.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s start with a simple spec to cover it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">it 'corrects `!a.empty?`' do
+  expect_offense(&lt;&lt;~RUBY)
+    !array.empty?
+    ^^^^^^^^^^^^^ Use `.any?` and remove the negation part.
+  RUBY
+
+  expect_correction(&lt;&lt;~RUBY)
+    array.any?
+  RUBY
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And then add the autocorrecting block on the cop side:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">extend AutoCorrector
+
+def on_send(node)
+  expression = not_empty_call?(node)
+  return unless expression
+
+  add_offense(node) do |corrector|
+    corrector.replace(node, "#{expression.source}.any?")
+  end
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The corrector allows you to <code>insert_after</code>, <code>insert_before</code>, <code>wrap</code> or
+<code>replace</code> a specific node or in any specific range of the code.</p>
+</div>
+<div class="paragraph">
+<p>Range can be determined on <code>node.location</code> where it brings specific
+ranges for expression or other internal information that the node holds.</p>
+</div>
+<div class="sect3">
+<h4 id="preventing-clobbering"><a class="anchor" href="#preventing-clobbering"></a>Preventing Clobbering</h4>
+<div class="paragraph">
+<p>The corrector detects and prevents correcting overlapping nodes, to prevent one correction from clobbering another.
+Supporting nested corrections is done by taking multiple passes, and skipping corrections for nested nodes.
+This can be implemented using the <code>IgnoredNode</code> module:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-diff hljs" data-lang="diff"> extend AutoCorrector
++include IgnoredNode
+
+ def on_send(node)
+   return unless some_condition?(node)
+
+   add_offense(node) do |corrector|
++    next if part_of_ignored_node?(node)
++
+     corrector.replace(node, "...")
+   end
++
++  ignore_node(node)
+ end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This works because the correcting a file is implemented by repeating investigation and correction until the file no longer requires correction, meaning all nested nodes will eventually be processed.</p>
+</div>
+<div class="paragraph">
+<p>Note that <code>expect_correction</code> in <code>Cop</code> specs only asserts the result after one pass.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="run-tests"><a class="anchor" href="#run-tests"></a>Run tests</h3>
+<div class="paragraph">
+<p>RuboCop supports two parser engines: the Parser gem and Prism. By default, tests are executed with the Parser:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ bundle exec rake spec</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To run all tests with the experimental support for Prism, use <code>bundle exec prism_spec</code>, and to execute tests for individual files,
+specify the environment variable <code>PARSER_ENGINE=parser_prism</code>.</p>
+</div>
+<div class="paragraph">
+<p>e.g., <code>PARSER_ENGINE=parser_prism spec/rubocop/cop/style/hash_syntax_spec.rb</code></p>
+</div>
+<div class="paragraph">
+<p><code>bundle exec rake</code> runs tests for both Parser gem and Prism parsers.</p>
+</div>
+<div class="paragraph">
+<p>But <code>ascii_spec</code> rake task does not run by default. Because <code>ascii_spec</code> task has not been failing for a while.
+However, <code>ascii_spec</code> task will continue to be checked in CI.</p>
+</div>
+<div class="paragraph">
+<p>In CI, all tests required for merging are executed. Please investigate if anything fails.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuration"><a class="anchor" href="#configuration"></a>Configuration</h3>
+<div class="paragraph">
+<p>Each cop can hold a configuration and you can refer to <code>cop_config</code> in the
+instance and it will bring a hash with options declared in the <code>.rubocop.yml</code>
+file.</p>
+</div>
+<div class="paragraph">
+<p>For example, lets imagine we want to make configurable to make the replacement
+works with other method than <code>.any?</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">Style/SimplifyNotEmptyWithAny:
+  Enabled: true
+  ReplaceAnyWith: "size &gt; 0"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And then on the autocorrect method, you just need to use the <code>cop_config</code> it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def on_send(node)
+  expression = not_empty_call?(node)
+  return unless expression
+
+  add_offense(node) do |corrector|
+    replacement = cop_config['ReplaceAnyWith'] || 'any?'
+    corrector.replace(node, "#{expression.source}.#{replacement}")
+  end
+end</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="documentation"><a class="anchor" href="#documentation"></a>Documentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Every new cop requires explanation and examples to make it easy for the community
+to understand its purpose. This documentation is generated by <code>yard</code> and is added
+directly into the <code>cop.rb</code> file. For every <code>SupportedStyle</code> and unique
+configuration you have included in the cop, there needs to be examples. Examples must
+have valid Ruby syntax. Do not use upticks.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">module Department
+  # Description of your cop. Include description of ALL config options. Particularly
+  # ones that take booleans and arrays, because we generally do not show examples for
+  # configs with these value types.
+  #
+  # @example EnforcedStyle: bar
+  #   # Description about this particular option
+  #
+  #   # bad
+  #   bad_example1
+  #   bad_example2
+  #
+  #   # good
+  #   good_example1
+  #   good_example2
+  #
+  # @example EnforcedStyle: foo (default)
+  #   # Description about this particular option
+  #
+  #   # bad
+  #   bad_example1
+  #   bad_example2
+  #
+  #   # good
+  #   good_example1
+  #   good_example2
+  #
+  # @example AnyUniqueConfigKeyThatIsAString: qux (default)
+  #   # Description about this particular option
+  #
+  #   # bad
+  #   bad_example1
+  #   bad_example2
+  #
+  #   # good
+  #   good_example1
+  #   good_example2
+  #
+  # @example AnyUniqueConfigKeyThatIsAString: thud
+  #   # Description about this particular option
+  #
+  #   # bad
+  #   bad_example1
+  #   bad_example2
+  #
+  #   # good
+  #   good_example1
+  #   good_example2
+  #
+  class YourCop
+    # ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Take note of the placement and spacing of all the documentation pieces. Such as config
+keys being in alphabetical order, the <code>(default)</code> being specified, and one empty line
+before <code>class YourCop</code>. While not all examples in the codebase follow this exact format,
+we strive to make this consistent. PRs improving RuboCop documentation are very welcome.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="testing-your-cop-in-a-real-codebase"><a class="anchor" href="#testing-your-cop-in-a-real-codebase"></a>Testing your cop in a real codebase</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Generally, is a good practice to check if your cop is working properly over a
+significant codebase (e.g. Rails or some big project you&#8217;re working on) to
+guarantee it&#8217;s working in a range of different syntaxes.</p>
+</div>
+<div class="paragraph">
+<p>There are several ways to do this. Two common approaches:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From within your local <code>rubocop</code> repo, run <code>exe/rubocop ~/your/other/codebase</code>.</p>
+</li>
+<li>
+<p>From within the other codebase&#8217;s <code>Gemfile</code>, set a path to your local repo like this: <code>gem 'rubocop', path: '/full/path/to/rubocop'</code>. Then run <code>rubocop</code> within your codebase.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>With approach #2, you can use local versions of RuboCop extension repos such as <code>rubocop-rspec</code> as well.</p>
+</div>
+<div class="paragraph">
+<p>To make it fast and do not get confused with other cops in action,  you can use
+<code>--only</code> parameter in the command line to filter by your cop name:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ rubocop --only Style/SimplifyNotEmptyWithAny</code></pre>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="automated_code_review.html">Automated Code Review</a></span>
+  <span class="next"><a href="contributing.html">Contributing</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>Copyright (C) 2012-2024 <a href="https://batsov.com">Bozhidar Batsov</a> and RuboCop contributors.</p>
+  <p>Except where otherwise noted, docs.rubocop.org is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a> (CC BY-SA 4.0).</p>
+</footer>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@docsearch/js@3.3.3"></script>
+<script type="text/javascript">
+ docsearch({
+   container: '#docsearch',
+   appId: '2GTF3GZ5BX',
+   apiKey: 'b6bbe6539f46224f4f39cd14a1b7ae78',
+   indexName: 'rubocop',
+   debug: false // Set debug to true if you want to inspect the dropdown
+ });
+</script>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
