@@ -1456,17 +1456,61 @@ supports with:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-When <code>ParserEngine: parser_prism</code> is specified, the values that can be assigned to <code>TargetRubyVersion</code> must be <code>3.3</code> or higher.
+When <code>ParserEngine: parser_prism</code> is specified, <code>TargetRubyVersion</code> must
+be set to <code>3.3</code> or higher.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Otherwise, RuboCop will then check your project for a series of files where
-the version may be specified already. The files that will be looked for are
-<code>*.gemspec</code>, <code>.ruby-version</code>, <code>.tool-versions</code>, and <code>Gemfile.lock</code>.
-If Gemspec file has an array for <code>required_ruby_version</code>, the lowest version will be used.
-If none of the files are found a default version value will be used.</p>
+<p>If a <code>TargetRubyVersion</code> is not specified in your config, then RuboCop will
+check your project for a series of other files where the Ruby version may be
+specified already. The files that will be checked are (in this order):
+<code>*.gemspec</code>, <code>.ruby-version</code>, <code>.tool-versions</code>, and <code>Gemfile.lock</code>.</p>
+</div>
+<div class="paragraph">
+<p>If a target Ruby version cannot be found via any of the above sources, then a
+default target Ruby version will be used.</p>
+</div>
+<div class="sect2">
+<h3 id="finding-target-ruby-in-a-gemspec-file"><a class="anchor" href="#finding-target-ruby-in-a-gemspec-file"></a>Finding target Ruby in a <code>*.gemspec</code> file</h3>
+<div class="paragraph">
+<p>In order for RuboCop to parse a <code>*.gemspec</code> file&#8217;s <code>required_ruby_version</code>, the
+Ruby version must be specified using one of these syntaxes:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>a string range, e.g. <code>'~&gt; 3.2.0'</code> or <code>'&gt;= 3.2.2'</code></p>
+</li>
+<li>
+<p>an array of strings, e.g. <code>['&gt;= 3.0.0', '&lt; 3.4.0']</code></p>
+</li>
+<li>
+<p>a <code>Gem::Requirement</code>, e.g. <code>Gem::Requirement.new('&gt;= 3.1.2')</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If a <code>*.gemspec</code> file specifies a range of supported Ruby versions via any of
+these means, then the greater of the following Ruby versions will be used:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the lowest Ruby version that is compatible with your specified range</p>
+</li>
+<li>
+<p>the lowest version of Ruby that is still supported by your version of RuboCop</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If a <code>*.gemspec</code> file defines its <code>required_ruby_version</code> dynamically (e.g. by
+reading from a <code>.ruby-version</code> file, via an environment variable, referencing a
+constant or local variable, etc), then RuboCop will <em>not</em> detect that Ruby
+version, and will instead try to find a target Ruby version elsewhere.</p>
+</div>
 </div>
 </div>
 </div>
@@ -1480,13 +1524,15 @@ If none of the files are found a default version value will be used.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The parser engine configuration was introduced in RuboCop 1.62. This experimental feature has been under consideration for a while.
+The parser engine configuration was introduced in RuboCop 1.62. This
+experimental feature has been under consideration for a while.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>RuboCop allows switching the backend parser by specifying either <code>parser_whitequark</code> or <code>parser_prism</code> for the <code>ParserEngine</code>.</p>
+<p>RuboCop allows switching the backend parser by specifying either
+<code>parser_whitequark</code> or <code>parser_prism</code> as the value for the <code>ParserEngine</code>.</p>
 </div>
 <div class="paragraph">
 <p>Here are the parsers used as backends for each value:</p>
@@ -1526,15 +1572,16 @@ The parser engine configuration was introduced in RuboCop 1.62. This experimenta
 <div class="paragraph">
 <p><code>parser_prism</code> tends to perform analysis faster than <code>parser_whitequark</code>.</p>
 </div>
-<div class="admonitionblock caution">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Since the use of Prism is experimental, it is not included in RuboCop&#8217;s runtime dependencies.
-If running through Bundler, please first add <code>gem 'prism'</code> to your Gemfile:
+Since the support for Prism is experimental, it is not included in
+RuboCop&#8217;s runtime dependencies.  If running RuboCop through Bundler, please add
+<code>gem 'prism'</code> to your <code>Gemfile</code>:
 </td>
 </tr>
 </table>
@@ -1545,9 +1592,11 @@ If running through Bundler, please first add <code>gem 'prism'</code> to your Ge
 </div>
 </div>
 <div class="paragraph">
-<p>There are some incompatibilities with <code>parser_whitequark</code>, making it still considered experimental.
-For known issues, please refer to the Prism issues:
-<a href="https://github.com/ruby/prism/issues?q=is%3Aissue+is%3Aopen+label%3Arubocop" class="bare">https://github.com/ruby/prism/issues?q=is%3Aissue+is%3Aopen+label%3Arubocop</a></p>
+<p>There are some incompatibilities with <code>parser_whitequark</code> in <code>parser_prism</code>,
+which is the main reason why the support for it is considered experimental.
+We&#8217;re working with Prism&#8217;s team to address those.  You can track the outstanding
+known issues in Prism that affect RuboCop
+<a href="https://github.com/ruby/prism/issues?q=is%3Aissue+is%3Aopen+label%3Arubocop">here</a>.</p>
 </div>
 </div>
 </div>
