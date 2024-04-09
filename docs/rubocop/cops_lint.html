@@ -223,6 +223,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.63/index.html">1.63</a>
+        </li>
+        <li class="version">
           <a href="1.62/index.html">1.62</a>
         </li>
         <li class="version">
@@ -574,7 +577,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.62/index.html" class="home-link"></a>
+  <a href="1.63/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -586,6 +589,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_lint.html">default</a>
+    <a class="version" href="1.63/cops_lint.html">1.63</a>
     <a class="version" href="1.62/cops_lint.html">1.62</a>
     <a class="version" href="1.61/cops_lint.html">1.61</a>
     <a class="version" href="1.60/cops_lint.html">1.60</a>
@@ -1917,7 +1921,7 @@ Login</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.14</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.46</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.63</p></td>
 </tr>
 </tbody>
 </table>
@@ -1950,6 +1954,12 @@ debug entrypoints are configured (<code>Kernel</code>, <code>Byebug</code>, <cod
     MyDebugger:
       MyDebugger.debug_this</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Some gems also ship files that will start a debugging session when required,
+for example <code>require 'debug/start'</code> from <code>ruby/debug</code>. These requires can
+be configured through <code>DebuggerRequires</code>. It has the same structure as
+<code>DebuggerMethods</code>, which you can read about above.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-15"><a class="anchor" href="#examples-15"></a>Examples</h3>
@@ -1996,6 +2006,16 @@ end</code></pre>
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="debuggerrequires-my_debuggerstart"><a class="anchor" href="#debuggerrequires-my_debuggerstart"></a>DebuggerRequires: [my_debugger/start]</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad (ok during development)
+
+require 'my_debugger/start'</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
@@ -2015,7 +2035,12 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DebuggerMethods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"Kernel"&#8658;["binding.irb", "Kernel.binding.irb"], "Byebug"&#8658;["byebug", "remote_byebug", "Kernel.byebug", "Kernel.remote_byebug"], "Capybara"&#8658;["save_and_open_page", "save_and_open_screenshot"], "debug.rb"&#8658;["binding.b", "binding.break", "Kernel.binding.b", "Kernel.binding.break"], "Pry"&#8658;["binding.pry", "binding.remote_pry", "binding.pry_remote", "Kernel.binding.pry", "Kernel.binding.remote_pry", "Kernel.binding.pry_remote", "Pry.rescue", "pry"], "Rails"&#8658;["debugger", "Kernel.debugger"], "RubyJard"&#8658;["jard"], "WebConsole"&#8658;["binding.console"]}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"Kernel"&#8658;["binding.irb", "Kernel.binding.irb"], "Byebug"&#8658;["byebug", "remote_byebug", "Kernel.byebug", "Kernel.remote_byebug"], "Capybara"&#8658;["page.save_and_open_page", "page.save_and_open_screenshot", "page.save_page", "page.save_screenshot", "save_and_open_page", "save_and_open_screenshot", "save_page", "save_screenshot"], "debug.rb"&#8658;["binding.b", "binding.break", "Kernel.binding.b", "Kernel.binding.break"], "Pry"&#8658;["binding.pry", "binding.remote_pry", "binding.pry_remote", "Kernel.binding.pry", "Kernel.binding.remote_pry", "Kernel.binding.pry_remote", "Pry.rescue", "pry"], "Rails"&#8658;["debugger", "Kernel.debugger"], "RubyJard"&#8658;["jard"], "WebConsole"&#8658;["binding.console"]}</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DebuggerRequires</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"debug.rb"&#8658;["debug/open", "debug/open_nonstop", "debug/start"]}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
