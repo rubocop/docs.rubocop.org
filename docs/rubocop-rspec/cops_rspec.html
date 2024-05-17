@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>RSpec :: RuboCop Docs</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop-rspec/cops_rspec.html">
-    <link rel="prev" href="cops_rspec_rails.html">
+    <link rel="prev" href="development.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
@@ -94,13 +94,13 @@
     <a class="nav-link" href="usage.html">Usage</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="departments.html">Departments</a>
-  </li>
-  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="cops.html">Cops</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="upgrade_to_version_2.html">Upgrade to 2.x</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="upgrade_to_version_3.html">Upgrade to 3.x</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="third_party_rspec_syntax_extensions.html">RSpec syntax extensions in third-party gems</a>
@@ -112,15 +112,6 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Cops Documentation</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cops_rspec_capybara.html">Capybara</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cops_rspec_factorybot.html">FactoryBot</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cops_rspec_rails.html">Rails</a>
-  </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="cops_rspec.html">RSpec</a>
   </li>
@@ -399,6 +390,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-rails/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-rails/2.25/index.html">2.25</a>
         </li>
         <li class="version">
           <a href="../rubocop-rails/2.24/index.html">2.24</a>
@@ -4066,167 +4060,6 @@ expect { my_app.print_report }.to output('Hello World').to_stdout</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="rspecfilepath"><a class="anchor" href="#rspecfilepath"></a>RSpec/FilePath</h2>
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Enabled by default</th>
-<th class="tableblock halign-left valign-top">Safe</th>
-<th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">Version Added</th>
-<th class="tableblock halign-left valign-top">Version Changed</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.24</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Checks that spec file paths are consistent and well-formed.</p>
-</div>
-<div class="paragraph">
-<p>This cop is deprecated.
-We plan to remove it in the next major version update to 3.0.
-The migration targets are <code>RSpec/SpecFilePathSuffix</code>
-and <code>RSpec/SpecFilePathFormat</code>.
-If you are using this cop, please plan for migration.</p>
-</div>
-<div class="paragraph">
-<p>By default, this checks that spec file paths are consistent with the
-test subject and enforces that it reflects the described
-class/module and its optionally called out method.</p>
-</div>
-<div class="paragraph">
-<p>With the configuration option <code>IgnoreMethods</code> the called out method will
-be ignored when determining the enforced path.</p>
-</div>
-<div class="paragraph">
-<p>With the configuration option <code>CustomTransform</code> modules or classes can
-be specified that should not as usual be transformed from CamelCase to
-snake_case (e.g. 'RuboCop' &#8658; 'rubocop' ).</p>
-</div>
-<div class="paragraph">
-<p>With the configuration option <code>SpecSuffixOnly</code> test files will only
-be checked to ensure they end in '_spec.rb'. This option disables
-checking for consistency in the test subject or test methods.</p>
-</div>
-<div class="sect2">
-<h3 id="examples-41"><a class="anchor" href="#examples-41"></a>Examples</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-whatever_spec.rb         # describe MyClass
-
-# bad
-my_class_spec.rb         # describe MyClass, '#method'
-
-# good
-my_class_spec.rb         # describe MyClass
-
-# good
-my_class_method_spec.rb  # describe MyClass, '#method'
-
-# good
-my_class/method_spec.rb  # describe MyClass, '#method'</code></pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="when-configuration-is-ignoremethods-true"><a class="anchor" href="#when-configuration-is-ignoremethods-true"></a>when configuration is <code>IgnoreMethods: true</code></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-whatever_spec.rb         # describe MyClass
-
-# good
-my_class_spec.rb         # describe MyClass
-
-# good
-my_class_spec.rb         # describe MyClass, '#method'</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="when-configuration-is-specsuffixonly-true"><a class="anchor" href="#when-configuration-is-specsuffixonly-true"></a>when configuration is <code>SpecSuffixOnly: true</code></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-whatever_spec.rb         # describe MyClass
-
-# good
-my_class_spec.rb         # describe MyClass
-
-# good
-my_class_spec.rb         # describe MyClass, '#method'</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="configurable-attributes-16"><a class="anchor" href="#configurable-attributes-16"></a>Configurable attributes</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Configurable values</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Include</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>**/*_spec*rb*</code>, <code>**/spec/**/*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CustomTransform</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"RuboCop"&#8658;"rubocop", "RSpec"&#8658;"rspec"}</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IgnoreMethods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SpecSuffixOnly</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="references-41"><a class="anchor" href="#references-41"></a>References</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/FilePath" class="bare">https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/FilePath</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="rspecfocus"><a class="anchor" href="#rspecfocus"></a>RSpec/Focus</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -4263,7 +4096,7 @@ my_class_spec.rb         # describe MyClass, '#method'</code></pre>
 <p>This cop does not support autocorrection in some cases.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-42"><a class="anchor" href="#examples-42"></a>Examples</h3>
+<h3 id="examples-41"><a class="anchor" href="#examples-41"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4310,7 +4143,7 @@ focus 'test' do; end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-42"><a class="anchor" href="#references-42"></a>References</h3>
+<h3 id="references-41"><a class="anchor" href="#references-41"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4361,7 +4194,7 @@ styles: "implicit", "each", and "example." All styles have
 the same behavior.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-43"><a class="anchor" href="#examples-43"></a>Examples</h3>
+<h3 id="examples-42"><a class="anchor" href="#examples-42"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-implicit-default"><a class="anchor" href="#enforcedstyle-implicit-default"></a><code>EnforcedStyle: implicit</code> (default)</h4>
 <div class="listingblock">
@@ -4427,7 +4260,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-17"><a class="anchor" href="#configurable-attributes-17"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-16"><a class="anchor" href="#configurable-attributes-16"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4451,7 +4284,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-43"><a class="anchor" href="#references-43"></a>References</h3>
+<h3 id="references-42"><a class="anchor" href="#references-42"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4499,7 +4332,7 @@ end</code></pre>
 <p>Checks for before/around/after hooks that come after an example.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-44"><a class="anchor" href="#examples-44"></a>Examples</h3>
+<h3 id="examples-43"><a class="anchor" href="#examples-43"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4521,7 +4354,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-44"><a class="anchor" href="#references-44"></a>References</h3>
+<h3 id="references-43"><a class="anchor" href="#references-43"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4566,7 +4399,7 @@ end</code></pre>
 <p>Checks for equality assertions with identical expressions on both sides.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-45"><a class="anchor" href="#examples-45"></a>Examples</h3>
+<h3 id="examples-44"><a class="anchor" href="#examples-44"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4580,7 +4413,7 @@ expect(foo.bar).to eql(2)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-45"><a class="anchor" href="#references-45"></a>References</h3>
+<h3 id="references-44"><a class="anchor" href="#references-44"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4628,7 +4461,7 @@ expect(foo.bar).to eql(2)</code></pre>
 <p>Prefer using explicit block expectations.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>
+<h3 id="examples-45"><a class="anchor" href="#examples-45"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4643,7 +4476,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-46"><a class="anchor" href="#references-46"></a>References</h3>
+<h3 id="references-45"><a class="anchor" href="#references-45"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4695,7 +4528,7 @@ end</code></pre>
 and supports the <code>--auto-gen-config</code> flag.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
+<h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-is_expected-default"><a class="anchor" href="#enforcedstyle-is_expected-default"></a><code>EnforcedStyle: is_expected</code> (default)</h4>
 <div class="listingblock">
@@ -4722,7 +4555,7 @@ it { should be_truthy }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-18"><a class="anchor" href="#configurable-attributes-18"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-17"><a class="anchor" href="#configurable-attributes-17"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4746,7 +4579,7 @@ it { should be_truthy }</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-47"><a class="anchor" href="#references-47"></a>References</h3>
+<h3 id="references-46"><a class="anchor" href="#references-46"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4797,7 +4630,7 @@ it { should be_truthy }</code></pre>
 <p>This cop can be configured using the <code>EnforcedStyle</code> option</p>
 </div>
 <div class="sect2">
-<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
+<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-single_line_only-default"><a class="anchor" href="#enforcedstyle-single_line_only-default"></a><code>EnforcedStyle: single_line_only</code> (default)</h4>
 <div class="listingblock">
@@ -4875,7 +4708,7 @@ it { expect(named_subject).to be_truthy }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-19"><a class="anchor" href="#configurable-attributes-19"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-18"><a class="anchor" href="#configurable-attributes-18"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4899,7 +4732,7 @@ it { expect(named_subject).to be_truthy }</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-48"><a class="anchor" href="#references-48"></a>References</h3>
+<h3 id="references-47"><a class="anchor" href="#references-47"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4952,7 +4785,7 @@ is tested by this particular example.</p>
 will also read those set in <code>Naming/VariableNumber</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
+<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
 <div class="sect3">
 <h4 id="max-1-default"><a class="anchor" href="#max-1-default"></a><code>Max: 1 (default)</code></h4>
 <div class="listingblock">
@@ -5008,7 +4841,7 @@ let(:item_2) { create(:item) }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-20"><a class="anchor" href="#configurable-attributes-20"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-19"><a class="anchor" href="#configurable-attributes-19"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5042,7 +4875,7 @@ let(:item_2) { create(:item) }</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-49"><a class="anchor" href="#references-49"></a>References</h3>
+<h3 id="references-48"><a class="anchor" href="#references-48"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5087,7 +4920,7 @@ let(:item_2) { create(:item) }</code></pre>
 <p>Checks for <code>instance_double</code> used with <code>have_received</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-50"><a class="anchor" href="#examples-50"></a>Examples</h3>
+<h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5105,7 +4938,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-50"><a class="anchor" href="#references-50"></a>References</h3>
+<h3 id="references-49"><a class="anchor" href="#references-49"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5156,7 +4989,7 @@ variable usage if the instance variable is also assigned within
 the spec</p>
 </div>
 <div class="sect2">
-<h3 id="examples-51"><a class="anchor" href="#examples-51"></a>Examples</h3>
+<h3 id="examples-50"><a class="anchor" href="#examples-50"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5201,7 +5034,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-21"><a class="anchor" href="#configurable-attributes-21"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-20"><a class="anchor" href="#configurable-attributes-20"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5225,7 +5058,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-51"><a class="anchor" href="#references-51"></a>References</h3>
+<h3 id="references-50"><a class="anchor" href="#references-50"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5273,7 +5106,7 @@ end</code></pre>
 <p>Check for <code>specify</code> with <code>is_expected</code> and one-liner expectations.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-52"><a class="anchor" href="#examples-52"></a>Examples</h3>
+<h3 id="examples-51"><a class="anchor" href="#examples-51"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5291,7 +5124,7 @@ specify { expect(sqrt(4)).to eq(2) }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-52"><a class="anchor" href="#references-52"></a>References</h3>
+<h3 id="references-51"><a class="anchor" href="#references-51"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5339,7 +5172,7 @@ specify { expect(sqrt(4)).to eq(2) }</code></pre>
 <p>Checks that only one <code>it_behaves_like</code> style is used.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-53"><a class="anchor" href="#examples-53"></a>Examples</h3>
+<h3 id="examples-52"><a class="anchor" href="#examples-52"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-it_behaves_like-default"><a class="anchor" href="#enforcedstyle-it_behaves_like-default"></a><code>EnforcedStyle: it_behaves_like</code> (default)</h4>
 <div class="listingblock">
@@ -5366,7 +5199,7 @@ it_should_behave_like 'a foo'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-22"><a class="anchor" href="#configurable-attributes-22"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-21"><a class="anchor" href="#configurable-attributes-21"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5390,7 +5223,7 @@ it_should_behave_like 'a foo'</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-53"><a class="anchor" href="#references-53"></a>References</h3>
+<h3 id="references-52"><a class="anchor" href="#references-52"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5435,7 +5268,7 @@ it_should_behave_like 'a foo'</code></pre>
 <p>Check that <code>all</code> matcher is used instead of iterating over an array.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-54"><a class="anchor" href="#examples-54"></a>Examples</h3>
+<h3 id="examples-53"><a class="anchor" href="#examples-53"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5451,7 +5284,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-54"><a class="anchor" href="#references-54"></a>References</h3>
+<h3 id="references-53"><a class="anchor" href="#references-53"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5496,7 +5329,7 @@ end</code></pre>
 <p>Enforce that subject is the first definition in the test.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-55"><a class="anchor" href="#examples-55"></a>Examples</h3>
+<h3 id="examples-54"><a class="anchor" href="#examples-54"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5526,7 +5359,7 @@ it { expect_something_else }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-55"><a class="anchor" href="#references-55"></a>References</h3>
+<h3 id="references-54"><a class="anchor" href="#references-54"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5589,7 +5422,7 @@ Even worse when a class that exists in the codebase is reopened.</p>
 namespace name clashes.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-56"><a class="anchor" href="#examples-56"></a>Examples</h3>
+<h3 id="examples-55"><a class="anchor" href="#examples-55"></a>Examples</h3>
 <div class="sect3">
 <h4 id="constants-leak-between-examples"><a class="anchor" href="#constants-leak-between-examples"></a>Constants leak between examples</h4>
 <div class="listingblock">
@@ -5676,7 +5509,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-56"><a class="anchor" href="#references-56"></a>References</h3>
+<h3 id="references-55"><a class="anchor" href="#references-55"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5727,7 +5560,7 @@ end</code></pre>
 <p>Checks for <code>let</code> definitions that come after an example.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-57"><a class="anchor" href="#examples-57"></a>Examples</h3>
+<h3 id="examples-56"><a class="anchor" href="#examples-56"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5758,7 +5591,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-57"><a class="anchor" href="#references-57"></a>References</h3>
+<h3 id="references-56"><a class="anchor" href="#references-56"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5803,7 +5636,7 @@ end</code></pre>
 <p>Checks unreferenced <code>let!</code> calls being used for test setup.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-58"><a class="anchor" href="#examples-58"></a>Examples</h3>
+<h3 id="examples-57"><a class="anchor" href="#examples-57"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5829,7 +5662,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-58"><a class="anchor" href="#references-58"></a>References</h3>
+<h3 id="references-57"><a class="anchor" href="#references-57"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5879,7 +5712,7 @@ end</code></pre>
 - Prefer <code>eq</code> when using <code>match_array</code> with an empty array literal.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-59"><a class="anchor" href="#examples-59"></a>Examples</h3>
+<h3 id="examples-58"><a class="anchor" href="#examples-58"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5897,7 +5730,7 @@ it { is_expected.to match_array(%w(tremble in fear foolish mortals)) }</code></p
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-59"><a class="anchor" href="#references-59"></a>References</h3>
+<h3 id="references-58"><a class="anchor" href="#references-58"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5942,7 +5775,7 @@ it { is_expected.to match_array(%w(tremble in fear foolish mortals)) }</code></p
 <p>Check that chains of messages are not being stubbed.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-60"><a class="anchor" href="#examples-60"></a>Examples</h3>
+<h3 id="examples-59"><a class="anchor" href="#examples-59"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5955,7 +5788,7 @@ allow(foo).to receive(:bar).and_return(thing)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-60"><a class="anchor" href="#references-60"></a>References</h3>
+<h3 id="references-59"><a class="anchor" href="#references-59"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6004,7 +5837,7 @@ allow(foo).to receive(:bar).and_return(thing)</code></pre>
 <code>EnforcedStyle</code> option and supports <code>--auto-gen-config</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-61"><a class="anchor" href="#examples-61"></a>Examples</h3>
+<h3 id="examples-60"><a class="anchor" href="#examples-60"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-allow-default"><a class="anchor" href="#enforcedstyle-allow-default"></a><code>EnforcedStyle: allow</code> (default)</h4>
 <div class="listingblock">
@@ -6031,7 +5864,7 @@ expect(foo).to receive(:bar)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-23"><a class="anchor" href="#configurable-attributes-23"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-22"><a class="anchor" href="#configurable-attributes-22"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6055,7 +5888,7 @@ expect(foo).to receive(:bar)</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-61"><a class="anchor" href="#references-61"></a>References</h3>
+<h3 id="references-60"><a class="anchor" href="#references-60"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6104,7 +5937,7 @@ expect(foo).to receive(:bar)</code></pre>
 <code>EnforcedStyle</code> option and supports <code>--auto-gen-config</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-62"><a class="anchor" href="#examples-62"></a>Examples</h3>
+<h3 id="examples-61"><a class="anchor" href="#examples-61"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-have_received-default"><a class="anchor" href="#enforcedstyle-have_received-default"></a><code>EnforcedStyle: have_received</code> (default)</h4>
 <div class="listingblock">
@@ -6137,7 +5970,7 @@ do_something</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-24"><a class="anchor" href="#configurable-attributes-24"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-23"><a class="anchor" href="#configurable-attributes-23"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6161,7 +5994,7 @@ do_something</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-62"><a class="anchor" href="#references-62"></a>References</h3>
+<h3 id="references-61"><a class="anchor" href="#references-61"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6211,7 +6044,7 @@ do_something</code></pre>
 (e.g. <code>describe 'Something', :a, b</code>)</p>
 </div>
 <div class="sect2">
-<h3 id="examples-63"><a class="anchor" href="#examples-63"></a>Examples</h3>
+<h3 id="examples-62"><a class="anchor" href="#examples-62"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-symbol-default-2"><a class="anchor" href="#enforcedstyle-symbol-default-2"></a>EnforcedStyle: symbol (default)</h4>
 <div class="listingblock">
@@ -6238,7 +6071,7 @@ describe 'Something', a: true</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-25"><a class="anchor" href="#configurable-attributes-25"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-24"><a class="anchor" href="#configurable-attributes-24"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6262,7 +6095,7 @@ describe 'Something', a: true</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-63"><a class="anchor" href="#references-63"></a>References</h3>
+<h3 id="references-62"><a class="anchor" href="#references-62"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6307,7 +6140,7 @@ describe 'Something', a: true</code></pre>
 <p>Checks that the first argument to an example group is not empty.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-64"><a class="anchor" href="#examples-64"></a>Examples</h3>
+<h3 id="examples-63"><a class="anchor" href="#examples-63"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6327,7 +6160,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-64"><a class="anchor" href="#references-64"></a>References</h3>
+<h3 id="references-63"><a class="anchor" href="#references-63"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6376,7 +6209,7 @@ end</code></pre>
 be nested or separated into different test files.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-65"><a class="anchor" href="#examples-65"></a>Examples</h3>
+<h3 id="examples-64"><a class="anchor" href="#examples-64"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6396,7 +6229,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-65"><a class="anchor" href="#references-65"></a>References</h3>
+<h3 id="references-64"><a class="anchor" href="#references-64"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6445,7 +6278,7 @@ end</code></pre>
 and works with <code>--auto-gen-config</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-66"><a class="anchor" href="#examples-66"></a>Examples</h3>
+<h3 id="examples-65"><a class="anchor" href="#examples-65"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6526,7 +6359,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-26"><a class="anchor" href="#configurable-attributes-26"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-25"><a class="anchor" href="#configurable-attributes-25"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6550,7 +6383,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-66"><a class="anchor" href="#references-66"></a>References</h3>
+<h3 id="references-65"><a class="anchor" href="#references-65"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6606,7 +6439,7 @@ which will configure the cop to only register offenses on calls to
 <code>let</code> and not calls to <code>subject</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-67"><a class="anchor" href="#examples-67"></a>Examples</h3>
+<h3 id="examples-66"><a class="anchor" href="#examples-66"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6693,7 +6526,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-27"><a class="anchor" href="#configurable-attributes-27"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-26"><a class="anchor" href="#configurable-attributes-26"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6722,7 +6555,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-67"><a class="anchor" href="#references-67"></a>References</h3>
+<h3 id="references-66"><a class="anchor" href="#references-66"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6794,7 +6627,7 @@ a <code>before</code> hook on their own</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="examples-68"><a class="anchor" href="#examples-68"></a>Examples</h3>
+<h3 id="examples-67"><a class="anchor" href="#examples-67"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6826,7 +6659,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-68"><a class="anchor" href="#references-68"></a>References</h3>
+<h3 id="references-67"><a class="anchor" href="#references-67"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6884,7 +6717,7 @@ and <code>IgnoreSharedExamples</code> which will not report offenses for implici
 subjects in shared example groups.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
+<h3 id="examples-68"><a class="anchor" href="#examples-68"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-always-default"><a class="anchor" href="#enforcedstyle-always-default"></a><code>EnforcedStyle: always</code> (default)</h4>
 <div class="listingblock">
@@ -6958,7 +6791,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-28"><a class="anchor" href="#configurable-attributes-28"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-27"><a class="anchor" href="#configurable-attributes-27"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6987,7 +6820,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-69"><a class="anchor" href="#references-69"></a>References</h3>
+<h3 id="references-68"><a class="anchor" href="#references-68"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7039,7 +6872,7 @@ end</code></pre>
 and supports <code>--auto-gen-config</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-70"><a class="anchor" href="#examples-70"></a>Examples</h3>
+<h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7147,7 +6980,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-29"><a class="anchor" href="#configurable-attributes-29"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-28"><a class="anchor" href="#configurable-attributes-28"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7176,7 +7009,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-70"><a class="anchor" href="#references-70"></a>References</h3>
+<h3 id="references-69"><a class="anchor" href="#references-69"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7242,7 +7075,7 @@ with an <code>AllowedPatterns</code> option. ^expect_ and ^assert_ are allowed
 by default.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
+<h3 id="examples-70"><a class="anchor" href="#examples-70"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7287,7 +7120,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-30"><a class="anchor" href="#configurable-attributes-30"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-29"><a class="anchor" href="#configurable-attributes-29"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7311,7 +7144,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-71"><a class="anchor" href="#references-71"></a>References</h3>
+<h3 id="references-70"><a class="anchor" href="#references-70"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7356,7 +7189,7 @@ end</code></pre>
 <p>Checks for consistent method usage for negating expectations.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-72"><a class="anchor" href="#examples-72"></a>Examples</h3>
+<h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-not_to-default"><a class="anchor" href="#enforcedstyle-not_to-default"></a><code>EnforcedStyle: not_to</code> (default)</h4>
 <div class="listingblock">
@@ -7391,7 +7224,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-31"><a class="anchor" href="#configurable-attributes-31"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-30"><a class="anchor" href="#configurable-attributes-30"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7415,7 +7248,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-72"><a class="anchor" href="#references-72"></a>References</h3>
+<h3 id="references-71"><a class="anchor" href="#references-71"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7460,7 +7293,7 @@ end</code></pre>
 <p>Checks if there is a let/subject that overwrites an existing one.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-73"><a class="anchor" href="#examples-73"></a>Examples</h3>
+<h3 id="examples-72"><a class="anchor" href="#examples-72"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7482,7 +7315,7 @@ let!(:other) { other }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-73"><a class="anchor" href="#references-73"></a>References</h3>
+<h3 id="references-72"><a class="anchor" href="#references-72"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7527,7 +7360,7 @@ let!(:other) { other }</code></pre>
 <p>Checks for any pending or skipped examples.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-74"><a class="anchor" href="#examples-74"></a>Examples</h3>
+<h3 id="examples-73"><a class="anchor" href="#examples-73"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7559,7 +7392,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-74"><a class="anchor" href="#references-74"></a>References</h3>
+<h3 id="references-73"><a class="anchor" href="#references-73"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7604,7 +7437,7 @@ end</code></pre>
 <p>Checks for pending or skipped examples without reason.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
+<h3 id="examples-74"><a class="anchor" href="#examples-74"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7661,7 +7494,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-75"><a class="anchor" href="#references-75"></a>References</h3>
+<h3 id="references-74"><a class="anchor" href="#references-74"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7711,7 +7544,7 @@ This cop recommends to use the predicate matcher instead of using
 predicate method directly.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-76"><a class="anchor" href="#examples-76"></a>Examples</h3>
+<h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
 <div class="sect3">
 <h4 id="strict-true-enforcedstyle-inflected-default"><a class="anchor" href="#strict-true-enforcedstyle-inflected-default"></a>Strict: true, EnforcedStyle: inflected (default)</h4>
 <div class="listingblock">
@@ -7777,7 +7610,7 @@ expect(foo.something?).to be_truthy</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-32"><a class="anchor" href="#configurable-attributes-32"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-31"><a class="anchor" href="#configurable-attributes-31"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7811,7 +7644,7 @@ expect(foo.something?).to be_truthy</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-76"><a class="anchor" href="#references-76"></a>References</h3>
+<h3 id="references-75"><a class="anchor" href="#references-75"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7859,7 +7692,7 @@ expect(foo.something?).to be_truthy</code></pre>
 <p>Check for <code>once</code> and <code>twice</code> receive counts matchers usage.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
+<h3 id="examples-76"><a class="anchor" href="#examples-76"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7881,7 +7714,7 @@ expect(foo).to receive(:bar).at_most(:twice).times</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-77"><a class="anchor" href="#references-77"></a>References</h3>
+<h3 id="references-76"><a class="anchor" href="#references-76"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7934,7 +7767,7 @@ before they are defined.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-78"><a class="anchor" href="#examples-78"></a>Examples</h3>
+<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7957,7 +7790,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-78"><a class="anchor" href="#references-78"></a>References</h3>
+<h3 id="references-77"><a class="anchor" href="#references-77"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8002,7 +7835,7 @@ end</code></pre>
 <p>Prefer <code>not_to receive(&#8230;&#8203;)</code> over <code>receive(&#8230;&#8203;).never</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-79"><a class="anchor" href="#examples-79"></a>Examples</h3>
+<h3 id="examples-78"><a class="anchor" href="#examples-78"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8014,7 +7847,7 @@ expect(foo).not_to receive(:bar)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-79"><a class="anchor" href="#references-79"></a>References</h3>
+<h3 id="references-78"><a class="anchor" href="#references-78"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8059,7 +7892,7 @@ expect(foo).not_to receive(:bar)</code></pre>
 <p>Remove redundant <code>around</code> hook.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
+<h3 id="examples-79"><a class="anchor" href="#examples-79"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8072,7 +7905,7 @@ end
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-80"><a class="anchor" href="#references-80"></a>References</h3>
+<h3 id="references-79"><a class="anchor" href="#references-79"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8117,7 +7950,7 @@ end
 <p>Checks for redundant predicate matcher.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
+<h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8133,7 +7966,7 @@ expect(foo).to all be(bar)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-81"><a class="anchor" href="#references-81"></a>References</h3>
+<h3 id="references-80"><a class="anchor" href="#references-80"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8178,7 +8011,7 @@ expect(foo).to all be(bar)</code></pre>
 <p>Checks that <code>remove_const</code> is not used in specs.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
+<h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8193,7 +8026,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-82"><a class="anchor" href="#references-82"></a>References</h3>
+<h3 id="references-81"><a class="anchor" href="#references-81"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8238,7 +8071,7 @@ end</code></pre>
 <p>Check for repeated description strings in example groups.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
+<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8277,7 +8110,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-83"><a class="anchor" href="#references-83"></a>References</h3>
+<h3 id="references-82"><a class="anchor" href="#references-82"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8322,7 +8155,7 @@ end</code></pre>
 <p>Check for repeated examples within example groups.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
+<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">it 'is valid' do
@@ -8336,7 +8169,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-84"><a class="anchor" href="#references-84"></a>References</h3>
+<h3 id="references-83"><a class="anchor" href="#references-83"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8381,7 +8214,7 @@ end</code></pre>
 <p>Check for repeated describe and context block body.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
+<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8423,7 +8256,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-85"><a class="anchor" href="#references-85"></a>References</h3>
+<h3 id="references-84"><a class="anchor" href="#references-84"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8468,7 +8301,7 @@ end</code></pre>
 <p>Check for repeated example group descriptions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
+<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8510,7 +8343,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-86"><a class="anchor" href="#references-86"></a>References</h3>
+<h3 id="references-85"><a class="anchor" href="#references-85"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8555,7 +8388,7 @@ end</code></pre>
 <p>Check for repeated include of shared examples.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
+<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8600,7 +8433,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-87"><a class="anchor" href="#references-87"></a>References</h3>
+<h3 id="references-86"><a class="anchor" href="#references-86"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8645,7 +8478,7 @@ end</code></pre>
 <p>Checks for repeated calls to subject missing that it is memoized.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
+<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8674,7 +8507,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-88"><a class="anchor" href="#references-88"></a>References</h3>
+<h3 id="references-87"><a class="anchor" href="#references-87"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8727,7 +8560,7 @@ are the result would be different</p>
 <p>This cop can be configured using the <code>EnforcedStyle</code> option</p>
 </div>
 <div class="sect2">
-<h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
+<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-and_return-default"><a class="anchor" href="#enforcedstyle-and_return-default"></a><code>EnforcedStyle: and_return</code> (default)</h4>
 <div class="listingblock">
@@ -8762,7 +8595,7 @@ allow(Foo).to receive(:bar).and_return(bar.baz)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-33"><a class="anchor" href="#configurable-attributes-33"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-32"><a class="anchor" href="#configurable-attributes-32"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8786,7 +8619,7 @@ allow(Foo).to receive(:bar).and_return(bar.baz)</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-89"><a class="anchor" href="#references-89"></a>References</h3>
+<h3 id="references-88"><a class="anchor" href="#references-88"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8834,7 +8667,7 @@ allow(Foo).to receive(:bar).and_return(bar.baz)</code></pre>
 <p>Group lets together</p>
 </div>
 <div class="sect2">
-<h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
+<h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8858,7 +8691,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-90"><a class="anchor" href="#references-90"></a>References</h3>
+<h3 id="references-89"><a class="anchor" href="#references-89"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8906,7 +8739,7 @@ end</code></pre>
 <p>Unify <code>before</code>, <code>after</code>, and <code>around</code> hooks when possible.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-91"><a class="anchor" href="#examples-91"></a>Examples</h3>
+<h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8926,7 +8759,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-91"><a class="anchor" href="#references-91"></a>References</h3>
+<h3 id="references-90"><a class="anchor" href="#references-90"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8975,7 +8808,7 @@ end</code></pre>
 If there is no setup defined, use shared_examples.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-92"><a class="anchor" href="#examples-92"></a>Examples</h3>
+<h3 id="examples-91"><a class="anchor" href="#examples-91"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9024,7 +8857,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-92"><a class="anchor" href="#references-92"></a>References</h3>
+<h3 id="references-91"><a class="anchor" href="#references-91"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9075,7 +8908,7 @@ end</code></pre>
 <p>This cop can be configured using the <code>EnforcedStyle</code> option</p>
 </div>
 <div class="sect2">
-<h3 id="examples-93"><a class="anchor" href="#examples-93"></a>Examples</h3>
+<h3 id="examples-92"><a class="anchor" href="#examples-92"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-string-default"><a class="anchor" href="#enforcedstyle-string-default"></a><code>EnforcedStyle: string</code> (default)</h4>
 <div class="listingblock">
@@ -9118,7 +8951,7 @@ include_examples :foo_bar_baz</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-34"><a class="anchor" href="#configurable-attributes-34"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-33"><a class="anchor" href="#configurable-attributes-33"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9142,7 +8975,7 @@ include_examples :foo_bar_baz</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-93"><a class="anchor" href="#references-93"></a>References</h3>
+<h3 id="references-92"><a class="anchor" href="#references-92"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9187,7 +9020,7 @@ include_examples :foo_bar_baz</code></pre>
 <p>Checks that chains of messages contain more than one element.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-94"><a class="anchor" href="#examples-94"></a>Examples</h3>
+<h3 id="examples-93"><a class="anchor" href="#examples-93"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9203,7 +9036,7 @@ allow(foo).to receive("bar.baz")</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-94"><a class="anchor" href="#references-94"></a>References</h3>
+<h3 id="references-93"><a class="anchor" href="#references-93"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9248,7 +9081,7 @@ allow(foo).to receive("bar.baz")</code></pre>
 <p>Checks for passing a block to <code>skip</code> within examples.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-95"><a class="anchor" href="#examples-95"></a>Examples</h3>
+<h3 id="examples-94"><a class="anchor" href="#examples-94"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9271,7 +9104,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-95"><a class="anchor" href="#references-95"></a>References</h3>
+<h3 id="references-94"><a class="anchor" href="#references-94"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9316,7 +9149,7 @@ end</code></pre>
 <p>Sort RSpec metadata alphabetically.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-96"><a class="anchor" href="#examples-96"></a>Examples</h3>
+<h3 id="examples-95"><a class="anchor" href="#examples-95"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9332,7 +9165,7 @@ it 'works', :a, :b, baz: true, foo: 'bar'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-96"><a class="anchor" href="#references-96"></a>References</h3>
+<h3 id="references-95"><a class="anchor" href="#references-95"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9377,7 +9210,7 @@ it 'works', :a, :b, baz: true, foo: 'bar'</code></pre>
 <p>Checks that spec file paths are consistent and well-formed.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-97"><a class="anchor" href="#examples-97"></a>Examples</h3>
+<h3 id="examples-96"><a class="anchor" href="#examples-96"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9429,7 +9262,7 @@ whatever_spec.rb         # describe MyClass, type: :routing do; end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-35"><a class="anchor" href="#configurable-attributes-35"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-34"><a class="anchor" href="#configurable-attributes-34"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9473,7 +9306,7 @@ whatever_spec.rb         # describe MyClass, type: :routing do; end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-97"><a class="anchor" href="#references-97"></a>References</h3>
+<h3 id="references-96"><a class="anchor" href="#references-96"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9518,7 +9351,7 @@ whatever_spec.rb         # describe MyClass, type: :routing do; end</code></pre>
 <p>Checks that spec file paths suffix are consistent and well-formed.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-98"><a class="anchor" href="#examples-98"></a>Examples</h3>
+<h3 id="examples-97"><a class="anchor" href="#examples-97"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9535,7 +9368,7 @@ spec/models/user.rb       # shared_examples_for 'foo'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-36"><a class="anchor" href="#configurable-attributes-36"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-35"><a class="anchor" href="#configurable-attributes-35"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9559,7 +9392,7 @@ spec/models/user.rb       # shared_examples_for 'foo'</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-98"><a class="anchor" href="#references-98"></a>References</h3>
+<h3 id="references-97"><a class="anchor" href="#references-97"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9604,7 +9437,7 @@ spec/models/user.rb       # shared_examples_for 'foo'</code></pre>
 <p>Checks that message expectations do not have a configured response.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-99"><a class="anchor" href="#examples-99"></a>Examples</h3>
+<h3 id="examples-98"><a class="anchor" href="#examples-98"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9617,7 +9450,7 @@ expect(foo).to receive(:bar).with(42)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-99"><a class="anchor" href="#references-99"></a>References</h3>
+<h3 id="references-98"><a class="anchor" href="#references-98"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9662,7 +9495,7 @@ expect(foo).to receive(:bar).with(42)</code></pre>
 <p>Ensure that subject is defined using subject helper.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-100"><a class="anchor" href="#examples-100"></a>Examples</h3>
+<h3 id="examples-99"><a class="anchor" href="#examples-99"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9681,7 +9514,7 @@ subject(:test_subject) { foo }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-100"><a class="anchor" href="#references-100"></a>References</h3>
+<h3 id="references-99"><a class="anchor" href="#references-99"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9730,7 +9563,7 @@ subject(:test_subject) { foo }</code></pre>
 when subject is also defined in parent example groups.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-101"><a class="anchor" href="#examples-101"></a>Examples</h3>
+<h3 id="examples-100"><a class="anchor" href="#examples-100"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9769,7 +9602,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-101"><a class="anchor" href="#references-101"></a>References</h3>
+<h3 id="references-100"><a class="anchor" href="#references-100"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9827,7 +9660,7 @@ end</code></pre>
 and regular expressions, the description is not clear.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-102"><a class="anchor" href="#examples-102"></a>Examples</h3>
+<h3 id="examples-101"><a class="anchor" href="#examples-101"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9868,7 +9701,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-102"><a class="anchor" href="#references-102"></a>References</h3>
+<h3 id="references-101"><a class="anchor" href="#references-101"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9918,7 +9751,7 @@ expression to match against the exception message as a parameter
 to <code>raise_error</code></p>
 </div>
 <div class="sect2">
-<h3 id="examples-103"><a class="anchor" href="#examples-103"></a>Examples</h3>
+<h3 id="examples-102"><a class="anchor" href="#examples-102"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9944,7 +9777,7 @@ expect { do_something }.not_to raise_error</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-103"><a class="anchor" href="#references-103"></a>References</h3>
+<h3 id="references-102"><a class="anchor" href="#references-102"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9989,7 +9822,7 @@ expect { do_something }.not_to raise_error</code></pre>
 <p>Checks that memoized helpers names are symbols or strings.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-104"><a class="anchor" href="#examples-104"></a>Examples</h3>
+<h3 id="examples-103"><a class="anchor" href="#examples-103"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-symbols-default"><a class="anchor" href="#enforcedstyle-symbols-default"></a>EnforcedStyle: symbols (default)</h4>
 <div class="listingblock">
@@ -10020,7 +9853,7 @@ let('user_name') { 'Adam' }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-37"><a class="anchor" href="#configurable-attributes-37"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-36"><a class="anchor" href="#configurable-attributes-36"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10044,7 +9877,7 @@ let('user_name') { 'Adam' }</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-104"><a class="anchor" href="#references-104"></a>References</h3>
+<h3 id="references-103"><a class="anchor" href="#references-103"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10093,7 +9926,7 @@ let('user_name') { 'Adam' }</code></pre>
 option.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-105"><a class="anchor" href="#examples-105"></a>Examples</h3>
+<h3 id="examples-104"><a class="anchor" href="#examples-104"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-snake_case-default"><a class="anchor" href="#enforcedstyle-snake_case-default"></a>EnforcedStyle: snake_case (default)</h4>
 <div class="listingblock">
@@ -10143,7 +9976,7 @@ let(:userFood_2) { 'fettuccine' }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-38"><a class="anchor" href="#configurable-attributes-38"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-37"><a class="anchor" href="#configurable-attributes-37"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10172,7 +10005,7 @@ let(:userFood_2) { 'fettuccine' }</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-105"><a class="anchor" href="#references-105"></a>References</h3>
+<h3 id="references-104"><a class="anchor" href="#references-104"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10224,7 +10057,7 @@ let(:userFood_2) { 'fettuccine' }</code></pre>
 <code>EnforcedStyle</code> option and supports <code>--auto-gen-config</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-106"><a class="anchor" href="#examples-106"></a>Examples</h3>
+<h3 id="examples-105"><a class="anchor" href="#examples-105"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-constant-default"><a class="anchor" href="#enforcedstyle-constant-default"></a><code>EnforcedStyle: constant</code> (default)</h4>
 <div class="listingblock">
@@ -10270,7 +10103,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-39"><a class="anchor" href="#configurable-attributes-39"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-38"><a class="anchor" href="#configurable-attributes-38"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10294,7 +10127,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-106"><a class="anchor" href="#references-106"></a>References</h3>
+<h3 id="references-105"><a class="anchor" href="#references-105"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10342,7 +10175,7 @@ end</code></pre>
 <p>Prefer using verifying doubles over normal doubles.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-107"><a class="anchor" href="#examples-107"></a>Examples</h3>
+<h3 id="examples-106"><a class="anchor" href="#examples-106"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10363,7 +10196,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-40"><a class="anchor" href="#configurable-attributes-40"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-39"><a class="anchor" href="#configurable-attributes-39"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10392,7 +10225,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-107"><a class="anchor" href="#references-107"></a>References</h3>
+<h3 id="references-106"><a class="anchor" href="#references-106"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10443,7 +10276,7 @@ end</code></pre>
 <p>Checks void <code>expect()</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-108"><a class="anchor" href="#examples-108"></a>Examples</h3>
+<h3 id="examples-107"><a class="anchor" href="#examples-107"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10455,7 +10288,7 @@ expect(something).to be(1)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-108"><a class="anchor" href="#references-108"></a>References</h3>
+<h3 id="references-107"><a class="anchor" href="#references-107"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10500,7 +10333,7 @@ expect(something).to be(1)</code></pre>
 <p>Checks for calling a block within a stub.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-109"><a class="anchor" href="#examples-109"></a>Examples</h3>
+<h3 id="examples-108"><a class="anchor" href="#examples-108"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10512,7 +10345,7 @@ expect(foo).to receive(:bar).and_yield(1)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-109"><a class="anchor" href="#references-109"></a>References</h3>
+<h3 id="references-108"><a class="anchor" href="#references-108"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10524,7 +10357,7 @@ expect(foo).to receive(:bar).and_yield(1)</code></pre>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="cops_rspec_rails.html">Rails</a></span>
+  <span class="prev"><a href="development.html">Development</a></span>
 </nav>
 </article>
   </div>

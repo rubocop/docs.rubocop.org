@@ -380,6 +380,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="2.25/index.html">2.25</a>
+        </li>
+        <li class="version">
           <a href="2.24/index.html">2.24</a>
         </li>
         <li class="version">
@@ -489,6 +492,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_rails.html">default</a>
+    <a class="version" href="2.25/cops_rails.html">2.25</a>
     <a class="version" href="2.24/cops_rails.html">2.24</a>
     <a class="version" href="2.23/cops_rails.html">2.23</a>
     <a class="version" href="2.22/cops_rails.html">2.22</a>
@@ -5018,13 +5022,17 @@ render json: { foo: 'bar' }, status: 200
 render plain: 'foo/bar', status: 304
 redirect_to root_url, status: 301
 head 200
+assert_response 200
+assert_redirected_to '/some/path', status: 301
 
 # good
 render :foo, status: :ok
 render json: { foo: 'bar' }, status: :ok
 render plain: 'foo/bar', status: :not_modified
 redirect_to root_url, status: :moved_permanently
-head :ok</code></pre>
+head :ok
+assert_response :ok
+assert_redirected_to '/some/path', status: :moved_permanently</code></pre>
 </div>
 </div>
 </div>
@@ -5038,13 +5046,17 @@ render json: { foo: 'bar' }, status: :not_found
 render plain: 'foo/bar', status: :not_modified
 redirect_to root_url, status: :moved_permanently
 head :ok
+assert_response :ok
+assert_redirected_to '/some/path', status: :moved_permanently
 
 # good
 render :foo, status: 200
 render json: { foo: 'bar' }, status: 404
 render plain: 'foo/bar', status: 304
 redirect_to root_url, status: 301
-head 200</code></pre>
+head 200
+assert_response 200
+assert_redirected_to '/some/path', status: 301</code></pre>
 </div>
 </div>
 </div>
@@ -6592,14 +6604,28 @@ hash.exclude?(:key)</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for add_column call with NOT NULL constraint in migration file.</p>
+<p>Checks for add_column calls with a NOT NULL constraint without a default
+value.</p>
 </div>
 <div class="paragraph">
-<p><code>TEXT</code> can have default values in PostgreSQL, but not in MySQL.
-It will automatically detect an adapter from <code>development</code> environment
-in <code>config/database.yml</code> or the environment variable <code>DATABASE_URL</code>
-when the <code>Database</code> option is not set. If the database is MySQL,
-this cop ignores offenses for the <code>TEXT</code>.</p>
+<p>This cop only applies when adding a column to an existing table, since
+existing records will not have a value for the new column. New tables
+can freely use NOT NULL columns without defaults, since there are no
+records that could violate the constraint.</p>
+</div>
+<div class="paragraph">
+<p>If you need to add a NOT NULL column to an existing table, you must add
+it as nullable first, back-fill the data, and then use
+<code>change_column_null</code>. Alternatively, you could add the column with a
+default first to have the database automatically backfill existing rows,
+and then use <code>change_column_default</code> to remove the default.</p>
+</div>
+<div class="paragraph">
+<p><code>TEXT</code> cannot have a default value in MySQL.
+The cop will automatically detect an adapter from <code>development</code>
+environment in <code>config/database.yml</code> or the environment variable
+<code>DATABASE_URL</code> when the <code>Database</code> option is not set. If the database
+is MySQL, this cop ignores offenses for <code>TEXT</code> columns.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
@@ -6608,12 +6634,18 @@ this cop ignores offenses for the <code>TEXT</code>.</p>
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 add_column :users, :name, :string, null: false
 add_reference :products, :category, null: false
+change_table :users do |t|
+  t.string :name, null: false
+end
 
 # good
 add_column :users, :name, :string, null: true
 add_column :users, :name, :string, null: false, default: ''
+change_table :users do |t|
+  t.string :name, null: false, default: ''
+end
 add_reference :products, :category
-add_reference :products, :category, null: false, default: 1</code></pre>
+change_column_null :products, :category_id, false</code></pre>
 </div>
 </div>
 </div>
@@ -6939,6 +6971,11 @@ safe_join([user_content, " ", content_tag(:span, user_content)])
 <p>Using <code>pluck</code> followed by <code>first</code> creates an intermediate array, which
 <code>pick</code> avoids. When called on an Active Record relation, <code>pick</code> adds a
 limit to the query so that only one value is fetched from the database.</p>
+</div>
+<div class="paragraph">
+<p>Note that when <code>pick</code> is added to a relation with an existing limit, it
+causes a subquery to be added. In most cases this is undesirable, and
+care should be taken while resolving this violation.</p>
 </div>
 <div class="sect2">
 <h3 id="safety-21"><a class="anchor" href="#safety-21"></a>Safety</h3>
@@ -11436,11 +11473,11 @@ Rails.env == 'production'</code></pre>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.11</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.25</p></td>
 </tr>
 </tbody>
 </table>
@@ -11448,6 +11485,22 @@ Rails.env == 'production'</code></pre>
 <p>Suggests you remove a column that does not exist in the schema from <code>ignored_columns</code>.
 <code>ignored_columns</code> is necessary to drop a column from RDBMS, but you don&#8217;t need it after the migration
 to drop the column. You avoid forgetting to remove <code>ignored_columns</code> by this cop.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This cop can&#8217;t be used to effectively check for unused columns because the development
+and production schema can be out of sync until the migration has been run on production. As such,
+this cop can cause <code>ignored_columns</code> to be removed even though the production schema still contains
+the column, which can lead to downtime when the migration is actually executed. Only enable this cop
+if you know your migrations will be run before any of your Rails applications boot with the modified code.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="examples-122"><a class="anchor" href="#examples-122"></a>Examples</h3>
@@ -11628,7 +11681,7 @@ validates :foo, length: true
 validates :foo, numericality: true
 validates :foo, presence: true
 validates :foo, absence: true
-validates :foo, size: true
+validates :foo, length: true
 validates :foo, uniqueness: true</code></pre>
 </div>
 </div>
@@ -12067,6 +12120,89 @@ User.where.not('trashed = ? OR role = ?', true, 'admin')</code></pre>
 <ul>
 <li>
 <p><a href="https://rails.rubystyle.guide/#where-not-with-multiple-attributes" class="bare">https://rails.rubystyle.guide/#where-not-with-multiple-attributes</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="railswhererange"><a class="anchor" href="#railswhererange"></a>Rails/WhereRange</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Required Ruby version: 2.6
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.25</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Identifies places where manually constructed SQL
+in <code>where</code> can be replaced with ranges.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-130"><a class="anchor" href="#examples-130"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+User.where('age &gt;= ?', 18)
+User.where.not('age &gt;= ?', 18)
+User.where('age &lt; ?', 18)
+User.where('age &gt;= ? AND age &lt; ?', 18, 21)
+User.where('age &gt;= :start', start: 18)
+User.where('users.age &gt;= ?', 18)
+
+# good
+User.where(age: 18..)
+User.where.not(age: 18..)
+User.where(age: ...18)
+User.where(age: 18...21)
+User.where(users: { age: 18.. })
+
+# good
+# There are no beginless ranges in ruby.
+User.where('age &gt; ?', 18)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-56"><a class="anchor" href="#references-56"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://rails.rubystyle.guide/#where-ranges" class="bare">https://rails.rubystyle.guide/#where-ranges</a></p>
 </li>
 </ul>
 </div>

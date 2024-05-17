@@ -480,6 +480,9 @@
           <a href="../../rubocop-rails/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../../rubocop-rails/2.25/index.html">2.25</a>
+        </li>
+        <li class="version">
           <a href="../../rubocop-rails/2.24/index.html">2.24</a>
         </li>
         <li class="version">
@@ -996,6 +999,41 @@ The <code>layoutMode</code> parameter was introduced in RuboCop 1.55.
 </div>
 </div>
 <div class="sect1">
+<h2 id="enable-yjit"><a class="anchor" href="#enable-yjit"></a>Enable YJIT</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>YJIT, a Ruby JIT compiler, has been supported since Ruby 3.1.
+In an LSP client, you can enable YJIT by launching <code>rubocop --lsp</code> with the <code>RUBY_YJIT_ENABLE=1</code> environment variable using the <code>env</code> command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">env RUBY_YJIT_ENABLE=1 bundle exec rubocop --lsp</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Below is an example for Emacs&#8217;s Eglot:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-lisp hljs" data-lang="lisp">(add-to-list 'eglot-server-programs '(ruby-mode . ("env" "RUBY_YJIT_ENABLE=1" "bundle" "exec" "rubocop" "--lsp")))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The console of the LSP client will display <code>+YJIT</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">RuboCop 1.63.4 language server +YJIT initialized, PID 13501</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For more details, please refer to the respective LSP configuration documentation.
+In some cases, like with vscode-rubocop, it may be available as a built-in option:
+<a href="https://github.com/rubocop/vscode-rubocop#rubocopyjitenabled" class="bare">https://github.com/rubocop/vscode-rubocop#rubocopyjitenabled</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="run-as-a-language-server"><a class="anchor" href="#run-as-a-language-server"></a>Run as a Language Server</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -1006,8 +1044,8 @@ The <code>layoutMode</code> parameter was introduced in RuboCop 1.55.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ ps aux | grep rubocop
-user             17414   0.0  0.2  5557716 144376   ??  Ss    4:48PM   0:02.13 /Users/user/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/bin/rubocop --lsp</code></pre>
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ ps aux | grep 'rubocop --lsp'
+user             17414   0.0  0.2  5557716 144376   ??  Ss    4:48PM   0:02.13 rubocop --lsp /Users/user/src/github.com/rubocop/rubocop</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1036,7 +1074,8 @@ user             17414   0.0  0.2  5557716 144376   ??  Ss    4:48PM   0:02.13 /
 <p><code>RuboCop::LSP.enable</code> enables LSP mode, customizing for LSP-specific features such as autocorrection and short offense message.</p>
 </li>
 <li>
-<p><code>RuboCop::LSP.disable</code> disables LSP mode, which can be particularly useful for testing.</p>
+<p><code>RuboCop::LSP.disable</code> disables LSP mode, which can be particularly useful for testing. And intentional autocorrection by the user can be specified.
+e.g, <code>workspace/executeCommand</code> and <code>textDocument/codeAction</code> LSP methods.</p>
 </li>
 </ul>
 </div>

@@ -480,6 +480,9 @@
           <a href="../rubocop-rails/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-rails/2.25/index.html">2.25</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-rails/2.24/index.html">2.24</a>
         </li>
         <li class="version">
@@ -11993,7 +11996,8 @@ mapping destination variable remains an empty array:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">src.each { |e| @dest &lt;&lt; e * 2 } # `src` method may mutate `@dest`
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">ret = []
+src.each { |e| ret &lt;&lt; e * 2 } # `&lt;&lt;` method may mutate `ret`
 
 dest = []
 src.each { |e| dest &lt;&lt; transform(e, dest) } # `transform` method may mutate `dest`</code></pre>
@@ -21989,12 +21993,12 @@ foo = 1; bar = 2</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-Foo.send(:bar)
-quuz.send(:fred)
+Foo.send(bar)
+quuz.send(fred)
 
 # good
-Foo.__send__(:bar)
-quuz.public_send(:fred)</code></pre>
+Foo.__send__(bar)
+quuz.public_send(fred)</code></pre>
 </div>
 </div>
 </div>
@@ -22799,36 +22803,6 @@ Correcting to global variables in the 'English' library
 will add a require statement to the top of the file if
 enabled by RequireEnglish config.</p>
 </div>
-<div class="paragraph">
-<p>Like <code>use_perl_names</code> but allows builtin global vars.</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre># good
-puts $LOAD_PATH
-puts $LOADED_FEATURES
-puts $PROGRAM_NAME
-puts ARGV
-puts $:
-puts $"
-puts $0
-puts $!
-puts $@
-puts $;
-puts $,
-puts $/
-puts $\
-puts $.
-puts $_
-puts $&gt;
-puts $&lt;
-puts $$
-puts $?
-puts $~
-puts $=
-puts $*</pre>
-</div>
-</div>
 <div class="sect2">
 <h3 id="safety-60"><a class="anchor" href="#safety-60"></a>Safety</h3>
 <div class="paragraph">
@@ -22896,7 +22870,30 @@ puts $*</code></pre>
 <h4 id="enforcedstyle-use_builtin_english_names"><a class="anchor" href="#enforcedstyle-use_builtin_english_names"></a>EnforcedStyle: use_builtin_english_names</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"></code></pre>
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+# Like `use_perl_names` but allows builtin global vars.
+puts $LOAD_PATH
+puts $LOADED_FEATURES
+puts $PROGRAM_NAME
+puts ARGV
+puts $:
+puts $"
+puts $0
+puts $!
+puts $@
+puts $;
+puts $,
+puts $/
+puts $\
+puts $.
+puts $_
+puts $&gt;
+puts $&lt;
+puts $$
+puts $?
+puts $~
+puts $=
+puts $*</code></pre>
 </div>
 </div>
 </div>
