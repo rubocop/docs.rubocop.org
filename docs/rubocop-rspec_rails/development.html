@@ -260,6 +260,9 @@
           <a href="../rubocop-capybara/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-capybara/2.21/index.html">2.21</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-capybara/2.20/index.html">2.20</a>
         </li>
         <li class="version">
@@ -278,6 +281,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-factory_bot/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-factory_bot/2.26/index.html">2.26</a>
         </li>
         <li class="version">
           <a href="../rubocop-factory_bot/2.25/index.html">2.25</a>
@@ -431,6 +437,12 @@
           <a href="../rubocop-rspec/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-rspec/2.31/index.html">2.31</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-rspec/2.30/index.html">2.30</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-rspec/2.29/index.html">2.29</a>
         </li>
         <li class="version">
@@ -475,6 +487,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="2.29/index.html">2.29</a>
+        </li>
+        <li class="version">
           <a href="2.28/index.html">2.28</a>
         </li>
       </ul>
@@ -498,6 +513,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="development.html">default</a>
+    <a class="version" href="2.29/development.html">2.29</a>
     <a class="version" href="2.28/development.html">2.28</a>
   </div>
 </div>
@@ -509,8 +525,95 @@
 </aside>
 <article class="doc">
 <h1 class="page">Development</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>This page describes considerations when developing RSpec Rails-specific cops. It is intended to be a complement to the general <a href="https://docs.rubocop.org/rubocop/development.html">RuboCop development documentation</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="create-a-new-cop"><a class="anchor" href="#create-a-new-cop"></a>Create a new cop</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Clone the repository and run <code>bundle install</code> if not done yet.
+The following rake task can only be run inside the rubocop project directory itself.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Use the bundled rake task <code>new_cop</code> to generate a cop template:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ bundle exec rake 'new_cop[RSpecRails/CopName]'
+[create] lib/rubocop/cop/rspec_rails/cop_name.rb
+[create] spec/rubocop/cop/rspec_rails/cop_name_spec.rb
+[modify] lib/rubocop/cop/rspec_rails_cops.rb - `require_relative 'rspec_rails/cop_name'` was injected.
+[modify] A configuration for the cop is added into config/default.yml.
+Do 4 steps:
+  1. Modify the description of RSpecRails/CopName in config/default.yml
+  2. Implement your new cop in the generated file!
+  3. Add an entry about new cop to CHANGELOG.md
+  4. Commit your new cop with a message such as
+     e.g. "Add new `#{badge}` cop"</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="choose-a-name"><a class="anchor" href="#choose-a-name"></a>Choose a Name</h3>
+<div class="paragraph">
+<p>Use the following rules to give the new cop a name:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pick a department. See the <a href="cops.html" class="xref page">list of existing departments</a></p>
+</li>
+<li>
+<p>The name is self-explanatory</p>
+</li>
+<li>
+<p>The name explains the offense the cop detects, e.g. <code>ExtraSpacing</code></p>
+</li>
+<li>
+<p>The name starts with a noun instead of a verb, e.g. <code>ArrayAlignment</code> instead of <code>AlignArray</code></p>
+</li>
+<li>
+<p>The name is easy to understand, e.g. <code>IndentationStyle</code> instead of just <code>Tab</code></p>
+</li>
+<li>
+<p>The name is specific, e.g. <code>DuplicateHashKey</code> instead of just <code>DuplicateKey</code></p>
+</li>
+<li>
+<p>The name is neutral when possible and accommodates multiple styles when feasible, e.g. <code>EmptyLineBeforeBegin</code>.</p>
+</li>
+<li>
+<p>The name uses commonly-used terms, e.g. <code>RedundantPercentI</code> instead of <code>RedundantPercentSymbolArray</code></p>
+</li>
+<li>
+<p>The name uses correct terms, e.g. arguments in a method call, and parameters in a method signature</p>
+</li>
+<li>
+<p>Lines with no symbols are called "empty", not "blank", e.g. <code>LeadingEmptyLines</code> instead of <code>LeadingBlankLines</code></p>
+</li>
+<li>
+<p>Prefer "redundant" to "unneeded", e.g. <code>RedundantSelf</code> instead of <code>UnneededSelf</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>See the <a href="https://github.com/rubocop/rubocop/blob/12fd014e255617a08b7b42aa5df0745e7382af88/config/obsoletion.yml#L4">"renamed" section of <code>config/obsoletion.yml</code></a>
+for good and bad examples (old name is on the left, new name on the right).</p>
+</div>
+</div>
+</div>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="cops.html">Cops</a></span>
