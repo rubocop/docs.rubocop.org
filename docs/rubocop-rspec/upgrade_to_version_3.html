@@ -548,7 +548,20 @@
 </div>
 <h3 id="extraction-of-cop-departments-capybara-factorybot-rails" class="discrete">Extraction of cop departments. (<code>Capybara</code>, <code>FactoryBot</code>, <code>Rails</code>)</h3>
 <div class="paragraph">
-<p>If you are using the RSpec/Capybara, RSpec/FactoryBot, or RSpec/Rails departments, you need to install the corresponding gem and add it to your <code>.rubocop.yml</code> file.</p>
+<p>If you are using the RSpec/Capybara, RSpec/FactoryBot, or RSpec/Rails departments&#8201;&#8212;&#8201;or have one in a <code>require</code> list in your rubocop.yml&#8201;&#8212;&#8201;you need to install the corresponding gem and add it to your <code>.rubocop.yml</code> file:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Capybara: <code>rubocop-capybara</code></p>
+</li>
+<li>
+<p>FactoryBot: <code>rubocop-factory_bot</code></p>
+</li>
+<li>
+<p>Rails: <code>rubocop-rspec_rails</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>For example, if you are using the RSpec/Capybara department, you need to install the <code>rubocop-capybara</code> gem and add it to your <code>.rubocop.yml</code> file:</p>
@@ -564,8 +577,9 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Capybara:
-  Enabled: true</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">require:
+  - rubocop-rspec
+  - rubocop-capybara</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -590,6 +604,14 @@ RSpec/FactoryBot:
 RSpec/Rails:
   Enabled: false</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>Troubleshooting</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you&#8217;re seeing <code>cannot load such file</code> when running rubocop, even after installing the gems, restart the server with <code>rubocop --restart-server</code>.</p>
 </div>
 </div>
 </div>
