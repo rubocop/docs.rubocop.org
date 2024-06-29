@@ -6206,7 +6206,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for calls to <code>link_to</code> that contain a
+<p>Checks for calls to <code>link_to</code>, <code>link_to_if</code>, and <code>link_to_unless</code> methods that contain a
 <code>target: '_blank'</code> but no <code>rel: 'noopener'</code>. This can be a security
 risk as the loaded page will have control over the previous page
 and could change its location for phishing purposes.</p>
@@ -10145,10 +10145,10 @@ l Time.now</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.47</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.25</p></td>
 </tr>
 </tbody>
 </table>
@@ -10159,6 +10159,12 @@ validations which are listed in
 </div>
 <div class="paragraph">
 <p>Methods may be ignored from this rule by configuring a <code>AllowedMethods</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-35"><a class="anchor" href="#safety-35"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe if the receiver object is not an Active Record object.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-108"><a class="anchor" href="#examples-108"></a>Examples</h3>
@@ -10271,7 +10277,7 @@ user.touch</code></pre>
 <p>Checks SQL heredocs to use <code>.squish</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-35"><a class="anchor" href="#safety-35"></a>Safety</h3>
+<h3 id="safety-36"><a class="anchor" href="#safety-36"></a>Safety</h3>
 <div class="paragraph">
 <p>Some SQL syntax (e.g. PostgreSQL comments and functions) requires newlines
 to be preserved in order to work, thus autocorrection for this cop is not safe.</p>
@@ -10633,7 +10639,7 @@ then only use of <code>Time.zone</code> is allowed.</p>
 to use <code>Time#in_time_zone</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-36"><a class="anchor" href="#safety-36"></a>Safety</h3>
+<h3 id="safety-37"><a class="anchor" href="#safety-37"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because it may change handling time.</p>
 </div>
@@ -10940,7 +10946,7 @@ time.to_formatted_s(:db)</code></pre>
 <p>Identifies passing any argument to <code>#to_s</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-37"><a class="anchor" href="#safety-37"></a>Safety</h3>
+<h3 id="safety-38"><a class="anchor" href="#safety-38"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is marked as unsafe because it may detect <code>#to_s</code> calls
 that are not related to Active Support implementation.</p>
@@ -11227,7 +11233,7 @@ ActiveRecord::Relation vs a call to pluck on an
 ActiveRecord::Associations::CollectionProxy.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-38"><a class="anchor" href="#safety-38"></a>Safety</h3>
+<h3 id="safety-39"><a class="anchor" href="#safety-39"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe for autocorrection because the behavior may change
 depending on the database collation.</p>
@@ -11669,6 +11675,7 @@ head 100</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 validates_acceptance_of :foo
+validates_comparison_of :foo
 validates_confirmation_of :foo
 validates_exclusion_of :foo
 validates_format_of :foo
@@ -11683,6 +11690,7 @@ validates_uniqueness_of :foo
 # good
 validates :foo, acceptance: true
 validates :foo, confirmation: true
+validates :foo, comparison: true
 validates :foo, exclusion: true
 validates :foo, format: true
 validates :foo, inclusion: true
@@ -11756,7 +11764,7 @@ validates :foo, uniqueness: true</code></pre>
 in <code>where</code> can be replaced with <code>where(attribute: value)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-39"><a class="anchor" href="#safety-39"></a>Safety</h3>
+<h3 id="safety-40"><a class="anchor" href="#safety-40"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because is may change SQL.
 See: <a href="https://github.com/rubocop/rubocop-rails/issues/403" class="bare">https://github.com/rubocop/rubocop-rails/issues/403</a></p>
@@ -11836,7 +11844,7 @@ then the cop enforces <code>exists?(&#8230;&#8203;)</code> over <code>where(&#82
 <code>where(&#8230;&#8203;).exists?</code> over <code>exists?(&#8230;&#8203;)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-40"><a class="anchor" href="#safety-40"></a>Safety</h3>
+<h3 id="safety-41"><a class="anchor" href="#safety-41"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe for autocorrection because the behavior may change on the following case:</p>
 </div>
@@ -12171,7 +12179,7 @@ Required Ruby version: 2.6
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.25</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -12180,6 +12188,17 @@ Required Ruby version: 2.6
 <div class="paragraph">
 <p>Identifies places where manually constructed SQL
 in <code>where</code> can be replaced with ranges.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-42"><a class="anchor" href="#safety-42"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection is unsafe because it can change the query
+by explicitly attaching the column to the wrong table.
+For example, <code>Booking.joins(:events).where('end_at &lt; ?', Time.current)</code> will correctly
+implicitly attach the <code>end_at</code> column to the <code>events</code> table. But when autocorrected to
+<code>Booking.joins(:events).where(end_at: &#8230;&#8203;Time.current)</code>, it will now be incorrectly
+explicitly attached to the <code>bookings</code> table.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-130"><a class="anchor" href="#examples-130"></a>Examples</h3>

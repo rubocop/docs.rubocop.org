@@ -4167,8 +4167,8 @@ Unary plus operator is faster than <code>String#dup</code>.</p>
 <h3 id="safety-20"><a class="anchor" href="#safety-20"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because <code>String.new</code> (without operator) is not
-exactly the same as <code>+''</code>. These differ in encoding. <code>String.new.encoding</code> is always
-<code>ASCII-8BIT</code>. However, <code>(+'').encoding</code> is the same as script encoding(e.g. <code>UTF-8</code>).
+exactly the same as <code>''`. These differ in encoding. `String.new.encoding` is always
+`ASCII-8BIT`. However, `('').encoding</code> is the same as script encoding(e.g. <code>UTF-8</code>).
 if you expect <code>ASCII-8BIT</code> encoding, disable this cop.</p>
 </div>
 </div>
