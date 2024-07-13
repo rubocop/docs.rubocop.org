@@ -223,6 +223,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.65/index.html">1.65</a>
+        </li>
+        <li class="version">
           <a href="1.64/index.html">1.64</a>
         </li>
         <li class="version">
@@ -589,7 +592,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.64/index.html" class="home-link"></a>
+  <a href="1.65/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -601,6 +604,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_style.html">default</a>
+    <a class="version" href="1.65/cops_style.html">1.65</a>
     <a class="version" href="1.64/cops_style.html">1.64</a>
     <a class="version" href="1.63/cops_style.html">1.63</a>
     <a class="version" href="1.62/cops_style.html">1.62</a>
@@ -9645,9 +9649,9 @@ is a <code>Hash</code> or responds to the replacement method.</p>
 {foo: 1, bar: 2, baz: 3}.reject {|k, v| k == :bar }
 {foo: 1, bar: 2, baz: 3}.select {|k, v| k != :bar }
 {foo: 1, bar: 2, baz: 3}.filter {|k, v| k != :bar }
-{foo: 1, bar: 2, baz: 3}.reject {|k, v| %i[foo bar].include?(k) }
-{foo: 1, bar: 2, baz: 3}.select {|k, v| !%i[foo bar].include?(k) }
-{foo: 1, bar: 2, baz: 3}.filter {|k, v| !%i[foo bar].include?(k) }
+{foo: 1, bar: 2, baz: 3}.reject {|k, v| %i[bar].include?(k) }
+{foo: 1, bar: 2, baz: 3}.select {|k, v| !%i[bar].include?(k) }
+{foo: 1, bar: 2, baz: 3}.filter {|k, v| !%i[bar].include?(k) }
 
 # good
 {foo: 1, bar: 2, baz: 3}.except(:bar)</code></pre>
@@ -12000,7 +12004,8 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Prefer <code>select</code> or <code>reject</code> over <code>map { &#8230;&#8203; }.compact</code>.</p>
+<p>Prefer <code>select</code> or <code>reject</code> over <code>map { &#8230;&#8203; }.compact</code>.
+This cop also handles <code>filter_map { &#8230;&#8203; }</code>, similar to <code>map { &#8230;&#8203; }.compact</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-107"><a class="anchor" href="#examples-107"></a>Examples</h3>
@@ -12008,6 +12013,9 @@ end</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 array.map { |e| some_condition? ? e : next }.compact
+
+# bad
+array.filter_map { |e| some_condition? ? e : next }
 
 # bad
 array.map do |e|
@@ -17937,10 +17945,19 @@ cop is not enabled, the default <code>EnforcedStyle</code> is <code>single_quote
 <div class="paragraph">
 <p>String interpolation is always kept in double quotes.</p>
 </div>
-<div class="paragraph">
-<p>Note: <code>Lint/SymbolConversion</code> can be used in parallel to ensure that symbols
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>Lint/SymbolConversion</code> can be used in parallel to ensure that symbols
 are not quoted that don&#8217;t need to be. This cop is for configuring the quoting
-style to use for symbols that require quotes.</p>
+style to use for symbols that require quotes.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="examples-165"><a class="anchor" href="#examples-165"></a>Examples</h3>
@@ -19230,13 +19247,22 @@ ENV.fetch(:key, VALUE)</code></pre>
 <p>Checks for the presence of superfluous <code>.rb</code> extension in
 the filename provided to <code>require</code> and <code>require_relative</code>.</p>
 </div>
-<div class="paragraph">
-<p>Note: If the extension is omitted, Ruby tries adding '.rb', '.so',
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the extension is omitted, Ruby tries adding '.rb', '.so',
       and so on to the name until found. If the file named cannot be found,
       a <code>LoadError</code> will be raised.
       There is an edge case where <code>foo.so</code> file is loaded instead of a <code>LoadError</code>
       if <code>foo.so</code> file exists when <code>require 'foo.rb'</code> will be changed to <code>require 'foo'</code>,
-      but that seems harmless.</p>
+      but that seems harmless.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="examples-181"><a class="anchor" href="#examples-181"></a>Examples</h3>
@@ -22162,6 +22188,30 @@ quuz.public_send(fred)</code></pre>
 Since the <code>send</code> method can be used to call private methods, by default,
 only the <code>public_send</code> method is detected.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Writer methods with names ending in <code>=</code> are always permitted because their
+behavior differs as follows:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def foo=(foo)
+  @foo = foo
+  42
+end
+
+self.foo = 1   # =&gt; 1
+send(:foo=, 1) # =&gt; 42</code></pre>
+</div>
+</div>
 <div class="sect2">
 <h3 id="safety-58"><a class="anchor" href="#safety-58"></a>Safety</h3>
 <div class="paragraph">
@@ -24123,8 +24173,27 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for redundant argument forwarding when calling super
-with arguments identical to the method definition.</p>
+<p>Checks for redundant argument forwarding when calling super with arguments identical to
+the method definition.</p>
+</div>
+<div class="paragraph">
+<p>Using zero arity <code>super</code> within a <code>define_method</code> block results in <code>RuntimeError</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def m
+  define_method(:foo) { super() } # =&gt; OK
+end
+
+def m
+  define_method(:foo) { super }   # =&gt; RuntimeError
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Furthermore, any arguments accompanied by a block may potentially be delegating to
+<code>define_method</code>, therefore, <code>super</code> used within these blocks will be allowed.
+This approach might result in false negatives, yet ensuring safe detection takes precedence.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-233"><a class="anchor" href="#examples-233"></a>Examples</h3>

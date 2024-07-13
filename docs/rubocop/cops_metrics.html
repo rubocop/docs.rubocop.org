@@ -223,6 +223,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.65/index.html">1.65</a>
+        </li>
+        <li class="version">
           <a href="1.64/index.html">1.64</a>
         </li>
         <li class="version">
@@ -589,7 +592,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.64/index.html" class="home-link"></a>
+  <a href="1.65/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -601,6 +604,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_metrics.html">default</a>
+    <a class="version" href="1.65/cops_metrics.html">1.65</a>
     <a class="version" href="1.64/cops_metrics.html">1.64</a>
     <a class="version" href="1.63/cops_metrics.html">1.63</a>
     <a class="version" href="1.62/cops_metrics.html">1.62</a>
@@ -948,18 +952,18 @@ end                 # 6 points</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.25</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.47</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.65</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for excessive nesting of conditional and looping
-constructs.</p>
+<p>Checks for excessive nesting of conditional and looping constructs.</p>
 </div>
 <div class="paragraph">
-<p>You can configure if blocks are considered using the <code>CountBlocks</code>
-option. When set to <code>false</code> (the default) blocks are not counted
-towards the nesting level. Set to <code>true</code> to count blocks as well.</p>
+<p>You can configure if blocks are considered using the <code>CountBlocks</code> and <code>CountModifierForms</code>
+options. When both are set to <code>false</code> (the default) blocks and modifier forms are not
+counted towards the nesting level. Set them to <code>true</code> to include these in the nesting level
+calculation as well.</p>
 </div>
 <div class="paragraph">
 <p>The maximum level of nesting allowed is configurable.</p>
@@ -982,6 +986,11 @@ towards the nesting level. Set to <code>true</code> to count blocks as well.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CountBlocks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CountModifierForms</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 </tr>
