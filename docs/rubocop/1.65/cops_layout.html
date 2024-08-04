@@ -633,7 +633,7 @@
     <a class="version" href="../1.0/cops_layout.html">1.0</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.65.0/docs/modules/ROOT/pages/cops_layout.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.65.1/docs/modules/ROOT/pages/cops_layout.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -1034,7 +1034,7 @@ right-hand-side of a multi-line assignment.</p>
 </div>
 <div class="paragraph">
 <p>The indentation of the remaining lines can be corrected with
-other cops such as <code>IndentationConsistency</code> and <code>EndAlignment</code>.</p>
+other cops such as <code>Layout/IndentationConsistency</code> and <code>Layout/EndAlignment</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
@@ -2173,17 +2173,12 @@ if/while/until.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 if
   some_condition
   do_something
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 if some_condition
   do_something
 end</code></pre>

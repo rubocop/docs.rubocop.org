@@ -5177,12 +5177,9 @@ def foo() = do_something
 def foo = do_something
 
 # good (without parentheses it's a syntax error)
-def foo() do_something end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+def foo() do_something end
+
+# bad
 def Baz.foo()
   do_something
 end
@@ -6135,12 +6132,9 @@ using a Range literal and <code>#each</code>. This can be done more readably usi
 (1..5).each { }
 
 # good
-5.times { }</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+5.times { }
+
+# bad
 (0...10).each {}
 
 # good
@@ -7249,9 +7243,27 @@ values. However, if <code>eval</code> is called without a binding argument, the 
 will not attempt to automatically add a binding, or add filename and
 line values.</p>
 </div>
-<div class="paragraph">
-<p>This cop works only when a string literal is given as a code string.
-No offense is reported if a string variable is given as below:</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This cop works only when a string literal is given as a code string.
+No offense is reported if a string variable is given as below:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">code = &lt;&lt;-RUBY
+  def do_something
+  end
+RUBY
+eval code # not checked.</code></pre>
+</div>
 </div>
 <div class="sect2">
 <h3 id="examples-63"><a class="anchor" href="#examples-63"></a>Examples</h3>
@@ -7280,16 +7292,6 @@ C.class_eval &lt;&lt;-RUBY, __FILE__, __LINE__ + 1
   def do_something
   end
 RUBY</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># not checked
-code = &lt;&lt;-RUBY
-  def do_something
-  end
-RUBY
-eval code</code></pre>
 </div>
 </div>
 </div>
@@ -7930,8 +7932,7 @@ FileTest.empty?('path/to/file')</code></pre>
 <h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">## text mode
-# bad
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - text mode
 File.open(filename).read
 File.open(filename, &amp;:read)
 File.open(filename) { |f| f.read }
@@ -7945,13 +7946,9 @@ File.open(filename, 'r') do |f|
 end
 
 # good
-File.read(filename)</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">## binary mode
-# bad
+File.read(filename)
+
+# bad - binary mode
 File.open(filename, 'rb').read
 File.open(filename, 'rb', &amp;:read)
 File.open(filename, 'rb') do |f|
@@ -8033,21 +8030,16 @@ end</code></pre>
 <h3 id="examples-72"><a class="anchor" href="#examples-72"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">## text mode
-# bad
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - text mode
 File.open(filename, 'w').write(content)
 File.open(filename, 'w') do |f|
   f.write(content)
 end
 
 # good
-File.write(filename, content)</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">## binary mode
-# bad
+File.write(filename, content)
+
+# bad - binary mode
 File.open(filename, 'wb').write(content)
 File.open(filename, 'wb') do |f|
   f.write(content)
@@ -10729,12 +10721,9 @@ end
 foo == bar ? true : false
 
 # good
-foo == bar</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+foo == bar
+
+# bad
 if foo.do_something?
   true
 else
@@ -12344,7 +12333,7 @@ something.to_set { |i| i * 2 }
 </table>
 <div class="paragraph">
 <p>Enforces the presence (default) or absence of parentheses in
-method calls containing parameters.</p>
+method calls containing arguments.</p>
 </div>
 <div class="paragraph">
 <p>In the default style (require_parentheses), macro methods are allowed.
@@ -18679,12 +18668,9 @@ end</code></pre>
 a = b ? b : c
 
 # good
-a = b || c</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+a = b || c
+
+# bad
 if b
   b
 else
@@ -26637,12 +26623,9 @@ end
 # good
 while x.any?
   do_something(x.pop)
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+end
+
+# bad
 until x.empty? do
   do_something(x.pop)
 end
@@ -26711,12 +26694,9 @@ while x &lt; 10
 end
 
 # good
-x += 1 while x &lt; 10</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+x += 1 while x &lt; 10
+
+# bad
 until x &gt; 10
   x += 1
 end

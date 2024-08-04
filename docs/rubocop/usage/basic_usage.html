@@ -1091,6 +1091,26 @@ options, or an internal error.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="parallel-processing"><a class="anchor" href="#parallel-processing"></a>Parallel Processing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RuboCop enables the <code>--parallel</code> option by default. This option allows for
+parallel processing using the number of available CPUs based on <code>Etc.nprocessors</code>.
+If the default number of parallel processes causes excessive consumption of CPU and memory,
+you can adjust the number of parallel processes using the <code>$PARALLEL_PROCESSOR_COUNT</code> environment variable.
+Here is how to set the parallel processing to use two CPUs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ PARALLEL_PROCESSOR_COUNT=2 bundle exec rubocop</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, specifying <code>--no-parallel</code> will disable parallel processing.</p>
+</div>
+</div>
+</div>
 <nav class="pagination">
   <span class="prev"><a href="../compatibility.html">Compatibility</a></span>
   <span class="next"><a href="autocorrect.html">Autocorrect</a></span>

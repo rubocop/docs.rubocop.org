@@ -633,7 +633,7 @@
     <a class="version" href="../1.0/cops_lint.html">1.0</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.65.0/docs/modules/ROOT/pages/cops_lint.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.65.1/docs/modules/ROOT/pages/cops_lint.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -737,12 +737,9 @@ By default, there are no methods to allowed.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-some_method a { |val| puts val }</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+some_method a { |val| puts val }
+
+# good
 # With parentheses, there's no ambiguity.
 some_method(a { |val| puts val })
 # or (different meaning)
@@ -868,12 +865,9 @@ method invocation without parentheses.</p>
 
 # The `*` is interpreted as a splat operator but it could possibly be
 # a `*` method invocation (i.e. `do_something.*(some_array)`).
-do_something *some_array</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+do_something *some_array
+
+# good
 
 # With parentheses, there's no ambiguity.
 do_something(*some_array)</code></pre>
@@ -1150,12 +1144,9 @@ a method invocation without parentheses.</p>
 # This is interpreted as a method invocation with a regexp literal,
 # but it could possibly be `/` method invocations.
 # (i.e. `do_something./(pattern)./(i)`)
-do_something /pattern/i</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+do_something /pattern/i
+
+# good
 
 # With parentheses, there's no ambiguity.
 do_something(/pattern/i)</code></pre>
@@ -1469,12 +1460,9 @@ changed to actual booleans.</p>
 :true
 
 # good
-true</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+true
+
+# bad
 :false
 
 # good
@@ -1526,43 +1514,26 @@ arguments and optional ordinal arguments.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 def bake(pie: pie)
   pie.heat_up
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 def bake(pie:)
   pie.refrigerate
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 def bake(pie: self.pie)
   pie.feed_to(user)
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+end
 
+# bad
 def cook(dry_ingredients = dry_ingredients)
   dry_ingredients.reduce(&amp;:+)
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 def cook(dry_ingredients = self.dry_ingredients)
   dry_ingredients.combine
 end</code></pre>
@@ -1988,23 +1959,17 @@ be configured through <code>DebuggerRequires</code>. It has the same structure a
 def some_method
   binding.pry
   do_something
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad (ok during development)
+end
+
+# bad (ok during development)
 
 # using byebug
 def some_method
   byebug
   do_something
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
+
+# good
 
 def some_method
   do_something
@@ -2269,29 +2234,17 @@ instead.</p>
 <h3 id="examples-18"><a class="anchor" href="#examples-18"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Example for OpenSSL::Cipher instantiation.
-
-# bad
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 OpenSSL::Cipher::AES.new(128, :GCM)
 
 # good
-OpenSSL::Cipher.new('aes-128-gcm')</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Example for OpenSSL::Digest instantiation.
+OpenSSL::Cipher.new('aes-128-gcm')
 
 # bad
 OpenSSL::Digest::SHA256.new
 
 # good
-OpenSSL::Digest.new('SHA256')</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Example for ::Digest inherited class methods.
+OpenSSL::Digest.new('SHA256')
 
 # bad
 OpenSSL::Digest::SHA256.digest('foo')
@@ -2588,19 +2541,14 @@ used in case 'when' expressions.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 case x
 when 'first'
   do_something
 when 'first'
   do_something_else
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 case x
 when 'first'
   do_something
@@ -2709,14 +2657,9 @@ This cop considers both primitive types and constants for the hash keys.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+hash = { food: 'apple', food: 'orange' }
 
-hash = { food: 'apple', food: 'orange' }</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-
+# good
 hash = { food: 'apple', other_food: 'orange' }</code></pre>
 </div>
 </div>
@@ -2954,44 +2897,31 @@ definitions.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 def foo
   1
 end
 
 def foo
   2
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+end
 
+# bad
 def foo
   1
 end
 
-alias foo bar</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+alias foo bar
 
+# good
 def foo
   1
 end
 
 def bar
   2
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 def foo
   1
 end
@@ -3218,14 +3148,9 @@ It&#8217;s definitely a bug.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+sum = numbers.each_with_object(0) { |e, a| a += e }
 
-sum = numbers.each_with_object(0) { |e, a| a += e }</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-
+# good
 num = 0
 sum = numbers.each_with_object(num) { |e, a| a += e }</code></pre>
 </div>
@@ -3283,12 +3208,9 @@ if something
   # ...
 else do_this
   do_that
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
+
+# good
 
 # This code is compatible with the bad case. It will be autocorrected like this.
 if something
@@ -3776,45 +3698,32 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for empty <code>ensure</code> blocks</p>
+<p>Checks for empty <code>ensure</code> blocks.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-35"><a class="anchor" href="#examples-35"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 def some_method
   do_something
 ensure
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+end
 
+# bad
 begin
   do_something
 ensure
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 def some_method
   do_something
 ensure
   do_something_else
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 begin
   do_something
 ensure
@@ -4130,14 +4039,9 @@ end</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+"result is #{}"
 
-"result is #{}"</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-
+# good
 "result is #{some_result}"</code></pre>
 </div>
 </div>
@@ -4186,12 +4090,9 @@ case foo
 when bar
   do_something
 when baz
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
+
+# good
 case condition
 when foo
   do_something
@@ -4299,19 +4200,14 @@ and the exception will be silently thrown away as if it were rescued.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 def foo
   do_something
 ensure
   cleanup
   return self
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 def foo
   do_something
   self
@@ -4319,8 +4215,7 @@ ensure
   cleanup
 end
 
-# also good
-
+# good
 def foo
   begin
     do_something
@@ -4651,14 +4546,9 @@ that big. If you need a float that big, something is wrong with you.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+float = 3.0e400
 
-float = 3.0e400</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-
+# good
 float = 42.9</code></pre>
 </div>
 </div>
@@ -4710,28 +4600,15 @@ the same format string.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+format('A value: %s and another: %i', a_value)
 
-format('A value: %s and another: %i', a_value)</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+# good
+format('A value: %s and another: %i', a_value, another)
 
-format('A value: %s and another: %i', a_value, another)</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+# bad
+format('Unnumbered format: %s and numbered: %2$s', a_value, another)
 
-format('Unnumbered format: %s and numbered: %2$s', a_value, another)</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-
+# good
 format('Numbered format: %1$s and numbered %2$s', a_value, another)</code></pre>
 </div>
 </div>
@@ -4989,14 +4866,9 @@ which are on the same line.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+array = ['Item 1' 'Item 2']
 
-array = ['Item 1' 'Item 2']</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-
+# good
 array = ['Item 1Item 2']
 array = ['Item 1' + 'Item 2']
 array = [
@@ -5128,33 +5000,24 @@ used for that.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 class C
   private
 
   def self.method
     puts 'hi'
   end
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 class C
   def self.method
     puts 'hi'
   end
 
   private_class_method :method
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 class C
   class &lt;&lt; self
     private
@@ -5324,14 +5187,9 @@ the expression <code>foo</code>.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+foo = 'something with #{interpolation} inside'
 
-foo = 'something with #{interpolation} inside'</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-
+# good
 foo = "something with #{interpolation} inside"</code></pre>
 </div>
 </div>
@@ -5652,14 +5510,9 @@ end</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+"result is #{10}"
 
-"result is #{10}"</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-
+# good
 "result is 10"</code></pre>
 </div>
 </div>
@@ -5716,33 +5569,24 @@ loop body raises a <code>StopIteration</code> exception (which <code>Kernel#loop
 # using while
 begin
   do_something
-end while some_condition</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+end while some_condition
 
-# using until
-begin
-  do_something
-end until some_condition</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+# good
 
 # while replacement
 loop do
   do_something
   break unless some_condition
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
+
+# bad
+
+# using until
+begin
+  do_something
+end until some_condition
+
+# good
 
 # until replacement
 loop do
@@ -6242,22 +6086,16 @@ x &lt; y &amp;&amp; y &lt; z
 def foo
   def bar
   end
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
+
+# good
 
 def foo
   bar = -&gt; { puts 'hello' }
   bar.call
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
+
+# good
 
 # `class_eval`, `instance_eval`, `module_eval`, `class_exec`, `instance_exec`, and
 # `module_exec` blocks are allowed by default.
@@ -6274,12 +6112,9 @@ def foo
     def bar
     end
   end
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
+
+# good
 
 def foo
   class &lt;&lt; self
@@ -6488,17 +6323,12 @@ attributes = {
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 result = (1..4).reduce(0) do |acc, i|
   next if i.odd?
   acc + i
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 result = (1..4).reduce(0) do |acc, i|
   next acc if i.odd?
   acc + i
@@ -6549,18 +6379,13 @@ method, possibly leading to unexpected behavior.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 @some_variable ||= begin
   return some_value if some_condition_is_met
 
   do_something
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 @some_variable ||= begin
   if some_condition_is_met
     some_value
@@ -6570,7 +6395,6 @@ end</code></pre>
 end
 
 # good
-
 some_variable = if some_condition_is_met
                   return if another_condition_is_met
 
@@ -7432,14 +7256,9 @@ and that might have been done purposely.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+%w('foo', "bar")
 
-%w('foo', "bar")</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-
+# good
 %w(foo bar)</code></pre>
 </div>
 </div>
@@ -7489,14 +7308,9 @@ rather than meant to be part of the resulting symbols.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+%i(:foo, :bar)
 
-%i(:foo, :bar)</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
-
+# good
 %i(foo bar)</code></pre>
 </div>
 </div>
@@ -7652,17 +7466,12 @@ Such calls always return <code>0</code>.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 rand 1
 Kernel.rand(-1)
 rand 1.0
-rand(-1.0)</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+rand(-1.0)
 
+# good
 0 # just use 0 instead</code></pre>
 </div>
 </div>
@@ -7773,12 +7582,9 @@ foo = 1
 # rubocop:enable Layout/LineLength
 
 # good
-foo = 1</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+foo = 1
+
+# bad
 # rubocop:disable Style/StringLiterals
 foo = "1"
 # rubocop:enable Style/StringLiterals
@@ -8212,7 +8018,7 @@ do_something if attrs&amp;.not_nil_safe_method(:[])</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for unneeded usages of splat expansion</p>
+<p>Checks for unneeded usages of splat expansion.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
@@ -8354,17 +8160,12 @@ which is redundant.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 "result is #{something.to_s}"
 print something.to_s
 puts something.to_s
-warn something.to_s</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+warn something.to_s
 
+# good
 "result is #{something}"
 print something
 puts something
@@ -8685,16 +8486,11 @@ an operand of &amp;&amp;/||.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 if day.is? :tuesday &amp;&amp; month == :jan
   # ...
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 if day.is?(:tuesday) &amp;&amp; month == :jan
   # ...
 end</code></pre>
@@ -8874,18 +8670,13 @@ require_relative 'bar'</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 begin
   do_something
 rescue Exception
   handle_exception
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 begin
   do_something
 rescue ArgumentError
@@ -9023,12 +8814,9 @@ end
 
 def foo=(bar)
   return 42
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
+
+# good
 def initialize
   foo
   return if bar?
@@ -9097,16 +8885,11 @@ This cop checks for the problem outlined above.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 x&amp;.foo.bar
 x&amp;.foo + bar
-x&amp;.foo[bar]</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+x&amp;.foo[bar]
 
+# good
 x&amp;.foo&amp;.bar
 x&amp;.foo || bar</code></pre>
 </div>
@@ -9743,14 +9526,11 @@ eg. following style is encouraged:
 </tr>
 </table>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>[source,ruby]
-----
-worker_id, pipe = env
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">worker_id, pipe = env
 Ractor.new(worker_id, pipe) do |worker_id, pipe|
-end
-----</pre>
+end</code></pre>
 </div>
 </div>
 <div class="sect2">
@@ -9758,20 +9538,15 @@ end
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 def some_method
   foo = 1
 
   2.times do |foo| # shadowing outer `foo`
     do_something(foo)
   end
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 def some_method
   foo = 1
 
@@ -10789,15 +10564,10 @@ values.sort { |*x| x[0] &lt;=&gt; x[1] }</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 1.is_a?(Fixnum)
-1.is_a?(Bignum)</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+1.is_a?(Bignum)
 
+# good
 1.is_a?(Integer)</code></pre>
 </div>
 </div>
@@ -10953,14 +10723,12 @@ statement in non-final position in <code>begin</code> (implicit) blocks.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 def some_method
   return
   do_something
 end
 
 # bad
-
 def some_method
   if cond
     return
@@ -10968,13 +10736,9 @@ def some_method
     return
   end
   do_something
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 def some_method
   do_something
 end</code></pre>
@@ -11841,17 +11605,12 @@ local variable. For example, replacing <code>a ||= 1</code> to <code>a || 1</cod
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 def some_method
   some_var = 1
   do_something
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 def some_method
   some_var = 1
   do_something(some_var)
@@ -11921,18 +11680,13 @@ This syntax is no longer valid on Ruby 2.6 or higher.
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 begin
   do_something
 else
   do_something_else # This will never be run.
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 begin
   do_something
 rescue
@@ -12249,17 +12003,12 @@ return value will be changed.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-
 def something
   x = Something.new
   x.attr = 5
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
 
+# good
 def something
   x = Something.new
   x.attr = 5

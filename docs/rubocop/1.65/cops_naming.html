@@ -633,7 +633,7 @@
     <a class="version" href="../1.0/cops_naming.html">1.0</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.65.0/docs/modules/ROOT/pages/cops_naming.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.65.1/docs/modules/ROOT/pages/cops_naming.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -2354,88 +2354,107 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks that predicate methods names end with a question mark and
+<p>Checks that predicate method names end with a question mark and
 do not start with a forbidden prefix.</p>
 </div>
 <div class="paragraph">
-<p>A method is determined to be a predicate method if its name starts
-with one of the prefixes defined in the <code>NamePrefix</code> configuration.
-You can change what prefixes are considered by changing this option.
-Any method name that starts with one of these prefixes is required by
-the cop to end with a <code>?</code>. Other methods can be allowed by adding to
-the <code>AllowedMethods</code> configuration.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The <code>is_a?</code> method is allowed by default.
-</td>
-</tr>
-</table>
+<p>A method is determined to be a predicate method if its name starts with
+one of the prefixes listed in the <code>NamePrefix</code> configuration. The list
+defaults to <code>is_</code>, <code>has_</code>, and <code>have_</code> but may be overridden.</p>
 </div>
 <div class="paragraph">
-<p>If <code>ForbiddenPrefixes</code> is set, methods that start with the configured
-prefixes will not be allowed and will be removed by autocorrection.</p>
+<p>Predicate methods must end with a question mark.</p>
 </div>
 <div class="paragraph">
-<p>In other words, if <code>ForbiddenPrefixes</code> is empty, a method named <code>is_foo</code>
-will register an offense only due to the lack of question mark (and will be
-autocorrected to <code>is_foo?</code>). If <code>ForbiddenPrefixes</code> contains <code>is_</code>,
-<code>is_foo</code> will register an offense both because the ? is missing and because of
-the <code>is_</code> prefix, and will be corrected to <code>foo?</code>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>ForbiddenPrefixes</code> is only applied to prefixes in <code>NamePrefix</code>;
-a prefix in the former but not the latter will not be considered by
-this cop.
-</td>
-</tr>
-</table>
+<p>When <code>ForbiddenPrefixes</code> is also set (as it is by default), predicate
+methods which begin with a forbidden prefix are not allowed, even if
+they end with a <code>?</code>. These methods should be changed to remove the
+prefix.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-15"><a class="anchor" href="#examples-15"></a>Examples</h3>
+<div class="sect3">
+<h4 id="nameprefix-is_-has_-have_-default"><a class="anchor" href="#nameprefix-is_-has_-have_-default"></a>NamePrefix: ['is_', 'has_', 'have_'] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 def is_even(value)
 end
 
-def is_even?(value)
-end
-
+# When ForbiddenPrefixes: ['is_', 'has_', 'have_'] (default)
 # good
 def even?(value)
 end
 
-# bad
-def has_value
-end
-
-def has_value?
-end
-
+# When ForbiddenPrefixes: []
 # good
-def value?
+def is_even?(value)
 end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="nameprefix-seems_to_be_"><a class="anchor" href="#nameprefix-seems_to_be_"></a>NamePrefix: ['seems_to_be_']</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+def seems_to_be_even(value)
+end
+
+# When ForbiddenPrefixes: ['seems_to_be_']
+# good
+def even?(value)
+end
+
+# When ForbiddenPrefixes: []
+# good
+def seems_to_be_even?(value)
+end</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="allowedmethods-is_a-default"><a class="anchor" href="#allowedmethods-is_a-default"></a>AllowedMethods: ['is_a?'] (default)</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Despite starting with the `is_` prefix, this method is allowed
+# good
 def is_a?(value)
 end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowedmethods-is_even"><a class="anchor" href="#allowedmethods-is_even"></a>AllowedMethods: ['is_even?']</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+def is_even?(value)
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="methoddefinitionmacros-define_method-define_singleton_method-default"><a class="anchor" href="#methoddefinitionmacros-define_method-define_singleton_method-default"></a>MethodDefinitionMacros: ['define_method', 'define_singleton_method'] (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+define_method(:is_even) { |value| }
+
+# good
+define_method(:even?) { |value| }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="methoddefinitionmacros-def_node_matcher"><a class="anchor" href="#methoddefinitionmacros-def_node_matcher"></a>MethodDefinitionMacros: ['def_node_matcher']</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+def_node_matcher(:is_even) { |value| }
+
+# good
+# def_node_matcher(:even?) { |value| }</code></pre>
 </div>
 </div>
 </div>

@@ -1946,6 +1946,23 @@ The following is an example of specifying <code>Rails</code> department.</p>
   DocumentationBaseURL: https://docs.rubocop.org/rubocop-rails</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>By default, documentation is expected to be served as HTML but if you prefer
+to use something else like markdown you can set <code>DocumentationExtension</code>.</p>
+</div>
+<div class="paragraph">
+<p>With markdown as the documentation format you are able to host it directly through
+GitHub without having to own a domain or using GitHub Pages. The <code>rubocop-sorbet</code>
+extension is an example of this, its docs are available
+<a href="https://github.com/Shopify/rubocop-sorbet/blob/main/manual">here</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Sorbet:
+  DocumentationBaseURL: https://github.com/Shopify/rubocop-sorbet/blob/main/manual
+  DocumentationExtension: .md</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">

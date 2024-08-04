@@ -633,7 +633,7 @@
     <a class="version" href="../../1.0/usage/basic_usage.html">1.0</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.65.0/docs/modules/ROOT/pages/usage/basic_usage.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.65.1/docs/modules/ROOT/pages/usage/basic_usage.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -1088,6 +1088,26 @@ default, this is any offense which is not autocorrected.)</p>
 options, or an internal error.</p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="parallel-processing"><a class="anchor" href="#parallel-processing"></a>Parallel Processing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RuboCop enables the <code>--parallel</code> option by default. This option allows for
+parallel processing using the number of available CPUs based on <code>Etc.nprocessors</code>.
+If the default number of parallel processes causes excessive consumption of CPU and memory,
+you can adjust the number of parallel processes using the <code>$PARALLEL_PROCESSOR_COUNT</code> environment variable.
+Here is how to set the parallel processing to use two CPUs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ PARALLEL_PROCESSOR_COUNT=2 bundle exec rubocop</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, specifying <code>--no-parallel</code> will disable parallel processing.</p>
 </div>
 </div>
 </div>
