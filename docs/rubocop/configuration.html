@@ -306,10 +306,10 @@
       </ul>
     </li>
     <li class="component">
-      <div class="title"><a href="../rubocop-ast/index.html">RuboCop AST</a></div>
+      <div class="title"><a href="../rubocop-ast/1.32/index.html">RuboCop AST</a></div>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-ast/index.html">master</a>
+          <a href="../rubocop-ast/1.32/index.html">1.32</a>
         </li>
         <li class="version">
           <a href="../rubocop-ast/1.12/index.html">1.12</a>
@@ -490,6 +490,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-rails/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-rails/2.26/index.html">2.26</a>
         </li>
         <li class="version">
           <a href="../rubocop-rails/2.25/index.html">2.25</a>
@@ -1976,6 +1979,25 @@ This is off by default, but can be enabled by the <code>ActiveSupportExtensionsE
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">AllCops:
   ActiveSupportExtensionsEnabled: true</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="opting-into-globally-frozen-string-literals"><a class="anchor" href="#opting-into-globally-frozen-string-literals"></a>Opting into globally frozen string literals</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ruby continues to move into the direction of having all string literals frozen by default.
+Ruby 3.4 for example will show a warning if a non-frozen string literal from a file without
+the frozen string literal magic comment gets modified. By starting ruby with the environment
+variable <code>RUBYOPT</code> set to <code>--enable=frozen-string-literal</code> you can opt into that behaviour today.
+For RuboCop to provide accurate analysis you must also configure the <code>StringLiteralsFrozenByDefault</code>
+option.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">AllCops:
+  StringLiteralsFrozenByDefault: true</code></pre>
 </div>
 </div>
 </div>
