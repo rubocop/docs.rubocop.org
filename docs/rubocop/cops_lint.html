@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_lint.html">
     <link rel="prev" href="cops_layout.html">
     <link rel="next" href="cops_metrics.html">
-    <meta name="generator" content="Antora 3.1.7">
+    <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -221,6 +221,9 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="1.66/index.html">1.66</a>
         </li>
         <li class="version">
           <a href="1.65/index.html">1.65</a>
@@ -598,7 +601,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.65/index.html" class="home-link"></a>
+  <a href="1.66/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -610,6 +613,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_lint.html">default</a>
+    <a class="version" href="1.66/cops_lint.html">1.66</a>
     <a class="version" href="1.65/cops_lint.html">1.65</a>
     <a class="version" href="1.64/cops_lint.html">1.64</a>
     <a class="version" href="1.63/cops_lint.html">1.63</a>
@@ -11563,9 +11567,9 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Command-line only (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Command-line only</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.11</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.61</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.66</p></td>
 </tr>
 </tbody>
 </table>
@@ -11584,6 +11588,12 @@ The basic idea for this cop was from the warning of <code>ruby -cw</code>:</p>
 reassignments and properly handles varied cases such as branch, loop,
 rescue, ensure, etc.</p>
 </div>
+<div class="paragraph">
+<p>This cop&#8217;s autocorrection avoids cases like <code>a ||= 1</code> because removing assignment from
+operator assignment can cause NameError if this assignment has been used to declare
+a local variable. For example, replacing <code>a ||= 1</code> with <code>a || 1</code> may cause
+"undefined local variable or method `a' for main:Object (NameError)".</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -11596,15 +11606,6 @@ can lead to a syntax error, so this case is not autocorrected.
 </td>
 </tr>
 </table>
-</div>
-<div class="sect2">
-<h3 id="safety-27"><a class="anchor" href="#safety-27"></a>Safety</h3>
-<div class="paragraph">
-<p>This cop&#8217;s autocorrection is unsafe because removing assignment from
-operator assignment can cause NameError if this assignment has been used to declare
-local variable. For example, replacing <code>a ||= 1</code> to <code>a || 1</code> may cause
-"undefined local variable or method `a' for main:Object (NameError)".</p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="examples-129"><a class="anchor" href="#examples-129"></a>Examples</h3>
@@ -11740,7 +11741,7 @@ end</code></pre>
 and methods just delegating to <code>super</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-28"><a class="anchor" href="#safety-28"></a>Safety</h3>
+<h3 id="safety-27"><a class="anchor" href="#safety-27"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe as it can register false positives for cases when an empty
 constructor just overrides the parent constructor, which is bad anyway.</p>
@@ -11773,6 +11774,69 @@ end
 def method(*args)
   super(:extra_arg, *args)
 end</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="lintuselessnumericoperation"><a class="anchor" href="#lintuselessnumericoperation"></a>Lint/UselessNumericOperation</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.66</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Certain numeric operations have no impact, being:
+Adding or subtracting 0, multiplying or dividing by 1 or raising to the power of 1.
+These are probably leftover from debugging, or are mistakes.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-132"><a class="anchor" href="#examples-132"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+x + 0
+x - 0
+x * 1
+x / 1
+x ** 1
+
+# good
+x
+
+# bad
+x += 0
+x -= 0
+x *= 1
+x /= 1
+x **= 1
+
+# good
+x = x</code></pre>
 </div>
 </div>
 </div>
@@ -11812,7 +11876,7 @@ end</code></pre>
 <p>Checks for useless `rescue`s, which only reraise rescued exceptions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-132"><a class="anchor" href="#examples-132"></a>Examples</h3>
+<h3 id="examples-133"><a class="anchor" href="#examples-133"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11898,7 +11962,7 @@ end</code></pre>
 a keyword splat (<code>**kwargs</code>).</p>
 </div>
 <div class="sect2">
-<h3 id="examples-133"><a class="anchor" href="#examples-133"></a>Examples</h3>
+<h3 id="examples-134"><a class="anchor" href="#examples-134"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good (splat argument without keyword arguments)
@@ -11993,7 +12057,7 @@ define_method(:foo) { |arg| }</code></pre>
 expression of a function definition.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-29"><a class="anchor" href="#safety-29"></a>Safety</h3>
+<h3 id="safety-28"><a class="anchor" href="#safety-28"></a>Safety</h3>
 <div class="paragraph">
 <p>There are edge cases in which the local variable references a
 value that is also accessible outside the local scope. This is not
@@ -12005,7 +12069,7 @@ return value will be changed.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-134"><a class="anchor" href="#examples-134"></a>Examples</h3>
+<h3 id="examples-135"><a class="anchor" href="#examples-135"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12061,14 +12125,14 @@ end</code></pre>
 (<code>1.times</code>).</p>
 </div>
 <div class="sect2">
-<h3 id="safety-30"><a class="anchor" href="#safety-30"></a>Safety</h3>
+<h3 id="safety-29"><a class="anchor" href="#safety-29"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe as <code>times</code> returns its receiver, which is
 <strong>usually</strong> OK, but might change behavior.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-135"><a class="anchor" href="#examples-135"></a>Examples</h3>
+<h3 id="examples-136"><a class="anchor" href="#examples-136"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12131,7 +12195,7 @@ enumerator.each { |item| item &gt;= 2 } #=&gt; [2, 3]</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-136"><a class="anchor" href="#examples-136"></a>Examples</h3>
+<h3 id="examples-137"><a class="anchor" href="#examples-137"></a>Examples</h3>
 <div class="sect3">
 <h4 id="checkformethodswithnosideeffects-false-default"><a class="anchor" href="#checkformethodswithnosideeffects-false-default"></a>CheckForMethodsWithNoSideEffects: false (default)</h4>
 <div class="listingblock">
