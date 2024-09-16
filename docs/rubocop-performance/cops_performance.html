@@ -330,6 +330,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.22/index.html">1.22</a>
+        </li>
+        <li class="version">
           <a href="1.21/index.html">1.21</a>
         </li>
         <li class="version">
@@ -483,6 +486,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_performance.html">default</a>
+    <a class="version" href="1.22/cops_performance.html">1.22</a>
     <a class="version" href="1.21/cops_performance.html">1.21</a>
     <a class="version" href="1.20/cops_performance.html">1.20</a>
     <a class="version" href="1.19/cops_performance.html">1.19</a>
@@ -646,6 +650,18 @@ array.take(3)</code></pre>
 <div class="sect1">
 <h2 id="performancebigdecimalwithnumericargument"><a class="anchor" href="#performancebigdecimalwithnumericargument"></a>Performance/BigDecimalWithNumericArgument</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Required Ruby version: 3.1
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -674,25 +690,25 @@ array.take(3)</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Identifies places where numeric argument to BigDecimal should be
-converted to string. Initializing from String is faster
-than from Numeric for BigDecimal.</p>
+<p>Identifies places where string argument to <code>BigDecimal</code> should be
+converted to numeric. Initializing from Integer is faster
+than from String for BigDecimal.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-BigDecimal(1, 2)
-4.to_d(6)
-BigDecimal(1.2, 3, exception: true)
-4.5.to_d(6, exception: true)
-
-# good
 BigDecimal('1', 2)
 BigDecimal('4', 6)
 BigDecimal('1.2', 3, exception: true)
-BigDecimal('4.5', 6, exception: true)</code></pre>
+BigDecimal('4.5', 6, exception: true)
+
+# good
+BigDecimal(1, 2)
+4.to_d(6)
+BigDecimal(1.2, 3, exception: true)
+4.5.to_d(6, exception: true)</code></pre>
 </div>
 </div>
 </div>
@@ -788,17 +804,30 @@ umethod.bind_call(obj, foo, bar)</code></pre>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.9</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.22</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p>Identifies unnecessary use of a <code>block_given?</code> where explicit check
 of block argument would suffice.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This cop produces code with significantly worse performance when a
+block is being passed to the method and as such should not be enabled.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
