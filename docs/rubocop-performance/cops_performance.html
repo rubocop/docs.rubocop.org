@@ -690,25 +690,32 @@ Required Ruby version: 3.1
 </tbody>
 </table>
 <div class="paragraph">
-<p>Identifies places where string argument to <code>BigDecimal</code> should be
-converted to numeric. Initializing from Integer is faster
-than from String for BigDecimal.</p>
+<p>Identifies places where a float argument to BigDecimal should be converted to a string.
+Initializing from String is faster than from Float for BigDecimal.</p>
+</div>
+<div class="paragraph">
+<p>Also identifies places where an integer string argument to BigDecimal should be converted to
+an integer. Initializing from Integer is faster than from String for BigDecimal.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-BigDecimal('1', 2)
-BigDecimal('4', 6)
+BigDecimal(1.2, 3, exception: true)
+4.5.to_d(6, exception: true)
+
+# good
 BigDecimal('1.2', 3, exception: true)
 BigDecimal('4.5', 6, exception: true)
 
+# bad
+BigDecimal('1', 2)
+BigDecimal('4', 6)
+
 # good
 BigDecimal(1, 2)
-4.to_d(6)
-BigDecimal(1.2, 3, exception: true)
-4.5.to_d(6, exception: true)</code></pre>
+4.to_d(6)</code></pre>
 </div>
 </div>
 </div>
