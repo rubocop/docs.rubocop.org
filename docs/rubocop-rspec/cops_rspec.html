@@ -430,6 +430,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="3.1/index.html">3.1</a>
+        </li>
+        <li class="version">
           <a href="3.0/index.html">3.0</a>
         </li>
         <li class="version">
@@ -452,9 +455,6 @@
         </li>
         <li class="version">
           <a href="2.25/index.html">2.25</a>
-        </li>
-        <li class="version">
-          <a href="2.24/index.html">2.24</a>
         </li>
         <li class="version">
           <a href="1.44/index.html">1.44</a>
@@ -498,6 +498,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_rspec.html">default</a>
+    <a class="version" href="3.1/cops_rspec.html">3.1</a>
     <a class="version" href="3.0/cops_rspec.html">3.0</a>
     <a class="version" href="2.31/cops_rspec.html">2.31</a>
     <a class="version" href="2.30/cops_rspec.html">2.30</a>
@@ -506,7 +507,6 @@
     <a class="version" href="2.27/cops_rspec.html">2.27</a>
     <a class="version" href="2.26/cops_rspec.html">2.26</a>
     <a class="version" href="2.25/cops_rspec.html">2.25</a>
-    <a class="version" href="2.24/cops_rspec.html">2.24</a>
     <a class="version" href="1.44/cops_rspec.html">1.44</a>
   </div>
 </div>
@@ -9539,6 +9539,71 @@ spec/models/user.rb       # shared_examples_for 'foo'</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="rspecstringasinstancedoubleconstant"><a class="anchor" href="#rspecstringasinstancedoubleconstant"></a>RSpec/StringAsInstanceDoubleConstant</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Do not use a string as <code>instance_double</code> constant.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-4"><a class="anchor" href="#safety-4"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe because the correction requires loading the class.
+Loading before stubbing causes RSpec to only allow instance methods
+to be stubbed.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="examples-100"><a class="anchor" href="#examples-100"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+instance_double('User', name: 'John')
+
+# good
+instance_double(User, name: 'John')</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-100"><a class="anchor" href="#references-100"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/StringAsInstanceDoubleConstant" class="bare">https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/StringAsInstanceDoubleConstant</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="rspecstubbedmock"><a class="anchor" href="#rspecstubbedmock"></a>RSpec/StubbedMock</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -9572,7 +9637,7 @@ spec/models/user.rb       # shared_examples_for 'foo'</code></pre>
 <p>Checks that message expectations do not have a configured response.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-100"><a class="anchor" href="#examples-100"></a>Examples</h3>
+<h3 id="examples-101"><a class="anchor" href="#examples-101"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9585,7 +9650,7 @@ expect(foo).to receive(:bar).with(42)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-100"><a class="anchor" href="#references-100"></a>References</h3>
+<h3 id="references-101"><a class="anchor" href="#references-101"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9630,7 +9695,7 @@ expect(foo).to receive(:bar).with(42)</code></pre>
 <p>Ensure that subject is defined using subject helper.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-101"><a class="anchor" href="#examples-101"></a>Examples</h3>
+<h3 id="examples-102"><a class="anchor" href="#examples-102"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9649,7 +9714,7 @@ subject(:test_subject) { foo }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-101"><a class="anchor" href="#references-101"></a>References</h3>
+<h3 id="references-102"><a class="anchor" href="#references-102"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9698,7 +9763,7 @@ subject(:test_subject) { foo }</code></pre>
 when subject is also defined in parent example groups.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-102"><a class="anchor" href="#examples-102"></a>Examples</h3>
+<h3 id="examples-103"><a class="anchor" href="#examples-103"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9737,7 +9802,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-102"><a class="anchor" href="#references-102"></a>References</h3>
+<h3 id="references-103"><a class="anchor" href="#references-103"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9795,7 +9860,7 @@ end</code></pre>
 and regular expressions, the description is not clear.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-103"><a class="anchor" href="#examples-103"></a>Examples</h3>
+<h3 id="examples-104"><a class="anchor" href="#examples-104"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9836,7 +9901,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-103"><a class="anchor" href="#references-103"></a>References</h3>
+<h3 id="references-104"><a class="anchor" href="#references-104"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9886,7 +9951,7 @@ expression to match against the exception message as a parameter
 to <code>raise_error</code></p>
 </div>
 <div class="sect2">
-<h3 id="examples-104"><a class="anchor" href="#examples-104"></a>Examples</h3>
+<h3 id="examples-105"><a class="anchor" href="#examples-105"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9912,7 +9977,7 @@ expect { do_something }.not_to raise_error</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-104"><a class="anchor" href="#references-104"></a>References</h3>
+<h3 id="references-105"><a class="anchor" href="#references-105"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9957,7 +10022,7 @@ expect { do_something }.not_to raise_error</code></pre>
 <p>Checks that memoized helpers names are symbols or strings.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-105"><a class="anchor" href="#examples-105"></a>Examples</h3>
+<h3 id="examples-106"><a class="anchor" href="#examples-106"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-symbols-default"><a class="anchor" href="#enforcedstyle-symbols-default"></a>EnforcedStyle: symbols (default)</h4>
 <div class="listingblock">
@@ -10012,7 +10077,7 @@ let('user_name') { 'Adam' }</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-105"><a class="anchor" href="#references-105"></a>References</h3>
+<h3 id="references-106"><a class="anchor" href="#references-106"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10061,7 +10126,7 @@ let('user_name') { 'Adam' }</code></pre>
 option.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-106"><a class="anchor" href="#examples-106"></a>Examples</h3>
+<h3 id="examples-107"><a class="anchor" href="#examples-107"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-snake_case-default"><a class="anchor" href="#enforcedstyle-snake_case-default"></a>EnforcedStyle: snake_case (default)</h4>
 <div class="listingblock">
@@ -10140,7 +10205,7 @@ let(:userFood_2) { 'fettuccine' }</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-106"><a class="anchor" href="#references-106"></a>References</h3>
+<h3 id="references-107"><a class="anchor" href="#references-107"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10192,7 +10257,7 @@ let(:userFood_2) { 'fettuccine' }</code></pre>
 <code>EnforcedStyle</code> option and supports <code>--auto-gen-config</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-107"><a class="anchor" href="#examples-107"></a>Examples</h3>
+<h3 id="examples-108"><a class="anchor" href="#examples-108"></a>Examples</h3>
 <div class="sect3">
 <h4 id="enforcedstyle-constant-default"><a class="anchor" href="#enforcedstyle-constant-default"></a><code>EnforcedStyle: constant</code> (default)</h4>
 <div class="listingblock">
@@ -10262,7 +10327,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-107"><a class="anchor" href="#references-107"></a>References</h3>
+<h3 id="references-108"><a class="anchor" href="#references-108"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10310,7 +10375,7 @@ end</code></pre>
 <p>Prefer using verifying doubles over normal doubles.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-108"><a class="anchor" href="#examples-108"></a>Examples</h3>
+<h3 id="examples-109"><a class="anchor" href="#examples-109"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10360,7 +10425,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-108"><a class="anchor" href="#references-108"></a>References</h3>
+<h3 id="references-109"><a class="anchor" href="#references-109"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10411,7 +10476,7 @@ end</code></pre>
 <p>Checks void <code>expect()</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-109"><a class="anchor" href="#examples-109"></a>Examples</h3>
+<h3 id="examples-110"><a class="anchor" href="#examples-110"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10423,7 +10488,7 @@ expect(something).to be(1)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-109"><a class="anchor" href="#references-109"></a>References</h3>
+<h3 id="references-110"><a class="anchor" href="#references-110"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -10468,7 +10533,7 @@ expect(something).to be(1)</code></pre>
 <p>Checks for calling a block within a stub.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-110"><a class="anchor" href="#examples-110"></a>Examples</h3>
+<h3 id="examples-111"><a class="anchor" href="#examples-111"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10480,7 +10545,7 @@ expect(foo).to receive(:bar).and_yield(1)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-110"><a class="anchor" href="#references-110"></a>References</h3>
+<h3 id="references-111"><a class="anchor" href="#references-111"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
