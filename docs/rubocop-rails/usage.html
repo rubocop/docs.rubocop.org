@@ -124,6 +124,9 @@
           <a href="../rubocop/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.67/index.html">1.67</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.66/index.html">1.66</a>
         </li>
         <li class="version">
@@ -475,7 +478,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.66/index.html" class="home-link"></a>
+  <a href="../rubocop/1.67/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop Rails</a></li>
@@ -552,6 +555,34 @@ cops together with the standard cops.</p>
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">RuboCop::RakeTask.new do |task|
   task.requires &lt;&lt; 'rubocop-rails'
 end</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rubocop-rails-configuration"><a class="anchor" href="#rubocop-rails-configuration"></a>RuboCop Rails configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following settings specific to RuboCop Rails can be configured in <code>.rubocop.yml</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="allcops-targetrailsversion"><a class="anchor" href="#allcops-targetrailsversion"></a><code>AllCops: TargetRailsVersion</code></h3>
+<div class="paragraph">
+<p>What version of Rails is the inspected code using? If a value is specified
+for <code>TargetRailsVersion</code> then it is used. Acceptable values are specified
+as a float (e.g., 7.2); the patch version of Rails should not be included.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">AllCops:
+  TargetRailsVersion: 7.2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If <code>TargetRailsVersion</code> is not set, RuboCop will parse the Gemfile.lock or
+gems.locked file to find the version of Rails that has been bound to the
+application. If neither of those files exist, RuboCop will use Rails 5.0
+as the default.</p>
 </div>
 </div>
 </div>

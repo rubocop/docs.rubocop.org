@@ -223,6 +223,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.67/index.html">1.67</a>
+        </li>
+        <li class="version">
           <a href="1.66/index.html">1.66</a>
         </li>
         <li class="version">
@@ -574,7 +577,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.66/index.html" class="home-link"></a>
+  <a href="1.67/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -586,6 +589,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_bundler.html">default</a>
+    <a class="version" href="1.67/cops_bundler.html">1.67</a>
     <a class="version" href="1.66/cops_bundler.html">1.66</a>
     <a class="version" href="1.65/cops_bundler.html">1.65</a>
     <a class="version" href="1.64/cops_bundler.html">1.64</a>
@@ -648,7 +652,7 @@
 <p>A Gem&#8217;s requirements should be listed only once in a Gemfile.</p>
 </div>
 <div class="sect2">
-<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
+<h3 id="examples-bundlerduplicatedgem"><a class="anchor" href="#examples-bundlerduplicatedgem"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -684,7 +688,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-bundlerduplicatedgem"><a class="anchor" href="#configurable-attributes-bundlerduplicatedgem"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -767,7 +771,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
+<h3 id="examples-bundlerduplicatedgroup"><a class="anchor" href="#examples-bundlerduplicatedgroup"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -804,7 +808,7 @@ gem 'rspec', groups: [:development, :test]</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-bundlerduplicatedgroup"><a class="anchor" href="#configurable-attributes-bundlerduplicatedgroup"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -914,9 +918,9 @@ see <a href="https://bundler.io/man/gemfile.5.html" class="bare">https://bundler
 .</p>
 </div>
 <div class="sect2">
-<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<h3 id="examples-bundlergemcomment"><a class="anchor" href="#examples-bundlergemcomment"></a>Examples</h3>
 <div class="sect3">
-<h4 id="onlyfor-default"><a class="anchor" href="#onlyfor-default"></a>OnlyFor: [] (default)</h4>
+<h4 id="onlyfor_-__-_default_-bundlergemcomment"><a class="anchor" href="#onlyfor_-__-_default_-bundlergemcomment"></a>OnlyFor: [] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -931,7 +935,7 @@ gem 'foo'</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="onlyfor-version_specifiers"><a class="anchor" href="#onlyfor-version_specifiers"></a>OnlyFor: ['version_specifiers']</h4>
+<h4 id="onlyfor_-__version_specifiers__-bundlergemcomment"><a class="anchor" href="#onlyfor_-__version_specifiers__-bundlergemcomment"></a>OnlyFor: ['version_specifiers']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -946,7 +950,7 @@ gem 'foo', '&lt; 2.1'</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="onlyfor-restrictive_version_specifiers"><a class="anchor" href="#onlyfor-restrictive_version_specifiers"></a>OnlyFor: ['restrictive_version_specifiers']</h4>
+<h4 id="onlyfor_-__restrictive_version_specifiers__-bundlergemcomment"><a class="anchor" href="#onlyfor_-__restrictive_version_specifiers__-bundlergemcomment"></a>OnlyFor: ['restrictive_version_specifiers']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -963,7 +967,7 @@ gem 'foo', '&lt; 2.1'</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="onlyfor-version_specifiers-github"><a class="anchor" href="#onlyfor-version_specifiers-github"></a>OnlyFor: ['version_specifiers', 'github']</h4>
+<h4 id="onlyfor_-__version_specifiers__-_github__-bundlergemcomment"><a class="anchor" href="#onlyfor_-__version_specifiers__-_github__-bundlergemcomment"></a>OnlyFor: ['version_specifiers', 'github']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -984,7 +988,7 @@ gem 'bar', '&lt; 2.1'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-bundlergemcomment"><a class="anchor" href="#configurable-attributes-bundlergemcomment"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1054,9 +1058,9 @@ gem 'bar', '&lt; 2.1'</code></pre>
 associated lock file based on the configuration.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<h3 id="examples-bundlergemfilename"><a class="anchor" href="#examples-bundlergemfilename"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-gemfile-default"><a class="anchor" href="#enforcedstyle-gemfile-default"></a>EnforcedStyle: Gemfile (default)</h4>
+<h4 id="enforcedstyle_-gemfile-_default_-bundlergemfilename"><a class="anchor" href="#enforcedstyle_-gemfile-_default_-bundlergemfilename"></a>EnforcedStyle: Gemfile (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1071,7 +1075,7 @@ Project contains Gemfile and Gemfile.lock</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyle-gems-rb"><a class="anchor" href="#enforcedstyle-gems-rb"></a>EnforcedStyle: gems.rb</h4>
+<h4 id="enforcedstyle_-gems_rb-bundlergemfilename"><a class="anchor" href="#enforcedstyle_-gems_rb-bundlergemfilename"></a>EnforcedStyle: gems.rb</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1087,7 +1091,7 @@ Project contains gems.rb and gems.locked files</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-bundlergemfilename"><a class="anchor" href="#configurable-attributes-bundlergemfilename"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1152,9 +1156,9 @@ Project contains gems.rb and gems.locked files</code></pre>
 ref, or tag) are either required or forbidden.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
+<h3 id="examples-bundlergemversion"><a class="anchor" href="#examples-bundlergemversion"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-required-default"><a class="anchor" href="#enforcedstyle-required-default"></a>EnforcedStyle: required (default)</h4>
+<h4 id="enforcedstyle_-required-_default_-bundlergemversion"><a class="anchor" href="#enforcedstyle_-required-_default_-bundlergemversion"></a>EnforcedStyle: required (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1181,7 +1185,7 @@ gem 'rubocop', tag: 'v1.17.0'</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyle-forbidden"><a class="anchor" href="#enforcedstyle-forbidden"></a>EnforcedStyle: forbidden</h4>
+<h4 id="enforcedstyle_-forbidden-bundlergemversion"><a class="anchor" href="#enforcedstyle_-forbidden-bundlergemversion"></a>EnforcedStyle: forbidden</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -1209,7 +1213,7 @@ gem 'rubocop', tag: 'v1.17.0'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-bundlergemversion"><a class="anchor" href="#configurable-attributes-bundlergemversion"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1295,7 +1299,7 @@ more secure.</p>
 This option is <code>true</code> by default for safe autocorrection.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<h3 id="examples-bundlerinsecureprotocolsource"><a class="anchor" href="#examples-bundlerinsecureprotocolsource"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1308,7 +1312,7 @@ source 'https://rubygems.org' # strongly recommended</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowhttpprotocol-true-default"><a class="anchor" href="#allowhttpprotocol-true-default"></a>AllowHttpProtocol: true (default)</h4>
+<h4 id="allowhttpprotocol_-true-_default_-bundlerinsecureprotocolsource"><a class="anchor" href="#allowhttpprotocol_-true-_default_-bundlerinsecureprotocolsource"></a>AllowHttpProtocol: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -1317,7 +1321,7 @@ source 'http://rubygems.org' # use only if HTTPS is unavailable</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowhttpprotocol-false"><a class="anchor" href="#allowhttpprotocol-false"></a>AllowHttpProtocol: false</h4>
+<h4 id="allowhttpprotocol_-false-bundlerinsecureprotocolsource"><a class="anchor" href="#allowhttpprotocol_-false-bundlerinsecureprotocolsource"></a>AllowHttpProtocol: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1327,7 +1331,7 @@ source 'http://rubygems.org'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-bundlerinsecureprotocolsource"><a class="anchor" href="#configurable-attributes-bundlerinsecureprotocolsource"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1396,7 +1400,7 @@ source 'http://rubygems.org'</code></pre>
 <p>Gems should be alphabetically sorted within groups.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
+<h3 id="examples-bundlerorderedgems"><a class="anchor" href="#examples-bundlerorderedgems"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1414,7 +1418,7 @@ gem 'rspec'</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="treatcommentsasgroupseparators-true-default"><a class="anchor" href="#treatcommentsasgroupseparators-true-default"></a>TreatCommentsAsGroupSeparators: true (default)</h4>
+<h4 id="treatcommentsasgroupseparators_-true-_default_-bundlerorderedgems"><a class="anchor" href="#treatcommentsasgroupseparators_-true-_default_-bundlerorderedgems"></a>TreatCommentsAsGroupSeparators: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -1426,7 +1430,7 @@ gem 'rspec'</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="treatcommentsasgroupseparators-false"><a class="anchor" href="#treatcommentsasgroupseparators-false"></a>TreatCommentsAsGroupSeparators: false</h4>
+<h4 id="treatcommentsasgroupseparators_-false-bundlerorderedgems"><a class="anchor" href="#treatcommentsasgroupseparators_-false-bundlerorderedgems"></a>TreatCommentsAsGroupSeparators: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1439,7 +1443,7 @@ gem 'rspec'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-bundlerorderedgems"><a class="anchor" href="#configurable-attributes-bundlerorderedgems"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">

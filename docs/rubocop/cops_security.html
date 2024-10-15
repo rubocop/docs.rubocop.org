@@ -223,6 +223,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.67/index.html">1.67</a>
+        </li>
+        <li class="version">
           <a href="1.66/index.html">1.66</a>
         </li>
         <li class="version">
@@ -574,7 +577,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.66/index.html" class="home-link"></a>
+  <a href="1.67/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -586,6 +589,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_security.html">default</a>
+    <a class="version" href="1.67/cops_security.html">1.67</a>
     <a class="version" href="1.66/cops_security.html">1.66</a>
     <a class="version" href="1.65/cops_security.html">1.65</a>
     <a class="version" href="1.64/cops_security.html">1.64</a>
@@ -656,14 +660,14 @@ Delegating to <code>Array#hash</code> is clearer and safer, although it might be
 depending on the use case.</p>
 </div>
 <div class="sect2">
-<h3 id="safety"><a class="anchor" href="#safety"></a>Safety</h3>
+<h3 id="safety-securitycompoundhash"><a class="anchor" href="#safety-securitycompoundhash"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop may be unsafe if the application logic depends on the hash
 value, however this is inadvisable anyway.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
+<h3 id="examples-securitycompoundhash"><a class="anchor" href="#examples-securitycompoundhash"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -714,7 +718,7 @@ end</code></pre>
 <p>Checks for the use of <code>Kernel#eval</code> and <code>Binding#eval</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
+<h3 id="examples-securityeval"><a class="anchor" href="#examples-securityeval"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -768,14 +772,14 @@ a subprocess is created in the same way as <code>Kernel#open</code>, and its out
 Consider to use <code>File.read</code> to disable the behavior of subprocess invocation.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-2"><a class="anchor" href="#safety-2"></a>Safety</h3>
+<h3 id="safety-securityiomethods"><a class="anchor" href="#safety-securityiomethods"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because false positive will occur if the variable passed as
 the first argument is a command that is not a file path.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<h3 id="examples-securityiomethods"><a class="anchor" href="#examples-securityiomethods"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -826,7 +830,7 @@ IO.read('| command') # Allow intentional command invocation.</code></pre>
 security issues.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-3"><a class="anchor" href="#safety-3"></a>Safety</h3>
+<h3 id="safety-securityjsonload"><a class="anchor" href="#safety-securityjsonload"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because it&#8217;s potentially dangerous.
 If using a stream, like <code>JSON.load(open('file'))</code>, it will need to call
@@ -838,7 +842,7 @@ Other similar issues may apply.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<h3 id="examples-securityjsonload"><a class="anchor" href="#examples-securityjsonload"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -851,7 +855,7 @@ JSON.parse("{}")</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references"><a class="anchor" href="#references"></a>References</h3>
+<h3 id="references-securityjsonload"><a class="anchor" href="#references-securityjsonload"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -898,7 +902,7 @@ potential security issues leading to remote code execution when
 loading from an untrusted source.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
+<h3 id="examples-securitymarshalload"><a class="anchor" href="#examples-securitymarshalload"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -914,7 +918,7 @@ Marshal.load(Marshal.dump({}))</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-2"><a class="anchor" href="#references-2"></a>References</h3>
+<h3 id="references-securitymarshalload"><a class="anchor" href="#references-securitymarshalload"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -980,14 +984,14 @@ cop.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-4"><a class="anchor" href="#safety-4"></a>Safety</h3>
+<h3 id="safety-securityopen"><a class="anchor" href="#safety-securityopen"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop could register false positives if <code>open</code> is redefined
 in a class and then used without a receiver in that class.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<h3 id="examples-securityopen"><a class="anchor" href="#examples-securityopen"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1057,14 +1061,14 @@ Ruby 3.1+ (Psych 4) uses <code>Psych.load</code> as <code>Psych.safe_load</code>
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-5"><a class="anchor" href="#safety-5"></a>Safety</h3>
+<h3 id="safety-securityyamlload"><a class="anchor" href="#safety-securityyamlload"></a>Safety</h3>
 <div class="paragraph">
 <p>The behavior of the code might change depending on what was
 in the YAML payload, since <code>YAML.safe_load</code> is more restrictive.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
+<h3 id="examples-securityyamlload"><a class="anchor" href="#examples-securityyamlload"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1079,7 +1083,7 @@ YAML.dump(foo)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-3"><a class="anchor" href="#references-3"></a>References</h3>
+<h3 id="references-securityyamlload"><a class="anchor" href="#references-securityyamlload"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>

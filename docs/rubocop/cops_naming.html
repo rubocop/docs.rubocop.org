@@ -223,6 +223,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.67/index.html">1.67</a>
+        </li>
+        <li class="version">
           <a href="1.66/index.html">1.66</a>
         </li>
         <li class="version">
@@ -574,7 +577,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.66/index.html" class="home-link"></a>
+  <a href="1.67/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -586,6 +589,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_naming.html">default</a>
+    <a class="version" href="1.67/cops_naming.html">1.67</a>
     <a class="version" href="1.66/cops_naming.html">1.66</a>
     <a class="version" href="1.65/cops_naming.html">1.65</a>
     <a class="version" href="1.64/cops_naming.html">1.64</a>
@@ -664,7 +668,7 @@ one.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
+<h3 id="examples-namingaccessormethodname"><a class="anchor" href="#examples-namingaccessormethodname"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -694,7 +698,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references"><a class="anchor" href="#references"></a>References</h3>
+<h3 id="references-namingaccessormethodname"><a class="anchor" href="#references-namingaccessormethodname"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -741,7 +745,7 @@ Identifiers are always checked and whether constants are checked
 can be controlled using AsciiConstants config.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
+<h3 id="examples-namingasciiidentifiers"><a class="anchor" href="#examples-namingasciiidentifiers"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -774,7 +778,7 @@ params[:width_gteq]</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="asciiconstants-true-default"><a class="anchor" href="#asciiconstants-true-default"></a>AsciiConstants: true (default)</h4>
+<h4 id="asciiconstants_-true-_default_-namingasciiidentifiers"><a class="anchor" href="#asciiconstants_-true-_default_-namingasciiidentifiers"></a>AsciiConstants: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -786,7 +790,7 @@ FOÖ = "foo"</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="asciiconstants-false"><a class="anchor" href="#asciiconstants-false"></a>AsciiConstants: false</h4>
+<h4 id="asciiconstants_-false-namingasciiidentifiers"><a class="anchor" href="#asciiconstants_-false-namingasciiidentifiers"></a>AsciiConstants: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -799,7 +803,7 @@ FOÖ = "foo"</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-namingasciiidentifiers"><a class="anchor" href="#configurable-attributes-namingasciiidentifiers"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -823,7 +827,7 @@ FOÖ = "foo"</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-2"><a class="anchor" href="#references-2"></a>References</h3>
+<h3 id="references-namingasciiidentifiers"><a class="anchor" href="#references-namingasciiidentifiers"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -869,7 +873,7 @@ FOÖ = "foo"</code></pre>
 sole  parameter named <code>other</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<h3 id="examples-namingbinaryoperatorparametername"><a class="anchor" href="#examples-namingbinaryoperatorparametername"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -881,7 +885,7 @@ def +(other); end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-3"><a class="anchor" href="#references-3"></a>References</h3>
+<h3 id="references-namingbinaryoperatorparametername"><a class="anchor" href="#references-namingbinaryoperatorparametername"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -948,9 +952,9 @@ The default variable name is <code>block</code>. If the name is already in use, 
 autocorrected.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<h3 id="examples-namingblockforwarding"><a class="anchor" href="#examples-namingblockforwarding"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-anonymous-default"><a class="anchor" href="#enforcedstyle-anonymous-default"></a>EnforcedStyle: anonymous (default)</h4>
+<h4 id="enforcedstyle_-anonymous-_default_-namingblockforwarding"><a class="anchor" href="#enforcedstyle_-anonymous-_default_-namingblockforwarding"></a>EnforcedStyle: anonymous (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -966,7 +970,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyle-explicit"><a class="anchor" href="#enforcedstyle-explicit"></a>EnforcedStyle: explicit</h4>
+<h4 id="enforcedstyle_-explicit-namingblockforwarding"><a class="anchor" href="#enforcedstyle_-explicit-namingblockforwarding"></a>EnforcedStyle: explicit</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -983,7 +987,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-namingblockforwarding"><a class="anchor" href="#configurable-attributes-namingblockforwarding"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1012,7 +1016,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-4"><a class="anchor" href="#references-4"></a>References</h3>
+<h3 id="references-namingblockforwarding"><a class="anchor" href="#references-namingblockforwarding"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1068,7 +1072,7 @@ offense. The <code>ForbiddenNames</code> config option takes an array of
 restricted names that will always register an offense.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
+<h3 id="examples-namingblockparametername"><a class="anchor" href="#examples-namingblockparametername"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1094,7 +1098,7 @@ baz { |age, height, gender| do_stuff(age, height, gender) }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-namingblockparametername"><a class="anchor" href="#configurable-attributes-namingblockparametername"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1176,7 +1180,7 @@ eg. Adding <code>my_class</code> to the <code>AllowedNames</code> config will al
 <code>my_class</code>, <code>my_class::User</code>, <code>App::my_class</code>, <code>App::my_class::User</code>, etc.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<h3 id="examples-namingclassandmodulecamelcase"><a class="anchor" href="#examples-namingclassandmodulecamelcase"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1196,7 +1200,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-namingclassandmodulecamelcase"><a class="anchor" href="#configurable-attributes-namingclassandmodulecamelcase"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1220,7 +1224,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-5"><a class="anchor" href="#references-5"></a>References</h3>
+<h3 id="references-namingclassandmodulecamelcase"><a class="anchor" href="#references-namingclassandmodulecamelcase"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1270,7 +1274,7 @@ SCREAMING_SNAKE_CASE.</p>
 for certain the type of value that would be assigned to a constant.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
+<h3 id="examples-namingconstantname"><a class="anchor" href="#examples-namingconstantname"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1284,7 +1288,7 @@ INCH_IN_CM = 2.54</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-6"><a class="anchor" href="#references-6"></a>References</h3>
+<h3 id="references-namingconstantname"><a class="anchor" href="#references-namingconstantname"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1352,7 +1356,7 @@ with a shebang line are not considered by the cop.</p>
 the regular expression.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
+<h3 id="examples-namingfilename"><a class="anchor" href="#examples-namingfilename"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1368,7 +1372,7 @@ anything/using_snake_case.rake</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-namingfilename"><a class="anchor" href="#configurable-attributes-namingfilename"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1422,7 +1426,7 @@ anything/using_snake_case.rake</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-7"><a class="anchor" href="#references-7"></a>References</h3>
+<h3 id="references-namingfilename"><a class="anchor" href="#references-namingfilename"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1468,9 +1472,9 @@ anything/using_snake_case.rake</code></pre>
 By default it is configured to enforce uppercase heredocs.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-9"><a class="anchor" href="#examples-9"></a>Examples</h3>
+<h3 id="examples-namingheredocdelimitercase"><a class="anchor" href="#examples-namingheredocdelimitercase"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-uppercase-default"><a class="anchor" href="#enforcedstyle-uppercase-default"></a>EnforcedStyle: uppercase (default)</h4>
+<h4 id="enforcedstyle_-uppercase-_default_-namingheredocdelimitercase"><a class="anchor" href="#enforcedstyle_-uppercase-_default_-namingheredocdelimitercase"></a>EnforcedStyle: uppercase (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1486,7 +1490,7 @@ SQL</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyle-lowercase"><a class="anchor" href="#enforcedstyle-lowercase"></a>EnforcedStyle: lowercase</h4>
+<h4 id="enforcedstyle_-lowercase-namingheredocdelimitercase"><a class="anchor" href="#enforcedstyle_-lowercase-namingheredocdelimitercase"></a>EnforcedStyle: lowercase</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1503,7 +1507,7 @@ sql</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-namingheredocdelimitercase"><a class="anchor" href="#configurable-attributes-namingheredocdelimitercase"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1527,7 +1531,7 @@ sql</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-8"><a class="anchor" href="#references-8"></a>References</h3>
+<h3 id="references-namingheredocdelimitercase"><a class="anchor" href="#references-namingheredocdelimitercase"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1574,7 +1578,7 @@ By default it disallows <code>END</code> and <code>EO*</code>, and can be config
 forbidden listing additional delimiters.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-10"><a class="anchor" href="#examples-10"></a>Examples</h3>
+<h3 id="examples-namingheredocdelimiternaming"><a class="anchor" href="#examples-namingheredocdelimiternaming"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -1595,7 +1599,7 @@ EOS</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-namingheredocdelimiternaming"><a class="anchor" href="#configurable-attributes-namingheredocdelimiternaming"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1619,7 +1623,7 @@ EOS</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-9"><a class="anchor" href="#references-9"></a>References</h3>
+<h3 id="references-namingheredocdelimiternaming"><a class="anchor" href="#references-namingheredocdelimiternaming"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1706,9 +1710,9 @@ a term matches the whole word (partial matches will not be offenses).</p>
 suggestions, the best suggestion cannot be identified and will not be autocorrected.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-11"><a class="anchor" href="#examples-11"></a>Examples</h3>
+<h3 id="examples-naminginclusivelanguage"><a class="anchor" href="#examples-naminginclusivelanguage"></a>Examples</h3>
 <div class="sect3">
-<h4 id="flaggedterms-whitelist-suggestions-allowlist"><a class="anchor" href="#flaggedterms-whitelist-suggestions-allowlist"></a>FlaggedTerms: { whitelist: { Suggestions: ['allowlist'] } }</h4>
+<h4 id="flaggedterms_-_-whitelist_-_-suggestions_-__allowlist__-_-_-naminginclusivelanguage"><a class="anchor" href="#flaggedterms_-_-whitelist_-_-suggestions_-__allowlist__-_-_-naminginclusivelanguage"></a>FlaggedTerms: { whitelist: { Suggestions: ['allowlist'] } }</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Suggest replacing identifier whitelist with allowlist
@@ -1722,7 +1726,7 @@ allowlist_users = %w(user1 user2)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="flaggedterms-master-suggestions-main-primary-leader"><a class="anchor" href="#flaggedterms-master-suggestions-main-primary-leader"></a>FlaggedTerms: { master: { Suggestions: ['main', 'primary', 'leader'] } }</h4>
+<h4 id="flaggedterms_-_-master_-_-suggestions_-__main__-_primary__-_leader__-_-_-naminginclusivelanguage"><a class="anchor" href="#flaggedterms_-_-master_-_-suggestions_-__main__-_primary__-_leader__-_-_-naminginclusivelanguage"></a>FlaggedTerms: { master: { Suggestions: ['main', 'primary', 'leader'] } }</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Suggest replacing master in an instance variable name with main, primary, or leader
@@ -1736,7 +1740,7 @@ allowlist_users = %w(user1 user2)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="flaggedterms-whitelist-regex-rubyregexp-white-_slist"><a class="anchor" href="#flaggedterms-whitelist-regex-rubyregexp-white-_slist"></a>FlaggedTerms: { whitelist: { Regex: !ruby/regexp '/white[-_\s]?list' } }</h4>
+<h4 id="flaggedterms_-_-whitelist_-_-regex_-_rubyregexp-_white_-__s__list_-_-_-naminginclusivelanguage"><a class="anchor" href="#flaggedterms_-_-whitelist_-_-regex_-_rubyregexp-_white_-__s__list_-_-_-naminginclusivelanguage"></a>FlaggedTerms: { whitelist: { Regex: !ruby/regexp '/white[-_\s]?list' } }</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Identify problematic terms using a Regexp
@@ -1750,7 +1754,7 @@ allow_list = %w(user1 user2)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="flaggedterms-master-allowedregex-masters-degree"><a class="anchor" href="#flaggedterms-master-allowedregex-masters-degree"></a>FlaggedTerms: { master: { AllowedRegex: 'master\'?s degree' } }</h4>
+<h4 id="flaggedterms_-_-master_-_-allowedregex_-_master___s-degree_-_-_-naminginclusivelanguage"><a class="anchor" href="#flaggedterms_-_-master_-_-allowedregex_-_master___s-degree_-_-_-naminginclusivelanguage"></a>FlaggedTerms: { master: { AllowedRegex: 'master\'?s degree' } }</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Specify allowed uses of the flagged term as a string or regexp.
@@ -1764,7 +1768,7 @@ allow_list = %w(user1 user2)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="flaggedterms-slave-wholeword-true"><a class="anchor" href="#flaggedterms-slave-wholeword-true"></a>FlaggedTerms: { slave: { WholeWord: true } }</h4>
+<h4 id="flaggedterms_-_-slave_-_-wholeword_-true-_-_-naminginclusivelanguage"><a class="anchor" href="#flaggedterms_-_-slave_-_-wholeword_-true-_-_-naminginclusivelanguage"></a>FlaggedTerms: { slave: { WholeWord: true } }</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Specify that only terms that are full matches will be flagged.
@@ -1779,7 +1783,7 @@ TeslaVehicle</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-8"><a class="anchor" href="#configurable-attributes-8"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-naminginclusivelanguage"><a class="anchor" href="#configurable-attributes-naminginclusivelanguage"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1883,7 +1887,7 @@ convention that is used to implicitly indicate that an ivar should not
 be set or referenced outside of the memoization method.</p>
 </div>
 <div class="sect2">
-<h3 id="safety"><a class="anchor" href="#safety"></a>Safety</h3>
+<h3 id="safety-namingmemoizedinstancevariablename"><a class="anchor" href="#safety-namingmemoizedinstancevariablename"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop relies on the pattern <code>@instance_var ||= &#8230;&#8203;</code>,
 but this is sometimes used for other purposes than memoization
@@ -1892,9 +1896,9 @@ because it may conflict with instance variable names already in use.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-12"><a class="anchor" href="#examples-12"></a>Examples</h3>
+<h3 id="examples-namingmemoizedinstancevariablename"><a class="anchor" href="#examples-namingmemoizedinstancevariablename"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyleforleadingunderscores-disallowed-default"><a class="anchor" href="#enforcedstyleforleadingunderscores-disallowed-default"></a>EnforcedStyleForLeadingUnderscores: disallowed (default)</h4>
+<h4 id="enforcedstyleforleadingunderscores_-disallowed-_default_-namingmemoizedinstancevariablename"><a class="anchor" href="#enforcedstyleforleadingunderscores_-disallowed-_default_-namingmemoizedinstancevariablename"></a>EnforcedStyleForLeadingUnderscores: disallowed (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1946,7 +1950,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyleforleadingunderscores-required"><a class="anchor" href="#enforcedstyleforleadingunderscores-required"></a>EnforcedStyleForLeadingUnderscores: required</h4>
+<h4 id="enforcedstyleforleadingunderscores_-required-namingmemoizedinstancevariablename"><a class="anchor" href="#enforcedstyleforleadingunderscores_-required-namingmemoizedinstancevariablename"></a>EnforcedStyleForLeadingUnderscores: required</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1993,7 +1997,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyleforleadingunderscores-optional"><a class="anchor" href="#enforcedstyleforleadingunderscores-optional"></a>EnforcedStyleForLeadingUnderscores :optional</h4>
+<h4 id="enforcedstyleforleadingunderscores-_optional-namingmemoizedinstancevariablename"><a class="anchor" href="#enforcedstyleforleadingunderscores-_optional-namingmemoizedinstancevariablename"></a>EnforcedStyleForLeadingUnderscores :optional</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2036,7 +2040,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-9"><a class="anchor" href="#configurable-attributes-9"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-namingmemoizedinstancevariablename"><a class="anchor" href="#configurable-attributes-namingmemoizedinstancevariablename"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2110,9 +2114,9 @@ snake_case or camelCase, for their names.</p>
 <p>Method names matching patterns are always allowed.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-13"><a class="anchor" href="#examples-13"></a>Examples</h3>
+<h3 id="examples-namingmethodname"><a class="anchor" href="#examples-namingmethodname"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-snake_case-default"><a class="anchor" href="#enforcedstyle-snake_case-default"></a>EnforcedStyle: snake_case (default)</h4>
+<h4 id="enforcedstyle_-snake_case-_default_-namingmethodname"><a class="anchor" href="#enforcedstyle_-snake_case-_default_-namingmethodname"></a>EnforcedStyle: snake_case (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2124,7 +2128,7 @@ def foo_bar; end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyle-camelcase"><a class="anchor" href="#enforcedstyle-camelcase"></a>EnforcedStyle: camelCase</h4>
+<h4 id="enforcedstyle_-camelcase-namingmethodname"><a class="anchor" href="#enforcedstyle_-camelcase-namingmethodname"></a>EnforcedStyle: camelCase</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2137,7 +2141,7 @@ def fooBar; end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-10"><a class="anchor" href="#configurable-attributes-10"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-namingmethodname"><a class="anchor" href="#configurable-attributes-namingmethodname"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2166,7 +2170,7 @@ def fooBar; end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-10"><a class="anchor" href="#references-10"></a>References</h3>
+<h3 id="references-namingmethodname"><a class="anchor" href="#references-namingmethodname"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2222,7 +2226,7 @@ offense. The <code>ForbiddenNames</code> config option takes an array of
 restricted names that will always register an offense.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-14"><a class="anchor" href="#examples-14"></a>Examples</h3>
+<h3 id="examples-namingmethodparametername"><a class="anchor" href="#examples-namingmethodparametername"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2256,7 +2260,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-11"><a class="anchor" href="#configurable-attributes-11"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-namingmethodparametername"><a class="anchor" href="#configurable-attributes-namingmethodparametername"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2345,9 +2349,9 @@ they end with a <code>?</code>. These methods should be changed to remove the
 prefix.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-15"><a class="anchor" href="#examples-15"></a>Examples</h3>
+<h3 id="examples-namingpredicatename"><a class="anchor" href="#examples-namingpredicatename"></a>Examples</h3>
 <div class="sect3">
-<h4 id="nameprefix-is_-has_-have_-default"><a class="anchor" href="#nameprefix-is_-has_-have_-default"></a>NamePrefix: ['is_', 'has_', 'have_'] (default)</h4>
+<h4 id="nameprefix_-__is___-_has___-_have___-_default_-namingpredicatename"><a class="anchor" href="#nameprefix_-__is___-_has___-_have___-_default_-namingpredicatename"></a>NamePrefix: ['is_', 'has_', 'have_'] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2367,7 +2371,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="nameprefix-seems_to_be_"><a class="anchor" href="#nameprefix-seems_to_be_"></a>NamePrefix: ['seems_to_be_']</h4>
+<h4 id="nameprefix_-__seems_to_be___-namingpredicatename"><a class="anchor" href="#nameprefix_-__seems_to_be___-namingpredicatename"></a>NamePrefix: ['seems_to_be_']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2387,7 +2391,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedmethods-is_a-default"><a class="anchor" href="#allowedmethods-is_a-default"></a>AllowedMethods: ['is_a?'] (default)</h4>
+<h4 id="allowedmethods_-__is_a___-_default_-namingpredicatename"><a class="anchor" href="#allowedmethods_-__is_a___-_default_-namingpredicatename"></a>AllowedMethods: ['is_a?'] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Despite starting with the `is_` prefix, this method is allowed
@@ -2398,7 +2402,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedmethods-is_even"><a class="anchor" href="#allowedmethods-is_even"></a>AllowedMethods: ['is_even?']</h4>
+<h4 id="allowedmethods_-__is_even___-namingpredicatename"><a class="anchor" href="#allowedmethods_-__is_even___-namingpredicatename"></a>AllowedMethods: ['is_even?']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -2408,7 +2412,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="methoddefinitionmacros-define_method-define_singleton_method-default"><a class="anchor" href="#methoddefinitionmacros-define_method-define_singleton_method-default"></a>MethodDefinitionMacros: ['define_method', 'define_singleton_method'] (default)</h4>
+<h4 id="methoddefinitionmacros_-__define_method__-_define_singleton_method__-_default_-namingpredicatename"><a class="anchor" href="#methoddefinitionmacros_-__define_method__-_define_singleton_method__-_default_-namingpredicatename"></a>MethodDefinitionMacros: ['define_method', 'define_singleton_method'] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2420,7 +2424,7 @@ define_method(:even?) { |value| }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="methoddefinitionmacros-def_node_matcher"><a class="anchor" href="#methoddefinitionmacros-def_node_matcher"></a>MethodDefinitionMacros: ['def_node_matcher']</h4>
+<h4 id="methoddefinitionmacros_-__def_node_matcher__-namingpredicatename"><a class="anchor" href="#methoddefinitionmacros_-__def_node_matcher__-namingpredicatename"></a>MethodDefinitionMacros: ['def_node_matcher']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2433,7 +2437,7 @@ def_node_matcher(:even?) { |value| }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-12"><a class="anchor" href="#configurable-attributes-12"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-namingpredicatename"><a class="anchor" href="#configurable-attributes-namingpredicatename"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2477,7 +2481,7 @@ def_node_matcher(:even?) { |value| }</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-11"><a class="anchor" href="#references-11"></a>References</h3>
+<h3 id="references-namingpredicatename"><a class="anchor" href="#references-namingpredicatename"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2542,9 +2546,9 @@ shadow the outer variable).
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-16"><a class="anchor" href="#examples-16"></a>Examples</h3>
+<h3 id="examples-namingrescuedexceptionsvariablename"><a class="anchor" href="#examples-namingrescuedexceptionsvariablename"></a>Examples</h3>
 <div class="sect3">
-<h4 id="preferredname-e-default"><a class="anchor" href="#preferredname-e-default"></a>PreferredName: e (default)</h4>
+<h4 id="preferredname_-e-_default_-namingrescuedexceptionsvariablename"><a class="anchor" href="#preferredname_-e-_default_-namingrescuedexceptionsvariablename"></a>PreferredName: e (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2571,7 +2575,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="preferredname-exception"><a class="anchor" href="#preferredname-exception"></a>PreferredName: exception</h4>
+<h4 id="preferredname_-exception-namingrescuedexceptionsvariablename"><a class="anchor" href="#preferredname_-exception-namingrescuedexceptionsvariablename"></a>PreferredName: exception</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2599,7 +2603,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-13"><a class="anchor" href="#configurable-attributes-13"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-namingrescuedexceptionsvariablename"><a class="anchor" href="#configurable-attributes-namingrescuedexceptionsvariablename"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2659,9 +2663,9 @@ end</code></pre>
 snake_case or camelCase, for their names.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-17"><a class="anchor" href="#examples-17"></a>Examples</h3>
+<h3 id="examples-namingvariablename"><a class="anchor" href="#examples-namingvariablename"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-snake_case-default-2"><a class="anchor" href="#enforcedstyle-snake_case-default-2"></a>EnforcedStyle: snake_case (default)</h4>
+<h4 id="enforcedstyle_-snake_case-_default_-namingvariablename"><a class="anchor" href="#enforcedstyle_-snake_case-_default_-namingvariablename"></a>EnforcedStyle: snake_case (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2673,7 +2677,7 @@ foo_bar = 1</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyle-camelcase-2"><a class="anchor" href="#enforcedstyle-camelcase-2"></a>EnforcedStyle: camelCase</h4>
+<h4 id="enforcedstyle_-camelcase-namingvariablename"><a class="anchor" href="#enforcedstyle_-camelcase-namingvariablename"></a>EnforcedStyle: camelCase</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2685,7 +2689,7 @@ fooBar = 1</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedidentifiers-foobar"><a class="anchor" href="#allowedidentifiers-foobar"></a>AllowedIdentifiers: ['fooBar']</h4>
+<h4 id="allowedidentifiers_-__foobar__-namingvariablename"><a class="anchor" href="#allowedidentifiers_-__foobar__-namingvariablename"></a>AllowedIdentifiers: ['fooBar']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good (with EnforcedStyle: snake_case)
@@ -2694,7 +2698,7 @@ fooBar = 1</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedpatterns-_vdz"><a class="anchor" href="#allowedpatterns-_vdz"></a>AllowedPatterns: ['_v\d+\z']</h4>
+<h4 id="allowedpatterns_-___v_d__z__-namingvariablename"><a class="anchor" href="#allowedpatterns_-___v_d__z__-namingvariablename"></a>AllowedPatterns: ['_v\d+\z']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good (with EnforcedStyle: camelCase)
@@ -2704,7 +2708,7 @@ fooBar = 1</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-14"><a class="anchor" href="#configurable-attributes-14"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-namingvariablename"><a class="anchor" href="#configurable-attributes-namingvariablename"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2738,7 +2742,7 @@ fooBar = 1</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-12"><a class="anchor" href="#references-12"></a>References</h3>
+<h3 id="references-namingvariablename"><a class="anchor" href="#references-namingvariablename"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2790,9 +2794,9 @@ can be used to specify whether method names and symbols should be checked.
 Both are enabled by default.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-18"><a class="anchor" href="#examples-18"></a>Examples</h3>
+<h3 id="examples-namingvariablenumber"><a class="anchor" href="#examples-namingvariablenumber"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-normalcase-default"><a class="anchor" href="#enforcedstyle-normalcase-default"></a>EnforcedStyle: normalcase (default)</h4>
+<h4 id="enforcedstyle_-normalcase-_default_-namingvariablenumber"><a class="anchor" href="#enforcedstyle_-normalcase-_default_-namingvariablenumber"></a>EnforcedStyle: normalcase (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2814,7 +2818,7 @@ def some_method1(arg1); end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyle-snake_case"><a class="anchor" href="#enforcedstyle-snake_case"></a>EnforcedStyle: snake_case</h4>
+<h4 id="enforcedstyle_-snake_case-namingvariablenumber"><a class="anchor" href="#enforcedstyle_-snake_case-namingvariablenumber"></a>EnforcedStyle: snake_case</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2836,7 +2840,7 @@ def some_method_1(arg_1); end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyle-non_integer"><a class="anchor" href="#enforcedstyle-non_integer"></a>EnforcedStyle: non_integer</h4>
+<h4 id="enforcedstyle_-non_integer-namingvariablenumber"><a class="anchor" href="#enforcedstyle_-non_integer-namingvariablenumber"></a>EnforcedStyle: non_integer</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2872,7 +2876,7 @@ def some_methodone(arg_one); end
 </div>
 </div>
 <div class="sect3">
-<h4 id="checkmethodnames-true-default"><a class="anchor" href="#checkmethodnames-true-default"></a>CheckMethodNames: true (default)</h4>
+<h4 id="checkmethodnames_-true-_default_-namingvariablenumber"><a class="anchor" href="#checkmethodnames_-true-_default_-namingvariablenumber"></a>CheckMethodNames: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2881,7 +2885,7 @@ def some_method_1; end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="checkmethodnames-false"><a class="anchor" href="#checkmethodnames-false"></a>CheckMethodNames: false</h4>
+<h4 id="checkmethodnames_-false-namingvariablenumber"><a class="anchor" href="#checkmethodnames_-false-namingvariablenumber"></a>CheckMethodNames: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -2890,7 +2894,7 @@ def some_method_1; end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="checksymbols-true-default"><a class="anchor" href="#checksymbols-true-default"></a>CheckSymbols: true (default)</h4>
+<h4 id="checksymbols_-true-_default_-namingvariablenumber"><a class="anchor" href="#checksymbols_-true-_default_-namingvariablenumber"></a>CheckSymbols: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2899,7 +2903,7 @@ def some_method_1; end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="checksymbols-false"><a class="anchor" href="#checksymbols-false"></a>CheckSymbols: false</h4>
+<h4 id="checksymbols_-false-namingvariablenumber"><a class="anchor" href="#checksymbols_-false-namingvariablenumber"></a>CheckSymbols: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -2908,7 +2912,7 @@ def some_method_1; end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedidentifiers-capture3"><a class="anchor" href="#allowedidentifiers-capture3"></a>AllowedIdentifiers: [capture3]</h4>
+<h4 id="allowedidentifiers_-_capture3_-namingvariablenumber"><a class="anchor" href="#allowedidentifiers_-_capture3_-namingvariablenumber"></a>AllowedIdentifiers: [capture3]</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -2917,7 +2921,7 @@ expect(Open3).to receive(:capture3)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedpatterns-_vdz-2"><a class="anchor" href="#allowedpatterns-_vdz-2"></a>AllowedPatterns: ['_v\d+\z']</h4>
+<h4 id="allowedpatterns_-___v_d__z__-namingvariablenumber"><a class="anchor" href="#allowedpatterns_-___v_d__z__-namingvariablenumber"></a>AllowedPatterns: ['_v\d+\z']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -2927,7 +2931,7 @@ expect(Open3).to receive(:capture3)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-15"><a class="anchor" href="#configurable-attributes-15"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-namingvariablenumber"><a class="anchor" href="#configurable-attributes-namingvariablenumber"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2971,7 +2975,7 @@ expect(Open3).to receive(:capture3)</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-13"><a class="anchor" href="#references-13"></a>References</h3>
+<h3 id="references-namingvariablenumber"><a class="anchor" href="#references-namingvariablenumber"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>

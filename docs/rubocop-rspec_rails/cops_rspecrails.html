@@ -126,6 +126,9 @@
           <a href="../rubocop/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop/1.67/index.html">1.67</a>
+        </li>
+        <li class="version">
           <a href="../rubocop/1.66/index.html">1.66</a>
         </li>
         <li class="version">
@@ -477,7 +480,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.66/index.html" class="home-link"></a>
+  <a href="../rubocop/1.67/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop RSpec Rails</a></li>
@@ -702,7 +705,8 @@ expect(last_response).to have_http_status(200)</code></pre>
 <p>This cop inspects only <code>have_http_status</code> calls.
 So, this cop does not check if a method starting with <code>be_*</code> is used
 when setting for <code>EnforcedStyle: symbolic</code> or
-<code>EnforcedStyle: numeric</code>.</p>
+<code>EnforcedStyle: numeric</code>.
+This cop is also capable of detecting unknown HTTP status codes.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
@@ -759,6 +763,15 @@ it { is_expected.to be_ok }
 it { is_expected.to be_not_found }
 it { is_expected.to have_http_status :success }
 it { is_expected.to have_http_status :error }</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+it { is_expected.to have_http_status :oki_doki }
+
+# good
+it { is_expected.to have_http_status :ok }</code></pre>
 </div>
 </div>
 </div>

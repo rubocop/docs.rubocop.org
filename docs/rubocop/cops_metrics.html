@@ -223,6 +223,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.67/index.html">1.67</a>
+        </li>
+        <li class="version">
           <a href="1.66/index.html">1.66</a>
         </li>
         <li class="version">
@@ -574,7 +577,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.66/index.html" class="home-link"></a>
+  <a href="1.67/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -586,6 +589,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_metrics.html">default</a>
+    <a class="version" href="1.67/cops_metrics.html">1.67</a>
     <a class="version" href="1.66/cops_metrics.html">1.66</a>
     <a class="version" href="1.65/cops_metrics.html">1.65</a>
     <a class="version" href="1.64/cops_metrics.html">1.64</a>
@@ -676,9 +680,9 @@ is meant to distinguish actual <code>attr_reader</code> from other methods.</p>
 And <code>AllowedPatterns</code> (defaults to <code>[]</code>)</p>
 </div>
 <div class="sect2">
-<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
+<h3 id="examples-metricsabcsize"><a class="anchor" href="#examples-metricsabcsize"></a>Examples</h3>
 <div class="sect3">
-<h4 id="countrepeatedattributes-false-default-is-true"><a class="anchor" href="#countrepeatedattributes-false-default-is-true"></a>CountRepeatedAttributes: false (default is true)</h4>
+<h4 id="countrepeatedattributes_-false-_default-is-true_-metricsabcsize"><a class="anchor" href="#countrepeatedattributes_-false-_default-is-true_-metricsabcsize"></a>CountRepeatedAttributes: false (default is true)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># `model` and `current_user`, referenced 3 times each,
@@ -698,7 +702,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-metricsabcsize"><a class="anchor" href="#configurable-attributes-metricsabcsize"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -737,7 +741,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references"><a class="anchor" href="#references"></a>References</h3>
+<h3 id="references-metricsabcsize"><a class="anchor" href="#references-metricsabcsize"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -821,9 +825,9 @@ instead. By default, there are no methods to allowed.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
+<h3 id="examples-metricsblocklength"><a class="anchor" href="#examples-metricsblocklength"></a>Examples</h3>
 <div class="sect3">
-<h4 id="countasone-array-hash-heredoc-method_call"><a class="anchor" href="#countasone-array-hash-heredoc-method_call"></a>CountAsOne: ['array', 'hash', 'heredoc', 'method_call']</h4>
+<h4 id="countasone_-__array__-_hash__-_heredoc__-_method_call__-metricsblocklength"><a class="anchor" href="#countasone_-__array__-_hash__-_heredoc__-_method_call__-metricsblocklength"></a>CountAsOne: ['array', 'hash', 'heredoc', 'method_call']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">something do
@@ -851,7 +855,7 @@ end                 # 4 points</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-metricsblocklength"><a class="anchor" href="#configurable-attributes-metricsblocklength"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -944,7 +948,7 @@ calculation as well.</p>
 <p>The maximum level of nesting allowed is configurable.</p>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-metricsblocknesting"><a class="anchor" href="#configurable-attributes-metricsblocknesting"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -978,7 +982,7 @@ calculation as well.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-2"><a class="anchor" href="#references-2"></a>References</h3>
+<h3 id="references-metricsblocknesting"><a class="anchor" href="#references-metricsblocknesting"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1044,9 +1048,9 @@ This cop also applies for <code>Struct</code> definitions.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<h3 id="examples-metricsclasslength"><a class="anchor" href="#examples-metricsclasslength"></a>Examples</h3>
 <div class="sect3">
-<h4 id="countasone-array-hash-heredoc-method_call-2"><a class="anchor" href="#countasone-array-hash-heredoc-method_call-2"></a>CountAsOne: ['array', 'hash', 'heredoc', 'method_call']</h4>
+<h4 id="countasone_-__array__-_hash__-_heredoc__-_method_call__-metricsclasslength"><a class="anchor" href="#countasone_-__array__-_hash__-_heredoc__-_method_call__-metricsclasslength"></a>CountAsOne: ['array', 'hash', 'heredoc', 'method_call']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class Foo
@@ -1074,7 +1078,7 @@ end                 # 4 points</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-metricsclasslength"><a class="anchor" href="#configurable-attributes-metricsclasslength"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1146,7 +1150,7 @@ a database, fetched from an API, or read from a non-code file (CSV,
 JSON, YAML, etc.).</p>
 </div>
 <div class="sect2">
-<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<h3 id="examples-metricscollectionliterallength"><a class="anchor" href="#examples-metricscollectionliterallength"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1190,7 +1194,7 @@ SomeFramework.config_for(:something)[:numbers].to_set</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-metricscollectionliterallength"><a class="anchor" href="#configurable-attributes-metricscollectionliterallength"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1287,7 +1291,7 @@ end                                       # total: 6</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-metricscyclomaticcomplexity"><a class="anchor" href="#configurable-attributes-metricscyclomaticcomplexity"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1380,9 +1384,9 @@ By default, there are no methods to allowed.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
+<h3 id="examples-metricsmethodlength"><a class="anchor" href="#examples-metricsmethodlength"></a>Examples</h3>
 <div class="sect3">
-<h4 id="countasone-array-hash-heredoc-method_call-3"><a class="anchor" href="#countasone-array-hash-heredoc-method_call-3"></a>CountAsOne: ['array', 'hash', 'heredoc', 'method_call']</h4>
+<h4 id="countasone_-__array__-_hash__-_heredoc__-_method_call__-metricsmethodlength"><a class="anchor" href="#countasone_-__array__-_hash__-_heredoc__-_method_call__-metricsmethodlength"></a>CountAsOne: ['array', 'hash', 'heredoc', 'method_call']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def m
@@ -1410,7 +1414,7 @@ end               # 4 points</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-metricsmethodlength"><a class="anchor" href="#configurable-attributes-metricsmethodlength"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1454,7 +1458,7 @@ end               # 4 points</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-3"><a class="anchor" href="#references-3"></a>References</h3>
+<h3 id="references-metricsmethodlength"><a class="anchor" href="#references-metricsmethodlength"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1508,9 +1512,9 @@ The maximum allowed length is configurable.</p>
 Each construct will be counted as one line regardless of its actual size.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<h3 id="examples-metricsmodulelength"><a class="anchor" href="#examples-metricsmodulelength"></a>Examples</h3>
 <div class="sect3">
-<h4 id="countasone-array-hash-heredoc-method_call-4"><a class="anchor" href="#countasone-array-hash-heredoc-method_call-4"></a>CountAsOne: ['array', 'hash', 'heredoc', 'method_call']</h4>
+<h4 id="countasone_-__array__-_hash__-_heredoc__-_method_call__-metricsmodulelength"><a class="anchor" href="#countasone_-__array__-_hash__-_heredoc__-_method_call__-metricsmodulelength"></a>CountAsOne: ['array', 'hash', 'heredoc', 'method_call']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">module M
@@ -1538,7 +1542,7 @@ end                 # 4 points</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-8"><a class="anchor" href="#configurable-attributes-8"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-metricsmodulelength"><a class="anchor" href="#configurable-attributes-metricsmodulelength"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1645,9 +1649,9 @@ erroneous change that is avoided by making block argument implicit.
 This can be configured using the <code>MaxOptionalParameters</code> config option.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
+<h3 id="examples-metricsparameterlists"><a class="anchor" href="#examples-metricsparameterlists"></a>Examples</h3>
 <div class="sect3">
-<h4 id="max-3"><a class="anchor" href="#max-3"></a>Max: 3</h4>
+<h4 id="max_-3-metricsparameterlists"><a class="anchor" href="#max_-3-metricsparameterlists"></a>Max: 3</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -1657,7 +1661,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="max-2"><a class="anchor" href="#max-2"></a>Max: 2</h4>
+<h4 id="max_-2-metricsparameterlists"><a class="anchor" href="#max_-2-metricsparameterlists"></a>Max: 2</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1667,7 +1671,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="countkeywordargs-true-default"><a class="anchor" href="#countkeywordargs-true-default"></a>CountKeywordArgs: true (default)</h4>
+<h4 id="countkeywordargs_-true-_default_-metricsparameterlists"><a class="anchor" href="#countkeywordargs_-true-_default_-metricsparameterlists"></a>CountKeywordArgs: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># counts keyword args towards the maximum
@@ -1683,7 +1687,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="countkeywordargs-false"><a class="anchor" href="#countkeywordargs-false"></a>CountKeywordArgs: false</h4>
+<h4 id="countkeywordargs_-false-metricsparameterlists"><a class="anchor" href="#countkeywordargs_-false-metricsparameterlists"></a>CountKeywordArgs: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># don't count keyword args towards the maximum
@@ -1695,7 +1699,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="maxoptionalparameters-3-default"><a class="anchor" href="#maxoptionalparameters-3-default"></a>MaxOptionalParameters: 3 (default)</h4>
+<h4 id="maxoptionalparameters_-3-_default_-metricsparameterlists"><a class="anchor" href="#maxoptionalparameters_-3-_default_-metricsparameterlists"></a>MaxOptionalParameters: 3 (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -1705,7 +1709,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="maxoptionalparameters-2"><a class="anchor" href="#maxoptionalparameters-2"></a>MaxOptionalParameters: 2</h4>
+<h4 id="maxoptionalparameters_-2-metricsparameterlists"><a class="anchor" href="#maxoptionalparameters_-2-metricsparameterlists"></a>MaxOptionalParameters: 2</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1716,7 +1720,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-9"><a class="anchor" href="#configurable-attributes-9"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-metricsparameterlists"><a class="anchor" href="#configurable-attributes-metricsparameterlists"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1750,7 +1754,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-4"><a class="anchor" href="#references-4"></a>References</h3>
+<h3 id="references-metricsparameterlists"><a class="anchor" href="#references-metricsparameterlists"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1802,7 +1806,7 @@ nodes count. In contrast to the CyclomaticComplexity cop, this cop
 considers <code>else</code> nodes as adding complexity.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
+<h3 id="examples-metricsperceivedcomplexity"><a class="anchor" href="#examples-metricsperceivedcomplexity"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def my_method                   # 1
@@ -1821,7 +1825,7 @@ end                             # 7 complexity points</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-10"><a class="anchor" href="#configurable-attributes-10"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-metricsperceivedcomplexity"><a class="anchor" href="#configurable-attributes-metricsperceivedcomplexity"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">

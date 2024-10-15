@@ -223,6 +223,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.67/index.html">1.67</a>
+        </li>
+        <li class="version">
           <a href="1.66/index.html">1.66</a>
         </li>
         <li class="version">
@@ -574,7 +577,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.66/index.html" class="home-link"></a>
+  <a href="1.67/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -586,6 +589,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_lint.html">default</a>
+    <a class="version" href="1.67/cops_lint.html">1.67</a>
     <a class="version" href="1.66/cops_lint.html">1.66</a>
     <a class="version" href="1.65/cops_lint.html">1.65</a>
     <a class="version" href="1.64/cops_lint.html">1.64</a>
@@ -648,7 +652,7 @@
 <p>Checks for mistyped shorthand assignments.</p>
 </div>
 <div class="sect2">
-<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
+<h3 id="examples-lintambiguousassignment"><a class="anchor" href="#examples-lintambiguousassignment"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -706,7 +710,7 @@ when param passed without parentheses.</p>
 By default, there are no methods to allowed.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
+<h3 id="examples-lintambiguousblockassociation"><a class="anchor" href="#examples-lintambiguousblockassociation"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -728,7 +732,7 @@ foo = -&gt;(bar) { bar.baz }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedmethods-default"><a class="anchor" href="#allowedmethods-default"></a>AllowedMethods: [] (default)</h4>
+<h4 id="allowedmethods_-__-_default_-lintambiguousblockassociation"><a class="anchor" href="#allowedmethods_-__-_default_-lintambiguousblockassociation"></a>AllowedMethods: [] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -737,7 +741,7 @@ expect { do_something }.to change { object.attribute }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedmethods-change"><a class="anchor" href="#allowedmethods-change"></a>AllowedMethods: [change]</h4>
+<h4 id="allowedmethods_-_change_-lintambiguousblockassociation"><a class="anchor" href="#allowedmethods_-_change_-lintambiguousblockassociation"></a>AllowedMethods: [change]</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -746,7 +750,7 @@ expect { do_something }.to change { object.attribute }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedpatterns-default"><a class="anchor" href="#allowedpatterns-default"></a>AllowedPatterns: [] (default)</h4>
+<h4 id="allowedpatterns_-__-_default_-lintambiguousblockassociation"><a class="anchor" href="#allowedpatterns_-__-_default_-lintambiguousblockassociation"></a>AllowedPatterns: [] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -755,7 +759,7 @@ expect { do_something }.to change { object.attribute }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedpatterns-change"><a class="anchor" href="#allowedpatterns-change"></a>AllowedPatterns: ['change']</h4>
+<h4 id="allowedpatterns_-__change__-lintambiguousblockassociation"><a class="anchor" href="#allowedpatterns_-__change__-lintambiguousblockassociation"></a>AllowedPatterns: ['change']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -766,7 +770,7 @@ expect { do_something }.to not_change { object.attribute }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintambiguousblockassociation"><a class="anchor" href="#configurable-attributes-lintambiguousblockassociation"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -831,7 +835,7 @@ expect { do_something }.to not_change { object.attribute }</code></pre>
 method invocation without parentheses.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<h3 id="examples-lintambiguousoperator"><a class="anchor" href="#examples-lintambiguousoperator"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -848,7 +852,7 @@ do_something(*some_array)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references"><a class="anchor" href="#references"></a>References</h3>
+<h3 id="references-lintambiguousoperator"><a class="anchor" href="#references-lintambiguousoperator"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -912,7 +916,7 @@ Ranges are handled by <code>Lint/AmbiguousRange</code>.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<h3 id="examples-lintambiguousoperatorprecedence"><a class="anchor" href="#examples-lintambiguousoperatorprecedence"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -991,7 +995,7 @@ value, it will be wrapped in order to prevent the ambiguity of <code>1..2.to_a</
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety"><a class="anchor" href="#safety"></a>Safety</h3>
+<h3 id="safety-lintambiguousrange"><a class="anchor" href="#safety-lintambiguousrange"></a>Safety</h3>
 <div class="paragraph">
 <p>The cop autocorrects by wrapping the entire boundary in parentheses, which
 makes the outcome more explicit but is possible to not be the intention of the
@@ -1001,7 +1005,7 @@ intent of the program).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
+<h3 id="examples-lintambiguousrange"><a class="anchor" href="#examples-lintambiguousrange"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1026,7 +1030,7 @@ x || (1..2)
 </div>
 </div>
 <div class="sect3">
-<h4 id="requireparenthesesformethodchains-false-default"><a class="anchor" href="#requireparenthesesformethodchains-false-default"></a>RequireParenthesesForMethodChains: false (default)</h4>
+<h4 id="requireparenthesesformethodchains_-false-_default_-lintambiguousrange"><a class="anchor" href="#requireparenthesesformethodchains_-false-_default_-lintambiguousrange"></a>RequireParenthesesForMethodChains: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -1036,7 +1040,7 @@ a.foo..b.bar
 </div>
 </div>
 <div class="sect3">
-<h4 id="requireparenthesesformethodchains-true"><a class="anchor" href="#requireparenthesesformethodchains-true"></a>RequireParenthesesForMethodChains: true</h4>
+<h4 id="requireparenthesesformethodchains_-true-lintambiguousrange"><a class="anchor" href="#requireparenthesesformethodchains_-true-lintambiguousrange"></a>RequireParenthesesForMethodChains: true</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1049,7 +1053,7 @@ a.foo..b.bar
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintambiguousrange"><a class="anchor" href="#configurable-attributes-lintambiguousrange"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1109,7 +1113,7 @@ a.foo..b.bar
 a method invocation without parentheses.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<h3 id="examples-lintambiguousregexpliteral"><a class="anchor" href="#examples-lintambiguousregexpliteral"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1169,14 +1173,14 @@ an assignment to indicate "I know I&#8217;m using an assignment
 as a condition. It&#8217;s not a mistake."</p>
 </div>
 <div class="sect2">
-<h3 id="safety-2"><a class="anchor" href="#safety-2"></a>Safety</h3>
+<h3 id="safety-lintassignmentincondition"><a class="anchor" href="#safety-lintassignmentincondition"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because it assumes that
 the author meant to use an assignment result as a condition.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
+<h3 id="examples-lintassignmentincondition"><a class="anchor" href="#examples-lintassignmentincondition"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1191,7 +1195,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowsafeassignment-true-default"><a class="anchor" href="#allowsafeassignment-true-default"></a>AllowSafeAssignment: true (default)</h4>
+<h4 id="allowsafeassignment_-true-_default_-lintassignmentincondition"><a class="anchor" href="#allowsafeassignment_-true-_default_-lintassignmentincondition"></a>AllowSafeAssignment: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -1202,7 +1206,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowsafeassignment-false"><a class="anchor" href="#allowsafeassignment-false"></a>AllowSafeAssignment: false</h4>
+<h4 id="allowsafeassignment_-false-lintassignmentincondition"><a class="anchor" href="#allowsafeassignment_-false-lintassignmentincondition"></a>AllowSafeAssignment: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1214,7 +1218,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintassignmentincondition"><a class="anchor" href="#configurable-attributes-lintassignmentincondition"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1238,7 +1242,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-2"><a class="anchor" href="#references-2"></a>References</h3>
+<h3 id="references-lintassignmentincondition"><a class="anchor" href="#references-lintassignmentincondition"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1285,7 +1289,7 @@ This cop identifies places where <code>BigDecimal.new()</code>
 can be replaced by <code>BigDecimal()</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-8"><a class="anchor" href="#examples-8"></a>Examples</h3>
+<h3 id="examples-lintbigdecimalnew"><a class="anchor" href="#examples-lintbigdecimalnew"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1346,7 +1350,7 @@ always be the same (<code>x - x</code> will always be 0; <code>x / x</code> will
 thus are legitimate offenses.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-3"><a class="anchor" href="#safety-3"></a>Safety</h3>
+<h3 id="safety-lintbinaryoperatorwithidenticaloperands"><a class="anchor" href="#safety-lintbinaryoperatorwithidenticaloperands"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe as it does not consider side effects when calling methods
 and thus can generate false positives, for example:</p>
@@ -1360,7 +1364,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-9"><a class="anchor" href="#examples-9"></a>Examples</h3>
+<h3 id="examples-lintbinaryoperatorwithidenticaloperands"><a class="anchor" href="#examples-lintbinaryoperatorwithidenticaloperands"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1418,7 +1422,7 @@ x + x
 In most cases it would be a typo.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-4"><a class="anchor" href="#safety-4"></a>Safety</h3>
+<h3 id="safety-lintbooleansymbol"><a class="anchor" href="#safety-lintbooleansymbol"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is unsafe for this cop because code relying
 on <code>:true</code> or <code>:false</code> symbols will break when those are
@@ -1426,7 +1430,7 @@ changed to actual booleans.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-10"><a class="anchor" href="#examples-10"></a>Examples</h3>
+<h3 id="examples-lintbooleansymbol"><a class="anchor" href="#examples-lintbooleansymbol"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1483,7 +1487,7 @@ arguments and optional ordinal arguments.</p>
 <p>This cop mirrors a warning produced by MRI since 2.2.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-11"><a class="anchor" href="#examples-11"></a>Examples</h3>
+<h3 id="examples-lintcircularargumentreference"><a class="anchor" href="#examples-lintcircularargumentreference"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1558,7 +1562,7 @@ in the outer scope would be problematic.</p>
 <p>For meta-programming, use <code>const_set</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-12"><a class="anchor" href="#examples-12"></a>Examples</h3>
+<h3 id="examples-lintconstantdefinitioninblock"><a class="anchor" href="#examples-lintconstantdefinitioninblock"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1600,7 +1604,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedmethods-enums-default"><a class="anchor" href="#allowedmethods-enums-default"></a>AllowedMethods: ['enums'] (default)</h4>
+<h4 id="allowedmethods_-__enums__-_default_-lintconstantdefinitioninblock"><a class="anchor" href="#allowedmethods_-__enums__-_default_-lintconstantdefinitioninblock"></a>AllowedMethods: ['enums'] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -1617,7 +1621,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintconstantdefinitioninblock"><a class="anchor" href="#configurable-attributes-lintconstantdefinitioninblock"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1641,7 +1645,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-3"><a class="anchor" href="#references-3"></a>References</h3>
+<h3 id="references-lintconstantdefinitioninblock"><a class="anchor" href="#references-lintconstantdefinitioninblock"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1691,7 +1695,7 @@ However, you have written <code>rescue &#8658; StandardError</code>.
 In that case, the result of <code>rescue</code> will overwrite <code>StandardError</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-13"><a class="anchor" href="#examples-13"></a>Examples</h3>
+<h3 id="examples-lintconstantoverwritteninrescue"><a class="anchor" href="#examples-lintconstantoverwritteninrescue"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1772,7 +1776,7 @@ this cop which is disabled by default.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-14"><a class="anchor" href="#examples-14"></a>Examples</h3>
+<h3 id="examples-lintconstantresolution"><a class="anchor" href="#examples-lintconstantresolution"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># By default checks every constant
@@ -1791,7 +1795,7 @@ User::Login
 </div>
 </div>
 <div class="sect3">
-<h4 id="only-login"><a class="anchor" href="#only-login"></a>Only: ['Login']</h4>
+<h4 id="only_-__login__-lintconstantresolution"><a class="anchor" href="#only_-__login__-lintconstantresolution"></a>Only: ['Login']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Restrict this cop to only being concerned about certain constants
@@ -1808,7 +1812,7 @@ User::Login</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignore-login"><a class="anchor" href="#ignore-login"></a>Ignore: ['Login']</h4>
+<h4 id="ignore_-__login__-lintconstantresolution"><a class="anchor" href="#ignore_-__login__-lintconstantresolution"></a>Ignore: ['Login']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Restrict this cop not being concerned about certain constants
@@ -1826,7 +1830,7 @@ Login</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-5"><a class="anchor" href="#configurable-attributes-5"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintconstantresolution"><a class="anchor" href="#configurable-attributes-lintconstantresolution"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1923,7 +1927,7 @@ be configured through <code>DebuggerRequires</code>. It has the same structure a
 <code>DebuggerMethods</code>, which you can read about above.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-15"><a class="anchor" href="#examples-15"></a>Examples</h3>
+<h3 id="examples-lintdebugger"><a class="anchor" href="#examples-lintdebugger"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad (ok during development)
@@ -1950,7 +1954,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="debuggermethods-my_debugger"><a class="anchor" href="#debuggermethods-my_debugger"></a>DebuggerMethods: [my_debugger]</h4>
+<h4 id="debuggermethods_-_my_debugger_-lintdebugger"><a class="anchor" href="#debuggermethods_-_my_debugger_-lintdebugger"></a>DebuggerMethods: [my_debugger]</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad (ok during development)
@@ -1962,7 +1966,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="debuggerrequires-my_debuggerstart"><a class="anchor" href="#debuggerrequires-my_debuggerstart"></a>DebuggerRequires: [my_debugger/start]</h4>
+<h4 id="debuggerrequires_-_my_debuggerstart_-lintdebugger"><a class="anchor" href="#debuggerrequires_-_my_debuggerstart_-lintdebugger"></a>DebuggerRequires: [my_debugger/start]</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad (ok during development)
@@ -1973,7 +1977,7 @@ require 'my_debugger/start'</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-6"><a class="anchor" href="#configurable-attributes-6"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintdebugger"><a class="anchor" href="#configurable-attributes-lintdebugger"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2037,7 +2041,7 @@ require 'my_debugger/start'</code></pre>
 <p>Checks for uses of the deprecated class method usages.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-16"><a class="anchor" href="#examples-16"></a>Examples</h3>
+<h3 id="examples-lintdeprecatedclassmethods"><a class="anchor" href="#examples-lintdeprecatedclassmethods"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2119,7 +2123,7 @@ alternative value as <code>Alternative</code>. And you can set the deprecated ve
 <code>Struct::Group</code>, and <code>Struct::Passwd</code> are configured.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-17"><a class="anchor" href="#examples-17"></a>Examples</h3>
+<h3 id="examples-lintdeprecatedconstants"><a class="anchor" href="#examples-lintdeprecatedconstants"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2143,7 +2147,7 @@ Etc::Passwd</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-7"><a class="anchor" href="#configurable-attributes-7"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintdeprecatedconstants"><a class="anchor" href="#configurable-attributes-lintdeprecatedconstants"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2204,7 +2208,7 @@ deprecated since OpenSSL version 2.2.0. Prefer passing a string
 instead.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-18"><a class="anchor" href="#examples-18"></a>Examples</h3>
+<h3 id="examples-lintdeprecatedopensslconstant"><a class="anchor" href="#examples-lintdeprecatedopensslconstant"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2272,7 +2276,7 @@ instance variables.</p>
 disjunction is unnecessary. A plain assignment has the same effect.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-5"><a class="anchor" href="#safety-5"></a>Safety</h3>
+<h3 id="safety-lintdisjunctiveassignmentinconstructor"><a class="anchor" href="#safety-lintdisjunctiveassignmentinconstructor"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it can register a false positive when a
 method is redefined in a subclass that calls super. For example:</p>
@@ -2299,7 +2303,7 @@ the value for <code>@config</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-19"><a class="anchor" href="#examples-19"></a>Examples</h3>
+<h3 id="examples-lintdisjunctiveassignmentinconstructor"><a class="anchor" href="#examples-lintdisjunctiveassignmentinconstructor"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2362,7 +2366,7 @@ the above basic literal values.</p>
 as offenses if they return a constant value.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-20"><a class="anchor" href="#examples-20"></a>Examples</h3>
+<h3 id="examples-lintduplicatebranch"><a class="anchor" href="#examples-lintduplicatebranch"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2416,7 +2420,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoreliteralbranches-true"><a class="anchor" href="#ignoreliteralbranches-true"></a>IgnoreLiteralBranches: true</h4>
+<h4 id="ignoreliteralbranches_-true-lintduplicatebranch"><a class="anchor" href="#ignoreliteralbranches_-true-lintduplicatebranch"></a>IgnoreLiteralBranches: true</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -2430,7 +2434,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoreconstantbranches-true"><a class="anchor" href="#ignoreconstantbranches-true"></a>IgnoreConstantBranches: true</h4>
+<h4 id="ignoreconstantbranches_-true-lintduplicatebranch"><a class="anchor" href="#ignoreconstantbranches_-true-lintduplicatebranch"></a>IgnoreConstantBranches: true</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -2445,7 +2449,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-8"><a class="anchor" href="#configurable-attributes-8"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintduplicatebranch"><a class="anchor" href="#configurable-attributes-lintduplicatebranch"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2510,7 +2514,7 @@ end</code></pre>
 used in case 'when' expressions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-21"><a class="anchor" href="#examples-21"></a>Examples</h3>
+<h3 id="examples-lintduplicatecasecondition"><a class="anchor" href="#examples-lintduplicatecasecondition"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2567,7 +2571,7 @@ end</code></pre>
 <p>Checks that there are no repeated conditions used in if 'elsif'.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-22"><a class="anchor" href="#examples-22"></a>Examples</h3>
+<h3 id="examples-lintduplicateelsifcondition"><a class="anchor" href="#examples-lintduplicateelsifcondition"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2626,7 +2630,7 @@ This cop considers both primitive types and constants for the hash keys.</p>
 <p>This cop mirrors a warning in Ruby 2.2.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-23"><a class="anchor" href="#examples-23"></a>Examples</h3>
+<h3 id="examples-lintduplicatehashkey"><a class="anchor" href="#examples-lintduplicatehashkey"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2673,7 +2677,7 @@ hash = { food: 'apple', other_food: 'orange' }</code></pre>
 <p>Checks for duplicated magic comments.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-24"><a class="anchor" href="#examples-24"></a>Examples</h3>
+<h3 id="examples-lintduplicatemagiccomment"><a class="anchor" href="#examples-lintduplicatemagiccomment"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2744,7 +2748,7 @@ Required Ruby version: 2.7
 <p>Checks that there are no repeated patterns used in <code>in</code> keywords.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-25"><a class="anchor" href="#examples-25"></a>Examples</h3>
+<h3 id="examples-lintduplicatematchpattern"><a class="anchor" href="#examples-lintduplicatematchpattern"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2866,7 +2870,7 @@ end</code></pre>
 definitions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-26"><a class="anchor" href="#examples-26"></a>Examples</h3>
+<h3 id="examples-lintduplicatemethods"><a class="anchor" href="#examples-lintduplicatemethods"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2939,7 +2943,7 @@ alias bar foo</code></pre>
 <p>Checks for duplicate elements in Regexp character classes.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-27"><a class="anchor" href="#examples-27"></a>Examples</h3>
+<h3 id="examples-lintduplicateregexpcharacterclasselement"><a class="anchor" href="#examples-lintduplicateregexpcharacterclasselement"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -2992,14 +2996,14 @@ r = /[0-9x]/</code></pre>
 <p>Checks for duplicate <code>require</code>s and <code>require_relative</code>s.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-6"><a class="anchor" href="#safety-6"></a>Safety</h3>
+<h3 id="safety-lintduplicaterequire"><a class="anchor" href="#safety-lintduplicaterequire"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because it may break the dependency order
 of <code>require</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-28"><a class="anchor" href="#examples-28"></a>Examples</h3>
+<h3 id="examples-lintduplicaterequire"><a class="anchor" href="#examples-lintduplicaterequire"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3054,7 +3058,7 @@ require_relative 'foo'</code></pre>
 used in 'rescue' expressions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-29"><a class="anchor" href="#examples-29"></a>Examples</h3>
+<h3 id="examples-lintduplicaterescueexception"><a class="anchor" href="#examples-lintduplicaterescueexception"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3074,6 +3078,65 @@ rescue FirstException
 rescue SecondException
   handle_other_exception
 end</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="lintduplicatesetelement"><a class="anchor" href="#lintduplicatesetelement"></a>Lint/DuplicateSetElement</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.67</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks for duplicate literal, constant, or variable elements in Set.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-lintduplicatesetelement"><a class="anchor" href="#examples-lintduplicatesetelement"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+Set[:foo, :bar, :foo]
+
+# good
+Set[:foo, :bar]
+
+# bad
+Set.new([:foo, :bar, :foo])
+
+# good
+Set.new([:foo, :bar])
+
+# bad
+[:foo, :bar, :foo].to_set
+
+# good
+[:foo, :bar].to_set</code></pre>
 </div>
 </div>
 </div>
@@ -3117,7 +3180,7 @@ each_with_object iterates over, an immutable argument makes no sense.
 It&#8217;s definitely a bug.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-30"><a class="anchor" href="#examples-30"></a>Examples</h3>
+<h3 id="examples-linteachwithobjectargument"><a class="anchor" href="#examples-linteachwithobjectargument"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3172,7 +3235,7 @@ is compatible correction for bad case syntax, but if your code makes a mistake
 with <code>elsif</code> and <code>else</code>, you will have to correct it manually.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-31"><a class="anchor" href="#examples-31"></a>Examples</h3>
+<h3 id="examples-lintelselayout"><a class="anchor" href="#examples-lintelselayout"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3258,7 +3321,7 @@ applies to procs.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-32"><a class="anchor" href="#examples-32"></a>Examples</h3>
+<h3 id="examples-lintemptyblock"><a class="anchor" href="#examples-lintemptyblock"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3269,7 +3332,7 @@ items.each { |item| puts item }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowcomments-true-default"><a class="anchor" href="#allowcomments-true-default"></a>AllowComments: true (default)</h4>
+<h4 id="allowcomments_-true-_default_-lintemptyblock"><a class="anchor" href="#allowcomments_-true-_default_-lintemptyblock"></a>AllowComments: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -3282,7 +3345,7 @@ items.each { |item| } # TODO: implement later (inline comment)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowcomments-false"><a class="anchor" href="#allowcomments-false"></a>AllowComments: false</h4>
+<h4 id="allowcomments_-false-lintemptyblock"><a class="anchor" href="#allowcomments_-false-lintemptyblock"></a>AllowComments: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3295,7 +3358,7 @@ items.each { |item| } # TODO: implement later (inline comment)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowemptylambdas-true-default"><a class="anchor" href="#allowemptylambdas-true-default"></a>AllowEmptyLambdas: true (default)</h4>
+<h4 id="allowemptylambdas_-true-_default_-lintemptyblock"><a class="anchor" href="#allowemptylambdas_-true-_default_-lintemptyblock"></a>AllowEmptyLambdas: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -3312,7 +3375,7 @@ Proc.new { }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowemptylambdas-false"><a class="anchor" href="#allowemptylambdas-false"></a>AllowEmptyLambdas: false</h4>
+<h4 id="allowemptylambdas_-false-lintemptyblock"><a class="anchor" href="#allowemptylambdas_-false-lintemptyblock"></a>AllowEmptyLambdas: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3330,7 +3393,7 @@ Proc.new { }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-9"><a class="anchor" href="#configurable-attributes-9"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintemptyblock"><a class="anchor" href="#configurable-attributes-lintemptyblock"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3396,7 +3459,7 @@ Such empty classes and metaclasses are typically an oversight or we should provi
 to be clearer what we&#8217;re aiming for.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-33"><a class="anchor" href="#examples-33"></a>Examples</h3>
+<h3 id="examples-lintemptyclass"><a class="anchor" href="#examples-lintemptyclass"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3430,7 +3493,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowcomments-false-default"><a class="anchor" href="#allowcomments-false-default"></a>AllowComments: false (default)</h4>
+<h4 id="allowcomments_-false-_default_-lintemptyclass"><a class="anchor" href="#allowcomments_-false-_default_-lintemptyclass"></a>AllowComments: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3451,7 +3514,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowcomments-true"><a class="anchor" href="#allowcomments-true"></a>AllowComments: true</h4>
+<h4 id="allowcomments_-true-lintemptyclass"><a class="anchor" href="#allowcomments_-true-lintemptyclass"></a>AllowComments: true</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -3473,7 +3536,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-10"><a class="anchor" href="#configurable-attributes-10"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintemptyclass"><a class="anchor" href="#configurable-attributes-lintemptyclass"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3544,7 +3607,7 @@ empty <code>else</code> branches are handled by <code>Style/EmptyElse</code>.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-7"><a class="anchor" href="#safety-7"></a>Safety</h3>
+<h3 id="safety-lintemptyconditionalbody"><a class="anchor" href="#safety-lintemptyconditionalbody"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection for this cop is not safe. The conditions for empty branches that
 the autocorrection removes may have side effects, or the logic in subsequent
@@ -3552,7 +3615,7 @@ branches may change due to the removal of a previous condition.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-34"><a class="anchor" href="#examples-34"></a>Examples</h3>
+<h3 id="examples-lintemptyconditionalbody"><a class="anchor" href="#examples-lintemptyconditionalbody"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3588,7 +3651,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowcomments-true-default-2"><a class="anchor" href="#allowcomments-true-default-2"></a>AllowComments: true (default)</h4>
+<h4 id="allowcomments_-true-_default_-lintemptyconditionalbody"><a class="anchor" href="#allowcomments_-true-_default_-lintemptyconditionalbody"></a>AllowComments: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -3601,7 +3664,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowcomments-false-2"><a class="anchor" href="#allowcomments-false-2"></a>AllowComments: false</h4>
+<h4 id="allowcomments_-false-lintemptyconditionalbody"><a class="anchor" href="#allowcomments_-false-lintemptyconditionalbody"></a>AllowComments: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3615,7 +3678,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-11"><a class="anchor" href="#configurable-attributes-11"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintemptyconditionalbody"><a class="anchor" href="#configurable-attributes-lintemptyconditionalbody"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3674,7 +3737,7 @@ end</code></pre>
 <p>Checks for empty <code>ensure</code> blocks.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-35"><a class="anchor" href="#examples-35"></a>Examples</h3>
+<h3 id="examples-lintemptyensure"><a class="anchor" href="#examples-lintemptyensure"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3741,7 +3804,7 @@ end</code></pre>
 <p>Checks for the presence of empty expressions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-36"><a class="anchor" href="#examples-36"></a>Examples</h3>
+<h3 id="examples-lintemptyexpression"><a class="anchor" href="#examples-lintemptyexpression"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3799,7 +3862,7 @@ end</code></pre>
 <p>Enforces that Ruby source files are not empty.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-37"><a class="anchor" href="#examples-37"></a>Examples</h3>
+<h3 id="examples-lintemptyfile"><a class="anchor" href="#examples-lintemptyfile"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3810,7 +3873,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowcomments-true-default-3"><a class="anchor" href="#allowcomments-true-default-3"></a>AllowComments: true (default)</h4>
+<h4 id="allowcomments_-true-_default_-lintemptyfile"><a class="anchor" href="#allowcomments_-true-_default_-lintemptyfile"></a>AllowComments: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -3819,7 +3882,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowcomments-false-3"><a class="anchor" href="#allowcomments-false-3"></a>AllowComments: false</h4>
+<h4 id="allowcomments_-false-lintemptyfile"><a class="anchor" href="#allowcomments_-false-lintemptyfile"></a>AllowComments: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3829,7 +3892,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-12"><a class="anchor" href="#configurable-attributes-12"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintemptyfile"><a class="anchor" href="#configurable-attributes-lintemptyfile"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3900,7 +3963,7 @@ Required Ruby version: 2.7
 <p>Checks for the presence of <code>in</code> pattern branches without a body.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-38"><a class="anchor" href="#examples-38"></a>Examples</h3>
+<h3 id="examples-lintemptyinpattern"><a class="anchor" href="#examples-lintemptyinpattern"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3920,7 +3983,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowcomments-true-default-4"><a class="anchor" href="#allowcomments-true-default-4"></a>AllowComments: true (default)</h4>
+<h4 id="allowcomments_-true-_default_-lintemptyinpattern"><a class="anchor" href="#allowcomments_-true-_default_-lintemptyinpattern"></a>AllowComments: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -3934,7 +3997,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowcomments-false-4"><a class="anchor" href="#allowcomments-false-4"></a>AllowComments: false</h4>
+<h4 id="allowcomments_-false-lintemptyinpattern"><a class="anchor" href="#allowcomments_-false-lintemptyinpattern"></a>AllowComments: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -3949,7 +4012,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-13"><a class="anchor" href="#configurable-attributes-13"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintemptyinpattern"><a class="anchor" href="#configurable-attributes-lintemptyinpattern"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4008,7 +4071,7 @@ end</code></pre>
 <p>Checks for empty interpolation.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-39"><a class="anchor" href="#examples-39"></a>Examples</h3>
+<h3 id="examples-lintemptyinterpolation"><a class="anchor" href="#examples-lintemptyinterpolation"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4055,7 +4118,7 @@ end</code></pre>
 <p>Checks for the presence of <code>when</code> branches without a body.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-40"><a class="anchor" href="#examples-40"></a>Examples</h3>
+<h3 id="examples-lintemptywhen"><a class="anchor" href="#examples-lintemptywhen"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4075,7 +4138,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowcomments-true-default-5"><a class="anchor" href="#allowcomments-true-default-5"></a>AllowComments: true (default)</h4>
+<h4 id="allowcomments_-true-_default_-lintemptywhen"><a class="anchor" href="#allowcomments_-true-_default_-lintemptywhen"></a>AllowComments: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -4089,7 +4152,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowcomments-false-5"><a class="anchor" href="#allowcomments-false-5"></a>AllowComments: false</h4>
+<h4 id="allowcomments_-false-lintemptywhen"><a class="anchor" href="#allowcomments_-false-lintemptywhen"></a>AllowComments: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4104,7 +4167,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-14"><a class="anchor" href="#configurable-attributes-14"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintemptywhen"><a class="anchor" href="#configurable-attributes-lintemptywhen"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4153,7 +4216,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enabled</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.83</p></td>
 </tr>
@@ -4169,7 +4232,7 @@ and the exception will be silently thrown away as if it were rescued.</p>
 <p>If you want to rescue some (or all) exceptions, best to do it explicitly</p>
 </div>
 <div class="sect2">
-<h3 id="examples-41"><a class="anchor" href="#examples-41"></a>Examples</h3>
+<h3 id="examples-lintensurereturn"><a class="anchor" href="#examples-lintensurereturn"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4203,7 +4266,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-4"><a class="anchor" href="#references-4"></a>References</h3>
+<h3 id="references-lintensurereturn"><a class="anchor" href="#references-lintensurereturn"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4281,7 +4344,7 @@ This cop identifies places where <code>ERB.new(str, trim_mode, eoutvar)</code> c
 be replaced by <code>ERB.new(str, :trim_mode: trim_mode, eoutvar: eoutvar)</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-42"><a class="anchor" href="#examples-42"></a>Examples</h3>
+<h3 id="examples-linterbnewarguments"><a class="anchor" href="#examples-linterbnewarguments"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Target codes supports Ruby 2.6 and higher only
@@ -4362,7 +4425,7 @@ backported to Ruby 2.6.
 See: <a href="https://bugs.ruby-lang.org/issues/5400" class="bare">https://bugs.ruby-lang.org/issues/5400</a></p>
 </div>
 <div class="sect2">
-<h3 id="examples-43"><a class="anchor" href="#examples-43"></a>Examples</h3>
+<h3 id="examples-lintflipflop"><a class="anchor" href="#examples-lintflipflop"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4378,7 +4441,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-5"><a class="anchor" href="#references-5"></a>References</h3>
+<h3 id="references-lintflipflop"><a class="anchor" href="#references-lintflipflop"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4428,34 +4491,8 @@ is almost never the desired semantics. Comparison via the <code>==/!=</code> ope
 floating-point value representation to be exactly the same, which is very unlikely
 if you perform any arithmetic operations involving precision loss.</p>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre># good - comparing against zero
- x == 0.0
- x != 0.0</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre># good
-(x - 0.1).abs &lt; Float::EPSILON</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre># good
-tolerance = 0.0001
-(x - 0.1).abs &lt; tolerance</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre># Or some other epsilon based type of comparison:
-# https://www.embeddeduse.com/2019/08/26/qt-compare-two-floats/</pre>
-</div>
-</div>
 <div class="sect2">
-<h3 id="examples-44"><a class="anchor" href="#examples-44"></a>Examples</h3>
+<h3 id="examples-lintfloatcomparison"><a class="anchor" href="#examples-lintfloatcomparison"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4463,12 +4500,26 @@ x == 0.1
 x != 0.1
 
 # good - using BigDecimal
-x.to_d == 0.1.to_d</code></pre>
+x.to_d == 0.1.to_d
+
+# good - comparing against zero
+x == 0.0
+x != 0.0
+
+# good
+(x - 0.1).abs &lt; Float::EPSILON
+
+# good
+tolerance = 0.0001
+(x - 0.1).abs &lt; tolerance
+
+# Or some other epsilon based type of comparison:
+# https://www.embeddeduse.com/2019/08/26/qt-compare-two-floats/</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-6"><a class="anchor" href="#references-6"></a>References</h3>
+<h3 id="references-lintfloatcomparison"><a class="anchor" href="#references-lintfloatcomparison"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4515,7 +4566,7 @@ really really really really really big. Too big. No-one needs Floats
 that big. If you need a float that big, something is wrong with you.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-45"><a class="anchor" href="#examples-45"></a>Examples</h3>
+<h3 id="examples-lintfloatoutofrange"><a class="anchor" href="#examples-lintfloatoutofrange"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4569,7 +4620,7 @@ format string. Do not mix numbered, unnumbered, and named formats in
 the same format string.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-46"><a class="anchor" href="#examples-46"></a>Examples</h3>
+<h3 id="examples-lintformatparametermismatch"><a class="anchor" href="#examples-lintformatparametermismatch"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4627,7 +4678,7 @@ for hash keys.</p>
 one of these methods: <code>key?</code>, <code>has_key?</code>, <code>fetch</code>, <code>[]</code> and <code>[]=</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-8"><a class="anchor" href="#safety-8"></a>Safety</h3>
+<h3 id="safety-linthashcomparebyidentity"><a class="anchor" href="#safety-linthashcomparebyidentity"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe. Although unlikely, the hash could store both object
 ids and other values that need be compared by value, and thus
@@ -4639,7 +4690,7 @@ methods (<code>key?</code>, etc.) is actually a hash.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-47"><a class="anchor" href="#examples-47"></a>Examples</h3>
+<h3 id="examples-linthashcomparebyidentity"><a class="anchor" href="#examples-linthashcomparebyidentity"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4655,7 +4706,7 @@ hash.key?(baz)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-7"><a class="anchor" href="#references-7"></a>References</h3>
+<h3 id="references-linthashcomparebyidentity"><a class="anchor" href="#references-linthashcomparebyidentity"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4701,7 +4752,7 @@ hash.key?(baz)</code></pre>
 the receiver of the call is a HEREDOC.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-48"><a class="anchor" href="#examples-48"></a>Examples</h3>
+<h3 id="examples-lintheredocmethodcallposition"><a class="anchor" href="#examples-lintheredocmethodcallposition"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4728,7 +4779,7 @@ SQL</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-8"><a class="anchor" href="#references-8"></a>References</h3>
+<h3 id="references-lintheredocmethodcallposition"><a class="anchor" href="#references-lintheredocmethodcallposition"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4777,7 +4828,7 @@ SQL</code></pre>
 <code>Object#==</code> is provided for the purpose of doing value comparison.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-49"><a class="anchor" href="#examples-49"></a>Examples</h3>
+<h3 id="examples-lintidentitycomparison"><a class="anchor" href="#examples-lintidentitycomparison"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4789,7 +4840,7 @@ foo.equal?(bar)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-9"><a class="anchor" href="#references-9"></a>References</h3>
+<h3 id="references-lintidentitycomparison"><a class="anchor" href="#references-lintidentitycomparison"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4835,7 +4886,7 @@ foo.equal?(bar)</code></pre>
 which are on the same line.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-50"><a class="anchor" href="#examples-50"></a>Examples</h3>
+<h3 id="examples-lintimplicitstringconcatenation"><a class="anchor" href="#examples-lintimplicitstringconcatenation"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4906,14 +4957,14 @@ It&#8217;s up to user how to handle the return value.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-9"><a class="anchor" href="#safety-9"></a>Safety</h3>
+<h3 id="safety-lintincompatibleioselectwithfiberscheduler"><a class="anchor" href="#safety-lintincompatibleioselectwithfiberscheduler"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because <code>NoMethodError</code> occurs
 if <code>require 'io/wait'</code> is not called.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-51"><a class="anchor" href="#examples-51"></a>Examples</h3>
+<h3 id="examples-lintincompatibleioselectwithfiberscheduler"><a class="anchor" href="#examples-lintincompatibleioselectwithfiberscheduler"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -4969,7 +5020,7 @@ singleton methods private/protected. <code>private_class_method</code> can be
 used for that.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-52"><a class="anchor" href="#examples-52"></a>Examples</h3>
+<h3 id="examples-lintineffectiveaccessmodifier"><a class="anchor" href="#examples-lintineffectiveaccessmodifier"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5041,7 +5092,7 @@ It is configurable to suggest using either <code>StandardError</code> (default) 
 <code>RuntimeError</code> instead.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-10"><a class="anchor" href="#safety-10"></a>Safety</h3>
+<h3 id="safety-lintinheritexception"><a class="anchor" href="#safety-lintinheritexception"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because <code>rescue</code> that omit
 exception class handle <code>StandardError</code> and its subclasses,
@@ -5049,9 +5100,9 @@ but not <code>Exception</code> and its subclasses.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-53"><a class="anchor" href="#examples-53"></a>Examples</h3>
+<h3 id="examples-lintinheritexception"><a class="anchor" href="#examples-lintinheritexception"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-standard_error-default"><a class="anchor" href="#enforcedstyle-standard_error-default"></a>EnforcedStyle: standard_error (default)</h4>
+<h4 id="enforcedstyle_-standard_error-_default_-lintinheritexception"><a class="anchor" href="#enforcedstyle_-standard_error-_default_-lintinheritexception"></a>EnforcedStyle: standard_error (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5069,7 +5120,7 @@ C = Class.new(StandardError)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyle-runtime_error"><a class="anchor" href="#enforcedstyle-runtime_error"></a>EnforcedStyle: runtime_error</h4>
+<h4 id="enforcedstyle_-runtime_error-lintinheritexception"><a class="anchor" href="#enforcedstyle_-runtime_error-lintinheritexception"></a>EnforcedStyle: runtime_error</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5088,7 +5139,7 @@ C = Class.new(RuntimeError)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-15"><a class="anchor" href="#configurable-attributes-15"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintinheritexception"><a class="anchor" href="#configurable-attributes-lintinheritexception"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5147,7 +5198,7 @@ C = Class.new(RuntimeError)</code></pre>
 <p>Checks for interpolation in a single quoted string.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-11"><a class="anchor" href="#safety-11"></a>Safety</h3>
+<h3 id="safety-lintinterpolationcheck"><a class="anchor" href="#safety-lintinterpolationcheck"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because although it always replaces single quotes as
 if it were miswritten double quotes, it is not always the case. For example,
@@ -5156,7 +5207,7 @@ the expression <code>foo</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-54"><a class="anchor" href="#examples-54"></a>Examples</h3>
+<h3 id="examples-lintinterpolationcheck"><a class="anchor" href="#examples-lintinterpolationcheck"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5214,7 +5265,7 @@ use it() or self.it</code></pre>
 So use <code>it()</code> or <code>self.it</code> to ensure compatibility.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-55"><a class="anchor" href="#examples-55"></a>Examples</h3>
+<h3 id="examples-lintitwithoutargumentsinblock"><a class="anchor" href="#examples-lintitwithoutargumentsinblock"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5227,7 +5278,7 @@ do_something { self.it }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-10"><a class="anchor" href="#references-10"></a>References</h3>
+<h3 id="references-lintitwithoutargumentsinblock"><a class="anchor" href="#references-lintitwithoutargumentsinblock"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5285,7 +5336,7 @@ lambda instead</pre>
 Autocorrection replaces with compatible proc argument.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-56"><a class="anchor" href="#examples-56"></a>Examples</h3>
+<h3 id="examples-lintlambdawithoutliteralblock"><a class="anchor" href="#examples-lintlambdawithoutliteralblock"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5350,7 +5401,7 @@ Literals in <code>case-in</code> condition where the match variable is used in
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-57"><a class="anchor" href="#examples-57"></a>Examples</h3>
+<h3 id="examples-lintliteralascondition"><a class="anchor" href="#examples-lintliteralascondition"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5423,7 +5474,7 @@ It emulates the following Ruby warning:</p>
 therefore this cop does not provide autocorrection.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-58"><a class="anchor" href="#examples-58"></a>Examples</h3>
+<h3 id="examples-lintliteralassignmentincondition"><a class="anchor" href="#examples-lintliteralassignmentincondition"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5479,7 +5530,7 @@ end</code></pre>
 <p>Checks for interpolated literals.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-59"><a class="anchor" href="#examples-59"></a>Examples</h3>
+<h3 id="examples-lintliteralininterpolation"><a class="anchor" href="#examples-lintliteralininterpolation"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5526,7 +5577,7 @@ end</code></pre>
 <p>Checks for uses of <code>begin&#8230;&#8203;end while/until something</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-12"><a class="anchor" href="#safety-12"></a>Safety</h3>
+<h3 id="safety-lintloop"><a class="anchor" href="#safety-lintloop"></a>Safety</h3>
 <div class="paragraph">
 <p>The cop is unsafe because behavior can change in some cases, including
 if a local variable inside the loop body is accessed outside of it, or if the
@@ -5534,7 +5585,7 @@ loop body raises a <code>StopIteration</code> exception (which <code>Kernel#loop
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-60"><a class="anchor" href="#examples-60"></a>Examples</h3>
+<h3 id="examples-lintloop"><a class="anchor" href="#examples-lintloop"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5570,7 +5621,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-11"><a class="anchor" href="#references-11"></a>References</h3>
+<h3 id="references-lintloop"><a class="anchor" href="#references-lintloop"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -5618,7 +5669,7 @@ cop disables on wide ranges of code, that latter contributors to
 a file wouldn&#8217;t be aware of.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-61"><a class="anchor" href="#examples-61"></a>Examples</h3>
+<h3 id="examples-lintmissingcopenabledirective"><a class="anchor" href="#examples-lintmissingcopenabledirective"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Lint/MissingCopEnableDirective:
@@ -5658,7 +5709,7 @@ x += 1
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-16"><a class="anchor" href="#configurable-attributes-16"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintmissingcopenabledirective"><a class="anchor" href="#configurable-attributes-lintmissingcopenabledirective"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5736,7 +5787,7 @@ not meant to be called with <code>super</code>. In those cases, you can use the
 <strong>in addition to</strong> <code>Object</code> and <code>BasicObject</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-62"><a class="anchor" href="#examples-62"></a>Examples</h3>
+<h3 id="examples-lintmissingsuper"><a class="anchor" href="#examples-lintmissingsuper"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5793,7 +5844,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedparentclasses-myabstractclass"><a class="anchor" href="#allowedparentclasses-myabstractclass"></a>AllowedParentClasses: [MyAbstractClass]</h4>
+<h4 id="allowedparentclasses_-_myabstractclass_-lintmissingsuper"><a class="anchor" href="#allowedparentclasses_-_myabstractclass_-lintmissingsuper"></a>AllowedParentClasses: [MyAbstractClass]</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -5807,7 +5858,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-17"><a class="anchor" href="#configurable-attributes-17"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintmissingsuper"><a class="anchor" href="#configurable-attributes-lintmissingsuper"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -5882,7 +5933,7 @@ Range objects cannot be autocorrected.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-13"><a class="anchor" href="#safety-13"></a>Safety</h3>
+<h3 id="safety-lintmixedcaserange"><a class="anchor" href="#safety-lintmixedcaserange"></a>Safety</h3>
 <div class="paragraph">
 <p>The cop autocorrects regexp character classes
 by replacing one character range with two: <code>A-z</code> becomes <code>A-Za-z</code>.
@@ -5893,7 +5944,7 @@ change the behavior of the code).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-63"><a class="anchor" href="#examples-63"></a>Examples</h3>
+<h3 id="examples-lintmixedcaserange"><a class="anchor" href="#examples-lintmixedcaserange"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5943,7 +5994,7 @@ Replace numbered captures with non-capturing groupings or
 named captures.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-64"><a class="anchor" href="#examples-64"></a>Examples</h3>
+<h3 id="examples-lintmixedregexpcapturetypes"><a class="anchor" href="#examples-lintmixedregexpcapturetypes"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -5999,7 +6050,7 @@ the comparison is not syntax error. This cop checks the bad usage of
 comparison operators.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-65"><a class="anchor" href="#examples-65"></a>Examples</h3>
+<h3 id="examples-lintmultiplecomparison"><a class="anchor" href="#examples-lintmultiplecomparison"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6048,7 +6099,7 @@ x &lt; y &amp;&amp; y &lt; z
 <p>Checks for nested method definitions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-66"><a class="anchor" href="#examples-66"></a>Examples</h3>
+<h3 id="examples-lintnestedmethoddefinition"><a class="anchor" href="#examples-lintnestedmethoddefinition"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6098,7 +6149,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedmethods-default-2"><a class="anchor" href="#allowedmethods-default-2"></a>AllowedMethods: [] (default)</h4>
+<h4 id="allowedmethods_-__-_default_-lintnestedmethoddefinition"><a class="anchor" href="#allowedmethods_-__-_default_-lintnestedmethoddefinition"></a>AllowedMethods: [] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6112,7 +6163,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedmethods-has_many"><a class="anchor" href="#allowedmethods-has_many"></a>AllowedMethods: ['has_many']</h4>
+<h4 id="allowedmethods_-__has_many__-lintnestedmethoddefinition"><a class="anchor" href="#allowedmethods_-__has_many__-lintnestedmethoddefinition"></a>AllowedMethods: ['has_many']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6126,7 +6177,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedpatterns-default-2"><a class="anchor" href="#allowedpatterns-default-2"></a>AllowedPatterns: [] (default)</h4>
+<h4 id="allowedpatterns_-__-_default_-lintnestedmethoddefinition"><a class="anchor" href="#allowedpatterns_-__-_default_-lintnestedmethoddefinition"></a>AllowedPatterns: [] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6140,7 +6191,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedpatterns-baz"><a class="anchor" href="#allowedpatterns-baz"></a>AllowedPatterns: ['baz']</h4>
+<h4 id="allowedpatterns_-__baz__-lintnestedmethoddefinition"><a class="anchor" href="#allowedpatterns_-__baz__-lintnestedmethoddefinition"></a>AllowedPatterns: ['baz']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -6155,7 +6206,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-18"><a class="anchor" href="#configurable-attributes-18"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintnestedmethoddefinition"><a class="anchor" href="#configurable-attributes-lintnestedmethoddefinition"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6184,7 +6235,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-12"><a class="anchor" href="#references-12"></a>References</h3>
+<h3 id="references-lintnestedmethoddefinition"><a class="anchor" href="#references-lintnestedmethoddefinition"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6229,7 +6280,7 @@ end</code></pre>
 <p>Checks for nested percent literals.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-67"><a class="anchor" href="#examples-67"></a>Examples</h3>
+<h3 id="examples-lintnestedpercentliteral"><a class="anchor" href="#examples-lintnestedpercentliteral"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6292,7 +6343,7 @@ attributes = {
 <p>Don&#8217;t omit the accumulator when calling <code>next</code> in a <code>reduce</code> block.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-68"><a class="anchor" href="#examples-68"></a>Examples</h3>
+<h3 id="examples-lintnextwithoutaccumulator"><a class="anchor" href="#examples-lintnextwithoutaccumulator"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6348,7 +6399,7 @@ In this situation, the <code>return</code> will result in an exit from the curre
 method, possibly leading to unexpected behavior.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-69"><a class="anchor" href="#examples-69"></a>Examples</h3>
+<h3 id="examples-lintnoreturninbeginendblocks"><a class="anchor" href="#examples-lintnoreturninbeginendblocks"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6432,7 +6483,7 @@ when the directory existed at the time of <code>exist?</code>,
 but someone else deleted it shortly afterwards.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-14"><a class="anchor" href="#safety-14"></a>Safety</h3>
+<h3 id="safety-lintnonatomicfileoperation"><a class="anchor" href="#safety-lintnonatomicfileoperation"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, because autocorrection change to atomic processing.
 The atomic processing of the replacement destination is not guaranteed
@@ -6440,7 +6491,7 @@ to be strictly equivalent to that before the replacement.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-70"><a class="anchor" href="#examples-70"></a>Examples</h3>
+<h3 id="examples-lintnonatomicfileoperation"><a class="anchor" href="#examples-lintnonatomicfileoperation"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - race condition with another process may result in an error in `mkdir`
@@ -6462,7 +6513,7 @@ FileUtils.rm_f(path)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-13"><a class="anchor" href="#references-13"></a>References</h3>
+<h3 id="references-lintnonatomicfileoperation"><a class="anchor" href="#references-lintnonatomicfileoperation"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -6529,14 +6580,14 @@ This cop will be deprecated and removed when supporting only Ruby 3.0 and higher
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-15"><a class="anchor" href="#safety-15"></a>Safety</h3>
+<h3 id="safety-lintnondeterministicrequireorder"><a class="anchor" href="#safety-lintnondeterministicrequireorder"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe in the case where sorting files changes existing
 expected behavior.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-71"><a class="anchor" href="#examples-71"></a>Examples</h3>
+<h3 id="examples-lintnondeterministicrequireorder"><a class="anchor" href="#examples-lintnondeterministicrequireorder"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6634,7 +6685,7 @@ method definition.</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="examples-72"><a class="anchor" href="#examples-72"></a>Examples</h3>
+<h3 id="examples-lintnonlocalexitfromiterator"><a class="anchor" href="#examples-lintnonlocalexitfromiterator"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class ItemApi
@@ -6722,7 +6773,7 @@ there are no methods to allowed.
 </table>
 </div>
 <div class="sect2">
-<h3 id="safety-16"><a class="anchor" href="#safety-16"></a>Safety</h3>
+<h3 id="safety-lintnumberconversion"><a class="anchor" href="#safety-lintnumberconversion"></a>Safety</h3>
 <div class="paragraph">
 <p>Autocorrection is unsafe because it is not guaranteed that the
 replacement <code>Kernel</code> methods are able to properly handle the
@@ -6730,7 +6781,7 @@ input if it is not a standard class.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-73"><a class="anchor" href="#examples-73"></a>Examples</h3>
+<h3 id="examples-lintnumberconversion"><a class="anchor" href="#examples-lintnumberconversion"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6755,7 +6806,7 @@ bar.send { |i| Complex(i) }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedmethods-default-3"><a class="anchor" href="#allowedmethods-default-3"></a>AllowedMethods: [] (default)</h4>
+<h4 id="allowedmethods_-__-_default_-lintnumberconversion"><a class="anchor" href="#allowedmethods_-__-_default_-lintnumberconversion"></a>AllowedMethods: [] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6764,7 +6815,7 @@ bar.send { |i| Complex(i) }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedmethods-minutes"><a class="anchor" href="#allowedmethods-minutes"></a>AllowedMethods: [minutes]</h4>
+<h4 id="allowedmethods_-_minutes_-lintnumberconversion"><a class="anchor" href="#allowedmethods_-_minutes_-lintnumberconversion"></a>AllowedMethods: [minutes]</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -6773,7 +6824,7 @@ bar.send { |i| Complex(i) }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedpatterns-default-3"><a class="anchor" href="#allowedpatterns-default-3"></a>AllowedPatterns: [] (default)</h4>
+<h4 id="allowedpatterns_-__-_default_-lintnumberconversion"><a class="anchor" href="#allowedpatterns_-__-_default_-lintnumberconversion"></a>AllowedPatterns: [] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6782,7 +6833,7 @@ bar.send { |i| Complex(i) }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedpatterns-min"><a class="anchor" href="#allowedpatterns-min"></a>AllowedPatterns: ['min*']</h4>
+<h4 id="allowedpatterns_-__min___-lintnumberconversion"><a class="anchor" href="#allowedpatterns_-__min___-lintnumberconversion"></a>AllowedPatterns: ['min*']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -6791,7 +6842,7 @@ bar.send { |i| Complex(i) }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoredclasses-time-datetime-default"><a class="anchor" href="#ignoredclasses-time-datetime-default"></a>IgnoredClasses: [Time, DateTime] (default)</h4>
+<h4 id="ignoredclasses_-_time_-datetime_-_default_-lintnumberconversion"><a class="anchor" href="#ignoredclasses_-_time_-datetime_-_default_-lintnumberconversion"></a>IgnoredClasses: [Time, DateTime] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -6801,7 +6852,7 @@ Time.now.to_datetime.to_i</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-19"><a class="anchor" href="#configurable-attributes-19"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintnumberconversion"><a class="anchor" href="#configurable-attributes-lintnumberconversion"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -6901,7 +6952,7 @@ as well to prevent confusion.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-74"><a class="anchor" href="#examples-74"></a>Examples</h3>
+<h3 id="examples-lintnumberedparameterassignment"><a class="anchor" href="#examples-lintnumberedparameterassignment"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -6953,14 +7004,14 @@ should always be the same. If constants are assigned in multiple
 locations, the result may vary depending on the order of <code>require</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-17"><a class="anchor" href="#safety-17"></a>Safety</h3>
+<h3 id="safety-lintorassignmenttoconstant"><a class="anchor" href="#safety-lintorassignmenttoconstant"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because code that is already conditionally
 assigning a constant may have its behavior changed by autocorrection.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-75"><a class="anchor" href="#examples-75"></a>Examples</h3>
+<h3 id="examples-lintorassignmenttoconstant"><a class="anchor" href="#examples-lintorassignmenttoconstant"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7008,13 +7059,13 @@ CONST = 1</code></pre>
 a magic comment is not placed before a shebang.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-18"><a class="anchor" href="#safety-18"></a>Safety</h3>
+<h3 id="safety-lintorderedmagiccomments"><a class="anchor" href="#safety-lintorderedmagiccomments"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because file encoding may change.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-76"><a class="anchor" href="#examples-76"></a>Examples</h3>
+<h3 id="examples-lintorderedmagiccomments"><a class="anchor" href="#examples-lintorderedmagiccomments"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7075,7 +7126,7 @@ p [''.frozen?, ''.encoding] #=&gt; [true, #&lt;Encoding:US-ASCII&gt;]</code></pr
 and thus always returns nil.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-19"><a class="anchor" href="#safety-19"></a>Safety</h3>
+<h3 id="safety-lintoutofrangeregexpref"><a class="anchor" href="#safety-lintoutofrangeregexpref"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it is naive in how it determines what
 references are available based on the last encountered regexp, but
@@ -7096,7 +7147,7 @@ however.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-77"><a class="anchor" href="#examples-77"></a>Examples</h3>
+<h3 id="examples-lintoutofrangeregexpref"><a class="anchor" href="#examples-lintoutofrangeregexpref"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">/(foo)bar/ =~ 'foobar'
@@ -7148,7 +7199,7 @@ puts $1 # =&gt; foo</code></pre>
 parenthesis.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-78"><a class="anchor" href="#examples-78"></a>Examples</h3>
+<h3 id="examples-lintparenthesesasgroupedexpression"><a class="anchor" href="#examples-lintparenthesesasgroupedexpression"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7162,7 +7213,7 @@ do_something (foo * bar).baz</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-14"><a class="anchor" href="#references-14"></a>References</h3>
+<h3 id="references-lintparenthesesasgroupedexpression"><a class="anchor" href="#references-lintparenthesesasgroupedexpression"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7212,7 +7263,7 @@ example, mistranslating an array of literals to percent string notation)
 rather than meant to be part of the resulting strings.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-20"><a class="anchor" href="#safety-20"></a>Safety</h3>
+<h3 id="safety-lintpercentstringarray"><a class="anchor" href="#safety-lintpercentstringarray"></a>Safety</h3>
 <div class="paragraph">
 <p>The cop is unsafe because the correction changes the values in the array
 and that might have been done purposely.</p>
@@ -7225,7 +7276,7 @@ and that might have been done purposely.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-79"><a class="anchor" href="#examples-79"></a>Examples</h3>
+<h3 id="examples-lintpercentstringarray"><a class="anchor" href="#examples-lintpercentstringarray"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7277,7 +7328,7 @@ example, mistranslating an array of literals to percent string notation)
 rather than meant to be part of the resulting symbols.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-80"><a class="anchor" href="#examples-80"></a>Examples</h3>
+<h3 id="examples-lintpercentsymbolarray"><a class="anchor" href="#examples-lintpercentsymbolarray"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7333,14 +7384,14 @@ prevent the false positive by specifying a namespace to be omitted for
 name with an explicit namespace.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-21"><a class="anchor" href="#safety-21"></a>Safety</h3>
+<h3 id="safety-lintraiseexception"><a class="anchor" href="#safety-lintraiseexception"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it will change the exception class being
 raised, which is a change in behavior.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-81"><a class="anchor" href="#examples-81"></a>Examples</h3>
+<h3 id="examples-lintraiseexception"><a class="anchor" href="#examples-lintraiseexception"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7351,7 +7402,7 @@ raise StandardError, 'Error message here'</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedimplicitnamespaces-gem"><a class="anchor" href="#allowedimplicitnamespaces-gem"></a>AllowedImplicitNamespaces: ['Gem']</h4>
+<h4 id="allowedimplicitnamespaces_-__gem__-lintraiseexception"><a class="anchor" href="#allowedimplicitnamespaces_-__gem__-lintraiseexception"></a>AllowedImplicitNamespaces: ['Gem']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -7365,7 +7416,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-20"><a class="anchor" href="#configurable-attributes-20"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintraiseexception"><a class="anchor" href="#configurable-attributes-lintraiseexception"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7389,7 +7440,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-15"><a class="anchor" href="#references-15"></a>References</h3>
+<h3 id="references-lintraiseexception"><a class="anchor" href="#references-lintraiseexception"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -7435,7 +7486,7 @@ end</code></pre>
 Such calls always return <code>0</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-82"><a class="anchor" href="#examples-82"></a>Examples</h3>
+<h3 id="examples-lintrandone"><a class="anchor" href="#examples-lintrandone"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7493,7 +7544,7 @@ execution. The reason it can&#8217;t be implemented as a normal cop is that
 it depends on the results of all other cops to do its work.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-83"><a class="anchor" href="#examples-83"></a>Examples</h3>
+<h3 id="examples-lintredundantcopdisabledirective"><a class="anchor" href="#examples-lintredundantcopdisabledirective"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7547,7 +7598,7 @@ removed.</p>
 that cop checks whether any cop was actually enabled.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-84"><a class="anchor" href="#examples-84"></a>Examples</h3>
+<h3 id="examples-lintredundantcopenabledirective"><a class="anchor" href="#examples-lintredundantcopenabledirective"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7621,7 +7672,7 @@ Required Ruby version: 3.0
 This cop checks for redundant <code>sort</code> method to <code>Dir.glob</code> and <code>Dir[]</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-22"><a class="anchor" href="#safety-22"></a>Safety</h3>
+<h3 id="safety-lintredundantdirglobsort"><a class="anchor" href="#safety-lintredundantdirglobsort"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, in case of having a file and a directory with
 identical names, since directory will be loaded before the file, which
@@ -7629,7 +7680,7 @@ will break <code>exe/files.rb</code> that rely on <code>exe.rb</code> file.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-85"><a class="anchor" href="#examples-85"></a>Examples</h3>
+<h3 id="examples-lintredundantdirglobsort"><a class="anchor" href="#examples-lintredundantdirglobsort"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7693,7 +7744,7 @@ because it&#8217;s unknown what kind of string will be expanded as a result:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-86"><a class="anchor" href="#examples-86"></a>Examples</h3>
+<h3 id="examples-lintredundantregexpquantifiers"><a class="anchor" href="#examples-lintredundantregexpquantifiers"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7794,14 +7845,14 @@ ruby 2.2.8p477 (2017-09-14 revision 59906) [x86_64-darwin13]
 <p>This cop target those features.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-23"><a class="anchor" href="#safety-23"></a>Safety</h3>
+<h3 id="safety-lintredundantrequirestatement"><a class="anchor" href="#safety-lintredundantrequirestatement"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because if <code>require 'pp'</code> is removed from one file,
 <code>NameError</code> can be encountered when another file uses <code>PP.pp</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-87"><a class="anchor" href="#examples-87"></a>Examples</h3>
+<h3 id="examples-lintredundantrequirestatement"><a class="anchor" href="#examples-lintredundantrequirestatement"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7867,7 +7918,7 @@ for which to suppress (allow) this cop&#8217;s check.</p>
 because <code>NilClass</code> has methods like <code>respond_to?</code> and <code>is_a?</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-24"><a class="anchor" href="#safety-24"></a>Safety</h3>
+<h3 id="safety-lintredundantsafenavigation"><a class="anchor" href="#safety-lintredundantsafenavigation"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe, because autocorrection can change the return type of
 the expression. An offending expression that previously could return <code>nil</code>
@@ -7875,7 +7926,7 @@ will be autocorrected to never return <code>nil</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-88"><a class="anchor" href="#examples-88"></a>Examples</h3>
+<h3 id="examples-lintredundantsafenavigation"><a class="anchor" href="#examples-lintredundantsafenavigation"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7921,7 +7972,7 @@ foo.to_s</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedmethods-nil_safe_method"><a class="anchor" href="#allowedmethods-nil_safe_method"></a>AllowedMethods: [nil_safe_method]</h4>
+<h4 id="allowedmethods_-_nil_safe_method_-lintredundantsafenavigation"><a class="anchor" href="#allowedmethods_-_nil_safe_method_-lintredundantsafenavigation"></a>AllowedMethods: [nil_safe_method]</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -7935,7 +7986,7 @@ do_something if attrs&amp;.not_nil_safe_method(:[])</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-21"><a class="anchor" href="#configurable-attributes-21"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintredundantsafenavigation"><a class="anchor" href="#configurable-attributes-lintredundantsafenavigation"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -7994,7 +8045,7 @@ do_something if attrs&amp;.not_nil_safe_method(:[])</code></pre>
 <p>Checks for unneeded usages of splat expansion.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-89"><a class="anchor" href="#examples-89"></a>Examples</h3>
+<h3 id="examples-lintredundantsplatexpansion"><a class="anchor" href="#examples-lintredundantsplatexpansion"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8050,7 +8101,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowpercentliteralarrayargument-true-default"><a class="anchor" href="#allowpercentliteralarrayargument-true-default"></a>AllowPercentLiteralArrayArgument: true (default)</h4>
+<h4 id="allowpercentliteralarrayargument_-true-_default_-lintredundantsplatexpansion"><a class="anchor" href="#allowpercentliteralarrayargument_-true-_default_-lintredundantsplatexpansion"></a>AllowPercentLiteralArrayArgument: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -8059,7 +8110,7 @@ do_something(*%w[foo bar baz])</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowpercentliteralarrayargument-false"><a class="anchor" href="#allowpercentliteralarrayargument-false"></a>AllowPercentLiteralArrayArgument: false</h4>
+<h4 id="allowpercentliteralarrayargument_-false-lintredundantsplatexpansion"><a class="anchor" href="#allowpercentliteralarrayargument_-false-lintredundantsplatexpansion"></a>AllowPercentLiteralArrayArgument: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8069,7 +8120,7 @@ do_something(*%w[foo bar baz])</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-22"><a class="anchor" href="#configurable-attributes-22"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintredundantsplatexpansion"><a class="anchor" href="#configurable-attributes-lintredundantsplatexpansion"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8129,7 +8180,7 @@ do_something(*%w[foo bar baz])</code></pre>
 which is redundant.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-90"><a class="anchor" href="#examples-90"></a>Examples</h3>
+<h3 id="examples-lintredundantstringcoercion"><a class="anchor" href="#examples-lintredundantstringcoercion"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8147,7 +8198,7 @@ warn something</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-16"><a class="anchor" href="#references-16"></a>References</h3>
+<h3 id="references-lintredundantstringcoercion"><a class="anchor" href="#references-lintredundantstringcoercion"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8192,7 +8243,7 @@ warn something</code></pre>
 <p>Checks for redundant <code>with_index</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-91"><a class="anchor" href="#examples-91"></a>Examples</h3>
+<h3 id="examples-lintredundantwithindex"><a class="anchor" href="#examples-lintredundantwithindex"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8253,7 +8304,7 @@ end</code></pre>
 <p>Checks for redundant <code>with_object</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-92"><a class="anchor" href="#examples-92"></a>Examples</h3>
+<h3 id="examples-lintredundantwithobject"><a class="anchor" href="#examples-lintredundantwithobject"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8330,7 +8381,7 @@ These methods are deprecated and should be replaced with <code>Refinement#import
 <p>It emulates deprecation warnings in Ruby 3.1.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-25"><a class="anchor" href="#safety-25"></a>Safety</h3>
+<h3 id="safety-lintrefinementimportmethods"><a class="anchor" href="#safety-lintrefinementimportmethods"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection is unsafe because <code>include M</code> will affect the included class
 if any changes are made to module <code>M</code>.
@@ -8339,7 +8390,7 @@ thus it will not be affected if module <code>M</code> changes.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-93"><a class="anchor" href="#examples-93"></a>Examples</h3>
+<h3 id="examples-lintrefinementimportmethods"><a class="anchor" href="#examples-lintrefinementimportmethods"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8396,7 +8447,7 @@ end</code></pre>
 If a regexp literal is in condition, the regexp matches <code>$_</code> implicitly.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-94"><a class="anchor" href="#examples-94"></a>Examples</h3>
+<h3 id="examples-lintregexpascondition"><a class="anchor" href="#examples-lintregexpascondition"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8455,7 +8506,7 @@ be under the impression that the return value from the method call is
 an operand of &amp;&amp;/||.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-95"><a class="anchor" href="#examples-95"></a>Examples</h3>
+<h3 id="examples-lintrequireparentheses"><a class="anchor" href="#examples-lintrequireparentheses"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8528,7 +8579,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-96"><a class="anchor" href="#examples-96"></a>Examples</h3>
+<h3 id="examples-lintrequirerangeparentheses"><a class="anchor" href="#examples-lintrequirerangeparentheses"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - Represents `(1..42)`, not endless range.
@@ -8587,7 +8638,7 @@ end</code></pre>
 <p>Checks for uses a file requiring itself with <code>require_relative</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-97"><a class="anchor" href="#examples-97"></a>Examples</h3>
+<h3 id="examples-lintrequirerelativeselfpath"><a class="anchor" href="#examples-lintrequirerelativeselfpath"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8639,7 +8690,7 @@ require_relative 'bar'</code></pre>
 <p>Checks for <code>rescue</code> blocks targeting the Exception class.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-98"><a class="anchor" href="#examples-98"></a>Examples</h3>
+<h3 id="examples-lintrescueexception"><a class="anchor" href="#examples-lintrescueexception"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8659,7 +8710,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-17"><a class="anchor" href="#references-17"></a>References</h3>
+<h3 id="references-lintrescueexception"><a class="anchor" href="#references-lintrescueexception"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -8705,7 +8756,7 @@ end</code></pre>
 if an exception is raised.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-99"><a class="anchor" href="#examples-99"></a>Examples</h3>
+<h3 id="examples-lintrescuetype"><a class="anchor" href="#examples-lintrescuetype"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8775,7 +8826,7 @@ end</code></pre>
 where the value will be ignored. (initialize and setter methods)</p>
 </div>
 <div class="sect2">
-<h3 id="examples-100"><a class="anchor" href="#examples-100"></a>Examples</h3>
+<h3 id="examples-lintreturninvoidcontext"><a class="anchor" href="#examples-lintreturninvoidcontext"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8854,7 +8905,7 @@ safe navigation operator after a safe navigation operator.
 This cop checks for the problem outlined above.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-101"><a class="anchor" href="#examples-101"></a>Examples</h3>
+<h3 id="examples-lintsafenavigationchain"><a class="anchor" href="#examples-lintsafenavigationchain"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -8869,7 +8920,7 @@ x&amp;.foo || bar</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-23"><a class="anchor" href="#configurable-attributes-23"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintsafenavigationchain"><a class="anchor" href="#configurable-attributes-lintsafenavigationchain"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -8925,36 +8976,48 @@ x&amp;.foo || bar</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Check to make sure that if safe navigation is used for a method
-call in an <code>&amp;&amp;</code> or <code>||</code> condition that safe navigation is used for all
-method calls on that same object.</p>
+<p>Check to make sure that if safe navigation is used in an <code>&amp;&amp;</code> or <code>||</code> condition,
+consistent and appropriate safe navigation, without excess or deficiency,
+is used for all method calls on the same object.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-102"><a class="anchor" href="#examples-102"></a>Examples</h3>
+<h3 id="examples-lintsafenavigationconsistency"><a class="anchor" href="#examples-lintsafenavigationconsistency"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+foo&amp;.bar &amp;&amp; foo&amp;.baz
+
+# good
 foo&amp;.bar &amp;&amp; foo.baz
 
 # bad
-foo.bar || foo&amp;.baz
-
-# bad
-foo&amp;.bar &amp;&amp; (foobar.baz || foo.baz)
+foo.bar &amp;&amp; foo&amp;.baz
 
 # good
 foo.bar &amp;&amp; foo.baz
 
+# bad
+foo&amp;.bar || foo.baz
+
 # good
 foo&amp;.bar || foo&amp;.baz
 
+# bad
+foo.bar || foo&amp;.baz
+
 # good
-foo&amp;.bar &amp;&amp; (foobar.baz || foo&amp;.baz)</code></pre>
+foo.bar || foo.baz
+
+# bad
+foo&amp;.bar &amp;&amp; (foobar.baz || foo&amp;.baz)
+
+# good
+foo&amp;.bar &amp;&amp; (foobar.baz || foo.baz)</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-24"><a class="anchor" href="#configurable-attributes-24"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintsafenavigationconsistency"><a class="anchor" href="#configurable-attributes-lintsafenavigationconsistency"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9019,7 +9082,7 @@ checking <code>foo&amp;.empty?</code> in a conditional, <code>foo</code> being <
 do the opposite of what the author intends.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-103"><a class="anchor" href="#examples-103"></a>Examples</h3>
+<h3 id="examples-lintsafenavigationwithempty"><a class="anchor" href="#examples-lintsafenavigationwithempty"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9069,7 +9132,7 @@ return unless foo &amp;&amp; foo.empty?</code></pre>
 its first line is granted execute permission.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-104"><a class="anchor" href="#examples-104"></a>Examples</h3>
+<h3 id="examples-lintscriptpermission"><a class="anchor" href="#examples-lintscriptpermission"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9133,7 +9196,7 @@ puts 'hello, world'</code></pre>
 <p>Checks for self-assignments.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-105"><a class="anchor" href="#examples-105"></a>Examples</h3>
+<h3 id="examples-lintselfassignment"><a class="anchor" href="#examples-lintselfassignment"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9199,7 +9262,7 @@ And <code>extend</code> method that was originally a public method is also targe
 for style unification.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-106"><a class="anchor" href="#examples-106"></a>Examples</h3>
+<h3 id="examples-lintsendwithmixinargument"><a class="anchor" href="#examples-lintsendwithmixinargument"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9265,7 +9328,7 @@ It means argument shadowing is used in order to pass parameters
 to zero arity <code>super</code> when <code>IgnoreImplicitReferences</code> is <code>true</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-107"><a class="anchor" href="#examples-107"></a>Examples</h3>
+<h3 id="examples-lintshadowedargument"><a class="anchor" href="#examples-lintshadowedargument"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9296,7 +9359,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoreimplicitreferences-false-default"><a class="anchor" href="#ignoreimplicitreferences-false-default"></a>IgnoreImplicitReferences: false (default)</h4>
+<h4 id="ignoreimplicitreferences_-false-_default_-lintshadowedargument"><a class="anchor" href="#ignoreimplicitreferences_-false-_default_-lintshadowedargument"></a>IgnoreImplicitReferences: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9313,7 +9376,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoreimplicitreferences-true"><a class="anchor" href="#ignoreimplicitreferences-true"></a>IgnoreImplicitReferences: true</h4>
+<h4 id="ignoreimplicitreferences_-true-lintshadowedargument"><a class="anchor" href="#ignoreimplicitreferences_-true-lintshadowedargument"></a>IgnoreImplicitReferences: true</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -9331,7 +9394,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-25"><a class="anchor" href="#configurable-attributes-25"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintshadowedargument"><a class="anchor" href="#configurable-attributes-lintshadowedargument"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9401,7 +9464,7 @@ whether <code>StandardError</code> is included or not, because all <code>Standar
 are rescued by <code>rescue Exception</code>).</p>
 </div>
 <div class="sect2">
-<h3 id="examples-108"><a class="anchor" href="#examples-108"></a>Examples</h3>
+<h3 id="examples-lintshadowedexception"><a class="anchor" href="#examples-lintshadowedexception"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9507,7 +9570,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-109"><a class="anchor" href="#examples-109"></a>Examples</h3>
+<h3 id="examples-lintshadowingouterlocalvariable"><a class="anchor" href="#examples-lintshadowingouterlocalvariable"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9567,7 +9630,7 @@ end</code></pre>
 via <code>Struct.new</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-110"><a class="anchor" href="#examples-110"></a>Examples</h3>
+<h3 id="examples-lintstructnewoverride"><a class="anchor" href="#examples-lintstructnewoverride"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9622,7 +9685,7 @@ g.count #=&gt; 2</code></pre>
 <p>Checks for <code>rescue</code> blocks with no body.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-111"><a class="anchor" href="#examples-111"></a>Examples</h3>
+<h3 id="examples-lintsuppressedexception"><a class="anchor" href="#examples-lintsuppressedexception"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9653,7 +9716,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowcomments-true-default-6"><a class="anchor" href="#allowcomments-true-default-6"></a>AllowComments: true (default)</h4>
+<h4 id="allowcomments_-true-_default_-lintsuppressedexception"><a class="anchor" href="#allowcomments_-true-_default_-lintsuppressedexception"></a>AllowComments: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -9673,7 +9736,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowcomments-false-6"><a class="anchor" href="#allowcomments-false-6"></a>AllowComments: false</h4>
+<h4 id="allowcomments_-false-lintsuppressedexception"><a class="anchor" href="#allowcomments_-false-lintsuppressedexception"></a>AllowComments: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9693,7 +9756,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allownil-true-default"><a class="anchor" href="#allownil-true-default"></a>AllowNil: true (default)</h4>
+<h4 id="allownil_-true-_default_-lintsuppressedexception"><a class="anchor" href="#allownil_-true-_default_-lintsuppressedexception"></a>AllowNil: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -9716,7 +9779,7 @@ do_something rescue nil</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allownil-false"><a class="anchor" href="#allownil-false"></a>AllowNil: false</h4>
+<h4 id="allownil_-false-lintsuppressedexception"><a class="anchor" href="#allownil_-false-lintsuppressedexception"></a>AllowNil: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9740,7 +9803,7 @@ do_something rescue nil</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-26"><a class="anchor" href="#configurable-attributes-26"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintsuppressedexception"><a class="anchor" href="#configurable-attributes-lintsuppressedexception"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9769,7 +9832,7 @@ do_something rescue nil</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-18"><a class="anchor" href="#references-18"></a>References</h3>
+<h3 id="references-lintsuppressedexception"><a class="anchor" href="#references-lintsuppressedexception"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -9822,7 +9885,7 @@ every symbol key (ie. if any symbol key needs to be quoted it requires
 all keys to be quoted).</p>
 </div>
 <div class="sect2">
-<h3 id="examples-112"><a class="anchor" href="#examples-112"></a>Examples</h3>
+<h3 id="examples-lintsymbolconversion"><a class="anchor" href="#examples-lintsymbolconversion"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9843,7 +9906,7 @@ all keys to be quoted).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyle-strict-default"><a class="anchor" href="#enforcedstyle-strict-default"></a>EnforcedStyle: strict (default)</h4>
+<h4 id="enforcedstyle_-strict-_default_-lintsymbolconversion"><a class="anchor" href="#enforcedstyle_-strict-_default_-lintsymbolconversion"></a>EnforcedStyle: strict (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9863,7 +9926,7 @@ all keys to be quoted).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyle-consistent"><a class="anchor" href="#enforcedstyle-consistent"></a>EnforcedStyle: consistent</h4>
+<h4 id="enforcedstyle_-consistent-lintsymbolconversion"><a class="anchor" href="#enforcedstyle_-consistent-lintsymbolconversion"></a>EnforcedStyle: consistent</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -9888,7 +9951,7 @@ all keys to be quoted).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-27"><a class="anchor" href="#configurable-attributes-27"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintsymbolconversion"><a class="anchor" href="#configurable-attributes-lintsymbolconversion"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -9984,7 +10047,7 @@ into RuboCop&#8217;s offenses.</p>
 has correct arguments.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-113"><a class="anchor" href="#examples-113"></a>Examples</h3>
+<h3 id="examples-linttoenumarguments"><a class="anchor" href="#examples-linttoenumarguments"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10045,7 +10108,7 @@ generation via <code>JSON.generate(your_obj)</code>.  Since <code>JSON#generate<
 for an optional argument, your method should too.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-114"><a class="anchor" href="#examples-114"></a>Examples</h3>
+<h3 id="examples-linttojson"><a class="anchor" href="#examples-linttojson"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class Point
@@ -10107,7 +10170,7 @@ top-level return statement with an argument, then the argument is
 always ignored. This is detected automatically since Ruby 2.7.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-115"><a class="anchor" href="#examples-115"></a>Examples</h3>
+<h3 id="examples-linttoplevelreturnwithargument"><a class="anchor" href="#examples-linttoplevelreturnwithargument"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10119,7 +10182,7 @@ return</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-28"><a class="anchor" href="#configurable-attributes-28"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-linttoplevelreturnwithargument"><a class="anchor" href="#configurable-attributes-linttoplevelreturnwithargument"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10180,7 +10243,7 @@ return</code></pre>
 definition by overriding it with a getter method.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-116"><a class="anchor" href="#examples-116"></a>Examples</h3>
+<h3 id="examples-linttrailingcommainattributedeclaration"><a class="anchor" href="#examples-linttrailingcommainattributedeclaration"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10261,7 +10324,7 @@ for strings delimited by 5, 7, etc. quotation marks.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-117"><a class="anchor" href="#examples-117"></a>Examples</h3>
+<h3 id="examples-linttriplequotes"><a class="anchor" href="#examples-linttriplequotes"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10331,9 +10394,9 @@ sites, the <code>AllowKeywordBlockArguments</code> will allow use of underscore-
 prefixed block keyword arguments.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-118"><a class="anchor" href="#examples-118"></a>Examples</h3>
+<h3 id="examples-lintunderscoreprefixedvariablename"><a class="anchor" href="#examples-lintunderscoreprefixedvariablename"></a>Examples</h3>
 <div class="sect3">
-<h4 id="allowkeywordblockarguments-false-default"><a class="anchor" href="#allowkeywordblockarguments-false-default"></a>AllowKeywordBlockArguments: false (default)</h4>
+<h4 id="allowkeywordblockarguments_-false-_default_-lintunderscoreprefixedvariablename"><a class="anchor" href="#allowkeywordblockarguments_-false-_default_-lintunderscoreprefixedvariablename"></a>AllowKeywordBlockArguments: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10359,7 +10422,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowkeywordblockarguments-true"><a class="anchor" href="#allowkeywordblockarguments-true"></a>AllowKeywordBlockArguments: true</h4>
+<h4 id="allowkeywordblockarguments_-true-lintunderscoreprefixedvariablename"><a class="anchor" href="#allowkeywordblockarguments_-true-lintunderscoreprefixedvariablename"></a>AllowKeywordBlockArguments: true</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -10372,7 +10435,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-29"><a class="anchor" href="#configurable-attributes-29"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintunderscoreprefixedvariablename"><a class="anchor" href="#configurable-attributes-lintunderscoreprefixedvariablename"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10450,7 +10513,7 @@ this, as they are not used by the methods in question.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="safety-26"><a class="anchor" href="#safety-26"></a>Safety</h3>
+<h3 id="safety-lintunexpectedblockarity"><a class="anchor" href="#safety-lintunexpectedblockarity"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop matches for method names only and hence cannot tell apart
 methods with same name in different classes, which may lead to a
@@ -10458,7 +10521,7 @@ false positive.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-119"><a class="anchor" href="#examples-119"></a>Examples</h3>
+<h3 id="examples-lintunexpectedblockarity"><a class="anchor" href="#examples-lintunexpectedblockarity"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10474,7 +10537,7 @@ values.sort { |*x| x[0] &lt;=&gt; x[1] }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-30"><a class="anchor" href="#configurable-attributes-30"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintunexpectedblockarity"><a class="anchor" href="#configurable-attributes-lintunexpectedblockarity"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10533,7 +10596,7 @@ values.sort { |*x| x[0] &lt;=&gt; x[1] }</code></pre>
 <p>Checks for using Fixnum or Bignum constant.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-120"><a class="anchor" href="#examples-120"></a>Examples</h3>
+<h3 id="examples-lintunifiedinteger"><a class="anchor" href="#examples-lintunifiedinteger"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10607,7 +10670,7 @@ relate to via static analysis).
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-121"><a class="anchor" href="#examples-121"></a>Examples</h3>
+<h3 id="examples-lintunmodifiedreduceaccumulator"><a class="anchor" href="#examples-lintunmodifiedreduceaccumulator"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10692,7 +10755,7 @@ The check are based on the presence of flow of control
 statement in non-final position in <code>begin</code> (implicit) blocks.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-122"><a class="anchor" href="#examples-122"></a>Examples</h3>
+<h3 id="examples-lintunreachablecode"><a class="anchor" href="#examples-lintunreachablecode"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10776,7 +10839,7 @@ code that would otherwise be registered as an offense (eg. <code>times</code> us
 <code>Enumerable</code> context).</p>
 </div>
 <div class="sect2">
-<h3 id="examples-123"><a class="anchor" href="#examples-123"></a>Examples</h3>
+<h3 id="examples-lintunreachableloop"><a class="anchor" href="#examples-lintunreachableloop"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10844,7 +10907,7 @@ end
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowedpatterns-exactlyat_leastat_mostd-times-default"><a class="anchor" href="#allowedpatterns-exactlyat_leastat_mostd-times-default"></a>AllowedPatterns: ['(exactly|at_least|at_most)\(\d+\)\.times'] (default)</h4>
+<h4 id="allowedpatterns_-___exactly_at_least_at_most____d_____times__-_default_-lintunreachableloop"><a class="anchor" href="#allowedpatterns_-___exactly_at_least_at_most____d_____times__-_default_-lintunreachableloop"></a>AllowedPatterns: ['(exactly|at_least|at_most)\(\d+\)\.times'] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -10854,7 +10917,7 @@ exactly(2).times { raise StandardError }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-31"><a class="anchor" href="#configurable-attributes-31"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintunreachableloop"><a class="anchor" href="#configurable-attributes-lintunreachableloop"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -10913,7 +10976,7 @@ exactly(2).times { raise StandardError }</code></pre>
 <p>Checks for unused block arguments.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-124"><a class="anchor" href="#examples-124"></a>Examples</h3>
+<h3 id="examples-lintunusedblockargument"><a class="anchor" href="#examples-lintunusedblockargument"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10944,7 +11007,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoreemptyblocks-true-default"><a class="anchor" href="#ignoreemptyblocks-true-default"></a>IgnoreEmptyBlocks: true (default)</h4>
+<h4 id="ignoreemptyblocks_-true-_default_-lintunusedblockargument"><a class="anchor" href="#ignoreemptyblocks_-true-_default_-lintunusedblockargument"></a>IgnoreEmptyBlocks: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -10953,7 +11016,7 @@ do_something { |unused| }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoreemptyblocks-false"><a class="anchor" href="#ignoreemptyblocks-false"></a>IgnoreEmptyBlocks: false</h4>
+<h4 id="ignoreemptyblocks_-false-lintunusedblockargument"><a class="anchor" href="#ignoreemptyblocks_-false-lintunusedblockargument"></a>IgnoreEmptyBlocks: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10962,7 +11025,7 @@ do_something { |unused| }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowunusedkeywordarguments-false-default"><a class="anchor" href="#allowunusedkeywordarguments-false-default"></a>AllowUnusedKeywordArguments: false (default)</h4>
+<h4 id="allowunusedkeywordarguments_-false-_default_-lintunusedblockargument"><a class="anchor" href="#allowunusedkeywordarguments_-false-_default_-lintunusedblockargument"></a>AllowUnusedKeywordArguments: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10973,7 +11036,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowunusedkeywordarguments-true"><a class="anchor" href="#allowunusedkeywordarguments-true"></a>AllowUnusedKeywordArguments: true</h4>
+<h4 id="allowunusedkeywordarguments_-true-lintunusedblockargument"><a class="anchor" href="#allowunusedkeywordarguments_-true-lintunusedblockargument"></a>AllowUnusedKeywordArguments: true</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -10985,7 +11048,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-32"><a class="anchor" href="#configurable-attributes-32"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintunusedblockargument"><a class="anchor" href="#configurable-attributes-lintunusedblockargument"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11014,7 +11077,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-19"><a class="anchor" href="#references-19"></a>References</h3>
+<h3 id="references-lintunusedblockargument"><a class="anchor" href="#references-lintunusedblockargument"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -11059,7 +11122,7 @@ end</code></pre>
 <p>Checks for unused method arguments.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-125"><a class="anchor" href="#examples-125"></a>Examples</h3>
+<h3 id="examples-lintunusedmethodargument"><a class="anchor" href="#examples-lintunusedmethodargument"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11074,7 +11137,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowunusedkeywordarguments-false-default-2"><a class="anchor" href="#allowunusedkeywordarguments-false-default-2"></a>AllowUnusedKeywordArguments: false (default)</h4>
+<h4 id="allowunusedkeywordarguments_-false-_default_-lintunusedmethodargument"><a class="anchor" href="#allowunusedkeywordarguments_-false-_default_-lintunusedmethodargument"></a>AllowUnusedKeywordArguments: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11085,7 +11148,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="allowunusedkeywordarguments-true-2"><a class="anchor" href="#allowunusedkeywordarguments-true-2"></a>AllowUnusedKeywordArguments: true</h4>
+<h4 id="allowunusedkeywordarguments_-true-lintunusedmethodargument"><a class="anchor" href="#allowunusedkeywordarguments_-true-lintunusedmethodargument"></a>AllowUnusedKeywordArguments: true</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -11096,7 +11159,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoreemptymethods-true-default"><a class="anchor" href="#ignoreemptymethods-true-default"></a>IgnoreEmptyMethods: true (default)</h4>
+<h4 id="ignoreemptymethods_-true-_default_-lintunusedmethodargument"><a class="anchor" href="#ignoreemptymethods_-true-_default_-lintunusedmethodargument"></a>IgnoreEmptyMethods: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -11106,7 +11169,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignoreemptymethods-false"><a class="anchor" href="#ignoreemptymethods-false"></a>IgnoreEmptyMethods: false</h4>
+<h4 id="ignoreemptymethods_-false-lintunusedmethodargument"><a class="anchor" href="#ignoreemptymethods_-false-lintunusedmethodargument"></a>IgnoreEmptyMethods: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11116,7 +11179,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignorenotimplementedmethods-true-default"><a class="anchor" href="#ignorenotimplementedmethods-true-default"></a>IgnoreNotImplementedMethods: true (default)</h4>
+<h4 id="ignorenotimplementedmethods_-true-_default_-lintunusedmethodargument"><a class="anchor" href="#ignorenotimplementedmethods_-true-_default_-lintunusedmethodargument"></a>IgnoreNotImplementedMethods: true (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -11131,7 +11194,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ignorenotimplementedmethods-false"><a class="anchor" href="#ignorenotimplementedmethods-false"></a>IgnoreNotImplementedMethods: false</h4>
+<h4 id="ignorenotimplementedmethods_-false-lintunusedmethodargument"><a class="anchor" href="#ignorenotimplementedmethods_-false-lintunusedmethodargument"></a>IgnoreNotImplementedMethods: false</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11147,7 +11210,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-33"><a class="anchor" href="#configurable-attributes-33"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintunusedmethodargument"><a class="anchor" href="#configurable-attributes-lintunusedmethodargument"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11181,7 +11244,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-20"><a class="anchor" href="#references-20"></a>References</h3>
+<h3 id="references-lintunusedmethodargument"><a class="anchor" href="#references-lintunusedmethodargument"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -11231,7 +11294,7 @@ Also this cop identifies places where <code>URI.unescape</code> can be replaced 
 or <code>URI.decode_www_form_component</code> depending on your specific use case.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-126"><a class="anchor" href="#examples-126"></a>Examples</h3>
+<h3 id="examples-linturiescapeunescape"><a class="anchor" href="#examples-linturiescapeunescape"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11288,18 +11351,42 @@ URI.decode_www_form_component(enc_uri)</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Identifies places where <code>URI.regexp</code> is obsolete and should
-not be used. Instead, use <code>URI::DEFAULT_PARSER.make_regexp</code>.</p>
+<p>Identifies places where <code>URI.regexp</code> is obsolete and should not be used.</p>
+</div>
+<div class="paragraph">
+<p>For Ruby 3.3 or lower, use <code>URI::DEFAULT_PARSER.make_regexp</code>.
+For Ruby 3.4 or higher, use <code>URI::RFC2396_PARSER.make_regexp</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you need to support both Ruby 3.3 and lower as well as Ruby 3.4 and higher,
+consider manually changing the code as follows:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">defined?(URI::RFC2396_PARSER) ? URI::RFC2396_PARSER : URI::DEFAULT_PARSER</code></pre>
+</div>
 </div>
 <div class="sect2">
-<h3 id="examples-127"><a class="anchor" href="#examples-127"></a>Examples</h3>
+<h3 id="examples-linturiregexp"><a class="anchor" href="#examples-linturiregexp"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 URI.regexp('http://example.com')
 
-# good
-URI::DEFAULT_PARSER.make_regexp('http://example.com')</code></pre>
+# good - Ruby 3.3 or lower
+URI::DEFAULT_PARSER.make_regexp('http://example.com')
+
+# good - Ruby 3.4 or higher
+URI::RFC2396_PARSER.make_regexp('http://example.com')</code></pre>
 </div>
 </div>
 </div>
@@ -11355,7 +11442,7 @@ This setting is an array of methods which, when called, are known to
 create other methods in the module&#8217;s current access context.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-128"><a class="anchor" href="#examples-128"></a>Examples</h3>
+<h3 id="examples-lintuselessaccessmodifier"><a class="anchor" href="#examples-lintuselessaccessmodifier"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11426,7 +11513,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="contextcreatingmethods-concerning"><a class="anchor" href="#contextcreatingmethods-concerning"></a>ContextCreatingMethods: concerning</h4>
+<h4 id="contextcreatingmethods_-concerning-lintuselessaccessmodifier"><a class="anchor" href="#contextcreatingmethods_-concerning-lintuselessaccessmodifier"></a>ContextCreatingMethods: concerning</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Lint/UselessAccessModifier:
@@ -11456,7 +11543,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="methodcreatingmethods-delegate"><a class="anchor" href="#methodcreatingmethods-delegate"></a>MethodCreatingMethods: delegate</h4>
+<h4 id="methodcreatingmethods_-delegate-lintuselessaccessmodifier"><a class="anchor" href="#methodcreatingmethods_-delegate-lintuselessaccessmodifier"></a>MethodCreatingMethods: delegate</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Lint/UselessAccessModifier:
@@ -11476,7 +11563,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-34"><a class="anchor" href="#configurable-attributes-34"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintuselessaccessmodifier"><a class="anchor" href="#configurable-attributes-lintuselessaccessmodifier"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -11571,7 +11658,7 @@ can lead to a syntax error, so this case is not autocorrected.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-129"><a class="anchor" href="#examples-129"></a>Examples</h3>
+<h3 id="examples-lintuselessassignment"><a class="anchor" href="#examples-lintuselessassignment"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11589,7 +11676,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-21"><a class="anchor" href="#references-21"></a>References</h3>
+<h3 id="references-lintuselessassignment"><a class="anchor" href="#references-lintuselessassignment"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -11646,7 +11733,7 @@ This syntax is no longer valid on Ruby 2.6 or higher.
 </table>
 </div>
 <div class="sect2">
-<h3 id="examples-130"><a class="anchor" href="#examples-130"></a>Examples</h3>
+<h3 id="examples-lintuselesselsewithoutrescue"><a class="anchor" href="#examples-lintuselesselsewithoutrescue"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11704,14 +11791,14 @@ end</code></pre>
 and methods just delegating to <code>super</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-27"><a class="anchor" href="#safety-27"></a>Safety</h3>
+<h3 id="safety-lintuselessmethoddefinition"><a class="anchor" href="#safety-lintuselessmethoddefinition"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe as it can register false positives for cases when an empty
 constructor just overrides the parent constructor, which is bad anyway.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-131"><a class="anchor" href="#examples-131"></a>Examples</h3>
+<h3 id="examples-lintuselessmethoddefinition"><a class="anchor" href="#examples-lintuselessmethoddefinition"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11778,7 +11865,7 @@ Adding or subtracting 0, multiplying or dividing by 1 or raising to the power of
 These are probably leftover from debugging, or are mistakes.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-132"><a class="anchor" href="#examples-132"></a>Examples</h3>
+<h3 id="examples-lintuselessnumericoperation"><a class="anchor" href="#examples-lintuselessnumericoperation"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11839,7 +11926,7 @@ x = x</code></pre>
 <p>Checks for useless `rescue`s, which only reraise rescued exceptions.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-133"><a class="anchor" href="#examples-133"></a>Examples</h3>
+<h3 id="examples-lintuselessrescue"><a class="anchor" href="#examples-lintuselessrescue"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -11925,7 +12012,7 @@ end</code></pre>
 a keyword splat (<code>**kwargs</code>).</p>
 </div>
 <div class="sect2">
-<h3 id="examples-134"><a class="anchor" href="#examples-134"></a>Examples</h3>
+<h3 id="examples-lintuselessruby2keywords"><a class="anchor" href="#examples-lintuselessruby2keywords"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good (splat argument without keyword arguments)
@@ -12020,7 +12107,7 @@ define_method(:foo) { |arg| }</code></pre>
 expression of a function definition.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-28"><a class="anchor" href="#safety-28"></a>Safety</h3>
+<h3 id="safety-lintuselesssettercall"><a class="anchor" href="#safety-lintuselesssettercall"></a>Safety</h3>
 <div class="paragraph">
 <p>There are edge cases in which the local variable references a
 value that is also accessible outside the local scope. This is not
@@ -12032,7 +12119,7 @@ return value will be changed.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-135"><a class="anchor" href="#examples-135"></a>Examples</h3>
+<h3 id="examples-lintuselesssettercall"><a class="anchor" href="#examples-lintuselesssettercall"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12088,14 +12175,14 @@ end</code></pre>
 (<code>1.times</code>).</p>
 </div>
 <div class="sect2">
-<h3 id="safety-29"><a class="anchor" href="#safety-29"></a>Safety</h3>
+<h3 id="safety-lintuselesstimes"><a class="anchor" href="#safety-lintuselesstimes"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe as <code>times</code> returns its receiver, which is
 <strong>usually</strong> OK, but might change behavior.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-136"><a class="anchor" href="#examples-136"></a>Examples</h3>
+<h3 id="examples-lintuselesstimes"><a class="anchor" href="#examples-lintuselesstimes"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12158,9 +12245,9 @@ enumerator.each { |item| item &gt;= 2 } #=&gt; [2, 3]</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-137"><a class="anchor" href="#examples-137"></a>Examples</h3>
+<h3 id="examples-lintvoid"><a class="anchor" href="#examples-lintvoid"></a>Examples</h3>
 <div class="sect3">
-<h4 id="checkformethodswithnosideeffects-false-default"><a class="anchor" href="#checkformethodswithnosideeffects-false-default"></a>CheckForMethodsWithNoSideEffects: false (default)</h4>
+<h4 id="checkformethodswithnosideeffects_-false-_default_-lintvoid"><a class="anchor" href="#checkformethodswithnosideeffects_-false-_default_-lintvoid"></a>CheckForMethodsWithNoSideEffects: false (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12177,7 +12264,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="checkformethodswithnosideeffects-true"><a class="anchor" href="#checkformethodswithnosideeffects-true"></a>CheckForMethodsWithNoSideEffects: true</h4>
+<h4 id="checkformethodswithnosideeffects_-true-lintvoid"><a class="anchor" href="#checkformethodswithnosideeffects_-true-lintvoid"></a>CheckForMethodsWithNoSideEffects: true</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -12206,7 +12293,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-35"><a class="anchor" href="#configurable-attributes-35"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-lintvoid"><a class="anchor" href="#configurable-attributes-lintvoid"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
