@@ -369,6 +369,9 @@
           <a href="../rubocop-rails/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-rails/2.27/index.html">2.27</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-rails/2.26/index.html">2.26</a>
         </li>
         <li class="version">
@@ -410,10 +413,10 @@
       </ul>
     </li>
     <li class="component">
-      <div class="title"><a href="../rubocop-rspec/index.html">RuboCop RSpec</a></div>
+      <div class="title"><a href="../rubocop-rspec/3.2/index.html">RuboCop RSpec</a></div>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-rspec/index.html">default</a>
+          <a href="../rubocop-rspec/3.2/index.html">3.2</a>
         </li>
         <li class="version">
           <a href="../rubocop-rspec/3.1/index.html">3.1</a>
@@ -708,7 +711,7 @@ Any child that is a node can be a target for nested matching.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_-for-any-single-node"><a class="anchor" href="#_-for-any-single-node"></a><code>_</code> for any single node</h2>
+<h2 id="any-single-node"><a class="anchor" href="#any-single-node"></a><code>_</code> for any single node</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><code>_</code> will check if there&#8217;s something present in the specific position, no matter the
@@ -724,6 +727,27 @@ value:</p>
 contains the value.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>You can specify a name to make a more descriptive reference:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>(send nil? _method_name)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also reference them later in the pattern to match against the value that was previously captured:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>(pair
+  (_ _key)
+  (_ _key))</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>{ a: :a }</code> will match, while <code>{ a: :b }</code> won&#8217;t.</p>
 </div>
 </div>
 </div>
@@ -1005,6 +1029,19 @@ with <code>$</code>. For example, in a tuple like <code>(int 1)</code>, you can 
 <pre>(send nil? $int+ (send $...))</pre>
 </div>
 </div>
+<div class="paragraph">
+<p>When capturing <a href="#any-single-node">any single node</a>, you can reference the value you previously captured.</p>
+</div>
+<div class="paragraph">
+<p>The following pattern will have one capture:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>(pair
+  (_ $_key)
+  (_ _key))</pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1054,7 +1091,7 @@ these <code>return</code> for <code>foo</code> and <code>bar</code> are not at t
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>def foo              # (def :foo
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def foo              # (def :foo
   return 42          #   (args)
 end                  #   (return
                      #     (int 42)))
@@ -1066,7 +1103,7 @@ end                  #     (if
                      #       (send nil :foo)
                      #       (return
                      #         (int 42)) nil)
-                     #     (nil)))</pre>
+                     #     (nil)))</code></pre>
 </div>
 </div>
 </div>
