@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop-ast/node_types.html">
     <link rel="prev" href="installation.html">
     <link rel="next" href="node_pattern.html">
-    <meta name="generator" content="Antora 3.1.9">
+    <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -116,6 +116,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop/1.68/index.html">1.68</a>
         </li>
         <li class="version">
           <a href="../rubocop/1.67/index.html">1.67</a>
@@ -413,10 +416,10 @@
       </ul>
     </li>
     <li class="component">
-      <div class="title"><a href="../rubocop-rspec/3.2/index.html">RuboCop RSpec</a></div>
+      <div class="title"><a href="../rubocop-rspec/index.html">RuboCop RSpec</a></div>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-rspec/3.2/index.html">3.2</a>
+          <a href="../rubocop-rspec/index.html">default</a>
         </li>
         <li class="version">
           <a href="../rubocop-rspec/3.1/index.html">3.1</a>
@@ -475,7 +478,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.67/index.html" class="home-link"></a>
+  <a href="../rubocop/1.68/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop AST</a></li>
@@ -908,7 +911,7 @@ usually represents the entire node, but others have additional fields.</p>
 <p>One child, the variable name <code>:@@cfoo</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>@@cfoo</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/VarNode">VarNode</a></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cvasgn</code></p></td>
@@ -1095,7 +1098,7 @@ usually represents the entire node, but others have additional fields.</p>
 <p>One child, the variable name as a symbol <code>:$foo</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>$foo</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/VarNode">VarNode</a></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>gvasgn</code></p></td>
@@ -1150,7 +1153,7 @@ usually represents the entire node, but others have additional fields.</p>
 <p>One child, the variable name <code>:@foo</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>@foo</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/VarNode">VarNode</a></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ivasgn</code></p></td>
@@ -1249,7 +1252,7 @@ usually represents the entire node, but others have additional fields.</p>
 <p>One child, the variable name</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>foo</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/VarNode">VarNode</a></code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>lvasgn</code></p></td>
@@ -1271,416 +1274,416 @@ usually represents the entire node, but others have additional fields.</p>
 <p>First set of children are all <code>mlhs</code> nodes, and the rest of the children must be expression nodes corresponding to the values in the <code>mlhs</code> nodes.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>a, b, = [1, 2]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>a = some_thing</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mlhs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/MasgnNode">MasgnNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>mlhs</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Multiple left-hand side. Used inside a <code>masgn</code> and block argument destructuring.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Children must all be assignment nodes. Represents the left side of a multiple assignment (<code>a, b</code> in the example).</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Children must all be assignment nodes or <code>send</code> nodes. Represents the left side of a multiple assignment (<code>a, b</code> in the example).</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>a, b = 5, 6</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>module</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/MlhsNode">MlhsNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>module</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Module definition</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Two children. First child is a <code>const</code> node for the module name. Second child is a body statement.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Two children. First child is a <code>const</code> node for the module name. Second child is a body statement.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>module Foo &lt; Bar; end</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/ModuleNode">ModuleNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>next</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/ModuleNode">ModuleNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>next</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>next keyword</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Zero or one child with an expression node for the results to be passed through the next</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Zero or one child with an expression node for the results to be passed through the next</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>next 1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>nil</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>nil</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Nil literal</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>None</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>None</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>nil</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>nth_ref</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>nth_ref</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Regular expression capture group ($1, $2 etc.)</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>One child: The capture name, e.g. <code>:$1</code></p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>One child: The capture name, e.g. <code>:$1</code></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>re = /foo(abc)/; $1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>numblock</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>numblock</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Block that has numbered arguments (<code>_1</code>) referenced inside it.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Three children. First child is a <code>send</code>/<code>csend</code> node representing the way the block is created, second child is an <code>int</code> (the number of numeric arguments) and the third child is a body statement.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Three children. First child is a <code>send</code>/<code>csend</code> node representing the way the block is created, second child is an <code>int</code> (the number of numeric arguments) and the third child is a body statement.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>proc { _1 + _3 }</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/BlockNode">BlockNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>op_asgn</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/BlockNode">BlockNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>op_asgn</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Operator-assignment - perform an operation and assign the value.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Three children. First child must be an assignment node, second child is the operator (e.g. <code>:+</code>) and the third child is the expression node.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Three children. First child must be an assignment node, second child is the operator (e.g. <code>:+</code>) and the third child is the expression node.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>a +=</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/OpAsgnNode">OpAsgnNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>optarg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/OpAsgnNode">OpAsgnNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>optarg</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional positional argument. Must come inside an <code>args</code>.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>One child - a symbol, representing the argument name.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>One child - a symbol, representing the argument name.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>def foo(bar=1)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/ArgNode">ArgNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>or</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/ArgNode">ArgNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>or</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Or operator</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Two children are both expression nodes representing the operands.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Two children are both expression nodes representing the operands.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>a or</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/OrNode">OrNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>or_asgn</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/OrNode">OrNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>or_asgn</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Or-assignment (OR the receiver with the argument and assign it back to receiver).</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Two children. First child must be an assignment node, second child is the expression node.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Two children. First child must be an assignment node, second child is the expression node.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>a ||=</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/OrAsgnNode">OrAsgnNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pair</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/OrAsgnNode">OrAsgnNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>pair</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>One entry in a hash.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Two children, the key and value nodes.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Two children, the key and value nodes.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>1 &#8658; 2</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/PairNode">PairNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>rational</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/PairNode">PairNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>rational</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Rational literal</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>One child, the Rational value</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>One child, the Rational value</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>2.0r</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>redo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>redo</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Redo command</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>None</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>None</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>redo</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regexp</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>regexp</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Regular expression literal.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Children are split into <code>str</code> nodes, with interpolation represented by separate expression nodes. The last child is a <code>regopt</code>.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Children are split into <code>str</code> nodes, with interpolation represented by separate expression nodes. The last child is a <code>regopt</code>.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>/foo#{bar}56/</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/RegexpNode">RegexpNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regopt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/RegexpNode">RegexpNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>regopt</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Regular expression option, appearing after a regexp literal (the "im" in the example).</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>A list of symbols representing the options (e.g. <code>:i</code> and <code>:m</code>)</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>A list of symbols representing the options (e.g. <code>:i</code> and <code>:m</code>)</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>/foo#{bar}/im</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>resbody</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>resbody</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Exception rescue. Always occurs inside a <code>rescue</code> node.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Three children. First child is either <code>nil</code> or an array of expression nodes representing the exceptions to rescue. Second child is <code>nil</code> or an assignment node representing the value to save the exception into. Last child is a body statement.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Three children. First child is either <code>nil</code> or an array of expression nodes representing the exceptions to rescue. Second child is <code>nil</code> or an assignment node representing the value to save the exception into. Last child is a body statement.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>begin; rescue Exception, A &#8658; bar; 1; end</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/ResbodyNode">ResbodyNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>rescue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/ResbodyNode">ResbodyNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>rescue</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A rescue statement.May be "top-level" or may be nested inside an <code>ensure</code> block (if both rescue and ensure are in the block).</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>First node is a body statement. Last child is the "else" body statement, or <code>nil</code>. Remaining children are <code>resbody</code> nodes.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>First node is a body statement. Last child is the "else" body statement, or <code>nil</code>. Remaining children are <code>resbody</code> nodes.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>begin; rescue Exception, A &#8658; bar; 1; end</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>restarg</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>restarg</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Positional splat argument. Must come inside an <code>args</code>.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>One child - a symbol, representing the argument name (if given). If no name given, there are no children.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>One child - a symbol, representing the argument name (if given). If no name given, there are no children.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>def foo(*rest)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/ArgNode">ArgNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>return</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/ArgNode">ArgNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>return</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Return statement</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Zero or one child, an expression node for the value to return.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Zero or one child, an expression node for the value to return.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>return</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/ReturnNode">ReturnNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sclass</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/ReturnNode">ReturnNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>sclass</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Singleton class declaration.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Two children. The first child is the expression for the class being opened (e.g. <code>self</code>); second child is a body statement.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Two children. The first child is the expression for the class being opened (e.g. <code>self</code>); second child is a body statement.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>class &lt;&lt; some_var</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/SelfClassNode">SelfClassNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>self</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/SelfClassNode">SelfClassNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>self</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Access to self</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>None</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>None</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>self</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>send</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>send</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Non-safe method invocation (i.e. top-level or using a dot)</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>First child is the receiver node (e.g. <code>self</code>), second child is the method name (e.g. <code>:foo=</code>)  and the remaining children (if any) are the arguments (expression nodes).</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>First child is the receiver node (e.g. <code>self</code>), second child is the method name (e.g. <code>:foo=</code>)  and the remaining children (if any) are the arguments (expression nodes).</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>foo</code> or <code>foo.bar</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/SendNode">SendNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shadowarg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/SendNode">SendNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>shadowarg</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Shadow argument, aka block-local variable. Must come inside an <code>args</code>.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>One child - a symbol, representing the argument name.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>One child - a symbol, representing the argument name.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>foo { |a; b| b }</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/ArgNode">ArgNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>splat</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/ArgNode">ArgNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>splat</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Array or function argument * operator</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>One child, an expression.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>One child, an expression.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*foo</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>str</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>str</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Non-interpolated string literal. The heredoc version works very differently from the regular version and the location info is totally separate.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>One child, the String content.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>One child, the String content.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>"hi mom"</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/StrNode">StrNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>super</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/StrNode">StrNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>super</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Super method call with arguments and/or brackets.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Children are expression nodes representing arguments.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Children are expression nodes representing arguments.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>super(a, b, c)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/SuperNode">SuperNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sym</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/SuperNode">SuperNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>sym</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Non-interpolated symbol</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>One child, the Symbol content.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>One child, the Symbol content.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>:foo</code></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/SymbolNode">SymbolNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/SymbolNode">SymbolNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>true</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True literal</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>None</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>None</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>undef</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>undef</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Method undefinition</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>A list of <code>sym</code>, or <code>dsym</code> nodes representing method names to undefine.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>A list of <code>sym</code>, or <code>dsym</code> nodes representing method names to undefine.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>undef :foo, :bar</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>until</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>N/A</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>until</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Negative loop with condition coming first.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Two children. First child is an expression node for condition, second child is a body statement.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Two children. First child is an expression node for condition, second child is a body statement.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>until foo do bar; end</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/UntilNode">UntilNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>until_post</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/UntilNode">UntilNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>until_post</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Negative loop with condition coming last.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Two children. First child is an expression node for condition, second child is a body statement.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Two children. First child is an expression node for condition, second child is a body statement.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>begin; foo; end until condition</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/UntilNode">UntilNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>when</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/UntilNode">UntilNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>when</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Case matching. Usually nested under <code>case</code> nodes.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Two children. First child is a regexp, expression node, or <code>splat</code> node for the condition. Second child is an expression node or <code>begin</code> node for the results.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Two children. First child is a regexp, expression node, or <code>splat</code> node for the condition. Second child is an expression node or <code>begin</code> node for the results.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>when a then</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/WhenNode">WhenNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>while</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/WhenNode">WhenNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>while</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Loop with condition coming first.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Two children. First child is an expression node for condition, second child is a body statement.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Two children. First child is an expression node for condition, second child is a body statement.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>while foo do bar; end</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/WhileNode">WhileNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>while_post</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/WhileNode">WhileNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>while_post</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Loop with condition coming last.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Two children. First child is an expression node for condition, second child is a body statement.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Two children. First child is an expression node for condition, second child is a body statement.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>begin; foo; end while condition</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/WhileNode">WhileNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xstr</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/WhileNode">WhileNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>xstr</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Execute string (backticks). The heredoc version is treated totally differently from the regular version.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Children are split into <code>str</code> nodes, with interpolation represented by separate expression nodes .</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Children are split into <code>str</code> nodes, with interpolation represented by separate expression nodes .</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>`date`</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/StrNode">StrNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>yield</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/StrNode">StrNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>yield</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Yield to a block.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Children are expression nodes representing arguments.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Children are expression nodes representing arguments.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>yield(foo)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/YieldNode">YieldNode</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>zsuper</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/YieldNode">YieldNode</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>zsuper</p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Super method call with no arguments or brackets.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>None</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>None</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>super</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://rubydoc.info/github/rubocop/rubocop-ast/RuboCop/AST/SuperNode">SuperNode</a></code></p></td>
 </tr>
 </tbody>
 </table>

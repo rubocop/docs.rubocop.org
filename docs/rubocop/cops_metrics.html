@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_metrics.html">
     <link rel="prev" href="cops_lint.html">
     <link rel="next" href="cops_migration.html">
-    <meta name="generator" content="Antora 3.1.9">
+    <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -221,6 +221,9 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="1.68/index.html">1.68</a>
         </li>
         <li class="version">
           <a href="1.67/index.html">1.67</a>
@@ -518,10 +521,10 @@
       </ul>
     </li>
     <li class="component">
-      <div class="title"><a href="../rubocop-rspec/3.2/index.html">RuboCop RSpec</a></div>
+      <div class="title"><a href="../rubocop-rspec/index.html">RuboCop RSpec</a></div>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-rspec/3.2/index.html">3.2</a>
+          <a href="../rubocop-rspec/index.html">default</a>
         </li>
         <li class="version">
           <a href="../rubocop-rspec/3.1/index.html">3.1</a>
@@ -580,7 +583,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.67/index.html" class="home-link"></a>
+  <a href="1.68/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -592,6 +595,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_metrics.html">default</a>
+    <a class="version" href="1.68/cops_metrics.html">1.68</a>
     <a class="version" href="1.67/cops_metrics.html">1.67</a>
     <a class="version" href="1.66/cops_metrics.html">1.66</a>
     <a class="version" href="1.65/cops_metrics.html">1.65</a>
@@ -1265,32 +1269,27 @@ operator (or keyword and) can be converted to a nested if statement,
 and ||/or is shorthand for a sequence of ifs, so they also add one.
 Loops can be said to have an exit condition, so they add one.
 Blocks that are calls to builtin iteration methods
-(e.g. `ary.map{&#8230;&#8203;}) also add one, others are ignored.</p>
+(e.g. <code>ary.map{&#8230;&#8203;}</code>) also add one, others are ignored.</p>
 </div>
-<div class="literalblock">
+<div class="sect2">
+<h3 id="examples-metricscyclomaticcomplexity"><a class="anchor" href="#examples-metricscyclomaticcomplexity"></a>Examples</h3>
+<div class="listingblock">
 <div class="content">
-<pre>def each_child_node(*types)               # count begins: 1
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def each_child_node(*types)               # count begins: 1
   unless block_given?                     # unless: +1
-    return to_enum(__method__, *types)</pre>
+    return to_enum(__method__, *types)
+  end
+
+  children.each do |child|                # each{}: +1
+    next unless child.is_a?(Node)         # unless: +1
+
+    yield child if types.empty? ||        # if: +1, ||: +1
+                   types.include?(child.type)
+  end
+
+  self
+end                                       # total: 6</code></pre>
 </div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>children.each do |child|                # each{}: +1
-  next unless child.is_a?(Node)         # unless: +1</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>  yield child if types.empty? ||        # if: +1, ||: +1
-                 types.include?(child.type)
-end</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>  self
-end                                       # total: 6</pre>
 </div>
 </div>
 <div class="sect2">

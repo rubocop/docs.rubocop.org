@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_style.html">
     <link rel="prev" href="cops_security.html">
     <link rel="next" href="v1_upgrade_notes.html">
-    <meta name="generator" content="Antora 3.1.9">
+    <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -221,6 +221,9 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="1.68/index.html">1.68</a>
         </li>
         <li class="version">
           <a href="1.67/index.html">1.67</a>
@@ -518,10 +521,10 @@
       </ul>
     </li>
     <li class="component">
-      <div class="title"><a href="../rubocop-rspec/3.2/index.html">RuboCop RSpec</a></div>
+      <div class="title"><a href="../rubocop-rspec/index.html">RuboCop RSpec</a></div>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../rubocop-rspec/3.2/index.html">3.2</a>
+          <a href="../rubocop-rspec/index.html">default</a>
         </li>
         <li class="version">
           <a href="../rubocop-rspec/3.1/index.html">3.1</a>
@@ -580,7 +583,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.67/index.html" class="home-link"></a>
+  <a href="1.68/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -592,6 +595,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_style.html">default</a>
+    <a class="version" href="1.68/cops_style.html">1.68</a>
     <a class="version" href="1.67/cops_style.html">1.67</a>
     <a class="version" href="1.66/cops_style.html">1.66</a>
     <a class="version" href="1.65/cops_style.html">1.65</a>
@@ -1070,6 +1074,90 @@ alias_method :bar, :foo</code></pre>
 <ul>
 <li>
 <p><a href="https://rubystyle.guide#alias-method-lexically" class="bare">https://rubystyle.guide#alias-method-lexically</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="styleambiguousendlessmethoddefinition"><a class="anchor" href="#styleambiguousendlessmethoddefinition"></a>Style/AmbiguousEndlessMethodDefinition</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Required Ruby version: 3.0
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.68</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Looks for endless methods inside operations of lower precedence (<code>and</code>, <code>or</code>, and
+modifier forms of <code>if</code>, <code>unless</code>, <code>while</code>, <code>until</code>) that are ambiguous due to
+lack of parentheses. This may lead to unexpected behavior as the code may appear
+to use these keywords as part of the method but in fact they modify
+the method definition itself.</p>
+</div>
+<div class="paragraph">
+<p>In these cases, using a normal method definition is more clear.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-styleambiguousendlessmethoddefinition"><a class="anchor" href="#examples-styleambiguousendlessmethoddefinition"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+def foo = true if bar
+
+# good - using a non-endless method is more explicit
+def foo
+  true
+end if bar
+
+# ok - method body is explicit
+def foo = (true if bar)
+
+# ok - method definition is explicit
+(def foo = true) if bar</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-styleambiguousendlessmethoddefinition"><a class="anchor" href="#references-styleambiguousendlessmethoddefinition"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://rubystyle.guide#ambiguous-endless-method-defintions" class="bare">https://rubystyle.guide#ambiguous-endless-method-defintions</a></p>
 </li>
 </ul>
 </div>
@@ -2206,6 +2294,94 @@ class Foo
   attr_accessor :bar
 end</code></pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stylebitwisepredicate"><a class="anchor" href="#stylebitwisepredicate"></a>Style/BitwisePredicate</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Required Ruby version: 2.5
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.68</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Prefer bitwise predicate methods over direct comparison operations.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-stylebitwisepredicate"><a class="anchor" href="#safety-stylebitwisepredicate"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe, as it can produce false positives if the receiver
+is not an <code>Integer</code> object.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="examples-stylebitwisepredicate"><a class="anchor" href="#examples-stylebitwisepredicate"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad - checks any set bits
+(variable &amp; flags).positive?
+
+# good
+variable.anybits?(flags)
+
+# bad - checks all set bits
+(variable &amp; flags) == flags
+
+# good
+variable.allbits?(flags)
+
+# bad - checks no set bits
+(variable &amp; flags).zero?
+
+# good
+variable.nobits?(flags)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-stylebitwisepredicate"><a class="anchor" href="#references-stylebitwisepredicate"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://rubystyle.guide#bitwise-predicate-methods" class="bare">https://rubystyle.guide#bitwise-predicate-methods</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -3901,6 +4077,64 @@ end</code></pre>
 <p><a href="https://rubystyle.guide#colon-method-definition" class="bare">https://rubystyle.guide#colon-method-definition</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stylecombinabledefined"><a class="anchor" href="#stylecombinabledefined"></a>Style/CombinableDefined</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.68</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks for multiple <code>defined?</code> calls joined by <code>&amp;&amp;</code> that can be combined
+into a single <code>defined?</code>.</p>
+</div>
+<div class="paragraph">
+<p>When checking that a nested constant or chained method is defined, it is
+not necessary to check each ancestor or component of the chain.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-stylecombinabledefined"><a class="anchor" href="#examples-stylecombinabledefined"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+defined?(Foo) &amp;&amp; defined?(Foo::Bar) &amp;&amp; defined?(Foo::Bar::Baz)
+
+# good
+defined?(Foo::Bar::Baz)
+
+# bad
+defined?(foo) &amp;&amp; defined?(foo.bar) &amp;&amp; defined?(foo.bar.baz)
+
+# good
+defined?(foo.bar.baz)</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -11386,6 +11620,70 @@ ip_address = ENV['DEPLOYMENT_IP_ADDRESS']</code></pre>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stylekeywordargumentsmerging"><a class="anchor" href="#stylekeywordargumentsmerging"></a>Style/KeywordArgumentsMerging</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.68</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>When passing an existing hash as keyword arguments, provide additional arguments
+directly rather than using <code>merge</code>.</p>
+</div>
+<div class="paragraph">
+<p>Providing arguments directly is more performant, than using <code>merge</code>, and
+also leads to a shorter and simpler code.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-stylekeywordargumentsmerging"><a class="anchor" href="#examples-stylekeywordargumentsmerging"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+some_method(**opts.merge(foo: true))
+some_method(**opts.merge(other_opts))
+
+# good
+some_method(**opts, foo: true)
+some_method(**opts, **other_opts)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="references-stylekeywordargumentsmerging"><a class="anchor" href="#references-stylekeywordargumentsmerging"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://rubystyle.guide#merging-keyword-arguments" class="bare">https://rubystyle.guide#merging-keyword-arguments</a></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -21742,6 +22040,21 @@ returns.</p>
 We have limited the cop to not register an offense for method chains
 that exceed this option&#8217;s value.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This cop will recognize offenses but not autocorrect code when the
+right hand side (RHS) of the <code>&amp;&amp;</code> statement is an <code>||</code> statement
+(eg. <code>foo &amp;&amp; (foo.bar? || foo.baz?)</code>). It can be corrected
+manually by removing the <code>foo &amp;&amp;</code> and adding <code>&amp;.</code> to each <code>foo</code> on the RHS.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
 <h3 id="safety-stylesafenavigation"><a class="anchor" href="#safety-stylesafenavigation"></a>Safety</h3>
 <div class="paragraph">
@@ -21844,6 +22157,103 @@ foo.bar &gt; 2 if foo</code></pre>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stylesafenavigationchainlength"><a class="anchor" href="#stylesafenavigationchainlength"></a>Style/SafeNavigationChainLength</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.68</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Enforces safe navigation chains length to not exceed the configured maximum.
+The longer the chain is, the harder it becomes to track what on it could be
+returning <code>nil</code>.</p>
+</div>
+<div class="paragraph">
+<p>There is a potential interplay with <code>Style/SafeNavigation</code> - if both are enabled
+and their settings are "incompatible", one of the cops will complain about what
+the other proposes.</p>
+</div>
+<div class="paragraph">
+<p>E.g. if <code>Style/SafeNavigation</code> is configured with <code>MaxChainLength: 2</code> (default)
+and this cop is configured with <code>Max: 1</code>, then for <code>foo.bar.baz if foo</code> the former
+will suggest <code>foo&amp;.bar&amp;.baz</code>, which is an offense for the latter.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-stylesafenavigationchainlength"><a class="anchor" href="#examples-stylesafenavigationchainlength"></a>Examples</h3>
+<div class="sect3">
+<h4 id="max_-2-_default_-stylesafenavigationchainlength"><a class="anchor" href="#max_-2-_default_-stylesafenavigationchainlength"></a>Max: 2 (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+user&amp;.address&amp;.zip&amp;.upcase
+
+# good
+user&amp;.address&amp;.zip
+user.address.zip if user</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configurable-attributes-stylesafenavigationchainlength"><a class="anchor" href="#configurable-attributes-stylesafenavigationchainlength"></a>Configurable attributes</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Configurable values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Max</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="references-stylesafenavigationchainlength"><a class="anchor" href="#references-stylesafenavigationchainlength"></a>References</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://rubystyle.guide#safe-navigation" class="bare">https://rubystyle.guide#safe-navigation</a></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -23672,8 +24082,8 @@ lines, this cop does not register an offense; instead,
 </div>
 <div class="paragraph">
 <p>Two modes are supported:
-1. <code>aggressive</code> style checks and corrects all occurrences of <code>` where
-either the left or right side of `</code> is a string literal.
+1. <code>aggressive</code> style checks and corrects all occurrences of <code>+</code> where
+either the left or right side of <code>+</code> is a string literal.
 2. <code>conservative</code> style on the other hand, checks and corrects only if
 left side (receiver of <code>+</code> method call) is a string literal.
 This is useful when the receiver is some expression that returns string like <code>Pathname</code>
