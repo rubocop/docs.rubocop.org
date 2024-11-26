@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Server Mode :: RuboCop Docs</title>
+    <link rel="canonical" href="https://docs.rubocop.org/rubocop/usage/server.html">
+    <link rel="prev" href="lsp.html">
+    <link rel="next" href="profiling.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="../../../_/css/site-extra.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
+<style>:root{--docsearch-primary-color: #bd362f} </style>
+<link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140153536-1"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-140153536-1')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <a href="https://rubocop.org">RuboCop</a>
+        <span class="separator">//</span>
+        <a href="https://docs.rubocop.org">Docs</a>
+      </div>
+      <div class="navbar-item">
+        <div id="docsearch"></div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href=index.html>Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Style Guides</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://rubystyle.guide">Ruby</a>
+            <a class="navbar-item" href="https://rails.rubystyle.guide">Rails</a>
+            <a class="navbar-item" href="https://rspec.rubystyle.guide">RSpec</a>
+            <a class="navbar-item" href="https://minitest.rubystyle.guide">Minitest</a>
+          </div>
+        </div>
+        <a class="navbar-item" href="https://www.rubydoc.info/gems/rubocop">API Docs</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Projects</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop">RuboCop</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-ast">RuboCop AST</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-capybara">RuboCop Capybara</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-factory_bot">RuboCop factory_bot</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-minitest">RuboCop Minitest</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-performance">RuboCop Performance</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rails">RuboCop Rails</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rake">RuboCop Rake</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rspec">RuboCop RSpec</a>
+            <a class="navbar-item" href="https://github.com/rubocop/rubocop-rspec_rails">RuboCop RSpec Rails</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Community</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/rubocop">GitHub Org</a>
+            <a class="navbar-item" href="https://gitter.im/bbatsov/rubocop">Chat (Gitter)</a>
+            <a class="navbar-item" href="https://opencollective.com/rubocop">Open Collective</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rubocop" data-version="1.69">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">RuboCop</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../compatibility.html">Compatibility</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Usage</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="basic_usage.html">Basic Usage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="autocorrect.html">Autocorrect</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="caching.html">Caching</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="lsp.html">LSP</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="server.html">Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="profiling.html">Profiling</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../cops.html">Cops</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../formatters.html">Formatters</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cop Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cops_bundler.html">Bundler</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cops_gemspec.html">Gemspec</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cops_layout.html">Layout</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cops_lint.html">Lint</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cops_metrics.html">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cops_migration.html">Migration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cops_naming.html">Naming</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cops_security.html">Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cops_style.html">Style</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../v1_upgrade_notes.html">Upgrade Notes</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../extensions.html">Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../integration_with_other_tools.html">Integration with Other Tools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../automated_code_review.html">Automated Code Review</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../contributing.html">Contributing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../support.html">Support</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../versioning.html">Versioning</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">About</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../about/history.html">History</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../about/team.html">Team</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../about/changelog.html">Changelog</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../about/logo.html">Logo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../about/license.html">License</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">RuboCop</span>
+    <span class="version">1.69</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="../../index.html">RuboCop</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../index.html">default</a>
+        </li>
+        <li class="version is-current">
+          <a href="../index.html">1.69</a>
+        </li>
+        <li class="version">
+          <a href="../../1.68/index.html">1.68</a>
+        </li>
+        <li class="version">
+          <a href="../../1.67/index.html">1.67</a>
+        </li>
+        <li class="version">
+          <a href="../../1.66/index.html">1.66</a>
+        </li>
+        <li class="version">
+          <a href="../../1.65/index.html">1.65</a>
+        </li>
+        <li class="version">
+          <a href="../../1.64/index.html">1.64</a>
+        </li>
+        <li class="version">
+          <a href="../../1.63/index.html">1.63</a>
+        </li>
+        <li class="version">
+          <a href="../../1.62/index.html">1.62</a>
+        </li>
+        <li class="version">
+          <a href="../../1.61/index.html">1.61</a>
+        </li>
+        <li class="version">
+          <a href="../../1.60/index.html">1.60</a>
+        </li>
+        <li class="version">
+          <a href="../../1.59/index.html">1.59</a>
+        </li>
+        <li class="version">
+          <a href="../../1.58/index.html">1.58</a>
+        </li>
+        <li class="version">
+          <a href="../../1.57/index.html">1.57</a>
+        </li>
+        <li class="version">
+          <a href="../../1.56/index.html">1.56</a>
+        </li>
+        <li class="version">
+          <a href="../../1.55/index.html">1.55</a>
+        </li>
+        <li class="version">
+          <a href="../../1.54/index.html">1.54</a>
+        </li>
+        <li class="version">
+          <a href="../../1.53/index.html">1.53</a>
+        </li>
+        <li class="version">
+          <a href="../../1.52/index.html">1.52</a>
+        </li>
+        <li class="version">
+          <a href="../../1.51/index.html">1.51</a>
+        </li>
+        <li class="version">
+          <a href="../../1.50/index.html">1.50</a>
+        </li>
+        <li class="version">
+          <a href="../../1.0/index.html">1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../../rubocop-ast/index.html">RuboCop AST</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../rubocop-ast/index.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.12/index.html">1.12</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.11/index.html">1.11</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.10/index.html">1.10</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.9/index.html">1.9</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.8/index.html">1.8</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.7/index.html">1.7</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.6/index.html">1.6</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.5/index.html">1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.4/index.html">1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.3/index.html">1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.2/index.html">1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-ast/1.0/index.html">1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../../rubocop-capybara/index.html">RuboCop Capybara</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../rubocop-capybara/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-capybara/2.21/index.html">2.21</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-capybara/2.20/index.html">2.20</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-capybara/2.19/index.html">2.19</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-capybara/2.18/index.html">2.18</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-capybara/2.17/index.html">2.17</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../../rubocop-factory_bot/index.html">RuboCop factory_bot</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../rubocop-factory_bot/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-factory_bot/2.26/index.html">2.26</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-factory_bot/2.25/index.html">2.25</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-factory_bot/2.24/index.html">2.24</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-factory_bot/2.23/index.html">2.23</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-factory_bot/2.22/index.html">2.22</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../../rubocop-minitest/index.html">RuboCop Minitest</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../rubocop-minitest/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.36/index.html">0.36</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.35/index.html">0.35</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.34/index.html">0.34</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.33/index.html">0.33</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.32/index.html">0.32</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.31/index.html">0.31</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.30/index.html">0.30</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.29/index.html">0.29</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.28/index.html">0.28</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.27/index.html">0.27</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.26/index.html">0.26</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-minitest/0.25/index.html">0.25</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../../rubocop-packaging/index.html">RuboCop Packaging</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../rubocop-packaging/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../../rubocop-performance/index.html">RuboCop Performance</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../rubocop-performance/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.23/index.html">1.23</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.22/index.html">1.22</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.21/index.html">1.21</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.20/index.html">1.20</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.19/index.html">1.19</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.18/index.html">1.18</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.17/index.html">1.17</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.16/index.html">1.16</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.15/index.html">1.15</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.14/index.html">1.14</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.13/index.html">1.13</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-performance/1.12/index.html">1.12</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../../rubocop-rails/index.html">RuboCop Rails</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../rubocop-rails/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.27/index.html">2.27</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.26/index.html">2.26</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.25/index.html">2.25</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.24/index.html">2.24</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.23/index.html">2.23</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.22/index.html">2.22</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.21/index.html">2.21</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.20/index.html">2.20</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.19/index.html">2.19</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.18/index.html">2.18</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.17/index.html">2.17</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.16/index.html">2.16</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.15/index.html">2.15</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rails/2.14/index.html">2.14</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../../rubocop-rspec/index.html">RuboCop RSpec</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../rubocop-rspec/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/3.1/index.html">3.1</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/3.0/index.html">3.0</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/2.31/index.html">2.31</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/2.30/index.html">2.30</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/2.29/index.html">2.29</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/2.28/index.html">2.28</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/2.27/index.html">2.27</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/2.26/index.html">2.26</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/2.25/index.html">2.25</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec/1.44/index.html">1.44</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <div class="title"><a href="../../../rubocop-rspec_rails/index.html">RuboCop RSpec Rails</a></div>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../rubocop-rspec_rails/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec_rails/2.30/index.html">2.30</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec_rails/2.29/index.html">2.29</a>
+        </li>
+        <li class="version">
+          <a href="../../../rubocop-rspec_rails/2.28/index.html">2.28</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">RuboCop</a></li>
+    <li>Usage</li>
+    <li><a href="server.html">Server</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">1.69</button>
+  <div class="version-menu">
+    <a class="version" href="../../usage/server.html">default</a>
+    <a class="version is-current" href="server.html">1.69</a>
+    <a class="version" href="../../1.68/usage/server.html">1.68</a>
+    <a class="version" href="../../1.67/usage/server.html">1.67</a>
+    <a class="version" href="../../1.66/usage/server.html">1.66</a>
+    <a class="version" href="../../1.65/usage/server.html">1.65</a>
+    <a class="version" href="../../1.64/usage/server.html">1.64</a>
+    <a class="version" href="../../1.63/usage/server.html">1.63</a>
+    <a class="version" href="../../1.62/usage/server.html">1.62</a>
+    <a class="version" href="../../1.61/usage/server.html">1.61</a>
+    <a class="version" href="../../1.60/usage/server.html">1.60</a>
+    <a class="version" href="../../1.59/usage/server.html">1.59</a>
+    <a class="version" href="../../1.58/usage/server.html">1.58</a>
+    <a class="version" href="../../1.57/usage/server.html">1.57</a>
+    <a class="version" href="../../1.56/usage/server.html">1.56</a>
+    <a class="version" href="../../1.55/usage/server.html">1.55</a>
+    <a class="version" href="../../1.54/usage/server.html">1.54</a>
+    <a class="version" href="../../1.53/usage/server.html">1.53</a>
+    <a class="version" href="../../1.52/usage/server.html">1.52</a>
+    <a class="version" href="../../1.51/usage/server.html">1.51</a>
+    <a class="version" href="../../1.50/usage/server.html">1.50</a>
+    <a class="version is-missing" href="../../1.0/index.html">1.0</a>
+  </div>
+</div>
+<div class="edit-this-page"><a href="https://github.com/rubocop/rubocop/blob/v1.69.0/docs/modules/ROOT/pages/usage/server.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Server Mode</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The server mode was introduced in RuboCop 1.31. If you&#8217;re using an older
+RuboCop version you can check out the <a href="https://github.com/fohte/rubocop-daemon">rubocop-daemon</a>
+project that served as the inspiration for RuboCop&#8217;s built-in functionality.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can reduce the RuboCop boot time significantly (something like 850x faster) by using the <code>--server</code> command-line option.</p>
+</div>
+<div class="paragraph">
+<p>The <code>--server</code> option speeds up the launch of the <code>rubocop</code> command by utilizing
+a standalone server process that loads the RuboCop runtime production files (i.e. <code>require 'rubocop'</code>).</p>
+</div>
+<div class="paragraph">
+<p>Normally RuboCop starts somewhat slowly because it needs to <code>require</code> a ton of files and that&#8217;s fairly
+slow. With the RuboCop server we sidestep this nasty issue and make it much more pleasant to
+interact with RuboCop from text editors and IDEs.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The feature cannot be used on JRuby and Windows, as they do not support the <code>fork</code> system call.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="run-with-server"><a class="anchor" href="#run-with-server"></a>Run with Server</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are two ways to enable server:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>rubocop --server</code>: If server process has not started yet,
+start server process and execute inspection with server.</p>
+</li>
+<li>
+<p><code>rubocop --start-server</code>: Just start server process.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When the server is started, it outputs the host and port.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ rubocop --start-server
+RuboCop server starting on 127.0.0.1:55772.</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>rubocop</code> command is executed using the server process if a server is started.
+Whenever a server process is not running, it will load the RuboCop runtime files and execute.
+(same behavior as with RuboCop 1.30 and lower)
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If a server is already running, the command only displays the server&#8217;s PID. A new server will not be started.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ rubocop --start-server
+RuboCop server (16060) is already running.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The server process name is basically <code>rubocop --server</code> and the project directory path:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ ps aux | grep 'rubocop --server'
+user             16060   0.0  0.0  5078568   2264   ??  S     7:54AM   0:00.00 rubocop --server /Users/user/src/github.com/rubocop/rubocop
+user             16337   0.0  0.0  5331560   2396   ??  S    23:51PM   0:00.00 rubocop --server /Users/user/src/github.com/rubocop/rubocop-rails</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When you run <code>bundle update</code> or update a local config file (e.g., <code>.rubocop.yml</code> or <code>.rubocop_todo.yml</code>), and then run <code>rubocop</code>, the server process will automatically restart.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ rubocop --server
+RuboCop version incompatibility found, RuboCop server restarting...
+RuboCop server starting on 127.0.0.1:60665.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you would like to start the server in the foreground, which can be useful when running within Docker, you can pass the <code>--no-detach</code> option.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ rubocop --start-server --no-detach</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="restart-server"><a class="anchor" href="#restart-server"></a>Restart Server</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The started server does not reload the configuration file.
+You will need to restart the server when you upgrade RuboCop or change
+the RuboCop configuration.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ rubocop --restart-server
+RuboCop server starting on 127.0.0.1:55822.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="command-line-options"><a class="anchor" href="#command-line-options"></a>Command Line Options</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>These are the command-line options for server operations:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command flag</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--server</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If a server process has not been started yet, start the server process and execute inspection with server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--no-server</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If a server process has been started, stop the server process and execute inspection without the server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--restart-server</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Restart server process.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--start-server</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Start server process.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--stop-server</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stop server process.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--server-status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Show server status.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--no-detach</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Run the server process in the foreground.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can specify the server host and port with the $RUBOCOP_SERVER_HOST and the $RUBOCOP_SERVER_PORT environment variables.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If <code>RUBOCOP_OPTS</code> environment variable or <code>.rubocop</code> file contains <code>--server</code> option, <code>rubocop</code> command defaults to server mode.
+Other server options such as <code>stop-server</code>, <code>restart-server</code> specified on the command line will take precedence over them.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="environment-variables"><a class="anchor" href="#environment-variables"></a>Environment Variables</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can change the startup host and port of server process with
+environment variables.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$RUBOCOP_SERVER_HOST</code></p>
+</li>
+<li>
+<p><code>$RUBOCOP_SERVER_PORT</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following is an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ RUBOCOP_SERVER_PORT=98989 rubocop --start-server</code></pre>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="lsp.html">LSP</a></span>
+  <span class="next"><a href="profiling.html">Profiling</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>Copyright (C) 2012-2024 <a href="https://batsov.com">Bozhidar Batsov</a> and RuboCop contributors.</p>
+  <p>Except where otherwise noted, docs.rubocop.org is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a> (CC BY-SA 4.0).</p>
+</footer>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@docsearch/js@3.3.3"></script>
+<script type="text/javascript">
+ docsearch({
+   container: '#docsearch',
+   appId: '2GTF3GZ5BX',
+   apiKey: 'b6bbe6539f46224f4f39cd14a1b7ae78',
+   indexName: 'rubocop',
+   debug: false // Set debug to true if you want to inspect the dropdown
+ });
+</script>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

@@ -6,7 +6,7 @@
     <title>RSpecRails :: RuboCop Docs</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop-rspec_rails/cops_rspecrails.html">
     <link rel="prev" href="development.html">
-    <meta name="generator" content="Antora 3.1.9">
+    <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -124,6 +124,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop/1.69/index.html">1.69</a>
         </li>
         <li class="version">
           <a href="../rubocop/1.68/index.html">1.68</a>
@@ -489,7 +492,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../rubocop/1.68/index.html" class="home-link"></a>
+  <a href="../rubocop/1.69/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop RSpec Rails</a></li>
@@ -548,7 +551,7 @@
 <p>Checks that tests use RSpec <code>before</code> hook over Rails <code>setup</code> method.</p>
 </div>
 <div class="sect2">
-<h3 id="examples"><a class="anchor" href="#examples"></a>Examples</h3>
+<h3 id="examples-rspecrailsavoidsetuphook"><a class="anchor" href="#examples-rspecrailsavoidsetuphook"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -564,7 +567,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references"><a class="anchor" href="#references"></a>References</h3>
+<h3 id="references-rspecrailsavoidsetuphook"><a class="anchor" href="#references-rspecrailsavoidsetuphook"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -609,9 +612,9 @@ end</code></pre>
 <p>Checks that tests use <code>have_http_status</code> instead of equality matchers.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h3>
+<h3 id="examples-rspecrailshavehttpstatus"><a class="anchor" href="#examples-rspecrailshavehttpstatus"></a>Examples</h3>
 <div class="sect3">
-<h4 id="responsemethods-response-last_response-default"><a class="anchor" href="#responsemethods-response-last_response-default"></a>ResponseMethods: ['response', 'last_response'] (default)</h4>
+<h4 id="responsemethods_-__response__-_last_response__-_default_-rspecrailshavehttpstatus"><a class="anchor" href="#responsemethods_-__response__-_last_response__-_default_-rspecrailshavehttpstatus"></a>ResponseMethods: ['response', 'last_response'] (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -625,7 +628,7 @@ expect(last_response).to have_http_status(200)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="responsemethods-foo_response"><a class="anchor" href="#responsemethods-foo_response"></a>ResponseMethods: ['foo_response']</h4>
+<h4 id="responsemethods_-__foo_response__-rspecrailshavehttpstatus"><a class="anchor" href="#responsemethods_-__foo_response__-rspecrailshavehttpstatus"></a>ResponseMethods: ['foo_response']</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -642,7 +645,7 @@ expect(last_response).to have_http_status(200)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes"><a class="anchor" href="#configurable-attributes"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-rspecrailshavehttpstatus"><a class="anchor" href="#configurable-attributes-rspecrailshavehttpstatus"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -666,7 +669,7 @@ expect(last_response).to have_http_status(200)</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-2"><a class="anchor" href="#references-2"></a>References</h3>
+<h3 id="references-rspecrailshavehttpstatus"><a class="anchor" href="#references-rspecrailshavehttpstatus"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -718,9 +721,9 @@ when setting for <code>EnforcedStyle: symbolic</code> or
 This cop is also capable of detecting unknown HTTP status codes.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h3>
+<h3 id="examples-rspecrailshttpstatus"><a class="anchor" href="#examples-rspecrailshttpstatus"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-symbolic-default"><a class="anchor" href="#enforcedstyle-symbolic-default"></a><code>EnforcedStyle: symbolic</code> (default)</h4>
+<h4 id="_enforcedstyle_-symbolic_-_default_-rspecrailshttpstatus"><a class="anchor" href="#_enforcedstyle_-symbolic_-_default_-rspecrailshttpstatus"></a><code>EnforcedStyle: symbolic</code> (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -738,7 +741,7 @@ it { is_expected.to have_http_status :error }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyle-numeric"><a class="anchor" href="#enforcedstyle-numeric"></a><code>EnforcedStyle: numeric</code></h4>
+<h4 id="_enforcedstyle_-numeric_-rspecrailshttpstatus"><a class="anchor" href="#_enforcedstyle_-numeric_-rspecrailshttpstatus"></a><code>EnforcedStyle: numeric</code></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -756,7 +759,7 @@ it { is_expected.to have_http_status :error }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyle-be_status"><a class="anchor" href="#enforcedstyle-be_status"></a><code>EnforcedStyle: be_status</code></h4>
+<h4 id="_enforcedstyle_-be_status_-rspecrailshttpstatus"><a class="anchor" href="#_enforcedstyle_-be_status_-rspecrailshttpstatus"></a><code>EnforcedStyle: be_status</code></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -786,7 +789,7 @@ it { is_expected.to have_http_status :ok }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-2"><a class="anchor" href="#configurable-attributes-2"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-rspecrailshttpstatus"><a class="anchor" href="#configurable-attributes-rspecrailshttpstatus"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -810,7 +813,7 @@ it { is_expected.to have_http_status :ok }</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-3"><a class="anchor" href="#references-3"></a>References</h3>
+<h3 id="references-rspecrailshttpstatus"><a class="anchor" href="#references-rspecrailshttpstatus"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -861,14 +864,14 @@ spec/rails_helper.rb. This cop works in conjunction with this config.
 If you disable this config, disable this cop as well.</p>
 </div>
 <div class="sect2">
-<h3 id="safety"><a class="anchor" href="#safety"></a>Safety</h3>
+<h3 id="safety-rspecrailsinferredspectype"><a class="anchor" href="#safety-rspecrailsinferredspectype"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is marked as unsafe because
 <code>config.infer_spec_type_from_file_location!</code> may not be enabled.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h3>
+<h3 id="examples-rspecrailsinferredspectype"><a class="anchor" href="#examples-rspecrailsinferredspectype"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -888,7 +891,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="inferences-configuration"><a class="anchor" href="#inferences-configuration"></a><code>Inferences</code> configuration</h4>
+<h4 id="_inferences_-configuration-rspecrailsinferredspectype"><a class="anchor" href="#_inferences_-configuration-rspecrailsinferredspectype"></a><code>Inferences</code> configuration</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># .rubocop.yml
@@ -915,7 +918,7 @@ end</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-3"><a class="anchor" href="#configurable-attributes-3"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-rspecrailsinferredspectype"><a class="anchor" href="#configurable-attributes-rspecrailsinferredspectype"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -939,7 +942,7 @@ end</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-4"><a class="anchor" href="#references-4"></a>References</h3>
+<h3 id="references-rspecrailsinferredspectype"><a class="anchor" href="#references-rspecrailsinferredspectype"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -988,7 +991,7 @@ end</code></pre>
 starting with <code>assert_</code> or <code>refute_</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h3>
+<h3 id="examples-rspecrailsminitestassertions"><a class="anchor" href="#examples-rspecrailsminitestassertions"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1014,7 +1017,7 @@ expect(a).to be(false)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-5"><a class="anchor" href="#references-5"></a>References</h3>
+<h3 id="references-rspecrailsminitestassertions"><a class="anchor" href="#references-rspecrailsminitestassertions"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1059,16 +1062,16 @@ expect(a).to be(false)</code></pre>
 <p>Enforces use of <code>be_invalid</code> or <code>not_to</code> for negated be_valid.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-2"><a class="anchor" href="#safety-2"></a>Safety</h3>
+<h3 id="safety-rspecrailsnegationbevalid"><a class="anchor" href="#safety-rspecrailsnegationbevalid"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because it cannot guarantee that
 the test target is an instance of <code>ActiveModel::Validations`</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h3>
+<h3 id="examples-rspecrailsnegationbevalid"><a class="anchor" href="#examples-rspecrailsnegationbevalid"></a>Examples</h3>
 <div class="sect3">
-<h4 id="enforcedstyle-not_to-default"><a class="anchor" href="#enforcedstyle-not_to-default"></a>EnforcedStyle: not_to (default)</h4>
+<h4 id="enforcedstyle_-not_to-_default_-rspecrailsnegationbevalid"><a class="anchor" href="#enforcedstyle_-not_to-_default_-rspecrailsnegationbevalid"></a>EnforcedStyle: not_to (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1083,7 +1086,7 @@ expect(foo).to be_invalid.and be_odd</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="enforcedstyle-be_invalid"><a class="anchor" href="#enforcedstyle-be_invalid"></a>EnforcedStyle: be_invalid</h4>
+<h4 id="enforcedstyle_-be_invalid-rspecrailsnegationbevalid"><a class="anchor" href="#enforcedstyle_-be_invalid-rspecrailsnegationbevalid"></a>EnforcedStyle: be_invalid</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1099,7 +1102,7 @@ expect(foo).to be_invalid.or be_even</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurable-attributes-4"><a class="anchor" href="#configurable-attributes-4"></a>Configurable attributes</h3>
+<h3 id="configurable-attributes-rspecrailsnegationbevalid"><a class="anchor" href="#configurable-attributes-rspecrailsnegationbevalid"></a>Configurable attributes</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1123,7 +1126,7 @@ expect(foo).to be_invalid.or be_even</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="references-6"><a class="anchor" href="#references-6"></a>References</h3>
+<h3 id="references-rspecrailsnegationbevalid"><a class="anchor" href="#references-rspecrailsnegationbevalid"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1168,7 +1171,7 @@ expect(foo).to be_invalid.or be_even</code></pre>
 <p>Prefer to travel in <code>before</code> rather than <code>around</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="safety-3"><a class="anchor" href="#safety-3"></a>Safety</h3>
+<h3 id="safety-rspecrailstravelaround"><a class="anchor" href="#safety-rspecrailstravelaround"></a>Safety</h3>
 <div class="paragraph">
 <p>This cop is unsafe because the automatic <code>travel_back</code> is only run
 on test cases that are considered as Rails related.</p>
@@ -1180,7 +1183,7 @@ execution will change if other steps exist before traveling in
 </div>
 </div>
 <div class="sect2">
-<h3 id="examples-7"><a class="anchor" href="#examples-7"></a>Examples</h3>
+<h3 id="examples-rspecrailstravelaround"><a class="anchor" href="#examples-rspecrailstravelaround"></a>Examples</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -1196,7 +1199,7 @@ before { freeze_time }</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="references-7"><a class="anchor" href="#references-7"></a>References</h3>
+<h3 id="references-rspecrailstravelaround"><a class="anchor" href="#references-rspecrailstravelaround"></a>References</h3>
 <div class="ulist">
 <ul>
 <li>

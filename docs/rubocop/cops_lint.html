@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_lint.html">
     <link rel="prev" href="cops_layout.html">
     <link rel="next" href="cops_metrics.html">
-    <meta name="generator" content="Antora 3.1.9">
+    <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -221,6 +221,9 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="1.69/index.html">1.69</a>
         </li>
         <li class="version">
           <a href="1.68/index.html">1.68</a>
@@ -586,7 +589,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.68/index.html" class="home-link"></a>
+  <a href="1.69/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -598,6 +601,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_lint.html">default</a>
+    <a class="version" href="1.69/cops_lint.html">1.69</a>
     <a class="version" href="1.68/cops_lint.html">1.68</a>
     <a class="version" href="1.67/cops_lint.html">1.67</a>
     <a class="version" href="1.66/cops_lint.html">1.66</a>
@@ -1338,7 +1342,7 @@ BigDecimal(123.456, 3)</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.89</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.69</p></td>
 </tr>
 </tbody>
 </table>
@@ -1346,8 +1350,7 @@ BigDecimal(123.456, 3)</code></pre>
 <p>Checks for places where binary operator has identical operands.</p>
 </div>
 <div class="paragraph">
-<p>It covers arithmetic operators: <code>-</code>, <code>/</code>, <code>%</code>;
-comparison operators: <code>==</code>, <code>===</code>, <code>=~</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&#8656;</code>;
+<p>It covers comparison operators: <code>==</code>, <code>===</code>, <code>=~</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&#8656;</code>;
 bitwise operators: <code>|</code>, <code>^</code>, <code>&amp;</code>;
 boolean operators: <code>&amp;&amp;</code>, <code>||</code>
 and "spaceship" operator - <code>&lt;&#8658;</code>.</p>
@@ -1355,9 +1358,9 @@ and "spaceship" operator - <code>&lt;&#8658;</code>.</p>
 <div class="paragraph">
 <p>Simple arithmetic operations are allowed by this cop: <code>+</code>, <code><strong></code>, <code></strong>*</code>, <code>&lt;&lt;</code> and <code>&gt;&gt;</code>.
 Although these can be rewritten in a different way, it should not be necessary to
-do so. This does not include operations such as <code>-</code> or <code>/</code> where the result will
-always be the same (<code>x - x</code> will always be 0; <code>x / x</code> will always be 1), and
-thus are legitimate offenses.</p>
+do so. Operations such as <code>-</code> or <code>/</code> where the result will always be the same
+(<code>x - x</code> will always be 0; <code>x / x</code> will always be 1) are offenses, but these
+are covered by Lint/NumericOperationWithConstantResult instead.</p>
 </div>
 <div class="sect2">
 <h3 id="safety-lintbinaryoperatorwithidenticaloperands"><a class="anchor" href="#safety-lintbinaryoperatorwithidenticaloperands"></a>Safety</h3>
@@ -1378,7 +1381,6 @@ end</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-x / x
 x.top &gt;= x.top
 
 if a.x != 0 &amp;&amp; a.x != 0
@@ -1495,6 +1497,18 @@ arguments and optional ordinal arguments.</p>
 </div>
 <div class="paragraph">
 <p>This cop mirrors a warning produced by MRI since 2.2.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This syntax is no longer valid on Ruby 2.7 or higher.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="examples-lintcircularargumentreference"><a class="anchor" href="#examples-lintcircularargumentreference"></a>Examples</h3>
@@ -2746,7 +2760,7 @@ hash = { food: 'apple', other_food: 'orange' }</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Required Ruby version: 2.7
+Requires Ruby version 2.7
 </td>
 </tr>
 </table>
@@ -3961,7 +3975,7 @@ end</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Required Ruby version: 2.7
+Requires Ruby version 2.7
 </td>
 </tr>
 </table>
@@ -4321,7 +4335,7 @@ end</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Required Ruby version: 2.6
+Requires Ruby version 2.6
 </td>
 </tr>
 </table>
@@ -4547,6 +4561,9 @@ x != 0.0
 tolerance = 0.0001
 (x - 0.1).abs &lt; tolerance
 
+# good - comparing against nil
+Float(x, exception: false) == nil
+
 # Or some other epsilon based type of comparison:
 # https://www.embeddeduse.com/2019/08/26/qt-compare-two-floats/</code></pre>
 </div>
@@ -4747,6 +4764,77 @@ hash.key?(baz)</code></pre>
 <p><a href="https://rubystyle.guide#identity-comparison" class="bare">https://rubystyle.guide#identity-comparison</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="linthashnewwithkeywordargumentsasdefault"><a class="anchor" href="#linthashnewwithkeywordargumentsasdefault"></a>Lint/HashNewWithKeywordArgumentsAsDefault</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.69</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks for the deprecated use of keyword arguments as a default in <code>Hash.new</code>.</p>
+</div>
+<div class="paragraph">
+<p>This usage raises a warning in Ruby 3.3 and results in an error in Ruby 3.4.
+In Ruby 3.4, keyword arguments will instead be used to change the behavior of a hash.
+For example, the capacity option can be passed to create a hash with a certain size
+if you know it in advance, for better performance.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The following corner case may result in a false negative when upgrading from Ruby 3.3
+or earlier, but it is intentionally not detected to respect the expected usage in Ruby 3.4.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">Hash.new(capacity: 42)</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="examples-linthashnewwithkeywordargumentsasdefault"><a class="anchor" href="#examples-linthashnewwithkeywordargumentsasdefault"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+Hash.new(key: :value)
+
+# good
+Hash.new({key: :value})</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -5257,6 +5345,18 @@ foo = "something with #{interpolation} inside"</code></pre>
 <div class="sect1">
 <h2 id="lintitwithoutargumentsinblock"><a class="anchor" href="#lintitwithoutargumentsinblock"></a>Lint/ItWithoutArgumentsInBlock</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Requires Ruby version &#8656; 3.3
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -7000,6 +7100,86 @@ non_numbered_parameter_name = :value</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="lintnumericoperationwithconstantresult"><a class="anchor" href="#lintnumericoperationwithconstantresult"></a>Lint/NumericOperationWithConstantResult</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.69</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Certain numeric operations have a constant result, usually 0 or 1.
+Subtracting a number from itself or multiplying it by 0 will always return 0.
+Additionally, a variable modulo 0 or itself will always return 0.
+Dividing a number by itself or raising it to the power of 0 will always return 1.
+As such, they can be replaced with that result.
+These are probably leftover from debugging, or are mistakes.
+Other numeric operations that are similarly leftover from debugging or mistakes
+are handled by Lint/UselessNumericOperation.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-lintnumericoperationwithconstantresult"><a class="anchor" href="#examples-lintnumericoperationwithconstantresult"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+x - x
+x * 0
+x % 1
+x % x
+
+# good
+0
+
+# bad
+x -= x
+x *= 0
+x %= 1
+x %= x
+
+# good
+x = 0
+
+# bad
+x / x
+x ** 0
+
+# good
+1
+
+# bad
+x /= x
+x **= 0
+
+# good
+x = 1</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="lintorassignmenttoconstant"><a class="anchor" href="#lintorassignmenttoconstant"></a>Lint/OrAssignmentToConstant</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -7669,7 +7849,7 @@ baz</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Required Ruby version: 3.0
+Requires Ruby version 3.0
 </td>
 </tr>
 </table>
@@ -7934,7 +8114,7 @@ require 'unloaded_feature'</code></pre>
 <p>Checks for redundant safe navigation calls.
 Use cases where a constant, named in camel case for classes and modules is <code>nil</code> are rare,
 and an offense is not detected when the receiver is a constant. The detection also applies
-to literal receivers, except for <code>nil</code>.</p>
+to <code>self</code>, and to literal receivers, except for <code>nil</code>.</p>
 </div>
 <div class="paragraph">
 <p>For all receivers, the <code>instance_of?</code>, <code>kind_of?</code>, <code>is_a?</code>, <code>eql?</code>, <code>respond_to?</code>,
@@ -7966,6 +8146,9 @@ will be autocorrected to never return <code>nil</code>.</p>
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
 CamelCaseConst&amp;.do_something
 
+# good
+CamelCaseConst.do_something
+
 # bad
 do_something if attrs&amp;.respond_to?(:[])
 
@@ -7976,9 +8159,6 @@ do_something if attrs.respond_to?(:[])
 while node&amp;.is_a?(BeginNode)
   node = node.parent
 end
-
-# good
-CamelCaseConst.do_something
 
 # good
 while node.is_a?(BeginNode)
@@ -8002,7 +8182,13 @@ foo.to_h { |k, v| [k, v] }
 foo.to_a
 foo.to_i
 foo.to_f
-foo.to_s</code></pre>
+foo.to_s
+
+# bad
+self&amp;.foo
+
+# good
+self.foo</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -8375,7 +8561,7 @@ end</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Required Ruby version: 3.1
+Requires Ruby version 3.1
 </td>
 </tr>
 </table>
@@ -8899,7 +9085,7 @@ end</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Required Ruby version: 2.3
+Requires Ruby version 2.3
 </td>
 </tr>
 </table>
@@ -11211,7 +11397,7 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Command-line only</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.21</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.61</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.69</p></td>
 </tr>
 </tbody>
 </table>
@@ -11279,13 +11465,28 @@ end</code></pre>
 <h4 id="ignorenotimplementedmethods_-true-_default_-lintunusedmethodargument"><a class="anchor" href="#ignorenotimplementedmethods_-true-_default_-lintunusedmethodargument"></a>IgnoreNotImplementedMethods: true (default)</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># with default value of `NotImplementedExceptions: ['NotImplementedError']`
+
+# good
 def do_something(unused)
   raise NotImplementedError
 end
 
 def do_something_else(unused)
   fail "TODO"
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ignorenotimplementedmethods_-true-lintunusedmethodargument"><a class="anchor" href="#ignorenotimplementedmethods_-true-lintunusedmethodargument"></a>IgnoreNotImplementedMethods: true</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># with `NotImplementedExceptions: ['AbstractMethodError']`
+
+# good
+def do_something(unused)
+  raise AbstractMethodError
 end</code></pre>
 </div>
 </div>
@@ -11336,6 +11537,11 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IgnoreNotImplementedMethods</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NotImplementedExceptions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NotImplementedError</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
 </table>
@@ -11780,6 +11986,95 @@ end</code></pre>
 <p><a href="https://rubystyle.guide#underscore-unused-vars" class="bare">https://rubystyle.guide#underscore-unused-vars</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="lintuselessdefined"><a class="anchor" href="#lintuselessdefined"></a>Lint/UselessDefined</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.69</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks for calls to <code>defined?</code> with strings or symbols as the argument.
+Such calls will always return <code>'expression'</code>, you probably meant to
+check for the existence of a constant, method, or variable instead.</p>
+</div>
+<div class="paragraph">
+<p><code>defined?</code> is part of the Ruby syntax and doesn&#8217;t behave like normal methods.
+You can safely pass in what you are checking for directly, without encountering
+a <code>NameError</code>.</p>
+</div>
+<div class="paragraph">
+<p>When interpolation is used, oftentimes it is not possible to write the
+code with <code>defined?</code>. In these cases, switch to one of the more specific methods:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>class_variable_defined?</code></p>
+</li>
+<li>
+<p><code>const_defined?</code></p>
+</li>
+<li>
+<p><code>method_defined?</code></p>
+</li>
+<li>
+<p><code>instance_variable_defined?</code></p>
+</li>
+<li>
+<p><code>binding.local_variable_defined?</code></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="examples-lintuselessdefined"><a class="anchor" href="#examples-lintuselessdefined"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+defined?('FooBar')
+defined?(:FooBar)
+defined?(:foo_bar)
+defined?('foo_bar')
+
+# good
+defined?(FooBar)
+defined?(foo_bar)
+
+# bad - interpolation
+bar = 'Bar'
+defined?("Foo::#{bar}::Baz")
+
+# good
+bar = 'Bar'
+defined?(Foo) &amp;&amp; Foo.const_defined?(bar) &amp;&amp; Foo.const_get(bar).const_defined?(:Baz)</code></pre>
+</div>
 </div>
 </div>
 </div>
