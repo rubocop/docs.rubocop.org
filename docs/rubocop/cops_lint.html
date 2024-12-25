@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_lint.html">
     <link rel="prev" href="cops_layout.html">
     <link rel="next" href="cops_metrics.html">
-    <meta name="generator" content="Antora 3.1.3">
+    <meta name="generator" content="Antora 3.1.9">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -481,6 +481,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-rails/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-rails/2.28/index.html">2.28</a>
         </li>
         <li class="version">
           <a href="../rubocop-rails/2.27/index.html">2.27</a>
@@ -1464,6 +1467,18 @@ false</code></pre>
 <div class="sect1">
 <h2 id="lintcircularargumentreference"><a class="anchor" href="#lintcircularargumentreference"></a>Lint/CircularArgumentReference</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Requires Ruby version &#8656; 2.6
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -6661,6 +6676,18 @@ FileUtils.rm_f(path)</code></pre>
 <div class="sect1">
 <h2 id="lintnondeterministicrequireorder"><a class="anchor" href="#lintnondeterministicrequireorder"></a>Lint/NonDeterministicRequireOrder</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Requires Ruby version &#8656; 2.7
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -8598,7 +8625,7 @@ Requires Ruby version 3.1
 These methods are deprecated and should be replaced with <code>Refinement#import_methods</code>.</p>
 </div>
 <div class="paragraph">
-<p>It emulates deprecation warnings in Ruby 3.1.</p>
+<p>It emulates deprecation warnings in Ruby 3.1. Functionality has been removed in Ruby 3.2.</p>
 </div>
 <div class="sect2">
 <h3 id="safety-lintrefinementimportmethods"><a class="anchor" href="#safety-lintrefinementimportmethods"></a>Safety</h3>
@@ -12082,6 +12109,18 @@ defined?(Foo) &amp;&amp; Foo.const_defined?(bar) &amp;&amp; Foo.const_get(bar).c
 <div class="sect1">
 <h2 id="lintuselesselsewithoutrescue"><a class="anchor" href="#lintuselesselsewithoutrescue"></a>Lint/UselessElseWithoutRescue</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Requires Ruby version &#8656; 2.5
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">

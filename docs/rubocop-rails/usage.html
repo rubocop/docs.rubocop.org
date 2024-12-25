@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop-rails/usage.html">
     <link rel="prev" href="installation.html">
     <link rel="next" href="cops.html">
-    <meta name="generator" content="Antora 3.1.3">
+    <meta name="generator" content="Antora 3.1.9">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -384,6 +384,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="2.28/index.html">2.28</a>
+        </li>
+        <li class="version">
           <a href="2.27/index.html">2.27</a>
         </li>
         <li class="version">
@@ -501,6 +504,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="usage.html">default</a>
+    <a class="version" href="2.28/usage.html">2.28</a>
     <a class="version" href="2.27/usage.html">2.27</a>
     <a class="version" href="2.26/usage.html">2.26</a>
     <a class="version" href="2.25/usage.html">2.25</a>
@@ -596,6 +600,26 @@ as a float (e.g., 7.2); the patch version of Rails should not be included.</p>
 gems.locked file to find the version of Rails that has been bound to the
 application. If neither of those files exist, RuboCop will use Rails 5.0
 as the default.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="allcops-migratedschemaversion"><a class="anchor" href="#allcops-migratedschemaversion"></a><code>AllCops: MigratedSchemaVersion</code></h3>
+<div class="paragraph">
+<p>By specifying the <code>MigratedSchemaVersion</code> option, migration files that have already been run can be ignored.
+When <code>MigratedSchemaVersion: '20241225000000'</code> is set, migration files lower than or equal to '20241225000000' will be ignored.
+For example, to ignore db/migrate/20241225000000_create_articles.rb and earlier migrations you would configure it the following way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">AllCops
+  MigratedSchemaVersion: '20241225000000'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This prevents inspecting schema settings for already applied migration files.
+Changing already applied migrations should be avoided because it can lead to the schema getting out of sync
+between your local copy and what it actually is in production, depending on when <code>bin/rails db:migrate</code> was executed.
+If you want to modify your schema to comply with the cops, you should instead create new migrations.</p>
 </div>
 </div>
 </div>

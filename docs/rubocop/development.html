@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/development.html">
     <link rel="prev" href="automated_code_review.html">
     <link rel="next" href="contributing.html">
-    <meta name="generator" content="Antora 3.1.3">
+    <meta name="generator" content="Antora 3.1.9">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -483,6 +483,9 @@
           <a href="../rubocop-rails/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-rails/2.28/index.html">2.28</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-rails/2.27/index.html">2.27</a>
         </li>
         <li class="version">
@@ -799,6 +802,14 @@ and use patterns to match with specific nodes that you want to match.</p>
 <p>You can learn more about Node Pattern <a href="https://github.com/rubocop/rubocop-ast/blob/master/docs/modules/ROOT/pages/node_pattern.adoc">here</a>.</p>
 </div>
 <div class="paragraph">
+<p>Alias <code>NodePattern</code> to <code>RuboCop::AST::NodePattern</code> to make it easier to use:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">NodePattern = RuboCop::AST::NodePattern</code></pre>
+</div>
+</div>
+<div class="paragraph">
 <p>Node pattern matches something very similar to the current output from AST
 representation, then let&#8217;s start with something very generic:</p>
 </div>
@@ -1084,14 +1095,14 @@ This can be implemented using the <code>IgnoredNode</code> module:</p>
 <div class="sect3">
 <h4 id="requiring-a-minimum-ruby-version"><a class="anchor" href="#requiring-a-minimum-ruby-version"></a>Requiring a minimum Ruby version</h4>
 <div class="paragraph">
-<p>If your cop uses new Ruby syntax or standard library APIs, it should only autocorrect if the user has the target Ruby version, which you set with <a href="https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/TargetRubyVersion#minimum_target_ruby_version-instance_metho"><code>TargetRubyVersion#minimum_target_ruby_version</code></a>.</p>
+<p>If your cop uses new Ruby syntax or standard library APIs, it should only register offenses if the user has the proper target Ruby version, which you can require with <a href="https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/TargetRubyVersion#minimum_target_ruby_version-instance_method"><code>TargetRubyVersion#minimum_target_ruby_version</code></a>.</p>
 </div>
 <div class="paragraph">
 <p>For example, the <code>Performance/SelectMap</code> cop requires Ruby 2.7, which introduced <code>Enumerable#filter_map</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">module RuboCop::Cop::Performance::SelectMap &lt; Base
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class RuboCop::Cop::Performance::SelectMap &lt; Base
   extend TargetRubyVersion
 
   minimum_target_ruby_version 2.7
@@ -1101,7 +1112,27 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This cop won&#8217;t autocorrect on Ruby 2.6 or older, and it won&#8217;t even report an offense (since there&#8217;s no better alternative to recommend instead).</p>
+<p>This cop won&#8217;t register offenses on Ruby 2.6 or older.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="requiring-a-maximum-ruby-version"><a class="anchor" href="#requiring-a-maximum-ruby-version"></a>Requiring a maximum Ruby version</h4>
+<div class="paragraph">
+<p>Mirroring <code>minimum_target_ruby_version</code>, you can also specify a maximum Ruby version your cop should analyze.</p>
+</div>
+<div class="paragraph">
+<p>For example, the <code>Lint/CircularArgumentReference</code> cop only runs when analyzing code for Ruby before 2.7. The code it is looking for can never be written in more recent Rubies, it would be a syntax error:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class RuboCop::Cop::Lint::CircularArgumentReference &lt; Base
+  extend TargetRubyVersion
+
+  maximum_target_ruby_version 2.6
+
+  # ...
+end</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -1124,6 +1155,53 @@ end</code></pre>
 <div class="paragraph">
 <p>You can specify any gem requirement using <a href="https://guides.rubygems.org/patterns/#declaring-dependencies">the same syntax as your <code>Gemfile</code></a>.</p>
 </div>
+<div class="paragraph">
+<p>You can also handle multiple versions of a gem with <code>target_gem_version</code>. It behaves similar to <code>target_ruby_version</code>, allowing you to inspect a gem version at runtime:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Ruby hljs" data-lang="Ruby">class MyCop &lt; Base
+  requires_gem "my-gem"
+
+  def on_send(node)
+    if target_gem_version("my-gem) &lt; "2.0"
+      # ...
+    else
+      # ...
+    end
+  end
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When writing tests, you can specify the gem version to run your example against through the <code>gem_versions</code> RSpec helper:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-Ruby hljs" data-lang="Ruby">describe RuboCop::Cop::Style::MyCop, :config do
+  context 'when `my-gem` is at version `1.X`' do
+    let(:gem_versions) { { 'my-gem' =&gt; '1.0.0' } }
+
+    it 'registers no offense' do
+      expect_no_offenses(&lt;&lt;~RUBY)
+        MyGem.foo
+      RUBY
+    end
+  end
+
+  context 'when `my-gem` is at version `2.X`' do
+    let(:gem_versions) { { 'my-gem' =&gt; '2.0.0' } }
+
+    it 'registers an offense' do
+      expect_offense(&lt;&lt;~RUBY)
+        MyGem.foo
+        ^^^^^^^^^ Instead of `foo`, use the newer `bar` method.
+      RUBY
+    end
+  end
+end</code></pre>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="special-case-rails"><a class="anchor" href="#special-case-rails"></a>Special case: Rails</h4>
@@ -1135,7 +1213,7 @@ end</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">module RuboCop::Cop::Rails::Pluck &lt; Base
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class RuboCop::Cop::Rails::Pluck &lt; Base
   extend TargetRailsVersion
 
   minimum_target_rails_version 6.0

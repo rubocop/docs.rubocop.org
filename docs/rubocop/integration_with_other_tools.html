@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/integration_with_other_tools.html">
     <link rel="prev" href="extensions.html">
     <link rel="next" href="automated_code_review.html">
-    <meta name="generator" content="Antora 3.1.3">
+    <meta name="generator" content="Antora 3.1.9">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -483,6 +483,9 @@
           <a href="../rubocop-rails/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-rails/2.28/index.html">2.28</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-rails/2.27/index.html">2.27</a>
         </li>
         <li class="version">
@@ -822,7 +825,7 @@ following to your <code>.pre-commit-config.yaml</code> file:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- repo: https://github.com/rubocop/rubocop
-  rev: v1.8.1
+  rev: v1.69.2
   hooks:
     - id: rubocop</code></pre>
 </div>
@@ -834,13 +837,16 @@ entries in <code>additional_dependencies</code>:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- repo: https://github.com/rubocop/rubocop
-  rev: v1.8.1
+  rev: v1.69.2
   hooks:
     - id: rubocop
       additional_dependencies:
         - rubocop-rails
         - rubocop-rspec</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>RuboCop supports pre-commit hook integration since version 1.9.</p>
 </div>
 </div>
 </div>

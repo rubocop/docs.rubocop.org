@@ -6,7 +6,7 @@
     <title>Rails :: RuboCop Docs</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop-rails/cops_rails.html">
     <link rel="prev" href="cops.html">
-    <meta name="generator" content="Antora 3.1.3">
+    <meta name="generator" content="Antora 3.1.9">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -383,6 +383,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="2.28/index.html">2.28</a>
+        </li>
+        <li class="version">
           <a href="2.27/index.html">2.27</a>
         </li>
         <li class="version">
@@ -501,6 +504,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_rails.html">default</a>
+    <a class="version" href="2.28/cops_rails.html">2.28</a>
     <a class="version" href="2.27/cops_rails.html">2.27</a>
     <a class="version" href="2.26/cops_rails.html">2.26</a>
     <a class="version" href="2.25/cops_rails.html">2.25</a>
@@ -3832,7 +3836,7 @@ enum status: { active: 0, archived: 1 }</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Required Ruby version: 3.0
+Requires Ruby version 3.0
 </td>
 </tr>
 </table>
@@ -7385,6 +7389,34 @@ Required Rails version: 5.0
 element in an enumerable. When called on an Active Record relation, it
 results in a more efficient query that only selects the necessary key.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the receiver&#8217;s relation is not loaded and <code>pluck</code> is used inside an iteration,
+it may result in N+1 queries because <code>pluck</code> queries the database on each iteration.
+This cop ignores offenses for <code>map/collect</code> when they are suspected to be part of an iteration
+to prevent such potential issues.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">users = User.all
+5.times do
+  users.map { |user| user[:foo] } # Only one query is executed
+end
+
+users = User.all
+5.times do
+  users.pluck(:id) # A query is executed on every iteration
+end</code></pre>
+</div>
+</div>
 <div class="sect2">
 <h3 id="safety-railspluck"><a class="anchor" href="#safety-railspluck"></a>Safety</h3>
 <div class="paragraph">
@@ -9813,7 +9845,7 @@ Rails.public_path.join('file.pdf')</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Required Ruby version: 2.3
+Requires Ruby version 2.3
 </td>
 </tr>
 </table>
@@ -10730,7 +10762,7 @@ SQL</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Required Ruby version: 2.3
+Requires Ruby version 2.3
 </td>
 </tr>
 </table>
@@ -12609,7 +12641,7 @@ User.where.not('trashed = ? OR role = ?', true, 'admin')</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Required Ruby version: 2.6
+Requires Ruby version 2.6
 </td>
 </tr>
 </table>
