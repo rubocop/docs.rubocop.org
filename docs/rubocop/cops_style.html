@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_style.html">
     <link rel="prev" href="cops_security.html">
     <link rel="next" href="v1_upgrade_notes.html">
-    <meta name="generator" content="Antora 3.1.9">
+    <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -251,36 +251,6 @@
         </li>
         <li class="version">
           <a href="1.60/index.html">1.60</a>
-        </li>
-        <li class="version">
-          <a href="1.59/index.html">1.59</a>
-        </li>
-        <li class="version">
-          <a href="1.58/index.html">1.58</a>
-        </li>
-        <li class="version">
-          <a href="1.57/index.html">1.57</a>
-        </li>
-        <li class="version">
-          <a href="1.56/index.html">1.56</a>
-        </li>
-        <li class="version">
-          <a href="1.55/index.html">1.55</a>
-        </li>
-        <li class="version">
-          <a href="1.54/index.html">1.54</a>
-        </li>
-        <li class="version">
-          <a href="1.53/index.html">1.53</a>
-        </li>
-        <li class="version">
-          <a href="1.52/index.html">1.52</a>
-        </li>
-        <li class="version">
-          <a href="1.51/index.html">1.51</a>
-        </li>
-        <li class="version">
-          <a href="1.50/index.html">1.50</a>
         </li>
         <li class="version">
           <a href="1.0/index.html">1.0</a>
@@ -592,7 +562,6 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.69/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -614,16 +583,6 @@
     <a class="version" href="1.62/cops_style.html">1.62</a>
     <a class="version" href="1.61/cops_style.html">1.61</a>
     <a class="version" href="1.60/cops_style.html">1.60</a>
-    <a class="version" href="1.59/cops_style.html">1.59</a>
-    <a class="version" href="1.58/cops_style.html">1.58</a>
-    <a class="version" href="1.57/cops_style.html">1.57</a>
-    <a class="version" href="1.56/cops_style.html">1.56</a>
-    <a class="version" href="1.55/cops_style.html">1.55</a>
-    <a class="version" href="1.54/cops_style.html">1.54</a>
-    <a class="version" href="1.53/cops_style.html">1.53</a>
-    <a class="version" href="1.52/cops_style.html">1.52</a>
-    <a class="version" href="1.51/cops_style.html">1.51</a>
-    <a class="version" href="1.50/cops_style.html">1.50</a>
     <a class="version" href="1.0/cops_style.html">1.0</a>
   </div>
 </div>
@@ -661,7 +620,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.57</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.81</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.70</p></td>
 </tr>
 </tbody>
 </table>
@@ -812,6 +771,36 @@ end</code></pre>
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="allowmodifiersonaliasmethod_-true-_default_-styleaccessmodifierdeclarations"><a class="anchor" href="#allowmodifiersonaliasmethod_-true-_default_-styleaccessmodifierdeclarations"></a>AllowModifiersOnAliasMethod: true (default)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+class Foo
+
+  public alias_method :bar, :foo
+  protected alias_method :baz, :foo
+  private alias_method :qux, :foo
+
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="allowmodifiersonaliasmethod_-false-styleaccessmodifierdeclarations"><a class="anchor" href="#allowmodifiersonaliasmethod_-false-styleaccessmodifierdeclarations"></a>AllowModifiersOnAliasMethod: false</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+class Foo
+
+  public alias_method :bar, :foo
+  protected alias_method :baz, :foo
+  private alias_method :qux, :foo
+
+end</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="configurable-attributes-styleaccessmodifierdeclarations"><a class="anchor" href="#configurable-attributes-styleaccessmodifierdeclarations"></a>Configurable attributes</h3>
@@ -841,6 +830,11 @@ end</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AllowModifiersOnAttrs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowModifiersOnAliasMethod</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
 </tr>
@@ -7942,7 +7936,7 @@ for numbers in the code (eg 1.2e4). Different styles are supported:</p>
 </li>
 <li>
 <p><code>engineering</code> which enforces the exponent to be a multiple of 3 and the mantissa
-to be between 0.1 (inclusive) and 10 (exclusive).</p>
+to be between 0.1 (inclusive) and 1000 (exclusive).</p>
 </li>
 <li>
 <p><code>integral</code> which enforces the mantissa to always be a whole number without
@@ -10118,8 +10112,11 @@ that can be replaced with <code>Hash#except</code> method.</p>
 </div>
 <div class="paragraph">
 <p>For safe detection, it is limited to commonly used string and symbol comparisons
-when used <code>==</code>.
-And do not check <code>Hash#delete_if</code> and <code>Hash#keep_if</code> to change receiver object.</p>
+when using <code>==</code> or <code>!=</code>.</p>
+</div>
+<div class="paragraph">
+<p>This cop doesn&#8217;t check for <code>Hash#delete_if</code> and <code>Hash#keep_if</code> because they
+modify the receiver.</p>
 </div>
 <div class="sect2">
 <h3 id="safety-stylehashexcept"><a class="anchor" href="#safety-stylehashexcept"></a>Safety</h3>
@@ -11884,6 +11881,64 @@ ip_address = ENV['DEPLOYMENT_IP_ADDRESS']</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="styleitassignment"><a class="anchor" href="#styleitassignment"></a>Style/ItAssignment</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.70</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks for assignments to a local <code>it</code> variable inside a block
+where <code>it</code> can refer to the first anonymous parameter as of Ruby 3.4.</p>
+</div>
+<div class="paragraph">
+<p>Although Ruby allows reassigning <code>it</code> in these cases, it could
+cause confusion if <code>it</code> is used as a block parameter elsewhere.
+For consistency, this also applies to numblocks and blocks with
+parameters, even though <code>it</code> cannot be used in those cases.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-styleitassignment"><a class="anchor" href="#examples-styleitassignment"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+foo { it = 5 }
+foo { |bar| it = bar }
+foo { it = _2 }
+
+# good - use a different variable name
+foo { var = 5 }
+foo { |bar| var = bar }
+foo { bar = _2 }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="stylekeywordargumentsmerging"><a class="anchor" href="#stylekeywordargumentsmerging"></a>Style/KeywordArgumentsMerging</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -13014,6 +13069,10 @@ is not the value-returning expression. See
 <li>
 <p>Parentheses are required in anonymous arguments, keyword arguments
 and block passing in Ruby 3.2.</p>
+</li>
+<li>
+<p>Parentheses are required when the first argument is a beginless range or
+the last argument is an endless range.</p>
 </li>
 </ul>
 </div>
@@ -19531,7 +19590,8 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for uses a redundant current directory in path.</p>
+<p>Checks for paths given to <code>require_relative</code> that start with
+the current directory (<code>./</code>), which can be omitted.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-styleredundantcurrentdirectoryinpath"><a class="anchor" href="#examples-styleredundantcurrentdirectoryinpath"></a>Examples</h3>
@@ -20217,6 +20277,19 @@ number of arguments as its superclass potentially does.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
+If an initializer takes any arguments and has an empty body, RuboCop
+assumes it to <strong>not</strong> be redundant. This is to prevent potential <code>ArgumentError</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 If an initializer argument has a default value, RuboCop assumes it
 to <strong>not</strong> be redundant.
 </td>
@@ -20240,8 +20313,10 @@ initializer.
 <div class="sect2">
 <h3 id="safety-styleredundantinitialize"><a class="anchor" href="#safety-styleredundantinitialize"></a>Safety</h3>
 <div class="paragraph">
-<p>This cop is unsafe because if subclass overrides <code>initialize</code> method with
-a different arity than superclass.</p>
+<p>This cop is unsafe because removing an empty initializer may alter
+the behavior of the code, particularly if the superclass initializer
+raises an exception. In such cases, the empty initializer may act as
+a safeguard to prevent unintended errors from propagating.</p>
 </div>
 </div>
 <div class="sect2">
@@ -20291,6 +20366,10 @@ end
 # good (default value)
 def initialize(a, b: 5)
   super
+end
+
+# good (changes the parameter requirements)
+def initialize(_)
 end
 
 # good (changes the parameter requirements)
@@ -24439,8 +24518,8 @@ lines, this cop does not register an offense; instead,
 </div>
 <div class="paragraph">
 <p>Two modes are supported:
-1. <code>aggressive</code> style checks and corrects all occurrences of <code>` where
-either the left or right side of `</code> is a string literal.
+1. <code>aggressive</code> style checks and corrects all occurrences of <code>+</code> where
+either the left or right side of <code>+</code> is a string literal.
 2. <code>conservative</code> style on the other hand, checks and corrects only if
 left side (receiver of <code>+</code> method call) is a string literal.
 This is useful when the receiver is some expression that returns string like <code>Pathname</code>
@@ -25054,6 +25133,20 @@ end</code></pre>
 <code>define_method</code>, therefore, <code>super</code> used within these blocks will be allowed.
 This approach might result in false negatives, yet ensuring safe detection takes precedence.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When forwarding the same arguments but replacing the block argument with a new inline
+block, it is not necessary to explicitly list the non-block arguments. As such, an offense
+will be registered in this case.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
 <h3 id="examples-stylesuperarguments"><a class="anchor" href="#examples-stylesuperarguments"></a>Examples</h3>
 <div class="listingblock">
@@ -25076,6 +25169,16 @@ end
 # good - forwarding no arguments
 def method(*args, **kwargs)
   super()
+end
+
+# bad - forwarding with overridden block
+def method(*args, **kwargs, &amp;block)
+  super(*args, **kwargs) { do_something }
+end
+
+# good - implicitly passing all non-block arguments
+def method(*args, **kwargs, &amp;block)
+  super { do_something }
 end
 
 # good - assigning to the block variable before calling super
