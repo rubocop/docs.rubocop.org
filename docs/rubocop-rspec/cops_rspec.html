@@ -6,7 +6,7 @@
     <title>RSpec :: RuboCop Docs</title>
     <link rel="canonical" href="https://docs.rubocop.org/rubocop-rspec/cops_rspec.html">
     <link rel="prev" href="development.html">
-    <meta name="generator" content="Antora 3.1.3">
+    <meta name="generator" content="Antora 3.1.9">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -363,6 +363,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-rails/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-rails/2.29/index.html">2.29</a>
         </li>
         <li class="version">
           <a href="../rubocop-rails/2.28/index.html">2.28</a>
@@ -9550,71 +9553,6 @@ spec/models/user.rb       # shared_examples_for 'foo'</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="rspecstringasinstancedoubleconstant"><a class="anchor" href="#rspecstringasinstancedoubleconstant"></a>RSpec/StringAsInstanceDoubleConstant</h2>
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Enabled by default</th>
-<th class="tableblock halign-left valign-top">Safe</th>
-<th class="tableblock halign-left valign-top">Supports autocorrection</th>
-<th class="tableblock halign-left valign-top">Version Added</th>
-<th class="tableblock halign-left valign-top">Version Changed</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Do not use a string as <code>instance_double</code> constant.</p>
-</div>
-<div class="sect2">
-<h3 id="safety-rspecstringasinstancedoubleconstant"><a class="anchor" href="#safety-rspecstringasinstancedoubleconstant"></a>Safety</h3>
-<div class="paragraph">
-<p>This cop is unsafe because the correction requires loading the class.
-Loading before stubbing causes RSpec to only allow instance methods
-to be stubbed.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="examples-rspecstringasinstancedoubleconstant"><a class="anchor" href="#examples-rspecstringasinstancedoubleconstant"></a>Examples</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-instance_double('User', name: 'John')
-
-# good
-instance_double(User, name: 'John')</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="references-rspecstringasinstancedoubleconstant"><a class="anchor" href="#references-rspecstringasinstancedoubleconstant"></a>References</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/StringAsInstanceDoubleConstant" class="bare">https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/StringAsInstanceDoubleConstant</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="rspecstubbedmock"><a class="anchor" href="#rspecstubbedmock"></a>RSpec/StubbedMock</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -10253,24 +10191,23 @@ let(:userFood_2) { 'fettuccine' }</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.10.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.12</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#next">[next]</a></p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p>Checks for consistent verified double reference style.</p>
 </div>
+<div class="sect2">
+<h3 id="safety-rspecverifieddoublereference"><a class="anchor" href="#safety-rspecverifieddoublereference"></a>Safety</h3>
 <div class="paragraph">
-<p>Only investigates references that are one of the supported styles.</p>
+<p>This cop is unsafe because the correction requires loading the class.
+Loading before stubbing causes RSpec to only allow instance methods
+to be stubbed.</p>
 </div>
-<div class="paragraph">
-<p>This cop can be configured in your configuration using the
-<code>EnforcedStyle</code> option and supports <code>--auto-gen-config</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-rspecverifieddoublereference"><a class="anchor" href="#examples-rspecverifieddoublereference"></a>Examples</h3>
-<div class="sect3">
-<h4 id="_enforcedstyle_-constant_-_default_-rspecverifieddoublereference"><a class="anchor" href="#_enforcedstyle_-constant_-_default_-rspecverifieddoublereference"></a><code>EnforcedStyle: constant</code> (default)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
@@ -10284,25 +10221,8 @@ let(:foo) do
 end</code></pre>
 </div>
 </div>
-</div>
 <div class="sect3">
-<h4 id="_enforcedstyle_-string_-rspecverifieddoublereference"><a class="anchor" href="#_enforcedstyle_-string_-rspecverifieddoublereference"></a><code>EnforcedStyle: string</code></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
-let(:foo) do
-  instance_double(ClassName, method_name: 'returned_value')
-end
-
-# good
-let(:foo) do
-  instance_double('ClassName', method_name: 'returned_value')
-end</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="reference-is-not-in-the-supported-style-list_-no-enforcement-rspecverifieddoublereference"><a class="anchor" href="#reference-is-not-in-the-supported-style-list_-no-enforcement-rspecverifieddoublereference"></a>Reference is not in the supported style list. No enforcement</h4>
+<h4 id="reference-is-any-dynamic-variable_-no-enforcement-rspecverifieddoublereference"><a class="anchor" href="#reference-is-any-dynamic-variable_-no-enforcement-rspecverifieddoublereference"></a>Reference is any dynamic variable. No enforcement</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
@@ -10312,30 +10232,6 @@ end</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="configurable-attributes-rspecverifieddoublereference"><a class="anchor" href="#configurable-attributes-rspecverifieddoublereference"></a>Configurable attributes</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Configurable values</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EnforcedStyle</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>constant</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>constant</code>, <code>string</code></p></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect2">
 <h3 id="references-rspecverifieddoublereference"><a class="anchor" href="#references-rspecverifieddoublereference"></a>References</h3>
