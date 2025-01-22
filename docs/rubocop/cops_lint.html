@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_lint.html">
     <link rel="prev" href="cops_layout.html">
     <link rel="next" href="cops_metrics.html">
-    <meta name="generator" content="Antora 3.1.9">
+    <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -221,6 +221,12 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="1.71/index.html">1.71</a>
+        </li>
+        <li class="version">
+          <a href="1.70/index.html">1.70</a>
         </li>
         <li class="version">
           <a href="1.69/index.html">1.69</a>
@@ -565,6 +571,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
+  <a href="1.71/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -576,6 +583,8 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_lint.html">default</a>
+    <a class="version" href="1.71/cops_lint.html">1.71</a>
+    <a class="version" href="1.70/cops_lint.html">1.70</a>
     <a class="version" href="1.69/cops_lint.html">1.69</a>
     <a class="version" href="1.68/cops_lint.html">1.68</a>
     <a class="version" href="1.67/cops_lint.html">1.67</a>
@@ -1106,6 +1115,94 @@ do_something /pattern/i
 
 # With parentheses, there's no ambiguity.
 do_something(/pattern/i)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="lintarrayliteralinregexp"><a class="anchor" href="#lintarrayliteralinregexp"></a>Lint/ArrayLiteralInRegexp</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.71</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks for an array literal interpolated inside a regexp.</p>
+</div>
+<div class="paragraph">
+<p>When interpolating an array literal, it is converted to a string. This means
+that when inside a regexp, it acts as a character class but with additional
+quotes, spaces and commas that are likely not intended. For example,
+<code>/#{%w[a b c]}/</code> parses as <code>/["a", "b", "c"]/</code> (or <code>/["a, bc]/</code> without
+repeated characters).</p>
+</div>
+<div class="paragraph">
+<p>The cop can autocorrect to a character class (if all items in the array are a
+single character) or alternation (if the array contains longer items).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This only considers interpolated arrays that contain only strings, symbols,
+integers, and floats. Any other type is not easily convertible to a character class
+or regexp alternation.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="safety-lintarrayliteralinregexp"><a class="anchor" href="#safety-lintarrayliteralinregexp"></a>Safety</h3>
+<div class="paragraph">
+<p>Autocorrection is unsafe because it will change the regexp pattern, by
+removing the additional quotes, spaces and commas from the character class.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="examples-lintarrayliteralinregexp"><a class="anchor" href="#examples-lintarrayliteralinregexp"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+/#{%w[a b c]}/
+
+# good
+/[abc]/
+
+# bad
+/#{%w[foo bar baz]}/
+
+# good
+/(?:foo|bar|baz)/
+
+# bad - construct a regexp rather than interpolate an array of identifiers
+/#{[foo, bar]}/</code></pre>
 </div>
 </div>
 </div>
@@ -2096,12 +2193,12 @@ require 'my_debugger/start'</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DebuggerMethods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"Kernel"&#8658;["binding.irb", "Kernel.binding.irb"], "Byebug"&#8658;["byebug", "remote_byebug", "Kernel.byebug", "Kernel.remote_byebug"], "Capybara"&#8658;["page.save_and_open_page", "page.save_and_open_screenshot", "page.save_page", "page.save_screenshot", "save_and_open_page", "save_and_open_screenshot", "save_page", "save_screenshot"], "debug.rb"&#8658;["binding.b", "binding.break", "Kernel.binding.b", "Kernel.binding.break"], "Pry"&#8658;["binding.pry", "binding.remote_pry", "binding.pry_remote", "Kernel.binding.pry", "Kernel.binding.remote_pry", "Kernel.binding.pry_remote", "Pry.rescue", "pry"], "Rails"&#8658;["debugger", "Kernel.debugger"], "RubyJard"&#8658;["jard"], "WebConsole"&#8658;["binding.console"]}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"Kernel" &#8658; ["binding.irb", "Kernel.binding.irb"], "Byebug" &#8658; ["byebug", "remote_byebug", "Kernel.byebug", "Kernel.remote_byebug"], "Capybara" &#8658; ["page.save_and_open_page", "page.save_and_open_screenshot", "page.save_page", "page.save_screenshot", "save_and_open_page", "save_and_open_screenshot", "save_page", "save_screenshot"], "debug.rb" &#8658; ["binding.b", "binding.break", "Kernel.binding.b", "Kernel.binding.break"], "Pry" &#8658; ["binding.pry", "binding.remote_pry", "binding.pry_remote", "Kernel.binding.pry", "Kernel.binding.remote_pry", "Kernel.binding.pry_remote", "Pry.rescue", "pry"], "Rails" &#8658; ["debugger", "Kernel.debugger"], "RubyJard" &#8658; ["jard"], "WebConsole" &#8658; ["binding.console"]}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DebuggerRequires</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"debug.rb"&#8658;["debug/open", "debug/start"]}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"debug.rb" &#8658; ["debug/open", "debug/start"]}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -2266,7 +2363,7 @@ Etc::Passwd</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DeprecatedConstants</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"NIL"&#8658;{"Alternative"&#8658;"nil", "DeprecatedVersion"&#8658;"2.4"}, "TRUE"&#8658;{"Alternative"&#8658;"true", "DeprecatedVersion"&#8658;"2.4"}, "FALSE"&#8658;{"Alternative"&#8658;"false", "DeprecatedVersion"&#8658;"2.4"}, "Net::HTTPServerException"&#8658;{"Alternative"&#8658;"Net::HTTPClientException", "DeprecatedVersion"&#8658;"2.6"}, "Random::DEFAULT"&#8658;{"Alternative"&#8658;"Random.new", "DeprecatedVersion"&#8658;"3.0"}, "Struct::Group"&#8658;{"Alternative"&#8658;"Etc::Group", "DeprecatedVersion"&#8658;"3.0"}, "Struct::Passwd"&#8658;{"Alternative"&#8658;"Etc::Passwd", "DeprecatedVersion"&#8658;"3.0"}}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"NIL" &#8658; {"Alternative" &#8658; "nil", "DeprecatedVersion" &#8658; "2.4"}, "TRUE" &#8658; {"Alternative" &#8658; "true", "DeprecatedVersion" &#8658; "2.4"}, "FALSE" &#8658; {"Alternative" &#8658; "false", "DeprecatedVersion" &#8658; "2.4"}, "Net::HTTPServerException" &#8658; {"Alternative" &#8658; "Net::HTTPClientException", "DeprecatedVersion" &#8658; "2.6"}, "Random::DEFAULT" &#8658; {"Alternative" &#8658; "Random.new", "DeprecatedVersion" &#8658; "3.0"}, "Struct::Group" &#8658; {"Alternative" &#8658; "Etc::Group", "DeprecatedVersion" &#8658; "3.0"}, "Struct::Passwd" &#8658; {"Alternative" &#8658; "Etc::Passwd", "DeprecatedVersion" &#8658; "3.0"}}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -3066,7 +3163,7 @@ alias bar foo</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for duplicate elements in Regexp character classes.</p>
+<p>Checks for duplicate elements in <code>Regexp</code> character classes.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-lintduplicateregexpcharacterclasselement"><a class="anchor" href="#examples-lintduplicateregexpcharacterclasselement"></a>Examples</h3>
@@ -3240,7 +3337,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for duplicate literal, constant, or variable elements in Set and SortedSet.</p>
+<p>Checks for duplicate literal, constant, or variable elements in <code>Set</code> and <code>SortedSet</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-lintduplicatesetelement"><a class="anchor" href="#examples-lintduplicatesetelement"></a>Examples</h3>
@@ -4702,7 +4799,7 @@ Float(x, exception: false) == nil
 </tbody>
 </table>
 <div class="paragraph">
-<p>Identifies Float literals which are, like, really really really
+<p>Identifies <code>Float</code> literals which are, like, really really really
 really really really really really big. Too big. No-one needs Floats
 that big. If you need a float that big, something is wrong with you.</p>
 </div>
@@ -5753,6 +5850,19 @@ end</code></pre>
 <div class="paragraph">
 <p>Checks for interpolated literals.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Array literals interpolated in regexps are not handled by this cop, but
+by <code>Lint/ArrayLiteralInRegexp</code> instead.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
 <h3 id="examples-lintliteralininterpolation"><a class="anchor" href="#examples-lintliteralininterpolation"></a>Examples</h3>
 <div class="listingblock">
@@ -6151,7 +6261,7 @@ as well as range objects like <code>('A'..'z')</code>.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Range objects cannot be autocorrected.
+<code>Range</code> objects cannot be autocorrected.
 </td>
 </tr>
 </table>
@@ -6212,7 +6322,7 @@ r = /[A-Za-z]/</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Do not mix named captures and numbered captures in a Regexp literal
+<p>Do not mix named captures and numbered captures in a <code>Regexp</code> literal
 because numbered capture is ignored if they&#8217;re mixed.
 Replace numbered captures with non-capturing groupings or
 named captures.</p>
@@ -7248,7 +7358,7 @@ are handled by Lint/UselessNumericOperation.</p>
 </td>
 <td class="content">
 This cop doesn&#8217;t detect offenses for the <code>-</code> and <code>%</code> operator because it
-can&#8217;t determine the type of <code>x</code>. If <code>x</code> is an Array or String, it doesn&#8217;t perform
+can&#8217;t determine the type of <code>x</code>. If <code>x</code> is an <code>Array</code> or <code>String</code>, it doesn&#8217;t perform
 a numeric operation.
 </td>
 </tr>
@@ -7445,7 +7555,7 @@ p [''.frozen?, ''.encoding] #=&gt; [true, #&lt;Encoding:US-ASCII&gt;]</code></pr
 </tbody>
 </table>
 <div class="paragraph">
-<p>Looks for references of Regexp captures that are out of range
+<p>Looks for references of <code>Regexp</code> captures that are out of range
 and thus always returns nil.</p>
 </div>
 <div class="sect2">
@@ -8055,7 +8165,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for redundant quantifiers inside Regexp literals.</p>
+<p>Checks for redundant quantifiers inside <code>Regexp</code> literals.</p>
 </div>
 <div class="paragraph">
 <p>It is always allowed when interpolation is used in a regexp literal,
@@ -9016,7 +9126,7 @@ require_relative 'bar'</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for <code>rescue</code> blocks targeting the Exception class.</p>
+<p>Checks for <code>rescue</code> blocks targeting the <code>Exception</code> class.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-lintrescueexception"><a class="anchor" href="#examples-lintrescueexception"></a>Examples</h3>
@@ -9955,12 +10065,12 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for Hash creation with a mutable default value.
-Creating a Hash in such a way will share the default value
+<p>Checks for <code>Hash</code> creation with a mutable default value.
+Creating a <code>Hash</code> in such a way will share the default value
 across all keys, causing unexpected behavior when modifying it.</p>
 </div>
 <div class="paragraph">
-<p>For example, when the Hash was created with an Array as the argument,
+<p>For example, when the <code>Hash</code> was created with an <code>Array</code> as the argument,
 calling <code>hash[:foo] &lt;&lt; 'bar'</code> will also change the value of all
 other keys that have not been explicitly assigned to.</p>
 </div>
@@ -11037,7 +11147,7 @@ values.sort { |*x| x[0] &lt;=&gt; x[1] }</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Methods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"chunk_while"&#8658;2, "each_with_index"&#8658;2, "each_with_object"&#8658;2, "inject"&#8658;2, "max"&#8658;2, "min"&#8658;2, "minmax"&#8658;2, "reduce"&#8658;2, "slice_when"&#8658;2, "sort"&#8658;2}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"chunk_while" &#8658; 2, "each_with_index" &#8658; 2, "each_with_object" &#8658; 2, "inject" &#8658; 2, "max" &#8658; 2, "min" &#8658; 2, "minmax" &#8658; 2, "reduce" &#8658; 2, "slice_when" &#8658; 2, "sort" &#8658; 2}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -12143,7 +12253,7 @@ rescue, ensure, etc.</p>
 </div>
 <div class="paragraph">
 <p>This cop&#8217;s autocorrection avoids cases like <code>a ||= 1</code> because removing assignment from
-operator assignment can cause NameError if this assignment has been used to declare
+operator assignment can cause <code>NameError</code> if this assignment has been used to declare
 a local variable. For example, replacing <code>a ||= 1</code> with <code>a || 1</code> may cause
 "undefined local variable or method `a' for main:Object (NameError)".</p>
 </div>

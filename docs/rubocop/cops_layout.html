@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_layout.html">
     <link rel="prev" href="cops_gemspec.html">
     <link rel="next" href="cops_lint.html">
-    <meta name="generator" content="Antora 3.1.9">
+    <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -221,6 +221,12 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="1.71/index.html">1.71</a>
+        </li>
+        <li class="version">
+          <a href="1.70/index.html">1.70</a>
         </li>
         <li class="version">
           <a href="1.69/index.html">1.69</a>
@@ -565,6 +571,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
+  <a href="1.71/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -576,6 +583,8 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_layout.html">default</a>
+    <a class="version" href="1.71/cops_layout.html">1.71</a>
+    <a class="version" href="1.70/cops_layout.html">1.70</a>
     <a class="version" href="1.69/cops_layout.html">1.69</a>
     <a class="version" href="1.68/cops_layout.html">1.68</a>
     <a class="version" href="1.67/cops_layout.html">1.67</a>
@@ -743,7 +752,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Check that the arguments on a multi-line method definition are aligned.</p>
+<p>Check that the arguments on a multi-line method call are aligned.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-layoutargumentalignment"><a class="anchor" href="#examples-layoutargumentalignment"></a>Examples</h3>
@@ -1577,7 +1586,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks if the code style follows the ExpectedOrder configuration:</p>
+<p>Checks if the code style follows the <code>ExpectedOrder</code> configuration:</p>
 </div>
 <div class="paragraph">
 <p><code>Categories</code> allows us to map macro names into a category.</p>
@@ -1588,19 +1597,19 @@ end</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Module inclusion (include, prepend, extend)</p>
+<p>Module inclusion (<code>include</code>, <code>prepend</code>, <code>extend</code>)</p>
 </li>
 <li>
 <p>Constants</p>
 </li>
 <li>
-<p>Associations (has_one, has_many)</p>
+<p>Associations (<code>has_one</code>, <code>has_many</code>)</p>
 </li>
 <li>
-<p>Public attribute macros (attr_accessor, attr_writer, attr_reader)</p>
+<p>Public attribute macros (<code>attr_accessor</code>, <code>attr_writer</code>, <code>attr_reader</code>)</p>
 </li>
 <li>
-<p>Other macros (validates, validate)</p>
+<p>Other macros (<code>validates</code>, <code>validate</code>)</p>
 </li>
 <li>
 <p>Public class methods</p>
@@ -1612,13 +1621,13 @@ end</code></pre>
 <p>Public instance methods</p>
 </li>
 <li>
-<p>Protected attribute macros (attr_accessor, attr_writer, attr_reader)</p>
+<p>Protected attribute macros (<code>attr_accessor</code>, <code>attr_writer</code>, <code>attr_reader</code>)</p>
 </li>
 <li>
 <p>Protected instance methods</p>
 </li>
 <li>
-<p>Private attribute macros (attr_accessor, attr_writer, attr_reader)</p>
+<p>Private attribute macros (<code>attr_accessor</code>, <code>attr_writer</code>, <code>attr_reader</code>)</p>
 </li>
 <li>
 <p>Private instance methods</p>
@@ -1771,7 +1780,7 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Categories</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"module_inclusion"&#8658;["include", "prepend", "extend"]}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"module_inclusion" &#8658; ["include", "prepend", "extend"]}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -3804,7 +3813,7 @@ end</code></pre>
 <p>Checks if empty lines exist around the bodies of <code>begin</code>
 sections. This cop doesn&#8217;t check empty lines at <code>begin</code> body
 beginning/end and around method definition body.
-<code>Style/EmptyLinesAroundBeginBody</code> or <code>Style/EmptyLinesAroundMethodBody</code>
+<code>Layout/EmptyLinesAroundBeginBody</code> or <code>Layout/EmptyLinesAroundMethodBody</code>
 can be used for this purpose.</p>
 </div>
 <div class="sect2">
@@ -4975,7 +4984,7 @@ where the opening brace and the first key are on separate lines. The
 other keys' indentations are handled by the HashAlignment cop.</p>
 </div>
 <div class="paragraph">
-<p>By default, Hash literals that are arguments in a method call with
+<p>By default, <code>Hash</code> literals that are arguments in a method call with
 parentheses, and where the opening curly brace of the hash is on the
 same line as the opening parenthesis of the method call, shall have
 their first key indented one step (two spaces) more than the position

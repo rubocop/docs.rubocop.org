@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.rubocop.org/rubocop/cops_style.html">
     <link rel="prev" href="cops_security.html">
     <link rel="next" href="v1_upgrade_notes.html">
-    <meta name="generator" content="Antora 3.1.9">
+    <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="stylesheet" href="../_/css/site-extra.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3.3.3">
@@ -221,6 +221,12 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="1.71/index.html">1.71</a>
+        </li>
+        <li class="version">
+          <a href="1.70/index.html">1.70</a>
         </li>
         <li class="version">
           <a href="1.69/index.html">1.69</a>
@@ -565,6 +571,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
+  <a href="1.71/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -576,6 +583,8 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_style.html">default</a>
+    <a class="version" href="1.71/cops_style.html">1.71</a>
+    <a class="version" href="1.70/cops_style.html">1.70</a>
     <a class="version" href="1.69/cops_style.html">1.69</a>
     <a class="version" href="1.68/cops_style.html">1.68</a>
     <a class="version" href="1.67/cops_style.html">1.67</a>
@@ -3942,7 +3951,7 @@ items.include?</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PreferredMethods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"collect"&#8658;"map", "collect!"&#8658;"map!", "collect_concat"&#8658;"flat_map", "inject"&#8658;"reduce", "detect"&#8658;"find", "find_all"&#8658;"select", "member?"&#8658;"include?"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"collect" &#8658; "map", "collect!" &#8658; "map!", "collect_concat" &#8658; "flat_map", "inject" &#8658; "reduce", "detect" &#8658; "find", "find_all" &#8658; "select", "member?" &#8658; "include?"}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -6432,7 +6441,7 @@ end</code></pre>
 </table>
 <div class="paragraph">
 <p>Checks for loops which iterate a constant number of times,
-using a Range literal and <code>#each</code>. This can be done more readably using
+using a <code>Range</code> literal and <code>#each</code>. This can be done more readably using
 <code>Integer#times</code>.</p>
 </div>
 <div class="paragraph">
@@ -7704,7 +7713,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for exact regexp match inside Regexp literals.</p>
+<p>Checks for exact regexp match inside <code>Regexp</code> literals.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-styleexactregexpmatch"><a class="anchor" href="#examples-styleexactregexpmatch"></a>Examples</h3>
@@ -8080,7 +8089,7 @@ trailing zeroes.</p>
 <p>Suggests <code>ENV.fetch</code> for the replacement of <code>ENV[]</code>.
 <code>ENV[]</code> silently fails and returns <code>nil</code> when the environment variable is unset,
 which may cause unexpected behaviors when the developer forgets to set it.
-On the other hand, <code>ENV.fetch</code> raises KeyError or returns the explicitly
+On the other hand, <code>ENV.fetch</code> raises <code>KeyError</code> or returns the explicitly
 specified default value.</p>
 </div>
 <div class="sect2">
@@ -9319,6 +9328,11 @@ end</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>always</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>always</code>, <code>always_true</code>, <code>never</code></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exclude</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>**/*.arb</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -9973,7 +9987,7 @@ Hash[*ary]</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for uses of <code>each_key</code> and <code>each_value</code> Hash methods.</p>
+<p>Checks for uses of <code>each_key</code> and <code>each_value</code> <code>Hash</code> methods.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -10258,6 +10272,101 @@ end</code></pre>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stylehashslice"><a class="anchor" href="#stylehashslice"></a>Style/HashSlice</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Requires Ruby version 2.5
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.71</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks for usages of <code>Hash#reject</code>, <code>Hash#select</code>, and <code>Hash#filter</code> methods
+that can be replaced with <code>Hash#slice</code> method.</p>
+</div>
+<div class="paragraph">
+<p>This cop should only be enabled on Ruby version 2.5 or higher.
+(<code>Hash#slice</code> was added in Ruby 2.5.)</p>
+</div>
+<div class="paragraph">
+<p>For safe detection, it is limited to commonly used string and symbol comparisons
+when using <code>==</code> or <code>!=</code>.</p>
+</div>
+<div class="paragraph">
+<p>This cop doesn&#8217;t check for <code>Hash#delete_if</code> and <code>Hash#keep_if</code> because they
+modify the receiver.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-stylehashslice"><a class="anchor" href="#safety-stylehashslice"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe because it cannot be guaranteed that the receiver
+is a <code>Hash</code> or responds to the replacement method.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="examples-stylehashslice"><a class="anchor" href="#examples-stylehashslice"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+{foo: 1, bar: 2, baz: 3}.select {|k, v| k == :bar }
+{foo: 1, bar: 2, baz: 3}.reject {|k, v| k != :bar }
+{foo: 1, bar: 2, baz: 3}.filter {|k, v| k == :bar }
+{foo: 1, bar: 2, baz: 3}.select {|k, v| k.eql?(:bar) }
+
+# bad
+{foo: 1, bar: 2, baz: 3}.select {|k, v| %i[bar].include?(k) }
+{foo: 1, bar: 2, baz: 3}.reject {|k, v| !%i[bar].include?(k) }
+{foo: 1, bar: 2, baz: 3}.filter {|k, v| %i[bar].include?(k) }
+
+# bad
+{foo: 1, bar: 2, baz: 3}.select {|k, v| !%i[bar].exclude?(k) }
+{foo: 1, bar: 2, baz: 3}.reject {|k, v| %i[bar].exclude?(k) }
+
+# bad
+{foo: 1, bar: 2, baz: 3}.select {|k, v| k.in?(%i[bar]) }
+{foo: 1, bar: 2, baz: 3}.reject {|k, v| !k.in?(%i[bar]) }
+
+# good
+{foo: 1, bar: 2, baz: 3}.slice(:bar)</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -11676,12 +11785,12 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">InverseMethods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{:any?&#8658;:none?, :even?&#8658;:odd?, :==&#8658;:!=, :=<sub>&#8658;:!</sub>, :&lt;&#8658;:&gt;=, :&gt;&#8658;:&#8656;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{any?: :none?, even?: :odd?, "==": :!=, "=~": :!~, "&lt;": :&gt;=, "&gt;": :&#8656;}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">InverseBlocks</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{:select&#8658;:reject, :select!&#8658;:reject!}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{select: :reject, select!: :reject!}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -11795,7 +11904,7 @@ foo if !condition</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">InverseMethods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{:!=&#8658;:==, :&gt;&#8658;:&#8656;, :&#8656;&#8658;:&gt;, :&lt;&#8658;:&gt;=, :&gt;=&#8658;:&lt;, :!<sub>&#8658;:=</sub>, :zero?&#8658;:nonzero?, :nonzero?&#8658;:zero?, :any?&#8658;:none?, :none?&#8658;:any?, :even?&#8658;:odd?, :odd?&#8658;:even?}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"!=": :==, "&gt;": :&#8656;, "&#8656;": :&gt;, "&lt;": :&gt;=, "&gt;=": :&lt;, "!~": :=~, zero?: :nonzero?, nonzero?: :zero?, any?: :none?, none?: :any?, even?: :odd?, odd?: :even?}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -15279,7 +15388,7 @@ raised by this cop. It enforces frozen state.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Regexp and Range literals are frozen objects since Ruby 3.0.
+<code>Regexp</code> and <code>Range</code> literals are frozen objects since Ruby 3.0.
 </td>
 </tr>
 </table>
@@ -17504,7 +17613,7 @@ end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Flags uses of OpenStruct, as it is now officially discouraged
+<p>Flags uses of <code>OpenStruct</code>, as it is now officially discouraged
 to be used for performance, version compatibility, and potential security issues.</p>
 </div>
 <div class="sect2">
@@ -17515,7 +17624,7 @@ use of a hand-rolled <code>OpenStruct</code> type would be considered an offense
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">module MyNamespace
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">module MyNamespace
   class OpenStruct # not the OpenStruct we're looking for
   end
 
@@ -18257,7 +18366,7 @@ default.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PreferredDelimiters</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"default"&#8658;"()", "%i"&#8658;"[]", "%I"&#8658;"[]", "%r"&#8658;"{}", "%w"&#8658;"[]", "%W"&#8658;"[]"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"default" &#8658; "()", "%i" &#8658; "[]", "%I" &#8658; "[]", "%r" &#8658; "{}", "%w" &#8658; "[]", "%W" &#8658; "[]"}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -18750,7 +18859,7 @@ passed multiple arguments.</p>
 </div>
 <div class="paragraph">
 <p>The exploded style has an <code>AllowedCompactTypes</code> configuration
-option that takes an Array of exception name Strings.</p>
+option that takes an <code>Array</code> of exception name Strings.</p>
 </div>
 <div class="sect2">
 <h3 id="safety-styleraiseargs"><a class="anchor" href="#safety-styleraiseargs"></a>Safety</h3>
@@ -19034,7 +19143,7 @@ A.foo</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Methods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"join"&#8658;"", "sum"&#8658;0, "exit"&#8658;true, "exit!"&#8658;false, "split"&#8658;" ", "chomp"&#8658;"\n", "chomp!"&#8658;"\n"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"join" &#8658; "", "sum" &#8658; 0, "exit" &#8658; true, "exit!" &#8658; false, "split" &#8658; " ", "chomp" &#8658; "\n", "chomp!" &#8658; "\n"}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -19762,7 +19871,7 @@ array.each_with_object { |v, o| do_something(v, o) }</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for RuntimeError as the argument of raise/fail.</p>
+<p>Checks for <code>RuntimeError</code> as the argument of <code>raise</code>/<code>fail</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-styleredundantexception"><a class="anchor" href="#examples-styleredundantexception"></a>Examples</h3>
@@ -20141,7 +20250,7 @@ arr.any? { |x| x &gt; 1 }</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Regexp and Range literals are frozen objects since Ruby 3.0.
+<code>Regexp</code> and <code>Range</code> literals are frozen objects since Ruby 3.0.
 </td>
 </tr>
 </table>
@@ -20883,7 +20992,7 @@ a deterministic regexp to a string.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for unnecessary single-element Regexp character classes.</p>
+<p>Checks for unnecessary single-element <code>Regexp</code> character classes.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-styleredundantregexpcharacterclass"><a class="anchor" href="#examples-styleredundantregexpcharacterclass"></a>Examples</h3>
@@ -20996,7 +21105,7 @@ Regexp.compile('regexp')</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for redundant escapes inside Regexp literals.</p>
+<p>Checks for redundant escapes inside <code>Regexp</code> literals.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-styleredundantregexpescape"><a class="anchor" href="#examples-styleredundantregexpescape"></a>Examples</h3>
@@ -23509,7 +23618,7 @@ parameters.</p>
 </div>
 <div class="paragraph">
 <p>Configuration option: Methods
-Should be set to use this cop. Array of hashes, where each key is the
+Should be set to use this cop. <code>Array</code> of hashes, where each key is the
 method name and value - array of argument names.</p>
 </div>
 <div class="sect2">
@@ -23554,7 +23663,7 @@ end</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Methods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"reduce"&#8658;["acc", "elem"]}</code>, <code>{"inject"&#8658;["acc", "elem"]}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"reduce" &#8658; ["acc", "elem"]}</code>, <code>{"inject" &#8658; ["acc", "elem"]}</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
 </tr>
 </tbody>
@@ -24920,7 +25029,7 @@ regexp = /Tests #{success ? "PASS" : "FAIL"}/</code></pre>
 </table>
 <div class="paragraph">
 <p>Enforces the use of consistent method names
-from the String class.</p>
+from the <code>String</code> class.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-stylestringmethods"><a class="anchor" href="#examples-stylestringmethods"></a>Examples</h3>
@@ -24954,7 +25063,7 @@ from the String class.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PreferredMethods</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"intern"&#8658;"to_sym"}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"intern" &#8658; "to_sym"}</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -26210,7 +26319,7 @@ The supported styles are:</p>
 <ul>
 <li>
 <p><code>consistent_comma</code>: Requires a comma after the last argument,
-for all parenthesized method calls with arguments.</p>
+for all parenthesized multi-line method calls with arguments.</p>
 </li>
 <li>
 <p><code>comma</code>: Requires a comma after the last argument, but only for
@@ -26221,6 +26330,10 @@ parenthesized method calls where each argument is on its own line.</p>
 argument.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Regardless of style, trailing commas are not allowed in
+single-line method calls.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-styletrailingcommainarguments"><a class="anchor" href="#examples-styletrailingcommainarguments"></a>Examples</h3>
@@ -28185,23 +28298,6 @@ CONST + 1
 </div>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="configurable-attributes-styleyodaexpression"><a class="anchor" href="#configurable-attributes-styleyodaexpression"></a>Configurable attributes</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Configurable values</th>
-</tr>
-</thead>
-</table>
 </div>
 </div>
 </div>
