@@ -161,6 +161,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="v1_upgrade_notes.html">Upgrade Notes</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin_migration_guide.html">Plugin Migration Guide</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -221,6 +224,9 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="1.72/index.html">1.72</a>
         </li>
         <li class="version">
           <a href="1.71/index.html">1.71</a>
@@ -571,7 +577,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.71/index.html" class="home-link"></a>
+  <a href="1.72/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -583,6 +589,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_lint.html">default</a>
+    <a class="version" href="1.72/cops_lint.html">1.72</a>
     <a class="version" href="1.71/cops_lint.html">1.71</a>
     <a class="version" href="1.70/cops_lint.html">1.70</a>
     <a class="version" href="1.69/cops_lint.html">1.69</a>
@@ -1422,7 +1429,7 @@ and "spaceship" operator - <code>&lt;&#8658;</code>.</p>
 Although these can be rewritten in a different way, it should not be necessary to
 do so. Operations such as <code>-</code> or <code>/</code> where the result will always be the same
 (<code>x - x</code> will always be 0; <code>x / x</code> will always be 1) are offenses, but these
-are covered by Lint/NumericOperationWithConstantResult instead.</p>
+are covered by <code>Lint/NumericOperationWithConstantResult</code> instead.</p>
 </div>
 <div class="sect2">
 <h3 id="safety-lintbinaryoperatorwithidenticaloperands"><a class="anchor" href="#safety-lintbinaryoperatorwithidenticaloperands"></a>Safety</h3>
@@ -2056,6 +2063,76 @@ Login</code></pre>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="lintcopdirectivesyntax"><a class="anchor" href="#lintcopdirectivesyntax"></a>Lint/CopDirectiveSyntax</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.72</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks that <code># rubocop:enable &#8230;&#8203;</code> and <code># rubocop:disable &#8230;&#8203;</code> statements
+are strictly formatted.</p>
+</div>
+<div class="paragraph">
+<p>A comment can be added to the directive by prefixing it with <code>--</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-lintcopdirectivesyntax"><a class="anchor" href="#examples-lintcopdirectivesyntax"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+# rubocop:disable Layout/LineLength Style/Encoding
+#                                  ^ missing comma
+
+# bad
+# rubocop:disable
+
+# bad
+# rubocop:disable Layout/LineLength # rubocop:disable Style/Encoding
+
+# bad
+# rubocop:wrongmode Layout/LineLength
+
+# good
+# rubocop:disable Layout/LineLength
+
+# good
+# rubocop:disable Layout/LineLength, Style/Encoding
+
+# good
+# rubocop:disable all
+
+# good
+# rubocop:disable Layout/LineLength -- This is a good comment.</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -4047,12 +4124,9 @@ end</code></pre>
 foo = ()
 if ()
   bar
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
+
+# good
 
 foo = (some_expression)
 if (some_expression)
@@ -4853,7 +4927,7 @@ expected fields for format/sprintf/#% and what is actually
 passed as arguments.</p>
 </div>
 <div class="paragraph">
-<p>In addition it checks whether different formats are used in the same
+<p>In addition, it checks whether different formats are used in the same
 format string. Do not mix numbered, unnumbered, and named formats in
 the same format string.</p>
 </div>
@@ -7348,7 +7422,7 @@ Dividing a number by itself or raising it to the power of 0 will always return 1
 As such, they can be replaced with that result.
 These are probably leftover from debugging, or are mistakes.
 Other numeric operations that are similarly leftover from debugging or mistakes
-are handled by Lint/UselessNumericOperation.</p>
+are handled by <code>Lint/UselessNumericOperation</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -8644,6 +8718,130 @@ warn something</code></pre>
 <p><a href="https://rubystyle.guide#no-to-s" class="bare">https://rubystyle.guide#no-to-s</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="lintredundanttypeconversion"><a class="anchor" href="#lintredundanttypeconversion"></a>Lint/RedundantTypeConversion</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.72</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks for redundant uses of <code>to_s</code>, <code>to_sym</code>, <code>to_i</code>, <code>to_f</code>, <code>to_r</code>, <code>to_c</code>,
+<code>to_a</code>, <code>to_h</code>, and <code>to_set</code>.</p>
+</div>
+<div class="paragraph">
+<p>When one of these methods is called on an object of the same type, that object
+is returned, making the call unnecessary. The cop detects conversion methods called
+on object literals, class constructors, class <code>[]</code> methods, and the <code>Kernel</code> methods
+<code>String()</code>, <code>Integer()</code>, <code>Float()</code>, <code>Rational()</code>, <code>Complex()</code> and <code>Array()</code>.</p>
+</div>
+<div class="paragraph">
+<p>Specifically, these cases are detected for each conversion method:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>to_s</code> when called on a string literal, interpolated string, heredoc,
+or with <code>String.new</code> or <code>String()</code>.</p>
+</li>
+<li>
+<p><code>to_sym</code> when called on a symbol literal or interpolated symbol.</p>
+</li>
+<li>
+<p><code>to_i</code> when called on an integer literal or with <code>Integer()</code>.</p>
+</li>
+<li>
+<p><code>to_f</code> when called on a float literal of with <code>Float()</code>.</p>
+</li>
+<li>
+<p><code>to_r</code> when called on a rational literal or with <code>Rational()</code>.</p>
+</li>
+<li>
+<p><code>to_c</code> when called on a complex literal of with <code>Complex()</code>.</p>
+</li>
+<li>
+<p><code>to_a</code> when called on an array literal, or with <code>Array.new</code>, <code>Array()</code> or <code>Array[]</code>.</p>
+</li>
+<li>
+<p><code>to_h</code> when called on a hash literal, or with <code>Hash.new</code>, <code>Hash()</code> or <code>Hash[]</code>.</p>
+</li>
+<li>
+<p><code>to_set</code> when called on <code>Set.new</code> or <code>Set[]</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In all cases, chaining one same <code>to_*</code> conversion methods listed above is redundant.</p>
+</div>
+<div class="paragraph">
+<p>The cop can also register an offense for chaining conversion methods on methods that are
+expected to return a specific type regardless of receiver (eg. <code>foo.inspect.to_s</code>).</p>
+</div>
+<div class="sect2">
+<h3 id="examples-lintredundanttypeconversion"><a class="anchor" href="#examples-lintredundanttypeconversion"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+"text".to_s
+:sym.to_sym
+42.to_i
+8.5.to_f
+12r.to_r
+1i.to_c
+[].to_a
+{}.to_h
+Set.new.to_s
+
+# good
+"text"
+:sym
+42
+8.5
+12r
+1i
+[]
+{}
+Set.new
+
+# bad - chaining the same conversion
+foo.to_s.to_s
+
+# good
+foo.to_s
+
+# bad - chaining a conversion to a method that is expected to return the same type
+inspect.to_s
+
+# good
+inspect</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -10369,6 +10567,93 @@ do_something rescue nil</code></pre>
 <p><a href="https://rubystyle.guide#dont-hide-exceptions" class="bare">https://rubystyle.guide#dont-hide-exceptions</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="lintsuppressedexceptioninnumberconversion"><a class="anchor" href="#lintsuppressedexceptioninnumberconversion"></a>Lint/SuppressedExceptionInNumberConversion</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Requires Ruby version 2.6
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.72</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks for cases where exceptions unrelated to the numeric constructors <code>Integer()</code>,
+<code>Float()</code>, <code>BigDecimal()</code>, <code>Complex()</code>, and <code>Rational()</code> may be unintentionally swallowed.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-lintsuppressedexceptioninnumberconversion"><a class="anchor" href="#safety-lintsuppressedexceptioninnumberconversion"></a>Safety</h3>
+<div class="paragraph">
+<p>The cop is unsafe for autocorrection because unexpected errors occurring in the argument
+passed to numeric constructor (e.g., <code>Integer()</code>) can lead to incompatible behavior.
+For example, changing it to <code>Integer(potential_exception_method_call, exception: false)</code>
+ensures that exceptions raised by <code>potential_exception_method_call</code> are not ignored.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">Integer(potential_exception_method_call) rescue nil</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="examples-lintsuppressedexceptioninnumberconversion"><a class="anchor" href="#examples-lintsuppressedexceptioninnumberconversion"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+Integer(arg) rescue nil
+
+# bad
+begin
+  Integer(arg)
+rescue
+  nil
+end
+
+# bad
+begin
+  Integer(arg)
+rescue
+end
+
+# good
+Integer(arg, exception: false)</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -12296,6 +12581,78 @@ end</code></pre>
 <p><a href="https://rubystyle.guide#underscore-unused-vars" class="bare">https://rubystyle.guide#underscore-unused-vars</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="lintuselessconstantscoping"><a class="anchor" href="#lintuselessconstantscoping"></a>Lint/UselessConstantScoping</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.72</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks for useless constant scoping. Private constants must be defined using
+<code>private_constant</code> or <code>class &lt;&lt; self</code>. Even if <code>private</code> access modifier is used,
+it is public scope despite its appearance.</p>
+</div>
+<div class="paragraph">
+<p>It does not support autocorrection due to behavior change and multiple ways to fix it.
+Or a public constant may be intended.</p>
+</div>
+<div class="sect2">
+<h3 id="examples-lintuselessconstantscoping"><a class="anchor" href="#examples-lintuselessconstantscoping"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+class Foo
+  private
+  PRIVATE_CONST = 42
+end
+
+# good
+class Foo
+  PRIVATE_CONST = 42
+  private_constant :PRIVATE_CONST
+end
+
+# good
+class Foo
+  class &lt;&lt; self
+    private
+    PRIVATE_CONST = 42
+  end
+end
+
+# good
+class Foo
+  PUBLIC_CONST = 42 # If private scope is not intended.
+end</code></pre>
+</div>
 </div>
 </div>
 </div>

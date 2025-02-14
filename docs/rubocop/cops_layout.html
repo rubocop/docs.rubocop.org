@@ -161,6 +161,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="v1_upgrade_notes.html">Upgrade Notes</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin_migration_guide.html">Plugin Migration Guide</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -221,6 +224,9 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="1.72/index.html">1.72</a>
         </li>
         <li class="version">
           <a href="1.71/index.html">1.71</a>
@@ -571,7 +577,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.71/index.html" class="home-link"></a>
+  <a href="1.72/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">RuboCop</a></li>
@@ -583,6 +589,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_layout.html">default</a>
+    <a class="version" href="1.72/cops_layout.html">1.72</a>
     <a class="version" href="1.71/cops_layout.html">1.71</a>
     <a class="version" href="1.70/cops_layout.html">1.70</a>
     <a class="version" href="1.69/cops_layout.html">1.69</a>
@@ -638,7 +645,7 @@
 </table>
 <div class="paragraph">
 <p>Bare access modifiers (those not applying to specific methods) should be
-indented as deep as method definitions, or as deep as the class/module
+indented as deep as method definitions, or as deep as the <code>class</code>/<code>module</code>
 keyword, depending on configuration.</p>
 </div>
 <div class="sect2">
@@ -2882,12 +2889,9 @@ one-line definitions are considered an offense.</p>
 def a
 end
 def b
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
+
+# good
 def a
 end
 
@@ -2908,12 +2912,9 @@ end
 class B
 end
 def b
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
+
+# good
 class A
 end
 
@@ -2937,12 +2938,9 @@ end
 module B
 end
 def b
-end</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># good
+end
+
+# good
 module A
 end
 
@@ -5543,11 +5541,11 @@ end</code></pre>
 <div class="paragraph">
 <p>Checks the indentation of the first parameter in a method
 definition. Parameters after the first one are checked by
-Layout/ParameterAlignment, not by this cop.</p>
+<code>Layout/ParameterAlignment</code>, not by this cop.</p>
 </div>
 <div class="paragraph">
 <p>For indenting the first argument of method <em>calls</em>, check out
-Layout/FirstArgumentIndentation, which supports options related to
+<code>Layout/FirstArgumentIndentation</code>, which supports options related to
 nesting that are irrelevant for method <em>definitions</em>.</p>
 </div>
 <div class="sect2">
@@ -9482,9 +9480,9 @@ end.join('-')</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for colon (:) not followed by some kind of space.
+<p>Checks for colon (<code>:</code>) not followed by some kind of space.
 N.B. this cop does not handle spaces after a ternary operator, which are
-instead handled by Layout/SpaceAroundOperators.</p>
+instead handled by <code>Layout/SpaceAroundOperators</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-layoutspaceaftercolon"><a class="anchor" href="#examples-layoutspaceaftercolon"></a>Examples</h3>
@@ -9541,7 +9539,7 @@ def f(a:, b: 2); {a: 3}; end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for comma (,) not followed by some kind of space.</p>
+<p>Checks for comma (<code>,</code>) not followed by some kind of space.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-layoutspaceaftercomma"><a class="anchor" href="#examples-layoutspaceaftercomma"></a>Examples</h3>
@@ -9716,7 +9714,7 @@ def method=(y) end</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for semicolon (;) not followed by some kind of space.</p>
+<p>Checks for semicolon (<code>;</code>) not followed by some kind of space.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-layoutspaceaftersemicolon"><a class="anchor" href="#examples-layoutspaceaftersemicolon"></a>Examples</h3>
@@ -10455,7 +10453,7 @@ collection[index_or_key]</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for comma (,) preceded by space.</p>
+<p>Checks for comma (<code>,</code>) preceded by space.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-layoutspacebeforecomma"><a class="anchor" href="#examples-layoutspacebeforecomma"></a>Examples</h3>
@@ -10635,7 +10633,7 @@ something 'hello'</code></pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Checks for semicolon (;) preceded by space.</p>
+<p>Checks for semicolon (<code>;</code>) preceded by space.</p>
 </div>
 <div class="sect2">
 <h3 id="examples-layoutspacebeforesemicolon"><a class="anchor" href="#examples-layoutspacebeforesemicolon"></a>Examples</h3>

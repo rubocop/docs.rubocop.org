@@ -161,6 +161,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../v1_upgrade_notes.html">Upgrade Notes</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugin_migration_guide.html">Plugin Migration Guide</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -221,6 +224,9 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="../index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../1.72/index.html">1.72</a>
         </li>
         <li class="version">
           <a href="../1.71/index.html">1.71</a>
@@ -571,7 +577,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../1.71/index.html" class="home-link"></a>
+  <a href="../1.72/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">RuboCop</a></li>
@@ -583,6 +589,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="server.html">default</a>
+    <a class="version" href="../1.72/usage/server.html">1.72</a>
     <a class="version" href="../1.71/usage/server.html">1.71</a>
     <a class="version" href="../1.70/usage/server.html">1.70</a>
     <a class="version" href="../1.69/usage/server.html">1.69</a>
@@ -716,6 +723,19 @@ user             16337   0.0  0.0  5331560   2396   ??  S    23:51PM   0:00.00 r
 RuboCop version incompatibility found, RuboCop server restarting...
 RuboCop server starting on 127.0.0.1:60665.</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Detection of incompatibility changes in the local configuration also includes changes to local file paths specified by <code>inherit_from</code> and <code>require</code> in <code>.rubocop.yml</code>.
+Changes involving remote files or those considered to be searched on <code>$LOAD_PATH</code> are not detected.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>If you would like to start the server in the foreground, which can be useful when running within Docker, you can pass the <code>--no-detach</code> option.</p>

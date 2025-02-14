@@ -161,6 +161,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../v1_upgrade_notes.html">Upgrade Notes</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugin_migration_guide.html">Plugin Migration Guide</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -221,6 +224,9 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="../index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../1.72/index.html">1.72</a>
         </li>
         <li class="version">
           <a href="../1.71/index.html">1.71</a>
@@ -571,7 +577,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../1.71/index.html" class="home-link"></a>
+  <a href="../1.72/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">RuboCop</a></li>
@@ -583,6 +589,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="basic_usage.html">default</a>
+    <a class="version" href="../1.72/usage/basic_usage.html">1.72</a>
     <a class="version" href="../1.71/usage/basic_usage.html">1.71</a>
     <a class="version" href="../1.70/usage/basic_usage.html">1.70</a>
     <a class="version" href="../1.69/usage/basic_usage.html">1.69</a>
@@ -911,6 +918,10 @@ This option was introduced in RuboCop 0.57.0.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Print usage information.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--ignore-disable-comments</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Report offenses even if they have been manually disabled with a <code>rubocop:disable</code> or <code>rubocop:todo</code> directive.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--ignore-parent-exclusion</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ignores all Exclude: settings from all .rubocop.yml files present in parent folders. This is useful when you are importing submodules when you want to test them without being affected by the parent module&#8217;s rubocop settings.</p></td>
 </tr>
@@ -959,8 +970,12 @@ This option was introduced in RuboCop 0.57.0.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Raise cop-related errors with cause and location. This is used to prevent cops from failing silently. Default is false.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--plugin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Plugin RuboCop extension file (see <a href="../extensions.html#loading-plugin-extensions" class="xref page">Loading Plugin Extensions</a>).</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>-r/--require</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Require Ruby file (see <a href="../extensions.html#loading-extensions" class="xref page">Loading Extensions</a>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Require Ruby file (see <a href="../extensions.html#loading-inject-and-relative-path-extensions" class="xref page">Loading Inject and Relative Path Extensions</a>).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--regenerate-todo</code></p></td>
