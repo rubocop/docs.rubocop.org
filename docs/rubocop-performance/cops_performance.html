@@ -266,6 +266,9 @@
           <a href="../rubocop-minitest/index.html">default</a>
         </li>
         <li class="version">
+          <a href="../rubocop-minitest/0.37/index.html">0.37</a>
+        </li>
+        <li class="version">
           <a href="../rubocop-minitest/0.36/index.html">0.36</a>
         </li>
         <li class="version">
@@ -318,6 +321,9 @@
           <a href="index.html">default</a>
         </li>
         <li class="version">
+          <a href="1.24/index.html">1.24</a>
+        </li>
+        <li class="version">
           <a href="1.23/index.html">1.23</a>
         </li>
         <li class="version">
@@ -360,6 +366,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../rubocop-rails/index.html">default</a>
+        </li>
+        <li class="version">
+          <a href="../rubocop-rails/2.30/index.html">2.30</a>
         </li>
         <li class="version">
           <a href="../rubocop-rails/2.29/index.html">2.29</a>
@@ -486,6 +495,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">default</button>
   <div class="version-menu">
     <a class="version is-current" href="cops_performance.html">default</a>
+    <a class="version" href="1.24/cops_performance.html">1.24</a>
     <a class="version" href="1.23/cops_performance.html">1.23</a>
     <a class="version" href="1.22/cops_performance.html">1.22</a>
     <a class="version" href="1.21/cops_performance.html">1.21</a>
@@ -4526,6 +4536,62 @@ URI::Parser.new
 
 # good
 URI::DEFAULT_PARSER</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="performancezipwithoutblock"><a class="anchor" href="#performancezipwithoutblock"></a>Performance/ZipWithoutBlock</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Enabled by default</th>
+<th class="tableblock halign-left valign-top">Safe</th>
+<th class="tableblock halign-left valign-top">Supports autocorrection</th>
+<th class="tableblock halign-left valign-top">Version Added</th>
+<th class="tableblock halign-left valign-top">Version Changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Always (Unsafe)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.24</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Checks for <code>map { |id| [id] }</code> and suggests replacing it with <code>zip</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="safety-performancezipwithoutblock"><a class="anchor" href="#safety-performancezipwithoutblock"></a>Safety</h3>
+<div class="paragraph">
+<p>This cop is unsafe for novel definitions of <code>map</code> and <code>collect</code>
+on non-Enumerable objects that do not respond to <code>zip</code>.
+To make your object enumerable, define an <code>each</code> method
+as described in <a href="https://ruby-doc.org/core/Enumerable.html" class="bare">https://ruby-doc.org/core/Enumerable.html</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="examples-performancezipwithoutblock"><a class="anchor" href="#examples-performancezipwithoutblock"></a>Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># bad
+[1, 2, 3].map { |id| [id] }
+
+# good
+[1, 2, 3].zip</code></pre>
 </div>
 </div>
 </div>
