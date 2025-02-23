@@ -1,9 +1,9 @@
-.PHONY: npm build deploy
+.PHONY: install build
 .DEFAULT_GOAL := build
 
-npm: package.json
+install: package.json
 	npm install --no-fund --no-audit --no-progress --save-dev --loglevel=error
 	npm run antora -- --version
 
-build: npm
+build: install
 	npm run antora -- --fetch antora-playbook.yml
