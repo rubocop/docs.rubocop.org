@@ -62,8 +62,15 @@ inside a Docker container like this:
 
 [source]
 ----
-$ docker run --rm -t -v $(pwd):/build/site antora/antora:3.1.10 --fetch /docs/antora-playbook.yml
+$ cd docs.rubocop.org
+$ docker run -u $(id -u) -v $PWD:/antora:Z --rm -t antora/antora --cache-dir=./.cache/antora antora-playbook.yml
 ----
+
+Note that despite the message saying `Open file:///antora/build/site/index.html in a browser to view your site.`, you
+you should actually look for `build/site/index.html` in the current directory. (that's because we've mounted the
+current directory as `/antora` in the container)
+
+TIP: You can read more about running Antora in a container in the https://docs.antora.org/antora/latest/antora-container/[official docs].
 
 == Updating the Playbook
 
