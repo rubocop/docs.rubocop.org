@@ -47,6 +47,41 @@ TIP: You can preview your changes by opening `build/site/index.html` in your fav
 If you want to make changes to the manual's page structure you'll have to edit
 link:https://github.com/rubocop/rubocop/blob/master/doc/modules/ROOT/nav.adoc[nav.adoc].
 
+== Testing Local Changes
+
+If you're working on documentation in a local clone of a RuboCop project (e.g., `rubocop` itself),
+you can preview your changes without pushing by creating a local playbook that points to your clone:
+
+. Copy the playbook:
++
+[source]
+----
+$ cp antora-playbook.yml antora-playbook-dev.yml
+----
+
+. In `antora-playbook-dev.yml`, replace the remote URL with your local path and use `HEAD` as the branch:
++
+[source,yaml]
+----
+- url: /path/to/your/local/rubocop
+  branches: HEAD
+  tags: []
+  start_path: docs
+----
++
+Using `branches: HEAD` lets Antora pick up uncommitted changes from your worktree.
+
+. Build with the local playbook:
++
+[source]
+----
+$ npm run antora -- antora-playbook-dev.yml
+----
+
+. Preview the result by opening `build/site/index.html` in your browser.
+
+NOTE: `antora-playbook-dev.yml` is not checked into version control. It's for local use only.
+
 == Deploying to GitHub Pages
 
 NOTE: You'll need commit access to the repository for this to work.
