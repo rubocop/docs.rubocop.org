@@ -1,16 +1,16 @@
 site:
   title: RuboCop Docs
   url: https://docs.rubocop.org/
-  start_page: 1.85@rubocop::index.adoc
+  start_page: latest@rubocop::index.adoc
   keys:
     google_analytics: "UA-140153536-1"
 urls:
   latest_version_segment: latest
-  latest_version_segment_strategy: redirect:from
+  latest_version_segment_strategy: redirect:to
 content:
   sources:
     - url: https://github.com/rubocop/rubocop.git
-      branches: ["master"]
+      branches: ~
       tags:
         [
           "v1.0.0",
@@ -42,7 +42,7 @@ content:
         ]
       start_path: docs
     - url: https://github.com/rubocop/rubocop-ast.git
-      branches: master
+      branches: ~
       tags:
         [
           "v1.0.1",
@@ -66,15 +66,15 @@ content:
         ]
       start_path: docs
     - url: https://github.com/rubocop/rubocop-capybara.git
-      branches: main
+      branches: ~
       tags: ["v2.17.0", "v2.18.0", "v2.19.0", "v2.20.0", "v2.21.0"]
       start_path: docs
     - url: https://github.com/rubocop/rubocop-factory_bot.git
-      branches: master
+      branches: ~
       tags: ["v2.22.0", "v2.23.0", "v2.24.0", "v2.25.0", "v2.26.0"]
       start_path: docs
     - url: https://github.com/rubocop/rubocop-minitest.git
-      branches: master
+      branches: ~
       tags:
         [
           "v0.25.1",
@@ -95,7 +95,7 @@ content:
         ]
       start_path: docs
     - url: https://github.com/rubocop/rubocop-performance.git
-      branches: master
+      branches: ~
       tags:
         [
           "v1.12.0",
@@ -116,7 +116,7 @@ content:
         ]
       start_path: docs
     - url: https://github.com/rubocop/rubocop-rails.git
-      branches: master
+      branches: ~
       tags:
         [
           "v2.14.0",
@@ -143,7 +143,7 @@ content:
         ]
       start_path: docs
     - url: https://github.com/rubocop/rubocop-rspec.git
-      branches: master
+      branches: ~
       tags:
         [
           "v1.44.0",
@@ -161,12 +161,12 @@ content:
         ]
       start_path: docs
     - url: https://github.com/rubocop/rubocop-rspec_rails.git
-      branches: master
+      branches: ~
       tags: ["v2.28.0", "v2.29.0", "v2.30.0"]
       start_path: docs
     - url: https://github.com/utkarsh2102/rubocop-packaging.git
-      branches: master
-      tags: []
+      branches: ~
+      tags: ["v0.6.0"]
       start_path: docs
     - url: https://github.com/rubocop/rubocop-thread_safety.git
       branches: ~
