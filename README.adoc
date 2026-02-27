@@ -109,25 +109,23 @@ TIP: You can read more about running Antora in a container in the https://docs.a
 
 == Updating the Playbook
 
-When cutting new releases you'll have to updated `antora-playbook.yml` to mention
-their relevant tags from which the documentation needs to be build. Here's how this
-looks for one of the projects:
+When cutting new releases you'll have to update `antora-playbook.yml` to add
+the new tag to the relevant project's tag list. Here's how this looks for one of the projects:
 
-[source]
+[source,yaml]
 ----
 - url: https://github.com/rubocop/rubocop-performance.git
-  branches: master
-  tags: ['v1.7.1', 'v1.8.1']
+  branches: ~
+  tags: ['v1.25.0', 'v1.26.1']
   start_path: docs
 ----
 
 TIP: You need to add one such block for each new RuboCop module you're adding to the docs site.
 
-After releases of the main RuboCop gem you also need to update the default landing
-version (it should always be the latest version).
+After releases of the main RuboCop gem you also need to update the `start_page` version
+in the playbook (e.g., `1.85@rubocop::index.adoc` -> `1.86@rubocop::index.adoc`).
+This controls where the site root redirects to.
 
-== Troubleshooting
-
-The most common mistake that people make is to forget to update the version of an Antora docs module
-after cutting a release. This will result in an error saying you've got the same version in two branches (e.g. `master`
-and `v1.0`). Fixing this is pretty simple - just update the version to `master` in `antora.yml`.
+NOTE: The site only serves tagged releases -- no master/main branches. The latest tagged
+version is automatically published under `/latest/` URLs. Contributors can test
+local changes using a dev playbook (see <<Testing Local Changes>>).
