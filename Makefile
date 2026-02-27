@@ -1,4 +1,4 @@
-.PHONY: install build
+.PHONY: install build redirects
 .DEFAULT_GOAL := build
 
 install: package.json
@@ -7,3 +7,6 @@ install: package.json
 
 build: install
 	npm run antora -- --fetch antora-playbook.yml
+
+redirects: build
+	bash generate-redirects.sh
