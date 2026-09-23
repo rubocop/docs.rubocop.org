@@ -20,15 +20,16 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Install Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: "18"
+          node-version: "22"
+          cache: npm
       - name: Install Antora
-        run: npm i antora
+        run: npm ci
       - name: Generate Site
         run: npx antora antora-playbook.yml
       - name: Generate Redirects
