@@ -35,7 +35,7 @@ for component_dir in "$SITE_DIR"/*/; do
 <!DOCTYPE html>
 <meta charset="utf-8">
 <link rel="canonical" href="${redirect_url}">
-<script>location="${redirect_url}"</script>
+<script>location = "${redirect_url}" + location.hash</script>
 <meta http-equiv="refresh" content="0; url=${redirect_url}">
 <meta name="robots" content="noindex">
 <title>Redirect</title>
