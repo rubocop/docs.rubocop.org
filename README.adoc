@@ -15,8 +15,7 @@ You can find a list of all the documentation modules that are weaved together in
 final site in `antora-playbook.yml`.
 
 To make changes to the manual you simply have to change the files under `docs` in the relevant
-repository.
-The docs will be regenerated manually periodically.
+repository. The site only serves tagged releases, so changes show up with the next release.
 
 == Installing Antora
 
@@ -109,8 +108,27 @@ TIP: You can read more about running Antora in a container in the https://docs.a
 
 == Updating the Playbook
 
-When cutting new releases you'll have to update `antora-playbook.yml` to add
-the new tag to the relevant project's tag list. Here's how this looks for one of the projects:
+Every release has to be added to the relevant project's tag list in `antora-playbook.yml`.
+RuboCop's release workflow does this for RuboCop itself: it sends a `release` event to this
+repository, and the publish workflow adds the tag with `add-release.mjs` and publishes the site.
+A patch release replaces the tag of the same minor version, since both are published as the same
+docs version. Other projects can send the same event, with their repository name and the new tag
+in its payload:
+
+[source,json]
+----
+{"project": "rubocop-rails", "tag": "v2.39.0"}
+----
+
+You can also add a release by running the publish workflow manually with a project and a tag,
+or by running the script locally and committing the result:
+
+[source]
+----
+$ node add-release.mjs rubocop-rails v2.39.0
+----
+
+Here's how a project's block looks in the playbook:
 
 [source,yaml]
 ----
