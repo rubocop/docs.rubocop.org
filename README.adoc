@@ -122,9 +122,9 @@ the new tag to the relevant project's tag list. Here's how this looks for one of
 
 TIP: You need to add one such block for each new RuboCop module you're adding to the docs site.
 
-After releases of the main RuboCop gem you also need to update the `start_page` version
-in the playbook (e.g., `1.85@rubocop::index.adoc` -> `1.86@rubocop::index.adoc`).
-This controls where the site root redirects to.
+RuboCop's `antora.yml` has no version. The playbook derives it from the tag instead (`v1.93.0`
+becomes `1.93`), so nothing in RuboCop's repository needs to change for a release's docs version.
+The `start_page` has no version either, so the site root always redirects to the latest release.
 
 NOTE: The site only serves tagged releases -- no master/main branches. The latest tagged
 version is automatically published under `/latest/` URLs. Contributors can test
