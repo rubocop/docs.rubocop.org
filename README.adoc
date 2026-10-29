@@ -109,11 +109,10 @@ TIP: You can read more about running Antora in a container in the https://docs.a
 == Updating the Playbook
 
 Every release has to be added to the relevant project's tag list in `antora-playbook.yml`.
-RuboCop's release workflow does this for RuboCop itself: it sends a `release` event to this
-repository, and the publish workflow adds the tag with `add-release.mjs` and publishes the site.
-A patch release replaces the tag of the same minor version, since both are published as the same
-docs version. Other projects can send the same event, with their repository name and the new tag
-in its payload:
+A project's release workflow does this: it sends a `release` event to this repository, with
+the project's repository name and the new tag in its payload, and the publish workflow adds the
+tag with `add-release.mjs` and publishes the site. A patch release replaces the tag of the same
+minor version, since both are published as the same docs version. The payload looks like this:
 
 [source,json]
 ----
@@ -136,12 +135,15 @@ Here's how a project's block looks in the playbook:
   branches: ~
   tags: ['v1.25.0', 'v1.26.1']
   start_path: docs
+  version: *version_from_tag
 ----
 
 TIP: You need to add one such block for each new RuboCop module you're adding to the docs site.
 
-RuboCop's `antora.yml` has no version. The playbook derives it from the tag instead (`v1.93.0`
-becomes `1.93`), so nothing in RuboCop's repository needs to change for a release's docs version.
+A project's `antora.yml` has no version. The playbook derives it from the tag instead (`v1.93.0`
+becomes `1.93`), using the `version_from_tag` mapping defined on RuboCop's block, so nothing in
+the project's repository needs to change for a release's docs version. A version set in
+`antora.yml`, as in older tags, takes precedence over the mapping.
 The `start_page` has no version either, so the site root always redirects to the latest release.
 
 NOTE: The site only serves tagged releases -- no master/main branches. The latest tagged
