@@ -49,9 +49,10 @@ content:
           "v1.92.2",
         ]
       start_path: docs
-      # RuboCop's antora.yml has no version, so it comes from the tag: v1.93.0
+      # A project whose antora.yml has no version gets it from the tag: v1.93.0
       # becomes 1.93. Other refs, like HEAD in a local preview, are unversioned.
-      version:
+      # A version set in antora.yml, as in older tags, still takes precedence.
+      version: &version_from_tag
         v(?<major>+({0..9})).(?<minor>+({0..9})).*: $<major>.$<minor>
         "*": ~
     - url: https://github.com/rubocop/rubocop-ast.git
@@ -80,6 +81,7 @@ content:
           "v1.50.0",
         ]
       start_path: docs
+      version: *version_from_tag
     - url: https://github.com/rubocop/rubocop-capybara.git
       branches: ~
       tags:
@@ -95,6 +97,7 @@ content:
           "v3.1.0",
         ]
       start_path: docs
+      version: *version_from_tag
     - url: https://github.com/rubocop/rubocop-factory_bot.git
       branches: ~
       tags:
@@ -108,6 +111,7 @@ content:
           "v2.28.0",
         ]
       start_path: docs
+      version: *version_from_tag
     - url: https://github.com/rubocop/rubocop-minitest.git
       branches: ~
       tags:
@@ -131,6 +135,7 @@ content:
           "v0.41.0",
         ]
       start_path: docs
+      version: *version_from_tag
     - url: https://github.com/rubocop/rubocop-performance.git
       branches: ~
       tags:
@@ -153,6 +158,7 @@ content:
           "v1.27.0",
         ]
       start_path: docs
+      version: *version_from_tag
     - url: https://github.com/rubocop/rubocop-rails.git
       branches: ~
       tags:
@@ -184,6 +190,7 @@ content:
           "v2.38.0",
         ]
       start_path: docs
+      version: *version_from_tag
     - url: https://github.com/rubocop/rubocop-rspec.git
       branches: ~
       tags:
@@ -203,10 +210,12 @@ content:
           "v3.10.0",
         ]
       start_path: docs
+      version: *version_from_tag
     - url: https://github.com/rubocop/rubocop-rspec_rails.git
       branches: ~
       tags: ["v2.28.0", "v2.29.0", "v2.30.0", "v2.31.0", "v2.32.0", "v2.33.0"]
       start_path: docs
+      version: *version_from_tag
     - url: https://github.com/utkarsh2102/rubocop-packaging.git
       branches: ~
       tags: ["v0.6.0"]
@@ -215,6 +224,7 @@ content:
       branches: ~
       tags: ["v0.8.0"]
       start_path: docs
+      version: *version_from_tag
 asciidoc:
   attributes:
     experimental: ""
