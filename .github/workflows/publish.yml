@@ -27,9 +27,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     env:
       PROJECT: ${{ github.event.client_payload.project || inputs.project }}
       TAG: ${{ github.event.client_payload.tag || inputs.tag }}
@@ -65,6 +62,16 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: build/site
+  # A job of its own, because right after the upload the artifact isn't always
+  # listed yet, and the deployment then fails with "No artifacts named
+  # github-pages were found".
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
